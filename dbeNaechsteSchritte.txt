@@ -1,11 +1,11 @@
 
 zu erledigen:
-- mit title und description gute Beschreibung für Menschen erstellen für die Schlüssel
-- i18n internationalization
 - alle Arrays mit eckigen Klammern prüfen, ob ich wirklich die Anzahl der Elemente damit festlegen möchte oder nur die Elementart durch eckige Klammer.
 - Fuer URIs nutzt du als `type` einfach `string` ohne weitere Einschraenkungen. Um hier einen gueltigen URI-String zu erzwingen, solltest du noch den Schluessel `format` mit dem Wert `uri` angeben (siehe dazu https://json-schema.org/understanding-json-schema/reference/string.html#format ). Analoges bei `email`, `website` und Datums- und Zeitangaben. Fuer handgestrickte Formate kann man den Schluessel `pattern` mit einem regulaeren Ausdruck als Wert verwenden, siehe https://json-schema.org/understanding-json-schema/reference/string.html#regular-expressions . Das koennte beispielsweise bei `phone` interessant sein.
 - Die Definition `dates` ist gerade ein Quintupel. Was moechtest du hier modellieren? Vielleicht sind fuer deine Modelle auch `anyOf`, `allOf` und `oneOf`, siehe https://json-schema.org/understanding-json-schema/structuring.html#extending , interessant; `anyOf` ist vermutlich das was du bei `optical/polarisation` anstelle des Tupels moechtest?
 - Bei Zahlenwerten sollten die moeglichen Werte eingeschraenkt werden. Beispielsweise durch Verwendung von `integer` statt `number`, durch die Angabe von `multipleOf` oder durch die Angabe eines Bereichs, siehe https://json-schema.org/understanding-json-schema/reference/numeric.html Du kannst entsprechend die Definitionen `integerWithUncertainty`, `nonNegativeRealWithUncertainty`, usw. einfuehren.
+- i18n internationalization
+- mit title und description gute Beschreibung für Menschen erstellen für die Schlüssel
 
 erledigt:
 - in allen definitions teileins/teilzwei ersetzen durch „teileins“:{ „teilzwei“: {

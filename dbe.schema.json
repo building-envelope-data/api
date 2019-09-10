@@ -51,34 +51,15 @@
 			"minItems": 1
 		},
 		"contact": {
-			"type": "array",
-			"items": [
-                {
-                    "type": "object",
-					"properties": {
-						"https://www.building-envelopes.org/phone": { "type": "string" },
-						"https://www.building-envelopes.org/description": { "type": "string" }
-					},
-					"required": [ "https://www.building-envelopes.org/phone" ]
-				},
-				{
-					"type": "object",
-					"properties": {
-						"https://www.building-envelopes.org/email": { "type": "string" },
-						"https://www.building-envelopes.org/description": { "type": "string" }
-					},
-					"required": [ "https://www.building-envelopes.org/email" ]
-				},
-				{
-					"type": "object",
-					"properties": {
-						"https://www.building-envelopes.org/website": { "type": "string" },
-						"https://www.building-envelopes.org/description": { "type": "string" }
-					},
-					"required": [ "https://www.building-envelopes.org/website" ]
-				}
-            ],
-			"minItems": 1
+            "type": "object",
+            "properties": {
+                "https://www.building-envelopes.org/phone": { "type": "string" },
+                "https://www.building-envelopes.org/address": { "type": "string" },
+                "https://www.building-envelopes.org/email": { "type": "string" },
+                "https://www.building-envelopes.org/description": { "type": "string" },                  
+                "https://www.building-envelopes.org/website": { "type": "string" }
+            },
+            "required": []
         },
 		"basicStakeholder": {
 			"type": "object",
@@ -255,20 +236,16 @@
                 "properties": {
                     "https://www.building-envelopes.org/method/input": {
                         "type": "array",
-                        "items": [
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "https://www.building-envelopes.org/method/uri": { "type": "string" }
-                                },
-                                "required": []
-                            }
-                        ]
+                        "items": {
+                            "type": "string",
+                            "description": "Each string defines the URI of a method. The first method is applied to the first input, the second to the second and so forth. An empty string defines that no method is applied on the coresponding input."
+                        }
                     },
                     "https://www.building-envelopes.org/method/output": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/method/uri": { "type": "string" }
+                            "https://www.building-envelopes.org/method/uri": { "type": "string" },
+                            "description": "This URI defines the method which is applied after input methods have been applied on the inputs. The output method with this URI generates the results of the method."
                         }
                     }   
                 }
@@ -332,7 +309,7 @@
 						{
 							"type": "object",
 							"properties": {
-								"https://www.building-envelopes.org/roles/author": { "$ref": "#/definitions/author" }
+								"################https://www.building-envelopes.org/roles/author": { "$ref": "#/definitions/author" }
 							}
 						}
                     ],
