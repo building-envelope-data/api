@@ -10,7 +10,7 @@
 				{
 					"type": "object",
 					"properties": {
-						"https://www.building-envelopes.org/date/created": { "type": "number" },
+						"https://www.building-envelopes.org/date/created": { "type": "string", "format": "date-time" },
 						"https://www.building-envelopes.org/description": { "type": "string" }
 					},
 					"required": [ "https://www.building-envelopes.org/date/created" ]
@@ -18,7 +18,7 @@
 				{
 					"type": "object",
 					"properties": {
-						"https://www.building-envelopes.org/date/valid/from": { "type": "number" },
+						"https://www.building-envelopes.org/date/valid/from": { "type": "string", "format": "date-time" },
 						"https://www.building-envelopes.org/description": { "type": "string" }
 					},
 					"required": [ "https://www.building-envelopes.org/date/valid/from" ]
@@ -26,7 +26,7 @@
 				{
 					"type": "object",
 					"properties": {
-						"https://www.building-envelopes.org/date/valid/until": { "type": "number" },
+						"https://www.building-envelopes.org/date/valid/until": { "type": "string", "format": "date-time" },
 						"https://www.building-envelopes.org/description": { "type": "string" }
 					},
 					"required": [ "https://www.building-envelopes.org/date/valid/until" ]
@@ -34,7 +34,7 @@
 				{
 					"type": "object",
 					"properties": {
-						"https://www.building-envelopes.org/date/available/from": { "$ref": "#/definitions/valueWithUncertainty" },
+						"https://www.building-envelopes.org/date/available/from": { "type": "string", "format": "date-time" },
 						"https://www.building-envelopes.org/description": { "type": "string" }
 					},
 					"required": [ "https://www.building-envelopes.org/date/available/from" ]
@@ -42,7 +42,7 @@
 				{
 					"type": "object",
 					"properties": {
-						"https://www.building-envelopes.org/date/available/until": { "$ref": "#/definitions/valueWithUncertainty" },
+						"https://www.building-envelopes.org/date/available/until": { "type": "string", "format": "date-time" },
 						"https://www.building-envelopes.org/description": { "type": "string" }
 					},
 					"required": [ "https://www.building-envelopes.org/date/available/until" ]
@@ -55,16 +55,16 @@
             "properties": {
                 "https://www.building-envelopes.org/phone": { "type": "string" },
                 "https://www.building-envelopes.org/address": { "type": "string" },
-                "https://www.building-envelopes.org/email": { "type": "string" },
+                "https://www.building-envelopes.org/email": { "type": "string", "format": "email" },
                 "https://www.building-envelopes.org/description": { "type": "string" },                  
-                "https://www.building-envelopes.org/website": { "type": "string" }
+                "https://www.building-envelopes.org/website": { "type": "string", "format": "hostname" }
             },
             "required": []
         },
 		"basicStakeholder": {
 			"type": "object",
 			"properties": {		
-				"https://www.building-envelopes.org/institution/uri": { "type": "string" },
+				"https://www.building-envelopes.org/institution/uri": { "type": "string", "format": "uri" },
 				"https://www.building-envelopes.org/description": { "type": "string" }
 			},
 			"required": [ "https://www.building-envelopes.org/institution/uri" ]
@@ -72,7 +72,7 @@
         "person": {
             "type": "object",
 			"properties": { 
-                "https://www.building-envelopes.org/uri": { "type": "string" },
+                "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                 "https://www.building-envelopes.org/name/family": { "type": "string" },
                 "https://www.building-envelopes.org/name/given": { "type": "string" },
                 "https://www.building-envelopes.org/institution": { "$ref": "#/definitions/institution" },
@@ -83,7 +83,7 @@
         "institution": {
 			"type": "object",
 			"properties": {
-				"https://www.building-envelopes.org/uri": { "type": "string" },
+				"https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
 				"https://www.building-envelopes.org/abbreviation": { "type": "string" },
 				"https://www.building-envelopes.org/name": { "type": "string" },
 				"https://www.building-envelopes.org/description": { "type": "string" },
@@ -114,7 +114,7 @@
             "standardizer": {
                 "type": "object",
                 "properties": {		
-                    "https://www.building-envelopes.org/institution/uri": { "type": "string" },
+                    "https://www.building-envelopes.org/institution/uri": { "type": "string", "format": "uri" },
                     "https://www.building-envelopes.org/institution/abbreviation": { "type": "string" },
                     "https://www.building-envelopes.org/description": { "type": "string" }
                 },
@@ -125,7 +125,7 @@
             "basics": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/uri": { "type": "string" },
+                    "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                     "https://www.building-envelopes.org/name": { "type": "string" },
                     "https://www.building-envelopes.org/abbreviation": { "type": "string" },
                     "https://www.building-envelopes.org/description": { "type": "string" },
@@ -180,7 +180,7 @@
             "version": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/uri": { "type": "string" },
+                    "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                     "https://www.building-envelopes.org/name": { "type": "string" },
                     "https://www.building-envelopes.org/description": { "type": "string" },
                     "https://www.building-envelopes.org/roles": { "$ref": "#/definitions/roles/basics" },
@@ -212,7 +212,7 @@
             "basics": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/uri": { "type": "string" },
+                    "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                     "https://www.building-envelopes.org/name": { "type": "string" },
                     "https://www.building-envelopes.org/description": { "type": "string" },
                     "https://www.building-envelopes.org/method/definition": { "$ref": "#/definitions/method/definition" },
@@ -239,7 +239,7 @@
                         "items": {
                             "type": "object",
                             "properties": {
-                                "https://www.building-envelopes.org/method/uri": { "type": "string" }
+                                "https://www.building-envelopes.org/method/uri": { "type": "string", "format": "uri" }
                             }
                         },
                         "description": "Each item defines the URI of one method. The first method will be applied to the first input, the second to the second and so forth. An empty URI string defines that no method is applied on the corresponding input."
@@ -247,7 +247,7 @@
                     "https://www.building-envelopes.org/method/output": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/method/uri": { "type": "string" },
+                            "https://www.building-envelopes.org/method/uri": { "type": "string", "format": "uri" },
                             "description": "This URI defines the method which is applied after input methods have been applied on the inputs. The output method with this URI generates the results of the method."
                         }
                     }   
@@ -270,7 +270,7 @@
                             "https://www.building-envelopes.org/method/calculation/executable": { 
                                 "type": "object",
                                 "properties": {
-                                    "https://www.building-envelopes.org/method/calculation/executable/uri": { "type": "string" }
+                                    "https://www.building-envelopes.org/method/calculation/executable/uri": { "type": "string", "format": "uri" }
                                 },
                                 "required": [ "https://www.building-envelopes.org/method/calculation/executable/uri" ]
                              },
@@ -303,7 +303,7 @@
 		"publication": {
 			"type": "object",
 			"properties": {
-				"https://www.building-envelopes.org/uri": { "type": "string" },
+				"https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
 				"https://www.building-envelopes.org/title": { "type": "string" },
 				"https://www.building-envelopes.org/abstract": { "type": "string" },
 				"https://www.building-envelopes.org/roles/authors": {
@@ -329,7 +329,7 @@
         "database": {
 			"type": "object",
 			"properties": {
-                "https://www.building-envelopes.org/uri": { "type": "string" },
+                "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                 "https://www.building-envelopes.org/name": { "type": "string" },
                 "https://www.building-envelopes.org/description": { "type": "string" },
                 "https://www.building-envelopes.org/roles": { "$ref": "#/definitions/roles/basics" },
@@ -342,7 +342,7 @@
             "basics": {
                 "type": "object",
                 "properties": {  
-                    "https://www.building-envelopes.org/uri": { "type": "string" },
+                    "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                     "https://www.building-envelopes.org/roles/approver": { "type": "string" },
                     "https://www.building-envelopes.org/approval/verify": { "$ref": "#/definitions/approval/verify" },
                     "https://www.building-envelopes.org/signature": { "type": "string" },
@@ -384,7 +384,7 @@
         "format": {
             "type": "object",
 			"properties": { 
-                "https://www.building-envelopes.org/uri": { "type": "string" },
+                "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                 "https://www.building-envelopes.org/abbreviation": { "type": "string" },
                 "https://www.building-envelopes.org/name": { "type": "string" },
                 "https://www.building-envelopes.org/description": { "type": "string" },
@@ -395,7 +395,7 @@
         "file": {
             "type": "object",
 			"properties": { 
-                "https://www.building-envelopes.org/uri": { "type": "string" },
+                "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                 "https://www.building-envelopes.org/name": { "type": "string" },
                 "https://www.building-envelopes.org/description": { "type": "string" },
                 "https://www.building-envelopes.org/format": { "$ref": "#/definitions/format" },  
@@ -500,7 +500,7 @@
                 {
                     "type": "object",
                     "properties": {
-                        "https://www.building-envelopes.org/component/uri": { "type": "string" },
+                        "https://www.building-envelopes.org/component/uri": { "type": "string", "format": "uri" },
                         "https://www.building-envelopes.org/geometry": { "$ref": "#/definitions/geometry/basics" }
                     },
                     "required": ["https://www.building-envelopes.org/component/uri"]
@@ -591,7 +591,7 @@
         "source": {
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/uri": { "type": "string" },
+                "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                 "https://www.building-envelopes.org/name": { "type": "string" },
                 "https://www.building-envelopes.org/description": { "type": "string" }
             },
@@ -614,7 +614,7 @@
                 "items": {
                     "type": "object",
                     "properties": {
-                        "https://www.building-envelopes.org/uri": { "type": "string" },
+                        "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                         "https://www.building-envelopes.org/name": { "type": "string" },
                         "https://www.building-envelopes.org/description": { "type": "string" },
                         "https://www.building-envelopes.org/origin": { "$ref": "#/definitions/origin" },
@@ -798,7 +798,7 @@
                     "https://www.building-envelopes.org/optical/referenceSamples": {
                         "type": "object",
                         "properties": { 
-                            "https://www.building-envelopes.org/uri": { "type": "string" },
+                            "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                             "https://www.building-envelopes.org/reference": { "$ref": "#/definitions/reference" }
                         },
                         "required": []
