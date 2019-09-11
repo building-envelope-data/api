@@ -90,7 +90,7 @@
 		"roles": {
             "basics": {
                 "type": "object",
-                "properties": {
+                "#############properties": {
                     "https://www.building-envelopes.org/roles/owner": { "$ref": "#/definitions/basicStakeholder" },
                     "https://www.building-envelopes.org/roles/submitter": { "$ref": "#/definitions/basicStakeholder" },
                     "https://www.building-envelopes.org/roles/manufacturer": { "$ref": "#/definitions/basicStakeholder" },
@@ -99,10 +99,16 @@
                     "https://www.building-envelopes.org/roles/admin": { "$ref": "#/definitions/basicStakeholder" },
                     "https://www.building-envelopes.org/roles/standardizer": { "$ref": "#/definitions/roles/standardizer" },
                     "https://www.building-envelopes.org/roles/author": { "$ref": "#/definitions/person" },
-                    "https://www.building-envelopes.org/roles/developer": { "$ref": "#/definitions/roles/developer" }
+                    "https://www.building-envelopes.org/roles/developer": { "$ref": "#/definitions/roles/developer" },
                 },
                 "required": []
             },
+            "owner": { "$ref": "#/definitions/basicStakeholder" },
+            "submitter": { "$ref": "#/definitions/basicStakeholder" },
+            "manufacturer": { "$ref": "#/definitions/basicStakeholder" },
+            "approver": { "$ref": "#/definitions/basicStakeholder" },
+            "admin": { "$ref": "#/definitions/basicStakeholder" },
+            "author": { "$ref": "#/definitions/person" },
             "developer": { "$ref": "#/definitions/basicStakeholder" },
             "creator": { "$ref": "#/definitions/basicStakeholder" },
             "standardizer": {
@@ -123,7 +129,9 @@
                     "https://www.building-envelopes.org/name": { "type": "string" },
                     "https://www.building-envelopes.org/abbreviation": { "type": "string" },
                     "https://www.building-envelopes.org/description": { "type": "string" },
-                    "https://www.building-envelopes.org/roles": { "$ref": "#/definitions/roles/basics" },
+                    "https://www.building-envelopes.org/roles/owner": { "$ref": "#/definitions/basicStakeholder" },
+                    "https://www.building-envelopes.org/roles/manufacturer": { "$ref": "#/definitions/basicStakeholder" },
+                    "https://www.building-envelopes.org/roles/developer": { "$ref": "#/definitions/roles/developer" },
                     "https://www.building-envelopes.org/component/version": { "type": "string" },
                     "https://www.building-envelopes.org/component/categories": { "$ref": "#/definitions/component/categories" },
                     "https://www.building-envelopes.org/component/constants": { "$ref": "#/definitions/component/constants" },
@@ -178,7 +186,9 @@
                     "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                     "https://www.building-envelopes.org/name": { "type": "string" },
                     "https://www.building-envelopes.org/description": { "type": "string" },
-                    "https://www.building-envelopes.org/roles": { "$ref": "#/definitions/roles/basics" },
+                    "https://www.building-envelopes.org/roles/owner": { "$ref": "#/definitions/basicStakeholder" },
+                    "https://www.building-envelopes.org/roles/manufacturer": { "$ref": "#/definitions/basicStakeholder" },
+                    "https://www.building-envelopes.org/roles/developer": { "$ref": "#/definitions/roles/developer" },
                     "https://www.building-envelopes.org/component/categories": { "$ref": "#/definitions/component/categories" },
                     "https://www.building-envelopes.org/date/available/from":{ "$ref": "#/definitions/available/from" },
                     "https://www.building-envelopes.org/date/available/until":{ "$ref": "#/definitions/available/until" }
@@ -194,7 +204,7 @@
                     "https://www.building-envelopes.org/optical/angle/cutOff": { "$ref": "#/definitions/valueWithUncertainty" },
                     "https://www.building-envelopes.org/chemicalElements": {
                         "type": "array",
-                        "items": { "type": "string" },
+                        "items": { "type": "string", "pattern": "[A-Z][a-z]?" },
                         "minItems": 1
                     },
                     "https://www.building-envelopes.org/material/constants": { "$ref": "#/definitions/material/constants" },
@@ -242,7 +252,8 @@
                                 "https://www.building-envelopes.org/method/uri": { "type": "string", "format": "uri" }
                             }
                         },
-                        "description": "Each item defines the URI of one method. The first method will be applied to the first input, the second to the second and so forth. An empty URI string defines that no method is applied on the corresponding input."
+                        "description": "Each item defines the URI of one method. The first method will be applied to the first input, the second to the second and so forth. An empty URI string defines that no method is applied on the corresponding input.",
+                        "minItems": 0
                     },
                     "https://www.building-envelopes.org/method/output": {
                         "type": "object",
@@ -332,7 +343,8 @@
                 "https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
                 "https://www.building-envelopes.org/name": { "type": "string" },
                 "https://www.building-envelopes.org/description": { "type": "string" },
-                "https://www.building-envelopes.org/roles": { "$ref": "#/definitions/roles/basics" },
+                "https://www.building-envelopes.org/roles/owner": { "$ref": "#/definitions/basicStakeholder" },
+                "https://www.building-envelopes.org/roles/admin": { "$ref": "#/definitions/basicStakeholder" },
                 "https://www.building-envelopes.org/date/created":{ "$ref": "#/definitions/created" },
                 "https://www.building-envelopes.org/date/valid/from":{ "$ref": "#/definitions/valid/from" },
                 "https://www.building-envelopes.org/date/valid/until":{ "$ref": "#/definitions/valid/until" },
@@ -679,24 +691,15 @@
                 "minItems": 1
             },
             "polarisation": {
-                "type": "array",
-                "items": [
-                    {
-                        "type": "object",
-                        "properties": {
-                            "https://www.building-envelopes.org/optical/polarisation/linear/s": { "$ref": "#/definitions/valueWithUncertainty" },
-                            "https://www.building-envelopes.org/optical/polarisation/linear/p": { "$ref": "#/definitions/valueWithUncertainty" }
-                        }
-                    },
-                    {
-                        "type": "object",
-                        "properties": {                    
-                            "https://www.building-envelopes.org/optical/polarisation/circular/l": { "$ref": "#/definitions/valueWithUncertainty" },
-                            "https://www.building-envelopes.org/optical/polarisation/circular/r": { "$ref": "#/definitions/valueWithUncertainty" }
-                        }
-                    }
-                ],
-                "minItems": 1
+                "type": "object",
+                "properties": {
+                    "https://www.building-envelopes.org/optical/polarisation/linear/s": { "$ref": "#/definitions/valueWithUncertainty" },
+                    "https://www.building-envelopes.org/optical/polarisation/linear/p": { "$ref": "#/definitions/valueWithUncertainty" },                
+                    "https://www.building-envelopes.org/optical/polarisation/circular/l": { "$ref": "#/definitions/valueWithUncertainty" },
+                    "https://www.building-envelopes.org/optical/polarisation/circular/r": { "$ref": "#/definitions/valueWithUncertainty" }
+                },
+                "required": [],
+                "minProperties": 2
             },
             "wavelengths": {
                 "type": "array",
