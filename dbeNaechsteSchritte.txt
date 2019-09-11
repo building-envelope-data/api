@@ -1,6 +1,7 @@
 
 zu erledigen:
-- Bei Zahlenwerten sollten die moeglichen Werte eingeschraenkt werden. Beispielsweise durch Verwendung von `integer` statt `number`, durch die Angabe von `multipleOf` oder durch die Angabe eines Bereichs, siehe https://json-schema.org/understanding-json-schema/reference/numeric.html Du kannst entsprechend die Definitionen `integerWithUncertainty`, `nonNegativeRealWithUncertainty`, usw. einfuehren.
 - i18n internationalization
+zur Angabe von Sprachen sind die IETF Language Tags gebraeuchlich (werden in HTTP, HTML, usw. verwendet); sie sind unter BCP47 spezifiziert und haben die Form "language code-country code", bspw. "de-AT", wobei die language codes im Wesentlichen ISO 639-1 folgen und die country codes ISO 3166-1.
+Wie man [JSON schema internationalisiert](https://github.com/json-schema-org/json-schema-spec/wiki/Localization) wird gerade [noch diskutiert](https://github.com/json-schema-org/json-schema-spec/issues/744). Die Vorschlaege sind im Wesentlichen "key: {de-AT: "...", en-US: "...", ...}" oder die Antwort stets nur in der [im HTTP-Header angegebenen Sprache](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) zurueckzugeben. Geht beides mit Vor- und Nachteilen einher. Bei OpenAPI ist dies ebenfalls [noch](https://github.com/OAI/OpenAPI-Specification/issues/274) in [Diskussion](https://github.com/OAI/OpenAPI-Specification/issues/1740).
 - mit title und description gute Beschreibung für Menschen erstellen für die Schlüssel
 
