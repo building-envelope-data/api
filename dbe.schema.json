@@ -10,9 +10,11 @@
                 "en-US": {
                     "type": "string"
                 }
-            }
+            },
+            "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
         },
         "date": {
+            "title": "In this section, you find all keys for timestamps.",
             "created": {
                 "type": "object",
                 "properties": {
@@ -21,7 +23,8 @@
                         "format": "date-time"
                     }
                 },
-                "required": []
+                "required": [],
+                "description": "The date when this data was first stored in the database."
             },
             "valid": {
                 "from": {
@@ -32,7 +35,8 @@
                             "format": "date-time"
                         }
                     },
-                    "required": []
+                    "required": [],
+                    "description": "The earliest date for which the data is valid."
                 },
                 "until": {
                     "type": "object",
@@ -42,7 +46,8 @@
                             "format": "date-time"
                         }
                     },
-                    "required": []
+                    "required": [],
+                    "description": "The lastest date for which the data is valid."
                 }
             },
             "available": {
@@ -54,7 +59,8 @@
                             "format": "date-time"
                         }
                     },
-                    "required": []
+                    "required": [],
+                    "description": "The earliest date at which it was available."
                 },
                 "until": {
                     "type": "object",
@@ -64,42 +70,49 @@
                             "format": "date-time"
                         }
                     },
-                    "required": []
+                    "required": [],
+                    "description": "The earliest date at which it was available."
                 }
             }
         },
         "contact": {
+            "title": "In this section, you find all contact data for an institution or person.",
             "type": "object",
             "properties": {
                 "https://www.building-envelopes.org/phone": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Phone number of an institution or person"
                 },
                 "https://www.building-envelopes.org/address": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Postal address of an institution or person"
                 },
                 "https://www.building-envelopes.org/email": {
                     "type": "string",
-                    "format": "email"
-                },
-                "https://www.building-envelopes.org/description": {
-                    "$ref": "#/definitions/internationalString"
+                    "format": "email",
+                    "description": "E-mail address of an institution or person"
                 },
                 "https://www.building-envelopes.org/website": {
                     "type": "string",
-                    "format": "hostname"
+                    "format": "hostname",
+                    "description": "Website of an institution or person"
                 }
             },
-            "required": []
+            "required": [],
+            "minProperties": 1
         },
         "basicStakeholder": {
+            "title": "A stakeholder can be either an institution or a person. This section collects the basic data of stakeholders.",
             "type": "object",
             "properties": {
                 "https://www.building-envelopes.org/uri": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "This URI defines the stakeholder which is either an institution or a person."
                 },
                 "https://www.building-envelopes.org/description": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "This description can specify the role of the stakeholder."
                 }
             },
             "required": [
@@ -107,48 +120,78 @@
             ]
         },
         "person": {
+            "title": "This section collects all data about a person.",
             "type": "object",
             "properties": {
                 "https://www.building-envelopes.org/uri": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The URI which defines the person"
                 },
                 "https://www.building-envelopes.org/name/family": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The family name(s) also known as surname(s) or last name(s) of a person"
                 },
                 "https://www.building-envelopes.org/name/given": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The given name(s) also known as forname(s) or first name(s) of a person"
                 },
                 "https://www.building-envelopes.org/institution": {
-                    "$ref": "#/definitions/institution"
+                    "type": "object",
+                    "properties": {
+                        "https://www.building-envelopes.org/uri": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "The URI which defines the affiliation of the person"
+                        },
+                        "https://www.building-envelopes.org/name": {
+                            "$ref": "#/definitions/internationalString",
+                            "description": "The name of the affiliation of the person"
+                        }
+                    },
+                    "required": []
                 },
                 "https://www.building-envelopes.org/contact": {
-                    "$ref": "#/definitions/contact"
+                    "$ref": "#/definitions/contact",
+                    "description": "How to contact the person"
                 }
             },
             "required": []
         },
         "institution": {
+            "title": "This sections collects data about an institution.",
             "type": "object",
             "properties": {
                 "https://www.building-envelopes.org/uri": {
                     "type": "string",
-                    "format": "uri"
-                },
-                "https://www.building-envelopes.org/abbreviation": {
-                    "type": "string"
+                    "format": "uri",
+                    "description": "The URI which defines the institution"
                 },
                 "https://www.building-envelopes.org/name": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The name of the institution"
+                },
+                "https://www.building-envelopes.org/abbreviation": {
+                    "type": "string",
+                    "description": "The abbreviation of the institution"
                 },
                 "https://www.building-envelopes.org/description": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The description can further explain the role of the institution."
                 },
                 "https://www.building-envelopes.org/publicKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The public key of the institution for cryptography"
                 },
                 "https://www.building-envelopes.org/contact": {
-                    "$ref": "#/definitions/contact"
+                    "$ref": "#/definitions/contact",
+                    "description": "How to contact the institution"
                 }
             },
             "required": [
@@ -156,29 +199,38 @@
             ]
         },
         "roles": {
+            "title": "This section collects the definitions of the various roles which an institution or a person can have.",
             "owner": {
-                "$ref": "#/definitions/basicStakeholder"
+                "$ref": "#/definitions/basicStakeholder",
+                "description": "The owner holds the rights for example on a component and is defined by an URI."
             },
             "submitter": {
-                "$ref": "#/definitions/basicStakeholder"
+                "$ref": "#/definitions/basicStakeholder",
+                "description": "The submitter submits data to a database and is defined by an URI."
             },
             "manufacturer": {
-                "$ref": "#/definitions/basicStakeholder"
+                "$ref": "#/definitions/basicStakeholder",
+                "description": "The manufacturer manufactures the componente and is defined by an URI."
             },
             "approver": {
-                "$ref": "#/definitions/basicStakeholder"
+                "$ref": "#/definitions/basicStakeholder",
+                "description": "The approver states that data or a method fulfills certain requirements. She is defined by an URI."
             },
             "admin": {
-                "$ref": "#/definitions/basicStakeholder"
+                "$ref": "#/definitions/basicStakeholder",
+                "description": "The admin is in charge of a database and is defined by an URI."
             },
             "author": {
-                "$ref": "#/definitions/person"
+                "$ref": "#/definitions/person",
+                "description": "The author of a publication is defined by an URI."
             },
             "developer": {
-                "$ref": "#/definitions/basicStakeholder"
+                "$ref": "#/definitions/basicStakeholder",
+                "description": "The developer of a method or component is defined by an URI."
             },
             "creator": {
-                "$ref": "#/definitions/basicStakeholder"
+                "$ref": "#/definitions/basicStakeholder",
+                "description": "The creator of a data set is defined by an URI."
             },
             "standardizer": {
                 "type": "object",
@@ -193,62 +245,79 @@
                 },
                 "required": [
                     "https://www.building-envelopes.org/roles/standardizer/uri"
-                ]
+                ],
+                "description": "A standardizer is an institution which creates a standard. The institution is defined by an URI."
             }
         },
         "component": {
+            "title": "This section collects the definitions regarding components of building envelopes",
             "basics": {
+                "title": "This section collects the basic definitions about a component.",
                 "type": "object",
                 "properties": {
                     "https://www.building-envelopes.org/uri": {
                         "type": "string",
-                        "format": "uri"
+                        "format": "uri",
+                        "descriptions": "The URI of the component"
                     },
                     "https://www.building-envelopes.org/name": {
-                        "$ref": "#/definitions/internationalString"
+                        "$ref": "#/definitions/internationalString",
+                        "description": "The name of the component"
                     },
                     "https://www.building-envelopes.org/abbreviation": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The abbreviation of the component"
                     },
                     "https://www.building-envelopes.org/description": {
-                        "$ref": "#/definitions/internationalString"
+                        "$ref": "#/definitions/internationalString",
+                        "description": "A description of the component"
                     },
                     "https://www.building-envelopes.org/roles/owner": {
-                        "$ref": "#/definitions/basicStakeholder"
+                        "$ref": "#/definitions/basicStakeholder",
+                        "description": "The URI and description of the owner of the component"
                     },
                     "https://www.building-envelopes.org/roles/manufacturer": {
-                        "$ref": "#/definitions/basicStakeholder"
+                        "$ref": "#/definitions/basicStakeholder",
+                        "description": "The URI and description of the manufacturer of the component"
                     },
                     "https://www.building-envelopes.org/roles/developer": {
-                        "$ref": "#/definitions/roles/developer"
+                        "$ref": "#/definitions/roles/developer",
+                        "description": "The URI and description of the institution or person which developed the component"
                     },
                     "https://www.building-envelopes.org/component/version": {
                         "type": "string",
-                        "format": "uri"
+                        "format": "uri",
+                        "description": "The URI defines the version of the component."
                     },
                     "https://www.building-envelopes.org/component/categories": {
-                        "$ref": "#/definitions/component/categories"
+                        "$ref": "#/definitions/component/categories",
+                        "description": "The component is categorized in order to facilitate queries." 
                     },
                     "https://www.building-envelopes.org/component/constants": {
-                        "$ref": "#/definitions/component/constants"
+                        "$ref": "#/definitions/component/constants",
+                        "description": "There are two types of parameters: constants are defined here and do not change in one data set. Variables may change for each data point. Therefore, variables are stored close to the data points."
                     },
-                    "https://www.building-envelopes.org/approval": {
-                        "$ref": "#/definitions/approval/basics"
+                    "https://www.building-envelopes.org/approvals": {
+                        "$ref": "#/definitions/approvals",
+                        "description": "If the dataset for this component has been approved by an institution, this approval is specified here."
                     },
                     "https://www.building-envelopes.org/date/available/from": {
-                        "$ref": "#/definitions/available/from"
+                        "$ref": "#/definitions/available/from",
+                        "description": "Since when the component has been available"
                     },
                     "https://www.building-envelopes.org/date/available/until": {
-                        "$ref": "#/definitions/available/until"
+                        "$ref": "#/definitions/available/until",
+                        "description": "Until when the component has been available"
                     },
                     "https://www.building-envelopes.org/optical": {
-                        "$ref": "#/definitions/optical/basics"
+                        "$ref": "#/definitions/optical/basics",
+                        "description": "All optical data of the data set is stored in this section."
                     }
                 },
                 "required": [
                     "https://www.building-envelopes.org/uri"
                 ]
-            },
+            },            
             "categories": {
                 "type": "array",
                 "items": {
@@ -678,8 +747,9 @@
                 "https://www.building-envelopes.org/uri"
             ]
         },
-        "approval": {
-            "basics": {
+        "approvals": {
+            "type": "array",
+            "items": {
                 "type": "object",
                 "properties": {
                     "https://www.building-envelopes.org/uri": {
@@ -709,7 +779,9 @@
                 "required": [
                     "https://www.building-envelopes.org/roles/approver"
                 ]
-            },
+            }
+        },
+        "approval": {
             "verify": {
                 "type": "object",
                 "properties": {
@@ -802,8 +874,8 @@
                 "https://www.building-envelopes.org/roles/creator": {
                     "$ref": "#/definitions/roles/creator"
                 },
-                "https://www.building-envelopes.org/approval": {
-                    "$ref": "#/definitions/approval/basics"
+                "https://www.building-envelopes.org/approvals": {
+                    "$ref": "#/definitions/approvals"
                 },
                 "https://www.building-envelopes.org/date/created": {
                     "$ref": "#/definitions/created"
@@ -1184,8 +1256,8 @@
                         "https://www.building-envelopes.org/origin": {
                             "$ref": "#/definitions/origin"
                         },
-                        "https://www.building-envelopes.org/approval": {
-                            "$ref": "#/definitions/approval/basics"
+                        "https://www.building-envelopes.org/approvals": {
+                            "$ref": "#/definitions/approvals"
                         },
                         "https://www.building-envelopes.org/date/created": {
                             "$ref": "#/definitions/created"
