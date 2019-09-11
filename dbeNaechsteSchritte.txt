@@ -1,6 +1,5 @@
 
 zu erledigen:
-- Die Definition `dates` ist gerade ein Quintupel. Was moechtest du hier modellieren? Vielleicht sind fuer deine Modelle auch `anyOf`, `allOf` und `oneOf`, siehe https://json-schema.org/understanding-json-schema/structuring.html#extending , interessant; `anyOf` ist vermutlich das was du bei `optical/polarisation` anstelle des Tupels moechtest?
 - Bei Zahlenwerten sollten die moeglichen Werte eingeschraenkt werden. Beispielsweise durch Verwendung von `integer` statt `number`, durch die Angabe von `multipleOf` oder durch die Angabe eines Bereichs, siehe https://json-schema.org/understanding-json-schema/reference/numeric.html Du kannst entsprechend die Definitionen `integerWithUncertainty`, `nonNegativeRealWithUncertainty`, usw. einfuehren.
 - i18n internationalization
 - mit title und description gute Beschreibung für Menschen erstellen für die Schlüssel

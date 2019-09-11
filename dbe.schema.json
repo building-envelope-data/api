@@ -59,7 +59,7 @@
 		"basicStakeholder": {
 			"type": "object",
 			"properties": {		
-				"https://www.building-envelopes.org/institution/uri": { "type": "string", "format": "uri" },
+				"https://www.building-envelopes.org/uri": { "type": "string", "format": "uri" },
 				"https://www.building-envelopes.org/description": { "type": "string" }
 			},
 			"required": [ "https://www.building-envelopes.org/institution/uri" ]
@@ -88,21 +88,6 @@
 			"required": [ "https://www.building-envelopes.org/uri" ]			
         },
 		"roles": {
-            "basics": {
-                "type": "object",
-                "#############properties": {
-                    "https://www.building-envelopes.org/roles/owner": { "$ref": "#/definitions/basicStakeholder" },
-                    "https://www.building-envelopes.org/roles/submitter": { "$ref": "#/definitions/basicStakeholder" },
-                    "https://www.building-envelopes.org/roles/manufacturer": { "$ref": "#/definitions/basicStakeholder" },
-                    "https://www.building-envelopes.org/roles/approver": { "$ref": "#/definitions/basicStakeholder" },
-                    "https://www.building-envelopes.org/roles/creator": { "$ref": "#/definitions/roles/creator" },
-                    "https://www.building-envelopes.org/roles/admin": { "$ref": "#/definitions/basicStakeholder" },
-                    "https://www.building-envelopes.org/roles/standardizer": { "$ref": "#/definitions/roles/standardizer" },
-                    "https://www.building-envelopes.org/roles/author": { "$ref": "#/definitions/person" },
-                    "https://www.building-envelopes.org/roles/developer": { "$ref": "#/definitions/roles/developer" },
-                },
-                "required": []
-            },
             "owner": { "$ref": "#/definitions/basicStakeholder" },
             "submitter": { "$ref": "#/definitions/basicStakeholder" },
             "manufacturer": { "$ref": "#/definitions/basicStakeholder" },
@@ -114,9 +99,8 @@
             "standardizer": {
                 "type": "object",
                 "properties": {		
-                    "https://www.building-envelopes.org/institution/uri": { "type": "string", "format": "uri" },
-                    "https://www.building-envelopes.org/institution/abbreviation": { "type": "string" },
-                    "https://www.building-envelopes.org/description": { "type": "string" }
+                    "https://www.building-envelopes.org/standardizer/uri": { "type": "string", "format": "uri" },
+                    "https://www.building-envelopes.org/standardizer/abbreviation": { "type": "string" }
                 },
                 "required": [ "https://www.building-envelopes.org/institution/uri" ]
             }
@@ -328,12 +312,14 @@
 		"standard": {
 			"type": "object",
 			"properties": {            
-                "https://www.building-envelopes.org/roles/standardizer": { "$ref": "#/definitions/roles/standardizer" },
-                "https://www.building-envelopes.org/institution/abbreviation": { "type": "string" },
+                "https://www.building-envelopes.org/roles/standardizers": { 
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/roles/standardizer" }
+                },
                 "https://www.building-envelopes.org/standard/number/prefix": { "type": "string" },
-                "https://www.building-envelopes.org/standard/number": { "type": "number" },
-                "https://www.building-envelopes.org/standard/number/postfix": { "type": "number" },
-                "https://www.building-envelopes.org/year": { "type": "number" }
+                "https://www.building-envelopes.org/standard/number": { "type": "integer", "minimum": 0, "maximum": 10000000 },
+                "https://www.building-envelopes.org/standard/number/postfix": { "type": "integer", "minimum": 0, "maximum": 10000 },
+                "https://www.building-envelopes.org/year": { "type": "integer", "minimum": 1800, "maximum": 2200 }
             },
             "required": ["https://www.building-envelopes.org/institution/abbreviation","https://www.building-envelopes.org/standard/number"]
         },
@@ -372,7 +358,7 @@
                 "type": "object",
                 "properties": {          
                     "https://www.building-envelopes.org/website": { "type": "string" },
-                    "https://www.building-envelopes.org/description": { "type": "string" },
+                    "https://www.building-envelopes.org/description": { "type": "string" }
                 },
                 "required": ["https://www.building-envelopes.org/website"]
             }
@@ -595,7 +581,7 @@
             "type": "array",
             "items": [
                 {
-                    "type": "number"
+                    "type": "number", "minimum": 0
                 },
                 {
                     "type": "object",
@@ -670,6 +656,13 @@
                         }
                     },
                     {
+                        "type": "object",
+                        "properties": {
+                            "https://www.building-envelopes.org/optical/angle/incidence": { "$ref": "#/definitions/valueWithUncertainty" },
+                            "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
+                        }
+                    },
+                    {
                         "type": "array",
                         "items": {
                             "type": "string",
@@ -715,7 +708,7 @@
                         "properties": {
                             "https://www.building-envelopes.org/optical/wavlengths/array": {
                                 "type": "array",
-                                "items": { "type": "number" },
+                                "items": { "type": "number", "exclusiveMinimum": 0 },
                                 "minItems": 1
                             }
                         }
@@ -868,17 +861,17 @@
                         "https://www.building-envelopes.org/format": { "$ref": "#/definitions/format" },
                         "https://www.building-envelopes.org/optical/transmittance/array": {
                             "type": "array",
-                            "items": { "type": "number" },
+                            "items": { "type": "number", "minimum": 0, "maximum": 1 },
                             "minItems": 1
                         },
                         "https://www.building-envelopes.org/optical/reflectance/array": {
                             "type": "array",
-                            "items": { "type": "number" },
+                            "items": { "type": "number", "minimum": 0, "maximum": 1 },
                             "minItems": 1
                         },
                         "https://www.building-envelopes.org/optical/BSDF/array": {
                             "type": "array",
-                            "items": { "type": "number" },
+                            "items": { "type": "number", "minimum": 0, "maximum": 1 },
                             "minItems": 1
                         }
                     }
