@@ -13,86 +13,69 @@
             },
             "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
         },
-        "date": {
-            "title": "In this section, you find all keys for timestamps.",
-            "created": {
-                "type": "object",
-                "properties": {
-                    "https://www.building-envelopes.org/date/created": {
-                        "type": "string",
-                        "format": "date-time"
-                    }
-                },
-                "required": [],
-                "description": "The date when this data was first stored in the database."
+        "created": {
+            "type": "object",
+            "properties": {
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
+                }
             },
-            "valid": {
+            "required": [],
+            "description": "The date when this data was first stored in the database."
+        },
+        "valid": {
+            "type": "object",
+            "properties": {            
                 "from": {
-                    "type": "object",
-                    "properties": {
-                        "https://www.building-envelopes.org/date/valid/from": {
-                            "type": "string",
-                            "format": "date-time"
-                        }
-                    },
-                    "required": [],
+                    "type": "string",
+                    "format": "date-time",
                     "description": "The earliest date for which the data is valid."
                 },
                 "until": {
-                    "type": "object",
-                    "properties": {
-                        "https://www.building-envelopes.org/date/valid/until": {
-                            "type": "string",
-                            "format": "date-time"
-                        }
-                    },
-                    "required": [],
+                    "type": "string",
+                    "format": "date-time",
                     "description": "The lastest date for which the data is valid."
                 }
             },
-            "available": {
+            "required": [],
+            "minProperties": 1
+        },
+        "available": {
+            "type": "object",
+            "properties": { 
                 "from": {
-                    "type": "object",
-                    "properties": {
-                        "https://www.building-envelopes.org/date/available/from": {
-                            "type": "string",
-                            "format": "date-time"
-                        }
-                    },
-                    "required": [],
+                    "type": "string",
+                    "format": "date-time",
                     "description": "The earliest date at which it was available."
                 },
                 "until": {
-                    "type": "object",
-                    "properties": {
-                        "https://www.building-envelopes.org/date/available/until": {
-                            "type": "string",
-                            "format": "date-time"
-                        }
-                    },
-                    "required": [],
+                    "type": "string",
+                    "format": "date-time",
                     "description": "The earliest date at which it was available."
                 }
-            }
+            },
+            "required": [],
+            "minProperties": 1
         },
         "contact": {
             "title": "In this section, you find all contact data for an institution or person.",
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/phone": {
+                "phone": {
                     "type": "string",
                     "description": "Phone number of an institution or person"
                 },
-                "https://www.building-envelopes.org/address": {
+                "address": {
                     "type": "string",
                     "description": "Postal address of an institution or person"
                 },
-                "https://www.building-envelopes.org/email": {
+                "email": {
                     "type": "string",
                     "format": "email",
                     "description": "E-mail address of an institution or person"
                 },
-                "https://www.building-envelopes.org/website": {
+                "website": {
                     "type": "string",
                     "format": "hostname",
                     "description": "Website of an institution or person"
@@ -105,59 +88,64 @@
             "title": "A stakeholder can be either an institution or a person. This section collects the basic data of stakeholders.",
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/uri": {
+                "uri": {
                     "type": "string",
                     "format": "uri",
                     "description": "This URI defines the stakeholder which is either an institution or a person."
                 },
-                "https://www.building-envelopes.org/description": {
+                "description": {
                     "$ref": "#/definitions/internationalString",
                     "description": "This description can specify the role of the stakeholder."
                 }
             },
             "required": [
-                "https://www.building-envelopes.org/institution/uri"
+                "uri"
             ]
         },
         "person": {
             "title": "This section collects all data about a person.",
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/uri": {
+                "uri": {
                     "type": "string",
                     "format": "uri",
                     "description": "The URI which defines the person"
                 },
-                "https://www.building-envelopes.org/name/family": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The family name(s) also known as surname(s) or last name(s) of a person"
-                },
-                "https://www.building-envelopes.org/name/given": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The given name(s) also known as forname(s) or first name(s) of a person"
-                },
-                "https://www.building-envelopes.org/institution": {
+                "names": {
                     "type": "object",
                     "properties": {
-                        "https://www.building-envelopes.org/uri": {
+                        "family": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "The family name(s) also known as surname(s) or last name(s) of a person"
+                        },
+                        "given": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "The given name(s) also known as forname(s) or first name(s) of a person"
+                        }
+                    }                    
+                },
+                "institution": {
+                    "type": "object",
+                    "properties": {
+                        "uri": {
                             "type": "string",
                             "format": "uri",
                             "description": "The URI which defines the affiliation of the person"
                         },
-                        "https://www.building-envelopes.org/name": {
+                        "name": {
                             "$ref": "#/definitions/internationalString",
                             "description": "The name of the affiliation of the person"
                         }
                     },
                     "required": []
                 },
-                "https://www.building-envelopes.org/contact": {
+                "contact": {
                     "$ref": "#/definitions/contact",
                     "description": "How to contact the person"
                 }
@@ -168,34 +156,34 @@
             "title": "This sections collects data about an institution.",
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/uri": {
+                "uri": {
                     "type": "string",
                     "format": "uri",
                     "description": "The URI which defines the institution"
                 },
-                "https://www.building-envelopes.org/name": {
+                "name": {
                     "$ref": "#/definitions/internationalString",
                     "description": "The name of the institution"
                 },
-                "https://www.building-envelopes.org/abbreviation": {
+                "abbreviation": {
                     "type": "string",
                     "description": "The abbreviation of the institution"
                 },
-                "https://www.building-envelopes.org/description": {
+                "description": {
                     "$ref": "#/definitions/internationalString",
                     "description": "The description can further explain the role of the institution."
                 },
-                "https://www.building-envelopes.org/publicKey": {
+                "publicKey": {
                     "type": "string",
                     "description": "The public key of the institution for cryptography"
                 },
-                "https://www.building-envelopes.org/contact": {
+                "contact": {
                     "$ref": "#/definitions/contact",
                     "description": "How to contact the institution"
                 }
             },
             "required": [
-                "https://www.building-envelopes.org/uri"
+                "uri"
             ]
         },
         "roles": {
@@ -235,16 +223,16 @@
             "standardizer": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/roles/standardizer/uri": {
+                    "uri": {
                         "type": "string",
                         "format": "uri"
                     },
-                    "https://www.building-envelopes.org/roles/standardizer/abbreviation": {
+                    "abbreviation": {
                         "type": "string"
                     }
                 },
                 "required": [
-                    "https://www.building-envelopes.org/roles/standardizer/uri"
+                    "uri"
                 ],
                 "description": "A standardizer is an institution which creates a standard. The institution is defined by an URI."
             }
@@ -255,67 +243,65 @@
                 "title": "This section collects the basic definitions about a component.",
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/uri": {
+                    "uri": {
                         "type": "string",
                         "format": "uri",
                         "descriptions": "The URI of the component"
                     },
-                    "https://www.building-envelopes.org/name": {
+                    "name": {
                         "$ref": "#/definitions/internationalString",
                         "description": "The name of the component"
                     },
-                    "https://www.building-envelopes.org/abbreviation": {
+                    "abbreviation": {
                         "type": "string",
                         "description": "The abbreviation of the component"
                     },
-                    "https://www.building-envelopes.org/description": {
+                    "description": {
                         "$ref": "#/definitions/internationalString",
                         "description": "A description of the component"
                     },
-                    "https://www.building-envelopes.org/roles/owner": {
-                        "$ref": "#/definitions/basicStakeholder",
-                        "description": "The URI and description of the owner of the component"
-                    },
-                    "https://www.building-envelopes.org/roles/manufacturer": {
-                        "$ref": "#/definitions/basicStakeholder",
-                        "description": "The URI and description of the manufacturer of the component"
-                    },
-                    "https://www.building-envelopes.org/roles/developer": {
-                        "$ref": "#/definitions/roles/developer",
-                        "description": "The URI and description of the institution or person which developed the component"
-                    },
-                    "https://www.building-envelopes.org/component/version": {
+                    "version": {
                         "type": "string",
                         "format": "uri",
                         "description": "The URI defines the version of the component."
                     },
-                    "https://www.building-envelopes.org/component/categories": {
+                    "categories": {
                         "$ref": "#/definitions/component/categories",
                         "description": "The component is categorized in order to facilitate queries." 
                     },
-                    "https://www.building-envelopes.org/component/constants": {
+                    "constants": {
                         "$ref": "#/definitions/component/constants",
                         "description": "There are two types of parameters: constants are defined here and do not change in one data set. Variables may change for each data point. Therefore, variables are stored close to the data points."
                     },
-                    "https://www.building-envelopes.org/approvals": {
+                    "roles": {
+                        "owner": {
+                            "$ref": "#/definitions/basicStakeholder",
+                            "description": "The URI and description of the owner of the component"
+                        },
+                        "manufacturer": {
+                            "$ref": "#/definitions/basicStakeholder",
+                            "description": "The URI and description of the manufacturer of the component"
+                        },
+                        "developer": {
+                            "$ref": "#/definitions/roles/developer",
+                            "description": "The URI and description of the institution or person which developed the component"
+                        }
+                    },
+                    "approvals": {
                         "$ref": "#/definitions/approvals",
                         "description": "If the dataset for this component has been approved by an institution, this approval is specified here."
                     },
-                    "https://www.building-envelopes.org/date/available/from": {
-                        "$ref": "#/definitions/available/from",
-                        "description": "Since when the component has been available"
+                    "available": {
+                        "$ref": "#/definitions/available",
+                        "description": "Since when and until when the component has been available"
                     },
-                    "https://www.building-envelopes.org/date/available/until": {
-                        "$ref": "#/definitions/available/until",
-                        "description": "Until when the component has been available"
-                    },
-                    "https://www.building-envelopes.org/optical": {
+                    "optical": {
                         "$ref": "#/definitions/optical/basics",
                         "description": "All optical data of the data set is stored in this section."
                     }
                 },
                 "required": [
-                    "https://www.building-envelopes.org/uri"
+                    "uri"
                 ]
             },            
             "categories": {
@@ -323,9 +309,9 @@
                 "items": {
                     "type": "string",
                     "enum": [
-                        "https://www.building-envelopes.org/component/material",
-                        "https://www.building-envelopes.org/component/layer",
-                        "https://www.building-envelopes.org/component/unit"
+                        "material",
+                        "layer",
+                        "unit"
                     ]
                 },
                 "minItems": 0
@@ -336,15 +322,15 @@
                     "items": {
                         "type": "string",
                         "enum": [
-                            "component/material/categories/monolithic",
-                            "component/material/categories/coating",
-                            "component/material/categories/PVB",
-                            "component/material/categories/film",
-                            "component/material/categories/frit",
-                            "component/material/categories/fabric/woven",
-                            "component/material/categories/fabric/nonWoven",
-                            "component/material/categories/slat",
-                            "component/material/categories/baseMaterial"
+                            "monolithic",
+                            "coating",
+                            "PVB",
+                            "film",
+                            "frit",
+                            "fabric/woven",
+                            "fabric/nonWoven",
+                            "slat",
+                            "baseMaterial"
                         ]
                     },
                     "minItems": 0
@@ -356,51 +342,51 @@
                     "items": {
                         "type": "string",
                         "enum": [
-                            "https://www.building-envelopes.org/component/layer/categories/monolithic",
-                            "https://www.building-envelopes.org/component/layer/categories/coated",
-                            "https://www.building-envelopes.org/component/layer/categories/laminate",
-                            "https://www.building-envelopes.org/component/layer/categories/film/applied",
-                            "https://www.building-envelopes.org/component/layer/categories/glass/fritted",
-                            "https://www.building-envelopes.org/component/layer/categories/Arm",
-                            "https://www.building-envelopes.org/component/layer/categories/Austrian",
-                            "https://www.building-envelopes.org/component/layer/categories/Awning",
-                            "https://www.building-envelopes.org/component/layer/categories/Blind",
-                            "https://www.building-envelopes.org/component/layer/categories/BriseSoleil",
-                            "https://www.building-envelopes.org/component/layer/categories/Concertina",
-                            "https://www.building-envelopes.org/component/layer/categories/Conservatory",
-                            "https://www.building-envelopes.org/component/layer/categories/Drapes",
-                            "https://www.building-envelopes.org/component/layer/categories/Dutch",
-                            "https://www.building-envelopes.org/component/layer/categories/External",
-                            "https://www.building-envelopes.org/component/layer/categories/Facade",
-                            "https://www.building-envelopes.org/component/layer/categories/Festoon",
-                            "https://www.building-envelopes.org/component/layer/categories/Fixed",
-                            "https://www.building-envelopes.org/component/layer/categories/Folding",
-                            "https://www.building-envelopes.org/component/layer/categories/Guided",
-                            "https://www.building-envelopes.org/component/layer/categories/Hinged",
-                            "https://www.building-envelopes.org/component/layer/categories/Honeycomb",
-                            "https://www.building-envelopes.org/component/layer/categories/Insect",
-                            "https://www.building-envelopes.org/component/layer/categories/Marquisolette",
-                            "https://www.building-envelopes.org/component/layer/categories/Panel",
-                            "https://www.building-envelopes.org/component/layer/categories/Pergola",
-                            "https://www.building-envelopes.org/component/layer/categories/Pivot",
-                            "https://www.building-envelopes.org/component/layer/categories/Plantation",
-                            "https://www.building-envelopes.org/component/layer/categories/Pleated",
-                            "https://www.building-envelopes.org/component/layer/categories/Quilts",
-                            "https://www.building-envelopes.org/component/layer/categories/Roller",
-                            "https://www.building-envelopes.org/component/layer/categories/Roll-up",
-                            "https://www.building-envelopes.org/component/layer/categories/Roman",
-                            "https://www.building-envelopes.org/component/layer/categories/Roof",
-                            "https://www.building-envelopes.org/component/layer/categories/Screen",
-                            "https://www.building-envelopes.org/component/layer/categories/Shutter",
-                            "https://www.building-envelopes.org/component/layer/categories/Slat",
-                            "https://www.building-envelopes.org/component/layer/categories/Slide",
-                            "https://www.building-envelopes.org/component/layer/categories/Sliding",
-                            "https://www.building-envelopes.org/component/layer/categories/Solar",
-                            "https://www.building-envelopes.org/component/layer/categories/Terrace",
-                            "https://www.building-envelopes.org/component/layer/categories/Treillis",
-                            "https://www.building-envelopes.org/component/layer/categories/Venetian",
-                            "https://www.building-envelopes.org/component/layer/categories/Vertical",
-                            "https://www.building-envelopes.org/component/layer/categories/Window"
+                            "monolithic",
+                            "coated",
+                            "laminate",
+                            "film/applied",
+                            "glass/fritted",
+                            "Arm",
+                            "Austrian",
+                            "Awning",
+                            "Blind",
+                            "BriseSoleil",
+                            "Concertina",
+                            "Conservatory",
+                            "Drapes",
+                            "Dutch",
+                            "External",
+                            "Facade",
+                            "Festoon",
+                            "Fixed",
+                            "Folding",
+                            "Guided",
+                            "Hinged",
+                            "Honeycomb",
+                            "Insect",
+                            "Marquisolette",
+                            "Panel",
+                            "Pergola",
+                            "Pivot",
+                            "Plantation",
+                            "Pleated",
+                            "Quilts",
+                            "Roller",
+                            "Roll-up",
+                            "Roman",
+                            "Roof",
+                            "Screen",
+                            "Shutter",
+                            "Slat",
+                            "Slide",
+                            "Sliding",
+                            "Solar",
+                            "Terrace",
+                            "Treillis",
+                            "Venetian",
+                            "Vertical",
+                            "Window"
                         ]
                     },
                     "minItems": 0
@@ -412,12 +398,12 @@
                     "items": {
                         "type": "string",
                         "enum": [
-                            "component/unit/categories/glazing",
-                            "component/unit/categories/window",
-                            "component/unit/categories/cladding",
-                            "component/unit/categories/prefabricatedFacadeElement",
-                            "component/unit/categories/transomMullionFacade",
-                            "component/unit/categories/projectingComponent"
+                            "glazing",
+                            "window",
+                            "cladding",
+                            "prefabricatedFacadeElement",
+                            "transomMullionFacade",
+                            "projectingComponent"
                         ]
                     },
                     "minItems": 0
@@ -426,55 +412,55 @@
             "version": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/uri": {
+                    "uri": {
                         "type": "string",
                         "format": "uri"
                     },
-                    "https://www.building-envelopes.org/name": {
+                    "name": {
                         "$ref": "#/definitions/internationalString"
                     },
-                    "https://www.building-envelopes.org/description": {
+                    "description": {
                         "$ref": "#/definitions/internationalString"
                     },
-                    "https://www.building-envelopes.org/roles/owner": {
-                        "$ref": "#/definitions/basicStakeholder"
+                    "roles": {
+                        "owner": {
+                            "$ref": "#/definitions/basicStakeholder",
+                            "description": "The URI and description of the owner of the component"
+                        },
+                        "manufacturer": {
+                            "$ref": "#/definitions/basicStakeholder",
+                            "description": "The URI and description of the manufacturer of the component"
+                        },
+                        "developer": {
+                            "$ref": "#/definitions/roles/developer",
+                            "description": "The URI and description of the institution or person which developed the component"
+                        }
                     },
-                    "https://www.building-envelopes.org/roles/manufacturer": {
-                        "$ref": "#/definitions/basicStakeholder"
-                    },
-                    "https://www.building-envelopes.org/roles/developer": {
-                        "$ref": "#/definitions/roles/developer"
-                    },
-                    "https://www.building-envelopes.org/component/categories": {
-                        "$ref": "#/definitions/component/categories"
-                    },
-                    "https://www.building-envelopes.org/date/available/from": {
-                        "$ref": "#/definitions/available/from"
-                    },
-                    "https://www.building-envelopes.org/date/available/until": {
-                        "$ref": "#/definitions/available/until"
+                    "available": {
+                        "$ref": "#/definitions/available",
+                        "description": "Since when and until when the component has been available"
                     }
                 },
                 "required": [
-                    "https://www.building-envelopes.org/uri"
+                    "uri"
                 ]
             },
             "constants": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/geometry": {
+                    "geometry": {
                         "$ref": "#/definitions/geometry/basics"
                     },
-                    "https://www.building-envelopes.org/airPermeability": {
+                    "airPermeability": {
                         "$ref": "#/definitions/valueWithUncertainty"
                     },
-                    "https://www.building-envelopes.org/colour": {
+                    "colour": {
                         "$ref": "#/definitions/colour"
                     },
-                    "https://www.building-envelopes.org/optical/angle/cutOff": {
+                    "optical/angle/cutOff": {
                         "$ref": "#/definitions/valueWithUncertainty"
                     },
-                    "https://www.building-envelopes.org/chemicalElements": {
+                    "chemicalElements": {
                         "type": "array",
                         "items": {
                             "type": "string",
@@ -482,13 +468,13 @@
                         },
                         "minItems": 1
                     },
-                    "https://www.building-envelopes.org/material/constants": {
+                    "material": {
                         "$ref": "#/definitions/material/constants"
                     },
-                    "https://www.building-envelopes.org/layer/constants": {
+                    "layer": {
                         "$ref": "#/definitions/layer/constants"
                     },
-                    "https://www.building-envelopes.org/unit/constants": {
+                    "unit": {
                         "$ref": "#/definitions/unit/constants"
                     }
                 },
@@ -499,41 +485,20 @@
             "basics": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/uri": {
+                    "uri": {
                         "type": "string",
                         "format": "uri"
                     },
-                    "https://www.building-envelopes.org/name": {
+                    "name": {
                         "$ref": "#/definitions/internationalString"
                     },
-                    "https://www.building-envelopes.org/description": {
+                    "description": {
                         "$ref": "#/definitions/internationalString"
                     },
-                    "https://www.building-envelopes.org/method/definition": {
+                    "definition": {
                         "$ref": "#/definitions/method/definition"
                     },
-                    "https://www.building-envelopes.org/roles/developer": {
-                        "$ref": "#/definitions/roles/developer"
-                    },
-                    "https://www.building-envelopes.org/reference": {
-                        "$ref": "#/definitions/reference"
-                    },
-                    "https://www.building-envelopes.org/date/created": {
-                        "$ref": "#/definitions/created"
-                    },
-                    "https://www.building-envelopes.org/date/valid/from": {
-                        "$ref": "#/definitions/valid/from"
-                    },
-                    "https://www.building-envelopes.org/date/valid/until": {
-                        "$ref": "#/definitions/valid/until"
-                    },
-                    "https://www.building-envelopes.org/date/available/from": {
-                        "$ref": "#/definitions/available/from"
-                    },
-                    "https://www.building-envelopes.org/date/available/until": {
-                        "$ref": "#/definitions/available/until"
-                    },
-                    "https://www.building-envelopes.org/method/type": {
+                    "type": {
                         "type": "array",
                         "items": {
                             "type": "string",
@@ -544,23 +509,38 @@
                         },
                         "minItems": 0
                     },
-                    "https://www.building-envelopes.org/method/calculation": {
+                    "developer": {
+                        "$ref": "#/definitions/roles/developer"
+                    },
+                    "reference": {
+                        "$ref": "#/definitions/reference"
+                    },
+                    "created": {
+                        "$ref": "#/definitions/created"
+                    },
+                    "valid": {
+                        "$ref": "#/definitions/valid"
+                    },
+                    "available": {
+                        "$ref": "#/definitions/available"
+                    },
+                    "calculation": {
                         "$ref": "#/definitions/method/calculation"
                     }
                 },
                 "required": [
-                    "https://www.building-envelopes.org/uri"
+                    "uri"
                 ]
             },
             "definition": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/method/input": {
+                    "onInputs": {
                         "type": "array",
                         "items": {
                             "type": "object",
                             "properties": {
-                                "https://www.building-envelopes.org/method/uri": {
+                                "uri": {
                                     "type": "string",
                                     "format": "uri"
                                 }
@@ -569,10 +549,10 @@
                         "description": "Each item defines the URI of one method. The first method will be applied to the first input, the second to the second and so forth. An empty URI string defines that no method is applied on the corresponding input.",
                         "minItems": 0
                     },
-                    "https://www.building-envelopes.org/method/output": {
+                    "onOutput": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/method/uri": {
+                            "uri": {
                                 "type": "string",
                                 "format": "uri"
                             },
@@ -587,38 +567,38 @@
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/method/calculation/code": {
+                            "code": {
                                 "type": "string"
                             },
-                            "https://www.building-envelopes.org/format": {
+                            "format": {
                                 "$ref": "#/definitions/format"
                             }
                         },
                         "required": [
-                            "https://www.building-envelopes.org/method/calculation/code"
+                            "code"
                         ]
                     },
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/method/calculation/executable": {
+                            "executable": {
                                 "type": "object",
                                 "properties": {
-                                    "https://www.building-envelopes.org/method/calculation/executable/uri": {
+                                    "uri": {
                                         "type": "string",
                                         "format": "uri"
                                     }
                                 },
                                 "required": [
-                                    "https://www.building-envelopes.org/method/calculation/executable/uri"
+                                    "uri"
                                 ]
                             },
-                            "https://www.building-envelopes.org/format": {
+                            "format": {
                                 "$ref": "#/definitions/format"
                             }
                         },
                         "required": [
-                            "https://www.building-envelopes.org/method/calculation/executable"
+                            "executable"
                         ]
                     }
                 ],
@@ -631,7 +611,7 @@
                 {
                     "type": "object",
                     "properties": {
-                        "https://www.building-envelopes.org/standard": {
+                        "standard": {
                             "$ref": "#/definitions/standard"
                         }
                     }
@@ -639,7 +619,7 @@
                 {
                     "type": "object",
                     "properties": {
-                        "https://www.building-envelopes.org/publication": {
+                        "publication": {
                             "$ref": "#/definitions/publication"
                         }
                     }
@@ -650,17 +630,17 @@
         "publication": {
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/uri": {
+                "uri": {
                     "type": "string",
                     "format": "uri"
                 },
-                "https://www.building-envelopes.org/title": {
+                "title": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/abstract": {
+                "abstract": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/roles/authors": {
+                "authors": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/person"
@@ -669,82 +649,82 @@
                 }
             },
             "required": [
-                "https://www.building-envelopes.org/uri"
+                "uri"
             ]
         },
         "standard": {
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/roles/standardizers": {
+                "standardizers": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/roles/standardizer"
                     }
                 },
-                "https://www.building-envelopes.org/standard/number/prefix": {
-                    "type": "string"
+                "identifier": {
+                    "type": "object",
+                    "properties": {                    
+                        "prefix": {
+                            "type": "string"
+                        },
+                        "mainNumber": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 10000000
+                        },
+                        "postfix": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 10000
+                        }
+                    },
+                    "required": ["mainNumber"]
                 },
-                "https://www.building-envelopes.org/standard/number": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 10000000
-                },
-                "https://www.building-envelopes.org/standard/number/postfix": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 10000
-                },
-                "https://www.building-envelopes.org/year": {
+                "year": {
                     "type": "integer",
                     "minimum": 1800,
                     "maximum": 2200
                 }
             },
             "required": [
-                "https://www.building-envelopes.org/institution/abbreviation",
-                "https://www.building-envelopes.org/standard/number"
+                "abbreviation",
+                "identifier"
             ]
         },
         "database": {
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/uri": {
+                "uri": {
                     "type": "string",
                     "format": "uri"
                 },
-                "https://www.building-envelopes.org/name": {
+                "name": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/description": {
+                "description": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/roles/owner": {
+                "owner": {
                     "$ref": "#/definitions/basicStakeholder"
                 },
-                "https://www.building-envelopes.org/roles/admin": {
+                "admin": {
                     "$ref": "#/definitions/basicStakeholder"
                 },
-                "https://www.building-envelopes.org/date/created": {
+                "created": {
                     "$ref": "#/definitions/created"
                 },
-                "https://www.building-envelopes.org/date/valid/from": {
-                    "$ref": "#/definitions/valid/from"
+                "valid": {
+                    "$ref": "#/definitions/valid"
                 },
-                "https://www.building-envelopes.org/date/valid/until": {
-                    "$ref": "#/definitions/valid/until"
+                "available": {
+                    "$ref": "#/definitions/available"
                 },
-                "https://www.building-envelopes.org/date/available/from": {
-                    "$ref": "#/definitions/available/from"
-                },
-                "https://www.building-envelopes.org/date/available/until": {
-                    "$ref": "#/definitions/available/until"
-                },
-                "https://www.building-envelopes.org/comment/internal": {
+                "internalComment": {
                     "type": "string"
                 }
             },
             "required": [
-                "https://www.building-envelopes.org/uri"
+                "uri"
             ]
         },
         "approvals": {
@@ -752,32 +732,29 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/uri": {
+                    "uri": {
                         "type": "string",
                         "format": "uri"
                     },
-                    "https://www.building-envelopes.org/roles/approver": {
+                    "approver": {
                         "type": "string",
                         "format": "uri"
                     },
-                    "https://www.building-envelopes.org/approval/verify": {
+                    "verify": {
                         "$ref": "#/definitions/approval/verify"
                     },
-                    "https://www.building-envelopes.org/signature": {
+                    "signature": {
                         "type": "string"
                     },
-                    "https://www.building-envelopes.org/date/created": {
+                    "created": {
                         "$ref": "#/definitions/created"
                     },
-                    "https://www.building-envelopes.org/date/valid/from": {
-                        "$ref": "#/definitions/valid/from"
-                    },
-                    "https://www.building-envelopes.org/date/valid/until": {
-                        "$ref": "#/definitions/valid/until"
+                    "valid": {
+                        "$ref": "#/definitions/valid"
                     }
                 },
                 "required": [
-                    "https://www.building-envelopes.org/roles/approver"
+                    "approver"
                 ]
             }
         },
@@ -785,16 +762,16 @@
             "verify": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/website": {
+                    "website": {
                         "type": "string",
                         "format": "hostname"
                     },
-                    "https://www.building-envelopes.org/description": {
+                    "description": {
                         "$ref": "#/definitions/internationalString"
                     }
                 },
                 "required": [
-                    "https://www.building-envelopes.org/website"
+                    "website"
                 ]
             }
         },
@@ -803,9 +780,9 @@
             "items": {
                 "type": "string",
                 "enum": [
-                    "https://www.building-envelopes.org/possiblePositions/exterior",
-                    "https://www.building-envelopes.org/possiblePositions/betweenGlassPanes",
-                    "https://www.building-envelopes.org/possiblePositions/interior"
+                    "exterior",
+                    "betweenGlassPanes",
+                    "interior"
                 ]
             },
             "minItems": 0
@@ -813,20 +790,20 @@
         "colour": {
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/name": {
+                "name": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/CRI": {
+                "CRI": {
                     "$ref": "#/definitions/valueWithUncertainty"
                 },
-                "https://www.building-envelopes.org/CIELAB": {
-                    "https://www.building-envelopes.org/L*": {
+                "CIELAB": {
+                    "L*": {
                         "$ref": "#/definitions/valueWithUncertainty"
                     },
-                    "https://www.building-envelopes.org/a*": {
+                    "a*": {
                         "$ref": "#/definitions/valueWithUncertainty"
                     },
-                    "https://www.building-envelopes.org/b*": {
+                    "b*": {
                         "$ref": "#/definitions/valueWithUncertainty"
                     }
                 }
@@ -836,20 +813,20 @@
         "format": {
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/uri": {
+                "uri": {
                     "type": "string",
                     "format": "uri"
                 },
-                "https://www.building-envelopes.org/abbreviation": {
+                "abbreviation": {
                     "type": "string"
                 },
-                "https://www.building-envelopes.org/name": {
+                "name": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/description": {
+                "description": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/reference": {
+                "reference": {
                     "$ref": "#/definitions/reference"
                 }
             },
@@ -858,72 +835,70 @@
         "file": {
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/uri": {
+                "uri": {
                     "type": "string",
                     "format": "uri"
                 },
-                "https://www.building-envelopes.org/name": {
+                "name": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/description": {
+                "description": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/format": {
+                "format": {
                     "$ref": "#/definitions/format"
                 },
-                "https://www.building-envelopes.org/roles/creator": {
+                "creator": {
                     "$ref": "#/definitions/roles/creator"
                 },
-                "https://www.building-envelopes.org/approvals": {
+                "approvals": {
                     "$ref": "#/definitions/approvals"
                 },
-                "https://www.building-envelopes.org/date/created": {
+                "created": {
                     "$ref": "#/definitions/created"
                 },
-                "https://www.building-envelopes.org/date/valid/from": {
-                    "$ref": "#/definitions/valid/from"
-                },
-                "https://www.building-envelopes.org/date/valid/until": {
-                    "$ref": "#/definitions/valid/until"
+                "valid": {
+                    "$ref": "#/definitions/valid"
                 }
             },
             "required": [
-                "https://www.building-envelopes.org/uri"
+                "uri"
             ]
         },
         "dimensions": {
             "basics": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/dimension/size": {
+                    "size": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/dimension/size/largest": {
+                            "largest": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/dimension/size/intermediate": {
+                            "intermediate": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/dimension/size/smallest": {
+                            "smallest": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             }
                         }
                     },
-                    "https://www.building-envelopes.org/dimensions/envelope": {
+                    "envelope": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/dimensions/envelope/vertical": {
+                            "vertical": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/dimensions/envelope/parallel": {
+                            "parallel": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/dimensions/envelope/orthogonal": {
+                            "orthogonal": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             }
-                        }
+                        },
+                        "description": "The orientations vertical, parallel and orthogonal refer to the building envelope and the component in its usual mounting position."
                     },
-                    "https://www.building-envelopes.org/file": {
+                    "file": {
                         "$ref": "#/definitions/file"
                     }
                 },
@@ -932,12 +907,12 @@
             "outer": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/dimensions": {
+                    "dimensions": {
                         "$ref": "#/definitions/dimensions/basics"
                     }
                 },
                 "required": [
-                    "https://www.building-envelopes.org/dimensions"
+                    "dimensions"
                 ]
             }
         },
@@ -945,27 +920,27 @@
             "basics": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/dimensions": {
+                    "dimensions": {
                         "$ref": "#/definitions/geometry/dimensions"
                     },
-                    "https://www.building-envelopes.org/dimensions/outer": {
+                    "boundingBox": {
                         "$ref": "#/definitions/geometry/dimensions"
                     },
-                    "https://www.building-envelopes.org/geometry/coordinateSystem": {
+                    "coordinateSystem": {
                         "$ref": "#/definitions/geometry/coordinateSystem"
                     },
-                    "https://www.building-envelopes.org/geometry/surfaces": {
+                    "surfaces": {
                         "type": "array",
                         "items": {
                             "$ref": "#/definitions/geometry/surface"
                         },
                         "minItems": 1
                     },
-                    "https://www.building-envelopes.org/geometry/bodies": {
+                    "bodies": {
                         "type": "array",
                         "items": [
                             {
-                                "https://www.building-envelopes.org/geometry/body": {
+                                "body": {
                                     "$ref": "#/definitions/geometry/body"
                                 }
                             }
@@ -978,29 +953,30 @@
             "point": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/geometry/cartesian/x": {
+                    "x": {
                         "type": "number"
                     },
-                    "https://www.building-envelopes.org/geometry/cartesian/y": {
+                    "y": {
                         "type": "number"
                     },
-                    "https://www.building-envelopes.org/geometry/cartesian/z": {
+                    "z": {
                         "type": "number"
-                    }
+                    },
+                    "description": "A cartesian coordinate system is assumed."
                 },
                 "required": [
-                    "https://www.building-envelopes.org/geometry/cartesian/x",
-                    "https://www.building-envelopes.org/geometry/cartesian/y",
-                    "https://www.building-envelopes.org/geometry/cartesian/z"
+                    "x",
+                    "y",
+                    "z"
                 ]
             },
             "coordinateSystem": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/reference": {
+                    "reference": {
                         "$ref": "#/definitions/reference"
                     },
-                    "https://www.building-envelopes.org/geometry/origin": {
+                    "origin": {
                         "$ref": "#/definitions/geometry/point"
                     }
                 },
@@ -1034,16 +1010,16 @@
                 {
                     "type": "object",
                     "properties": {
-                        "https://www.building-envelopes.org/component/uri": {
+                        "uri": {
                             "type": "string",
                             "format": "uri"
                         },
-                        "https://www.building-envelopes.org/geometry": {
+                        "geometry": {
                             "$ref": "#/definitions/geometry/basics"
                         }
                     },
                     "required": [
-                        "https://www.building-envelopes.org/component/uri"
+                        "uri"
                     ]
                 }
             ],
@@ -1053,7 +1029,7 @@
             "constants": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/possiblePositions": {
+                    "possiblePositions": {
                         "$ref": "#/definitions/possiblePositions"
                     }
                 },
@@ -1064,93 +1040,49 @@
             "constants": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/component/layer/categories": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "https://www.building-envelopes.org/component/layer/categories/Arm",
-                                "https://www.building-envelopes.org/component/layer/categories/Austrian",
-                                "https://www.building-envelopes.org/component/layer/categories/Awning",
-                                "https://www.building-envelopes.org/component/layer/categories/Blind",
-                                "https://www.building-envelopes.org/component/layer/categories/BriseSoleil",
-                                "https://www.building-envelopes.org/component/layer/categories/Concertina",
-                                "https://www.building-envelopes.org/component/layer/categories/Conservatory",
-                                "https://www.building-envelopes.org/component/layer/categories/Drapes",
-                                "https://www.building-envelopes.org/component/layer/categories/Dutch",
-                                "https://www.building-envelopes.org/component/layer/categories/External",
-                                "https://www.building-envelopes.org/component/layer/categories/Facade",
-                                "https://www.building-envelopes.org/component/layer/categories/Festoon",
-                                "https://www.building-envelopes.org/component/layer/categories/Fixed",
-                                "https://www.building-envelopes.org/component/layer/categories/Folding",
-                                "https://www.building-envelopes.org/component/layer/categories/Guided",
-                                "https://www.building-envelopes.org/component/layer/categories/Hinged",
-                                "https://www.building-envelopes.org/component/layer/categories/Honeycomb",
-                                "https://www.building-envelopes.org/component/layer/categories/Insect",
-                                "https://www.building-envelopes.org/component/layer/categories/Marquisolette",
-                                "https://www.building-envelopes.org/component/layer/categories/Panel",
-                                "https://www.building-envelopes.org/component/layer/categories/Pergola",
-                                "https://www.building-envelopes.org/component/layer/categories/Pivot",
-                                "https://www.building-envelopes.org/component/layer/categories/Plantation",
-                                "https://www.building-envelopes.org/component/layer/categories/Pleated",
-                                "https://www.building-envelopes.org/component/layer/categories/Quilts",
-                                "https://www.building-envelopes.org/component/layer/categories/Roller",
-                                "https://www.building-envelopes.org/component/layer/categories/Roll-up",
-                                "https://www.building-envelopes.org/component/layer/categories/Roman",
-                                "https://www.building-envelopes.org/component/layer/categories/Roof",
-                                "https://www.building-envelopes.org/component/layer/categories/Screen",
-                                "https://www.building-envelopes.org/component/layer/categories/Shutter",
-                                "https://www.building-envelopes.org/component/layer/categories/Slat",
-                                "https://www.building-envelopes.org/component/layer/categories/Slide",
-                                "https://www.building-envelopes.org/component/layer/categories/Sliding",
-                                "https://www.building-envelopes.org/component/layer/categories/Solar",
-                                "https://www.building-envelopes.org/component/layer/categories/Terrace",
-                                "https://www.building-envelopes.org/component/layer/categories/Treillis",
-                                "https://www.building-envelopes.org/component/layer/categories/Venetian",
-                                "https://www.building-envelopes.org/component/layer/categories/Vertical",
-                                "https://www.building-envelopes.org/component/layer/categories/Window"
-                            ]
-                        },
-                        "minItems": 0
-                    },
-                    "https://www.building-envelopes.org/possiblePositions": {
+                    "possiblePositions": {
                         "$ref": "#/definitions/possiblePositions"
                     },
-                    "https://www.building-envelopes.org/component/layers/orientationAxis": {
+                    "orientationAxis": {
                         "type": "array",
                         "items": {
                             "type": "string",
                             "enum": [
-                                "https://www.building-envelopes.org/component/layers/orientationAxis/horizontal",
-                                "https://www.building-envelopes.org/component/layers/orientationAxis/vertical"
+                                "horizontal",
+                                "vertical"
                             ]
                         },
                         "minItems": 0,
                         "maxItems": 1
                     },
-                    "https://www.building-envelopes.org/angle/closing/maximum": {
+                    "maximumClosingAngle": {
                         "$ref": "#/definitions/valueWithUncertainty"
                     },
-                    "https://www.building-envelopes.org/slat/width": {
-                        "$ref": "#/definitions/valueWithUncertainty"
-                    },
-                    "https://www.building-envelopes.org/slat/pitch": {
-                        "$ref": "#/definitions/valueWithUncertainty"
-                    },
-                    "https://www.building-envelopes.org/slat/crownHeight": {
-                        "$ref": "#/definitions/valueWithUncertainty"
-                    },
-                    "https://www.building-envelopes.org/slat/shape": {
+                    "slat": {
                         "type": "object",
-                        "properties": {
-                            "https://www.building-envelopes.org/geometry": {
-                                "$ref": "#/definitions/geometry/basics"
+                        "properties": { 
+                            "width": {
+                                "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/reference": {
-                                "$ref": "#/definitions/reference"
+                            "pitch": {
+                                "$ref": "#/definitions/valueWithUncertainty"
+                            },
+                            "crownHeight": {
+                                "$ref": "#/definitions/valueWithUncertainty"
+                            },
+                            "shape": {
+                                "type": "object",
+                                "properties": {
+                                    "geometry": {
+                                        "$ref": "#/definitions/geometry/basics"
+                                    },
+                                    "reference": {
+                                        "$ref": "#/definitions/reference"
+                                    }
+                                },
+                                "required": []
                             }
-                        },
-                        "required": []
+                        }
                     }
                 },
                 "required": []
@@ -1160,16 +1092,16 @@
             "constants": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/gaps": {
+                    "gaps": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/gaps/dTop": {
+                            "dTop": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/gaps/dGlass": {
+                            "dGlass": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/reference": {
+                            "reference": {
                                 "$ref": "#/definitions/reference"
                             }
                         },
@@ -1189,12 +1121,12 @@
                 {
                     "type": "object",
                     "properties": {
-                        "https://www.building-envelopes.org/reference": {
+                        "reference": {
                             "$ref": "#/definitions/reference"
                         }
                     },
                     "required": [
-                        "https://www.building-envelopes.org/reference"
+                        "reference"
                     ]
                 }
             ],
@@ -1203,34 +1135,34 @@
         "source": {
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/uri": {
+                "uri": {
                     "type": "string",
                     "format": "uri"
                 },
-                "https://www.building-envelopes.org/name": {
+                "name": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "https://www.building-envelopes.org/description": {
+                "description": {
                     "$ref": "#/definitions/internationalString"
                 }
             },
             "required": [
-                "https://www.building-envelopes.org/uri"
+                "uri"
             ]
         },
         "origin": {
             "type": "object",
             "properties": {
-                "https://www.building-envelopes.org/roles/creator": {
+                "creator": {
                     "$ref": "#/definitions/roles/creator"
                 },
-                "https://www.building-envelopes.org/method": {
+                "method": {
                     "$ref": "#/definitions/method/basics"
                 },
-                "https://www.building-envelopes.org/source": {
+                "source": {
                     "$ref": "#/definitions/source"
                 },
-                "https://www.building-envelopes.org/database": {
+                "database": {
                     "$ref": "#/definitions/database"
                 }
             },
@@ -1243,52 +1175,49 @@
                 "items": {
                     "type": "object",
                     "properties": {
-                        "https://www.building-envelopes.org/uri": {
+                        "uri": {
                             "type": "string",
                             "format": "uri"
                         },
-                        "https://www.building-envelopes.org/name": {
+                        "name": {
                             "$ref": "#/definitions/internationalString"
                         },
-                        "https://www.building-envelopes.org/description": {
+                        "description": {
                             "$ref": "#/definitions/internationalString"
                         },
-                        "https://www.building-envelopes.org/origin": {
+                        "origin": {
                             "$ref": "#/definitions/origin"
                         },
-                        "https://www.building-envelopes.org/approvals": {
+                        "approvals": {
                             "$ref": "#/definitions/approvals"
                         },
-                        "https://www.building-envelopes.org/date/created": {
+                        "created": {
                             "$ref": "#/definitions/created"
                         },
-                        "https://www.building-envelopes.org/date/valid/from": {
-                            "$ref": "#/definitions/valid/from"
+                        "valid": {
+                            "$ref": "#/definitions/valid"
                         },
-                        "https://www.building-envelopes.org/date/valid/until": {
-                            "$ref": "#/definitions/valid/until"
-                        },
-                        "https://www.building-envelopes.org/optical/constants": {
+                        "constants": {
                             "$ref": "#/definitions/optical/constants"
                         },
-                        "https://www.building-envelopes.org/file": {
+                        "file": {
                             "$ref": "#/definitions/file"
                         },
-                        "https://www.building-envelopes.org/optical/incidence": {
+                        "incidence": {
                             "$ref": "#/definitions/optical/incidence"
                         },
-                        "https://www.building-envelopes.org/optical/variables": {
+                        "variables": {
                             "$ref": "#/definitions/optical/variables"
                         },
-                        "https://www.building-envelopes.org/optical/emergence": {
+                        "emergence": {
                             "$ref": "#/definitions/optical/emergence"
                         },
-                        "https://www.building-envelopes.org/optical/results": {
+                        "results": {
                             "$ref": "#/definitions/optical/results"
                         }
                     },
                     "required": [
-                        "https://www.building-envelopes.org/uri"
+                        "uri"
                     ]
                 },
                 "minItems": 1
@@ -1299,10 +1228,10 @@
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/optical/angle/polar": {
+                            "polar": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/optical/angle/azimuth": {
+                            "azimuth": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             }
                         }
@@ -1310,10 +1239,10 @@
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/optical/angle/xz": {
+                            "xz": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/optical/angle/yz": {
+                            "yz": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             }
                         }
@@ -1321,7 +1250,7 @@
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/optical/angle/incidence": {
+                            "incidence": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
                             "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
@@ -1332,19 +1261,19 @@
                         "items": {
                             "type": "string",
                             "enum": [
-                                "https://www.building-envelopes.org/optical/angle/nearnormal",
-                                "https://www.building-envelopes.org/optical/angle/hemispherical",
-                                "https://www.building-envelopes.org/optical/angle/diffuse"
+                                "nearnormal",
+                                "hemispherical",
+                                "diffuse"
                             ]
                         }
                     },
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/format": {
+                            "format": {
                                 "$ref": "#/definitions/format"
                             },
-                            "https://www.building-envelopes.org/direction/array": {
+                            "array": {
                                 "type": "array",
                                 "items": {
                                     "type": "number"
@@ -1359,17 +1288,27 @@
             "polarisation": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/optical/polarisation/linear/s": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                    "linear": {
+                        "type": "object",
+                        "properties": {
+                            "s": {
+                                "$ref": "#/definitions/valueWithUncertainty"
+                            },
+                            "p": {
+                                "$ref": "#/definitions/valueWithUncertainty"
+                            }
+                        }
                     },
-                    "https://www.building-envelopes.org/optical/polarisation/linear/p": {
-                        "$ref": "#/definitions/valueWithUncertainty"
-                    },
-                    "https://www.building-envelopes.org/optical/polarisation/circular/l": {
-                        "$ref": "#/definitions/valueWithUncertainty"
-                    },
-                    "https://www.building-envelopes.org/optical/polarisation/circular/r": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                    "circular": {
+                        "type": "object",
+                        "properties": {
+                            "l": {
+                                "$ref": "#/definitions/valueWithUncertainty"
+                            },
+                            "r": {
+                                "$ref": "#/definitions/valueWithUncertainty"
+                            }
+                        }
                     }
                 },
                 "required": [],
@@ -1381,7 +1320,7 @@
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/optical/wavelength": {
+                            "wavelength": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             }
                         }
@@ -1389,7 +1328,7 @@
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/optical/wavlengths/array": {
+                            "array": {
                                 "type": "array",
                                 "items": {
                                     "type": "number",
@@ -1402,7 +1341,7 @@
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/optical/wavelength/integral": {
+                            "integral": {
                                 "type": "boolean"
                             }
                         }
@@ -1414,7 +1353,7 @@
                 "range": {
                     "type": "object",
                     "properties": {
-                        "https://www.building-envelopes.org/optical/wavelength/bandwidth": {
+                        "##########https://www.building-envelopes.org/optical/wavelength/bandwidth": {
                             "$ref": "#/definitions/valueWithUncertainty"
                         },
                         "https://www.building-envelopes.org/optical/wavelength/amplificationFactor": {
