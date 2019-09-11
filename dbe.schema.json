@@ -237,9 +237,12 @@
                     "https://www.building-envelopes.org/method/input": {
                         "type": "array",
                         "items": {
-                            "type": "string",
-                            "description": "Each string defines the URI of a method. The first method is applied to the first input, the second to the second and so forth. An empty string defines that no method is applied on the coresponding input."
-                        }
+                            "type": "object",
+                            "properties": {
+                                "https://www.building-envelopes.org/method/uri": { "type": "string" }
+                            }
+                        },
+                        "description": "Each item defines the URI of one method. The first method will be applied to the first input, the second to the second and so forth. An empty URI string defines that no method is applied on the corresponding input."
                     },
                     "https://www.building-envelopes.org/method/output": {
                         "type": "object",
@@ -305,14 +308,7 @@
 				"https://www.building-envelopes.org/abstract": { "type": "string" },
 				"https://www.building-envelopes.org/roles/authors": {
 					"type": "array",
-					"items": [
-						{
-							"type": "object",
-							"properties": {
-								"################https://www.building-envelopes.org/roles/author": { "$ref": "#/definitions/author" }
-							}
-						}
-                    ],
+					"items": { "$ref": "#/definitions/person" },
                     "minItems": 1
 				}
             },
@@ -450,11 +446,7 @@
                     "https://www.building-envelopes.org/geometry/coordinateSystem": { "$ref": "#/definitions/geometry/coordinateSystem" },
                     "https://www.building-envelopes.org/geometry/surfaces": {
                         "type": "array",
-                        "items": [
-                            {
-                                "https://www.building-envelopes.org/geometry/surface": { "$ref": "#/definitions/geometry/surface" }
-                            }
-                        ],
+                        "items": { "$ref": "#/definitions/geometry/surface" },
                         "minItems": 1
                     },
                     "https://www.building-envelopes.org/geometry/bodies": {
@@ -488,44 +480,33 @@
             },
             "surface": {
                 "type": "array",
-                "items": [
-                    {
-                        "type": "object",
-                        "properties": {
-                            "https://www.building-envelopes.org/geometry/point": { "$ref": "#/definitions/geometry/point" }
-                        }
-                    }
-                ],
+                "items": { "$ref": "#/definitions/geometry/point" },
                 "minItems": 3
             },
             "body": {
                 "type": "array",
-                "items": [
-                    {
-                        "type": "object",
-                        "properties": {
-                            "https://www.building-envelopes.org/geometry/point": { "$ref": "#/definitions/geometry/point" }
-                        }
-                    }
-                ],
+                "items": { "$ref": "#/definitions/geometry/point" },
                 "minItems": 4
+            },
+            "curve": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/geometry/point" },
+                "minItems": 2
             }
         },
         "assembly": {
             "type": "array",
             "items": [
                 {
-                    "type": "array",
-                    "items": [
-                        {
-                            "https://www.building-envelopes.org/component/uri": { "type": "string" },
-                            "https://www.building-envelopes.org/geometry": { "$ref": "#/definitions/geometry/basics" }
-                        }
-                    ],
-                    "minItems": 2
+                    "type": "object",
+                    "properties": {
+                        "https://www.building-envelopes.org/component/uri": { "type": "string" },
+                        "https://www.building-envelopes.org/geometry": { "$ref": "#/definitions/geometry/basics" }
+                    },
+                    "required": ["https://www.building-envelopes.org/component/uri"]
                 }
             ],
-            "minItems": 1
+            "minItems": 2
         },
         "material": {
             "constants": {
@@ -630,26 +611,24 @@
         "optical": {
             "basics": {
                 "type": "array",
-                "items": [
-                    {
-                        "type": "object",
-                        "properties": {
-                            "https://www.building-envelopes.org/uri": { "type": "string" },
-                            "https://www.building-envelopes.org/name": { "type": "string" },
-                            "https://www.building-envelopes.org/description": { "type": "string" },
-                            "https://www.building-envelopes.org/origin": { "$ref": "#/definitions/origin" },
-                            "https://www.building-envelopes.org/approval": { "$ref": "#/definitions/approval/basics" },
-                            "https://www.building-envelopes.org/dates": { "$ref": "#/definitions/dates" },
-                            "https://www.building-envelopes.org/optical/constants": { "$ref": "#/definitions/optical/constants" },
-                            "https://www.building-envelopes.org/file": { "$ref": "#/definitions/file" },
-                            "https://www.building-envelopes.org/optical/incidence": { "$ref": "#/definitions/optical/incidence" },
-                            "https://www.building-envelopes.org/optical/variables": { "$ref": "#/definitions/optical/variables" },
-                            "https://www.building-envelopes.org/optical/emergence": { "$ref": "#/definitions/optical/emergence" },
-                            "https://www.building-envelopes.org/optical/results": { "$ref": "#/definitions/optical/results"}
-                        },
-                        "required": [ "https://www.building-envelopes.org/uri" ]
-                    }
-                ],
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "https://www.building-envelopes.org/uri": { "type": "string" },
+                        "https://www.building-envelopes.org/name": { "type": "string" },
+                        "https://www.building-envelopes.org/description": { "type": "string" },
+                        "https://www.building-envelopes.org/origin": { "$ref": "#/definitions/origin" },
+                        "https://www.building-envelopes.org/approval": { "$ref": "#/definitions/approval/basics" },
+                        "https://www.building-envelopes.org/dates": { "$ref": "#/definitions/dates" },
+                        "https://www.building-envelopes.org/optical/constants": { "$ref": "#/definitions/optical/constants" },
+                        "https://www.building-envelopes.org/file": { "$ref": "#/definitions/file" },
+                        "https://www.building-envelopes.org/optical/incidence": { "$ref": "#/definitions/optical/incidence" },
+                        "https://www.building-envelopes.org/optical/variables": { "$ref": "#/definitions/optical/variables" },
+                        "https://www.building-envelopes.org/optical/emergence": { "$ref": "#/definitions/optical/emergence" },
+                        "https://www.building-envelopes.org/optical/results": { "$ref": "#/definitions/optical/results"}
+                    },
+                    "required": [ "https://www.building-envelopes.org/uri" ]
+                },
                 "minItems": 1
             },
             "direction": {
