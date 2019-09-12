@@ -8,7 +8,8 @@
             "type": "object",
             "properties": {
                 "en-US": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A string in American English."
                 }
             },
             "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
@@ -17,61 +18,68 @@
             "type": "array",
             "items": [
                 {
-                    "type": "number"
+                    "type": "number",
+                    "description": "The number for which an uncertainty can be defined in the second objectin this array."
                 },
                 {
                     "type": "object",
                     "properties": {
                         "uncertainty": {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 0,
+                            "description": "The uncertainty of the number of the first object in this array."
                         },
                         "reference": {
-                            "$ref": "#/definitions/reference"
+                            "$ref": "#/definitions/reference",
+                            "description": "The reference defines how the uncertainty has been determined."
                         }
                     },
-                    "required": [
-                        "reference"
-                    ]
+                    "required": []
                 }
-            ],
-            "minItems": 2
+            ]
         },
         "nonNegativeNumberWithUncertainty": {
             "type": "array",
             "items": [
                 {
                     "type": "number",
-                    "minimum": 0
+                    "minimum": 0,
+                    "description": "The non-negative number for which an uncertainty can be defined in the second objectin this array."
                 },
                 {
                     "type": "object",
                     "properties": {
                         "uncertainty": {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 0,
+                            "description": "The uncertainty of the number of the first object in this array."
                         },
                         "reference": {
-                            "$ref": "#/definitions/reference"
+                            "$ref": "#/definitions/reference",
+                            "description": "The reference defines how the uncertainty has been determined."
                         }
                     },
-                    "required": [
-                        "reference"
-                    ]
+                    "required": []
                 }
-            ],
-            "minItems": 2
+            ]
         },
         "units": {
+            "title": "This section defines types for numbers with units",
             "meter": {
-                "$ref": "#/definitions/numberWithUncertainty"
+                "$ref": "#/definitions/numberWithUncertainty",
+                "description": "Meter is the SI unit for length."
             },
             "meterWithoutUncertainty": {
-                "type": "number"
+                "type": "number",
+                "description": "Meter is the SI unit for length. MeterWithoutUncertainty is used for rare cases in which the option of an uncertainty is not desired."
             },
             "squareMeter": {
-                "$ref": "#/definitions/nonNegativeNumberWithUncertainty"
+                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                "description": "A quare meter is a unit for an area."
             },
             "cubicMeter": {
-                "$ref": "#/definitions/nonNegativeNumberWithUncertainty"
+                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                "description": "A cubic meter is a unit for a volume."
             },
             "degree": {
                 "type": "number",
@@ -377,7 +385,8 @@
                         "material",
                         "layer",
                         "unit"
-                    ]
+                    ],
+                    "description": "A building envelope component can be a plain material, a layer in a stack of layers of a unit including frame effects. While some components are used e.g. only as materials, other components can be used in several categories."
                 },
                 "minItems": 0
             },
@@ -396,7 +405,8 @@
                             "nonWovenFabric",
                             "slat",
                             "baseMaterial"
-                        ]
+                        ],
+                        "description": "Components of the category material can have the subcategories of this array which further specifies the material."
                     },
                     "minItems": 0
                 }
@@ -452,7 +462,8 @@
                             "Venetian",
                             "Vertical",
                             "Window"
-                        ]
+                        ],
+                        "description": "Components of the category layer can have the subcategories of this array which further specifies the layer."
                     },
                     "minItems": 0
                 }
@@ -469,12 +480,14 @@
                             "prefabricatedFacadeElement",
                             "transomMullionFacade",
                             "projectingComponent"
-                        ]
+                        ],
+                        "description": "Components of the category unit can have the subcategories of this array which further specifies the unit."
                     },
                     "minItems": 0
                 }
             },
             "version": {
+                "title": "This section provides definitions about a version of a component.",
                 "type": "object",
                 "properties": {
                     "uri": {
