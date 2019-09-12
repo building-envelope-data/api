@@ -166,9 +166,9 @@
                     "format": "uri",
                     "description": "This URI defines the stakeholder which is either an institution or a person."
                 },
-                "description": {
+                "explanation": {
                     "$ref": "#/definitions/internationalString",
-                    "description": "This description can specify the role of the stakeholder."
+                    "description": "This explanation can specify the role of the stakeholder."
                 }
             },
             "required": [
@@ -242,9 +242,9 @@
                     "type": "string",
                     "description": "The abbreviation of the institution"
                 },
-                "description": {
+                "explanation": {
                     "$ref": "#/definitions/internationalString",
-                    "description": "The description can further explain the role of the institution."
+                    "description": "The explanation can further explain the role of the institution."
                 },
                 "publicKey": {
                     "type": "string",
@@ -329,9 +329,9 @@
                         "type": "string",
                         "description": "The abbreviation of the component"
                     },
-                    "description": {
+                    "explanation": {
                         "$ref": "#/definitions/internationalString",
-                        "description": "A description of the component"
+                        "description": "An explanation with more details about the component"
                     },
                     "version": {
                         "type": "string",
@@ -492,13 +492,16 @@
                 "properties": {
                     "uri": {
                         "type": "string",
-                        "format": "uri"
+                        "format": "uri",
+                        "description": "This URI defines a specific version of a component."
                     },
                     "name": {
-                        "$ref": "#/definitions/internationalString"
+                        "$ref": "#/definitions/internationalString",
+                        "description": "If the version of the component has a specific name or version number, it can be entered here."
                     },
-                    "description": {
-                        "$ref": "#/definitions/internationalString"
+                    "explanation": {
+                        "$ref": "#/definitions/internationalString",
+                        "description": "Here the version can be described in free text."
                     },
                     "roles": {
                         "owner": {
@@ -524,16 +527,27 @@
                 ]
             },
             "constants": {
+                "title": "For one dataset, the constants of the component stay the same while the variables may change between different data points.",
                 "type": "object",
                 "properties": {
                     "geometry": {
-                        "$ref": "#/definitions/geometry/basics"
+                        "title": "This section defines the geometry of the component which can either be an assembly or a single component.",
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/geometry/basics"
+                            },
+                            {
+                                "$ref": "#/definitions/assembly"
+                            }
+                        ]
                     },
                     "airPermeability": {
-                        "$ref": "#/definitions/numberWithUncertainty"
+                        "$ref": "#/definitions/numberWithUncertainty",
+                        "description": "The air permeability defines how easy air can flow through the component."
                     },
                     "colour": {
-                        "$ref": "#/definitions/colour"
+                        "$ref": "#/definitions/colour",
+                        "description": "The reference offers several way to define the colour of the component."
                     },
                     "cutOff": {
                         "$ref": "#/definitions/units/degree",
@@ -545,16 +559,21 @@
                             "type": "string",
                             "pattern": "[A-Z][a-z]?"
                         },
-                        "minItems": 1
+                        "minItems": 1,
+                        "maxItems": 10,
+                        "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
                     },
                     "material": {
-                        "$ref": "#/definitions/material/constants"
+                        "$ref": "#/definitions/material/constants",
+                        "description": "If the component is a material, the material-specific constants can be named here."
                     },
                     "layer": {
-                        "$ref": "#/definitions/layer/constants"
+                        "$ref": "#/definitions/layer/constants",
+                        "description": "If the component is a layer, the layer-specific constants can be named here."
                     },
                     "unit": {
-                        "$ref": "#/definitions/unit/constants"
+                        "$ref": "#/definitions/unit/constants",
+                        "description": "If the component is a unit, the unit-specific constants can be named here."
                     }
                 },
                 "required": []
@@ -566,19 +585,24 @@
                 "properties": {
                     "uri": {
                         "type": "string",
-                        "format": "uri"
+                        "format": "uri",
+                        "description": "This URI identifies the method which is specified below."
                     },
                     "name": {
-                        "$ref": "#/definitions/internationalString"
+                        "$ref": "#/definitions/internationalString",
+                        "description": "The name of the method."
                     },
-                    "description": {
-                        "$ref": "#/definitions/internationalString"
+                    "explanation": {
+                        "$ref": "#/definitions/internationalString",
+                        "description": "Here the method can be described in free text."
                     },
-                    "definition": {
-                        "$ref": "#/definitions/method/definition"
+                    "structure": {
+                        "$ref": "#/definitions/method/structure",
+                        "description": "This section defines the method which may be an assembly of different submethods which are applied on a number of inputs."
                     },
-                    "type": {
+                    "categories": {
                         "type": "array",
+                        "title": "With this array, it is defined whether the method is a measurement or a calculation only or both.",
                         "items": {
                             "type": "string",
                             "enum": [
@@ -586,32 +610,39 @@
                                 "calculation"
                             ]
                         },
-                        "minItems": 0
+                        "minItems": 1
                     },
                     "developer": {
-                        "$ref": "#/definitions/roles/developer"
+                        "$ref": "#/definitions/roles/developer",
+                        "description": "This section defines who developed the method."
                     },
                     "reference": {
-                        "$ref": "#/definitions/reference"
+                        "$ref": "#/definitions/reference",
+                        "description": "If the method is an implementation of standard or of a procedure described in a publication, this reference can be defined here."
                     },
-                    "created": {
-                        "$ref": "#/definitions/created"
+                    "###created": {
+                        "$ref": "#/definitions/created",
+                        "description": "This date defines when the method was created."
                     },
                     "valid": {
-                        "$ref": "#/definitions/valid"
+                        "$ref": "#/definitions/valid",
+                        "description": "Here you can define since when the method is valid and until when. This can be helpful for example when a regulation or standard changes."
                     },
                     "available": {
-                        "$ref": "#/definitions/available"
+                        "$ref": "#/definitions/available",
+                        "description": "Here you can define since when the method has been available and until when. This can be helpful for example when a method is shared considerably later than when it was created. You can also use it to define that the method may have been available for a long time even though it may not be valid for the whole time of its availability."
                     },
                     "calculation": {
-                        "$ref": "#/definitions/method/calculation"
+                        "$ref": "#/definitions/method/calculation",
+                        "description": "Here you can define the method either as code or as executable."
                     }
                 },
                 "required": [
                     "uri"
                 ]
             },
-            "definition": {
+            "structure": {
+                "title": "This sections is used to define how the method is structured as an assembly of submethods.",
                 "type": "object",
                 "properties": {
                     "onInputs": {
@@ -641,6 +672,7 @@
                 }
             },
             "calculation": {
+                "title": "This section is used to define how a method can be calculated, either by code or by an executable.",
                 "type": "array",
                 "items": [
                     {
@@ -649,8 +681,9 @@
                             "code": {
                                 "type": "string"
                             },
-                            "format": {
-                                "$ref": "#/definitions/format"
+                            "formatting": {
+                                "$ref": "#/definitions/formatting",
+                                "description": "This section defines which format the code has for example a certain version of a programming language."
                             }
                         },
                         "required": [
@@ -665,15 +698,17 @@
                                 "properties": {
                                     "uri": {
                                         "type": "string",
-                                        "format": "uri"
-                                    }
+                                        "format": "hostname"
+                                    },
+                                    "description": "The executable can be downloaded directly from this hostname."
                                 },
                                 "required": [
                                     "uri"
                                 ]
                             },
-                            "format": {
-                                "$ref": "#/definitions/format"
+                            "formatting": {
+                                "$ref": "#/definitions/formatting",
+                                "description": "This section defines which format the executable has."
                             }
                         },
                         "required": [
@@ -685,13 +720,15 @@
             }
         },
         "reference": {
+            "title": "This section is used to refer to a standard or a publication.",
             "type": "array",
             "items": [
                 {
                     "type": "object",
                     "properties": {
                         "standard": {
-                            "$ref": "#/definitions/standard"
+                            "$ref": "#/definitions/standard",
+                            "description": "This section defines which standard is refered to."
                         }
                     }
                 },
@@ -699,7 +736,8 @@
                     "type": "object",
                     "properties": {
                         "publication": {
-                            "$ref": "#/definitions/publication"
+                            "$ref": "#/definitions/publication",
+                            "description": "This section defines which publication is refered to."
                         }
                     }
                 }
@@ -711,18 +749,22 @@
             "properties": {
                 "uri": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The URI defines this specific publication."
                 },
                 "title": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The title of the publication"
                 },
                 "abstract": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The abstract of the publication"
                 },
                 "authors": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/person"
+                        "$ref": "#/definitions/person",
+                        "description": "This array lists all persons which have authored the publication"
                     },
                     "minItems": 1
                 }
@@ -732,12 +774,27 @@
             ]
         },
         "standard": {
+            "title": "Standards are a special kind publications. Therefore their data structure is different from publications.",
             "type": "object",
             "properties": {
+                "uri": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The URI defines this specific standard."
+                },
+                "title": {
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The full title of the standard"
+                },
+                "abstract": {
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The abstract of the standard"
+                },
                 "standardizers": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/roles/standardizer"
+                        "$ref": "#/definitions/roles/standardizer",
+                        "description": "Standards typically do not name authors, but an institution or several institutions which created the standard."
                     }
                 },
                 "identifier": {
@@ -757,6 +814,7 @@
                             "maximum": 10000
                         }
                     },
+                    "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the abbreviations for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
                     "required": [
                         "mainNumber"
                     ]
@@ -764,44 +822,56 @@
                 "year": {
                     "type": "integer",
                     "minimum": 1800,
-                    "maximum": 2200
+                    "maximum": 2200,
+                    "description": "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
                 }
             },
             "required": [
                 "abbreviation",
                 "identifier"
-            ]
+            ],
+            "description": "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
         },
         "database": {
+            "description": "Information about a database which has implemented the same API specification.",
             "type": "object",
             "properties": {
                 "uri": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "hostname",
+                    "description": "The database is identified by its API endpoint."
                 },
                 "name": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The name of the database"
                 },
-                "description": {
-                    "$ref": "#/definitions/internationalString"
+                "explanation": {
+                    "$ref": "#/definitions/internationalString",
+                    "description": "A description of the database"
                 },
                 "owner": {
-                    "$ref": "#/definitions/basicStakeholder"
+                    "$ref": "#/definitions/basicStakeholder",
+                    "description": "The institution which owns the database"
                 },
                 "admin": {
-                    "$ref": "#/definitions/basicStakeholder"
+                    "$ref": "#/definitions/basicStakeholder",
+                    "description": "The institution which administrates the database"
                 },
                 "created": {
-                    "$ref": "#/definitions/created"
+                    "$ref": "#/definitions/created",
+                    "description": "When the database was created"
                 },
                 "valid": {
-                    "$ref": "#/definitions/valid"
+                    "$ref": "#/definitions/valid",
+                    "description": "For which timespan the data of the database is valid"
                 },
                 "available": {
-                    "$ref": "#/definitions/available"
+                    "$ref": "#/definitions/available",
+                    "description": "For which timespan the database is or was available"
                 },
                 "internalComment": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "If there are any specific issues with a database, the administrators can use this string."
                 }
             },
             "required": [
@@ -809,29 +879,36 @@
             ]
         },
         "approvals": {
+            "title": "If the validity of a data is important, this section can be used to express the approval of a institution with a cryptographic signature. It's an array, because there may be approvals of several institutions for the same data.",
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
                     "uri": {
                         "type": "string",
-                        "format": "uri"
+                        "format": "uri",
+                        "description": "The approval is identified by this URI."
                     },
                     "approver": {
                         "type": "string",
-                        "format": "uri"
+                        "format": "uri",
+                        "description": "The stakeholder who approved the data is identified by its URI."
                     },
                     "verify": {
-                        "$ref": "#/definitions/approval/verify"
+                        "$ref": "#/definitions/approval/verify",
+                        "description": "This section defines how the approval can be verified."
                     },
                     "signature": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "This string defines the cryptographic signature of the approved data."
                     },
                     "created": {
-                        "$ref": "#/definitions/created"
+                        "$ref": "#/definitions/created",
+                        "description": "When the approval was created"
                     },
                     "valid": {
-                        "$ref": "#/definitions/valid"
+                        "$ref": "#/definitions/valid",
+                        "description": "For which timespan the approval is valid"
                     }
                 },
                 "required": [
@@ -841,41 +918,47 @@
         },
         "approval": {
             "verify": {
+                "title": "How to verify the approval",
                 "type": "object",
                 "properties": {
                     "website": {
                         "type": "string",
-                        "format": "hostname"
+                        "format": "hostname",
+                        "description": "The hostname of the website where the approval can be verified."
                     },
-                    "description": {
-                        "$ref": "#/definitions/internationalString"
+                    "explanation": {
+                        "$ref": "#/definitions/internationalString",
+                        "description": "Explanation how the approval can be verified"
                     }
                 },
-                "required": [
-                    "website"
-                ]
+                "required": []
             }
         },
         "possiblePositions": {
+            "title": "The locations where a component can be used",
             "type": "array",
             "items": {
                 "type": "string",
                 "enum": [
                     "exterior",
-                    "betweenGlassPanes",
+                    "inBetween",
                     "interior"
-                ]
+                ],
+                "description": "Exterior of the building envelope, in between of the building envelope for example between to glass panes or interior of the building envelope."
             },
             "minItems": 0
         },
         "colour": {
+            "description": "This section offers several ways to define the colour of a component",
             "type": "object",
             "properties": {
                 "name": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The name of the colour in natural language"
                 },
                 "CRI": {
-                    "$ref": "#/definitions/numberWithUncertainty"
+                    "$ref": "#/definitions/numberWithUncertainty",
+                    "description": "The Colour Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
                 },
                 "CIELAB": {
                     "L*": {
@@ -886,48 +969,66 @@
                     },
                     "b*": {
                         "$ref": "#/definitions/numberWithUncertainty"
-                    }
+                    },
+                    "description": "The three parameters L*, a* and b* from CIE define the colour as well as the brightness."
                 }
             },
             "required": []
         },
-        "format": {
+        "formatting": {
+            "title": "This section is used to define the format of data.",
             "type": "object",
             "properties": {
                 "uri": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The format is identified by this URI."
                 },
                 "abbreviation": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The abbreviation of the format"
                 },
                 "name": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The full name of the format"
                 },
-                "description": {
-                    "$ref": "#/definitions/internationalString"
+                "explanation": {
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The decription of the format"
+                },
+                "version": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The version of the format is identified by this URI."
                 },
                 "reference": {
-                    "$ref": "#/definitions/reference"
+                    "$ref": "#/definitions/reference",
+                    "description": "If the format is defined in a standard or a publication, this reference can be defined here."
                 }
             },
-            "required": []
+            "required": [
+                "uri"
+            ]
         },
         "file": {
+            "title": "This section defines the data of a specific file.",
             "type": "object",
             "properties": {
                 "uri": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "hostname",
+                    "description": "The file can be downloaded directly from this hostname."
                 },
                 "name": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The file name"
                 },
-                "description": {
-                    "$ref": "#/definitions/internationalString"
+                "explanation": {
+                    "$ref": "#/definitions/internationalString",
+                    "description": "A description of the file####"
                 },
-                "format": {
-                    "$ref": "#/definitions/format"
+                "formatting": {
+                    "$ref": "#/definitions/formatting"
                 },
                 "creator": {
                     "$ref": "#/definitions/roles/creator"
@@ -1221,7 +1322,7 @@
                 "name": {
                     "$ref": "#/definitions/internationalString"
                 },
-                "description": {
+                "explanation": {
                     "$ref": "#/definitions/internationalString"
                 }
             },
@@ -1261,7 +1362,7 @@
                         "name": {
                             "$ref": "#/definitions/internationalString"
                         },
-                        "description": {
+                        "explanation": {
                             "$ref": "#/definitions/internationalString"
                         },
                         "origin": {
@@ -1353,8 +1454,8 @@
                     {
                         "type": "object",
                         "properties": {
-                            "format": {
-                                "$ref": "#/definitions/format",
+                            "formatting": {
+                                "$ref": "#/definitions/formatting",
                                 "description": "Definition of the format of the array below"
                             },
                             "array": {
@@ -1633,8 +1734,8 @@
                         "minProperties": 1
                     },
                     {
-                        "format": {
-                            "$ref": "#/definitions/format"
+                        "formatting": {
+                            "$ref": "#/definitions/formatting"
                         },
                         "transmittance": {
                             "type": "array",
