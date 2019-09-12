@@ -26,7 +26,7 @@
         },
         "valid": {
             "type": "object",
-            "properties": {            
+            "properties": {
                 "from": {
                     "type": "string",
                     "format": "date-time",
@@ -43,7 +43,7 @@
         },
         "available": {
             "type": "object",
-            "properties": { 
+            "properties": {
                 "from": {
                     "type": "string",
                     "format": "date-time",
@@ -128,7 +128,7 @@
                             },
                             "description": "The given name(s) also known as forname(s) or first name(s) of a person"
                         }
-                    }                    
+                    }
                 },
                 "institution": {
                     "type": "object",
@@ -267,7 +267,7 @@
                     },
                     "categories": {
                         "$ref": "#/definitions/component/categories",
-                        "description": "The component is categorized in order to facilitate queries." 
+                        "description": "The component is categorized in order to facilitate queries."
                     },
                     "constants": {
                         "$ref": "#/definitions/component/constants",
@@ -303,7 +303,7 @@
                 "required": [
                     "uri"
                 ]
-            },            
+            },
             "categories": {
                 "type": "array",
                 "items": {
@@ -327,8 +327,8 @@
                             "PVB",
                             "film",
                             "frit",
-                            "fabric/woven",
-                            "fabric/nonWoven",
+                            "wovenFabric",
+                            "nonWovenFabric",
                             "slat",
                             "baseMaterial"
                         ]
@@ -345,8 +345,8 @@
                             "monolithic",
                             "coated",
                             "laminate",
-                            "film/applied",
-                            "glass/fritted",
+                            "appliedFilm",
+                            "frittedGlass",
                             "Arm",
                             "Austrian",
                             "Awning",
@@ -457,8 +457,9 @@
                     "colour": {
                         "$ref": "#/definitions/colour"
                     },
-                    "optical/angle/cutOff": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                    "cutOff": {
+                        "$ref": "#/definitions/valueWithUncertainty",
+                        "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."
                     },
                     "chemicalElements": {
                         "type": "array",
@@ -663,7 +664,7 @@
                 },
                 "identifier": {
                     "type": "object",
-                    "properties": {                    
+                    "properties": {
                         "prefix": {
                             "type": "string"
                         },
@@ -678,7 +679,9 @@
                             "maximum": 10000
                         }
                     },
-                    "required": ["mainNumber"]
+                    "required": [
+                        "mainNumber"
+                    ]
                 },
                 "year": {
                     "type": "integer",
@@ -1055,12 +1058,9 @@
                         "minItems": 0,
                         "maxItems": 1
                     },
-                    "maximumClosingAngle": {
-                        "$ref": "#/definitions/valueWithUncertainty"
-                    },
                     "slat": {
                         "type": "object",
-                        "properties": { 
+                        "properties": {
                             "width": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
@@ -1081,6 +1081,17 @@
                                     }
                                 },
                                 "required": []
+                            },
+                            "angles": {
+                                "type": "object",
+                                "properties": {
+                                    "tilt": {
+                                        "$ref": "#/definitions/valueWithUncertainty"
+                                    },
+                                    "maximumClosing": {
+                                        "$ref": "#/definitions/valueWithUncertainty"
+                                    }
+                                }
                             }
                         }
                     }
@@ -1353,20 +1364,20 @@
                 "range": {
                     "type": "object",
                     "properties": {
-                        "##########https://www.building-envelopes.org/optical/wavelength/bandwidth": {
+                        "bandwidth": {
                             "$ref": "#/definitions/valueWithUncertainty"
                         },
-                        "https://www.building-envelopes.org/optical/wavelength/amplificationFactor": {
+                        "amplificationFactor": {
                             "$ref": "#/definitions/valueWithUncertainty"
                         },
-                        "https://www.building-envelopes.org/optical/spectrum": {
+                        "spectrum": {
                             "type": "array",
                             "items": {
                                 "type": "string",
                                 "enum": [
-                                    "https://www.building-envelopes.org/optical/wavelength/integral/visual",
-                                    "https://www.building-envelopes.org/optical/wavelength/integral/solar",
-                                    "https://www.building-envelopes.org/optical/wavelength/integral/infrared"
+                                    "visual",
+                                    "solar",
+                                    "infrared"
                                 ]
                             },
                             "minItems": 1,
@@ -1379,16 +1390,16 @@
             "incidence": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/optical/direction": {
+                    "direction": {
                         "$ref": "#/definitions/optical/direction"
                     },
-                    "https://www.building-envelopes.org/optical/polarisation": {
+                    "polarisation": {
                         "$ref": "#/definitions/optical/polarisation"
                     },
-                    "https://www.building-envelopes.org/optical/wavelengths": {
+                    "wavelengths": {
                         "$ref": "#/definitions/optical/wavelengths"
                     },
-                    "https://www.building-envelopes.org/optical/wavelength/range": {
+                    "range": {
                         "$ref": "#/definitions/optical/wavelength/range"
                     }
                 },
@@ -1397,16 +1408,16 @@
             "emergence": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/optical/direction": {
+                    "direction": {
                         "$ref": "#/definitions/optical/direction"
                     },
-                    "https://www.building-envelopes.org/optical/polarisation": {
+                    "polarisation": {
                         "$ref": "#/definitions/optical/polarisation"
                     },
-                    "https://www.building-envelopes.org/optical/wavelengths": {
+                    "wavelengths": {
                         "$ref": "#/definitions/optical/wavelengths"
                     },
-                    "https://www.building-envelopes.org/optical/wavelength/range": {
+                    "range": {
                         "$ref": "#/definitions/optical/wavelength/range"
                     }
                 },
@@ -1415,84 +1426,84 @@
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/optical/treatmentBefore": {
+                    "treatmentBefore": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/reference": {
+                            "reference": {
                                 "$ref": "#/definitions/reference"
                             }
                         },
                         "required": []
                     },
-                    "https://www.building-envelopes.org/optical/locationOnSample": {
+                    "locationOnSample": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/reference": {
+                            "reference": {
                                 "$ref": "#/definitions/reference"
                             }
                         },
                         "required": []
                     },
-                    "https://www.building-envelopes.org/optical/polarizationSensitivity": {
+                    "polarizationSensitivity": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/reference": {
+                            "reference": {
                                 "$ref": "#/definitions/reference"
                             }
                         },
                         "required": []
                     },
-                    "https://www.building-envelopes.org/optical/instrumentSignature": {
+                    "instrumentSignature": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/reference": {
+                            "reference": {
                                 "$ref": "#/definitions/reference"
                             }
                         },
                         "required": []
                     },
-                    "https://www.building-envelopes.org/optical/normalization": {
+                    "normalization": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/reference": {
+                            "reference": {
                                 "$ref": "#/definitions/reference"
                             }
                         },
                         "required": []
                     },
-                    "https://www.building-envelopes.org/geometry/coordinateSystem": {
+                    "coordinateSystem": {
                         "$ref": "#/definitions/geometry/coordinateSystem"
                     },
-                    "https://www.building-envelopes.org/optical/referenceSamples": {
+                    "referenceSamples": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/uri": {
+                            "uri": {
                                 "type": "string",
                                 "format": "uri"
                             },
-                            "https://www.building-envelopes.org/reference": {
+                            "reference": {
                                 "$ref": "#/definitions/reference"
                             }
                         },
                         "required": []
                     },
-                    "https://www.building-envelopes.org/optical/spot": {
+                    "spot": {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/diameter": {
+                            "diameter": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/reference": {
+                            "reference": {
                                 "$ref": "#/definitions/reference"
                             }
                         },
                         "required": []
                     },
-                    "https://www.building-envelopes.org/energy/supplied": {
+                    "suppliedEnergy": {
                         "$ref": "#/definitions/valueWithUncertainty"
                     },
-                    "https://www.building-envelopes.org/optical/angle/slat/tilt": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                    "tilt": {
+                        "$ref": "#/definitions/layer/constants/slat/angles/tilt"
                     }
                 },
                 "required": []
@@ -1500,7 +1511,7 @@
             "constants": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/optical/parameters": {
+                    "parameters": {
                         "$ref": "#/definitions/optical/parameters"
                     }
                 },
@@ -1509,7 +1520,7 @@
             "variables": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/optical/parameters": {
+                    "parameters": {
                         "$ref": "#/definitions/optical/parameters"
                     }
                 },
@@ -1518,10 +1529,10 @@
             "BSDF": {
                 "type": "object",
                 "properties": {
-                    "https://www.building-envelopes.org/optical/BTDF": {
+                    "BTDF": {
                         "$ref": "#/definitions/valueWithUncertainty"
                     },
-                    "https://www.building-envelopes.org/optical/BRDF": {
+                    "BRDF": {
                         "$ref": "#/definitions/valueWithUncertainty"
                     }
                 },
@@ -1534,13 +1545,13 @@
                     {
                         "type": "object",
                         "properties": {
-                            "https://www.building-envelopes.org/optical/transmittance": {
+                            "transmittance": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/optical/reflectance": {
+                            "reflectance": {
                                 "$ref": "#/definitions/valueWithUncertainty"
                             },
-                            "https://www.building-envelopes.org/optical/BSDF": {
+                            "BSDF": {
                                 "$ref": "#/definitions/optical/BSDF"
                             }
                         },
@@ -1548,10 +1559,10 @@
                         "minProperties": 1
                     },
                     {
-                        "https://www.building-envelopes.org/format": {
+                        "format": {
                             "$ref": "#/definitions/format"
                         },
-                        "https://www.building-envelopes.org/optical/transmittance/array": {
+                        "transmittance": {
                             "type": "array",
                             "items": {
                                 "type": "number",
@@ -1560,7 +1571,7 @@
                             },
                             "minItems": 1
                         },
-                        "https://www.building-envelopes.org/optical/reflectance/array": {
+                        "reflectance": {
                             "type": "array",
                             "items": {
                                 "type": "number",
@@ -1569,7 +1580,7 @@
                             },
                             "minItems": 1
                         },
-                        "https://www.building-envelopes.org/optical/BSDF/array": {
+                        "BSDF": {
                             "type": "array",
                             "items": {
                                 "type": "number",
@@ -1586,7 +1597,7 @@
     },
     "type": "object",
     "properties": {
-        "https://www.building-envelopes.org/component": {
+        "component": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/component/basics"
@@ -1595,6 +1606,6 @@
         }
     },
     "required": [
-        "https://www.building-envelopes.org/component"
+        "component"
     ]
 }
