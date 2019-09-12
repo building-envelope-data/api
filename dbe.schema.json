@@ -13,15 +13,80 @@
             },
             "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
         },
-        "created": {
-            "type": "object",
-            "properties": {
-                "created": {
-                    "type": "string",
-                    "format": "date-time"
+        "numberWithUncertainty": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "uncertainty": {
+                            "type": "number"
+                        },
+                        "reference": {
+                            "$ref": "#/definitions/reference"
+                        }
+                    },
+                    "required": [
+                        "reference"
+                    ]
                 }
+            ],
+            "minItems": 2
+        },
+        "nonNegativeNumberWithUncertainty": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "minimum": 0
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "uncertainty": {
+                            "type": "number"
+                        },
+                        "reference": {
+                            "$ref": "#/definitions/reference"
+                        }
+                    },
+                    "required": [
+                        "reference"
+                    ]
+                }
+            ],
+            "minItems": 2
+        },
+        "units": {
+            "meter": {
+                "$ref": "#/definitions/numberWithUncertainty"
             },
-            "required": [],
+            "meterWithoutUncertainty": {
+                "type": "number"
+            },
+            "squareMeter": {
+                "$ref": "#/definitions/nonNegativeNumberWithUncertainty"
+            },
+            "cubicMeter": {
+                "$ref": "#/definitions/nonNegativeNumberWithUncertainty"
+            },
+            "degree": {
+                "type": "number",
+                "minimum": -360.0,
+                "maximum": 360.0,
+                "description": "A unit to measure angles. A full rotation equals 360°."
+            },
+            "radian": {
+                "type": "number",
+                "description": "A unit to measure angles. A full rotation equals 2*Pi."
+            }
+        },
+        "created": {
+            "type": "string",
+            "format": "date-time",
             "description": "The date when this data was first stored in the database."
         },
         "valid": {
@@ -452,13 +517,13 @@
                         "$ref": "#/definitions/geometry/basics"
                     },
                     "airPermeability": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                        "$ref": "#/definitions/numberWithUncertainty"
                     },
                     "colour": {
                         "$ref": "#/definitions/colour"
                     },
                     "cutOff": {
-                        "$ref": "#/definitions/valueWithUncertainty",
+                        "$ref": "#/definitions/units/degree",
                         "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."
                     },
                     "chemicalElements": {
@@ -797,17 +862,17 @@
                     "$ref": "#/definitions/internationalString"
                 },
                 "CRI": {
-                    "$ref": "#/definitions/valueWithUncertainty"
+                    "$ref": "#/definitions/numberWithUncertainty"
                 },
                 "CIELAB": {
                     "L*": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                        "$ref": "#/definitions/numberWithUncertainty"
                     },
                     "a*": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                        "$ref": "#/definitions/numberWithUncertainty"
                     },
                     "b*": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                        "$ref": "#/definitions/numberWithUncertainty"
                     }
                 }
             },
@@ -876,13 +941,13 @@
                         "type": "object",
                         "properties": {
                             "largest": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "intermediate": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "smallest": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             }
                         }
                     },
@@ -890,13 +955,13 @@
                         "type": "object",
                         "properties": {
                             "vertical": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "parallel": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "orthogonal": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             }
                         },
                         "description": "The orientations vertical, parallel and orthogonal refer to the building envelope and the component in its usual mounting position."
@@ -957,13 +1022,13 @@
                 "type": "object",
                 "properties": {
                     "x": {
-                        "type": "number"
+                        "$ref": "#/definitions/units/meter"
                     },
                     "y": {
-                        "type": "number"
+                        "$ref": "#/definitions/units/meter"
                     },
                     "z": {
-                        "type": "number"
+                        "$ref": "#/definitions/units/meter"
                     },
                     "description": "A cartesian coordinate system is assumed."
                 },
@@ -980,7 +1045,16 @@
                         "$ref": "#/definitions/reference"
                     },
                     "origin": {
-                        "$ref": "#/definitions/geometry/point"
+                        "x": {
+                            "$ref": "#/definitions/units/meterWithoutUncertainty"
+                        },
+                        "y": {
+                            "$ref": "#/definitions/units/meterWithoutUncertainty"
+                        },
+                        "z": {
+                            "$ref": "#/definitions/units/meterWithoutUncertainty"
+                        },
+                        "description": "A cartesian coordinate system is assumed."
                     }
                 },
                 "required": []
@@ -1062,13 +1136,13 @@
                         "type": "object",
                         "properties": {
                             "width": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "pitch": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "crownHeight": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "shape": {
                                 "type": "object",
@@ -1086,10 +1160,12 @@
                                 "type": "object",
                                 "properties": {
                                     "tilt": {
-                                        "$ref": "#/definitions/valueWithUncertainty"
+                                        "$ref": "#/definitions/units/degree",
+                                        "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
                                     },
                                     "maximumClosing": {
-                                        "$ref": "#/definitions/valueWithUncertainty"
+                                        "$ref": "#/definitions/units/degree",
+                                        "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats tough each other."
                                     }
                                 }
                             }
@@ -1107,10 +1183,10 @@
                         "type": "object",
                         "properties": {
                             "dTop": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "dGlass": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "reference": {
                                 "$ref": "#/definitions/reference"
@@ -1121,27 +1197,6 @@
                 },
                 "required": []
             }
-        },
-        "valueWithUncertainty": {
-            "type": "array",
-            "items": [
-                {
-                    "type": "number",
-                    "minimum": 0
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "reference": {
-                            "$ref": "#/definitions/reference"
-                        }
-                    },
-                    "required": [
-                        "reference"
-                    ]
-                }
-            ],
-            "minItems": 2
         },
         "source": {
             "type": "object",
@@ -1240,10 +1295,12 @@
                         "type": "object",
                         "properties": {
                             "polar": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/units/degree",
+                                "description": "In the spherical coordinate system, the polar angle is measured from a fixed axis such as the z-axis of a cartesian coordinate system."
                             },
                             "azimuth": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/units/degree",
+                                "description": "In the spherical coordinate system, the polar angle is measured from orthogonal projextion of the direction on a reference plane such as the plane between the x- and y-axis of a cartestian coordinate system."
                             }
                         }
                     },
@@ -1251,10 +1308,12 @@
                         "type": "object",
                         "properties": {
                             "xz": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/units/degree",
+                                "description": "If the z-axis is normal to the building envelope and the x-axis directs for example vertically upwards in a facade,then the angle xz is measured from the z-axis towards the x-axis. 80° is then from the facade almost vertically upwards and -10° means from the facade downwards, but almost horizontal."
                             },
                             "yz": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/units/degree",
+                                "description": "If the z-axis is normal to the building envelope, the x-axis directs for example vertically upwards in a facade and the y-axis is horizontal in an right-handed coordinate system, then the angle yz is measured from the z-axis towards the y axis. From the facade looking to the exterior, 80° means a direction far right, almost parallel to the facade. -10° means from the facade to exterior slightly left, but almost perpendiculat to the facade."
                             }
                         }
                     },
@@ -1262,9 +1321,9 @@
                         "type": "object",
                         "properties": {
                             "incidence": {
-                                "$ref": "#/definitions/valueWithUncertainty"
-                            },
-                            "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
+                                "$ref": "#/definitions/units/degree",
+                                "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
+                            }
                         }
                     },
                     {
@@ -1282,12 +1341,14 @@
                         "type": "object",
                         "properties": {
                             "format": {
-                                "$ref": "#/definitions/format"
+                                "$ref": "#/definitions/format",
+                                "description": "Definition of the format of the array below"
                             },
                             "array": {
                                 "type": "array",
                                 "items": {
-                                    "type": "number"
+                                    "type": "number",
+                                    "description": "In order to reduze the size of this data file, the multiple directions can be entered as an array."
                                 },
                                 "minItems": 1
                             }
@@ -1303,10 +1364,10 @@
                         "type": "object",
                         "properties": {
                             "s": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "p": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             }
                         }
                     },
@@ -1314,10 +1375,10 @@
                         "type": "object",
                         "properties": {
                             "l": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "r": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             }
                         }
                     }
@@ -1332,7 +1393,7 @@
                         "type": "object",
                         "properties": {
                             "wavelength": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             }
                         }
                     },
@@ -1365,10 +1426,10 @@
                     "type": "object",
                     "properties": {
                         "bandwidth": {
-                            "$ref": "#/definitions/valueWithUncertainty"
+                            "$ref": "#/definitions/numberWithUncertainty"
                         },
                         "amplificationFactor": {
-                            "$ref": "#/definitions/valueWithUncertainty"
+                            "$ref": "#/definitions/numberWithUncertainty"
                         },
                         "spectrum": {
                             "type": "array",
@@ -1491,7 +1552,7 @@
                         "type": "object",
                         "properties": {
                             "diameter": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "reference": {
                                 "$ref": "#/definitions/reference"
@@ -1500,7 +1561,7 @@
                         "required": []
                     },
                     "suppliedEnergy": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                        "$ref": "#/definitions/numberWithUncertainty"
                     },
                     "tilt": {
                         "$ref": "#/definitions/layer/constants/slat/angles/tilt"
@@ -1530,10 +1591,10 @@
                 "type": "object",
                 "properties": {
                     "BTDF": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                        "$ref": "#/definitions/numberWithUncertainty"
                     },
                     "BRDF": {
-                        "$ref": "#/definitions/valueWithUncertainty"
+                        "$ref": "#/definitions/numberWithUncertainty"
                     }
                 },
                 "required": [],
@@ -1546,10 +1607,10 @@
                         "type": "object",
                         "properties": {
                             "transmittance": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "reflectance": {
-                                "$ref": "#/definitions/valueWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty"
                             },
                             "BSDF": {
                                 "$ref": "#/definitions/optical/BSDF"

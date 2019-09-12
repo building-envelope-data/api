@@ -1,8 +1,4 @@
 
 zu erledigen:
-- Domain entfernen
-- / in den Schlüsseln entfernen
-- date weglassen
-- Typen für SI-Einheiten erstellen
 - Ab "categories" mit title und description gute Beschreibung für Menschen erstellen für die Schlüssel
 
