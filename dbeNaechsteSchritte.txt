@@ -1,5 +1,6 @@
 
 zu erledigen:
+- `hostname`, bspw. en.wikipedia.org, enthaelt weder `scheme`, bspw. https, noch `path`, bspw. /transmittance. Da es `absolute-url` als `format` nicht gibt, solltest du hier deinen eigenen Typen definieren, vorerst als `type` `string` mit `format` `uri` und spaeter koennen wir den Typ noch mit einem regulaeren Ausdruck versehen, der prueft, ob die URL absolut ist, also ein `hostname` enthaelt (das bitte gleich im Dokument als Kommentar mit dem Praefix TODO vermerken).
 - Ab "A description of the file####" mit title und description gute Beschreibung für Menschen erstellen für die Schlüssel
 - add "criticalInformation" or "warnings" e.g. for Klems and direct transmittance.
 - nm for wavelengths

@@ -14,6 +14,11 @@
             },
             "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
         },
+        "webAddress": {
+            "type": "string",
+            "format": "uri",
+            "description": "In extension to the validation keyword `hostname`, a `webAddress` includes a `scheme` like https and possibly a `path` like /folder/item. TODO: Add an additional regex which checks whether the uri contains a `hostname`."
+        },
         "numberWithUncertainty": {
             "type": "array",
             "items": [
@@ -149,8 +154,7 @@
                     "description": "E-mail address of an institution or person"
                 },
                 "website": {
-                    "type": "string",
-                    "format": "hostname",
+                    "$ref": "#/definitions/webAddress",
                     "description": "Website of an institution or person"
                 }
             },
@@ -697,10 +701,9 @@
                                 "type": "object",
                                 "properties": {
                                     "uri": {
-                                        "type": "string",
-                                        "format": "hostname"
+                                        "$ref": "#/definitions/webAddress"
                                     },
-                                    "description": "The executable can be downloaded directly from this hostname."
+                                    "description": "The executable can be downloaded directly from this URL."
                                 },
                                 "required": [
                                     "uri"
@@ -837,8 +840,7 @@
             "type": "object",
             "properties": {
                 "uri": {
-                    "type": "string",
-                    "format": "hostname",
+                    "$ref": "#/definitions/webAddress",
                     "description": "The database is identified by its API endpoint."
                 },
                 "name": {
@@ -922,9 +924,8 @@
                 "type": "object",
                 "properties": {
                     "website": {
-                        "type": "string",
-                        "format": "hostname",
-                        "description": "The hostname of the website where the approval can be verified."
+                        "$ref": "#/definitions/webAddress",
+                        "description": "The URL of the website where the approval can be verified."
                     },
                     "explanation": {
                         "$ref": "#/definitions/internationalString",
@@ -1015,9 +1016,8 @@
             "type": "object",
             "properties": {
                 "uri": {
-                    "type": "string",
-                    "format": "hostname",
-                    "description": "The file can be downloaded directly from this hostname."
+                    "$ref": "#/definitions/webAddress",
+                    "description": "The file can be downloaded directly from this URL."
                 },
                 "name": {
                     "$ref": "#/definitions/internationalString",
