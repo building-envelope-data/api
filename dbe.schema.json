@@ -1025,22 +1025,27 @@
                 },
                 "explanation": {
                     "$ref": "#/definitions/internationalString",
-                    "description": "A description of the file####"
+                    "description": "An explanation of the file"
                 },
                 "formatting": {
-                    "$ref": "#/definitions/formatting"
+                    "$ref": "#/definitions/formatting",
+                    "description": "The definition of the format of the file"
                 },
                 "creator": {
-                    "$ref": "#/definitions/roles/creator"
+                    "$ref": "#/definitions/roles/creator",
+                    "description": "The stakeholder who has created this file"
                 },
                 "approvals": {
-                    "$ref": "#/definitions/approvals"
+                    "$ref": "#/definitions/approvals",
+                    "description": "This section contains approvals of the file"
                 },
                 "created": {
-                    "$ref": "#/definitions/created"
+                    "$ref": "#/definitions/created",
+                    "description": "The date when the file was created"
                 },
                 "valid": {
-                    "$ref": "#/definitions/valid"
+                    "$ref": "#/definitions/valid",
+                    "description": "The timespan during which the file was valid"
                 }
             },
             "required": [
@@ -1051,88 +1056,74 @@
             "basics": {
                 "type": "object",
                 "properties": {
-                    "size": {
+                    "title": "The geometric dimensions refer to the installation of the component in a building envelope. The dimensions can be used to define a bounding box which includes all parts of the component. If a component can be installed in different ways, more than one set of dimensions can be defined.",
+                    "type": "array",
+                    "items": {
                         "type": "object",
                         "properties": {
-                            "largest": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                            "height": {
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "The height of the component along the vertical axis of the building envelope."
                             },
-                            "intermediate": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                            "width": {
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "The width of the component along the horizontal axis of the building envelope."
                             },
-                            "smallest": {
-                                "$ref": "#/definitions/numberWithUncertainty"
-                            }
+                            "depth": {
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "The depth of the component along the axis perpendicular to the building envelope."
+                            },
+                            "required": ["height", "width", "depth"]
                         }
                     },
-                    "envelope": {
-                        "type": "object",
-                        "properties": {
-                            "vertical": {
-                                "$ref": "#/definitions/numberWithUncertainty"
-                            },
-                            "parallel": {
-                                "$ref": "#/definitions/numberWithUncertainty"
-                            },
-                            "orthogonal": {
-                                "$ref": "#/definitions/numberWithUncertainty"
-                            }
-                        },
-                        "description": "The orientations vertical, parallel and orthogonal refer to the building envelope and the component in its usual mounting position."
-                    },
-                    "file": {
-                        "$ref": "#/definitions/file"
-                    }
+                    "minItems": 1
                 },
                 "required": []
-            },
-            "outer": {
-                "type": "object",
-                "properties": {
-                    "dimensions": {
-                        "$ref": "#/definitions/dimensions/basics"
-                    }
-                },
-                "required": [
-                    "dimensions"
-                ]
             }
         },
         "geometry": {
             "basics": {
+                "title": "This section presents definitions to describe the geometry of a component.",
                 "type": "object",
                 "properties": {
-                    "dimensions": {
-                        "$ref": "#/definitions/geometry/dimensions"
+                    "centerOfGravity": {
+                        "$ref": "#/definitions/geometry/point"
                     },
-                    "boundingBox": {
-                        "$ref": "#/definitions/geometry/dimensions"
+                    "dimensions": {
+                        "$ref": "#/definitions/geometry/dimensions",
+                        "description": "Height, width and depth of the component."
                     },
                     "coordinateSystem": {
-                        "$ref": "#/definitions/geometry/coordinateSystem"
+                        "$ref": "#/definitions/geometry/coordinateSystem",
+                        "description": "Definition of the coordinate systems to which the other coordinates refer to."
                     },
                     "surfaces": {
                         "type": "array",
                         "items": {
                             "$ref": "#/definitions/geometry/surface"
                         },
+                        "description": "This array list all surfaces of the component.",
                         "minItems": 1
                     },
                     "bodies": {
                         "type": "array",
-                        "items": [
-                            {
-                                "body": {
-                                    "$ref": "#/definitions/geometry/body"
-                                }
+                        "items": {
+                            "body": {
+                                "$ref": "#/definitions/geometry/body"
                             }
-                        ],
+                        },
+                        "description": "This array lists all the bodies of which the component consists.",
                         "minItems": 1
+                    },
+                    "file": {
+                        "$ref": "#/definitions/file",
+                        "description": "Instead of or in addition to the keys above, a file can be used to define the geometry of the component."
                     }
                 },
                 "required": []
             },
             "point": {
+                "title": "This section defines a point according to the definition of a coordinate system elsewhere.",
                 "type": "object",
                 "properties": {
                     "x": {
@@ -1143,8 +1134,7 @@
                     },
                     "z": {
                         "$ref": "#/definitions/units/meter"
-                    },
-                    "description": "A cartesian coordinate system is assumed."
+                    }
                 },
                 "required": [
                     "x",
@@ -1153,39 +1143,61 @@
                 ]
             },
             "coordinateSystem": {
+                "title": "Definition of the coordinate system of the data set",
                 "type": "object",
                 "properties": {
                     "reference": {
-                        "$ref": "#/definitions/reference"
+                        "$ref": "#/definitions/reference",
+                        "description": "The coordinate system needs to be well defined. If no suitable reference exists, please create a new publication in the database."
                     },
-                    "origin": {
-                        "x": {
-                            "$ref": "#/definitions/units/meterWithoutUncertainty"
+                    "categories": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": ["cartesian", "rightHanded", "leftHanded", "polar", "spherical", "cylindrical"],
+                            "description": "Often, a right-handed cartesian coordinate system is used."
                         },
-                        "y": {
-                            "$ref": "#/definitions/units/meterWithoutUncertainty"
-                        },
-                        "z": {
-                            "$ref": "#/definitions/units/meterWithoutUncertainty"
-                        },
-                        "description": "A cartesian coordinate system is assumed."
+                        "minItems": 0
                     }
                 },
                 "required": []
             },
             "surface": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/definitions/geometry/point"
-                },
-                "minItems": 3
+                "type": "object",
+                "properties": {
+                    "bounded": {
+                        "bSpline": {
+                            "type": "object",
+                            "properties": {
+                                "uDegree": {
+                                    "type": "integer"
+                                },
+                                "vDegree": {
+                                    "type": "integer"
+                                },
+                                "controlPoints": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/geometry/point",
+                                        "description": "The surface is defined "
+                                    },
+                                    "minItems": 3    
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "body": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/definitions/geometry/point"
-                },
-                "minItems": 4
+                "type": "object",
+                "properties": {
+                    "brep": {###
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/geometry/point"
+                    },
+                    "minItems": 4
+                }
             },
             "curve": {
                 "type": "array",
