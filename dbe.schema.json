@@ -68,9 +68,14 @@
                 }
             ]
         },
+        "nonNegativeIntegerWithoutUncertainty": {
+            "title": "This type is used when only non-negative integers are valid.",
+            "type": "integer",
+            "minimum": 0
+        },
         "units": {
             "title": "This section defines types for numbers with units",
-            "meter": {
+            "meterWithUncertainty": {
                 "$ref": "#/definitions/numberWithUncertainty",
                 "description": "Meter is the SI unit for length."
             },
@@ -78,11 +83,11 @@
                 "type": "number",
                 "description": "Meter is the SI unit for length. MeterWithoutUncertainty is used for rare cases in which the option of an uncertainty is not desired."
             },
-            "squareMeter": {
+            "squareMeterWithUncertainty": {
                 "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
                 "description": "A quare meter is a unit for an area."
             },
-            "cubicMeter": {
+            "cubicMeterWithUncertainty": {
                 "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
                 "description": "A cubic meter is a unit for a volume."
             },
@@ -1053,33 +1058,35 @@
             ]
         },
         "dimensions": {
-            "basics": {
-                "type": "object",
-                "properties": {
-                    "title": "The geometric dimensions refer to the installation of the component in a building envelope. The dimensions can be used to define a bounding box which includes all parts of the component. If a component can be installed in different ways, more than one set of dimensions can be defined.",
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "height": {
-                                "$ref": "#/definitions/numberWithUncertainty",
-                                "description": "The height of the component along the vertical axis of the building envelope."
-                            },
-                            "width": {
-                                "$ref": "#/definitions/numberWithUncertainty",
-                                "description": "The width of the component along the horizontal axis of the building envelope."
-                            },
-                            "depth": {
-                                "$ref": "#/definitions/numberWithUncertainty",
-                                "description": "The depth of the component along the axis perpendicular to the building envelope."
-                            },
-                            "required": ["height", "width", "depth"]
-                        }
-                    },
-                    "minItems": 1
+            "type": "object",
+            "properties": {
+                "title": "The geometric dimensions refer to the installation of the component in a building envelope. The dimensions can be used to define a bounding box which includes all parts of the component. If a component can be installed in different ways, more than one set of dimensions can be defined.",
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "height": {
+                            "$ref": "#/definitions/numberWithUncertainty",
+                            "description": "The height of the component along the vertical axis of the building envelope."
+                        },
+                        "width": {
+                            "$ref": "#/definitions/numberWithUncertainty",
+                            "description": "The width of the component along the horizontal axis of the building envelope."
+                        },
+                        "depth": {
+                            "$ref": "#/definitions/numberWithUncertainty",
+                            "description": "The depth of the component along the axis perpendicular to the building envelope."
+                        },
+                        "required": [
+                            "height",
+                            "width",
+                            "depth"
+                        ]
+                    }
                 },
-                "required": []
-            }
+                "minItems": 1
+            },
+            "required": []
         },
         "geometry": {
             "basics": {
@@ -1087,7 +1094,8 @@
                 "type": "object",
                 "properties": {
                     "centerOfGravity": {
-                        "$ref": "#/definitions/geometry/point"
+                        "$ref": "#/definitions/geometry/point",
+                        "description": "Definition of the center of gravity of the component"
                     },
                     "dimensions": {
                         "$ref": "#/definitions/geometry/dimensions",
@@ -1096,14 +1104,6 @@
                     "coordinateSystem": {
                         "$ref": "#/definitions/geometry/coordinateSystem",
                         "description": "Definition of the coordinate systems to which the other coordinates refer to."
-                    },
-                    "surfaces": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/geometry/surface"
-                        },
-                        "description": "This array list all surfaces of the component.",
-                        "minItems": 1
                     },
                     "bodies": {
                         "type": "array",
@@ -1118,6 +1118,26 @@
                     "file": {
                         "$ref": "#/definitions/file",
                         "description": "Instead of or in addition to the keys above, a file can be used to define the geometry of the component."
+                    },
+                    "LOD": {
+                        "title": "The Level of Development or Level of Detail (LOD) is used to describe how accurate the reality is modelled. As geometry/LOD refers to geometry, it is sometimes also called Level of Geometry.",
+                        "type": "array",
+                        "items": [
+                            {
+                                "$ref": "#/definitions/nonNegativeIntegerWithoutUncertainty",
+                                "description": "This integer indicates the LOD according to the definition of the reference below."
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "reference": {
+                                        "$ref": "#/definitions/reference",
+                                        "description": "This reference defines the LOD which is indicated above."
+                                    }
+                                }
+                            }
+                        ],
+                        "minItems": 2
                     }
                 },
                 "required": []
@@ -1127,13 +1147,13 @@
                 "type": "object",
                 "properties": {
                     "x": {
-                        "$ref": "#/definitions/units/meter"
+                        "$ref": "#/definitions/units/meterWithoutUncertainty"
                     },
                     "y": {
-                        "$ref": "#/definitions/units/meter"
+                        "$ref": "#/definitions/units/meterWithoutUncertainty"
                     },
                     "z": {
-                        "$ref": "#/definitions/units/meter"
+                        "$ref": "#/definitions/units/meterWithoutUncertainty"
                     }
                 },
                 "required": [
@@ -1154,7 +1174,14 @@
                         "type": "array",
                         "items": {
                             "type": "string",
-                            "enum": ["cartesian", "rightHanded", "leftHanded", "polar", "spherical", "cylindrical"],
+                            "enum": [
+                                "cartesian",
+                                "rightHanded",
+                                "leftHanded",
+                                "polar",
+                                "spherical",
+                                "cylindrical"
+                            ],
                             "description": "Often, a right-handed cartesian coordinate system is used."
                         },
                         "minItems": 0
@@ -1166,22 +1193,93 @@
                 "type": "object",
                 "properties": {
                     "bounded": {
-                        "bSpline": {
-                            "type": "object",
-                            "properties": {
-                                "uDegree": {
-                                    "type": "integer"
-                                },
-                                "vDegree": {
-                                    "type": "integer"
-                                },
-                                "controlPoints": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/geometry/point",
-                                        "description": "The surface is defined "
+                        "type": "object",
+                        "properties": {
+                            "NURBS###": {
+                                "title": "A non-uniform rational B-spline (NURBS) can be used to define a surface. NURBS generalize B-splines and Bézier curves. For example, a NURBS with weights equal to 1 is a B-spline.",
+                                "type": "object",
+                                "properties": {
+                                    "uDirection": {
+                                        "$ref": "#/definitions/geometry/curve/bounded/NURBS"
                                     },
-                                    "minItems": 3    
+                                    "vDirection": {
+                                        "$ref": "#/definitions/geometry/curve/bounded/NURBS"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "NurbsDegreeKnots": {
+                "type": "object",
+                "parameters": {
+                    "degree": {
+                        "type": "integer"
+                    },
+                    "knots": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "parameters": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/geometry/point",
+                                        "description": "The knots are fixed points and always part of the surface. Multiplicity can be defined by repeatedly"
+                                    },
+                                    {
+                                        "type": "object",
+                                        "parameters": {
+                                            "multiplicity": {
+                                                "type": "integer",
+                                                "minimum": 1,
+                                                "description": "The multiplicity of a knot determines the continuity of the curve."
+                                            }
+                                        }
+                                    }    
+                                ]
+                            }
+                        },
+                        "minItems": 2
+                    }
+                }
+            },
+            "curve": {
+                    "bounded": {
+                            "NURBS": {
+                                "title": "A non-uniform rational B-spline (NURBS) can be used to define a curve. NURBS generalize B-splines and Bézier curves. For example, a NURBS with weights equal to 1 is a B-spline.",
+                                "type": "object",
+                                "properties": {
+                                    "allOf": [
+                                        {
+                                            "controlPoints": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "parameters": {
+                                                    "allOf": [
+                                                        {
+                                                            "$ref": "#/definitions/geometry/point",
+                                                            "description": "The control points (or poles) are part of the equation which defines the curve."
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "parameters": {
+                                                                "weights": {
+                                                                    "type": "number",
+                                                                    "description": "The weight of a knot influences the shape of the curve."
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "minItems": 2
+                                        },
+                                        {
+                                            "$ref": "#/definitions/geometry/NurbsDegreeKnots"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -1191,45 +1289,32 @@
             "body": {
                 "type": "object",
                 "properties": {
-                    "brep": {###
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/geometry/point"
-                    },
-                    "minItems": 4
+                    "brep": {
+                        "title": "Boundary representation (brep) defines a component by the surfaces between solid and non-solid.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/geometry/surface"
+                        },
+                        "description": "This array list all surfaces between solid and non-solid of the component.",
+                        "minItems": 1
+                    }
                 }
-            },
-            "curve": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/definitions/geometry/point"
-                },
-                "minItems": 2
             }
         },
         "assembly": {
+            "title": "Components can either consist of one element or of an assembly of elements. This section is used to define assemblies of elements.",
             "type": "array",
             "items": [
                 {
-                    "type": "object",
-                    "properties": {
-                        "uri": {
-                            "type": "string",
-                            "format": "uri"
-                        },
-                        "geometry": {
-                            "$ref": "#/definitions/geometry/basics"
-                        }
-                    },
-                    "required": [
-                        "uri"
-                    ]
+                    "$ref": "#/definitions/geometry/basics",
+                    "description": "Each item represents the geometry of one element of the assembly"
                 }
             ],
             "minItems": 2
         },
         "material": {
             "constants": {
+                "title": "This section collect all constants which are specific for components of the category materials.",
                 "type": "object",
                 "properties": {
                     "possiblePositions": {
@@ -1241,6 +1326,7 @@
         },
         "layer": {
             "constants": {
+                "title": "This section collect all constants which are specific for components of the category layers.",
                 "type": "object",
                 "properties": {
                     "possiblePositions": {
@@ -1253,31 +1339,33 @@
                             "enum": [
                                 "horizontal",
                                 "vertical"
-                            ]
+                            ],
+                            "description": "The orientation axis is important for example for venetian blinds."
                         },
                         "minItems": 0,
                         "maxItems": 1
                     },
                     "slat": {
+                        "title": "For example venetian blinds consist of many slats. This section is used to define constants for such slats.",
                         "type": "object",
                         "properties": {
                             "width": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/units/meterWithoutUncertainty",
+                                "description": "The width of the slat"
                             },
                             "pitch": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
                             },
                             "crownHeight": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats.###"
                             },
                             "shape": {
                                 "type": "object",
                                 "properties": {
                                     "geometry": {
                                         "$ref": "#/definitions/geometry/basics"
-                                    },
-                                    "reference": {
-                                        "$ref": "#/definitions/reference"
                                     }
                                 },
                                 "required": []
@@ -1303,6 +1391,7 @@
         },
         "unit": {
             "constants": {
+                "title": "This section collect all constants which are specific for components of the category units.",
                 "type": "object",
                 "properties": {
                     "gaps": {
