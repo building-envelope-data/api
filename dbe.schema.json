@@ -1198,7 +1198,10 @@
                                 "$ref": "#/definitions/geometry/curve/bounded/NURBS"
                             }
                         },
-                        "required": ["uDirection", "vDirection"]
+                        "required": [
+                            "uDirection",
+                            "vDirection"
+                        ]
                     }
                 }
             },
@@ -1237,7 +1240,7 @@
                                     "minItems": 2
                                 },
                                 "minItems": 2,
-                                "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots." 
+                                "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots."
                             },
                             "knots": {
                                 "type": "array",
@@ -1246,7 +1249,7 @@
                                     "description": "Each knot is a number which is either equal or larger than the preceding knot. Although usually the control points are used to shape the curve, the knots could also be used for this purpose. The first and last knot are usually repeated so that the curve ends exactly at these points."
                                 },
                                 "minItems": 2,
-                                "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots." 
+                                "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots."
                             }
                         }
                     }
@@ -1284,7 +1287,8 @@
                 "type": "object",
                 "properties": {
                     "possiblePositions": {
-                        "$ref": "#/definitions/possiblePositions"
+                        "$ref": "#/definitions/possiblePositions",
+                        "description": "PossiblePositions defines where the material can be used."
                     }
                 },
                 "required": []
@@ -1296,7 +1300,8 @@
                 "type": "object",
                 "properties": {
                     "possiblePositions": {
-                        "$ref": "#/definitions/possiblePositions"
+                        "$ref": "#/definitions/possiblePositions",
+                        "description": "PossiblePositions defines where the layer can be used."
                     },
                     "orientationAxis": {
                         "type": "array",
@@ -1328,13 +1333,16 @@
                                 "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats.###"
                             },
                             "shape": {
-                                "type": "object",
-                                "properties": {
-                                    "geometry": {
-                                        "$ref": "#/definitions/geometry/basics"
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/definitions/geometry/curve/bounded/NURBS",
+                                        "description": "Usually, the shape of a slat is best described by a 2D curve of its cross section."
+                                    },
+                                    {
+                                        "$ref": "#/definitions/geometry/surface/bounded/NURBS",
+                                        "description": "If the shape of the slats needs to be defined in 3D, a surface can be used."
                                     }
-                                },
-                                "required": []
+                                ]
                             },
                             "angles": {
                                 "type": "object",
@@ -1361,16 +1369,20 @@
                 "type": "object",
                 "properties": {
                     "gaps": {
+                        "title": "The gaps for example between a blind and the frame can be important for example regarding glare.",
                         "type": "object",
                         "properties": {
                             "dTop": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "dTop is usually a distance at the top of the unit, but is defined exactly in the reference below."
                             },
                             "dGlass": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "dGlass is usually a distance to the glass pane, but is defined exactly in the reference below."
                             },
                             "reference": {
-                                "$ref": "#/definitions/reference"
+                                "$ref": "#/definitions/reference",
+                                "description": "This reference defines all parameters of this object."
                             }
                         },
                         "required": []
@@ -1380,17 +1392,21 @@
             }
         },
         "source": {
+            "title": "The source data is the data which has been the starting point and on which a method was applied by the creator of the new data set.",
             "type": "object",
             "properties": {
                 "uri": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "Each source data is identified exactly by an URI for traceability."
                 },
                 "name": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "A data set can have a name."
                 },
                 "explanation": {
-                    "$ref": "#/definitions/internationalString"
+                    "$ref": "#/definitions/internationalString",
+                    "description": "This string can explain the source data for humans."
                 }
             },
             "required": [
@@ -1398,19 +1414,24 @@
             ]
         },
         "origin": {
+            "title": "Origin can be used to define how the data was created.",
             "type": "object",
             "properties": {
                 "creator": {
-                    "$ref": "#/definitions/roles/creator"
+                    "$ref": "#/definitions/roles/creator",
+                    "description": "The creator of the new dataset is identified here."
                 },
                 "method": {
-                    "$ref": "#/definitions/method/basics"
+                    "$ref": "#/definitions/method/basics",
+                    "description": "The method which has been applied by the creator on the source data is identified here. This method may be a combination of submethods."
                 },
                 "source": {
-                    "$ref": "#/definitions/source"
+                    "$ref": "#/definitions/source",
+                    "description": "The source data has been the starting point for the creator. If the method is a measurement, there may be no source data."
                 },
                 "database": {
-                    "$ref": "#/definitions/database"
+                    "$ref": "#/definitions/database",
+                    "description": "The database, where the source data and the method can be found, is identified here."
                 }
             },
             "required": [],
@@ -1418,49 +1439,73 @@
         },
         "optical": {
             "basics": {
+                "title": "The array is used to define sets of optical data.",
                 "type": "array",
                 "items": {
                     "type": "object",
                     "properties": {
                         "uri": {
                             "type": "string",
-                            "format": "uri"
+                            "format": "uri",
+                            "description": "An optical data set is identified by a URI."
                         },
                         "name": {
-                            "$ref": "#/definitions/internationalString"
+                            "$ref": "#/definitions/internationalString",
+                            "description": "If the optical data set has a name, it can be indicated here."
                         },
                         "explanation": {
-                            "$ref": "#/definitions/internationalString"
+                            "$ref": "#/definitions/internationalString",
+                            "description": "This string can explain humans the optical data set."
                         },
                         "origin": {
-                            "$ref": "#/definitions/origin"
+                            "$ref": "#/definitions/origin",
+                            "description": "For traceability, the origin of the data can be defined."
                         },
                         "approvals": {
-                            "$ref": "#/definitions/approvals"
+                            "$ref": "#/definitions/approvals",
+                            "description": "If the optical data is approved by stakeholders, a signature can be provided."
                         },
                         "created": {
-                            "$ref": "#/definitions/created"
+                            "$ref": "#/definitions/created",
+                            "description": "When the optical data was created."
                         },
                         "valid": {
-                            "$ref": "#/definitions/valid"
+                            "$ref": "#/definitions/valid",
+                            "description": "From when and until when the data is valid."
                         },
                         "constants": {
-                            "$ref": "#/definitions/optical/constants"
+                            "$ref": "#/definitions/optical/constants",
+                            "description": "Parameters which do not change during the individual measurements can be indicated here as constants. This reduces the file size."
                         },
                         "file": {
-                            "$ref": "#/definitions/file"
+                            "$ref": "#/definitions/file",
+                            "description": "The optical data can be provided as a file. If the data is provided as a file and as explicit values below, than it MUST be the same data only in different formats. If one data is derived from another data, it MUST be stored as separate items in the array optical/basics and origin SHOULD be used to identify the method of derivation."
                         },
-                        "incidence": {
-                            "$ref": "#/definitions/optical/incidence"
-                        },
-                        "variables": {
-                            "$ref": "#/definitions/optical/variables"
-                        },
-                        "emergence": {
-                            "$ref": "#/definitions/optical/emergence"
-                        },
-                        "results": {
-                            "$ref": "#/definitions/optical/results"
+                        "dataPoint": {
+                            "title": "This section provides a list of all data points of this optical data.",
+                            "type": "array",
+                            "items": {
+                                "title": "Each optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation and the optical results.",
+                                "type": "object",
+                                "parameters": {
+                                    "incidence": {
+                                        "$ref": "#/definitions/optical/incidence",
+                                        "description": "This section defines the incident radiation on the component."
+                                    },
+                                    "variables": {
+                                        "$ref": "#/definitions/optical/variables",
+                                        "description": "This section defines the variable which change between some data points. Parameters which stay constant can be indicated above constants in order to reduce the file size."
+                                    },
+                                    "emergence": {
+                                        "$ref": "#/definitions/optical/emergence",
+                                        "description": "This section defines the radiation which emerges from the component."
+                                    },
+                                    "results": {
+                                        "$ref": "#/definitions/optical/results",
+                                        "description": "Results can be for example the transmittance and the reflectance."
+                                    }
+                                }
+                            }
                         }
                     },
                     "required": [
