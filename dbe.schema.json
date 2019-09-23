@@ -1058,35 +1058,31 @@
             ]
         },
         "dimensions": {
-            "type": "object",
-            "properties": {
-                "title": "The geometric dimensions refer to the installation of the component in a building envelope. The dimensions can be used to define a bounding box which includes all parts of the component. If a component can be installed in different ways, more than one set of dimensions can be defined.",
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "height": {
-                            "$ref": "#/definitions/numberWithUncertainty",
-                            "description": "The height of the component along the vertical axis of the building envelope."
-                        },
-                        "width": {
-                            "$ref": "#/definitions/numberWithUncertainty",
-                            "description": "The width of the component along the horizontal axis of the building envelope."
-                        },
-                        "depth": {
-                            "$ref": "#/definitions/numberWithUncertainty",
-                            "description": "The depth of the component along the axis perpendicular to the building envelope."
-                        },
-                        "required": [
-                            "height",
-                            "width",
-                            "depth"
-                        ]
+            "title": "The geometric dimensions refer to the installation of the component in a building envelope. The dimensions can be used to define a bounding box which includes all parts of the component. If a component can be installed in different ways, more than one set of dimensions can be defined.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "height": {
+                        "$ref": "#/definitions/numberWithUncertainty",
+                        "description": "The height of the component along the vertical axis of the building envelope."
+                    },
+                    "width": {
+                        "$ref": "#/definitions/numberWithUncertainty",
+                        "description": "The width of the component along the horizontal axis of the building envelope."
+                    },
+                    "depth": {
+                        "$ref": "#/definitions/numberWithUncertainty",
+                        "description": "The depth of the component along the axis perpendicular to the building envelope."
                     }
                 },
-                "minItems": 1
+                "required": [
+                    "height",
+                    "width",
+                    "depth"
+                ]
             },
-            "required": []
+            "minItems": 1
         },
         "geometry": {
             "basics": {
@@ -1190,114 +1186,84 @@
                 "required": []
             },
             "surface": {
-                "type": "object",
-                "properties": {
-                    "bounded": {
+                "bounded": {
+                    "NURBS": {
+                        "title": "A non-uniform rational B-spline (NURBS) surface is a very general way to define a surface. It is created by two NURBS curves.",
                         "type": "object",
                         "properties": {
-                            "NURBS###": {
-                                "title": "A non-uniform rational B-spline (NURBS) can be used to define a surface. NURBS generalize B-splines and Bézier curves. For example, a NURBS with weights equal to 1 is a B-spline.",
-                                "type": "object",
-                                "properties": {
-                                    "uDirection": {
-                                        "$ref": "#/definitions/geometry/curve/bounded/NURBS"
-                                    },
-                                    "vDirection": {
-                                        "$ref": "#/definitions/geometry/curve/bounded/NURBS"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "NurbsDegreeKnots": {
-                "type": "object",
-                "parameters": {
-                    "degree": {
-                        "type": "integer"
-                    },
-                    "knots": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "parameters": {
-                                "allOf": [
-                                    {
-                                        "$ref": "#/definitions/geometry/point",
-                                        "description": "The knots are fixed points and always part of the surface. Multiplicity can be defined by repeatedly"
-                                    },
-                                    {
-                                        "type": "object",
-                                        "parameters": {
-                                            "multiplicity": {
-                                                "type": "integer",
-                                                "minimum": 1,
-                                                "description": "The multiplicity of a knot determines the continuity of the curve."
-                                            }
-                                        }
-                                    }    
-                                ]
+                            "uDirection": {
+                                "$ref": "#/definitions/geometry/curve/bounded/NURBS"
+                            },
+                            "vDirection": {
+                                "$ref": "#/definitions/geometry/curve/bounded/NURBS"
                             }
                         },
-                        "minItems": 2
+                        "required": ["uDirection", "vDirection"]
                     }
                 }
             },
             "curve": {
-                    "bounded": {
-                            "NURBS": {
-                                "title": "A non-uniform rational B-spline (NURBS) can be used to define a curve. NURBS generalize B-splines and Bézier curves. For example, a NURBS with weights equal to 1 is a B-spline.",
-                                "type": "object",
-                                "properties": {
-                                    "allOf": [
+                "bounded": {
+                    "NURBS": {
+                        "title": "A non-uniform rational B-spline (NURBS) is a very general way to define a curve.",
+                        "type": "object",
+                        "properties": {
+                            "degree": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 10,
+                                "description": "The degree of a NURBS curve defines the polynomial degree of the basis functions of the curve. For degree=1, the curve is a linear interpolation between the control points."
+                            },
+                            "controlPoints": {
+                                "title": "The control points have a strong influence on the shape of the curve.",
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": [
                                         {
-                                            "controlPoints": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "parameters": {
-                                                    "allOf": [
-                                                        {
-                                                            "$ref": "#/definitions/geometry/point",
-                                                            "description": "The control points (or poles) are part of the equation which defines the curve."
-                                                        },
-                                                        {
-                                                            "type": "object",
-                                                            "parameters": {
-                                                                "weights": {
-                                                                    "type": "number",
-                                                                    "description": "The weight of a knot influences the shape of the curve."
-                                                                }
-                                                            }
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "minItems": 2
+                                            "$ref": "#/definitions/geometry/point",
+                                            "description": "If the curve is 3D, the 3D points are appropriate. For 2D curves, the value for the z-axis should be 0."
                                         },
                                         {
-                                            "$ref": "#/definitions/geometry/NurbsDegreeKnots"
+                                            "type": "object",
+                                            "parameters": {
+                                                "weights": {
+                                                    "type": "number",
+                                                    "description": "The weight of a control points determines its influences on the shape of the curve."
+                                                }
+                                            }
                                         }
-                                    ]
-                                }
+                                    ],
+                                    "minItems": 2
+                                },
+                                "minItems": 2,
+                                "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots." 
+                            },
+                            "knots": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number",
+                                    "description": "Each knot is a number which is either equal or larger than the preceding knot. Although usually the control points are used to shape the curve, the knots could also be used for this purpose. The first and last knot are usually repeated so that the curve ends exactly at these points."
+                                },
+                                "minItems": 2,
+                                "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots." 
                             }
                         }
                     }
                 }
-            },
-            "body": {
-                "type": "object",
-                "properties": {
-                    "brep": {
-                        "title": "Boundary representation (brep) defines a component by the surfaces between solid and non-solid.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/geometry/surface"
-                        },
-                        "description": "This array list all surfaces between solid and non-solid of the component.",
-                        "minItems": 1
-                    }
+            }
+        },
+        "body": {
+            "type": "object",
+            "properties": {
+                "brep": {
+                    "title": "Boundary representation (brep) defines a component by the surfaces between solid and non-solid.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/geometry/surface"
+                    },
+                    "description": "This array list all surfaces between solid and non-solid of the component.",
+                    "minItems": 1
                 }
             }
         },

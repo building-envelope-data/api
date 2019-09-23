@@ -1,5 +1,6 @@
 
 zu erledigen:
+- Ich muss erst B-splines verstehen lernen, bevor ich mit der Geometrie weiterkomme.
 - Ab NURBS surface ### mit title und description gute Beschreibung für Menschen erstellen für die Schlüssel
 - add "criticalInformation" or "warnings" e.g. for Klems and direct transmittance.
 - nm for wavelengths
