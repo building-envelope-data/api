@@ -1,7 +1,7 @@
 
 zu erledigen:
 - Ab NURBS "direction" mit title und description gute Beschreibung für Menschen erstellen für die Schlüssel
-- add "criticalInformation" or "warnings" e.g. for Klems and direct transmittance.
+- add "criticalInformation" or "warnings" e.g. for Klems and direct transmittance
 - nm for wavelengths
 - `reference` genauer spezifizieren wo möglich
 - mgf-Format einarbeiten
