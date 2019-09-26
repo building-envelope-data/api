@@ -1515,6 +1515,7 @@
                 "minItems": 1
             },
             "direction": {
+                "title": "This section defines a direction for example of the radiation on a sample. The array offers different ways of describing the direction, for example by two angles.",
                 "type": "array",
                 "items": [
                     {
@@ -1560,7 +1561,8 @@
                                 "nearnormal",
                                 "hemispherical",
                                 "diffuse"
-                            ]
+                            ],
+                            "description": "Nearnormal means a direction almost perpendicular to the sample surface. Hemispherical means all directions into the hemisphere above the sample surface, for example when there is the same irradiance from all directions. Diffuse means all directions except the nearnormal direction. Therfore, the hemispherical transmittance is always equal to the nearnormal transmittance plus the diffuse transmittance."
                         }
                     },
                     {
