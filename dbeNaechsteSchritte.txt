@@ -1,4 +1,4 @@
-
+ready for itc-gitlab
 zu erledigen:
 - Ab "direction" mit title und description gute Beschreibung für Menschen erstellen für die Schlüssel
 - add "criticalInformation" or "warnings" e.g. for Klems and direct transmittance
