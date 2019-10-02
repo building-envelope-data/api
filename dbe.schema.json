@@ -83,6 +83,11 @@
                 "type": "number",
                 "description": "Meter is the SI unit for length. MeterWithoutUncertainty is used for rare cases in which the option of an uncertainty is not desired."
             },
+            "nanometerWithoutUncertainty": {
+                "type": "number",
+                "minimum": 0,
+                "description": "This number represents a length in nanometers. 1 nm equals 10^(-9) meters."
+            },
             "squareMeterWithUncertainty": {
                 "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
                 "description": "A quare meter is a unit for an area."
@@ -1330,7 +1335,7 @@
                             },
                             "crownHeight": {
                                 "$ref": "#/definitions/numberWithUncertainty",
-                                "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats.###"
+                                "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
                             },
                             "shape": {
                                 "oneOf": [
@@ -1570,13 +1575,13 @@
                         "properties": {
                             "formatting": {
                                 "$ref": "#/definitions/formatting",
-                                "description": "Definition of the format of the array below"
+                                "description": "The definition of the format of the array below needs to specify how the items of the array can be interpreted as a list of directions. For example, the format can define that the list consists of pairs of polar and azimuth angles."
                             },
                             "array": {
                                 "type": "array",
                                 "items": {
                                     "type": "number",
-                                    "description": "In order to reduze the size of this data file, the multiple directions can be entered as an array."
+                                    "description": "In order to reduze the size of the data, multiple directions can be entered as an array."
                                 },
                                 "minItems": 1
                             }
@@ -1586,35 +1591,42 @@
                 "minItems": 1
             },
             "polarisation": {
+                "title": "Polarization is a characteristic of radiation which can influence the transmittance and the reflectance. Radiation can be polarized linearly or circular.",
                 "type": "object",
                 "properties": {
                     "linear": {
                         "type": "object",
                         "properties": {
                             "s": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "This property represents the fraction of radiation with its electric field perpendicular to the plane of incidence of the radiation on the sample. s is usually between 0 and 1. Only in raw data there may be exceptions because of the uncertainty. However, s can never be below 0-uncertainty or larger than 1+uncertainty."
                             },
                             "p": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "This property represents the fraction of radiation with its electric field parallel to the plane of incidence of the radiation on the sample. p is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
                             }
-                        }
+                        },
+                        "minProperties": 2
                     },
                     "circular": {
                         "type": "object",
                         "properties": {
                             "l": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "This property represents the fraction of radiation with its electric field rotating in a left-hand sense with respect to the direction of radiation. l is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
                             },
                             "r": {
-                                "$ref": "#/definitions/numberWithUncertainty"
-                            }
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "This property represents the fraction of radiation with its electric field rotating in a right-hand sense with respect to the direction of radiation. r is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
+                            },
+                            "minProperties": 2
                         }
                     }
                 },
-                "required": [],
-                "minProperties": 2
+                "required": []
             },
             "wavelengths": {
+                "title": "This section offers three options to define the wavelength of radiation: i) as ###"
                 "type": "array",
                 "items": [
                     {
