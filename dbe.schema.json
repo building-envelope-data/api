@@ -610,10 +610,6 @@
                         "$ref": "#/definitions/internationalString",
                         "description": "Here the method can be described in free text."
                     },
-                    "structure": {
-                        "$ref": "#/definitions/method/structure",
-                        "description": "This section defines the method which may be an assembly of different submethods which are applied on a number of inputs."
-                    },
                     "categories": {
                         "type": "array",
                         "title": "With this array, it is defined whether the method is a measurement or a calculation only or both.",
@@ -654,36 +650,6 @@
                 "required": [
                     "uri"
                 ]
-            },
-            "structure": {
-                "title": "This sections is used to define how the method is structured as an assembly of submethods.",
-                "type": "object",
-                "properties": {
-                    "onInputs": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "uri": {
-                                    "type": "string",
-                                    "format": "uri"
-                                }
-                            }
-                        },
-                        "description": "Each item defines the URI of one method. The first method will be applied to the first input, the second to the second and so forth. An empty URI string defines that no method is applied on the corresponding input.",
-                        "minItems": 0
-                    },
-                    "onOutput": {
-                        "type": "object",
-                        "properties": {
-                            "uri": {
-                                "type": "string",
-                                "format": "uri"
-                            },
-                            "description": "This URI defines the method which is applied after input methods have been applied on the inputs. The output method with this URI generates the results of the method."
-                        }
-                    }
-                }
             },
             "calculation": {
                 "title": "This section is used to define how a method can be calculated, either by code or by an executable.",
@@ -1626,14 +1592,14 @@
                 "required": []
             },
             "wavelengths": {
-                "title": "This section offers three options to define the wavelength of radiation: i) as ###"
+                "title": "This section offers three options to define the wavelength of radiation: i) as a single wavelength, ii) as an array of wavelenghts or iii) as"
                 "type": "array",
                 "items": [
                     {
                         "type": "object",
                         "properties": {
                             "wavelength": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/units/nanometerWithoutUncertainty"
                             }
                         }
                     },
@@ -1651,12 +1617,15 @@
                         }
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "integral": {
-                                "type": "boolean"
-                            }
-                        }
+                        "type": "array###",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "integral"
+                            ]
+                        },
+                        "minItems": 0,
+                        "maxItems": 1
                     }
                 ],
                 "minItems": 1
