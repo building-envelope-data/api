@@ -1592,14 +1592,14 @@
                 "required": []
             },
             "wavelengths": {
-                "title": "This section offers three options to define the wavelength of radiation: i) as a single wavelength, ii) as an array of wavelenghts or iii) as"
-                "type": "array",
-                "items": [
+                "title": "This section offers three options to define the wavelength of radiation: either as a single wavelength, as an array of wavelenghts or as an integral over many wavelengths.",
+                "oneOf": [
                     {
                         "type": "object",
                         "properties": {
                             "wavelength": {
-                                "$ref": "#/definitions/units/nanometerWithoutUncertainty"
+                                "$ref": "#/definitions/units/nanometerWithoutUncertainty",
+                                "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/definitions/optical/wavelength/range/bandwidth`."
                             }
                         }
                     },
@@ -1609,36 +1609,37 @@
                             "array": {
                                 "type": "array",
                                 "items": {
-                                    "type": "number",
-                                    "exclusiveMinimum": 0
+                                    "$ref": "#/definitions/units/nanometerWithoutUncertainty",
+                                    "description": "An array of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/definitions/wavelength/range/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
                                 },
                                 "minItems": 1
                             }
                         }
                     },
                     {
-                        "type": "array###",
+                        "type": "array",
                         "items": {
                             "type": "string",
                             "enum": [
                                 "integral"
-                            ]
+                            ],
+                            "description": "This flag indicates that an integral over many wavelenthgs is considered here. Under `#/definitions/optical/wavelength/range/spectrum`, the spectrum can be specified over which the integral is calculated."
                         },
-                        "minItems": 0,
+                        "minItems": 1,
                         "maxItems": 1
                     }
-                ],
-                "minItems": 1
+                ]
             },
             "wavelength": {
                 "range": {
+                    "title": "The range can either define the bandwidth or amplification factor of measuring a single wavelength or an entire spectrum of wavenlengths which is measured at the same time.###",
                     "type": "object",
                     "properties": {
                         "bandwidth": {
-                            "$ref": "#/definitions/numberWithUncertainty"
+                            "$ref": "#/definitions/nonNegativeNumberWithUncertainty"
                         },
                         "amplificationFactor": {
-                            "$ref": "#/definitions/numberWithUncertainty"
+                            "$ref": "#/definitions/nonNegativeNumberWithUncertainty"
                         },
                         "spectrum": {
                             "type": "array",
