@@ -68,6 +68,11 @@
                 }
             ]
         },
+        "nonNegativeNumberWithoutUncertainty": {
+            "title": "This type is used when only non-negative integers are valid.",
+            "type": "number",
+            "minimum": 0
+        },
         "nonNegativeIntegerWithoutUncertainty": {
             "title": "This type is used when only non-negative integers are valid.",
             "type": "integer",
@@ -1428,6 +1433,10 @@
                             "$ref": "#/definitions/internationalString",
                             "description": "This string can explain humans the optical data set."
                         },
+                        "warnings": {
+                            "$ref": "#/definitions/internationalString",
+                            "description": "Some optical data may easily be misinterpreted. The warnings contain critical information for users to avoid typical mistakes."
+                        },
                         "origin": {
                             "$ref": "#/definitions/origin",
                             "description": "For traceability, the origin of the data can be defined."
@@ -1617,13 +1626,12 @@
                         }
                     },
                     {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "integral"
-                            ],
-                            "description": "This flag indicates that an integral over many wavelenthgs is considered here. Under `#/definitions/optical/wavelength/range/spectrum`, the spectrum can be specified over which the integral is calculated."
+                        "type": "object",
+                        "properties": {
+                            "integral": {
+                                "type": "boolean"
+                            },
+                            "description": "This flag indicates that an integral over many wavelenthgs is considered here. Under `#/definitions/optical/wavelength/range/spectrum`, the spectrum can be specified over which the integral result is calculated."
                         },
                         "minItems": 1,
                         "maxItems": 1
@@ -1632,14 +1640,16 @@
             },
             "wavelength": {
                 "range": {
-                    "title": "The range can either define the bandwidth or amplification factor of measuring a single wavelength or an entire spectrum of wavenlengths which is measured at the same time.###",
+                    "title": "The range can either define the bandwidth or amplification factor of measuring a single wavelength or an entire spectrum of wavenlengths which is measured at the same time.",
                     "type": "object",
                     "properties": {
                         "bandwidth": {
-                            "$ref": "#/definitions/nonNegativeNumberWithUncertainty"
+                            "$ref": "#/definitions/units/nanometerWithoutUncertainty",
+                            "description": "When `#/definitions/optical/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/definitions/optical/wavelengths/wavelength`."
                         },
                         "amplificationFactor": {
-                            "$ref": "#/definitions/nonNegativeNumberWithUncertainty"
+                            "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                            "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/definitions/optical/wavelengths/wavelength`."
                         },
                         "spectrum": {
                             "type": "array",
@@ -1649,7 +1659,8 @@
                                     "visual",
                                     "solar",
                                     "infrared"
-                                ]
+                                ],
+                                "description": "If `#/definitions/optical/wavelengths/integral` is true, then `#/definitions/optical/wavelength/range/spectrum` identifies the spectrum of wavelengths over which the integral result is be calculated. For further specification of the spectrum, please search for the applied `#/definitions/standard`."
                             },
                             "minItems": 1,
                             "maxItems": 1
@@ -1659,6 +1670,7 @@
                 }
             },
             "incidence": {
+                "title": "This section defines the incident radiation on a sample. It consists of the direction of the irradiance, its polarization, the wavelenthgs and the range of the wavelengths.",
                 "type": "object",
                 "properties": {
                     "direction": {
@@ -1677,6 +1689,7 @@
                 "required": []
             },
             "emergence": {
+                "title": "This section defines the emergent radiation on a sample. It consists of the direction of the emergence, its polarization, the wavelenthgs and the range of the wavelengths.",
                 "type": "object",
                 "properties": {
                     "direction": {
@@ -1695,13 +1708,15 @@
                 "required": []
             },
             "parameters": {
+                "title": "This section defines parameters for optical measurements and simulations. The parameters are lated used either as optical/constants or optical/variables.",
                 "type": "object",
                 "properties": {
                     "treatmentBefore": {
                         "type": "object",
                         "properties": {
                             "reference": {
-                                "$ref": "#/definitions/reference"
+                                "$ref": "#/definitions/reference",
+                                "description": "This reference defines any treatment performed on the sample before measurement."
                             }
                         },
                         "required": []
@@ -1710,7 +1725,8 @@
                         "type": "object",
                         "properties": {
                             "reference": {
-                                "$ref": "#/definitions/reference"
+                                "$ref": "#/definitions/reference",
+                                "description": "This reference defines the location of measurement on the sample."
                             }
                         },
                         "required": []
@@ -1719,62 +1735,42 @@
                         "type": "object",
                         "properties": {
                             "reference": {
-                                "$ref": "#/definitions/reference"
+                                "$ref": "#/definitions/reference",
+                                "description": "This reference defines the polarization sensitivity of the receiver of the optical measurement."
                             }
                         },
                         "required": []
                     },
                     "instrumentSignature": {
-                        "type": "object",
-                        "properties": {
-                            "reference": {
-                                "$ref": "#/definitions/reference"
-                            }
-                        },
-                        "required": []
+                        "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                        "description": "The instrument signature is defined as the mean scatter leel detected when there is no sample scatter present."
                     },
                     "normalization": {
-                        "type": "object",
-                        "properties": {
-                            "reference": {
-                                "$ref": "#/definitions/reference"
-                            }
-                        },
+                        "type": "array",
+                        "items": [
+                            "absolute",
+                            "relative",
+                            "specular",
+                            "diffuseReflectance"
+                        ],
+                        "description": "The normalization methods absolute, relative, specular and diffuse reflectance are defined by ASTM E2387-05:2011.",
                         "required": []
                     },
                     "coordinateSystem": {
-                        "$ref": "#/definitions/geometry/coordinateSystem"
+                        "$ref": "#/definitions/geometry/coordinateSystem",
+                        "description": "The coordinate system is defined by a reference to a publication or standard."
                     },
-                    "referenceSamples": {
-                        "type": "object",
-                        "properties": {
-                            "uri": {
-                                "type": "string",
-                                "format": "uri"
-                            },
-                            "reference": {
-                                "$ref": "#/definitions/reference"
-                            }
-                        },
-                        "required": []
+                    "referenceSample": {
+                        "$ref": "#/definitions/reference",
+                        "description": "Optical measurements can depend on the reference sample which is used. The reference defines this reference sample."
                     },
                     "spot": {
-                        "type": "object",
-                        "properties": {
-                            "diameter": {
-                                "$ref": "#/definitions/numberWithUncertainty"
-                            },
-                            "reference": {
-                                "$ref": "#/definitions/reference"
-                            }
-                        },
-                        "required": []
-                    },
-                    "suppliedEnergy": {
-                        "$ref": "#/definitions/numberWithUncertainty"
+                        "$ref": "#/definitions/reference",
+                        "description": "The reference defines the size and profile of the irradiance on the sample."
                     },
                     "tilt": {
-                        "$ref": "#/definitions/layer/constants/slat/angles/tilt"
+                        "$ref": "#/definitions/layer/constants/slat/angles/tilt",
+                        "description": "The tilt angle for example of venetian blinds."
                     }
                 },
                 "required": []
@@ -1783,7 +1779,8 @@
                 "type": "object",
                 "properties": {
                     "parameters": {
-                        "$ref": "#/definitions/optical/parameters"
+                        "$ref": "#/definitions/optical/parameters",
+                        "description": "If a parameter is a constant during this set of optical measurements, it is defined here and CANNOT be defined in `#/definitions/optical/variables`."
                     }
                 },
                 "required": []
@@ -1792,35 +1789,26 @@
                 "type": "object",
                 "properties": {
                     "parameters": {
-                        "$ref": "#/definitions/optical/parameters"
+                        "$ref": "#/definitions/optical/parameters",
+                        "description": "If a parameter is a variable during this set of optical measurements, it is defined here and CANNOT be defined in `#/definitions/optical/constants`."
                     }
                 },
                 "required": []
             },
-            "BSDF": {
-                "type": "object",
-                "properties": {
-                    "BTDF": {
-                        "$ref": "#/definitions/numberWithUncertainty"
-                    },
-                    "BRDF": {
-                        "$ref": "#/definitions/numberWithUncertainty"
-                    }
-                },
-                "required": [],
-                "minProperties": 1
-            },
             "results": {
+                "title": "This section defines the results of the optical measurement or simulation under the specified boundary conditions.",
                 "type": "array",
                 "items": [
                     {
                         "type": "object",
                         "properties": {
                             "transmittance": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "Transmittance is the ratio between the irradiance which is transmitted through the sample and the irradiance on the the sample. It has values between 0 and 1. Exceptions are usually due to measurement uncertainty."
                             },
                             "reflectance": {
-                                "$ref": "#/definitions/numberWithUncertainty"
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "Reflectance is the ratio between the irradiance which is reflected by the sample and the irradiance on the the sample."
                             },
                             "BSDF": {
                                 "$ref": "#/definitions/optical/BSDF"
@@ -1863,12 +1851,56 @@
                     }
                 ],
                 "minItems": 0
+            },
+            "BSDFresults": {
+                "title": "BSDF means Bidirectional Scattering Density Function. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This section defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
+                "type": "array",
+                "items": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "BTDF": {
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "BTDF means Bidirectional Transmittance Density Function. Bidirectional Transmittance means the transmittance from one incident direction to a certain direction of emergence on the other side of the sample."
+                            },
+                            "BRDF": {
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "BRDF means Bidirectional Reflectance Density Function. Bidirectional Reflectance means the reflectance from one incident direction to a certain direction of emergence on the same side of the sample."
+                            }
+                        },
+                        "required": [],
+                        "minProperties": 1
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "formatting": {
+                                "$ref": "#/definitions/formatting"
+                            },
+                            "BSDF": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "minItems": 1
+                            }
+                        },
+                        "required": [
+                            "formatting",
+                            "BSDF"
+                        ]
+                    }
+                ],
+                "minItems": 0
             }
         }
     },
     "type": "object",
     "properties": {
         "component": {
+            "title": "This section defines all information which is constant for the component and does not depend other domains like optical measurements. It is an array so that various data sets about one component can be added as items.",
             "type": "array",
             "items": {
                 "$ref": "#/definitions/component/basics"
