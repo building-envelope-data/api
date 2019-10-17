@@ -110,6 +110,22 @@
             "radian": {
                 "type": "number",
                 "description": "A unit to measure angles. A full rotation equals 2*Pi."
+            },
+            "wattWithUncertainty": {
+                "$ref": "#/definitions/numberWithUncertainty",
+                "description": "Watt (W) is the SI unit for power."
+            },
+            "kelvinWithUncertainty": {
+                "$ref": "#/definitions/numberWithUncertainty",
+                "description": "Kelvin (K) is the SI unit for temperature."
+            },
+            "voltWithoutUncertainty": {
+                "$ref": "#/definitions/numberWithoutUncertainty",
+                "description": "Volt (V) is the SI unit for electric potential."
+            },
+            "ampereWithoutUncertainty": {
+                "$ref": "#/definitions/numberWithUncertainty",
+                "description": "Ampere (A) is the SI unit for electric current."
             }
         },
         "created": {
@@ -1894,6 +1910,211 @@
                     }
                 ],
                 "minItems": 0
+            }
+        },
+        "calorimetric": {
+            "basics": {
+                "title": "The array is used to define sets of calorimetric data.",
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "uri": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "A calorimetric data set is identified by a URI."
+                        },
+                        "name": {
+                            "$ref": "#/definitions/internationalString",
+                            "description": "If the calorimetric data set has a name, it can be indicated here."
+                        },
+                        "explanation": {
+                            "$ref": "#/definitions/internationalString",
+                            "description": "This string can explain humans the calorimetric data set."
+                        },
+                        "warnings": {
+                            "$ref": "#/definitions/internationalString",
+                            "description": "Some calorimetric data may easily be misinterpreted. The warnings contain critical information for users to avoid typical mistakes."
+                        },
+                        "origin": {
+                            "$ref": "#/definitions/origin",
+                            "description": "For traceability, the origin of the data can be defined."
+                        },
+                        "approvals": {
+                            "$ref": "#/definitions/approvals",
+                            "description": "If the calorimetric data is approved by stakeholders, a signature can be provided."
+                        },
+                        "created": {
+                            "$ref": "#/definitions/created",
+                            "description": "When the calorimetric data was created."
+                        },
+                        "valid": {
+                            "$ref": "#/definitions/valid",
+                            "description": "From when and until when the data is valid."
+                        },
+                        "constants": {
+                            "$ref": "#/definitions/calorimetric/constants",
+                            "description": "Parameters which do not change during the individual measurements can be indicated here as constants. This reduces the file size."
+                        },
+                        "file": {
+                            "$ref": "#/definitions/file",
+                            "description": "The optical data can be provided as a file. If the data is provided as a file and as explicit values below, than it MUST be the same data only in different formats. If one data is derived from another data, it MUST be stored as separate items in the array optical/basics and origin SHOULD be used to identify the method of derivation."
+                        },
+                        "fluxes": {
+                            "title": "This array defines the energy fluxes between the sample and its surroundings.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "parameters": {
+                                    "name": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "enum": [
+                                                "exterior",
+                                                "interior",
+                                                "lateral",
+                                                "other"
+                                            ]
+                                        },
+                                        "description": "The name of the part of the surroundings. If neither exterior nor interior or lateral fits, choose other and describe it in the explanation below."
+                                    },
+                                    "explanation": {
+                                        "$ref": "#/definitions/internationalString",
+                                        "description": "This string explains humans the calorimetric data set."
+                                    },
+                                    "heat": {
+                                        "type": "object",
+                                        "parameters": {
+                                            "flux": {
+                                                "$ref": "#/definitions/units/wattWithUncertainty",
+                                                "description": "The heat flux is driven by the temperature differences. Positive heat flux means heat flux towards the sample. It is meaured in watts."
+                                            },
+                                            "temperatures": {
+                                                "type": "object",
+                                                "parameters": {
+                                                    "surrounding": {
+                                                        "$ref": "#/definitions/units/kelvinWithUncertainty",
+                                                        "description": "The average temperature of this part of the surroundings."
+                                                    },
+                                                    "sample": {
+                                                        "$ref": "#/definitions/units/kelvinWithUncertainty",
+                                                        "description": "The average temperature of the part of the sample which faces this part of the surroundings."
+                                                    }
+                                                }
+                                            },
+                                            "coefficient": {
+                                                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                                                "description": "The heat transfer coefficient equals the heat flux divided by the temperature difference"
+                                            }
+                                        },
+                                        "required": [
+                                            "flux"
+                                        ]
+                                    },
+                                    "irradiance": {
+                                        "type": "object",
+                                        "parameters": {
+                                            "flux": {
+                                                "$ref": "#/definitions/units/wattWithUncertainty",
+                                                "description": "The irradiance is determined on the surface of the sample. Positive irradiance means irradiance towards the sample. It is meaured in watts."
+                                            },
+                                            "direction": {
+                                                "$ref": "#/definitions/optical/direction",
+                                                "description": "The direction of the irradiance on the sample."
+                                            }
+                                        },
+                                        "required": [
+                                            "flux"
+                                        ]
+                                    },
+                                    "electric": {
+                                        "type": "object",
+                                        "parameters": {
+                                            "flux": {
+                                                "$ref": "#/definitions/units/wattWithUncertainty",
+                                                "description": "The electric energy supplied to the sample. Positive electric energy means that it is delivered to the sample."
+                                            },
+                                            "currentVoltage": {
+                                                "title": "The current-voltage characteristic can be important for example for photovoltaics.",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "parameters": {
+                                                        "I": {
+                                                            "$ref": "#/definitions/units/ampereWithoutUncertainty",
+                                                            "description": "The electric current in amperes."
+                                                        },
+                                                        "V": {
+                                                            "$ref": "#/definitions/units/voltWithoutUncertainty",
+                                                            "description": "The electric potential difference in volts."
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "I",
+                                                        "V"
+                                                    ]
+                                                },
+                                                "minItem": 1
+                                            }
+                                        },
+                                        "required": [
+                                            "flux"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "results": {
+                            "type": "object",
+                            "parameters": {
+                                "uValue": {
+                                    "$ref": "#/definitions/numberWithUncertainty",
+                                    "description": "The U value can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
+                                },
+                                "gValue": {
+                                    "$ref": "#/definitions/numberWithUncertainty",
+                                    "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
+                                }
+                            }
+                        }
+                    },
+                    "required": [
+                        "uri"
+                    ]
+                },
+                "minItems": 1
+            },
+            "constants": {
+                "type": "object",
+                "parameters": {
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "stationary",
+                                "dynamic"
+                            ]
+                        },
+                        "minItems": 1,
+                        "maxItems": 1,
+                        "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The timestamp is important for dynamic conditions for the chronological order of the data sets."
+                    },
+                    "coordinateSystem": {
+                        "$ref": "#/definitions/geometry/coordinateSystem",
+                        "description": "The coordinate system is defined by a reference to a publication or standard."
+                    }
+                },
+                "required": [
+                    "conditions",
+                    "timestamp"
+                ]
             }
         }
     },
