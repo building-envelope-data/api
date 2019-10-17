@@ -1656,7 +1656,7 @@
                             "items": {
                                 "type": "string",
                                 "enum": [
-                                    "visual",
+                                    "visible",
                                     "solar",
                                     "infrared"
                                 ],
