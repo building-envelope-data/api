@@ -43,6 +43,10 @@
                 }
             ]
         },
+        "numberWithoutUncertainty": {
+            "title": "This type is used when no restrictions on the numbers are possible.",
+            "type": "number"
+        },
         "nonNegativeNumberWithUncertainty": {
             "type": "array",
             "items": [
@@ -77,6 +81,12 @@
             "title": "This type is used when only non-negative integers are valid.",
             "type": "integer",
             "minimum": 0
+        },
+        "numberBetweenZeroAndOneWithoutUncertainty": {
+            "title": "This type is used when only non-negative integers are valid.",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
         },
         "units": {
             "title": "This section defines types for numbers with units",
@@ -126,6 +136,10 @@
             "ampereWithoutUncertainty": {
                 "$ref": "#/definitions/numberWithUncertainty",
                 "description": "Ampere (A) is the SI unit for electric current."
+            },
+            "kgPerCubicMeterWithUncertainty": {
+                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                "description": "The density of a material has the SI units kg/m^3."
             }
         },
         "created": {
@@ -2036,26 +2050,8 @@
                                                 "description": "The electric energy supplied to the sample. Positive electric energy means that it is delivered to the sample."
                                             },
                                             "currentVoltage": {
-                                                "title": "The current-voltage characteristic can be important for example for photovoltaics.",
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "parameters": {
-                                                        "I": {
-                                                            "$ref": "#/definitions/units/ampereWithoutUncertainty",
-                                                            "description": "The electric current in amperes."
-                                                        },
-                                                        "V": {
-                                                            "$ref": "#/definitions/units/voltWithoutUncertainty",
-                                                            "description": "The electric potential difference in volts."
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "I",
-                                                        "V"
-                                                    ]
-                                                },
-                                                "minItem": 1
+                                                "$ref": "#/definitions/electric/currentVoltage",
+                                                "description": "The current-voltage characteristic can be important for example for photovoltaics. It can also be used just to define just one current and one voltage."
                                             }
                                         },
                                         "required": [
@@ -2115,6 +2111,257 @@
                     "conditions",
                     "timestamp"
                 ]
+            }
+        },
+        "electric": {
+            "currentVoltage": {
+                "title": "The current-voltage characteristic can be important for example for photovoltaics.",
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "parameters": {
+                        "I": {
+                            "$ref": "#/definitions/units/ampereWithoutUncertainty",
+                            "description": "The electric current in amperes."
+                        },
+                        "V": {
+                            "$ref": "#/definitions/units/voltWithoutUncertainty",
+                            "description": "The electric potential difference in volts."
+                        }
+                    },
+                    "required": [
+                        "I",
+                        "V"
+                    ]
+                },
+                "minItem": 1
+            },
+            "photovoltaics": {
+                "title": "This section provides a structure for data about photovoltaic modules which convert irradiance into electricity.",
+                "type": "object",
+                "parameters": {
+                    "constants": {
+                        "type": "object",
+                        "parameters": {
+                            "coordinateSystem": {
+                                "$ref": "#/definitions/geometry/coordinateSystem",
+                                "description": "The coordinate system is defined by a reference to a publication or standard."
+                            }
+                        },
+                        "required": []
+                    },
+                    "cells": {
+                        "title": "This array defines the cells of the PV module.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "parameters": {
+                                "uri": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "description": "Each cell has an identifier."
+                                },
+                                "explanation": {
+                                    "$ref": "#/definitions/internationalString",
+                                    "description": "This string can explain the cell to humans."
+                                },
+                                "efficiency": {
+                                    "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                    "description": "The effiency of the cell is measured at standard test conditions."
+                                },
+                                "power": {
+                                    "type": "object",
+                                    "parameters": {
+                                        "nominal": {
+                                            "$ref": "#/definitions/units/wattWithUncertainty",
+                                            "description": "The nominal power of the cell is measured independently at standard test conditions in watts."
+                                        },
+                                        "effective": {
+                                            "$ref": "#/definitions/units/wattWithUncertainty",
+                                            "description": "The effective nominal power of a cell is the nominal power of the module divided by the number of cells."
+                                        }
+                                    }
+                                },
+                                "geometry": {
+                                    "$ref": "#/definitions/geometry/basics",
+                                    "description": "This section defines the geometry and location of the cell."
+                                },
+                                "width": {
+                                    "$ref": "#/definitions/units/meterWithUncertainty",
+                                    "description": "If the cell has more or less the form of a square, then the width between two parallel sides is helpful to calculate how many cells fit into one module."
+                                },
+                                "currentVoltage": {
+                                    "$ref": "#/definitions/electric/currentVoltage",
+                                    "description": "The current-voltage characteristic is important to calculate the PV performance for conditions other than the standard test conditions."
+                                },
+                                "categories": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "amorphous",
+                                            "cadmium",
+                                            "telluride",
+                                            "copper",
+                                            "indium",
+                                            "gallium",
+                                            "selenide",
+                                            "concentrated",
+                                            "crystalline",
+                                            "dyeSensitized",
+                                            "arsenide",
+                                            "germanium",
+                                            "hybrid",
+                                            "luminescent",
+                                            "micromorph",
+                                            "monocrystalline",
+                                            "multiJunction",
+                                            "nanocrystalline",
+                                            "organic",
+                                            "perovskite",
+                                            "plasmonic",
+                                            "polycrystalline",
+                                            "quantumDot",
+                                            "solidState",
+                                            "thinFilm",
+                                            "wafer"
+                                        ],
+                                        "description": "A photovoltaic cell can have one or more of these categories. For example, Copper indium gallium selenide PV is a thin film and solid state PV technology and would be described by the corresponding six items in the array."
+                                    },
+                                    "minItems": 0
+                                }
+                            }
+                        }
+                    },
+                    "diodes": {
+                        "title": "This array defines the diods of the PV module. They are used to bypass shaded cells which would otherwise dissipate energy.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "parameters": {
+                                "uri": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "description": "Each diode has an identifier."
+                                },
+                                "explanation": {
+                                    "$ref": "#/definitions/internationalString",
+                                    "description": "This string can explain the cell to humans."
+                                }
+                            },
+                            "required": []
+                        },
+                        "minItems": 0
+                    },
+                    "connections": {
+                        "$ref": "#/definitions/connections/bidirectionalUnspecified",
+                        "description": "This section defines for example which cells and diodes are connected to each other."
+                    },
+                    "layers": {
+                        "title": "PV modules typically consist of several layers, for example a glass pane, a lamination material and the PV cells.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "material": {
+                                    "title": "This sections defines the material of the layer",
+                                    "type": "object",
+                                    "parameters": {
+                                        "anyOf": [
+                                            {
+                                                "uri": {
+                                                    "type": "string",
+                                                    "format": "uri",
+                                                    "descriptions": "The URI of the component"
+                                                },
+                                                "version": {
+                                                    "type": "string",
+                                                    "format": "uri",
+                                                    "description": "The URI defines the version of the component."
+                                                }
+                                            },
+                                            {
+                                                "name": {
+                                                    "$ref": "#/definitions/internationalString",
+                                                    "description": "The name of the component"
+                                                }
+                                            }
+                                        ],
+                                        "abbreviation": {
+                                            "type": "string",
+                                            "description": "The abbreviation of the component"
+                                        },
+                                        "explanation": {
+                                            "$ref": "#/definitions/internationalString",
+                                            "description": "An explanation with more details about the component"
+                                        }
+                                    },
+                                    "required": []
+                                },
+                                "thickness": {
+                                    "$ref": "#/definitions/units/meterWithUncertainty",
+                                    "description": "The thickness of this layer as part of the module."
+                                },
+                                "refractiveIndex": {
+                                    "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                                    "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
+                                },
+                                "density": {
+                                    "$ref": "#/definitions/units/kgPerCubicMeterWithUncertainty",
+                                    "description": "The density is needed to calculate the weigth of the layer."
+                                },
+                                "weight": {
+                                    "$ref": "#/definitions/units/kgPerCubicMeterWithUncertainty",
+                                    "description": "The weigth of the layer."
+                                },
+                                "geometry": {
+                                    "$ref": "#/definitions/geometry/basics",
+                                    "description": "This section defines the geometry and location of the cell."
+                                },
+                                "colour": {
+                                    "$ref": "#/definitions/colour",
+                                    "description": "The reference offers several way to define the colour of the component."
+                                },
+                                "categories": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "front",
+                                            "cover",
+                                            "embedding",
+                                            "rear",
+                                            "backing"
+                                        ],
+                                        "description": "Typically, a PV module consists of a front cover layer, a front embedding layer, the cells, a rear embedding layer and a backing layer."
+                                    },
+                                    "minItems": 0
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "connections": {
+            "bidirectionalUnspecified": {
+                "title": "This array defines connections between two components without specifying them further.",
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "parameters": {
+                        "uri1": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "The identifier of the first component."
+                        },
+                        "uri2": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "The identifier of the second component."
+                        }
+                    }
+                }
             }
         }
     },
