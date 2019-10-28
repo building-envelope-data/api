@@ -822,7 +822,7 @@
                             "minimum": 0,
                             "maximum": 10000000
                         },
-                        "postfix": {
+                        "suffix": {
                             "type": "integer",
                             "minimum": 0,
                             "maximum": 10000
@@ -838,6 +838,10 @@
                     "minimum": 1800,
                     "maximum": 2200,
                     "description": "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
+                },
+                "section": {
+                    "$ref": "#/definitions/internationalString",
+                    "description": "The section of the standard to which the reference refers to."
                 }
             },
             "required": [
