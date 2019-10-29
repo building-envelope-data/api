@@ -1,0 +1,83 @@
+{
+    "$schema": "file:///P:/600/620/621/Aktuelle_Projekte/257168_Scope/7_Ergebnisse/Mitarbeiter/ChristophMaurer/git/itc/dbe-data-schema-for-building-envelopes/dbe.schema.json",
+    "component": {
+        "optical": [
+            {
+                "dataPoint": [
+                    {
+                        "incidence": {
+                            "direction": [
+                                {
+                                    "nearnormal": true
+                                }
+                            ],
+                            "wavelengths": {
+                                "wavelength": 500
+                            }
+                        },
+                        "emergence": {
+                            "direction": [
+                                {
+                                    "nearnormal": true
+                                }
+                            ]
+                        },
+                        "results": {
+                            "transmittance": 0.5
+                        }
+                    },
+                    {
+                        "incidence": {
+                            "direction": [
+                                {
+                                    "nearnormal": true
+                                }
+                            ],
+                            "wavelengths": {
+                                "wavelength": 505
+                            }
+                        },
+                        "emergence": {
+                            "direction": [
+                                {
+                                    "nearnormal": true
+                                }
+                            ]
+                        },
+                        "results": {
+                            "transmittance": 0.52
+                        }
+                    }
+                ]
+            },
+            {
+                "dataPoint": [
+                    {
+                        "incidence": {
+                            "direction": [
+                                {
+                                    "nearnormal": true
+                                }
+                            ],
+                            "range": {
+                                "spectrum": [
+                                    "integral"
+                                ]
+                            }
+                        },
+                        "emergence": {
+                            "direction": [
+                                {
+                                    "nearnormal": true
+                                }
+                            ]
+                        },
+                        "results": {
+                            "transmittance": 0.5
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
