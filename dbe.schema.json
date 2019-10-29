@@ -1281,12 +1281,22 @@
             }
         },
         "assembly": {
-            "title": "Components can either consist of one element or of an assembly of elements. This section is used to define assemblies of elements.",
+            "title": "Components can either consist of one element or of an assembly of elements. This section is used to define assemblies of elements. Each item of the array defines one component of the assembly",
             "type": "array",
             "items": [
                 {
-                    "$ref": "#/definitions/geometry/basics",
-                    "description": "Each item represents the geometry of one element of the assembly"
+                    "type": "object",
+                    "properties": {
+                        "uri": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Each component is identified by its identifier."
+                        },
+                        "geometry": {
+                            "$ref": "#/definitions/geometry/basics",
+                            "description": "The reference defines the geometry of the component."
+                        }
+                    }
                 }
             ],
             "minItems": 2
@@ -1305,75 +1315,72 @@
             }
         },
         "layer": {
-            "type": "object",
-            "properties": {
-                "constants": {
-                    "title": "This section collect all constants which are specific for components of the category layers.",
-                    "type": "object",
-                    "properties": {
-                        "possiblePositions": {
-                            "$ref": "#/definitions/possiblePositions",
-                            "description": "PossiblePositions defines where the layer can be used."
+            "constants": {
+                "title": "This section collect all constants which are specific for components of the category layers.",
+                "type": "object",
+                "properties": {
+                    "possiblePositions": {
+                        "$ref": "#/definitions/possiblePositions",
+                        "description": "PossiblePositions defines where the layer can be used."
+                    },
+                    "orientationAxis": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "horizontal",
+                                "vertical"
+                            ],
+                            "description": "The orientation axis is important for example for venetian blinds."
                         },
-                        "orientationAxis": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "enum": [
-                                    "horizontal",
-                                    "vertical"
-                                ],
-                                "description": "The orientation axis is important for example for venetian blinds."
+                        "minItems": 0,
+                        "maxItems": 1
+                    },
+                    "slat": {
+                        "title": "For example venetian blinds consist of many slats. This section is used to define constants for such slats.",
+                        "type": "object",
+                        "properties": {
+                            "width": {
+                                "$ref": "#/definitions/units/meterWithoutUncertainty",
+                                "description": "The width of the slat"
                             },
-                            "minItems": 0,
-                            "maxItems": 1
-                        },
-                        "slat": {
-                            "title": "For example venetian blinds consist of many slats. This section is used to define constants for such slats.",
-                            "type": "object",
-                            "properties": {
-                                "width": {
-                                    "$ref": "#/definitions/units/meterWithoutUncertainty",
-                                    "description": "The width of the slat"
-                                },
-                                "pitch": {
-                                    "$ref": "#/definitions/numberWithUncertainty",
-                                    "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
-                                },
-                                "crownHeight": {
-                                    "$ref": "#/definitions/numberWithUncertainty",
-                                    "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
-                                },
-                                "shape": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "#/definitions/geometry/curve/bounded/NURBS",
-                                            "description": "Usually, the shape of a slat is best described by a 2D curve of its cross section."
-                                        },
-                                        {
-                                            "$ref": "#/definitions/geometry/surface/bounded/NURBS",
-                                            "description": "If the shape of the slats needs to be defined in 3D, a surface can be used."
-                                        }
-                                    ]
-                                },
-                                "angles": {
-                                    "type": "object",
-                                    "properties": {
-                                        "tilt": {
-                                            "$ref": "#/definitions/units/degree",
-                                            "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
-                                        },
-                                        "maximumClosing": {
-                                            "$ref": "#/definitions/units/degree",
-                                            "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats tough each other."
-                                        }
+                            "pitch": {
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
+                            },
+                            "crownHeight": {
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
+                            },
+                            "shape": {
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/definitions/geometry/curve/bounded/NURBS",
+                                        "description": "Usually, the shape of a slat is best described by a 2D curve of its cross section."
+                                    },
+                                    {
+                                        "$ref": "#/definitions/geometry/surface/bounded/NURBS",
+                                        "description": "If the shape of the slats needs to be defined in 3D, a surface can be used."
+                                    }
+                                ]
+                            },
+                            "angles": {
+                                "type": "object",
+                                "properties": {
+                                    "tilt": {
+                                        "$ref": "#/definitions/units/degree",
+                                        "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
+                                    },
+                                    "maximumClosing": {
+                                        "$ref": "#/definitions/units/degree",
+                                        "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats tough each other."
                                     }
                                 }
                             }
                         }
-                    },
-                    "required": []
-                }
+                    }
+                },
+                "required": []
             }
         },
         "unit": {
