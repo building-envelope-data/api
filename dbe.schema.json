@@ -14,6 +14,11 @@
             },
             "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
         },
+        "identifier": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify important objects and arrays."
+        },
         "webAddress": {
             "type": "string",
             "format": "uri",
@@ -210,10 +215,9 @@
             "title": "A stakeholder can be either an institution or a person. This section collects the basic data of stakeholders.",
             "type": "object",
             "properties": {
-                "uri": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "This URI defines the stakeholder which is either an institution or a person."
+                "id": {
+                    "$ref": "#/definitions/identifier",
+                    "description": "This id defines the stakeholder which is either an institution or a person."
                 },
                 "explanation": {
                     "$ref": "#/definitions/internationalString",
@@ -221,17 +225,16 @@
                 }
             },
             "required": [
-                "uri"
+                "id"
             ]
         },
         "person": {
             "title": "This section collects all data about a person.",
             "type": "object",
             "properties": {
-                "uri": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "The URI which defines the person"
+                "id": {
+                    "$ref": "#/definitions/identifier",
+                    "description": "This id defines the person"
                 },
                 "names": {
                     "type": "object",
@@ -255,10 +258,9 @@
                 "institution": {
                     "type": "object",
                     "properties": {
-                        "uri": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "The URI which defines the affiliation of the person"
+                        "id": {
+                            "$ref": "#/definitions/identifier",
+                            "description": "This id which defines the affiliation of the person"
                         },
                         "name": {
                             "$ref": "#/definitions/internationalString",
@@ -278,10 +280,9 @@
             "title": "This sections collects data about an institution.",
             "type": "object",
             "properties": {
-                "uri": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "The URI which defines the institution"
+                "id": {
+                    "$ref": "#/definitions/identifier",
+                    "description": "This id defines the institution"
                 },
                 "name": {
                     "$ref": "#/definitions/internationalString",
@@ -305,7 +306,7 @@
                 }
             },
             "required": [
-                "uri"
+                "id"
             ]
         },
         "roles": {
@@ -345,16 +346,16 @@
             "standardizer": {
                 "type": "object",
                 "properties": {
-                    "uri": {
-                        "type": "string",
-                        "format": "uri"
+                    "id": {
+                        "$ref": "#/definitions/identifier",
+                        "description": "This id defines the stakeholder who created the standard."
                     },
                     "abbreviation": {
                         "type": "string"
                     }
                 },
                 "required": [
-                    "uri"
+                    "id"
                 ],
                 "description": "A standardizer is an institution which creates a standard. The institution is defined by an URI."
             }
@@ -365,10 +366,9 @@
                 "title": "This section collects the basic definitions about a component.",
                 "type": "object",
                 "properties": {
-                    "uri": {
-                        "type": "string",
-                        "format": "uri",
-                        "descriptions": "The URI of the component"
+                    "id": {
+                        "$ref": "#/definitions/identifier",
+                        "description": "This id defines the component"
                     },
                     "name": {
                         "$ref": "#/definitions/internationalString",
@@ -383,9 +383,8 @@
                         "description": "An explanation with more details about the component"
                     },
                     "version": {
-                        "type": "string",
-                        "format": "uri",
-                        "description": "The URI defines the version of the component."
+                        "$ref": "#/definitions/identifier",
+                        "description": "The id defines the version of the component."
                     },
                     "categories": {
                         "$ref": "#/definitions/component/categories",
@@ -423,7 +422,7 @@
                     }
                 },
                 "required": [
-                    "uri"
+                    "id"
                 ]
             },
             "categories": {
@@ -539,10 +538,9 @@
                 "title": "This section provides definitions about a version of a component.",
                 "type": "object",
                 "properties": {
-                    "uri": {
-                        "type": "string",
-                        "format": "uri",
-                        "description": "This URI defines a specific version of a component."
+                    "id": {
+                        "$ref": "#/definitions/identifier",
+                        "description": "This id defines a specific version of a component."
                     },
                     "name": {
                         "$ref": "#/definitions/internationalString",
@@ -572,7 +570,7 @@
                     }
                 },
                 "required": [
-                    "uri"
+                    "id"
                 ]
             },
             "constants": {
@@ -632,10 +630,9 @@
             "basics": {
                 "type": "object",
                 "properties": {
-                    "uri": {
-                        "type": "string",
-                        "format": "uri",
-                        "description": "This URI identifies the method which is specified below."
+                    "id": {
+                        "$ref": "#/definitions/identifier",
+                        "description": "This id defines the method which is specified below."
                     },
                     "name": {
                         "$ref": "#/definitions/internationalString",
@@ -683,7 +680,7 @@
                     }
                 },
                 "required": [
-                    "uri"
+                    "id"
                 ]
             },
             "calculation": {
@@ -711,13 +708,13 @@
                             "executable": {
                                 "type": "object",
                                 "properties": {
-                                    "uri": {
+                                    "webAdress": {
                                         "$ref": "#/definitions/webAddress"
                                     },
                                     "description": "The executable can be downloaded directly from this URL."
                                 },
                                 "required": [
-                                    "uri"
+                                    "webAdress"
                                 ]
                             },
                             "formatting": {
@@ -761,10 +758,9 @@
         "publication": {
             "type": "object",
             "properties": {
-                "uri": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "The URI defines this specific publication."
+                "id": {
+                    "$ref": "#/definitions/identifier",
+                    "description": "The id defines this specific publication."
                 },
                 "title": {
                     "$ref": "#/definitions/internationalString",
@@ -784,7 +780,7 @@
                 }
             },
             "required": [
-                "uri"
+                "id"
             ]
         },
         "standard": {
@@ -1104,7 +1100,7 @@
                         "description": "Definition of the center of gravity of the component"
                     },
                     "dimensions": {
-                        "$ref": "#/definitions/geometry/dimensions",
+                        "$ref": "#/definitions/dimensions",
                         "description": "Height, width and depth of the component."
                     },
                     "coordinateSystem": {
@@ -1368,11 +1364,11 @@
                                 "type": "object",
                                 "properties": {
                                     "tilt": {
-                                        "$ref": "#/definitions/units/degree",
+                                        "$ref": "#/definitions/angles/tilt",
                                         "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
                                     },
                                     "maximumClosing": {
-                                        "$ref": "#/definitions/units/degree",
+                                        "$ref": "#/definitions/angles/maximumClosing",
                                         "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats tough each other."
                                     }
                                 }
@@ -1381,6 +1377,17 @@
                     }
                 },
                 "required": []
+            }
+        },
+        "angles": {
+            "title": "This sections defines angles which are helpful to characterize building envelopes.",
+            "tilt": {
+                "$ref": "#/definitions/units/degree",
+                "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
+            },
+            "maximumClosing": {
+                "$ref": "#/definitions/units/degree",
+                "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats tough each other."
             }
         },
         "unit": {
@@ -1814,7 +1821,7 @@
                         "description": "The reference defines the size and profile of the irradiance on the sample."
                     },
                     "tilt": {
-                        "$ref": "#/definitions/layer/constants/slat/angles/tilt",
+                        "$ref": "#/definitions/angles/tilt",
                         "description": "The tilt angle for example of venetian blinds."
                     }
                 },
