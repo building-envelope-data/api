@@ -747,27 +747,23 @@
         },
         "reference": {
             "title": "This section is used to refer to a standard or a publication.",
-            "type": "array",
-            "items": [
-                {
-                    "type": "object",
-                    "properties": {
+            "type": "object",
+            "properties": {
+                "oneOf": [
+                    {
                         "standard": {
                             "$ref": "#/definitions/standard",
                             "description": "This section defines which standard is refered to."
                         }
-                    }
-                },
-                {
-                    "type": "object",
-                    "properties": {
+                    },
+                    {
                         "publication": {
                             "$ref": "#/definitions/publication",
                             "description": "This section defines which publication is refered to."
                         }
                     }
-                }
-            ],
+                ]
+            },
             "additionalItems": false,
             "minItems": 1
         },
@@ -819,13 +815,39 @@
                 "standardizers": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/roles/standardizer",
-                        "description": "Standards typically do not name authors, but an institution or several institutions which created the standard."
+                        "type": "string",
+                        "enum": [
+                            "AERC",
+                            "AGI",
+                            "ASHRAE",
+                            "BREEAM",
+                            "BS",
+                            "BSI",
+                            "CEN",
+                            "CIE",
+                            "DGNB",
+                            "DIN",
+                            "DVWG",
+                            "IEC",
+                            "IES",
+                            "ift",
+                            "ISO",
+                            "JIS",
+                            "LEED",
+                            "NFRC",
+                            "Riba",
+                            "UL",
+                            "UNECE",
+                            "VDI",
+                            "VFF",
+                            "WELL"
+                        ]
                     },
                     "additionalItems": false,
-                    "minItems": 1
+                    "minItems": 1,
+                    "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their abbreviation."
                 },
-                "identifier": {
+                "numeration": {
                     "type": "object",
                     "properties": {
                         "prefix": {
@@ -859,8 +881,8 @@
                 }
             },
             "required": [
-                "abbreviation",
-                "identifier"
+                "standardizers",
+                "numeration"
             ],
             "description": "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
         },
@@ -1535,7 +1557,7 @@
                             "$ref": "#/definitions/file",
                             "description": "The optical data can be provided as a file. If the data is provided as a file and as explicit values below, than it MUST be the same data only in different formats. If one data is derived from another data, it MUST be stored as separate items in the array optical/basics and origin SHOULD be used to identify the method of derivation."
                         },
-                        "dataPoint": {
+                        "dataPoints": {
                             "title": "This section provides a list of all data points of this optical data.",
                             "type": "array",
                             "items": {
