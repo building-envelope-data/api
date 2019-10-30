@@ -1,82 +1,87 @@
 {
-    "component": {
-        "optical": [
-            {
-                "dataPoint": [
-                    {
-                        "incidence": {
-                            "direction": [
-                                {
-                                    "nearnormal": true
+    "component": [
+        {
+            "id": "8ca1102b-264a-4023-8351-5897ec38e388",
+            "optical": [
+                {
+                    "id": "a8435146-5270-46f5-b925-4b00de265823",
+                    "dataPoint": [
+                        {
+                            "incidence": {
+                                "direction": [
+                                    {
+                                        "nearnormal": true
+                                    }
+                                ],
+                                "wavelengths": {
+                                    "wavelength": 500
                                 }
-                            ],
-                            "wavelengths": {
-                                "wavelength": 500
-                            }
-                        },
-                        "emergence": {
-                            "direction": [
-                                {
-                                    "nearnormal": true
-                                }
-                            ]
-                        },
-                        "results": {
-                            "transmittance": 0.5
-                        }
-                    },
-                    {
-                        "incidence": {
-                            "direction": [
-                                {
-                                    "nearnormal": true
-                                }
-                            ],
-                            "wavelengths": {
-                                "wavelength": 505
-                            }
-                        },
-                        "emergence": {
-                            "direction": [
-                                {
-                                    "nearnormal": true
-                                }
-                            ]
-                        },
-                        "results": {
-                            "transmittance": 0.52
-                        }
-                    }
-                ]
-            },
-            {
-                "dataPoint": [
-                    {
-                        "incidence": {
-                            "direction": [
-                                {
-                                    "nearnormal": true
-                                }
-                            ],
-                            "range": {
-                                "spectrum": [
-                                    "integral"
+                            },
+                            "emergence": {
+                                "direction": [
+                                    {
+                                        "nearnormal": true
+                                    }
                                 ]
+                            },
+                            "results": {
+                                "transmittance": 0.5
                             }
                         },
-                        "emergence": {
-                            "direction": [
-                                {
-                                    "nearnormal": true
+                        {
+                            "incidence": {
+                                "direction": [
+                                    {
+                                        "nearnormal": true
+                                    }
+                                ],
+                                "wavelengths": {
+                                    "wavelength": 505
                                 }
-                            ]
-                        },
-                        "results": {
-                            "transmittance": 0.5
+                            },
+                            "emergence": {
+                                "direction": [
+                                    {
+                                        "nearnormal": true
+                                    }
+                                ]
+                            },
+                            "results": {
+                                "transmittance": 0.52
+                            }
                         }
-                    }
-                ]
-            }
-        ]
-    }
+                    ]
+                },
+                {
+                    "id": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
+                    "dataPoint": [
+                        {
+                            "incidence": {
+                                "direction": [
+                                    {
+                                        "nearnormal": true
+                                    }
+                                ],
+                                "range": {
+                                    "spectrum": [
+                                        "integral"
+                                    ]
+                                }
+                            },
+                            "emergence": {
+                                "direction": [
+                                    {
+                                        "nearnormal": true
+                                    }
+                                ]
+                            },
+                            "results": {
+                                "transmittance": 0.5
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

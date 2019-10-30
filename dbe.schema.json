@@ -46,7 +46,9 @@
                     },
                     "required": []
                 }
-            ]
+            ],
+            "additionalItems": false,
+            "minItems": 1
         },
         "numberWithoutUncertainty": {
             "title": "This type is used when no restrictions on the numbers are possible.",
@@ -75,7 +77,9 @@
                     },
                     "required": []
                 }
-            ]
+            ],
+            "additionalItems": false,
+            "minItems": 1
         },
         "nonNegativeNumberWithoutUncertainty": {
             "title": "This type is used when only non-negative integers are valid.",
@@ -244,6 +248,8 @@
                             "items": {
                                 "type": "string"
                             },
+                            "additionalItems": false,
+                            "minItems": 1,
                             "description": "The family name(s) also known as surname(s) or last name(s) of a person"
                         },
                         "given": {
@@ -251,6 +257,8 @@
                             "items": {
                                 "type": "string"
                             },
+                            "additionalItems": false,
+                            "minItems": 0,
                             "description": "The given name(s) also known as forname(s) or first name(s) of a person"
                         }
                     }
@@ -436,6 +444,7 @@
                     ],
                     "description": "A building envelope component can be a plain material, a layer in a stack of layers of a unit including frame effects. While some components are used e.g. only as materials, other components can be used in several categories."
                 },
+                "additionalItems": false,
                 "minItems": 0
             },
             "material": {
@@ -456,6 +465,7 @@
                         ],
                         "description": "Components of the category material can have the subcategories of this array which further specifies the material."
                     },
+                    "additionalItems": false,
                     "minItems": 0
                 }
             },
@@ -513,6 +523,7 @@
                         ],
                         "description": "Components of the category layer can have the subcategories of this array which further specifies the layer."
                     },
+                    "additionalItems": false,
                     "minItems": 0
                 }
             },
@@ -531,6 +542,7 @@
                         ],
                         "description": "Components of the category unit can have the subcategories of this array which further specifies the unit."
                     },
+                    "additionalItems": false,
                     "minItems": 0
                 }
             },
@@ -606,6 +618,7 @@
                             "type": "string",
                             "pattern": "[A-Z][a-z]?"
                         },
+                        "additionalItems": false,
                         "minItems": 1,
                         "maxItems": 10,
                         "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
@@ -652,6 +665,7 @@
                                 "calculation"
                             ]
                         },
+                        "additionalItems": false,
                         "minItems": 1
                     },
                     "developer": {
@@ -727,6 +741,7 @@
                         ]
                     }
                 ],
+                "additionalItems": false,
                 "minItems": 1
             }
         },
@@ -753,6 +768,7 @@
                     }
                 }
             ],
+            "additionalItems": false,
             "minItems": 1
         },
         "publication": {
@@ -776,6 +792,7 @@
                         "$ref": "#/definitions/person",
                         "description": "This array lists all persons which have authored the publication"
                     },
+                    "additionalItems": false,
                     "minItems": 1
                 }
             },
@@ -804,7 +821,9 @@
                     "items": {
                         "$ref": "#/definitions/roles/standardizer",
                         "description": "Standards typically do not name authors, but an institution or several institutions which created the standard."
-                    }
+                    },
+                    "additionalItems": false,
+                    "minItems": 1
                 },
                 "identifier": {
                     "type": "object",
@@ -924,7 +943,9 @@
                 "required": [
                     "approver"
                 ]
-            }
+            },
+            "additionalItems": false,
+            "minItems": 1
         },
         "approval": {
             "verify": {
@@ -955,6 +976,7 @@
                 ],
                 "description": "Exterior of the building envelope, in between of the building envelope for example between to glass panes or interior of the building envelope."
             },
+            "additionalItems": false,
             "minItems": 0
         },
         "colour": {
@@ -1083,6 +1105,7 @@
                     "depth"
                 ]
             },
+            "additionalItems": false,
             "minItems": 1
         },
         "geometry": {
@@ -1109,8 +1132,9 @@
                                 "$ref": "#/definitions/geometry/body"
                             }
                         },
-                        "description": "This array lists all the bodies of which the component consists.",
-                        "minItems": 1
+                        "additionalItems": false,
+                        "minItems": 1,
+                        "description": "This array lists all the bodies of which the component consists."
                     },
                     "file": {
                         "$ref": "#/definitions/file",
@@ -1134,6 +1158,7 @@
                                 }
                             }
                         ],
+                        "additionalItems": false,
                         "minItems": 2
                     }
                 },
@@ -1181,6 +1206,7 @@
                             ],
                             "description": "Often, a right-handed cartesian coordinate system is used."
                         },
+                        "additionalItems": false,
                         "minItems": 0
                     }
                 },
@@ -1238,6 +1264,7 @@
                                             }
                                         }
                                     ],
+                                    "additionalItems": false,
                                     "minItems": 2
                                 },
                                 "minItems": 2,
@@ -1249,6 +1276,7 @@
                                     "type": "number",
                                     "description": "Each knot is a number which is either equal or larger than the preceding knot. Although usually the control points are used to shape the curve, the knots could also be used for this purpose. The first and last knot are usually repeated so that the curve ends exactly at these points."
                                 },
+                                "additionalItems": false,
                                 "minItems": 2,
                                 "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots."
                             }
@@ -1266,8 +1294,9 @@
                     "items": {
                         "$ref": "#/definitions/geometry/surface"
                     },
-                    "description": "This array list all surfaces between solid and non-solid of the component.",
-                    "minItems": 1
+                    "additionalItems": false,
+                    "minItems": 1,
+                    "description": "This array list all surfaces between solid and non-solid of the component."
                 }
             }
         },
@@ -1289,6 +1318,7 @@
                     }
                 }
             ],
+            "additionalItems": false,
             "minItems": 2
         },
         "material": {
@@ -1323,6 +1353,7 @@
                             ],
                             "description": "The orientation axis is important for example for venetian blinds."
                         },
+                        "additionalItems": false,
                         "minItems": 0,
                         "maxItems": 1
                     },
@@ -1535,6 +1566,7 @@
                         "id"
                     ]
                 },
+                "additionalItems": false,
                 "minItems": 1
             },
             "direction": {
@@ -1578,16 +1610,13 @@
                     },
                     {
                         "title": "This section should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "nearnormal",
-                                "hemispherical",
-                                "diffuse"
-                            ],
-                            "description": "Nearnormal means a direction almost perpendicular to the sample surface. Hemispherical means all directions into the hemisphere above the sample surface, for example when there is the same irradiance from all directions. Diffuse means all directions except the nearnormal direction. For example, the nearnormal-hemispherical transmittance is always equal to the nearnormal-nearnormal transmittance plus the nearnormal-diffuse transmittance."
-                        }
+                        "type": "string",
+                        "enum": [
+                            "nearnormal",
+                            "hemispherical",
+                            "diffuse"
+                        ],
+                        "description": "Nearnormal means a direction almost perpendicular to the sample surface. Hemispherical means all directions into the hemisphere above the sample surface, for example when there is the same irradiance from all directions. Diffuse means all directions except the nearnormal direction. For example, the nearnormal-hemispherical transmittance is always equal to the nearnormal-nearnormal transmittance plus the nearnormal-diffuse transmittance."
                     },
                     {
                         "type": "object",
@@ -1607,6 +1636,7 @@
                         }
                     }
                 ],
+                "additionalItems": false,
                 "minItems": 1
             },
             "polarisation": {
@@ -1665,6 +1695,7 @@
                                     "$ref": "#/definitions/units/nanometerWithoutUncertainty",
                                     "description": "An array of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/definitions/wavelength/range/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
                                 },
+                                "additionalItems": false,
                                 "minItems": 1
                             }
                         }
@@ -1706,6 +1737,7 @@
                                 ],
                                 "description": "If `#/definitions/optical/wavelengths/integral` is true, then `#/definitions/optical/wavelength/range/spectrum` identifies the spectrum of wavelengths over which the integral result is be calculated. For further specification of the spectrum, please search for the applied `#/definitions/standard`."
                             },
+                            "additionalItems": false,
                             "minItems": 1,
                             "maxItems": 1
                         }
@@ -1797,6 +1829,8 @@
                             "specular",
                             "diffuseReflectance"
                         ],
+                        "additionalItems": false,
+                        "minItems": 1,
                         "description": "The normalization methods absolute, relative, specular and diffuse reflectance are defined by ASTM E2387-05:2011.",
                         "required": []
                     },
@@ -1872,6 +1906,7 @@
                                 "minimum": 0,
                                 "maximum": 1
                             },
+                            "additionalItems": false,
                             "minItems": 1
                         },
                         "reflectance": {
@@ -1881,6 +1916,7 @@
                                 "minimum": 0,
                                 "maximum": 1
                             },
+                            "additionalItems": false,
                             "minItems": 1
                         },
                         "BSDF": {
@@ -1890,10 +1926,12 @@
                                 "minimum": 0,
                                 "maximum": 1
                             },
+                            "additionalItems": false,
                             "minItems": 1
                         }
                     }
                 ],
+                "additionalItems": false,
                 "minItems": 0
             },
             "BSDFresults": {
@@ -1928,6 +1966,7 @@
                                     "minimum": 0,
                                     "maximum": 1
                                 },
+                                "additionalItems": false,
                                 "minItems": 1
                             }
                         },
@@ -1937,6 +1976,7 @@
                         ]
                     }
                 ],
+                "additionalItems": false,
                 "minItems": 0
             }
         },
@@ -2004,6 +2044,9 @@
                                                 "other"
                                             ]
                                         },
+                                        "additionalItems": false,
+                                        "minItems": 1,
+                                        "maxItems": 1,
                                         "description": "The name of the part of the surroundings. If neither exterior nor interior or lateral fits, choose other and describe it in the explanation below."
                                     },
                                     "explanation": {
@@ -2072,7 +2115,9 @@
                                         ]
                                     }
                                 }
-                            }
+                            },
+                            "additionalItems": false,
+                            "minItems": 1
                         },
                         "results": {
                             "type": "object",
@@ -2106,6 +2151,7 @@
                                 "dynamic"
                             ]
                         },
+                        "additionalItems": false,
                         "minItems": 1,
                         "maxItems": 1,
                         "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
@@ -2147,6 +2193,7 @@
                         "V"
                     ]
                 },
+                "additionalItems": false,
                 "minItem": 1
             },
             "photovoltaics": {
@@ -2240,10 +2287,13 @@
                                         ],
                                         "description": "A photovoltaic cell can have one or more of these categories. For example, Copper indium gallium selenide PV is a thin film and solid state PV technology and would be described by the corresponding six items in the array."
                                     },
+                                    "additionalItems": false,
                                     "minItems": 0
                                 }
                             }
-                        }
+                        },
+                        "additionalItems": false,
+                        "minItems": 1
                     },
                     "diodes": {
                         "title": "This array defines the diods of the PV module. They are used to bypass shaded cells which would otherwise dissipate energy.",
@@ -2262,6 +2312,7 @@
                             },
                             "required": []
                         },
+                        "additionalItems": false,
                         "minItems": 0
                     },
                     "connections": {
@@ -2344,10 +2395,13 @@
                                         ],
                                         "description": "Typically, a PV module consists of a front cover layer, a front embedding layer, the cells, a rear embedding layer and a backing layer."
                                     },
+                                    "additionalItems": false,
                                     "minItems": 0
                                 }
                             }
-                        }
+                        },
+                        "additionalItems": false,
+                        "minItems": 1
                     }
                 }
             }
@@ -2368,7 +2422,9 @@
                             "description": "This id represents the second component."
                         }
                     }
-                }
+                },
+                "additionalItems": false,
+                "minItems": 0
             }
         }
     },
@@ -2380,6 +2436,7 @@
             "items": {
                 "$ref": "#/definitions/component/basics"
             },
+            "additionalItems": false,
             "minItems": 1
         }
     },
