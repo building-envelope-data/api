@@ -217,7 +217,7 @@
             "properties": {
                 "id": {
                     "$ref": "#/definitions/identifier",
-                    "description": "This id defines the stakeholder which is either an institution or a person."
+                    "description": "This id represents the stakeholder which is either an institution or a person."
                 },
                 "explanation": {
                     "$ref": "#/definitions/internationalString",
@@ -234,7 +234,7 @@
             "properties": {
                 "id": {
                     "$ref": "#/definitions/identifier",
-                    "description": "This id defines the person"
+                    "description": "This id represents the person"
                 },
                 "names": {
                     "type": "object",
@@ -282,7 +282,7 @@
             "properties": {
                 "id": {
                     "$ref": "#/definitions/identifier",
-                    "description": "This id defines the institution"
+                    "description": "This id represents the institution"
                 },
                 "name": {
                     "$ref": "#/definitions/internationalString",
@@ -348,7 +348,7 @@
                 "properties": {
                     "id": {
                         "$ref": "#/definitions/identifier",
-                        "description": "This id defines the stakeholder who created the standard."
+                        "description": "This id represents the stakeholder who created the standard."
                     },
                     "abbreviation": {
                         "type": "string"
@@ -368,7 +368,7 @@
                 "properties": {
                     "id": {
                         "$ref": "#/definitions/identifier",
-                        "description": "This id defines the component"
+                        "description": "This id represents the component"
                     },
                     "name": {
                         "$ref": "#/definitions/internationalString",
@@ -384,7 +384,7 @@
                     },
                     "version": {
                         "$ref": "#/definitions/identifier",
-                        "description": "The id defines the version of the component."
+                        "description": "The id represents the version of the component."
                     },
                     "categories": {
                         "$ref": "#/definitions/component/categories",
@@ -540,7 +540,7 @@
                 "properties": {
                     "id": {
                         "$ref": "#/definitions/identifier",
-                        "description": "This id defines a specific version of a component."
+                        "description": "This id represents a specific version of a component."
                     },
                     "name": {
                         "$ref": "#/definitions/internationalString",
@@ -632,7 +632,7 @@
                 "properties": {
                     "id": {
                         "$ref": "#/definitions/identifier",
-                        "description": "This id defines the method which is specified below."
+                        "description": "This id represents the method which is specified below."
                     },
                     "name": {
                         "$ref": "#/definitions/internationalString",
@@ -708,13 +708,13 @@
                             "executable": {
                                 "type": "object",
                                 "properties": {
-                                    "webAdress": {
+                                    "webAddress": {
                                         "$ref": "#/definitions/webAddress"
                                     },
                                     "description": "The executable can be downloaded directly from this URL."
                                 },
                                 "required": [
-                                    "webAdress"
+                                    "webAddress"
                                 ]
                             },
                             "formatting": {
@@ -760,7 +760,7 @@
             "properties": {
                 "id": {
                     "$ref": "#/definitions/identifier",
-                    "description": "The id defines this specific publication."
+                    "description": "The id represents this specific publication."
                 },
                 "title": {
                     "$ref": "#/definitions/internationalString",
@@ -787,10 +787,9 @@
             "title": "Standards are a special kind publications. Therefore their data structure is different from publications.",
             "type": "object",
             "properties": {
-                "uri": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "The URI defines this specific standard."
+                "id": {
+                    "$ref": "#/definitions/identifier",
+                    "description": "The id represents this specific standard."
                 },
                 "title": {
                     "$ref": "#/definitions/internationalString",
@@ -850,7 +849,7 @@
             "description": "Information about a database which has implemented the same API specification.",
             "type": "object",
             "properties": {
-                "uri": {
+                "webAddress": {
                     "$ref": "#/definitions/webAddress",
                     "description": "The database is identified by its API endpoint."
                 },
@@ -888,7 +887,7 @@
                 }
             },
             "required": [
-                "uri"
+                "webAddress"
             ]
         },
         "approvals": {
@@ -897,15 +896,13 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "uri": {
-                        "type": "string",
-                        "format": "uri",
-                        "description": "The approval is identified by this URI."
+                    "id": {
+                        "$ref": "#/definitions/identifier",
+                        "description": "The id represents this approval."
                     },
                     "approver": {
-                        "type": "string",
-                        "format": "uri",
-                        "description": "The stakeholder who approved the data is identified by its URI."
+                        "$ref": "#/definitions/identifier",
+                        "description": "This id represents The stakeholder who approved the data."
                     },
                     "verify": {
                         "$ref": "#/definitions/approval/verify",
@@ -991,10 +988,9 @@
             "title": "This section is used to define the format of data.",
             "type": "object",
             "properties": {
-                "uri": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "The format is identified by this URI."
+                "id": {
+                    "$ref": "#/definitions/identifier",
+                    "description": "The id represents this specific format."
                 },
                 "abbreviation": {
                     "type": "string",
@@ -1009,9 +1005,8 @@
                     "description": "The decription of the format"
                 },
                 "version": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "The version of the format is identified by this URI."
+                    "$ref": "#/definitions/identifier",
+                    "description": "This id represents a specific version of the format."
                 },
                 "reference": {
                     "$ref": "#/definitions/reference",
@@ -1019,14 +1014,14 @@
                 }
             },
             "required": [
-                "uri"
+                "id"
             ]
         },
         "file": {
             "title": "This section defines the data of a specific file.",
             "type": "object",
             "properties": {
-                "uri": {
+                "webAddress": {
                     "$ref": "#/definitions/webAddress",
                     "description": "The file can be downloaded directly from this URL."
                 },
@@ -1060,7 +1055,7 @@
                 }
             },
             "required": [
-                "uri"
+                "webAddress"
             ]
         },
         "dimensions": {
@@ -1283,10 +1278,9 @@
                 {
                     "type": "object",
                     "properties": {
-                        "uri": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "Each component is identified by its identifier."
+                        "id": {
+                            "$ref": "#/definitions/identifier",
+                            "description": "The id represents a specific componet of the assembly."
                         },
                         "geometry": {
                             "$ref": "#/definitions/geometry/basics",
@@ -1422,10 +1416,9 @@
             "title": "The source data is the data which has been the starting point and on which a method was applied by the creator of the new data set.",
             "type": "object",
             "properties": {
-                "uri": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "Each source data is identified exactly by an URI for traceability."
+                "id": {
+                    "$ref": "#/definitions/identifier",
+                    "description": "The id represents the data source."
                 },
                 "name": {
                     "$ref": "#/definitions/internationalString",
@@ -1437,7 +1430,7 @@
                 }
             },
             "required": [
-                "uri"
+                "id"
             ]
         },
         "origin": {
@@ -1471,10 +1464,9 @@
                 "items": {
                     "type": "object",
                     "properties": {
-                        "uri": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "An optical data set is identified by a URI."
+                        "id": {
+                            "$ref": "#/definitions/identifier",
+                            "description": "The id represents the optical data set."
                         },
                         "name": {
                             "$ref": "#/definitions/internationalString",
@@ -1540,7 +1532,7 @@
                         }
                     },
                     "required": [
-                        "uri"
+                        "id"
                     ]
                 },
                 "minItems": 1
@@ -1955,10 +1947,9 @@
                 "items": {
                     "type": "object",
                     "properties": {
-                        "uri": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "A calorimetric data set is identified by a URI."
+                        "id": {
+                            "$ref": "#/definitions/identifier",
+                            "description": "The id represents a specific calorimetric data set."
                         },
                         "name": {
                             "$ref": "#/definitions/internationalString",
@@ -2098,7 +2089,7 @@
                         }
                     },
                     "required": [
-                        "uri"
+                        "id"
                     ]
                 },
                 "minItems": 1
@@ -2178,10 +2169,9 @@
                         "items": {
                             "type": "object",
                             "parameters": {
-                                "uri": {
-                                    "type": "string",
-                                    "format": "uri",
-                                    "description": "Each cell has an identifier."
+                                "id": {
+                                    "$ref": "#/definitions/identifier",
+                                    "description": "The id represents one cell of the photovoltaic module."
                                 },
                                 "explanation": {
                                     "$ref": "#/definitions/internationalString",
@@ -2261,10 +2251,9 @@
                         "items": {
                             "type": "object",
                             "parameters": {
-                                "uri": {
-                                    "type": "string",
-                                    "format": "uri",
-                                    "description": "Each diode has an identifier."
+                                "id": {
+                                    "$ref": "#/definitions/identifier",
+                                    "description": "The id represents one diode of the PV module."
                                 },
                                 "explanation": {
                                     "$ref": "#/definitions/internationalString",
@@ -2291,15 +2280,13 @@
                                     "parameters": {
                                         "anyOf": [
                                             {
-                                                "uri": {
-                                                    "type": "string",
-                                                    "format": "uri",
-                                                    "descriptions": "The URI of the component"
+                                                "id": {
+                                                    "$ref": "#/definitions/identifier",
+                                                    "description": "The id represents one layer of the PV module."
                                                 },
                                                 "version": {
-                                                    "type": "string",
-                                                    "format": "uri",
-                                                    "description": "The URI defines the version of the component."
+                                                    "$ref": "#/definitions/identifier",
+                                                    "description": "This id represents a specific version of the layer."
                                                 }
                                             },
                                             {
@@ -2372,15 +2359,13 @@
                 "items": {
                     "type": "object",
                     "parameters": {
-                        "uri1": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "The identifier of the first component."
+                        "id1": {
+                            "$ref": "#/definitions/identifier",
+                            "description": "This id represents the first component."
                         },
-                        "uri2": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "The identifier of the second component."
+                        "id2": {
+                            "$ref": "#/definitions/identifier",
+                            "description": "This id represents the second component."
                         }
                     }
                 }
