@@ -12,6 +12,7 @@
                     "description": "A string in American English."
                 }
             },
+            "additionalProperties": false,
             "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
         },
         "identifier": {
@@ -44,6 +45,7 @@
                             "description": "The reference defines how the uncertainty has been determined."
                         }
                     },
+                    "additionalProperties": false,
                     "required": []
                 }
             ],
@@ -75,6 +77,7 @@
                             "description": "The reference defines how the uncertainty has been determined."
                         }
                     },
+                    "additionalProperties": false,
                     "required": []
                 }
             ],
@@ -170,6 +173,7 @@
                     "description": "The lastest date for which the data is valid."
                 }
             },
+            "additionalProperties": false,
             "required": [],
             "minProperties": 1
         },
@@ -187,6 +191,7 @@
                     "description": "The earliest date at which it was available."
                 }
             },
+            "additionalProperties": false,
             "required": [],
             "minProperties": 1
         },
@@ -212,6 +217,7 @@
                     "description": "Website of an institution or person"
                 }
             },
+            "additionalProperties": false,
             "required": [],
             "minProperties": 1
         },
@@ -228,6 +234,7 @@
                     "description": "This explanation can specify the role of the stakeholder."
                 }
             },
+            "additionalProperties": false,
             "required": [
                 "id"
             ]
@@ -261,7 +268,11 @@
                             "minItems": 0,
                             "description": "The given name(s) also known as forname(s) or first name(s) of a person"
                         }
-                    }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "family"
+                    ]
                 },
                 "institution": {
                     "type": "object",
@@ -275,13 +286,17 @@
                             "description": "The name of the affiliation of the person"
                         }
                     },
-                    "required": []
+                    "additionalProperties": false,
+                    "required": [
+                        "name"
+                    ]
                 },
                 "contact": {
                     "$ref": "#/definitions/contact",
                     "description": "How to contact the person"
                 }
             },
+            "additionalProperties": false,
             "required": []
         },
         "institution": {
@@ -313,6 +328,7 @@
                     "description": "How to contact the institution"
                 }
             },
+            "additionalProperties": false,
             "required": [
                 "id"
             ]
@@ -362,6 +378,7 @@
                         "type": "string"
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "id"
                 ],
@@ -429,6 +446,7 @@
                         "description": "All optical data of the data set is stored in this section."
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "id"
                 ]
@@ -581,6 +599,7 @@
                         "description": "Since when and until when the component has been available"
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "id"
                 ]
@@ -636,6 +655,7 @@
                         "description": "If the component is a unit, the unit-specific constants can be named here."
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             }
         },
@@ -693,6 +713,7 @@
                         "description": "Here you can define the method either as code or as executable."
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "id"
                 ]
@@ -712,6 +733,7 @@
                                 "description": "This section defines which format the code has for example a certain version of a programming language."
                             }
                         },
+                        "additionalProperties": false,
                         "required": [
                             "code"
                         ]
@@ -727,6 +749,7 @@
                                     },
                                     "description": "The executable can be downloaded directly from this URL."
                                 },
+                                "additionalProperties": false,
                                 "required": [
                                     "webAddress"
                                 ]
@@ -736,6 +759,7 @@
                                 "description": "This section defines which format the executable has."
                             }
                         },
+                        "additionalProperties": false,
                         "required": [
                             "executable"
                         ]
@@ -764,7 +788,7 @@
                     }
                 ]
             },
-            "additionalItems": false,
+            "additionalProperties": false,
             "minItems": 1
         },
         "publication": {
@@ -792,6 +816,7 @@
                     "minItems": 1
                 }
             },
+            "additionalProperties": false,
             "required": [
                 "id"
             ]
@@ -864,6 +889,7 @@
                             "maximum": 10000
                         }
                     },
+                    "additionalProperties": false,
                     "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the abbreviations for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
                     "required": [
                         "mainNumber"
@@ -880,6 +906,7 @@
                     "description": "The section of the standard to which the reference refers to."
                 }
             },
+            "additionalProperties": false,
             "required": [
                 "standardizers",
                 "numeration"
@@ -927,6 +954,7 @@
                     "description": "If there are any specific issues with a database, the administrators can use this string."
                 }
             },
+            "additionalProperties": false,
             "required": [
                 "webAddress"
             ]
@@ -962,6 +990,7 @@
                         "description": "For which timespan the approval is valid"
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "approver"
                 ]
@@ -983,6 +1012,7 @@
                         "description": "Explanation how the approval can be verified"
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             }
         },
@@ -1026,6 +1056,7 @@
                     "description": "The three parameters L*, a* and b* from CIE define the colour as well as the brightness."
                 }
             },
+            "additionalProperties": false,
             "required": []
         },
         "formatting": {
@@ -1057,6 +1088,7 @@
                     "description": "If the format is defined in a standard or a publication, this reference can be defined here."
                 }
             },
+            "additionalProperties": false,
             "required": [
                 "id"
             ]
@@ -1098,6 +1130,7 @@
                     "description": "The timespan during which the file was valid"
                 }
             },
+            "additionalProperties": false,
             "required": [
                 "webAddress"
             ]
@@ -1121,6 +1154,7 @@
                         "description": "The depth of the component along the axis perpendicular to the building envelope."
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "height",
                     "width",
@@ -1177,13 +1211,18 @@
                                         "$ref": "#/definitions/reference",
                                         "description": "This reference defines the LOD which is indicated above."
                                     }
-                                }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "reference"
+                                ]
                             }
                         ],
                         "additionalItems": false,
                         "minItems": 2
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             },
             "point": {
@@ -1200,6 +1239,7 @@
                         "$ref": "#/definitions/units/meterWithoutUncertainty"
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "x",
                     "y",
@@ -1232,6 +1272,7 @@
                         "minItems": 0
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             },
             "surface": {
@@ -1247,6 +1288,7 @@
                                 "$ref": "#/definitions/geometry/curve/bounded/NURBS"
                             }
                         },
+                        "additionalProperties": false,
                         "required": [
                             "uDirection",
                             "vDirection"
@@ -1278,12 +1320,16 @@
                                         },
                                         {
                                             "type": "object",
-                                            "parameters": {
+                                            "properties": {
                                                 "weights": {
                                                     "type": "number",
                                                     "description": "The weight of a control points determines its influences on the shape of the curve."
                                                 }
-                                            }
+                                            },
+                                            "additionalProperties": false,
+                                            "required": [
+                                                "weights"
+                                            ]
                                         }
                                     ],
                                     "additionalItems": false,
@@ -1302,7 +1348,13 @@
                                 "minItems": 2,
                                 "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots."
                             }
-                        }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "degree",
+                            "controlPoints",
+                            "knots"
+                        ]
                     }
                 }
             }
@@ -1320,7 +1372,9 @@
                     "minItems": 1,
                     "description": "This array list all surfaces between solid and non-solid of the component."
                 }
-            }
+            },
+            "additionalProperties": false,
+            "required": []
         },
         "assembly": {
             "title": "Components can either consist of one element or of an assembly of elements. This section is used to define assemblies of elements. Each item of the array defines one component of the assembly",
@@ -1337,7 +1391,10 @@
                             "$ref": "#/definitions/geometry/basics",
                             "description": "The reference defines the geometry of the component."
                         }
-                    }
+                    },
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "required": []
                 }
             ],
             "additionalItems": false,
@@ -1353,6 +1410,7 @@
                         "description": "PossiblePositions defines where the material can be used."
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             }
         },
@@ -1418,11 +1476,18 @@
                                         "$ref": "#/definitions/angles/maximumClosing",
                                         "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats tough each other."
                                     }
-                                }
+                                },
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "required": []
                             }
-                        }
+                        },
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": []
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             }
         },
@@ -1459,9 +1524,11 @@
                                 "description": "This reference defines all parameters of this object."
                             }
                         },
+                        "additionalProperties": false,
                         "required": []
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             }
         },
@@ -1482,6 +1549,7 @@
                     "description": "This string can explain the source data for humans."
                 }
             },
+            "additionalProperties": false,
             "required": [
                 "id"
             ]
@@ -1507,6 +1575,7 @@
                     "description": "The database, where the source data and the method can be found, is identified here."
                 }
             },
+            "additionalProperties": false,
             "required": [],
             "minProperties": 1
         },
@@ -1563,7 +1632,7 @@
                             "items": {
                                 "title": "Each optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation and the optical results.",
                                 "type": "object",
-                                "parameters": {
+                                "properties": {
                                     "incidence": {
                                         "$ref": "#/definitions/optical/incidence",
                                         "description": "This section defines the incident radiation on the component."
@@ -1581,6 +1650,7 @@
                                         "description": "Results can be for example the transmittance and the reflectance."
                                     }
                                 },
+                                "additionalProperties": false,
                                 "required": [
                                     "incidence",
                                     "emergence",
@@ -1591,6 +1661,7 @@
                             "minItems": 1
                         }
                     },
+                    "additionalProperties": false,
                     "required": [
                         "id"
                     ]
@@ -1616,7 +1687,12 @@
                                             "$ref": "#/definitions/units/degree",
                                             "description": "In the spherical coordinate system, the polar angle is measured from orthogonal projextion of the direction on a reference plane such as the plane between the x- and y-axis of a cartestian coordinate system."
                                         }
-                                    }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": [
+                                        "polar",
+                                        "azimuth"
+                                    ]
                                 },
                                 {
                                     "type": "object",
@@ -1629,7 +1705,12 @@
                                             "$ref": "#/definitions/units/degree",
                                             "description": "If the z-axis is normal to the building envelope, the x-axis directs for example vertically upwards in a facade and the y-axis is horizontal in an right-handed coordinate system, then the angle yz is measured from the z-axis towards the y axis. From the facade looking to the exterior, 80° means a direction far right, almost parallel to the facade. -10° means from the facade to exterior slightly left, but almost perpendiculat to the facade."
                                         }
-                                    }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": [
+                                        "xz",
+                                        "yz"
+                                    ]
                                 },
                                 {
                                     "type": "object",
@@ -1638,7 +1719,11 @@
                                             "$ref": "#/definitions/units/degree",
                                             "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
                                         }
-                                    }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": [
+                                        "incidence"
+                                    ]
                                 },
                                 {
                                     "title": "This section should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
@@ -1659,16 +1744,21 @@
                                     "$ref": "#/definitions/formatting",
                                     "description": "The definition of the format of the array below needs to specify how the items of the array can be interpreted as a list of directions. For example, the format can define that the list consists of pairs of polar and azimuth angles."
                                 },
-                                "array": {
+                                "list": {
                                     "type": "array",
                                     "items": {
                                         "type": "number",
-                                        "description": "In order to reduze the size of the data, multiple directions can be entered as an array."
+                                        "description": "In order to reduze the size of the data, multiple directions can be entered as a list/array."
                                     },
                                     "additionalItems": false,
                                     "minItems": 1
                                 }
-                            }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "formatting",
+                                "list"
+                            ]
                         }
                     ],
                     "additionalItems": false,
@@ -1691,7 +1781,11 @@
                                 "description": "This property represents the fraction of radiation with its electric field parallel to the plane of incidence of the radiation on the sample. p is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
                             }
                         },
-                        "minProperties": 2
+                        "additionalProperties": false,
+                        "required": [
+                            "s",
+                            "p"
+                        ]
                     },
                     "circular": {
                         "type": "object",
@@ -1703,11 +1797,16 @@
                             "r": {
                                 "$ref": "#/definitions/numberWithUncertainty",
                                 "description": "This property represents the fraction of radiation with its electric field rotating in a right-hand sense with respect to the direction of radiation. r is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
-                            },
-                            "minProperties": 2
-                        }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "l",
+                            "r"
+                        ]
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             },
             "wavelengths": {
@@ -1720,21 +1819,29 @@
                                 "$ref": "#/definitions/units/nanometerWithoutUncertainty",
                                 "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/definitions/optical/wavelength/range/bandwidth`."
                             }
-                        }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "wavelength"
+                        ]
                     },
                     {
                         "type": "object",
                         "properties": {
-                            "array": {
+                            "list": {
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/definitions/units/nanometerWithoutUncertainty",
-                                    "description": "An array of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/definitions/wavelength/range/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
+                                    "description": "An list of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/definitions/wavelength/range/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
                                 },
                                 "additionalItems": false,
                                 "minItems": 1
                             }
-                        }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "list"
+                        ]
                     },
                     {
                         "type": "object",
@@ -1744,8 +1851,10 @@
                             },
                             "description": "This flag indicates that an integral over many wavelenthgs is considered here. Under `#/definitions/optical/wavelength/range/spectrum`, the spectrum can be specified over which the integral result is calculated."
                         },
-                        "minItems": 1,
-                        "maxItems": 1
+                        "additionalProperties": false,
+                        "required": [
+                            "integral"
+                        ]
                     }
                 ]
             },
@@ -1790,6 +1899,7 @@
                             }
                         ]
                     },
+                    "additionalProperties": false,
                     "required": []
                 }
             },
@@ -1810,6 +1920,7 @@
                         "$ref": "#/definitions/optical/wavelength/range"
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "direction"
                 ]
@@ -1831,6 +1942,7 @@
                         "$ref": "#/definitions/optical/wavelength/range"
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "direction"
                 ]
@@ -1847,6 +1959,7 @@
                                 "description": "This reference defines any treatment performed on the sample before measurement."
                             }
                         },
+                        "additionalProperties": false,
                         "required": []
                     },
                     "locationOnSample": {
@@ -1857,6 +1970,7 @@
                                 "description": "This reference defines the location of measurement on the sample."
                             }
                         },
+                        "additionalProperties": false,
                         "required": []
                     },
                     "polarizationSensitivity": {
@@ -1867,6 +1981,7 @@
                                 "description": "This reference defines the polarization sensitivity of the receiver of the optical measurement."
                             }
                         },
+                        "additionalProperties": false,
                         "required": []
                     },
                     "instrumentSignature": {
@@ -1903,6 +2018,7 @@
                         "description": "The tilt angle for example of venetian blinds."
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             },
             "constants": {
@@ -1913,6 +2029,7 @@
                         "description": "If a parameter is a constant during this set of optical measurements, it is defined here and CANNOT be defined in `#/definitions/optical/variables`."
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             },
             "variables": {
@@ -1923,6 +2040,7 @@
                         "description": "If a parameter is a variable during this set of optical measurements, it is defined here and CANNOT be defined in `#/definitions/optical/constants`."
                     }
                 },
+                "additionalProperties": false,
                 "required": []
             },
             "results": {
@@ -1942,9 +2060,11 @@
                                     "description": "Reflectance is the ratio between the irradiance which is reflected by the sample and the irradiance on the the sample."
                                 },
                                 "BSDF": {
-                                    "$ref": "#/definitions/optical/BSDF"
+                                    "$ref": "#/definitions/optical/BSDFresults",
+                                    "description": "###andBelow"
                                 }
                             },
+                            "additionalProperties": false,
                             "required": [],
                             "minProperties": 1
                         },
@@ -2005,6 +2125,7 @@
                                     "description": "BRDF means Bidirectional Reflectance Density Function. Bidirectional Reflectance means the reflectance from one incident direction to a certain direction of emergence on the same side of the sample."
                                 }
                             },
+                            "additionalProperties": false,
                             "required": [],
                             "minProperties": 1
                         },
@@ -2025,6 +2146,7 @@
                                     "minItems": 1
                                 }
                             },
+                            "additionalProperties": false,
                             "required": [
                                 "formatting",
                                 "BSDF"
@@ -2088,7 +2210,7 @@
                             "type": "array",
                             "items": {
                                 "type": "object",
-                                "parameters": {
+                                "properties": {
                                     "name": {
                                         "type": "array",
                                         "items": {
@@ -2111,14 +2233,14 @@
                                     },
                                     "heat": {
                                         "type": "object",
-                                        "parameters": {
+                                        "properties": {
                                             "flux": {
                                                 "$ref": "#/definitions/units/wattWithUncertainty",
                                                 "description": "The heat flux is driven by the temperature differences. Positive heat flux means heat flux towards the sample. It is meaured in watts."
                                             },
                                             "temperatures": {
                                                 "type": "object",
-                                                "parameters": {
+                                                "properties": {
                                                     "surrounding": {
                                                         "$ref": "#/definitions/units/kelvinWithUncertainty",
                                                         "description": "The average temperature of this part of the surroundings."
@@ -2127,20 +2249,24 @@
                                                         "$ref": "#/definitions/units/kelvinWithUncertainty",
                                                         "description": "The average temperature of the part of the sample which faces this part of the surroundings."
                                                     }
-                                                }
+                                                },
+                                                "additionalProperties": false,
+                                                "minProperties": 1,
+                                                "required": []
                                             },
                                             "coefficient": {
                                                 "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
                                                 "description": "The heat transfer coefficient equals the heat flux divided by the temperature difference"
                                             }
                                         },
+                                        "additionalProperties": false,
                                         "required": [
                                             "flux"
                                         ]
                                     },
                                     "irradiance": {
                                         "type": "object",
-                                        "parameters": {
+                                        "properties": {
                                             "flux": {
                                                 "$ref": "#/definitions/units/wattWithUncertainty",
                                                 "description": "The irradiance is determined on the surface of the sample. Positive irradiance means irradiance towards the sample. It is meaured in watts."
@@ -2150,13 +2276,14 @@
                                                 "description": "The direction of the irradiance on the sample."
                                             }
                                         },
+                                        "additionalProperties": false,
                                         "required": [
                                             "flux"
                                         ]
                                     },
                                     "electric": {
                                         "type": "object",
-                                        "parameters": {
+                                        "properties": {
                                             "flux": {
                                                 "$ref": "#/definitions/units/wattWithUncertainty",
                                                 "description": "The electric energy supplied to the sample. Positive electric energy means that it is delivered to the sample."
@@ -2166,18 +2293,21 @@
                                                 "description": "The current-voltage characteristic can be important for example for photovoltaics. It can also be used just to define just one current and one voltage."
                                             }
                                         },
+                                        "additionalProperties": false,
                                         "required": [
                                             "flux"
                                         ]
                                     }
-                                }
+                                },
+                                "additionalProperties": false,
+                                "required": []
                             },
                             "additionalItems": false,
                             "minItems": 1
                         },
                         "results": {
                             "type": "object",
-                            "parameters": {
+                            "properties": {
                                 "uValue": {
                                     "$ref": "#/definitions/numberWithUncertainty",
                                     "description": "The U value can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
@@ -2186,9 +2316,13 @@
                                     "$ref": "#/definitions/numberWithUncertainty",
                                     "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
                                 }
-                            }
+                            },
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "required": []
                         }
                     },
+                    "additionalProperties": false,
                     "required": [
                         "id"
                     ]
@@ -2197,7 +2331,7 @@
             },
             "constants": {
                 "type": "object",
-                "parameters": {
+                "properties": {
                     "conditions": {
                         "type": "array",
                         "items": {
@@ -2222,6 +2356,7 @@
                         "description": "The coordinate system is defined by a reference to a publication or standard."
                     }
                 },
+                "additionalProperties": false,
                 "required": [
                     "conditions",
                     "timestamp"
@@ -2234,7 +2369,7 @@
                 "type": "array",
                 "items": {
                     "type": "object",
-                    "parameters": {
+                    "properties": {
                         "I": {
                             "$ref": "#/definitions/units/ampereWithoutUncertainty",
                             "description": "The electric current in amperes."
@@ -2244,6 +2379,7 @@
                             "description": "The electric potential difference in volts."
                         }
                     },
+                    "additionalProperties": false,
                     "required": [
                         "I",
                         "V"
@@ -2255,15 +2391,16 @@
             "photovoltaics": {
                 "title": "This section provides a structure for data about photovoltaic modules which convert irradiance into electricity.",
                 "type": "object",
-                "parameters": {
+                "properties": {
                     "constants": {
                         "type": "object",
-                        "parameters": {
+                        "properties": {
                             "coordinateSystem": {
                                 "$ref": "#/definitions/geometry/coordinateSystem",
                                 "description": "The coordinate system is defined by a reference to a publication or standard."
                             }
                         },
+                        "additionalProperties": false,
                         "required": []
                     },
                     "cells": {
@@ -2271,7 +2408,7 @@
                         "type": "array",
                         "items": {
                             "type": "object",
-                            "parameters": {
+                            "properties": {
                                 "id": {
                                     "$ref": "#/definitions/identifier",
                                     "description": "The id represents one cell of the photovoltaic module."
@@ -2286,7 +2423,7 @@
                                 },
                                 "power": {
                                     "type": "object",
-                                    "parameters": {
+                                    "properties": {
                                         "nominal": {
                                             "$ref": "#/definitions/units/wattWithUncertainty",
                                             "description": "The nominal power of the cell is measured independently at standard test conditions in watts."
@@ -2295,7 +2432,9 @@
                                             "$ref": "#/definitions/units/wattWithUncertainty",
                                             "description": "The effective nominal power of a cell is the nominal power of the module divided by the number of cells."
                                         }
-                                    }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": []
                                 },
                                 "geometry": {
                                     "$ref": "#/definitions/geometry/basics",
@@ -2346,7 +2485,11 @@
                                     "additionalItems": false,
                                     "minItems": 0
                                 }
-                            }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "id"
+                            ]
                         },
                         "additionalItems": false,
                         "minItems": 1
@@ -2356,7 +2499,7 @@
                         "type": "array",
                         "items": {
                             "type": "object",
-                            "parameters": {
+                            "properties": {
                                 "id": {
                                     "$ref": "#/definitions/identifier",
                                     "description": "The id represents one diode of the PV module."
@@ -2366,6 +2509,7 @@
                                     "description": "This string can explain the cell to humans."
                                 }
                             },
+                            "additionalProperties": false,
                             "required": []
                         },
                         "additionalItems": false,
@@ -2384,7 +2528,7 @@
                                 "material": {
                                     "title": "This sections defines the material of the layer",
                                     "type": "object",
-                                    "parameters": {
+                                    "properties": {
                                         "anyOf": [
                                             {
                                                 "id": {
@@ -2412,6 +2556,7 @@
                                             "description": "An explanation with more details about the component"
                                         }
                                     },
+                                    "additionalProperties": false,
                                     "required": []
                                 },
                                 "thickness": {
@@ -2454,12 +2599,17 @@
                                     "additionalItems": false,
                                     "minItems": 0
                                 }
-                            }
+                            },
+                            "additionalProperties": false,
+                            "required": []
                         },
                         "additionalItems": false,
                         "minItems": 1
                     }
-                }
+                },
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": []
             }
         },
         "connections": {
@@ -2468,7 +2618,7 @@
                 "type": "array",
                 "items": {
                     "type": "object",
-                    "parameters": {
+                    "properties": {
                         "id1": {
                             "$ref": "#/definitions/identifier",
                             "description": "This id represents the first component."
@@ -2477,7 +2627,12 @@
                             "$ref": "#/definitions/identifier",
                             "description": "This id represents the second component."
                         }
-                    }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "id1",
+                        "id2"
+                    ]
                 },
                 "additionalItems": false,
                 "minItems": 0
@@ -2496,6 +2651,7 @@
             "minItems": 1
         }
     },
+    "additionalProperties": false,
     "required": [
         "component"
     ]

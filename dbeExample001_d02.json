@@ -88,7 +88,7 @@
                     },
                     "dataPoint": [
                         {
-                            "incidence": {
+                            "incidence###": {
                                 "direction": [
                                     "nearnormal"
                                 ],
@@ -105,12 +105,7 @@
                                 "direction": [
                                     "nearnormal"
                                 ],
-                                "range": {
-                                    "spectrum": 32###,
-                                    [
-                                        "integral"
-                                    ]
-                                }
+                                "range###": {}
                             },
                             "results": {
                                 "reflectance": 0.1
