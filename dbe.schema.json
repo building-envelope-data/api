@@ -13,6 +13,9 @@
                 }
             },
             "additionalProperties": false,
+            "required": [
+                "en-US"
+            ],
             "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
         },
         "identifier": {
@@ -771,25 +774,34 @@
         },
         "reference": {
             "title": "This section is used to refer to a standard or a publication.",
-            "type": "object",
-            "properties": {
-                "oneOf": [
-                    {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
                         "standard": {
                             "$ref": "#/definitions/standard",
                             "description": "This section defines which standard is refered to."
                         }
                     },
-                    {
+                    "additionalProperties": false,
+                    "required": [
+                        "standard"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
                         "publication": {
                             "$ref": "#/definitions/publication",
                             "description": "This section defines which publication is refered to."
                         }
-                    }
-                ]
-            },
-            "additionalProperties": false,
-            "minItems": 1
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "publication"
+                    ]
+                }
+            ]
         },
         "publication": {
             "type": "object",
@@ -1861,26 +1873,32 @@
             "wavelength": {
                 "range": {
                     "title": "The range can either define the bandwidth or amplification factor of measuring a single wavelength or an entire spectrum of wavenlengths which is measured at the same time.",
-                    "type": "object",
-                    "properties": {
-                        "oneOf": [
-                            {
-                                "anyOf": [
-                                    {
+                    "oneOf": [
+                        {
+                            "anyOf": [
+                                {
+                                    "type": "object",
+                                    "properties": {
                                         "bandwidth": {
                                             "$ref": "#/definitions/units/nanometerWithoutUncertainty",
                                             "description": "When `#/definitions/optical/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/definitions/optical/wavelengths/wavelength`."
                                         }
-                                    },
-                                    {
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
                                         "amplificationFactor": {
                                             "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
                                             "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/definitions/optical/wavelengths/wavelength`."
                                         }
                                     }
-                                ]
-                            },
-                            {
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
                                 "spectrum": {
                                     "type": "array",
                                     "items": {
@@ -1897,11 +1915,11 @@
                                     "maxItems": 1
                                 }
                             }
-                        ]
-                    },
-                    "additionalProperties": false,
-                    "required": []
-                }
+                        }
+                    ]
+                },
+                "additionalProperties": false,
+                "required": []
             },
             "incidence": {
                 "title": "This section defines the incident radiation on a sample. It consists of the direction of the irradiance, its polarization, the wavelenthgs and the range of the wavelengths.",

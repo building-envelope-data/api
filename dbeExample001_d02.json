@@ -26,9 +26,11 @@
                                     "nearnormal"
                                 ]
                             },
-                            "results": {
-                                "transmittance": 0.85
-                            }
+                            "results": [
+                                {
+                                    "transmittance": 0.85
+                                }
+                            ]
                         },
                         {
                             "incidence": {
@@ -44,9 +46,11 @@
                                     "nearnormal"
                                 ]
                             },
-                            "results": {
-                                "transmittance": 0.90
-                            }
+                            "results": [
+                                {
+                                    "transmittance": 0.90
+                                }
+                            ]
                         },
                         {
                             "incidence": {
@@ -62,9 +66,11 @@
                                     "nearnormal"
                                 ]
                             },
-                            "results": {
-                                "transmittance": 0.80
-                            }
+                            "results": [
+                                {
+                                    "transmittance": 0.80
+                                }
+                            ]
                         }
                     ]
                 },
@@ -78,7 +84,9 @@
                             "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
                             "reference": {
                                 "standard": {
-                                    "standardizers": "ISO",
+                                    "standardizers": [
+                                        "ISO"
+                                    ],
                                     "numeration": {
                                         "mainNumber": 9050
                                     }
@@ -86,9 +94,9 @@
                             }
                         }
                     },
-                    "dataPoint": [
+                    "dataPoints": [
                         {
-                            "incidence###": {
+                            "incidence": {
                                 "direction": [
                                     "nearnormal"
                                 ],
@@ -97,7 +105,7 @@
                                 },
                                 "range": {
                                     "spectrum": [
-                                        12
+                                        "solar###"
                                     ]
                                 }
                             },
@@ -105,11 +113,17 @@
                                 "direction": [
                                     "nearnormal"
                                 ],
-                                "range###": {}
+                                "range": {
+                                    "spectrum": [
+                                        "solar"
+                                    ]
+                                }
                             },
-                            "results": {
-                                "reflectance": 0.1
-                            }
+                            "results": [
+                                {
+                                    "reflectance": 0.1
+                                }
+                            ]
                         }
                     ]
                 }
