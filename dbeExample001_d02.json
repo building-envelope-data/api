@@ -111,13 +111,8 @@
                             },
                             "emergence": {
                                 "direction": [
-                                    "nearnormal"
-                                ],
-                                "range": {
-                                    "spectrum": [
-                                        "solar"
-                                    ]
-                                }
+                                    "hemispherical"
+                                ]
                             },
                             "results": {
                                 "reflectance": [

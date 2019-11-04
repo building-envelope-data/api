@@ -2080,10 +2080,6 @@
                             "reflectance": {
                                 "$ref": "#/definitions/numberWithUncertainty",
                                 "description": "Reflectance is the ratio between the irradiance which is reflected by the sample and the irradiance on the the sample."
-                            },
-                            "BSDF": {
-                                "$ref": "#/definitions/optical/BSDFresults",
-                                "description": "###andBelow"
                             }
                         },
                         "additionalProperties": false,
@@ -2115,8 +2111,20 @@
                                 },
                                 "additionalItems": false,
                                 "minItems": 2
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [],
+                        "minProperties": 1
+                    },
+                    {
+                        "title": "BSDF means Bidirectional Scattering Distribution Function. It is defined as the emergent radiation PER STERADIAN divided by the incident radiation AND THE COSINE OF THE ANGLE OF EMERGENCE. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This section defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
+                        "type": "object",
+                        "properties": {
+                            "formatting": {
+                                "$ref": "#/definitions/formatting"
                             },
-                            "BSDF": {
+                            "BTDF": {
                                 "type": "array",
                                 "items": {
                                     "type": "number",
@@ -2124,7 +2132,19 @@
                                     "maximum": 1
                                 },
                                 "additionalItems": false,
-                                "minItems": 2
+                                "minItems": 2,
+                                "description": "BTDF means Bidirectional Transmittance Distribution Function. It is defined as the  radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
+                            },
+                            "BRDF": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "additionalItems": false,
+                                "minItems": 2,
+                                "description": "BRDF means Bidirectional Reflectance Distribution Function. It is defined as the  radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
                             }
                         },
                         "additionalProperties": false,
@@ -2132,55 +2152,6 @@
                         "minProperties": 1
                     }
                 ]
-            },
-            "BSDFresults": {
-                "title": "BSDF means Bidirectional Scattering Density Function. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This section defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
-                "type": "array",
-                "items": {
-                    "oneOf": [
-                        {
-                            "type": "object",
-                            "properties": {
-                                "BTDF": {
-                                    "$ref": "#/definitions/numberWithUncertainty",
-                                    "description": "BTDF means Bidirectional Transmittance Density Function. Bidirectional Transmittance means the transmittance from one incident direction to a certain direction of emergence on the other side of the sample."
-                                },
-                                "BRDF": {
-                                    "$ref": "#/definitions/numberWithUncertainty",
-                                    "description": "BRDF means Bidirectional Reflectance Density Function. Bidirectional Reflectance means the reflectance from one incident direction to a certain direction of emergence on the same side of the sample."
-                                }
-                            },
-                            "additionalProperties": false,
-                            "required": [],
-                            "minProperties": 1
-                        },
-                        {
-                            "type": "object",
-                            "properties": {
-                                "formatting": {
-                                    "$ref": "#/definitions/formatting"
-                                },
-                                "BSDF": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "number",
-                                        "minimum": 0,
-                                        "maximum": 1
-                                    },
-                                    "additionalItems": false,
-                                    "minItems": 1
-                                }
-                            },
-                            "additionalProperties": false,
-                            "required": [
-                                "formatting",
-                                "BSDF"
-                            ]
-                        }
-                    ]
-                },
-                "additionalItems": false,
-                "minItems": 0
             }
         },
         "calorimetric": {
