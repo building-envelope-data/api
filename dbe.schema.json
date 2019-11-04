@@ -53,7 +53,8 @@
                 }
             ],
             "additionalItems": false,
-            "minItems": 1
+            "minItems": 1,
+            "maxItems": 2
         },
         "numberWithoutUncertainty": {
             "title": "This type is used when no restrictions on the numbers are possible.",
@@ -1347,6 +1348,7 @@
                                     "additionalItems": false,
                                     "minItems": 2
                                 },
+                                "additionalItems": false,
                                 "minItems": 2,
                                 "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots."
                             },
@@ -1772,10 +1774,10 @@
                                 "list"
                             ]
                         }
-                    ],
-                    "additionalItems": false,
-                    "minItems": 1
-                }
+                    ]
+                },
+                "additionalItems": false,
+                "minItems": 1
             },
             "polarisation": {
                 "title": "Polarization is a characteristic of radiation which can influence the transmittance and the reflectance. Radiation can be polarized linearly or circular.",
@@ -1883,7 +1885,9 @@
                                             "$ref": "#/definitions/units/nanometerWithoutUncertainty",
                                             "description": "When `#/definitions/optical/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/definitions/optical/wavelengths/wavelength`."
                                         }
-                                    }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": []
                                 },
                                 {
                                     "type": "object",
@@ -1892,7 +1896,9 @@
                                             "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
                                             "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/definitions/optical/wavelengths/wavelength`."
                                         }
-                                    }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": []
                                 }
                             ]
                         },
@@ -1907,19 +1913,19 @@
                                             "visible",
                                             "solar",
                                             "infrared"
-                                        ],
-                                        "description": "If `#/definitions/optical/wavelengths/integral` is true, then `#/definitions/optical/wavelength/range/spectrum` identifies the spectrum of wavelengths over which the integral result is be calculated. For further specification of the spectrum, please search for the applied `#/definitions/standard`."
+                                        ]
                                     },
                                     "additionalItems": false,
                                     "minItems": 1,
-                                    "maxItems": 1
+                                    "maxItems": 1,
+                                    "description": "If `#/definitions/optical/wavelengths/integral` is true, then `#/definitions/optical/wavelength/range/spectrum` identifies the spectrum of wavelengths over which the integral result is be calculated. For further specification of the spectrum, please search for the applied `#/definitions/standard`."
                                 }
-                            }
+                            },
+                            "additionalProperties": false,
+                            "required": []
                         }
                     ]
-                },
-                "additionalProperties": false,
-                "required": []
+                }
             },
             "incidence": {
                 "title": "This section defines the incident radiation on a sample. It consists of the direction of the irradiance, its polarization, the wavelenthgs and the range of the wavelengths.",
@@ -2063,30 +2069,30 @@
             },
             "results": {
                 "title": "This section defines the results of the optical measurement or simulation under the specified boundary conditions.",
-                "type": "array",
-                "items": {
-                    "oneOf": [
-                        {
-                            "type": "object",
-                            "properties": {
-                                "transmittance": {
-                                    "$ref": "#/definitions/numberWithUncertainty",
-                                    "description": "Transmittance is the ratio between the irradiance which is transmitted through the sample and the irradiance on the the sample. It has values between 0 and 1. Exceptions are usually due to measurement uncertainty."
-                                },
-                                "reflectance": {
-                                    "$ref": "#/definitions/numberWithUncertainty",
-                                    "description": "Reflectance is the ratio between the irradiance which is reflected by the sample and the irradiance on the the sample."
-                                },
-                                "BSDF": {
-                                    "$ref": "#/definitions/optical/BSDFresults",
-                                    "description": "###andBelow"
-                                }
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "transmittance": {
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "Transmittance is the ratio between the irradiance which is transmitted through the sample and the irradiance on the the sample. It has values between 0 and 1. Exceptions are usually due to measurement uncertainty."
                             },
-                            "additionalProperties": false,
-                            "required": [],
-                            "minProperties": 1
+                            "reflectance": {
+                                "$ref": "#/definitions/numberWithUncertainty",
+                                "description": "Reflectance is the ratio between the irradiance which is reflected by the sample and the irradiance on the the sample."
+                            },
+                            "BSDF": {
+                                "$ref": "#/definitions/optical/BSDFresults",
+                                "description": "###andBelow"
+                            }
                         },
-                        {
+                        "additionalProperties": false,
+                        "required": [],
+                        "minProperties": 1
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "formatting": {
                                 "$ref": "#/definitions/formatting"
                             },
@@ -2098,7 +2104,7 @@
                                     "maximum": 1
                                 },
                                 "additionalItems": false,
-                                "minItems": 1
+                                "minItems": 2
                             },
                             "reflectance": {
                                 "type": "array",
@@ -2108,7 +2114,7 @@
                                     "maximum": 1
                                 },
                                 "additionalItems": false,
-                                "minItems": 1
+                                "minItems": 2
                             },
                             "BSDF": {
                                 "type": "array",
@@ -2118,13 +2124,14 @@
                                     "maximum": 1
                                 },
                                 "additionalItems": false,
-                                "minItems": 1
+                                "minItems": 2
                             }
-                        }
-                    ]
-                },
-                "additionalItems": false,
-                "minItems": 0
+                        },
+                        "additionalProperties": false,
+                        "required": [],
+                        "minProperties": 1
+                    }
+                ]
             },
             "BSDFresults": {
                 "title": "BSDF means Bidirectional Scattering Density Function. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This section defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
@@ -2345,6 +2352,7 @@
                         "id"
                     ]
                 },
+                "additionalItems": false,
                 "minItems": 1
             },
             "constants": {

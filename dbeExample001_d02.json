@@ -26,11 +26,11 @@
                                     "nearnormal"
                                 ]
                             },
-                            "results": [
-                                {
-                                    "transmittance": 0.85
-                                }
-                            ]
+                            "results": {
+                                "transmittance": [
+                                    0.85
+                                ]
+                            }
                         },
                         {
                             "incidence": {
@@ -46,11 +46,11 @@
                                     "nearnormal"
                                 ]
                             },
-                            "results": [
-                                {
-                                    "transmittance": 0.90
-                                }
-                            ]
+                            "results": {
+                                "transmittance": [
+                                    0.90
+                                ]
+                            }
                         },
                         {
                             "incidence": {
@@ -66,11 +66,11 @@
                                     "nearnormal"
                                 ]
                             },
-                            "results": [
-                                {
-                                    "transmittance": 0.80
-                                }
-                            ]
+                            "results": {
+                                "transmittance": [
+                                    0.80
+                                ]
+                            }
                         }
                     ]
                 },
@@ -105,7 +105,7 @@
                                 },
                                 "range": {
                                     "spectrum": [
-                                        "solar###"
+                                        "solar"
                                     ]
                                 }
                             },
@@ -119,11 +119,11 @@
                                     ]
                                 }
                             },
-                            "results": [
-                                {
-                                    "reflectance": 0.1
-                                }
-                            ]
+                            "results": {
+                                "reflectance": [
+                                    0.1
+                                ]
+                            }
                         }
                     ]
                 }
