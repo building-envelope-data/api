@@ -2311,7 +2311,8 @@
                                 "gValue": {
                                     "$ref": "#/definitions/numberWithUncertainty",
                                     "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
-                                }
+                                },
+                                "efficiencies###": null
                             },
                             "additionalProperties": false,
                             "minProperties": 1,
@@ -2400,15 +2401,15 @@
                         "additionalProperties": false,
                         "required": []
                     },
-                    "cells": {
-                        "title": "This array defines the cells of the PV module.",
+                    "cellTypes": {
+                        "title": "This array defines which type of cells is used in the PV module.",
                         "type": "array",
                         "items": {
                             "type": "object",
                             "properties": {
                                 "id": {
                                     "$ref": "#/definitions/identifier",
-                                    "description": "The id represents one cell of the photovoltaic module."
+                                    "description": "The id represents one type of PV cells."
                                 },
                                 "explanation": {
                                     "$ref": "#/definitions/internationalString",
@@ -2432,10 +2433,6 @@
                                     },
                                     "additionalProperties": false,
                                     "required": []
-                                },
-                                "geometry": {
-                                    "$ref": "#/definitions/geometry/basics",
-                                    "description": "This section defines the geometry and location of the cell."
                                 },
                                 "width": {
                                     "$ref": "#/definitions/units/meterWithUncertainty",
@@ -2491,15 +2488,88 @@
                         "additionalItems": false,
                         "minItems": 1
                     },
-                    "diodes": {
-                        "title": "This array defines the diods of the PV module. They are used to bypass shaded cells which would otherwise dissipate energy.",
+                    "cells": {
+                        "title": "This array defines the cells of the PV module.",
                         "type": "array",
                         "items": {
                             "type": "object",
                             "properties": {
                                 "id": {
                                     "$ref": "#/definitions/identifier",
-                                    "description": "The id represents one diode of the PV module."
+                                    "description": "The id represents one specific cell in the photovoltaic module. It is used to define connections to other parts of the PV module."
+                                },
+                                "cellType": {
+                                    "$ref": "#/definitions/identifier",
+                                    "description": "The id represents one type of PV cells as defined above."
+                                },
+                                "geometry": {
+                                    "$ref": "#/definitions/geometry/basics",
+                                    "description": "This section defines the geometry and location of the cell."
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "id"
+                            ]
+                        },
+                        "additionalItems": false,
+                        "minItems": 1
+                    },
+                    "diodeTypes": {
+                        "title": "This array defines the type of diodes which are used in the the PV module.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "$ref": "#/definitions/identifier",
+                                    "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
+                                },
+                                "explanation": {
+                                    "$ref": "#/definitions/internationalString",
+                                    "description": "This string can explain the cell to humans."
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": []
+                        },
+                        "additionalItems": false,
+                        "minItems": 0
+                    },
+                    "diodes": {
+                        "title": "This array defines the diodes of the PV module. They are used to bypass shaded cells which would otherwise dissipate energy.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "$ref": "#/definitions/identifier",
+                                    "description": "The id represents one specific diode of the PV module. The id is used to define connections to other parts of the PV module"
+                                },
+                                "diodeType": {
+                                    "$ref": "#/definitions/identifier",
+                                    "description": "The id defines the type of the diode."
+                                },
+                                "geometry": {
+                                    "$ref": "#/definitions/geometry/basics",
+                                    "description": "This section defines the geometry and location of the diode."
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": []
+                        },
+                        "additionalItems": false,
+                        "minItems": 0
+                    },
+                    "connectionTypes": {
+                        "title": "This array defines the type of electric connections which are used in the the PV module.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "$ref": "#/definitions/identifier",
+                                    "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
                                 },
                                 "explanation": {
                                     "$ref": "#/definitions/internationalString",
@@ -2616,13 +2686,17 @@
                 "items": {
                     "type": "object",
                     "properties": {
+                        "connectionType": {
+                            "$ref": "#/definitions/identifier",
+                            "description": "The id defines the type of the connection as described unter `connectionTypes`."
+                        },
                         "id1": {
                             "$ref": "#/definitions/identifier",
-                            "description": "This id represents the first component."
+                            "description": "Id1 represents the first component which is connected to the component represented by id2."
                         },
                         "id2": {
                             "$ref": "#/definitions/identifier",
-                            "description": "This id represents the second component."
+                            "description": "Id1 represents the second component which is connected to the component represented by id1."
                         }
                     },
                     "additionalProperties": false,
