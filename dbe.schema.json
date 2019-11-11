@@ -145,16 +145,28 @@
                 "$ref": "#/definitions/numberWithUncertainty",
                 "description": "Watt (W) is the SI unit for power."
             },
+            "wattWithoutUncertainty": {
+                "$ref": "#/definitions/numberWithoutUncertainty",
+                "description": "Watt (W) is the SI unit for power."
+            },
             "kelvinWithUncertainty": {
                 "$ref": "#/definitions/numberWithUncertainty",
                 "description": "Kelvin (K) is the SI unit for temperature."
+            },
+            "voltWithUncertainty": {
+                "$ref": "#/definitions/numberWithUncertainty",
+                "description": "Volt (V) is the SI unit for electric potential."
             },
             "voltWithoutUncertainty": {
                 "$ref": "#/definitions/numberWithoutUncertainty",
                 "description": "Volt (V) is the SI unit for electric potential."
             },
-            "ampereWithoutUncertainty": {
+            "ampereWithUncertainty": {
                 "$ref": "#/definitions/numberWithUncertainty",
+                "description": "Ampere (A) is the SI unit for electric current."
+            },
+            "ampereWithoutUncertainty": {
+                "$ref": "#/definitions/numberWithoutUncertainty",
                 "description": "Ampere (A) is the SI unit for electric current."
             },
             "kilogramWithUncertainty": {
@@ -2824,6 +2836,50 @@
                         },
                         "additionalProperties": false,
                         "required": []
+                    },
+                    "moduleProperties": {
+                        "type": "object",
+                        "properties": {
+                            "power": {
+                                "type": "object",
+                                "properties": {
+                                    "nominal": {
+                                        "$ref": "#/definitions/units/wattWithUncertainty",
+                                        "description": "The nominal power is measured at the maximum power point of the module under standard test conditions."
+                                    }
+                                }
+                            },
+                            "voltage": {
+                                "type": "object",
+                                "properties": {
+                                    "nominal": {
+                                        "$ref": "#/definitions/units/voltWithUncertainty",
+                                        "description": "The nominal voltage is measured at the maximum power point of the module under standard test conditions."
+                                    },
+                                    "openCircuit": {
+                                        "$ref": "#/definitions/units/voltWithUncertainty",
+                                        "description": "The open circuit voltage is measured under standard test conditions without connecting the module to an electric circuit."
+                                    }
+                                }
+                            },
+                            "current": {
+                                "type": "object",
+                                "properties": {
+                                    "nominal": {
+                                        "$ref": "#/definitions/units/ampereWithUncertainty",
+                                        "description": "The nominal current is measured at the maximum power point of the module under standard test conditions."
+                                    },
+                                    "shortCircuit": {
+                                        "$ref": "#/definitions/units/ampereWithUncertainty",
+                                        "description": "The short circuit current is measured under standard test conditions with the module connected to an electric circuit which has an electric resistance of zero."
+                                    }
+                                }
+                            },
+                            "fillFactor": {
+                                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                "description": "The fill factor is a measure of quality of a solar cell. It is the power at the maximum powerpoint divided by the open circuit voltage and the short circuit current."
+                            }
+                        }
                     }
                 },
                 "additionalProperties": false,
