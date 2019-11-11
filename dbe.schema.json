@@ -157,6 +157,10 @@
                 "$ref": "#/definitions/numberWithUncertainty",
                 "description": "Ampere (A) is the SI unit for electric current."
             },
+            "kilogramWithUncertainty": {
+                "$ref": "#/definitions/numberWithUncertainty",
+                "description": "Kilogram (also kilogramme, kg) is the SI unit for length."
+            },
             "kgPerCubicMeterWithUncertainty": {
                 "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
                 "description": "The density of a material has the SI units kg/m^3."
@@ -1419,6 +1423,64 @@
             "minItems": 2
         },
         "material": {
+            "basics": {
+                "title": "This sections defines the material of the layer",
+                "type": "object",
+                "properties": {
+                    "anyOf": [
+                        {
+                            "id": {
+                                "$ref": "#/definitions/identifier",
+                                "description": "The id represents one layer of the PV module."
+                            },
+                            "version": {
+                                "$ref": "#/definitions/identifier",
+                                "description": "This id represents a specific version of the layer."
+                            }
+                        },
+                        {
+                            "name": {
+                                "$ref": "#/definitions/internationalString",
+                                "description": "The name of the component"
+                            }
+                        }
+                    ],
+                    "abbreviation": {
+                        "type": "string",
+                        "description": "The abbreviation of the material"
+                    },
+                    "explanation": {
+                        "$ref": "#/definitions/internationalString",
+                        "description": "An explanation with more details about the component"
+                    },
+                    "chemicalElements": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "pattern": "[A-Z][a-z]?"
+                        },
+                        "additionalItems": false,
+                        "minItems": 1,
+                        "maxItems": 10,
+                        "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
+                    }
+                },
+                "additionalProperties": false,
+                "required": []
+            },
+            "characteristics": {
+                "type": "object",
+                "properties": {
+                    "refractiveIndex": {
+                        "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                        "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
+                    },
+                    "density": {
+                        "$ref": "#/definitions/units/kgPerCubicMeterWithUncertainty",
+                        "description": "The density is needed to calculate the weigth of the layer."
+                    }
+                }
+            },
             "constants": {
                 "title": "This section collect all constants which are specific for components of the category materials.",
                 "type": "object",
@@ -2597,62 +2659,12 @@
                             "type": "object",
                             "properties": {
                                 "material": {
-                                    "title": "This sections defines the material of the layer",
-                                    "type": "object",
-                                    "properties": {
-                                        "anyOf": [
-                                            {
-                                                "id": {
-                                                    "$ref": "#/definitions/identifier",
-                                                    "description": "The id represents one layer of the PV module."
-                                                },
-                                                "version": {
-                                                    "$ref": "#/definitions/identifier",
-                                                    "description": "This id represents a specific version of the layer."
-                                                }
-                                            },
-                                            {
-                                                "name": {
-                                                    "$ref": "#/definitions/internationalString",
-                                                    "description": "The name of the component"
-                                                }
-                                            }
-                                        ],
-                                        "abbreviation": {
-                                            "type": "string",
-                                            "description": "The abbreviation of the component"
-                                        },
-                                        "explanation": {
-                                            "$ref": "#/definitions/internationalString",
-                                            "description": "An explanation with more details about the component"
-                                        }
-                                    },
-                                    "additionalProperties": false,
-                                    "required": []
+                                    "$ref": "#/definitions/material/basics",
+                                    "description": "This sections defines the material of the layer"
                                 },
-                                "thickness": {
-                                    "$ref": "#/definitions/units/meterWithUncertainty",
-                                    "description": "The thickness of this layer as part of the module."
-                                },
-                                "refractiveIndex": {
-                                    "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
-                                    "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
-                                },
-                                "density": {
-                                    "$ref": "#/definitions/units/kgPerCubicMeterWithUncertainty",
-                                    "description": "The density is needed to calculate the weigth of the layer."
-                                },
-                                "weight": {
-                                    "$ref": "#/definitions/units/kgPerCubicMeterWithUncertainty",
-                                    "description": "The weigth of the layer."
-                                },
-                                "geometry": {
-                                    "$ref": "#/definitions/geometry/basics",
-                                    "description": "This section defines the geometry and location of the cell."
-                                },
-                                "colour": {
-                                    "$ref": "#/definitions/colour",
-                                    "description": "The reference offers several way to define the colour of the component."
+                                "materialProperties": {
+                                    "$ref": "#/definitions/material/characteristics",
+                                    "description": "All properties which depend on the material in general and not on the specific component."
                                 },
                                 "categories": {
                                     "type": "array",
@@ -2669,6 +2681,22 @@
                                     },
                                     "additionalItems": false,
                                     "minItems": 0
+                                },
+                                "thickness": {
+                                    "$ref": "#/definitions/units/meterWithUncertainty",
+                                    "description": "The thickness of this layer as part of the module."
+                                },
+                                "weight": {
+                                    "$ref": "#/definitions/units/kilogramWithUncertainty",
+                                    "description": "The weigth of the layer."
+                                },
+                                "geometry": {
+                                    "$ref": "#/definitions/geometry/basics",
+                                    "description": "This section defines the geometry and location of the cell."
+                                },
+                                "colour": {
+                                    "$ref": "#/definitions/colour",
+                                    "description": "The reference offers several way to define the colour of the component."
                                 }
                             },
                             "additionalProperties": false,
@@ -2768,8 +2796,38 @@
                         "additionalProperties": false,
                         "minProperties": 1,
                         "required": []
+                    },
+                    "frame": {
+                        "title": "PV modules often have a frame which increases the mechanical stability of the module.",
+                        "type": "object",
+                        "properties": {
+                            "material": {
+                                "$ref": "#/definitions/material/basics",
+                                "description": "This sections defines the material of the layer"
+                            },
+                            "materialProperties": {
+                                "$ref": "#/definitions/material/characteristics",
+                                "description": "All properties which depend on the material in general and not on the specific component."
+                            },
+                            "weight": {
+                                "$ref": "#/definitions/units/kilogramWithUncertainty",
+                                "description": "The weigth of the layer."
+                            },
+                            "geometry": {
+                                "$ref": "#/definitions/geometry/basics",
+                                "description": "This section defines the geometry and location of the cell."
+                            },
+                            "colour": {
+                                "$ref": "#/definitions/colour",
+                                "description": "The reference offers several way to define the colour of the component."
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": []
                     }
-                }
+                },
+                "additionalProperties": false,
+                "required": []
             }
         },
         "connections": {
