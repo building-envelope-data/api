@@ -2859,6 +2859,10 @@
                                     "nominal": {
                                         "$ref": "#/definitions/units/wattWithUncertainty",
                                         "description": "The nominal power is measured at the maximum power point of the module under standard test conditions."
+                                    },
+                                    "tolerance###": {
+                                        "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                        "description": "The effiency of the module is measured at standard test conditions."
                                     }
                                 }
                             },
@@ -2891,6 +2895,10 @@
                             "fillFactor": {
                                 "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
                                 "description": "The fill factor is a measure of quality of a solar cell. It is the power at the maximum powerpoint divided by the open circuit voltage and the short circuit current."
+                            },
+                            "efficiency": {
+                                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                "description": "The effiency of the module is measured at standard test conditions."
                             }
                         }
                     }
