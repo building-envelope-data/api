@@ -1777,7 +1777,7 @@
                                         },
                                         "azimuth": {
                                             "$ref": "#/definitions/units/degree",
-                                            "description": "In the spherical coordinate system, the polar angle is measured from orthogonal projextion of the direction on a reference plane such as the plane between the x- and y-axis of a cartestian coordinate system."
+                                            "description": "In the spherical coordinate system, the azimuth angle is measured from orthogonal projextion of the direction on a reference plane such as the plane between the x- and y-axis of a cartestian coordinate system."
                                         }
                                     },
                                     "additionalProperties": false,
@@ -1815,6 +1815,19 @@
                                     "additionalProperties": false,
                                     "required": [
                                         "incidence"
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "profile": {
+                                            "$ref": "#/definitions/units/degree",
+                                            "description": "If the sample has a profile angle symmetry, then the profile angle is sufficient to define the direction."
+                                        }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": [
+                                        "profile"
                                     ]
                                 },
                                 {
