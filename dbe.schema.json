@@ -165,6 +165,10 @@
                 "$ref": "#/definitions/numberWithUncertainty",
                 "description": "Kelvin (K) is the SI unit for temperature."
             },
+            "kelvinWithoutUncertainty": {
+                "$ref": "#/definitions/numberWithoutUncertainty",
+                "description": "Kelvin (K) is the SI unit for temperature."
+            },
             "voltWithUncertainty": {
                 "$ref": "#/definitions/numberWithUncertainty",
                 "description": "Volt (V) is the SI unit for electric potential."
@@ -188,6 +192,10 @@
             "kgPerCubicMeterWithUncertainty": {
                 "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
                 "description": "The density of a material has the SI units kg/m^3."
+            },
+            "pascalWithoutUncertainty": {
+                "$ref": "#/definitions/numberWithoutUncertainty",
+                "description": "Pascal (Pa) is the SI unit for pressure."
             }
         },
         "created": {
@@ -3039,12 +3047,73 @@
                                             }
                                         }
                                     },
+                                    "mechanical": {
+                                        "title": "Mechanical load tests verify that a module can withstand wind and snow.",
+                                        "type": "array",
+                                        "items": {
+                                            "pressure": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "rated": {
+                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                        "description": "The maximum rated pressure in Pascal."
+                                                    },
+                                                    "tested": {
+                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                        "description": "The maximum tested pressure in Pascal."
+                                                    }
+                                                }
+                                            },
+                                            "suction": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "rated": {
+                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                        "description": "The maximum rated suction in Pascal."
+                                                    },
+                                                    "tested": {
+                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                        "description": "The maximum tested suction in Pascal."
+                                                    }
+                                                }
+                                            },
+                                            "reference": {
+                                                "type": "array",
+                                                "items": {
+                                                    "$ref": "#/definitions/reference"
+                                                },
+                                                "description": "The reference defines for example the standard according to which the mechanical test was performed."
+                                            }
+                                        },
+                                        "additionalItems": false,
+                                        "minItems": 0
+                                    },
                                     "hail": {
                                         "type": "array",
                                         "items": {
                                             "$ref": "#/definitions/reference"
                                         },
                                         "description": "If the PV module passed a hail test, then the reference can refer for example to a standard according to which the test was performed."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": []
+                            },
+                            "temperatures": {
+                                "title": "This section defines the operating temperatures.",
+                                "type": "object",
+                                "properties": {
+                                    "minimum": {
+                                        "$ref": "#/definitions/kelvinWithoutUncertainty",
+                                        "description": "The minimum operating temperatur in Kelvin (K)."
+                                    },
+                                    "operating": {
+                                        "$ref": "#/definitions/kelvinWithoutUncertainty",
+                                        "description": "The operating temperatur of the cells under standard test conditions and in Kelvin (K)."
+                                    },
+                                    "maximum": {
+                                        "$ref": "#/definitions/kelvinWithoutUncertainty",
+                                        "description": "The maximum operating temperatur in Kelvin (K)."
                                     }
                                 },
                                 "additionalProperties": false,
