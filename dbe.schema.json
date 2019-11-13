@@ -104,6 +104,12 @@
             "minimum": 0,
             "maximum": 1
         },
+        "numberBetweenZeroAndHundredWithoutUncertainty": {
+            "title": "This type is used when only non-negative integers are valid.",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+        },
         "units": {
             "title": "This section defines types for numbers with units",
             "meterWithUncertainty": {
@@ -2393,21 +2399,72 @@
                             "minItems": 1
                         },
                         "results": {
-                            "type": "object",
-                            "properties": {
-                                "uValue": {
-                                    "$ref": "#/definitions/numberWithUncertainty",
-                                    "description": "The U value can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "area": {
+                                        "title": "The results depend on the area of the component which is used to calculate the results. This section defines this area.",
+                                        "type": "object",
+                                        "properties": {
+                                            "category": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "centre",
+                                                        "outerDimensions",
+                                                        "irradiatedAbsorber",
+                                                        "projectedIrradiatedAbsorber"
+                                                    ]
+                                                },
+                                                "description": "(i) `centre` means that the results are valid for the centre of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absober, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance.",
+                                                "additionalItems": false,
+                                                "minItems": 0,
+                                                "maxItems": 1
+                                            },
+                                            "explanation": {
+                                                "$ref": "#/definitions/internationalString",
+                                                "description": "If no category is chosen above, the area needs to be defined by this explanation. If a category is chosen above, the explanation can add details."
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "minProperties": 1,
+                                        "required": [
+                                            "category"
+                                        ]
+                                    },
+                                    "uValue": {
+                                        "$ref": "#/definitions/numberWithUncertainty",
+                                        "description": "The U value can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
+                                    },
+                                    "gValue": {
+                                        "$ref": "#/definitions/numberWithUncertainty",
+                                        "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
+                                    },
+                                    "efficiencies": {
+                                        "type": "object",
+                                        "properties": {
+                                            "photovoltaic": {
+                                                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                                "description": "The photovoltaic efficiency of a component which uses irradiance to provide electric power."
+                                            },
+                                            "solarThermal": {
+                                                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                                "description": "The solar thermal efficiency of a component which uses irradiance to provide heat."
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "minProperties": 1,
+                                        "required": []
+                                    }
                                 },
-                                "gValue": {
-                                    "$ref": "#/definitions/numberWithUncertainty",
-                                    "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
-                                },
-                                "efficiencies###": null
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "required": []
                             },
-                            "additionalProperties": false,
-                            "minProperties": 1,
-                            "required": []
+                            "additionalItems": false,
+                            "minItems": 1
                         }
                     },
                     "additionalProperties": false,
@@ -2860,9 +2917,9 @@
                                         "$ref": "#/definitions/units/wattWithUncertainty",
                                         "description": "The nominal power is measured at the maximum power point of the module under standard test conditions."
                                     },
-                                    "tolerance###": {
-                                        "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
-                                        "description": "The effiency of the module is measured at standard test conditions."
+                                    "tolerance": {
+                                        "$ref": "#/definitions/numberBetweenZeroAndHundredWithoutUncertainty",
+                                        "description": "The tolerance of the nominal power of the module in percent. For example, '5' means, that the nominal power can be 5% larger or smaller than the value provided above."
                                     }
                                 }
                             },
