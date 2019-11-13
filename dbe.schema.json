@@ -99,15 +99,21 @@
             "minimum": 0
         },
         "numberBetweenZeroAndOneWithoutUncertainty": {
-            "title": "This type is used when only non-negative integers are valid.",
+            "title": "This type is used when only numbers between 0 and 1 are valid.",
             "type": "number",
             "minimum": 0,
             "maximum": 1
         },
         "numberBetweenZeroAndHundredWithoutUncertainty": {
-            "title": "This type is used when only non-negative integers are valid.",
+            "title": "This type is used when only numbers between 0 and 100 are valid.",
             "type": "number",
             "minimum": 0,
+            "maximum": 100
+        },
+        "numberBetweenMinusAndPlusHundredWithoutUncertainty": {
+            "title": "This type is used when only numbers between -100 and 100 are valid.",
+            "type": "number",
+            "minimum": -100,
             "maximum": 100
         },
         "units": {
@@ -800,7 +806,7 @@
             }
         },
         "reference": {
-            "title": "This section is used to refer to a standard or a publication.",
+            "title": "This section is used to refer to one standard or one publication.",
             "oneOf": [
                 {
                     "type": "object",
@@ -1175,7 +1181,7 @@
             ]
         },
         "dimensions": {
-            "title": "The geometric dimensions refer to the installation of the component in a building envelope. The dimensions can be used to define a bounding box which includes all parts of the component. If a component can be installed in different ways, more than one set of dimensions can be defined.",
+            "title": "The geometric dimensions refer to the installation of the component in a building envelope and a view perpendicular to the building envelope. The dimensions can be used to define a bounding box which includes all parts of the component. If a component can be installed in different ways, more than one set of dimensions can be defined.",
             "type": "array",
             "items": {
                 "type": "object",
@@ -2893,7 +2899,7 @@
                             },
                             "weight": {
                                 "$ref": "#/definitions/units/kilogramWithUncertainty",
-                                "description": "The weigth of the layer."
+                                "description": "The weigth of the frame."
                             },
                             "geometry": {
                                 "$ref": "#/definitions/geometry/basics",
@@ -2920,6 +2926,10 @@
                                     "tolerance": {
                                         "$ref": "#/definitions/numberBetweenZeroAndHundredWithoutUncertainty",
                                         "description": "The tolerance of the nominal power of the module in percent. For example, '5' means, that the nominal power can be 5% larger or smaller than the value provided above."
+                                    },
+                                    "temperatureCoefficient": {
+                                        "$ref": "#/definitions/numberBetweenMinusAndPlusHundredWithoutUncertainty",
+                                        "description": "When the temperature increases compared to standard test conditions, the nominal power changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                     }
                                 }
                             },
@@ -2933,6 +2943,10 @@
                                     "openCircuit": {
                                         "$ref": "#/definitions/units/voltWithUncertainty",
                                         "description": "The open circuit voltage is measured under standard test conditions without connecting the module to an electric circuit."
+                                    },
+                                    "temperatureCoefficient": {
+                                        "$ref": "#/definitions/numberBetweenMinusAndPlusHundredWithoutUncertainty",
+                                        "description": "When the temperature increases compared to standard test conditions, the open circuit voltage changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                     }
                                 }
                             },
@@ -2946,6 +2960,10 @@
                                     "shortCircuit": {
                                         "$ref": "#/definitions/units/ampereWithUncertainty",
                                         "description": "The short circuit current is measured under standard test conditions with the module connected to an electric circuit which has an electric resistance of zero."
+                                    },
+                                    "temperatureCoefficient": {
+                                        "$ref": "#/definitions/numberBetweenMinusAndPlusHundredWithoutUncertainty",
+                                        "description": "When the temperature increases compared to standard test conditions, the short circuit current changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                     }
                                 }
                             },
@@ -2956,12 +2974,87 @@
                             "efficiency": {
                                 "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
                                 "description": "The effiency of the module is measured at standard test conditions."
+                            },
+                            "weight": {
+                                "$ref": "#/definitions/units/kilogramWithUncertainty",
+                                "description": "The weigth of the PV module."
+                            },
+                            "geometry": {
+                                "$ref": "#/definitions/geometry/basics",
+                                "description": "This section defines the geometry of the PV module including the dimensions width, height and depth (thickness)."
+                            },
+                            "safety": {
+                                "title": "This section defines data about the safety of PV modules.",
+                                "type": "object",
+                                "properties": {
+                                    "fire": {
+                                        "title": "This section defines the fire safety class of the PV module depending on the region for which the class is valid.",
+                                        "type": "object",
+                                        "properties": {
+                                            "EN": {
+                                                "title": "This section defines the fire safety class according to the regulations of the European Union. EN 13501-1 defines the categories as well as the additional classification for smoke development and burning drops falling from the component.",
+                                                "type": "object",
+                                                "properties": {
+                                                    "category": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "A1",
+                                                            "A2",
+                                                            "B",
+                                                            "C",
+                                                            "D",
+                                                            "E",
+                                                            "F",
+                                                            "A1_fl",
+                                                            "A2_fl",
+                                                            "B_fl",
+                                                            "C_fl",
+                                                            "D_fl",
+                                                            "E_fl",
+                                                            "A1_L",
+                                                            "A2_L",
+                                                            "B_L",
+                                                            "C_L",
+                                                            "D_L",
+                                                            "E_L"
+                                                        ]
+                                                    },
+                                                    "smoke": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "s1",
+                                                            "s2",
+                                                            "s3"
+                                                        ]
+                                                    },
+                                                    "drops": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "d0",
+                                                            "d1",
+                                                            "d2"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "hail": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/reference"
+                                        },
+                                        "description": "If the PV module passed a hail test, then the reference can refer for example to a standard according to which the test was performed."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": []
                             }
-                        }
+                        },
+                        "additionalProperties": false,
+                        "required": []
                     }
-                },
-                "additionalProperties": false,
-                "required": []
+                }
             }
         },
         "connections": {
