@@ -2449,22 +2449,22 @@
                                         ]
                                     },
                                     "uValue": {
-                                        "$ref": "#/definitions/numberWithUncertainty",
-                                        "description": "The U value can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
+                                        "$ref": "#/definitions/calorimetric/results/uValue",
+                                        "description": "The U value, also known as thermal transmittance, can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
                                     },
                                     "gValue": {
-                                        "$ref": "#/definitions/numberWithUncertainty",
+                                        "$ref": "#/definitions/calorimetric/results/gValue",
                                         "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
                                     },
                                     "efficiencies": {
                                         "type": "object",
                                         "properties": {
                                             "photovoltaic": {
-                                                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                                "$ref": "#/definitions/efficiencies/photovoltaic",
                                                 "description": "The photovoltaic efficiency of a component which uses irradiance to provide electric power."
                                             },
                                             "solarThermal": {
-                                                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                                "$ref": "#/definitions/efficiency/solarThermal",
                                                 "description": "The solar thermal efficiency of a component which uses irradiance to provide heat."
                                             }
                                         },
@@ -2521,6 +2521,27 @@
                     "conditions",
                     "timestamp"
                 ]
+            },
+            "results": {
+                "uValue": {
+                    "$ref": "#/definitions/numberWithUncertainty",
+                    "description": "The U value, also known as thermal transmittance, can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
+                },
+                "gValue": {
+                    "$ref": "#/definitions/numberWithUncertainty",
+                    "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
+                }
+            }
+        },
+        "efficiencies": {
+            "title": "For the conversion of energy into another, this section provides definitions for effiencies.",
+            "photovoltaic": {
+                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                "description": "The photovoltaic efficiency of a component which uses irradiance to provide electric power."
+            },
+            "solarThermal": {
+                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                "description": "The solar thermal efficiency of a component which uses irradiance to provide heat."
             }
         },
         "electric": {
@@ -2552,15 +2573,49 @@
                 "title": "This section provides a structure for data about photovoltaic modules which convert irradiance into electricity.",
                 "type": "object",
                 "properties": {
-                    "constants": {
+                    "coordinateSystem": {
+                        "$ref": "#/definitions/geometry/coordinateSystem",
+                        "description": "The coordinate system is defined by a reference to a publication or standard."
+                    },
+                    "amounts": {
+                        "title": "This section can be used to define how many cells, diodes, connections and layers are part of this module. All these parts can be further specified below.",
                         "type": "object",
                         "properties": {
-                            "coordinateSystem": {
-                                "$ref": "#/definitions/geometry/coordinateSystem",
-                                "description": "The coordinate system is defined by a reference to a publication or standard."
+                            "cells": {
+                                "type": "object",
+                                "properties": {
+                                    "longitudinal": {
+                                        "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                        "description": "Maximum number of cells along the longest side of the PV module."
+                                    },
+                                    "transversal": {
+                                        "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                        "description": "Maximum number of cells along the shorter side of the PV module."
+                                    },
+                                    "all": {
+                                        "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                        "description": "The number of all cells of the PV module."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "required": []
+                            },
+                            "diodes": {
+                                "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                "description": "The number of diodes in this PV module."
+                            },
+                            "connections": {
+                                "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                "description": "The number of connections in this PV module."
+                            },
+                            "layers": {
+                                "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                "description": "The number of layers in this PV module."
                             }
                         },
                         "additionalProperties": false,
+                        "minProperties": 1,
                         "required": []
                     },
                     "cellTypes": {
@@ -2676,6 +2731,23 @@
                         },
                         "additionalItems": false,
                         "minItems": 1
+                    },
+                    "cellSpacings": {
+                        "title": "If there are the same spaces between cells parallel to one side of the module, then they can be defined here.",
+                        "type": "object",
+                        "properties": {
+                            "longitudinal": {
+                                "$ref": "#/definitions/units/MeterWithUncertainty",
+                                "description": "The distance between two neighboring cells parallel to the longest side of the PV module in metre (m)."
+                            },
+                            "transversal": {
+                                "$ref": "#/definitions/units/MeterWithUncertainty",
+                                "description": "The distance between two neighboring cells parallel to the shorter side of the PV module in metre (m)."
+                            }
+                        },
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": []
                     },
                     "diodeTypes": {
                         "title": "This array defines the type of diodes which are used in the the PV module.",
@@ -2938,6 +3010,94 @@
                                     "temperatureCoefficient": {
                                         "$ref": "#/definitions/numberBetweenMinusAndPlusHundredWithoutUncertainty",
                                         "description": "When the temperature increases compared to standard test conditions, the nominal power changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
+                                    },
+                                    "guarantee": {
+                                        "title": "This section defines if a guarantee is available specifically for the nominal power of the module.",
+                                        "oneOf": [
+                                            {
+                                                "title": "This section defines a performance uarantee by fractions of the nominal power until a certain number of of years. For example, `years`=10 and `percentage`=90 means that 10 year old modules have at least 90% of their nominal power.",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "years": {
+                                                            "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                            "description": "This number defines the amount of years until which a certain minimum percentage of the nominal power is guaranteed."
+                                                        },
+                                                        "percentage": {
+                                                            "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                            "description": "This number defines which fraction of the nominal power in percent is guaranteed as minimum after the amount of years which are defined above."
+                                                        }
+                                                    },
+                                                    "additionalProperties": false,
+                                                    "required": [
+                                                        "years",
+                                                        "percentage"
+                                                    ]
+                                                },
+                                                "additionalItems": false,
+                                                "minItems": 1
+                                            },
+                                            {
+                                                "type": "string",
+                                                "enum": [
+                                                    "no"
+                                                ],
+                                                "description": "`no` determines that no guarantee is available for the power provided by the module."
+                                            }
+                                        ]
+                                    },
+                                    "angleDependency": {
+                                        "title": "The nominal power usually depends on the direction of irradiance. In general, the `incidenceDirectionModifier` can characterize this dependency on the direction. If the dependency has a rotational symmetry regarding the incidence angle, `incidenceAngelModifier` should be provided.",
+                                        "type": "object",
+                                        "properties": {
+                                            "incidenceAngleModifier": {
+                                                "title": "If the nominal power has an incidence angle symmetry regarding the direct irradiance, then this Incidence Angle Modifier (IAM) can be defined and plotted as a curve. It modifies the nominal power depending on the incidence angle.",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "incidence": {
+                                                            "$ref": "#/definitions/units/degree",
+                                                            "description": "The incidence angle in degree"
+                                                        },
+                                                        "IAM": {
+                                                            "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                            "description": "`IAM` defines the value of the incidence angle modifier at the angle defined by `incidence`."
+                                                        }
+                                                    }
+                                                },
+                                                "additionalItems": false,
+                                                "minItems": 1
+                                            },
+                                            "incidenceDirectionModifier": {
+                                                "title": "If the nominal power depends on the direction of the irradiance, this modifier can be multiplied to the nominal power.",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "direction": {
+                                                            "$ref": "#/definitions/optical/direction",
+                                                            "description": "The section defines the direction of the incident radiation."
+                                                        },
+                                                        "modifier": {
+                                                            "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                            "description": "For the direction above, this `modifier` can be multiplied with the nominal power to determine the power at a this direction of incidence."
+                                                        }
+                                                    },
+                                                    "additionalProperties": false,
+                                                    "required": [
+                                                        "direction",
+                                                        "modifier"
+                                                    ]
+                                                },
+                                                "additionalItems": false,
+                                                "minItems": 1
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "minProperties": 1,
+                                        "required": []
                                     }
                                 }
                             },
@@ -2955,8 +3115,15 @@
                                     "temperatureCoefficient": {
                                         "$ref": "#/definitions/numberBetweenMinusAndPlusHundredWithoutUncertainty",
                                         "description": "When the temperature increases compared to standard test conditions, the open circuit voltage changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
+                                    },
+                                    "maximumSystem": {
+                                        "$ref": "#/definitions/units/voltWithoutUncertainty",
+                                        "description": "The voltage of a PV system made with these modules should stay below this maximum system voltage."
                                     }
-                                }
+                                },
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "required": []
                             },
                             "current": {
                                 "type": "object",
@@ -2973,7 +3140,10 @@
                                         "$ref": "#/definitions/numberBetweenMinusAndPlusHundredWithoutUncertainty",
                                         "description": "When the temperature increases compared to standard test conditions, the short circuit current changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                     }
-                                }
+                                },
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "required": []
                             },
                             "fillFactor": {
                                 "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
@@ -3043,60 +3213,112 @@
                                                             "d2"
                                                         ]
                                                     }
-                                                }
+                                                },
+                                                "additionalProperties": false,
+                                                "minProperties": 1,
+                                                "required": []
                                             }
-                                        }
+                                        },
+                                        "additionalProperties": false,
+                                        "minProperties": 1,
+                                        "required": []
                                     },
                                     "mechanical": {
                                         "title": "Mechanical load tests verify that a module can withstand wind and snow.",
-                                        "type": "array",
-                                        "items": {
-                                            "pressure": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "rated": {
-                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
-                                                        "description": "The maximum rated pressure in Pascal."
-                                                    },
-                                                    "tested": {
-                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
-                                                        "description": "The maximum tested pressure in Pascal."
-                                                    }
-                                                }
-                                            },
-                                            "suction": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "rated": {
-                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
-                                                        "description": "The maximum rated suction in Pascal."
-                                                    },
-                                                    "tested": {
-                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
-                                                        "description": "The maximum tested suction in Pascal."
-                                                    }
-                                                }
-                                            },
-                                            "reference": {
+                                        "oneOf": [
+                                            {
                                                 "type": "array",
                                                 "items": {
-                                                    "$ref": "#/definitions/reference"
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "pressure": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "rated": {
+                                                                    "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                                    "description": "The maximum rated pressure in Pascal."
+                                                                },
+                                                                "tested": {
+                                                                    "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                                    "description": "The maximum tested pressure in Pascal."
+                                                                }
+                                                            },
+                                                            "additionalProperties": false,
+                                                            "minProperties": 1,
+                                                            "required": []
+                                                        },
+                                                        "suction": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "rated": {
+                                                                    "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                                    "description": "The maximum rated suction in Pascal."
+                                                                },
+                                                                "tested": {
+                                                                    "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                                    "description": "The maximum tested suction in Pascal."
+                                                                }
+                                                            },
+                                                            "additionalProperties": false,
+                                                            "minProperties": 1,
+                                                            "required": []
+                                                        },
+                                                        "reference": {
+                                                            "$ref": "#/definitions/reference",
+                                                            "description": "The reference defines for example the standard according to which the mechanical test was performed."
+                                                        }
+                                                    },
+                                                    "additionalProperties": false,
+                                                    "minProperties": 2,
+                                                    "required": [
+                                                        "reference"
+                                                    ]
                                                 },
-                                                "description": "The reference defines for example the standard according to which the mechanical test was performed."
+                                                "additionalItems": false,
+                                                "minItems": 1
+                                            },
+                                            {
+                                                "type": "string",
+                                                "enum": [
+                                                    "noPerformanceDetermined"
+                                                ],
+                                                "description": "noPerformanceDetermined defines that no tests of the mechanical loads are available."
                                             }
-                                        },
-                                        "additionalItems": false,
-                                        "minItems": 0
+                                        ]
                                     },
                                     "hail": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "#/definitions/reference"
-                                        },
-                                        "description": "If the PV module passed a hail test, then the reference can refer for example to a standard according to which the test was performed."
+                                        "oneOf": [
+                                            {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "reference": {
+                                                            "$ref": "#/definitions/reference",
+                                                            "description": "If the PV module passed a hail test, then the reference can refer for example to a standard according to which the test was performed."
+                                                        }
+                                                    },
+                                                    "additionalProperties": false,
+                                                    "minProperties": 2,
+                                                    "required": [
+                                                        "reference"
+                                                    ]
+                                                },
+                                                "additionalItems": false,
+                                                "minItems": 1
+                                            },
+                                            {
+                                                "type": "string",
+                                                "enum": [
+                                                    "noPerformanceDetermined"
+                                                ],
+                                                "description": "noPerformanceDetermined defines that no hail test results are available."
+                                            }
+                                        ]
                                     }
                                 },
                                 "additionalProperties": false,
+                                "minProperties": 1,
                                 "required": []
                             },
                             "temperatures": {
@@ -3117,13 +3339,54 @@
                                     }
                                 },
                                 "additionalProperties": false,
+                                "minProperties": 1,
                                 "required": []
+                            },
+                            "guarantee": {
+                                "title": "This section defines if a a general guarantee for the product.",
+                                "oneOf": [
+                                    {
+                                        "title": "If a general product guarantee is available, it is defined by the number of years and can refer to a publication or standard for details.",
+                                        "type": "object",
+                                        "properties": {
+                                            "years": {
+                                                "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                "description": "This number defines the number of years for which the manufacturer offers a guarantee for this module."
+                                            },
+                                            "reference": {
+                                                "$ref": "#/definitions/reference",
+                                                "description": "The reference can define a publication or standard with details of the guarantee."
+                                            }
+                                        },
+                                        "additionalItems": false,
+                                        "minItems": 1
+                                    },
+                                    {
+                                        "type": "string",
+                                        "enum": [
+                                            "no"
+                                        ],
+                                        "description": "`no` determines that no guarantee is available for the power provided by the module."
+                                    }
+                                ]
+                            },
+                            "colour": {
+                                "$ref": "#/definitions/colour",
+                                "description": "The reference offers several way to define the colour of the component."
+                            },
+                            "uValue": {
+                                "$ref": "#/definitions/calorimetric/results/uValue",
+                                "description": "The U value, also known as thermal transmittance, characterizes the rate of heat transfer through this PV module."
                             }
                         },
                         "additionalProperties": false,
+                        "minProperties": 1,
                         "required": []
                     }
-                }
+                },
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": []
             }
         },
         "connections": {
