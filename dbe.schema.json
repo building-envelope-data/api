@@ -3615,72 +3615,106 @@
                                                     "title": "This section defines the electric safety according to the International Protection Marking, also called Ingress Protection Marking. Codes between IPXX and IP69K are defined. `standard` defines which standard defines the details of the of the IP code. `firstDigit` defines the protection against solid particles and the `secondDigit` against liquid ingress. `thirdDigit` is optional and defines the access to dangerous active parts. `fourthDigit` is optional, too, and can define additional information.",
                                                     "type": "array",
                                                     "items": {
-                                                        "standard": {
-                                                            "type": "array",
-                                                            "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "standard": {
                                                                 "type": "string",
                                                                 "enum": [
-                                                                    "EN 60529",
+                                                                    "EN IEC 60529",
                                                                     "ISO 20653"
                                                                 ]
                                                             },
-                                                            "additionalItems": false,
-                                                            "minItems": 1,
-                                                            "maxItems": 1
+                                                            "firstDigit": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "X",
+                                                                    "0",
+                                                                    "1",
+                                                                    "2",
+                                                                    "3",
+                                                                    "4",
+                                                                    "5",
+                                                                    "5K",
+                                                                    "6",
+                                                                    "6K"
+                                                                ]
+                                                            },
+                                                            "secondDigit": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "X",
+                                                                    "0",
+                                                                    "1",
+                                                                    "2",
+                                                                    "3",
+                                                                    "4",
+                                                                    "5",
+                                                                    "5K",
+                                                                    "6",
+                                                                    "6K",
+                                                                    "7",
+                                                                    "8",
+                                                                    "9",
+                                                                    "9K"
+                                                                ]
+                                                            },
+                                                            "thirdDigit": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "A",
+                                                                    "B",
+                                                                    "C",
+                                                                    "D"
+                                                                ]
+                                                            },
+                                                            "fourthDigit": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "f",
+                                                                    "H",
+                                                                    "M",
+                                                                    "S",
+                                                                    "W"
+                                                                ]
+                                                            }
                                                         },
-                                                        "firstDigit": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "X",
-                                                                "0",
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "5K",
-                                                                "6",
-                                                                "6K"
-                                                            ]
+                                                        "additionalProperties": false,
+                                                        "required": [
+                                                            "firstDigit",
+                                                            "secondDigit"
+                                                        ]
+                                                    },
+                                                    "additionaItems": false,
+                                                    "minProperties": 1
+                                                },
+                                                "applianceClass": {
+                                                    "title": "The appliance protection classes define which protective-earth connection requirements are fulfilled.",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "standard": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "IEC 61140"
+                                                                ]
+                                                            },
+                                                            "class": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "0",
+                                                                    "I",
+                                                                    "0I",
+                                                                    "II",
+                                                                    "III"
+                                                                ]
+                                                            }
                                                         },
-                                                        "secondDigit": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "X",
-                                                                "0",
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "5K",
-                                                                "6",
-                                                                "6K",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "9K"
-                                                            ]
-                                                        },
-                                                        "thirdDigit": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "A",
-                                                                "B",
-                                                                "C",
-                                                                "D"
-                                                            ]
-                                                        },
-                                                        "fourthDigit": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "f",
-                                                                "H",
-                                                                "M",
-                                                                "S",
-                                                                "W"
-                                                            ]
-                                                        }
+                                                        "additionalProperties": false,
+                                                        "required": [
+                                                            "standard",
+                                                            "class"
+                                                        ]
                                                     },
                                                     "additionaItems": false,
                                                     "minProperties": 1
