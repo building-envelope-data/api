@@ -3000,7 +3000,7 @@
                                     "properties": {
                                         "id": {
                                             "$ref": "#/definitions/identifier",
-                                            "description": "The id represents a type of connection tables."
+                                            "description": "The id represents a type of connection cables."
                                         },
                                         "crossSection": {
                                             "$ref": "#/definitions/units/squareMillimeterWithoutUncertainty",
@@ -3497,8 +3497,91 @@
                             "additionalItems": false,
                             "minItems": 1
                         },
-                        "inverter": {
-                            "title": "An inverter converts the direct current (DC) of the modules into alternating current (AC).",
+                        "diodeTypes": {
+                            "title": "This array defines the type of diodes which are used in the the PV module.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "#/definitions/identifier",
+                                        "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
+                                    },
+                                    "explanation": {
+                                        "$ref": "#/definitions/internationalString",
+                                        "description": "This string can explain the cell to humans."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": []
+                            },
+                            "additionalItems": false,
+                            "minItems": 0
+                        },
+                        "diodes": {
+                            "title": "This array defines the diodes of the PV system. They are used to bypass shaded cells which would otherwise dissipate energy.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "#/definitions/identifier",
+                                        "description": "The id represents one specific diode of the PV system. The id is used to define connections to other parts of the PV system"
+                                    },
+                                    "diodeType": {
+                                        "$ref": "#/definitions/identifier",
+                                        "description": "The id defines the type of the diode."
+                                    },
+                                    "geometry": {
+                                        "$ref": "#/definitions/geometry/basics",
+                                        "description": "This section defines the geometry and location of the diode."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": []
+                            },
+                            "additionalItems": false,
+                            "minItems": 0
+                        },
+                        "connectionTypes": {
+                            "title": "This array defines the type of electric connections which are used in this PV system.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "#/definitions/identifier",
+                                        "description": "The id represents one type of connections which is used in the the PV system. The id is used to define connections to other parts of the PV system"
+                                    },
+                                    "explanation": {
+                                        "$ref": "#/definitions/internationalString",
+                                        "description": "This string can explain the connection type to humans."
+                                    },
+                                    "crossSection": {
+                                        "$ref": "#/definitions/units/squareMillimeterWithoutUncertainty",
+                                        "description": "The cross-sectional area of the connection cable in square millimeters."
+                                    },
+                                    "resistancePerLength": {
+                                        "$ref": "#/definitions/units/ohmPerMeterWithUncertainty",
+                                        "description": "The electric resistance of the connection per length of the connection in ohms per meter."
+                                    },
+                                    "colour": {
+                                        "$ref": "#/definitions/colour",
+                                        "description": "The reference offers several way to define the colour of the connection."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": []
+                            },
+                            "additionalItems": false,
+                            "minItems": 0
+                        },
+                        "connections": {
+                            "$ref": "#/definitions/connections/bidirectional",
+                            "description": "This section defines the connections between cells and between modules, diodes and inverters."
+                        },
+                        "inverters": {
+                            "title": "Usually, one inverter converts the direct current (DC) of the modules into alternating current (AC).",
                             "type": "array",
                             "items": {
                                 "id": {
