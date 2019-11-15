@@ -213,6 +213,22 @@
                 "$ref": "#/definitions/numberWithoutUncertainty",
                 "description": "Ampere (A) is the SI unit for electric current."
             },
+            "ohmWithUncertainty": {
+                "$ref": "#/definitions/numberWithUncertainty",
+                "description": "Ohm is the derived SI unit for electric resistance."
+            },
+            "ohmWithoutUncertainty": {
+                "$ref": "#/definitions/numberWithoutUncertainty",
+                "description": "Ohm is the derived SI unit for electric resistance."
+            },
+            "ohmPerMeterWithUncertainty": {
+                "$ref": "#/definitions/numberWithUncertainty",
+                "description": "Ohm per meter is a unit for the electric resistance depending on the length."
+            },
+            "ohmPerMeterWithoutUncertainty": {
+                "$ref": "#/definitions/numberWithoutUncertainty",
+                "description": "Ohm per meter is a unit for the electric resistance depending on the length."
+            },
             "kilogramWithUncertainty": {
                 "$ref": "#/definitions/numberWithUncertainty",
                 "description": "Kilogram (also kilogramme, kg) is the SI unit for length."
@@ -2853,11 +2869,19 @@
                                 "properties": {
                                     "id": {
                                         "$ref": "#/definitions/identifier",
-                                        "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
+                                        "description": "The id represents one type of connections which is used in the the PV module. The id is used to define connections to other parts of the PV module"
                                     },
                                     "explanation": {
                                         "$ref": "#/definitions/internationalString",
-                                        "description": "This string can explain the cell to humans."
+                                        "description": "This string can explain the connection type to humans."
+                                    },
+                                    "resistancePerLength": {
+                                        "$ref": "#/definitions/units/ohmPerMeterWithUncertainty",
+                                        "description": "The electric resistance of the connection per length of the connection in ohms per meter."
+                                    },
+                                    "colour": {
+                                        "$ref": "#/definitions/colour",
+                                        "description": "The reference offers several way to define the colour of the connection."
                                     }
                                 },
                                 "additionalProperties": false,
@@ -2867,7 +2891,7 @@
                             "minItems": 0
                         },
                         "connections": {
-                            "$ref": "#/definitions/connections/bidirectionalUnspecified",
+                            "$ref": "#/definitions/connections/bidirectional",
                             "description": "This section defines the connections between cells and between cells and diodes."
                         },
                         "layers": {
@@ -3446,6 +3470,33 @@
                             "$ref": "#/definitions/geometry/coordinateSystem",
                             "description": "The coordinate system is defined by a reference to a publication or standard."
                         },
+                        "modules": {
+                            "title": "This array defines the modules of the PV system.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "#/definitions/identifier",
+                                        "description": "The id represents one specific PV module in the PV system. It is used to define connections to other parts of the PV system."
+                                    },
+                                    "moduleType": {
+                                        "$ref": "#/definitions/identifier",
+                                        "description": "The id represents one type of PV modules."
+                                    },
+                                    "geometry": {
+                                        "$ref": "#/definitions/geometry/basics",
+                                        "description": "This section defines the geometry and location of the PV module."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "id"
+                                ]
+                            },
+                            "additionalItems": false,
+                            "minItems": 1
+                        },
                         "inverter": {
                             "title": "An inverter converts the direct current (DC) of the modules into alternating current (AC).",
                             "type": "array",
@@ -3778,8 +3829,8 @@
             }
         },
         "connections": {
-            "bidirectionalUnspecified": {
-                "title": "This array defines connections between two components without specifying them further.",
+            "bidirectional": {
+                "title": "This array defines connections between two components without defining a direction for these connections.",
                 "type": "array",
                 "items": {
                     "type": "object",
@@ -3795,6 +3846,19 @@
                         "id2": {
                             "$ref": "#/definitions/identifier",
                             "description": "Id1 represents the second component which is connected to the component represented by id1."
+                        },
+                        "length": {
+                            "$ref": "#/definitions/numberWithUncertainty",
+                            "description": "The length of this connection in meters."
+                        },
+                        "electric": {
+                            "type": "object",
+                            "properties": {
+                                "resistance": {
+                                    "$ref": "#/definitions/units/ohmWithUncertainty",
+                                    "description": "The electric resistance of the connection in ohms."
+                                }
+                            }
                         }
                     },
                     "additionalProperties": false,
