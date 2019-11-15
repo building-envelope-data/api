@@ -93,6 +93,34 @@
             "type": "number",
             "minimum": 0
         },
+        "nonNegativeIntegerWithUncertainty": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The non-negative number for which an uncertainty can be defined in the second objectin this array."
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "uncertainty": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "description": "The uncertainty of the number of the first object in this array."
+                        },
+                        "reference": {
+                            "$ref": "#/definitions/reference",
+                            "description": "The reference defines how the uncertainty has been determined."
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": []
+                }
+            ],
+            "additionalItems": false,
+            "minItems": 1
+        },
         "nonNegativeIntegerWithoutUncertainty": {
             "title": "This type is used when only non-negative integers are valid.",
             "type": "integer",
@@ -496,11 +524,11 @@
                     "photovoltaic": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/photovoltaic/module",
+                                "$ref": "#/definitions/electric/photovoltaic/module",
                                 "description": "If the component can turn irradiance into electric power, it can be named BIPV module and defined here."
                             },
                             {
-                                "$ref": "#/definitions/photovoltaic/system",
+                                "$ref": "#/definitions/electric/photovoltaic/system",
                                 "description": "If the building component consists of several PV modules and an inverter, it can be named BIPV system and defined here."
                             }
                         ]
@@ -2755,11 +2783,11 @@
                             "type": "object",
                             "properties": {
                                 "longitudinal": {
-                                    "$ref": "#/definitions/units/MeterWithUncertainty",
+                                    "$ref": "#/definitions/units/meterWithUncertainty",
                                     "description": "The distance between two neighboring cells parallel to the longest side of the PV module in metre (m)."
                                 },
                                 "transversal": {
-                                    "$ref": "#/definitions/units/MeterWithUncertainty",
+                                    "$ref": "#/definitions/units/meterWithUncertainty",
                                     "description": "The distance between two neighboring cells parallel to the shorter side of the PV module in metre (m)."
                                 }
                             },
@@ -2954,11 +2982,11 @@
                                             "type": "object",
                                             "properties": {
                                                 "positive": {
-                                                    "$ref": "#/definitions/units/metersWithUncertainty",
+                                                    "$ref": "#/definitions/units/meterWithUncertainty",
                                                     "description": "The length of the connection cable with the electric plus sign."
                                                 },
                                                 "negative": {
-                                                    "$ref": "#/definitions/units/metersWithUncertainty",
+                                                    "$ref": "#/definitions/units/meterWithUncertainty",
                                                     "description": "The length of the connection cable with the electric minus sign."
                                                 }
                                             }
@@ -3344,15 +3372,15 @@
                                     "type": "object",
                                     "properties": {
                                         "minimum": {
-                                            "$ref": "#/definitions/kelvinWithoutUncertainty",
+                                            "$ref": "#/definitions/units/kelvinWithoutUncertainty",
                                             "description": "The minimum operating temperatur in Kelvin (K)."
                                         },
                                         "operating": {
-                                            "$ref": "#/definitions/kelvinWithoutUncertainty",
+                                            "$ref": "#/definitions/units/kelvinWithoutUncertainty",
                                             "description": "The operating temperatur of the cells under standard test conditions and in Kelvin (K)."
                                         },
                                         "maximum": {
-                                            "$ref": "#/definitions/kelvinWithoutUncertainty",
+                                            "$ref": "#/definitions/units/kelvinWithoutUncertainty",
                                             "description": "The maximum operating temperatur in Kelvin (K)."
                                         }
                                     },
@@ -3576,61 +3604,86 @@
                                     "description": "This section defines the geometry of the inverter including the dimensions width, height and depth (thickness)."
                                 },
                                 "safety": {
-                                    "title": "This section defines data about the safety of the inverter.###Schutzart und Schutzklasse implementieren###",
+                                    "title": "This section defines data about the safety of the inverter.",
                                     "type": "object",
                                     "properties": {
                                         "electric": {
-                                            "title": "This section defines the electric safety class of the inverter.",
+                                            "title": "This section defines the electric safety of the inverter.",
                                             "type": "object",
                                             "properties": {
-                                                "EN": {
-                                                    "title": "This section defines the fire safety class according to the regulations of the European Union. EN 13501-1 defines the categories as well as the additional classification for smoke development and burning drops falling from the component.",
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "category": {
+                                                "IPcode": {
+                                                    "title": "This section defines the electric safety according to the International Protection Marking, also called Ingress Protection Marking. Codes between IPXX and IP69K are defined. `standard` defines which standard defines the details of the of the IP code. `firstDigit` defines the protection against solid particles and the `secondDigit` against liquid ingress. `thirdDigit` is optional and defines the access to dangerous active parts. `fourthDigit` is optional, too, and can define additional information.",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "standard": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "EN 60529",
+                                                                    "ISO 20653"
+                                                                ]
+                                                            },
+                                                            "additionalItems": false,
+                                                            "minItems": 1,
+                                                            "maxItems": 1
+                                                        },
+                                                        "firstDigit": {
                                                             "type": "string",
                                                             "enum": [
-                                                                "A1",
-                                                                "A2",
+                                                                "X",
+                                                                "0",
+                                                                "1",
+                                                                "2",
+                                                                "3",
+                                                                "4",
+                                                                "5",
+                                                                "5K",
+                                                                "6",
+                                                                "6K"
+                                                            ]
+                                                        },
+                                                        "secondDigit": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "X",
+                                                                "0",
+                                                                "1",
+                                                                "2",
+                                                                "3",
+                                                                "4",
+                                                                "5",
+                                                                "5K",
+                                                                "6",
+                                                                "6K",
+                                                                "7",
+                                                                "8",
+                                                                "9",
+                                                                "9K"
+                                                            ]
+                                                        },
+                                                        "thirdDigit": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "A",
                                                                 "B",
                                                                 "C",
-                                                                "D",
-                                                                "E",
-                                                                "F",
-                                                                "A1_fl",
-                                                                "A2_fl",
-                                                                "B_fl",
-                                                                "C_fl",
-                                                                "D_fl",
-                                                                "E_fl",
-                                                                "A1_L",
-                                                                "A2_L",
-                                                                "B_L",
-                                                                "C_L",
-                                                                "D_L",
-                                                                "E_L"
+                                                                "D"
                                                             ]
                                                         },
-                                                        "smoke": {
+                                                        "fourthDigit": {
                                                             "type": "string",
                                                             "enum": [
-                                                                "s1",
-                                                                "s2",
-                                                                "s3"
-                                                            ]
-                                                        },
-                                                        "drops": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "d0",
-                                                                "d1",
-                                                                "d2"
+                                                                "f",
+                                                                "H",
+                                                                "M",
+                                                                "S",
+                                                                "W"
                                                             ]
                                                         }
                                                     },
-                                                    "additionalProperties": false,
-                                                    "minProperties": 1,
-                                                    "required": []
+                                                    "additionaItems": false,
+                                                    "minProperties": 1
                                                 }
                                             },
                                             "additionalProperties": false,
