@@ -29,64 +29,65 @@
             "description": "In extension to the validation keyword `hostname`, a `webAddress` includes a `scheme` like https and possibly a `path` like /folder/item. TODO: Add an additional regex which checks whether the uri contains a `hostname`."
         },
         "numberWithUncertainty": {
-            "type": "array",
-            "items": [
-                {
+            "type": "object",
+            "properties": {
+                "uncertainValue": {
                     "type": "number",
                     "description": "The number for which an uncertainty can be defined in the second objectin this array."
                 },
-                {
-                    "type": "object",
-                    "properties": {
-                        "uncertainty": {
-                            "type": "number",
-                            "minimum": 0,
-                            "description": "The uncertainty of the number of the first object in this array."
-                        },
-                        "reference": {
-                            "$ref": "#/definitions/reference",
-                            "description": "The reference defines how the uncertainty has been determined."
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": []
+                "uncertainty": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "The uncertainty of the `uncertainValue` above."
+                },
+                "confidenceInterval": {
+                    "type": "number",
+                    "enum": [
+                        "68.3",
+                        "95.4",
+                        "99.7",
+                        "100.0"
+                    ],
+                    "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
                 }
-            ],
-            "additionalItems": false,
-            "minItems": 1,
-            "maxItems": 2
+            },
+            "additionalProperties": false,
+            "required": [
+                "uncertainValue"
+            ]
         },
         "numberWithoutUncertainty": {
             "title": "This type is used when no restrictions on the numbers are possible.",
             "type": "number"
         },
         "nonNegativeNumberWithUncertainty": {
-            "type": "array",
-            "items": [
-                {
+            "type": "object",
+            "properties": {
+                "uncertainValue": {
                     "type": "number",
-                    "minimum": 0,
+                    "minimum": 0
                     "description": "The non-negative number for which an uncertainty can be defined in the second objectin this array."
                 },
-                {
-                    "type": "object",
-                    "properties": {
-                        "uncertainty": {
-                            "type": "number",
-                            "minimum": 0,
-                            "description": "The uncertainty of the number of the first object in this array."
-                        },
-                        "reference": {
-                            "$ref": "#/definitions/reference",
-                            "description": "The reference defines how the uncertainty has been determined."
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": []
+                "uncertainty": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "The uncertainty of the `uncertainValue` above."
+                },
+                "confidenceInterval": {
+                    "type": "number",
+                    "enum": [
+                        "68.3",
+                        "95.4",
+                        "99.7",
+                        "100.0"
+                    ],
+                    "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
                 }
-            ],
-            "additionalItems": false,
-            "minItems": 1
+            },
+            "additionalProperties": false,
+            "required": [
+                "uncertainValue"
+            ]
         },
         "nonNegativeNumberWithoutUncertainty": {
             "title": "This type is used when only non-negative integers are valid.",
@@ -94,32 +95,33 @@
             "minimum": 0
         },
         "nonNegativeIntegerWithUncertainty": {
-            "type": "array",
-            "items": [
-                {
+            "type": "object",
+            "properties": {
+                "uncertainValue": {
+                    "type": "integer",
+                    "minimum": 0
+                    "description": "The non-negative integer for which an uncertainty can be defined in the second objectin this array."
+                },
+                "uncertainty": {
                     "type": "integer",
                     "minimum": 0,
-                    "description": "The non-negative number for which an uncertainty can be defined in the second objectin this array."
+                    "description": "The uncertainty of the `uncertainValue` above."
                 },
-                {
-                    "type": "object",
-                    "properties": {
-                        "uncertainty": {
-                            "type": "integer",
-                            "minimum": 0,
-                            "description": "The uncertainty of the number of the first object in this array."
-                        },
-                        "reference": {
-                            "$ref": "#/definitions/reference",
-                            "description": "The reference defines how the uncertainty has been determined."
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": []
+                "confidenceInterval": {
+                    "type": "number",
+                    "enum": [
+                        "68.3",
+                        "95.4",
+                        "99.7",
+                        "100.0"
+                    ],
+                    "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
                 }
-            ],
-            "additionalItems": false,
-            "minItems": 1
+            },
+            "additionalProperties": false,
+            "required": [
+                "uncertainValue"
+            ]
         },
         "nonNegativeIntegerWithoutUncertainty": {
             "title": "This type is used when only non-negative integers are valid.",
