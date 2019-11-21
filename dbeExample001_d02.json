@@ -129,118 +129,107 @@
             "explanation": {
                 "en-US": "Example: a data set for a component with the id above. The component has a solar thermal collector function."
             },
-            "optical": [
+            "calorimetric": [
                 {
-                    "id": "a8435146-5270-46f5-b925-4b00de265823",
-                    "explanation": {
-                        "en-US": "Example: optical data about a nearnormal-nearnormal measurement of the transmittance, spectrally resolved."
+                    "id": "da951012-29b7-4b9a-890c-4f4514f676b3",
+                    "name": {
+                        "en-US": "Example BIST collector"
                     },
-                    "dataPoints": [
-                        {
-                            "incidence": {
-                                "direction": [
-                                    "nearnormal"
-                                ],
-                                "wavelengths": {
-                                    "wavelength": 500
-                                }
-                            },
-                            "emergence": {
-                                "direction": [
-                                    "nearnormal"
-                                ]
-                            },
-                            "results": {
-                                "transmittance": {
-                                    "uncertainValue": 0.85
-                                }
-                            }
-                        },
-                        {
-                            "incidence": {
-                                "direction": [
-                                    "nearnormal"
-                                ],
-                                "wavelengths": {
-                                    "wavelength": 1000
-                                }
-                            },
-                            "emergence": {
-                                "direction": [
-                                    "nearnormal"
-                                ]
-                            },
-                            "results": {
-                                "transmittance": {
-                                    "uncertainValue": 0.9
-                                }
-                            }
-                        },
-                        {
-                            "incidence": {
-                                "direction": [
-                                    "nearnormal"
-                                ],
-                                "wavelengths": {
-                                    "wavelength": 1500
-                                }
-                            },
-                            "emergence": {
-                                "direction": [
-                                    "nearnormal"
-                                ]
-                            },
-                            "results": {
-                                "transmittance": {
-                                    "uncertainValue": 0.8
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
                     "explanation": {
-                        "en-US": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050."
+                        "en-US": "Example: a calorimetric data set."
+                    },
+                    "warnings": {
+                        "en-US": "No warnings"
                     },
                     "origin": {
-                        "method": {
-                            "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
-                            "reference": {
-                                "standard": {
-                                    "standardizers": [
-                                        "ISO"
-                                    ],
-                                    "numeration": {
-                                        "mainNumber": 9050
-                                    }
-                                }
+                        "source": {
+                            "id": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+                            "name": {
+                                "en-US": "Fraunhofer ISE"
                             }
                         }
                     },
-                    "dataPoints": [
+                    "approvals": [
                         {
-                            "incidence": {
+                            "approver": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+                            "signature": "MIIB6gYJKoZIhvcNAQcCoIIB2zCCAdcCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGCAbYwggGyAgEBMIGcMIGOMQswCQYDVQQGEwJVUzEOMAwGA1UECBMFVGV4YXMxFDASBgNVBAcTC1NhbiBBbnRvbmlvMQ0wCwYDVQQKEwRVVFNBMQswCQYDVQQLEwJDUzEXMBUGA1UEAxMOYWkuY3MudXRzYS5lZHUxJDAiBgkqhkiG9w0BCQEWFWp1bGlldEBhaS5jcy51dHNhLmVkdQIJAMvyApGmAWbKMAkGBSsOAwIaBQCggbEwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMDcwMjEyMjI1ODU4WjAjBgkqhkiG9w0BCQQxFgQUdBfDe/KmnhmYA9DILxfq/zKlvwEwUgYJKoZIhvcNAQkPMUUwQzAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwDQYJKoZIhvcNAQEBBQAEQFbJ+8cZivvgvrjj8l1QbK2o7gWdWBM9yav6NJR2eBVj3hKGaKQ+7JNbygcqtVcMDIo1jSpsZas33BvhocwGOqs="
+                        }
+                    ],
+                    "created": "2018-09-01T12:00:00+01:00",
+                    "valid": {
+                        "from": "2018-08-01T00:00:00+01:00"
+                    },
+                    "fluxes": [
+                        {
+                            "name": "interior",
+                            "convection": {
+                                "flux": {
+                                    "uncertainValue": 15.0,
+                                    "uncertainty": 4,
+                                    "confidenceInterval": 95.4
+                                },
+                                "temperatures": {
+                                    "surrounding": {
+                                        "uncertainValue": 298.0
+                                    }
+                                },
+                                "coefficient": {
+                                    "uncertainValue": 8.0
+                                }
+                            }
+                        },
+                        {
+                            "name": "lateral",
+                            "fluid": {
+                                "flux": {
+                                    "uncertainValue": 100.0
+                                },
+                                "temperatures": {
+                                    "inlet": {
+                                        "uncertainValue": 300
+                                    },
+                                    "outlet": {
+                                        "uncertainValue": 320
+                                    }
+                                },
+                                "massFlow": {
+                                    "uncertainValue": 0.02
+                                },
+                                "specificHeatCapacity": {
+                                    "uncertainValue": 4179.6
+                                }
+                            }
+                        },
+                        {
+                            "name": "exterior",
+                            "irradiance": {
+                                "flux": {
+                                    "uncertainValue": 1000,
+                                    "uncertainty": 50,
+                                    "confidenceInterval": 68.3
+                                },
                                 "direction": [
                                     "nearnormal"
-                                ],
-                                "wavelengths": {
-                                    "integral": true
-                                },
-                                "range": {
-                                    "spectrum": [
-                                        "solar"
-                                    ]
-                                }
-                            },
-                            "emergence": {
-                                "direction": [
-                                    "hemispherical"
                                 ]
+                            }
+                        }
+                    ],
+                    "results": [
+                        {
+                            "area": {
+                                "category": "centre"
                             },
-                            "results": {
-                                "reflectance": {
-                                    "uncertainValue": 0.1
+                            "uValue": {
+                                "uncertainValue": 1.0,
+                                "uncertainty": 0.1
+                            },
+                            "gValue": {
+                                "uncertainValue": 0.07,
+                                "uncertainty": 0.01
+                            },
+                            "efficiencies": {
+                                "solarThermal": {
+                                    "uncertainValue": 0.5
                                 }
                             }
                         }

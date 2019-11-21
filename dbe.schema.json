@@ -39,15 +39,15 @@
                     "uncertainty": {
                         "type": "number",
                         "minimum": 0,
-                        "description": "The uncertainty of the `uncertainValue` above."
+                        "description": "The uncertainty of the `uncertainValue` above has the same units as the `uncertainValue`."
                     },
                     "confidenceInterval": {
                         "type": "number",
                         "enum": [
-                            "68.3",
-                            "95.4",
-                            "99.7",
-                            "100.0"
+                            68.3,
+                            95.4,
+                            99.7,
+                            100.0
                         ],
                         "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
                     }
@@ -128,6 +128,38 @@
                 "title": "This type is used when only non-negative integers are valid.",
                 "type": "integer",
                 "minimum": 0
+            },
+            "numberBetweenZeroAndOneWithUncertainty": {
+                "title": "This type is used when only numbers between 0 and 1 are valid.",
+                "type": "object",
+                "properties": {
+                    "uncertainValue": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "description": "The number for which an uncertainty can be defined in the second objectin this array."
+                    },
+                    "uncertainty": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "description": "The uncertainty of the `uncertainValue` above has the same units as the `uncertainValue`."
+                    },
+                    "confidenceInterval": {
+                        "type": "number",
+                        "enum": [
+                            68.3,
+                            95.4,
+                            99.7,
+                            100.0
+                        ],
+                        "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "uncertainValue"
+                ]
             },
             "numberBetweenZeroAndOneWithoutUncertainty": {
                 "title": "This type is used when only numbers between 0 and 1 are valid.",
@@ -256,6 +288,10 @@
             "kgPerSecondWithUncertainty": {
                 "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                 "description": "Kilogram per second (kg/s) are the SI units of the mass flow."
+            },
+            "wattPerSquareMeterKelvinWithUncertainty": {
+                "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
+                "description": "Watt per square meter and per kelvin (W/(m^2*K) are the SI units of a heat transfer coefficient."
             }
         },
         "created": {
@@ -1480,15 +1516,15 @@
         "efficiencies": {
             "title": "For the conversion of energy into another, this section provides definitions for effiencies.",
             "photovoltaic": {
-                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithUncertainty",
                 "description": "The photovoltaic efficiency of a component which uses irradiance to provide electric power."
             },
             "solarThermal": {
-                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithUncertainty",
                 "description": "The solar thermal efficiency of a component which uses irradiance to provide heat."
             },
             "inverter": {
-                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithUncertainty",
                 "description": "The efficiency of an inverter which converts for example direct current into alternating current."
             }
         },
@@ -2892,19 +2928,13 @@
                                 "type": "object",
                                 "properties": {
                                     "name": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "enum": [
-                                                "exterior",
-                                                "interior",
-                                                "lateral",
-                                                "other"
-                                            ]
-                                        },
-                                        "additionalItems": false,
-                                        "minItems": 1,
-                                        "maxItems": 1,
+                                        "type": "string",
+                                        "enum": [
+                                            "exterior",
+                                            "interior",
+                                            "lateral",
+                                            "other"
+                                        ],
                                         "description": "The name of the part of the surroundings. If neither exterior nor interior or lateral fits, choose other and describe it in the explanation below."
                                     },
                                     "explanation": {
@@ -2936,8 +2966,8 @@
                                                 "required": []
                                             },
                                             "coefficient": {
-                                                "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
-                                                "description": "The heat transfer coefficient equals the heat flux divided by the temperature difference"
+                                                "$ref": "#/definitions/units/wattPerSquareMeterKelvinWithUncertainty",
+                                                "description": "The heat transfer coefficient equals the heat flux divided by the temperature difference. It has the unit watt per square meter per kelvin."
                                             }
                                         },
                                         "additionalProperties": false,
@@ -3025,6 +3055,7 @@
                             "minItems": 1
                         },
                         "results": {
+                            "title": "The results of a calorimetric measurement depend on the reference area. This array can defined results for different reference areas.",
                             "type": "array",
                             "items": {
                                 "type": "object",
@@ -3034,24 +3065,19 @@
                                         "type": "object",
                                         "properties": {
                                             "category": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "centre",
-                                                        "outerDimensions",
-                                                        "irradiatedAbsorber",
-                                                        "projectedIrradiatedAbsorber"
-                                                    ]
-                                                },
-                                                "description": "(i) `centre` means that the results are valid for the centre of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absober, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance.",
-                                                "additionalItems": false,
-                                                "minItems": 0,
-                                                "maxItems": 1
+                                                "type": "string",
+                                                "enum": [
+                                                    "centre",
+                                                    "outerDimensions",
+                                                    "irradiatedAbsorber",
+                                                    "projectedIrradiatedAbsorber",
+                                                    "other"
+                                                ],
+                                                "description": "(i) `centre` means that the results are valid for the centre of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absober, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance. (v) If none of the other categories apply, `explanation` below must be used to describe the category."
                                             },
                                             "explanation": {
                                                 "$ref": "#/definitions/internationalString",
-                                                "description": "If no category is chosen above, the area needs to be defined by this explanation. If a category is chosen above, the explanation can add details."
+                                                "description": "If `other` is chosen as category above, the area needs to be defined by this explanation. For any other category, the explanation can add details."
                                             }
                                         },
                                         "additionalProperties": false,
@@ -3076,7 +3102,7 @@
                                                 "description": "The photovoltaic efficiency of a component which uses irradiance to provide electric power. This efficiency has no units."
                                             },
                                             "solarThermal": {
-                                                "$ref": "#/definitions/efficiency/solarThermal",
+                                                "$ref": "#/definitions/efficiencies/solarThermal",
                                                 "description": "The solar thermal efficiency of a component which uses irradiance to provide heat."
                                             }
                                         },
@@ -3117,11 +3143,6 @@
                         "minItems": 1,
                         "maxItems": 1,
                         "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
-                    },
-                    "timestamp": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "The timestamp is important for dynamic conditions for the chronological order of the data sets."
                     },
                     "coordinateSystem": {
                         "$ref": "#/definitions/geometry/coordinateSystem",
@@ -3777,9 +3798,14 @@
                     },
                     "optical": {
                         "$ref": "#/definitions/optical/basics",
-                        "description": "All optical data of the data set is stored in this section."
+                        "description": "All optical data of the data set is stored in this section. For example the transmittance and reflectance with specific boundary conditions."
+                    },
+                    "calorimetric": {
+                        "$ref": "#/definitions/calorimetric/basics",
+                        "description": "All calorimetric data of the data set is stored in this section. For example the U value, the g value (or Solar Heat Gain Coefficient)."
                     },
                     "photovoltaic": {
+                        "title": "This section defines all data about building envelopes which can convert irradiance into electric power.",
                         "oneOf": [
                             {
                                 "$ref": "#/definitions/electric/photovoltaic/module",
