@@ -243,824 +243,932 @@
                 "en-US": "One BIPV module of building N at Fraunhofer ISE, Freiburg, Germany."
             },
             "photovoltaic": {
-                "coordinateSystem": {
-                    "categories": [
-                        "rightHanded",
-                        "cartesian"
-                    ]
-                },
-                "cells": {
-                    "amounts": {
-                        "longitudinal": {
-                            "uncertainValue": 8
-                        },
-                        "transversal": {
-                            "uncertainValue": 8
-                        },
-                        "all": {
-                            "uncertainValue": 64
-                        }
+                "module": {
+                    "coordinateSystem": {
+                        "categories": [
+                            "rightHanded",
+                            "cartesian"
+                        ]
                     },
-                    "specifications": [
-                        {
-                            "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                            "power": {
-                                "nominal": {
-                                    "uncertainValue": 3.19
+                    "cells": {
+                        "amounts": {
+                            "longitudinal": {
+                                "uncertainValue": 8
+                            },
+                            "transversal": {
+                                "uncertainValue": 8
+                            },
+                            "all": {
+                                "uncertainValue": 64
+                            }
+                        },
+                        "specifications": [
+                            {
+                                "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                "power": {
+                                    "nominal": {
+                                        "uncertainValue": 3.19
+                                    },
+                                    "effective": {
+                                        "uncertainValue": 3.047
+                                    }
                                 },
-                                "effective": {
-                                    "uncertainValue": 3.047
-                                }
-                            },
-                            "width": {
-                                "uncertainValue": 0.125
-                            },
-                            "categories": [
-                                "monocrystalline",
-                                "silicon"
-                            ]
-                        }
-                    ],
-                    "list": [
-                        {
-                            "id": "764ca288-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ca508-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ca652-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ca788-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ca8b4-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ca9e0-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cab0c-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cae36-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764caf8a-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cb0b6-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cb1d8-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cb304-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cb426-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cb872-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cb9ee-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cbb1a-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cbc3c-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cbd68-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cbe8a-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cc1d2-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cc33a-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cc466-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cc592-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cc6be-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cc7e0-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ccb1e-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ccc72-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ccda8-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cced4-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ccff6-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cd118-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cd32a-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cdc8a-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cde24-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ce02c-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ce16c-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ce298-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ce3c4-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ce4f0-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ce856-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ce9b4-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ceae0-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cec0c-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764ced2e-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cee5a-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cf1c0-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cf328-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cf454-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cf576-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cf698-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cf7c4-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cf8e6-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cfc24-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cfd8c-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cfeb8-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764cffda-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764d0106-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764d0232-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764d0368-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764d0688-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764d07e6-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764d0912-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764d0a34-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        },
-                        {
-                            "id": "764d0b60-0c51-11ea-8d71-362b9e155667",
-                            "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
-                        }
-                    ]
-                },
-                "connections": {
-                    "specifications": [
-                        {
-                            "id": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "explanation": {
-                                "en-US": "Connection type is unknown."
-                            }
-                        }
-                    ],
-                    "list": [
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ca508-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ca288-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ca652-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ca508-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ca788-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ca652-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ca8b4-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ca788-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ca9e0-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ca8b4-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cab0c-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ca9e0-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cae36-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cab0c-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764caf8a-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cae36-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cb0b6-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764caf8a-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cb1d8-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cb0b6-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cb304-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cb1d8-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cb426-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cb304-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cb872-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cb426-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cb9ee-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cb872-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cbb1a-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cb9ee-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cbc3c-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cbb1a-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cbd68-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cbc3c-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cbe8a-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cbd68-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cc1d2-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cbe8a-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cc33a-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cc1d2-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cc466-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cc33a-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cc592-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cc466-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cc6be-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cc592-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cc7e0-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cc6be-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ccb1e-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cc7e0-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ccc72-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ccb1e-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ccda8-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ccc72-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cced4-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ccda8-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ccff6-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cced4-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cd118-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ccff6-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cd32a-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cd118-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cdc8a-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cd32a-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cde24-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cdc8a-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ce02c-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cde24-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ce16c-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ce02c-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ce298-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ce16c-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ce3c4-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ce298-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ce4f0-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ce3c4-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ce856-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ce4f0-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ce9b4-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ce856-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ceae0-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ce9b4-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cec0c-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ceae0-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764ced2e-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cec0c-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cee5a-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764ced2e-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cf1c0-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cee5a-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cf328-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cf1c0-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cf454-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cf328-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cf576-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cf454-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cf698-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cf576-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cf7c4-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cf698-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cf8e6-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cf7c4-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cfc24-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cf8e6-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cfd8c-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cfc24-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cfeb8-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cfd8c-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764cffda-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cfeb8-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764d0106-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764cffda-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764d0232-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764d0106-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764d0368-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764d0232-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764d0688-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764d0368-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764d07e6-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764d0688-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764d0912-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764d07e6-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764d0a34-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764d0912-0c51-11ea-8d71-362b9e155667"
-                        },
-                        {
-                            "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
-                            "id1": "764d0b60-0c51-11ea-8d71-362b9e155667",
-                            "id2": "764d0a34-0c51-11ea-8d71-362b9e155667"
-                        }
-                    ],
-                    "category": "series"
-                },
-                "layers": {
-                    "amounts": {
-                        "all": {
-                            "uncertainValue": 5
-                        }
-                    },
-                    "list": [
-                        {
-                            "material": {
-                                "name": {
-                                    "en-US": "Tempered white glass"
-                                }
-                            },
-                            "categories": [
-                                "front",
-                                "cover"
-                            ],
-                            "thickness": {
-                                "uncertainValue": 0.005
-                            },
-                            "geometry": {
-                                "dimensions": {
-                                    "independent": {
-                                        "smallest": {
-                                            "uncertainValue": 0.005
-                                        },
-                                        "intermediate": {
-                                            "uncertainValue": 1.08
-                                        },
-                                        "largest": {
-                                            "uncertainValue": 1.09
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "material": {
-                                "name": {
-                                    "en-US": "PVB"
-                                }
-                            },
-                            "categories": [
-                                "front",
-                                "embedding"
-                            ]
-                        },
-                        {
-                            "categories": [
-                                "cell"
-                            ]
-                        },
-                        {
-                            "material": {
-                                "name": {
-                                    "en-US": "PVB"
-                                }
-                            },
-                            "categories": [
-                                "rear",
-                                "embedding"
-                            ]
-                        },
-                        {
-                            "material": {
-                                "name": {
-                                    "en-US": "Tempered white glass"
-                                }
-                            },
-                            "categories": [
-                                "backing"
-                            ],
-                            "thickness": {
-                                "uncertainValue": 0.004
-                            },
-                            "geometry": {
-                                "dimensions": {
-                                    "independent": {
-                                        "smallest": {
-                                            "uncertainValue": 0.004
-                                        },
-                                        "intermediate": {
-                                            "uncertainValue": 1.08
-                                        },
-                                        "largest": {
-                                            "uncertainValue": 1.09
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                },
-                "electricConfiguration": {
-                    "grounding": "plus",
-                    "connectionCables": {
-                        "crossSection": {
-                            "uncertainValue": 4
-                        },
-                        "length": {
-                            "positive": {
-                                "uncertainValue": 1
-                            },
-                            "negative": {
-                                "uncertainValue": 1
-                            }
-                        }
-                    },
-                    "connectorType": {
-                        "id": "91f66c3b-8c08-4e86-9310-1fd8893d30b1",
-                        "name": {
-                            "en-US": "Huber und Suhner"
-                        }
-                    }
-                },
-                "moduleProperties": {
-                    "power": {
-                        "nominal": {
-                            "uncertainValue": 195
-                        },
-                        "tolerance": 5,
-                        "temperatureCoefficient": -0.32,
-                        "guarantee": [
-                            {
-                                "years": 10,
-                                "percentage": 90
-                            },
-                            {
-                                "years": 15,
-                                "percentage": 80
+                                "width": {
+                                    "uncertainValue": 0.125
+                                },
+                                "categories": [
+                                    "monocrystalline",
+                                    "silicon"
+                                ]
                             }
                         ],
-                        "angleDependency": {
-                            "incidenceAngleModifier": [
-                                {
-                                    "incidence": 0,
-                                    "IAM": 1
-                                },
-                                {
-                                    "incidence": 60,
-                                    "IAM": 0.924
-                                },
-                                {
-                                    "incidence": 90,
-                                    "IAM": 0
+                        "list": [
+                            {
+                                "id": "764ca288-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ca508-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ca652-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ca788-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ca8b4-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ca9e0-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cab0c-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cae36-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764caf8a-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cb0b6-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cb1d8-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cb304-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cb426-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cb872-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cb9ee-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cbb1a-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cbc3c-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cbd68-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cbe8a-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cc1d2-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cc33a-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cc466-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cc592-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cc6be-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cc7e0-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ccb1e-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ccc72-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ccda8-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cced4-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ccff6-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cd118-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cd32a-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cdc8a-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cde24-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ce02c-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ce16c-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ce298-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ce3c4-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ce4f0-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ce856-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ce9b4-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ceae0-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cec0c-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764ced2e-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cee5a-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cf1c0-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cf328-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cf454-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cf576-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cf698-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cf7c4-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cf8e6-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cfc24-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cfd8c-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cfeb8-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764cffda-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764d0106-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764d0232-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764d0368-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764d0688-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764d07e6-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764d0912-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764d0a34-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            },
+                            {
+                                "id": "764d0b60-0c51-11ea-8d71-362b9e155667",
+                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                            }
+                        ]
+                    },
+                    "connections": {
+                        "specifications": [
+                            {
+                                "id": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "explanation": {
+                                    "en-US": "Connection type is unknown."
                                 }
-                            ]
+                            }
+                        ],
+                        "list": [
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ca508-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ca288-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ca652-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ca508-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ca788-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ca652-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ca8b4-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ca788-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ca9e0-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ca8b4-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cab0c-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ca9e0-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cae36-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cab0c-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764caf8a-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cae36-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cb0b6-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764caf8a-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cb1d8-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cb0b6-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cb304-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cb1d8-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cb426-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cb304-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cb872-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cb426-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cb9ee-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cb872-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cbb1a-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cb9ee-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cbc3c-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cbb1a-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cbd68-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cbc3c-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cbe8a-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cbd68-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cc1d2-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cbe8a-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cc33a-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cc1d2-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cc466-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cc33a-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cc592-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cc466-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cc6be-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cc592-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cc7e0-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cc6be-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ccb1e-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cc7e0-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ccc72-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ccb1e-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ccda8-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ccc72-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cced4-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ccda8-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ccff6-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cced4-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cd118-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ccff6-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cd32a-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cd118-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cdc8a-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cd32a-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cde24-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cdc8a-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ce02c-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cde24-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ce16c-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ce02c-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ce298-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ce16c-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ce3c4-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ce298-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ce4f0-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ce3c4-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ce856-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ce4f0-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ce9b4-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ce856-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ceae0-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ce9b4-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cec0c-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ceae0-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764ced2e-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cec0c-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cee5a-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764ced2e-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cf1c0-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cee5a-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cf328-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cf1c0-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cf454-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cf328-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cf576-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cf454-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cf698-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cf576-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cf7c4-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cf698-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cf8e6-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cf7c4-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cfc24-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cf8e6-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cfd8c-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cfc24-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cfeb8-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cfd8c-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764cffda-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cfeb8-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764d0106-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764cffda-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764d0232-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764d0106-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764d0368-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764d0232-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764d0688-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764d0368-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764d07e6-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764d0688-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764d0912-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764d07e6-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764d0a34-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764d0912-0c51-11ea-8d71-362b9e155667"
+                            },
+                            {
+                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "id1": "764d0b60-0c51-11ea-8d71-362b9e155667",
+                                "id2": "764d0a34-0c51-11ea-8d71-362b9e155667"
+                            }
+                        ],
+                        "category": "series"
+                    },
+                    "layers": {
+                        "amounts": {
+                            "all": {
+                                "uncertainValue": 5
+                            }
+                        },
+                        "list": [
+                            {
+                                "material": {
+                                    "name": {
+                                        "en-US": "Tempered white glass"
+                                    }
+                                },
+                                "categories": [
+                                    "front",
+                                    "cover"
+                                ],
+                                "thickness": {
+                                    "uncertainValue": 0.005
+                                },
+                                "geometry": {
+                                    "dimensions": {
+                                        "independent": {
+                                            "smallest": {
+                                                "uncertainValue": 0.005
+                                            },
+                                            "intermediate": {
+                                                "uncertainValue": 1.08
+                                            },
+                                            "largest": {
+                                                "uncertainValue": 1.09
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "material": {
+                                    "name": {
+                                        "en-US": "PVB"
+                                    }
+                                },
+                                "categories": [
+                                    "front",
+                                    "embedding"
+                                ]
+                            },
+                            {
+                                "categories": [
+                                    "cell"
+                                ]
+                            },
+                            {
+                                "material": {
+                                    "name": {
+                                        "en-US": "PVB"
+                                    }
+                                },
+                                "categories": [
+                                    "rear",
+                                    "embedding"
+                                ]
+                            },
+                            {
+                                "material": {
+                                    "name": {
+                                        "en-US": "Tempered white glass"
+                                    }
+                                },
+                                "categories": [
+                                    "backing"
+                                ],
+                                "thickness": {
+                                    "uncertainValue": 0.004
+                                },
+                                "geometry": {
+                                    "dimensions": {
+                                        "independent": {
+                                            "smallest": {
+                                                "uncertainValue": 0.004
+                                            },
+                                            "intermediate": {
+                                                "uncertainValue": 1.08
+                                            },
+                                            "largest": {
+                                                "uncertainValue": 1.09
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "electricConfiguration": {
+                        "grounding": "plus",
+                        "connectionCables": {
+                            "crossSection": {
+                                "uncertainValue": 4
+                            },
+                            "length": {
+                                "positive": {
+                                    "uncertainValue": 1
+                                },
+                                "negative": {
+                                    "uncertainValue": 1
+                                }
+                            }
+                        },
+                        "connectorType": {
+                            "id": "91f66c3b-8c08-4e86-9310-1fd8893d30b1",
+                            "name": {
+                                "en-US": "Huber und Suhner"
+                            }
+                        }
+                    },
+                    "moduleProperties": {
+                        "power": {
+                            "nominal": {
+                                "uncertainValue": 195
+                            },
+                            "tolerance": 5,
+                            "temperatureCoefficient": -0.32,
+                            "guarantee": [
+                                {
+                                    "years": 10,
+                                    "percentage": 90
+                                },
+                                {
+                                    "years": 15,
+                                    "percentage": 80
+                                }
+                            ],
+                            "angleDependency": {
+                                "incidenceAngleModifier": [
+                                    {
+                                        "incidence": 0,
+                                        "IAM": 1
+                                    },
+                                    {
+                                        "incidence": 60,
+                                        "IAM": 0.924
+                                    },
+                                    {
+                                        "incidence": 90,
+                                        "IAM": 0
+                                    }
+                                ]
+                            }
+                        },
+                        "voltage": {
+                            "nominal": {
+                                "uncertainValue": 36.1
+                            },
+                            "openCircuit": {
+                                "uncertainValue": 43.26
+                            },
+                            "temperatureCoefficient": -0.26,
+                            "maximumSystem": 1000
+                        },
+                        "current": {
+                            "nominal": {
+                                "uncertainValue": 5.4
+                            },
+                            "shortCircuit": {
+                                "uncertainValue": 5.86
+                            },
+                            "temperatureCoefficient": 0.06
+                        },
+                        "fillFactor": 0.769,
+                        "efficiency": 0.1656,
+                        "weight": {
+                            "uncertainValue": 29.7
+                        },
+                        "geometry": {
+                            "dimensions": {
+                                "independent": {
+                                    "smallest": {
+                                        "uncertainValue": 0.01128
+                                    },
+                                    "intermediate": {
+                                        "uncertainValue": 1.08
+                                    },
+                                    "largest": {
+                                        "uncertainValue": 1.09
+                                    }
+                                }
+                            }
+                        },
+                        "guarantee": [
+                            {
+                                "years": 10
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "id": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
+            "name": {
+                "en-US": "Fronius Galvo 3.0"
+            },
+            "explanation": {
+                "en-US": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany."
+            },
+            "photovoltaic": {
+                "inverter": {
+                    "id": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
+                    "amounts": {
+                        "trackers": 1,
+                        "inputs": 3
+                    },
+                    "power": {
+                        "input": {
+                            "maximum": 6000
+                        },
+                        "output": {
+                            "nominal": {
+                                "uncertainValue": 3000
+                            },
+                            "maximum": 3000,
+                            "normalized": 0.5
+                        },
+                        "demand": {
+                            "night": {
+                                "uncertainValue": 1
+                            }
                         }
                     },
                     "voltage": {
-                        "nominal": {
-                            "uncertainValue": 36.1
+                        "input": {
+                            "minimum": 165,
+                            "start": 185,
+                            "maximum": 550
                         },
-                        "openCircuit": {
-                            "uncertainValue": 43.26
-                        },
-                        "temperatureCoefficient": -0.26,
-                        "maximumSystem": 1000
-                    },
-                    "current": {
-                        "nominal": {
-                            "uncertainValue": 5.4
-                        },
-                        "shortCircuit": {
-                            "uncertainValue": 5.86
-                        },
-                        "temperatureCoefficient": 0.06
-                    },
-                    "fillFactor": 0.769,
-                    "efficiency": 0.1656,
-                    "weight": {
-                        "uncertainValue": 29.7
-                    },
-                    "geometry": {
-                        "dimensions": {
-                            "independent": {
-                                "smallest": {
-                                    "uncertainValue": 0.01128
-                                },
-                                "intermediate": {
-                                    "uncertainValue": 1.08
-                                },
-                                "largest": {
-                                    "uncertainValue": 1.09
-                                }
+                        "output": {
+                            "frequency": {
+                                "minimum": 45,
+                                "maximum": 65
                             }
                         }
                     },
-                    "guarantee": [
-                        {
-                            "years": 10
+                    "current": {
+                        "input": {
+                            "maximum": 19.8,
+                            "shortCircuit": 19.6
+                        },
+                        "output": {
+                            "nominal": 13
                         }
-                    ]
+                    },
+                    "weight": {
+                        "uncertainValue": 16.8
+                    },
+                    "geometry": {
+                        "dimensions": {
+                            "installed": [
+                                {
+                                    "height": {
+                                        "uncertainValue": 0.645
+                                    },
+                                    "width": {
+                                        "uncertainValue": 0.431
+                                    },
+                                    "depth": {
+                                        "uncertainValue": 0.204
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "safety": {
+                        "electric": {
+                            "IPcode": [
+                                {
+                                    "standard": "EN IEC 60529",
+                                    "firstDigit": "6",
+                                    "secondDigit": "5"
+                                }
+                            ],
+                            "applianceClass": [
+                                {
+                                    "standard": "IEC 61140",
+                                    "class": "I"
+                                }
+                            ]
+                        }
+                    },
+                    "temperatures": {
+                        "minimum": 248.15,
+                        "maximum": 323.15
+                    },
+                    "efficiencies": {
+                        "maximum": {
+                            "uncertainValue": 0.961
+                        },
+                        "European": {
+                            "uncertainValue": 0.954
+                        }
+                    }
                 }
             }
         }
