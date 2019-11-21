@@ -28,128 +28,130 @@
             "format": "uri",
             "description": "In extension to the validation keyword `hostname`, a `webAddress` includes a `scheme` like https and possibly a `path` like /folder/item. TODO: Add an additional regex which checks whether the uri contains a `hostname`."
         },
-        "numberWithUncertainty": {
-            "type": "object",
-            "properties": {
-                "uncertainValue": {
-                    "type": "number",
-                    "description": "The number for which an uncertainty can be defined in the second objectin this array."
+        "numbers": {
+            "numberWithUncertainty": {
+                "type": "object",
+                "properties": {
+                    "uncertainValue": {
+                        "type": "number",
+                        "description": "The number for which an uncertainty can be defined in the second objectin this array."
+                    },
+                    "uncertainty": {
+                        "type": "number",
+                        "minimum": 0,
+                        "description": "The uncertainty of the `uncertainValue` above."
+                    },
+                    "confidenceInterval": {
+                        "type": "number",
+                        "enum": [
+                            "68.3",
+                            "95.4",
+                            "99.7",
+                            "100.0"
+                        ],
+                        "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
+                    }
                 },
-                "uncertainty": {
-                    "type": "number",
-                    "minimum": 0,
-                    "description": "The uncertainty of the `uncertainValue` above."
-                },
-                "confidenceInterval": {
-                    "type": "number",
-                    "enum": [
-                        "68.3",
-                        "95.4",
-                        "99.7",
-                        "100.0"
-                    ],
-                    "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
-                }
+                "additionalProperties": false,
+                "required": [
+                    "uncertainValue"
+                ]
             },
-            "additionalProperties": false,
-            "required": [
-                "uncertainValue"
-            ]
-        },
-        "numberWithoutUncertainty": {
-            "title": "This type is used when no restrictions on the numbers are possible.",
-            "type": "number"
-        },
-        "nonNegativeNumberWithUncertainty": {
-            "type": "object",
-            "properties": {
-                "uncertainValue": {
-                    "type": "number",
-                    "minimum": 0,
-                    "description": "The non-negative number for which an uncertainty can be defined in the second objectin this array."
-                },
-                "uncertainty": {
-                    "type": "number",
-                    "minimum": 0,
-                    "description": "The uncertainty of the `uncertainValue` above."
-                },
-                "confidenceInterval": {
-                    "type": "number",
-                    "enum": [
-                        "68.3",
-                        "95.4",
-                        "99.7",
-                        "100.0"
-                    ],
-                    "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
-                }
+            "numberWithoutUncertainty": {
+                "title": "This type is used when no restrictions on the numbers are possible.",
+                "type": "number"
             },
-            "additionalProperties": false,
-            "required": [
-                "uncertainValue"
-            ]
-        },
-        "nonNegativeNumberWithoutUncertainty": {
-            "title": "This type is used when only non-negative integers are valid.",
-            "type": "number",
-            "minimum": 0
-        },
-        "nonNegativeIntegerWithUncertainty": {
-            "type": "object",
-            "properties": {
-                "uncertainValue": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "description": "The non-negative integer for which an uncertainty can be defined in the second objectin this array."
+            "nonNegativeNumberWithUncertainty": {
+                "type": "object",
+                "properties": {
+                    "uncertainValue": {
+                        "type": "number",
+                        "minimum": 0,
+                        "description": "The non-negative number for which an uncertainty can be defined in the second objectin this array."
+                    },
+                    "uncertainty": {
+                        "type": "number",
+                        "minimum": 0,
+                        "description": "The uncertainty of the `uncertainValue` above."
+                    },
+                    "confidenceInterval": {
+                        "type": "number",
+                        "enum": [
+                            "68.3",
+                            "95.4",
+                            "99.7",
+                            "100.0"
+                        ],
+                        "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
+                    }
                 },
-                "uncertainty": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "description": "The uncertainty of the `uncertainValue` above."
-                },
-                "confidenceInterval": {
-                    "type": "number",
-                    "enum": [
-                        "68.3",
-                        "95.4",
-                        "99.7",
-                        "100.0"
-                    ],
-                    "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
-                }
+                "additionalProperties": false,
+                "required": [
+                    "uncertainValue"
+                ]
             },
-            "additionalProperties": false,
-            "required": [
-                "uncertainValue"
-            ]
-        },
-        "nonNegativeIntegerWithoutUncertainty": {
-            "title": "This type is used when only non-negative integers are valid.",
-            "type": "integer",
-            "minimum": 0
-        },
-        "numberBetweenZeroAndOneWithoutUncertainty": {
-            "title": "This type is used when only numbers between 0 and 1 are valid.",
-            "type": "number",
-            "minimum": 0,
-            "maximum": 1
-        },
-        "numberBetweenZeroAndHundredWithoutUncertainty": {
-            "title": "This type is used when only numbers between 0 and 100 are valid.",
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100
-        },
-        "numberBetweenMinusAndPlusHundredWithoutUncertainty": {
-            "title": "This type is used when only numbers between -100 and 100 are valid.",
-            "type": "number",
-            "minimum": -100,
-            "maximum": 100
+            "nonNegativeNumberWithoutUncertainty": {
+                "title": "This type is used when only non-negative integers are valid.",
+                "type": "number",
+                "minimum": 0
+            },
+            "nonNegativeIntegerWithUncertainty": {
+                "type": "object",
+                "properties": {
+                    "uncertainValue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "The non-negative integer for which an uncertainty can be defined in the second objectin this array."
+                    },
+                    "uncertainty": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "The uncertainty of the `uncertainValue` above."
+                    },
+                    "confidenceInterval": {
+                        "type": "number",
+                        "enum": [
+                            "68.3",
+                            "95.4",
+                            "99.7",
+                            "100.0"
+                        ],
+                        "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "uncertainValue"
+                ]
+            },
+            "nonNegativeIntegerWithoutUncertainty": {
+                "title": "This type is used when only non-negative integers are valid.",
+                "type": "integer",
+                "minimum": 0
+            },
+            "numberBetweenZeroAndOneWithoutUncertainty": {
+                "title": "This type is used when only numbers between 0 and 1 are valid.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+            },
+            "numberBetweenZeroAndHundredWithoutUncertainty": {
+                "title": "This type is used when only numbers between 0 and 100 are valid.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+            },
+            "numberBetweenMinusAndPlusHundredWithoutUncertainty": {
+                "title": "This type is used when only numbers between -100 and 100 are valid.",
+                "type": "number",
+                "minimum": -100,
+                "maximum": 100
+            }
         },
         "units": {
             "title": "This section defines types for numbers with units",
             "meterWithUncertainty": {
-                "$ref": "#/definitions/numberWithUncertainty",
+                "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Meter is the SI unit for length."
             },
             "meterWithoutUncertainty": {
@@ -162,15 +164,15 @@
                 "description": "This number represents a length in nanometers. 1 nm equals 10^(-9) meters."
             },
             "squareMeterWithUncertainty": {
-                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                 "description": "A quare meter is a unit for an area."
             },
             "squareMillimeterWithoutUncertainty": {
-                "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
                 "description": "A quare meter is a unit for an area."
             },
             "cubicMeterWithUncertainty": {
-                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                 "description": "A cubic meter is a unit for a volume."
             },
             "degree": {
@@ -184,75 +186,75 @@
                 "description": "A unit to measure angles. A full rotation equals 2*Pi."
             },
             "wattWithUncertainty": {
-                "$ref": "#/definitions/numberWithUncertainty",
+                "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Watt (W) is the SI unit for power."
             },
             "wattWithoutUncertainty": {
-                "$ref": "#/definitions/numberWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
                 "description": "Watt (W) is the SI unit for power."
             },
             "kelvinWithUncertainty": {
-                "$ref": "#/definitions/numberWithUncertainty",
+                "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Kelvin (K) is the SI unit for temperature."
             },
             "kelvinWithoutUncertainty": {
-                "$ref": "#/definitions/numberWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
                 "description": "Kelvin (K) is the SI unit for temperature."
             },
             "voltWithUncertainty": {
-                "$ref": "#/definitions/numberWithUncertainty",
+                "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Volt (V) is the SI unit for electric potential."
             },
             "voltWithoutUncertainty": {
-                "$ref": "#/definitions/numberWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
                 "description": "Volt (V) is the SI unit for electric potential."
             },
             "ampereWithUncertainty": {
-                "$ref": "#/definitions/numberWithUncertainty",
+                "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Ampere (A) is the SI unit for electric current."
             },
             "ampereWithoutUncertainty": {
-                "$ref": "#/definitions/numberWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
                 "description": "Ampere (A) is the SI unit for electric current."
             },
             "ohmWithUncertainty": {
-                "$ref": "#/definitions/numberWithUncertainty",
+                "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Ohm is the derived SI unit for electric resistance."
             },
             "ohmWithoutUncertainty": {
-                "$ref": "#/definitions/numberWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
                 "description": "Ohm is the derived SI unit for electric resistance."
             },
             "ohmPerMeterWithUncertainty": {
-                "$ref": "#/definitions/numberWithUncertainty",
+                "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Ohm per meter is a unit for the electric resistance depending on the length."
             },
             "ohmPerMeterWithoutUncertainty": {
-                "$ref": "#/definitions/numberWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
                 "description": "Ohm per meter is a unit for the electric resistance depending on the length."
             },
             "kilogramWithUncertainty": {
-                "$ref": "#/definitions/numberWithUncertainty",
+                "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Kilogram (also kilogramme, kg) is the SI unit for length."
             },
             "pascalWithoutUncertainty": {
-                "$ref": "#/definitions/numberWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
                 "description": "Pascal (Pa) is the SI unit for pressure."
             },
             "hertzWithUncertainty": {
-                "$ref": "#/definitions/numberWithUncertainty",
+                "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Hertz (Hz) is a derived SI unit of frequency."
             },
             "kgPerCubicMeterWithUncertainty": {
-                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                 "description": "The density of a material has the SI units kg/m^3."
             },
             "JPerKgKwithUncertainty": {
-                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                 "description": "Joule per kilogram and per Kelvin (J/(kg*K)) are the SI units of the specific heat capacity."
             },
             "kgPerSecondWithUncertainty": {
-                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                 "description": "Kilogram per second (kg/s) are the SI units of the mass flow."
             }
         },
@@ -734,7 +736,7 @@
                         ]
                     },
                     "airPermeability": {
-                        "$ref": "#/definitions/numberWithUncertainty",
+                        "$ref": "#/definitions/numbers/numberWithUncertainty",
                         "description": "The air permeability defines how easy air can flow through the component."
                     },
                     "colour": {
@@ -1163,18 +1165,18 @@
                     "description": "The name of the colour in natural language"
                 },
                 "CRI": {
-                    "$ref": "#/definitions/numberWithUncertainty",
+                    "$ref": "#/definitions/numbers/numberWithUncertainty",
                     "description": "The Colour Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
                 },
                 "CIELAB": {
                     "L*": {
-                        "$ref": "#/definitions/numberWithUncertainty"
+                        "$ref": "#/definitions/numbers/numberWithUncertainty"
                     },
                     "a*": {
-                        "$ref": "#/definitions/numberWithUncertainty"
+                        "$ref": "#/definitions/numbers/numberWithUncertainty"
                     },
                     "b*": {
-                        "$ref": "#/definitions/numberWithUncertainty"
+                        "$ref": "#/definitions/numbers/numberWithUncertainty"
                     },
                     "description": "The three parameters L*, a* and b* from CIE define the colour as well as the brightness."
                 }
@@ -1265,15 +1267,15 @@
                 "type": "object",
                 "properties": {
                     "height": {
-                        "$ref": "#/definitions/numberWithUncertainty",
+                        "$ref": "#/definitions/numbers/numberWithUncertainty",
                         "description": "The height of the component along the vertical axis of the building envelope."
                     },
                     "width": {
-                        "$ref": "#/definitions/numberWithUncertainty",
+                        "$ref": "#/definitions/numbers/numberWithUncertainty",
                         "description": "The width of the component along the horizontal axis of the building envelope."
                     },
                     "depth": {
-                        "$ref": "#/definitions/numberWithUncertainty",
+                        "$ref": "#/definitions/numbers/numberWithUncertainty",
                         "description": "The depth of the component along the axis perpendicular to the building envelope."
                     }
                 },
@@ -1324,7 +1326,7 @@
                         "type": "array",
                         "items": [
                             {
-                                "$ref": "#/definitions/nonNegativeIntegerWithoutUncertainty",
+                                "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
                                 "description": "This integer indicates the LOD according to the definition of the reference below."
                             },
                             {
@@ -1574,7 +1576,7 @@
                 "type": "object",
                 "properties": {
                     "refractiveIndex": {
-                        "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                        "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                         "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
                     },
                     "density": {
@@ -1628,11 +1630,11 @@
                                 "description": "The width of the slat"
                             },
                             "pitch": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
                             },
                             "crownHeight": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
                             },
                             "shape": {
@@ -1694,11 +1696,11 @@
                         "type": "object",
                         "properties": {
                             "dTop": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "dTop is usually a distance at the top of the unit, but is defined exactly in the reference below."
                             },
                             "dGlass": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "dGlass is usually a distance to the glass pane, but is defined exactly in the reference below."
                             },
                             "reference": {
@@ -1968,11 +1970,11 @@
                         "type": "object",
                         "properties": {
                             "s": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "This property represents the fraction of radiation with its electric field perpendicular to the plane of incidence of the radiation on the sample. s is usually between 0 and 1. Only in raw data there may be exceptions because of the uncertainty. However, s can never be below 0-uncertainty or larger than 1+uncertainty."
                             },
                             "p": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "This property represents the fraction of radiation with its electric field parallel to the plane of incidence of the radiation on the sample. p is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
                             }
                         },
@@ -1986,11 +1988,11 @@
                         "type": "object",
                         "properties": {
                             "l": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "This property represents the fraction of radiation with its electric field rotating in a left-hand sense with respect to the direction of radiation. l is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
                             },
                             "r": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "This property represents the fraction of radiation with its electric field rotating in a right-hand sense with respect to the direction of radiation. r is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
                             }
                         },
@@ -2074,7 +2076,7 @@
                                     "type": "object",
                                     "properties": {
                                         "amplificationFactor": {
-                                            "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                                            "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                                             "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/definitions/optical/wavelengths/wavelength`."
                                         }
                                     },
@@ -2190,7 +2192,7 @@
                         "required": []
                     },
                     "instrumentSignature": {
-                        "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                        "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
                         "description": "The instrument signature is defined as the mean scatter leel detected when there is no sample scatter present."
                     },
                     "normalization": {
@@ -2255,11 +2257,11 @@
                         "type": "object",
                         "properties": {
                             "transmittance": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "Transmittance is the ratio between the irradiance which is transmitted through the sample and the irradiance on the the sample. It has values between 0 and 1. Exceptions are usually due to measurement uncertainty."
                             },
                             "reflectance": {
-                                "$ref": "#/definitions/numberWithUncertainty",
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "Reflectance is the ratio between the irradiance which is reflected by the sample and the irradiance on the the sample."
                             }
                         },
@@ -2433,7 +2435,7 @@
                                                 "required": []
                                             },
                                             "coefficient": {
-                                                "$ref": "#/definitions/nonNegativeNumberWithUncertainty",
+                                                "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                                                 "description": "The heat transfer coefficient equals the heat flux divided by the temperature difference"
                                             }
                                         },
@@ -2633,11 +2635,11 @@
             },
             "results": {
                 "uValue": {
-                    "$ref": "#/definitions/numberWithUncertainty",
+                    "$ref": "#/definitions/numbers/numberWithUncertainty",
                     "description": "The U value, also known as thermal transmittance, can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
                 },
                 "gValue": {
-                    "$ref": "#/definitions/numberWithUncertainty",
+                    "$ref": "#/definitions/numbers/numberWithUncertainty",
                     "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
                 }
             }
@@ -2645,15 +2647,15 @@
         "efficiencies": {
             "title": "For the conversion of energy into another, this section provides definitions for effiencies.",
             "photovoltaic": {
-                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
                 "description": "The photovoltaic efficiency of a component which uses irradiance to provide electric power."
             },
             "solarThermal": {
-                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
                 "description": "The solar thermal efficiency of a component which uses irradiance to provide heat."
             },
             "inverter": {
-                "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
                 "description": "The efficiency of an inverter which converts for example direct current into alternating current."
             }
         },
@@ -2700,15 +2702,15 @@
                                     "type": "object",
                                     "properties": {
                                         "longitudinal": {
-                                            "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
                                             "description": "Maximum number of cells along the longest side of the PV module."
                                         },
                                         "transversal": {
-                                            "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
                                             "description": "Maximum number of cells along the shorter side of the PV module."
                                         },
                                         "all": {
-                                            "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
                                             "description": "The number of all cells of the PV module."
                                         }
                                     },
@@ -2717,15 +2719,15 @@
                                     "required": []
                                 },
                                 "diodes": {
-                                    "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                    "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
                                     "description": "The number of diodes in this PV module."
                                 },
                                 "connections": {
-                                    "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                    "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
                                     "description": "The number of connections in this PV module."
                                 },
                                 "layers": {
-                                    "$ref": "#/definitions/nonNegativeIntegerWithUncertainty",
+                                    "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
                                     "description": "The number of layers in this PV module."
                                 }
                             },
@@ -2748,7 +2750,7 @@
                                         "description": "This string can explain the cell to humans."
                                     },
                                     "efficiency": {
-                                        "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                        "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
                                         "description": "The effiency of the cell is measured at standard test conditions."
                                     },
                                     "power": {
@@ -3127,11 +3129,11 @@
                                             "description": "The nominal power is measured at the maximum power point of the module under standard test conditions."
                                         },
                                         "tolerance": {
-                                            "$ref": "#/definitions/numberBetweenZeroAndHundredWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/numberBetweenZeroAndHundredWithoutUncertainty",
                                             "description": "The tolerance of the nominal power of the module in percent. For example, '5' means, that the nominal power can be 5% larger or smaller than the value provided above."
                                         },
                                         "temperatureCoefficient": {
-                                            "$ref": "#/definitions/numberBetweenMinusAndPlusHundredWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/numberBetweenMinusAndPlusHundredWithoutUncertainty",
                                             "description": "When the temperature increases compared to standard test conditions, the nominal power changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                         },
                                         "guarantee": {
@@ -3144,11 +3146,11 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "years": {
-                                                                "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                                "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
                                                                 "description": "This number defines the amount of years until which a certain minimum percentage of the nominal power is guaranteed."
                                                             },
                                                             "percentage": {
-                                                                "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                                "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
                                                                 "description": "This number defines which fraction of the nominal power in percent is guaranteed as minimum after the amount of years which are defined above."
                                                             }
                                                         },
@@ -3185,7 +3187,7 @@
                                                                 "description": "The incidence angle in degree"
                                                             },
                                                             "IAM": {
-                                                                "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                                "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
                                                                 "description": "`IAM` defines the value of the incidence angle modifier at the angle defined by `incidence`."
                                                             }
                                                         }
@@ -3204,7 +3206,7 @@
                                                                 "description": "The section defines the direction of the incident radiation."
                                                             },
                                                             "modifier": {
-                                                                "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                                "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
                                                                 "description": "For the direction above, this `modifier` can be multiplied with the nominal power to determine the power at a this direction of incidence."
                                                             }
                                                         },
@@ -3236,7 +3238,7 @@
                                             "description": "The open circuit voltage is measured under standard test conditions without connecting the module to an electric circuit."
                                         },
                                         "temperatureCoefficient": {
-                                            "$ref": "#/definitions/numberBetweenMinusAndPlusHundredWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/numberBetweenMinusAndPlusHundredWithoutUncertainty",
                                             "description": "When the temperature increases compared to standard test conditions, the open circuit voltage changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                         },
                                         "maximumSystem": {
@@ -3260,7 +3262,7 @@
                                             "description": "The short circuit current is measured under standard test conditions with the module connected to an electric circuit which has an electric resistance of zero."
                                         },
                                         "temperatureCoefficient": {
-                                            "$ref": "#/definitions/numberBetweenMinusAndPlusHundredWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/numberBetweenMinusAndPlusHundredWithoutUncertainty",
                                             "description": "When the temperature increases compared to standard test conditions, the short circuit current changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                         }
                                     },
@@ -3269,11 +3271,11 @@
                                     "required": []
                                 },
                                 "fillFactor": {
-                                    "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                    "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
                                     "description": "The fill factor is a measure of quality of a solar cell. It is the power at the maximum powerpoint divided by the open circuit voltage and the short circuit current."
                                 },
                                 "efficiency": {
-                                    "$ref": "#/definitions/numberBetweenZeroAndOneWithoutUncertainty",
+                                    "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
                                     "description": "The effiency of the module is measured at standard test conditions."
                                 },
                                 "weight": {
@@ -3473,7 +3475,7 @@
                                             "type": "object",
                                             "properties": {
                                                 "years": {
-                                                    "$ref": "#/definitions/nonNegativeNumberWithoutUncertainty",
+                                                    "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
                                                     "description": "This number defines the number of years for which the manufacturer offers a guarantee for this module."
                                                 },
                                                 "reference": {
@@ -3642,11 +3644,11 @@
                                     "type": "object",
                                     "properties": {
                                         "trackers": {
-                                            "$ref": "#/definitions/nonNegativeIntegerWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
                                             "description": "The number of maximum-power-point (MPP) trackers which the inverter provides."
                                         },
                                         "inputs": {
-                                            "$ref": "#/definitions/nonNegativeIntegerWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
                                             "description": "The number of DC input ports which the inverter provides. To each input port, one string of PV modules can be connected."
                                         }
                                     },
@@ -3980,7 +3982,7 @@
                             "description": "Id1 represents the second component which is connected to the component represented by id1."
                         },
                         "length": {
-                            "$ref": "#/definitions/numberWithUncertainty",
+                            "$ref": "#/definitions/numbers/numberWithUncertainty",
                             "description": "The length of this connection in meters."
                         },
                         "electric": {
@@ -4006,8 +4008,8 @@
     },
     "type": "object",
     "properties": {
-        "component": {
-            "title": "This section defines all information which is constant for the component and does not depend other domains like optical measurements. It is an array so that various data sets about one component can be added as items.",
+        "components": {
+            "title": "This section defines data about components of a solar building envelope. It is an array so that various data sets about one or more components can be added as items. One component may consist of subcomponents.",
             "type": "array",
             "items": {
                 "$ref": "#/definitions/component/basics"
@@ -4018,6 +4020,6 @@
     },
     "additionalProperties": false,
     "required": [
-        "component"
+        "components"
     ]
 }

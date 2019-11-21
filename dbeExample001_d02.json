@@ -1,9 +1,133 @@
 {
-    "component": [
+    "components": [
         {
             "id": "8ca1102b-264a-4023-8351-5897ec38e388",
             "explanation": {
-                "en-US": "Example: a data set for an arbitrary component with the id above."
+                "en-US": "Example: a data set for an component with the id above and optical data."
+            },
+            "optical": [
+                {
+                    "id": "a8435146-5270-46f5-b925-4b00de265823",
+                    "explanation": {
+                        "en-US": "Example: optical data about a nearnormal-nearnormal measurement of the transmittance, spectrally resolved."
+                    },
+                    "dataPoints": [
+                        {
+                            "incidence": {
+                                "direction": [
+                                    "nearnormal"
+                                ],
+                                "wavelengths": {
+                                    "wavelength": 500
+                                }
+                            },
+                            "emergence": {
+                                "direction": [
+                                    "nearnormal"
+                                ]
+                            },
+                            "results": {
+                                "transmittance": {
+                                    "uncertainValue": 0.85
+                                }
+                            }
+                        },
+                        {
+                            "incidence": {
+                                "direction": [
+                                    "nearnormal"
+                                ],
+                                "wavelengths": {
+                                    "wavelength": 1000
+                                }
+                            },
+                            "emergence": {
+                                "direction": [
+                                    "nearnormal"
+                                ]
+                            },
+                            "results": {
+                                "transmittance": {
+                                    "uncertainValue": 0.9
+                                }
+                            }
+                        },
+                        {
+                            "incidence": {
+                                "direction": [
+                                    "nearnormal"
+                                ],
+                                "wavelengths": {
+                                    "wavelength": 1500
+                                }
+                            },
+                            "emergence": {
+                                "direction": [
+                                    "nearnormal"
+                                ]
+                            },
+                            "results": {
+                                "transmittance": {
+                                    "uncertainValue": 0.8
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
+                    "explanation": {
+                        "en-US": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050."
+                    },
+                    "origin": {
+                        "method": {
+                            "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
+                            "reference": {
+                                "standard": {
+                                    "standardizers": [
+                                        "ISO"
+                                    ],
+                                    "numeration": {
+                                        "mainNumber": 9050
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "dataPoints": [
+                        {
+                            "incidence": {
+                                "direction": [
+                                    "nearnormal"
+                                ],
+                                "wavelengths": {
+                                    "integral": true
+                                },
+                                "range": {
+                                    "spectrum": [
+                                        "solar"
+                                    ]
+                                }
+                            },
+                            "emergence": {
+                                "direction": [
+                                    "hemispherical"
+                                ]
+                            },
+                            "results": {
+                                "reflectance": {
+                                    "uncertainValue": 0.1
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "17c5ac7e-a8c7-4fbd-80ac-5163a0539965",
+            "explanation": {
+                "en-US": "Example: a data set for a component with the id above. The component has a solar thermal collector function."
             },
             "optical": [
                 {
