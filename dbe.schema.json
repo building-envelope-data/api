@@ -1441,7 +1441,7 @@
                                     },
                                     "maximumClosing": {
                                         "$ref": "#/definitions/angles/maximumClosing",
-                                        "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats tough each other."
+                                        "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
                                     }
                                 },
                                 "additionalProperties": false,
@@ -1466,7 +1466,7 @@
             },
             "maximumClosing": {
                 "$ref": "#/definitions/units/degree",
-                "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats tough each other."
+                "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
             }
         },
         "unit": {
