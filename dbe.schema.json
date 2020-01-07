@@ -705,7 +705,7 @@
             ]
         },
         "standard": {
-            "title": "Standards are a special kind publications. Therefore their data structure is different from publications.",
+            "title": "Standards are a special kind of publications. Therefore their data structure is different from publications.",
             "type": "object",
             "properties": {
                 "id": {
