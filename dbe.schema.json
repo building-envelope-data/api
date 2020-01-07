@@ -375,7 +375,7 @@
             "properties": {
                 "id": {
                     "$ref": "#/definitions/identifier",
-                    "description": "This id represents the stakeholder which is either an institution or a person."
+                    "description": "This id represents the stakeholder."
                 },
                 "explanation": {
                     "$ref": "#/definitions/internationalString",
