@@ -77,10 +77,10 @@
                     "confidenceInterval": {
                         "type": "number",
                         "enum": [
-                            "68.3",
-                            "95.4",
-                            "99.7",
-                            "100.0"
+                            68.3,
+                            95.4,
+                            99.7,
+                            100.0
                         ],
                         "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
                     }
@@ -111,10 +111,10 @@
                     "confidenceInterval": {
                         "type": "number",
                         "enum": [
-                            "68.3",
-                            "95.4",
-                            "99.7",
-                            "100.0"
+                            68.3,
+                            95.4,
+                            99.7,
+                            100.0
                         ],
                         "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
                     }
