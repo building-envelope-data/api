@@ -271,7 +271,7 @@
             },
             "kilogramWithUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
-                "description": "Kilogram (also kilogramme, kg) is the SI unit for length. With this type, the uncertainty can be defined."
+                "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. With this type, the uncertainty can be defined."
             },
             "pascalWithoutUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithoutUncertainty",
