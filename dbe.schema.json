@@ -336,7 +336,7 @@
                 "until": {
                     "type": "string",
                     "format": "date-time",
-                    "description": "The earliest date at which it was available."
+                    "description": "The latest date at which it was available."
                 }
             },
             "additionalProperties": false,
