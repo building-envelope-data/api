@@ -901,7 +901,7 @@
             }
         },
         "possiblePositions": {
-            "title": "The locations where a component can be used",
+            "title": "The locations where a unit can be used",
             "type": "array",
             "items": {
                 "type": "string",
