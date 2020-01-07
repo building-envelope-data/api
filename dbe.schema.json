@@ -493,7 +493,7 @@
             },
             "manufacturer": {
                 "$ref": "#/definitions/basicStakeholder",
-                "description": "The manufacturer manufactures the componente and is defined by an URI."
+                "description": "The manufacturer manufactures or supplies the component and is defined by an URI."
             },
             "approver": {
                 "$ref": "#/definitions/basicStakeholder",
