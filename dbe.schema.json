@@ -555,8 +555,8 @@
                         "items": {
                             "type": "string",
                             "enum": [
-                                "measurement",
-                                "calculation"
+                                "calculation",
+                                "measurement"
                             ]
                         },
                         "additionalItems": false,
@@ -1173,11 +1173,11 @@
                             "type": "string",
                             "enum": [
                                 "cartesian",
-                                "rightHanded",
+                                "cylindrical",
                                 "leftHanded",
                                 "polar",
-                                "spherical",
-                                "cylindrical"
+                                "rightHanded",
+                                "spherical"
                             ],
                             "description": "Often, a right-handed cartesian coordinate system is used."
                         },
@@ -1606,9 +1606,9 @@
             "category": {
                 "type": "string",
                 "enum": [
-                    "series",
+                    "complex",
                     "parallel",
-                    "complex"
+                    "series"
                 ]
             }
         },
@@ -1717,18 +1717,16 @@
                                                     "type": "string",
                                                     "enum": [
                                                         "amorphous",
+                                                        "arsenide",
                                                         "cadmium",
-                                                        "telluride",
-                                                        "copper",
-                                                        "indium",
-                                                        "gallium",
-                                                        "selenide",
                                                         "concentrated",
+                                                        "copper",
                                                         "crystalline",
                                                         "dyeSensitized",
-                                                        "arsenide",
+                                                        "gallium",
                                                         "germanium",
                                                         "hybrid",
+                                                        "indium",
                                                         "luminescent",
                                                         "micromorph",
                                                         "monocrystalline",
@@ -1739,8 +1737,10 @@
                                                         "plasmonic",
                                                         "polycrystalline",
                                                         "quantumDot",
+                                                        "selenide",
                                                         "silicon",
                                                         "solidState",
+                                                        "telluride",
                                                         "thinFilm",
                                                         "wafer"
                                                     ],
@@ -1964,12 +1964,12 @@
                                                 "items": {
                                                     "type": "string",
                                                     "enum": [
-                                                        "front",
+                                                        "backing",
+                                                        "cell",
                                                         "cover",
                                                         "embedding",
-                                                        "rear",
-                                                        "backing",
-                                                        "cell"
+                                                        "front",
+                                                        "rear"
                                                     ]
                                                 },
                                                 "description": "Typically, a PV module consists of a front cover layer, a front embedding layer, a cell layer, a rear embedding layer and a backing layer. The layer can therefore be defined by multiple strings.",
@@ -2305,24 +2305,24 @@
                                                             "type": "string",
                                                             "enum": [
                                                                 "A1",
-                                                                "A2",
-                                                                "B",
-                                                                "C",
-                                                                "D",
-                                                                "E",
-                                                                "F",
-                                                                "A1_fl",
-                                                                "A2_fl",
-                                                                "B_fl",
-                                                                "C_fl",
-                                                                "D_fl",
-                                                                "E_fl",
                                                                 "A1_L",
+                                                                "A1_fl",
+                                                                "A2",
                                                                 "A2_L",
+                                                                "A2_fl",
+                                                                "B",
                                                                 "B_L",
+                                                                "B_fl",
+                                                                "C",
                                                                 "C_L",
+                                                                "C_fl",
+                                                                "D",
                                                                 "D_L",
-                                                                "E_L"
+                                                                "D_fl",
+                                                                "E",
+                                                                "E_L",
+                                                                "E_fl",
+                                                                "F"
                                                             ]
                                                         },
                                                         "smoke": {
@@ -3170,8 +3170,8 @@
                                                 "type": "string",
                                                 "enum": [
                                                     "centre",
-                                                    "outerDimensions",
                                                     "irradiatedAbsorber",
+                                                    "outerDimensions",
                                                     "projectedIrradiatedAbsorber",
                                                     "other"
                                                 ],
@@ -3237,8 +3237,8 @@
                         "items": {
                             "type": "string",
                             "enum": [
-                                "stationary",
-                                "dynamic"
+                                "dynamic",
+                                "stationary"
                             ]
                         },
                         "additionalItems": false,
@@ -3430,9 +3430,9 @@
                                     "title": "This section should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
                                     "type": "string",
                                     "enum": [
-                                        "nearnormal",
+                                        "diffuse",
                                         "hemispherical",
-                                        "diffuse"
+                                        "nearnormal"
                                     ],
                                     "description": "Nearnormal means a direction almost perpendicular to the sample surface. Hemispherical means all directions into the hemisphere above the sample surface, for example when there is the same irradiance from all directions. Diffuse means all directions except the nearnormal direction. For example, the nearnormal-hemispherical transmittance is always equal to the nearnormal-nearnormal transmittance plus the nearnormal-diffuse transmittance."
                                 }
@@ -3597,9 +3597,9 @@
                                     "items": {
                                         "type": "string",
                                         "enum": [
-                                            "visible",
+                                            "infrared",
                                             "solar",
-                                            "infrared"
+                                            "visible"
                                         ]
                                     },
                                     "additionalItems": false,
@@ -3964,8 +3964,8 @@
                 "items": {
                     "type": "string",
                     "enum": [
-                        "material",
                         "layer",
+                        "material",
                         "unit"
                     ],
                     "description": "A building envelope component can be a plain material, a layer in a stack of layers of a unit including frame effects. While some components are used e.g. only as materials, other components can be used in several categories."
@@ -3979,16 +3979,16 @@
                     "items": {
                         "type": "string",
                         "enum": [
-                            "monolithic",
-                            "coating",
                             "PVB",
+                            "baseMaterial",
+                            "coating",
                             "film",
                             "frit",
-                            "wovenFabric",
+                            "lath",
+                            "monolithic",
                             "nonWovenFabric",
                             "slat",
-                            "lath",
-                            "baseMaterial"
+                            "wovenFabric"
                         ],
                         "description": "Components of the category material can have the subcategories of this array which further specifies the material."
                     },
@@ -4002,11 +4002,11 @@
                     "items": {
                         "type": "string",
                         "enum": [
-                            "monolithic",
-                            "coated",
-                            "laminate",
                             "appliedFilm",
+                            "coated",
                             "frittedGlass",
+                            "laminate",
+                            "monolithic",
                             "Arm",
                             "Austrian",
                             "Awning",
@@ -4032,8 +4032,8 @@
                             "Plantation",
                             "Pleated",
                             "Quilts",
-                            "Roller",
                             "Roll-up",
+                            "Roller",
                             "Roman",
                             "Roof",
                             "Screen",
@@ -4060,13 +4060,13 @@
                     "items": {
                         "type": "string",
                         "enum": [
-                            "glazing",
-                            "window",
                             "blind",
                             "cladding",
+                            "glazing",
                             "prefabricatedFacadeElement",
+                            "projectingComponent",
                             "transomMullionFacade",
-                            "projectingComponent"
+                            "window"
                         ],
                         "description": "Components of the category unit can have the subcategories of this array which further specifies the unit."
                     },
