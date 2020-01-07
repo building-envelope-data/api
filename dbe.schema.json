@@ -318,7 +318,7 @@
                 "until": {
                     "type": "string",
                     "format": "date-time",
-                    "description": "The lastest date for which the data is valid."
+                    "description": "The latest date for which the data is valid."
                 }
             },
             "additionalProperties": false,
