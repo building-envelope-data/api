@@ -3987,6 +3987,7 @@
                             "wovenFabric",
                             "nonWovenFabric",
                             "slat",
+                            "lath",
                             "baseMaterial"
                         ],
                         "description": "Components of the category material can have the subcategories of this array which further specifies the material."
