@@ -1484,7 +1484,7 @@
                             },
                             "dGlass": {
                                 "$ref": "#/definitions/numbers/numberWithUncertainty",
-                                "description": "dGlass is usually a distance to the glass pane, but is defined exactly in the reference below."
+                                "description": "dGlass is usually a distance between the layer and the glass pane, but is defined exactly in the reference below."
                             },
                             "reference": {
                                 "$ref": "#/definitions/reference",
