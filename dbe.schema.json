@@ -3547,9 +3547,9 @@
                         "type": "object",
                         "properties": {
                             "integral": {
-                                "type": "boolean"
-                            },
-                            "description": "This flag indicates that an integral over many wavelenthgs is considered here. Under `#/definitions/optical/wavelength/range/spectrum`, the spectrum can be specified over which the integral result is calculated."
+                                "type": "boolean",
+                                "description": "This flag indicates that an integral over many wavelenthgs is considered here. Under `#/definitions/optical/wavelength/range/spectrum`, the spectrum can be specified over which the integral result is calculated."
+                            }
                         },
                         "additionalProperties": false,
                         "required": [
