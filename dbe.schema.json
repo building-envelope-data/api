@@ -4088,17 +4088,20 @@
                         "description": "Here the version can be described in free text."
                     },
                     "roles": {
-                        "owner": {
-                            "$ref": "#/definitions/basicStakeholder",
-                            "description": "The URI and description of the owner of the component"
-                        },
-                        "manufacturer": {
-                            "$ref": "#/definitions/basicStakeholder",
-                            "description": "The URI and description of the manufacturer of the component"
-                        },
-                        "developer": {
-                            "$ref": "#/definitions/roles/developer",
-                            "description": "The URI and description of the institution or person which developed the component"
+                        "type": "object",
+                        "properties": {
+                            "owner": {
+                                "$ref": "#/definitions/basicStakeholder",
+                                "description": "The URI and description of the owner of the component"
+                            },
+                            "manufacturer": {
+                                "$ref": "#/definitions/basicStakeholder",
+                                "description": "The URI and description of the manufacturer of the component"
+                            },
+                            "developer": {
+                                "$ref": "#/definitions/roles/developer",
+                                "description": "The URI and description of the institution or person which developed the component"
+                            }
                         }
                     },
                     "available": {
