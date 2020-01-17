@@ -927,14 +927,17 @@
                     "description": "The Colour Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
                 },
                 "CIELAB": {
-                    "L*": {
-                        "$ref": "#/definitions/numbers/numberWithUncertainty"
-                    },
-                    "a*": {
-                        "$ref": "#/definitions/numbers/numberWithUncertainty"
-                    },
-                    "b*": {
-                        "$ref": "#/definitions/numbers/numberWithUncertainty"
+                    "type": "object",
+                    "properties": {
+                        "L*": {
+                            "$ref": "#/definitions/numbers/numberWithUncertainty"
+                        },
+                        "a*": {
+                            "$ref": "#/definitions/numbers/numberWithUncertainty"
+                        },
+                        "b*": {
+                            "$ref": "#/definitions/numbers/numberWithUncertainty"
+                        }
                     },
                     "description": "The three parameters L*, a* and b* from CIE define the colour as well as the brightness."
                 }
