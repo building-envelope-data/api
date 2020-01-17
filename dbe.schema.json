@@ -3252,8 +3252,7 @@
                 },
                 "additionalProperties": false,
                 "required": [
-                    "conditions",
-                    "timestamp"
+                    "conditions"
                 ]
             },
             "results": {
