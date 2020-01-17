@@ -927,14 +927,17 @@
                     "description": "The Colour Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
                 },
                 "CIELAB": {
-                    "L*": {
-                        "$ref": "#/definitions/numbers/numberWithUncertainty"
-                    },
-                    "a*": {
-                        "$ref": "#/definitions/numbers/numberWithUncertainty"
-                    },
-                    "b*": {
-                        "$ref": "#/definitions/numbers/numberWithUncertainty"
+                    "type": "object",
+                    "properties": {
+                        "L*": {
+                            "$ref": "#/definitions/numbers/numberWithUncertainty"
+                        },
+                        "a*": {
+                            "$ref": "#/definitions/numbers/numberWithUncertainty"
+                        },
+                        "b*": {
+                            "$ref": "#/definitions/numbers/numberWithUncertainty"
+                        }
                     },
                     "description": "The three parameters L*, a* and b* from CIE define the colour as well as the brightness."
                 }
@@ -3249,8 +3252,7 @@
                 },
                 "additionalProperties": false,
                 "required": [
-                    "conditions",
-                    "timestamp"
+                    "conditions"
                 ]
             },
             "results": {
@@ -3545,9 +3547,9 @@
                         "type": "object",
                         "properties": {
                             "integral": {
-                                "type": "boolean"
-                            },
-                            "description": "This flag indicates that an integral over many wavelenthgs is considered here. Under `#/definitions/optical/wavelength/range/spectrum`, the spectrum can be specified over which the integral result is calculated."
+                                "type": "boolean",
+                                "description": "This flag indicates that an integral over many wavelenthgs is considered here. Under `#/definitions/optical/wavelength/range/spectrum`, the spectrum can be specified over which the integral result is calculated."
+                            }
                         },
                         "additionalProperties": false,
                         "required": [
@@ -3873,17 +3875,20 @@
                         "description": "There are two types of parameters: constants are defined here and do not change in one data set. Variables may change for each data point. Therefore, variables are stored close to the data points."
                     },
                     "roles": {
-                        "owner": {
-                            "$ref": "#/definitions/basicStakeholder",
-                            "description": "The URI and description of the owner of the component"
-                        },
-                        "manufacturer": {
-                            "$ref": "#/definitions/basicStakeholder",
-                            "description": "The URI and description of the manufacturer of the component"
-                        },
-                        "developer": {
-                            "$ref": "#/definitions/roles/developer",
-                            "description": "The URI and description of the institution or person which developed the component"
+                        "type": "object",
+                        "properties": {
+                            "owner": {
+                                "$ref": "#/definitions/basicStakeholder",
+                                "description": "The URI and description of the owner of the component"
+                            },
+                            "manufacturer": {
+                                "$ref": "#/definitions/basicStakeholder",
+                                "description": "The URI and description of the manufacturer of the component"
+                            },
+                            "developer": {
+                                "$ref": "#/definitions/roles/developer",
+                                "description": "The URI and description of the institution or person which developed the component"
+                            }
                         }
                     },
                     "approvals": {
@@ -3934,8 +3939,10 @@
                             {
                                 "type": "object",
                                 "properties": {
-                                    "$ref": "#/definitions/electric/photovoltaic/system",
-                                    "description": "If the building component consists of several PV modules and an inverter, it can be named BIPV system and defined here."
+                                    "system": {
+                                        "$ref": "#/definitions/electric/photovoltaic/system",
+                                        "description": "If the building component consists of several PV modules and an inverter, it can be named BIPV system and defined here."
+                                    }
                                 },
                                 "additionalProperties": false,
                                 "required": [
@@ -4081,17 +4088,20 @@
                         "description": "Here the version can be described in free text."
                     },
                     "roles": {
-                        "owner": {
-                            "$ref": "#/definitions/basicStakeholder",
-                            "description": "The URI and description of the owner of the component"
-                        },
-                        "manufacturer": {
-                            "$ref": "#/definitions/basicStakeholder",
-                            "description": "The URI and description of the manufacturer of the component"
-                        },
-                        "developer": {
-                            "$ref": "#/definitions/roles/developer",
-                            "description": "The URI and description of the institution or person which developed the component"
+                        "type": "object",
+                        "properties": {
+                            "owner": {
+                                "$ref": "#/definitions/basicStakeholder",
+                                "description": "The URI and description of the owner of the component"
+                            },
+                            "manufacturer": {
+                                "$ref": "#/definitions/basicStakeholder",
+                                "description": "The URI and description of the manufacturer of the component"
+                            },
+                            "developer": {
+                                "$ref": "#/definitions/roles/developer",
+                                "description": "The URI and description of the institution or person which developed the component"
+                            }
                         }
                     },
                     "available": {
