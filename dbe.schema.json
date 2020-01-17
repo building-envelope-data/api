@@ -3939,8 +3939,10 @@
                             {
                                 "type": "object",
                                 "properties": {
-                                    "$ref": "#/definitions/electric/photovoltaic/system",
-                                    "description": "If the building component consists of several PV modules and an inverter, it can be named BIPV system and defined here."
+                                    "system": {
+                                        "$ref": "#/definitions/electric/photovoltaic/system",
+                                        "description": "If the building component consists of several PV modules and an inverter, it can be named BIPV system and defined here."
+                                    }
                                 },
                                 "additionalProperties": false,
                                 "required": [
