@@ -3814,7 +3814,7 @@
                         "properties": {
                             "reference": {
                                 "$ref": "#/definitions/reference",
-                                "description": "This reference defines the location of measurement on the sample."
+                                "description": "This reference can define the location of measurement on the sample."
                             }
                         },
                         "additionalProperties": false,
@@ -3867,6 +3867,34 @@
                     "symmetries": {
                         "$ref": "#/definitions/optical/symmetries",
                         "description": "Symmetries of the optical characteristics can be used to reduce the necessary measurements and simulations."
+                    },
+                    "definitionOfSides": {
+                        "type": "object",
+                        "properties": {
+                            "reference": {
+                                "$ref": "#/definitions/reference",
+                                "description": "A reference can be used to define which side of the component is defined as non-prime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior."
+                            },
+                            "explanation": {
+                                "$ref": "#/definitions/internationalString",
+                                "description": "This string can explain which side of the component is defined as nonPrime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior."
+                            }
+                        }
+                    },
+                    "side": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "nonPrime",
+                                "prime",
+                                "symmetric"
+                            ],
+                            "description": "The item defines whether the incidence is on the nonPrime or the prime side of the sample. Both are defined under 'definitionOfSides'. If the results are the same for both sides, 'symmetric' can be used."
+                        },
+                        "additionalItems": false,
+                        "minItems": 1,
+                        "maxItems": 1
                     }
                 },
                 "additionalProperties": false,
