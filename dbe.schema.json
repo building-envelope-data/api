@@ -3873,11 +3873,11 @@
                         "properties": {
                             "reference": {
                                 "$ref": "#/definitions/reference",
-                                "description": "A reference can be used to define which side of the component is defined as non-prime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior."
+                                "description": "A reference can be used to define which side of the component is defined as non-prime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior. The reference should also define which side of the component is the top side and which is the bottom side."
                             },
                             "explanation": {
                                 "$ref": "#/definitions/internationalString",
-                                "description": "This string can explain which side of the component is defined as nonPrime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior."
+                                "description": "This string can explain which side of the component is defined as nonPrime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior. The string should also define which side of the component is the top side and which is the bottom side."
                             }
                         }
                     },
