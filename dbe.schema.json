@@ -3418,7 +3418,7 @@
                                     "properties": {
                                         "profile": {
                                             "$ref": "#/definitions/units/degree",
-                                            "description": "If the sample has a profile angle symmetry, then the profile angle is sufficient to define the direction."
+                                            "description": "If the sample has a profile angle symmetry, then the profile angle is sufficient to define the direction. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample."
                                         }
                                     },
                                     "additionalProperties": false,
@@ -3727,6 +3727,10 @@
                     "tilt": {
                         "$ref": "#/definitions/angles/tilt",
                         "description": "The tilt angle for example of venetian blinds."
+                    },
+                    "symmetries": {
+                        "$ref": "#/definitions/optical/symmetries",
+                        "description": "Symmetries of the optical characteristics can be used to reduce the necessary measurements and simulations."
                     }
                 },
                 "additionalProperties": false,
@@ -3839,6 +3843,19 @@
                         "minProperties": 1
                     }
                 ]
+            },
+            "symmetries": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "incidenceAngle",
+                        "profileAngle"
+                    ],
+                    "description": "A component can have an optical symmetry regarding the angle of incidence. This means that the results are the same for all directions of incidence which have the same incidence angle. Accordingly, an optical symmetry regarding the profile angle means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample."
+                },
+                "additionalItems": false,
+                "minItems": 0
             }
         },
         "component": {
