@@ -3988,6 +3988,7 @@
                 "title": "This section defines the results of the optical measurement or simulation under the specified boundary conditions.",
                 "oneOf": [
                     {
+                        "title": "This is the most verbose form of exchanging optical data and the easiest to understand.",
                         "type": "object",
                         "properties": {
                             "transmittance": {
@@ -3997,6 +3998,10 @@
                             "reflectance": {
                                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "Reflectance is the ratio between the irradiance which is reflected by the sample and the irradiance on the the sample."
+                            },
+                            "absorptanceEmittance": {
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
+                                "description": "Absorptance is the ratio between the irradiance which is absorbed by the sample and the irradiance on the the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelenghts', the absorptance equals the emittance. For the same 'incidence', 'variables' and 'emergence', the result absorptanceEmittance can be calculated by 'absorptanceEmittance = 1 - transmittance - reflectance'."
                             }
                         },
                         "additionalProperties": false,
@@ -4004,6 +4009,7 @@
                         "minProperties": 1
                     },
                     {
+                        "title": "This is a less verbose form of exchanging optical data. If it is used, also the 'incidence' and 'emergence' need to use arrays and the formatting of the arrays needs to be well defined.",
                         "type": "object",
                         "properties": {
                             "formatting": {
@@ -4026,6 +4032,17 @@
                                     "minimum": 0,
                                     "maximum": 1
                                 },
+                                "additionalItems": false,
+                                "minItems": 2
+                            },
+                            "absorptanceEmittance": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "description": "Absorptance is the ratio between the irradiance which is absorbed by the sample and the irradiance on the the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelenghts', the absorptance equals the emittance. For the same 'incidence', 'variables' and 'emergence', the result absorptanceEmittance can be calculated by 'absorptanceEmittance = 1 - transmittance - reflectance'.",
                                 "additionalItems": false,
                                 "minItems": 2
                             }
