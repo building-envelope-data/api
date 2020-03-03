@@ -4209,11 +4209,14 @@
                 "items": {
                     "type": "string",
                     "enum": [
-                        "layer",
                         "material",
-                        "unit"
+                        "layer",
+                        "unit",
+                        "general",
+                        "specific"
                     ],
-                    "description": "A building envelope component can be a plain material, a layer in a stack of layers of a unit including frame effects. While some components are used e.g. only as materials, other components can be used in several categories."
+                    "description": "A building envelope component can have one or more of the following categories. (i) If the component is a plain material, for example a sheet which could be used to build a blind, the category 'material' should be used. (ii) If the component can be treated as a layer for optical simulations of a stack of layers, then the category 'layer' should be used. Venetian blinds are one example of a layer. The center-of-glazing values are important for the simulation of a stack of layers. (iii) If the width, the height and the edges of the component are well defined, then the category 'unit' should be used. For example a window with frame and shading system. 
+                    (iv) Components often represent a product in general with the general properties of all instances of this product. In this case, the category 'general' should be used. One example can be a glazing which can be manufactured with the width and height defined by the customer. (v) Components can also represent a specific instance of a general product class. For example one specific window at a certain position in a building with its individual width and height. For such cases, the category 'specific' should be used."
                 },
                 "additionalItems": false,
                 "minItems": 0
