@@ -4378,8 +4378,14 @@
                         ]
                     },
                     "airPermeability": {
-                        "$ref": "#/definitions/numbers/numberWithUncertainty",
-                        "description": "The air permeability defines how easy air can flow through the component."
+                        "title": "Air permeability quantifies how easy air can flow through the component.",
+                        "type": "object",
+                        "properties": {
+                            "permeabilityFactor": {
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
+                                "description": "The Permeability Factor (PF) is defined by AERC 1.1 Appendix F."
+                            }
+                        }
                     },
                     "colour": {
                         "$ref": "#/definitions/colour",
