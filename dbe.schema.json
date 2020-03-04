@@ -1730,28 +1730,58 @@
                         "cells": {
                             "type": "object",
                             "properties": {
-                                "amounts": {
+                                "rectangular": {
+                                    "title": "If the BIPV module is rectangular with the same amount of cells in each row and the same distances between them, then this section can be used to describe the geometry. 'longitudinal' is the direction with the larger number of cells and 'transversal' with the smaller number of cells. More complex BIPV modules can be defined below as a 'cellList'. ",
                                     "type": "object",
                                     "properties": {
                                         "longitudinal": {
-                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
-                                            "description": "Maximum number of cells along the longest side of the PV module."
+                                            "title": "'longitudinal' is the direction with the larger number of cells.",
+                                            "type": "object",
+                                            "properties": {
+                                                "cellNumber": {
+                                                    "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
+                                                    "description": "The number of cells in the longitudinal direction."
+                                                },
+                                                "spacing": {
+                                                    "$ref": "#/definitions/units/meterWithUncertainty",
+                                                    "description": "The distance between two neighboring cells in the longitudinal direction and in metre (m)."
+                                                }
+                                            },
+                                            "additionalProperties": false,
+                                            "minProperties": 1,
+                                            "required": [
+                                                "cellNumber"
+                                            ]
                                         },
                                         "transversal": {
-                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
-                                            "description": "Maximum number of cells along the shorter side of the PV module."
-                                        },
-                                        "all": {
-                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
-                                            "description": "The number of all cells of the PV module."
+                                            "title": "'transversal' is the direction with the smaller number of cells.",
+                                            "type": "object",
+                                            "properties": {
+                                                "cellNumber": {
+                                                    "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
+                                                    "description": "The number of cells in the transversal direction."
+                                                },
+                                                "spacing": {
+                                                    "$ref": "#/definitions/units/meterWithUncertainty",
+                                                    "description": "The distance between two neighboring cells in the transversal direction and in metre (m)."
+                                                }
+                                            },
+                                            "additionalProperties": false,
+                                            "minProperties": 1,
+                                            "required": [
+                                                "cellNumber"
+                                            ]
                                         }
                                     },
                                     "additionalProperties": false,
-                                    "minProperties": 1,
-                                    "required": []
+                                    "minProperties": 2,
+                                    "required": [
+                                        "longitudinal",
+                                        "transversal"
+                                    ]
                                 },
-                                "specifications": {
-                                    "title": "This array defines which type of cells is used in the PV module.",
+                                "cellTypes": {
+                                    "title": "This array defines which types of cells are used in the PV module.",
                                     "type": "array",
                                     "items": {
                                         "type": "object",
@@ -1838,8 +1868,8 @@
                                     "additionalItems": false,
                                     "minItems": 1
                                 },
-                                "list": {
-                                    "title": "This array lists each cells of the PV module.",
+                                "cellList": {
+                                    "title": "This section can be used to define the cells with a higher level of detail than 'rectangular'. 'cellList' lists each cells of the PV module.",
                                     "type": "array",
                                     "items": {
                                         "type": "object",
@@ -1864,45 +1894,18 @@
                                     },
                                     "additionalItems": false,
                                     "minItems": 1
-                                },
-                                "spacings": {
-                                    "title": "If there are the same spaces between cells parallel to one side of the module, then they can be defined here.",
-                                    "type": "object",
-                                    "properties": {
-                                        "longitudinal": {
-                                            "$ref": "#/definitions/units/meterWithUncertainty",
-                                            "description": "The distance between two neighboring cells parallel to the longest side of the PV module in metre (m)."
-                                        },
-                                        "transversal": {
-                                            "$ref": "#/definitions/units/meterWithUncertainty",
-                                            "description": "The distance between two neighboring cells parallel to the shorter side of the PV module in metre (m)."
-                                        }
-                                    },
-                                    "additionalProperties": false,
-                                    "minProperties": 1,
-                                    "required": []
                                 }
                             },
                             "additionalProperties": false,
-                            "minProperties": 1,
-                            "required": []
+                            "minProperties": 2,
+                            "required": [
+                                "cellTypes"
+                            ]
                         },
                         "diodes": {
                             "type": "object",
                             "properties": {
-                                "amounts": {
-                                    "type": "object",
-                                    "properties": {
-                                        "all": {
-                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
-                                            "description": "The number of all diodes in this PV module."
-                                        }
-                                    },
-                                    "additionalProperties": false,
-                                    "minProperties": 1,
-                                    "required": []
-                                },
-                                "specifications": {
+                                "diodeTypes": {
                                     "title": "This array defines the type of diodes which are used in the the PV module.",
                                     "type": "array",
                                     "items": {
@@ -1923,7 +1926,7 @@
                                     "additionalItems": false,
                                     "minItems": 0
                                 },
-                                "list": {
+                                "diodeList": {
                                     "title": "This array lists the diodes of the PV module. They are used to bypass shaded cells which would otherwise dissipate energy.",
                                     "type": "array",
                                     "items": {
@@ -1956,19 +1959,7 @@
                         "connections": {
                             "type": "object",
                             "properties": {
-                                "amounts": {
-                                    "type": "object",
-                                    "properties": {
-                                        "all": {
-                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
-                                            "description": "The number of all connections in this PV module."
-                                        }
-                                    },
-                                    "additionalProperties": false,
-                                    "minProperties": 1,
-                                    "required": []
-                                },
-                                "specifications": {
+                                "connectionType": {
                                     "title": "This array defines the type of electric connections which are used in the the PV module.",
                                     "type": "array",
                                     "items": {
@@ -1997,7 +1988,7 @@
                                     "additionalItems": false,
                                     "minItems": 0
                                 },
-                                "list": {
+                                "connectionList": {
                                     "$ref": "#/definitions/connections/bidirectional",
                                     "description": "This section defines a list of all connections between cells and between cells and diodes."
                                 },
@@ -2012,78 +2003,58 @@
                         },
                         "layers": {
                             "title": "PV modules typically consist of several layers, for example a glass pane, a lamination material and the PV cells.",
-                            "type": "object",
-                            "properties": {
-                                "amounts": {
-                                    "type": "object",
-                                    "properties": {
-                                        "all": {
-                                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithUncertainty",
-                                            "description": "The number of all layers in this PV module."
-                                        }
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "material": {
+                                        "$ref": "#/definitions/material/basics",
+                                        "description": "This sections defines the material of the layer"
                                     },
-                                    "additionalProperties": false,
-                                    "minProperties": 1,
-                                    "required": []
-                                },
-                                "list": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "material": {
-                                                "$ref": "#/definitions/material/basics",
-                                                "description": "This sections defines the material of the layer"
-                                            },
-                                            "materialProperties": {
-                                                "$ref": "#/definitions/material/characteristics",
-                                                "description": "All properties which depend on the material in general and not on the specific component."
-                                            },
-                                            "categories": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "backing",
-                                                        "cell",
-                                                        "cover",
-                                                        "embedding",
-                                                        "front",
-                                                        "rear"
-                                                    ],
-                                                    "description": "Typically, a PV module consists of a front cover layer, a front embedding layer, a cell layer, a rear embedding layer and a backing layer. The layer can therefore be defined by multiple strings."
-                                                },
-                                                "additionalItems": false,
-                                                "minItem": 1,
-                                                "maxItem": 2
-                                            },
-                                            "thickness": {
-                                                "$ref": "#/definitions/units/meterWithUncertainty",
-                                                "description": "The thickness of this layer as part of the module."
-                                            },
-                                            "weight": {
-                                                "$ref": "#/definitions/units/kilogramWithUncertainty",
-                                                "description": "The weigth of the layer."
-                                            },
-                                            "geometry": {
-                                                "$ref": "#/definitions/geometry/basics",
-                                                "description": "This section defines the geometry and location of the layer including its dimensions."
-                                            },
-                                            "colour": {
-                                                "$ref": "#/definitions/colour",
-                                                "description": "The reference offers several way to define the colour of the component."
-                                            }
+                                    "materialProperties": {
+                                        "$ref": "#/definitions/material/characteristics",
+                                        "description": "All properties which depend on the material in general and not on the specific component."
+                                    },
+                                    "categories": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "enum": [
+                                                "backing",
+                                                "cell",
+                                                "cover",
+                                                "embedding",
+                                                "front",
+                                                "rear"
+                                            ],
+                                            "description": "Typically, a PV module consists of a front cover layer, a front embedding layer, a cell layer, a rear embedding layer and a backing layer. The layer can therefore be defined by multiple strings."
                                         },
-                                        "additionalProperties": false,
-                                        "required": []
+                                        "additionalItems": false,
+                                        "minItem": 1,
+                                        "maxItem": 2
                                     },
-                                    "additionalItems": false,
-                                    "minItems": 1
-                                }
+                                    "thickness": {
+                                        "$ref": "#/definitions/units/meterWithUncertainty",
+                                        "description": "The thickness of this layer as part of the module."
+                                    },
+                                    "weight": {
+                                        "$ref": "#/definitions/units/kilogramWithUncertainty",
+                                        "description": "The weigth of the layer."
+                                    },
+                                    "geometry": {
+                                        "$ref": "#/definitions/geometry/basics",
+                                        "description": "This section defines the geometry and location of the layer including its dimensions."
+                                    },
+                                    "colour": {
+                                        "$ref": "#/definitions/colour",
+                                        "description": "The reference offers several way to define the colour of the component."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": []
                             },
-                            "additionalProperties": false,
-                            "minProperties": 1,
-                            "required": []
+                            "additionalItems": false,
+                            "minItems": 1
                         },
                         "electricConfiguration": {
                             "type": "object",
@@ -2631,22 +2602,13 @@
                             "$ref": "#/definitions/identifier",
                             "description": "The id represents the inverter."
                         },
-                        "amounts": {
-                            "title": "This section is used to define the number of MPP trackers and DC input ports.",
-                            "type": "object",
-                            "properties": {
-                                "trackers": {
-                                    "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
-                                    "description": "The number of maximum-power-point (MPP) trackers which the inverter provides."
-                                },
-                                "inputs": {
-                                    "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
-                                    "description": "The number of DC input ports which the inverter provides. To each input port, one string of PV modules can be connected."
-                                }
-                            },
-                            "additionalProperties": false,
-                            "minProperties": 1,
-                            "required": []
+                        "trackerNumber": {
+                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
+                            "description": "The number of maximum-power-point (MPP) trackers which the inverter provides."
+                        },
+                        "inputNumber": {
+                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
+                            "description": "The number of DC input ports which the inverter provides. To each input port, one string of PV modules can be connected."
                         },
                         "power": {
                             "type": "object",
@@ -3065,8 +3027,8 @@
                             "additionalItems": false,
                             "minItems": 0
                         },
-                        "diodes": {
-                            "title": "This array defines the diodes of the PV system. They are used to bypass shaded cells which would otherwise dissipate energy.",
+                        "diodeList": {
+                            "title": "This array defines the diodes between the modules of this PV system. The diodes are used to bypass shaded modules which would otherwise dissipate energy.",
                             "type": "array",
                             "items": {
                                 "type": "object",
@@ -3091,7 +3053,7 @@
                             "minItems": 0
                         },
                         "connectionTypes": {
-                            "title": "This array defines the type of electric connections which are used in this PV system.",
+                            "title": "This array defines the type of electric connections between the modules, diodes and inverters of this PV system.",
                             "type": "array",
                             "items": {
                                 "type": "object",
@@ -3123,9 +3085,9 @@
                             "additionalItems": false,
                             "minItems": 0
                         },
-                        "connections": {
+                        "connectionList": {
                             "$ref": "#/definitions/connections/bidirectional",
-                            "description": "This section defines the connections between cells and between modules, diodes and inverters."
+                            "description": "This section defines the connections between the modules, diodes and inverters of this PV system."
                         },
                         "inverters": {
                             "title": "Usually, one inverter converts the direct current (DC) of the modules into alternating current (AC). But also several inverters could be used.",
@@ -4220,8 +4182,7 @@
                         "general",
                         "specific"
                     ],
-                    "description": "A building envelope component can have one or more of the following categories. (i) If the component is a plain material, for example a sheet which could be used to build a blind, the category 'material' should be used. (ii) If the component can be treated as a layer for optical simulations of a stack of layers, then the category 'layer' should be used. Venetian blinds are one example of a layer. The center-of-glazing values are important for the simulation of a stack of layers. (iii) If the width, the height and the edges of the component are well defined, then the category 'unit' should be used. For example a window with frame and shading system. 
-                    (iv) Components often represent a product in general with the general properties of all instances of this product. In this case, the category 'general' should be used. One example can be a glazing which can be manufactured with the width and height defined by the customer. (v) Components can also represent a specific instance of a general product class. For example one specific window at a certain position in a building with its individual width and height. For such cases, the category 'specific' should be used."
+                    "description": "A building envelope component can have one or more of the following categories. (i) If the component is a plain material, for example a sheet which could be used to build a blind, the category 'material' should be used. (ii) If the component can be treated as a layer for optical simulations of a stack of layers, then the category 'layer' should be used. Venetian blinds are one example of a layer. The center-of-glazing values are important for the simulation of a stack of layers. (iii) If the width, the height and the edges of the component are well defined, then the category 'unit' should be used. For example a window with frame and shading system. (iv) Components often represent a product in general with the general properties of all instances of this product. In this case, the category 'general' should be used. One example can be a glazing which can be manufactured with the width and height defined by the customer. (v) Components can also represent a specific instance of a general product class. For example one specific window at a certain position in a building with its individual width and height. For such cases, the category 'specific' should be used."
                 },
                 "additionalItems": false,
                 "minItems": 0
@@ -4448,6 +4409,4 @@
     "required": [
         "components"
     ]
-}
-}
 }
