@@ -485,52 +485,56 @@
             "title": "This section collects the definitions of the various roles which an institution or a person can have.",
             "owner": {
                 "$ref": "#/definitions/basicStakeholder",
-                "description": "The owner holds the rights for example on a component and is defined by an URI."
+                "description": "The owner holds the rights for example on a component and is defined by an id."
             },
             "submitter": {
                 "$ref": "#/definitions/basicStakeholder",
-                "description": "The submitter submits data to a database and is defined by an URI."
+                "description": "The submitter submits data to a database and is defined by an id."
             },
             "manufacturer": {
                 "$ref": "#/definitions/basicStakeholder",
-                "description": "The manufacturer manufactures or supplies the component and is defined by an URI."
+                "description": "The manufacturer manufactures or supplies the component and is defined by an id."
             },
             "approver": {
                 "$ref": "#/definitions/basicStakeholder",
-                "description": "The approver states that data or a method fulfills certain requirements. She is defined by an URI."
+                "description": "The approver states that data or a method fulfills certain requirements. She is defined by an id."
             },
             "admin": {
                 "$ref": "#/definitions/basicStakeholder",
-                "description": "The admin is in charge of a database and is defined by an URI."
+                "description": "The admin is in charge of a database and is defined by an id."
             },
             "author": {
                 "$ref": "#/definitions/person",
-                "description": "The author of a publication is defined by an URI."
+                "description": "An author is a person who is named as one of the authors of a publication. This person is defined by an id."
             },
             "developer": {
                 "$ref": "#/definitions/basicStakeholder",
-                "description": "The developer of a method or component is defined by an URI."
+                "description": "A developer is a stakeholder who has developed a method or component. This stakeholder is defined by an id."
             },
             "creator": {
                 "$ref": "#/definitions/basicStakeholder",
-                "description": "The creator of a data set is defined by an URI."
+                "description": "A creator is a stakeholder who has created a data set. This stakeholder is defined by an id."
             },
             "standardizer": {
+                "title": "A standardizer is an institution which has issued a standard. This institution is defined by an id.",
                 "type": "object",
                 "properties": {
                     "id": {
                         "$ref": "#/definitions/identifier",
-                        "description": "This id represents the stakeholder who created the standard."
+                        "description": "This id represents the institution which has created a standard."
                     },
                     "abbreviation": {
                         "type": "string"
+                    },
+                    "explanation": {
+                        "$ref": "#/definitions/internationalString",
+                        "description": "This explanation can specify the role of the institution which has created a standard."
                     }
                 },
                 "additionalProperties": false,
                 "required": [
                     "id"
-                ],
-                "description": "A standardizer is an institution which creates a standard. The institution is defined by an URI."
+                ]
             }
         },
         "method": {
@@ -723,38 +727,22 @@
                 "standardizers": {
                     "type": "array",
                     "items": {
-                        "type": "string",
-                        "enum": [
-                            "AERC",
-                            "AGI",
-                            "ASHRAE",
-                            "BREEAM",
-                            "BS",
-                            "BSI",
-                            "CEN",
-                            "CENELEC",
-                            "CIE",
-                            "DGNB",
-                            "DIN",
-                            "DVWG",
-                            "IEC",
-                            "IES",
-                            "ift",
-                            "ISO",
-                            "JIS",
-                            "LEED",
-                            "NFRC",
-                            "Riba",
-                            "UL",
-                            "UNECE",
-                            "VDI",
-                            "VFF",
-                            "WELL"
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "#/definitions/identifier",
+                                "description": "Each standardizer is defined by the id of its institution."
+                            }
+                        },
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": [
+                            "id"
                         ]
                     },
                     "additionalItems": false,
                     "minItems": 1,
-                    "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their abbreviation."
+                    "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their id."
                 },
                 "numeration": {
                     "type": "object",
@@ -4142,15 +4130,15 @@
                         "properties": {
                             "owner": {
                                 "$ref": "#/definitions/basicStakeholder",
-                                "description": "The URI and description of the owner of the component"
+                                "description": "The id and description of the owner of the component"
                             },
                             "manufacturer": {
                                 "$ref": "#/definitions/basicStakeholder",
-                                "description": "The URI and description of the manufacturer of the component"
+                                "description": "The id and description of the manufacturer of the component"
                             },
                             "developer": {
                                 "$ref": "#/definitions/roles/developer",
-                                "description": "The URI and description of the institution or person which developed the component"
+                                "description": "The id and description of the institution or person which developed the component"
                             }
                         }
                     },
@@ -4360,15 +4348,15 @@
                         "properties": {
                             "owner": {
                                 "$ref": "#/definitions/basicStakeholder",
-                                "description": "The URI and description of the owner of the component"
+                                "description": "The id and description of the owner of the component"
                             },
                             "manufacturer": {
                                 "$ref": "#/definitions/basicStakeholder",
-                                "description": "The URI and description of the manufacturer of the component"
+                                "description": "The id and description of the manufacturer of the component"
                             },
                             "developer": {
                                 "$ref": "#/definitions/roles/developer",
-                                "description": "The URI and description of the institution or person which developed the component"
+                                "description": "The id and description of the institution or person which developed the component"
                             }
                         }
                     },
@@ -4460,4 +4448,6 @@
     "required": [
         "components"
     ]
+}
+}
 }
