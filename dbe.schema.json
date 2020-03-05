@@ -3448,9 +3448,9 @@
                             "$ref": "#/definitions/valid",
                             "description": "From when and until when the data is valid."
                         },
-                        "constants": {
-                            "$ref": "#/definitions/optical/constants",
-                            "description": "Parameters which do not change during the individual measurements can be indicated here as constants. This reduces the file size."
+                        "globalCharacteristicsComponent": {
+                            "$ref": "#/definitions/optical/characteristicsComponent",
+                            "description": "If one of the characteristics of a component is valid for all 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `dataPoints/characteristicsComponent'."
                         },
                         "file": {
                             "$ref": "#/definitions/file",
@@ -3467,9 +3467,9 @@
                                         "$ref": "#/definitions/optical/incidence",
                                         "description": "This section defines the incident radiation on the component."
                                     },
-                                    "variables": {
-                                        "$ref": "#/definitions/optical/variables",
-                                        "description": "This section defines the variable which change between some data points. Parameters which stay constant can be indicated above constants in order to reduce the file size."
+                                    "characteristicsComponent": {
+                                        "$ref": "#/definitions/optical/characteristicsComponent",
+                                        "description": "If a characteristic of a component varies between 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `optical/globalCharacteristicsComponent'."
                                     },
                                     "emergence": {
                                         "$ref": "#/definitions/optical/emergence",
@@ -3806,7 +3806,7 @@
                     "direction"
                 ]
             },
-            "parameters": {
+            "characteristicsComponent": {
                 "title": "This section defines parameters for optical measurements and simulations. The parameters are lated used either as optical/constants or optical/variables.",
                 "type": "object",
                 "properties": {
@@ -3907,28 +3907,6 @@
                         "additionalItems": false,
                         "minItems": 1,
                         "maxItems": 1
-                    }
-                },
-                "additionalProperties": false,
-                "required": []
-            },
-            "constants": {
-                "type": "object",
-                "properties": {
-                    "parameters": {
-                        "$ref": "#/definitions/optical/parameters",
-                        "description": "If a parameter is a constant during this set of optical measurements, it is defined here and CANNOT be defined in `#/definitions/optical/variables`."
-                    }
-                },
-                "additionalProperties": false,
-                "required": []
-            },
-            "variables": {
-                "type": "object",
-                "properties": {
-                    "parameters": {
-                        "$ref": "#/definitions/optical/parameters",
-                        "description": "If a parameter is a variable during this set of optical measurements, it is defined here and CANNOT be defined in `#/definitions/optical/constants`."
                     }
                 },
                 "additionalProperties": false,
