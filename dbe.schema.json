@@ -1540,7 +1540,7 @@
                 },
                 "dGlaz": {
                     "$ref": "#/definitions/numbers/numberWithUncertainty",
-                    "description": "dGlaz is usually the distance between the shading and the glass pane facing the interior. It is defined exactly in the reference below."
+                    "description": "dGlaz is usually the distance between the shading and the glass pane facing the shading. It is defined exactly in the reference below."
                 },
                 "reference": {
                     "$ref": "#/definitions/reference",
@@ -2008,7 +2008,7 @@
                             "minProperties": 1,
                             "required": []
                         },
-                        "layers": {
+                        "moduleLayers": {
                             "title": "PV modules typically consist of several layers, for example a glass pane, a lamination material and the PV cells.",
                             "type": "array",
                             "items": {
