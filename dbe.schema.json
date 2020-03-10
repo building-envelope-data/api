@@ -889,16 +889,17 @@
             }
         },
         "possiblePositions": {
-            "title": "The locations where a unit can be used",
+            "title": "The locations where a component can be used",
             "type": "array",
             "items": {
                 "type": "string",
                 "enum": [
                     "exterior",
+                    "asBuildingEnvelope"
                     "inBetween",
                     "interior"
                 ],
-                "description": "Exterior of the building envelope, in between of the building envelope for example between to glass panes or interior of the building envelope."
+                "description": "(i) 'exterior' means that the component can be used on the external side of the building envelope. (ii) 'asBuildingEnvelope' means that the component can be used as building envelope without any additional components. (iii) 'inBetween' means that the component can be used within building envelope for example between two glass panes. (iv) 'interior' means that the component can be used on the internal side of the building envelope."
             },
             "additionalItems": false,
             "minItems": 0
@@ -1406,6 +1407,7 @@
                 "required": []
             },
             "characteristics": {
+                "title": "This section collect the characteristics of components of the category 'material'.",
                 "type": "object",
                 "properties": {
                     "refractiveIndex": {
@@ -1415,25 +1417,17 @@
                     "density": {
                         "$ref": "#/definitions/units/kgPerCubicMeterWithUncertainty",
                         "description": "The density is needed to calculate the weigth of the layer."
-                    }
-                }
-            },
-            "constants": {
-                "title": "This section collect all constants which are specific for components of the category materials.",
-                "type": "object",
-                "properties": {
+                    },
                     "possiblePositions": {
                         "$ref": "#/definitions/possiblePositions",
                         "description": "PossiblePositions defines where the material can be used."
                     }
-                },
-                "additionalProperties": false,
-                "required": []
+                }
             }
         },
         "layer": {
-            "constants": {
-                "title": "This section collect all constants which are specific for components of the category layers.",
+            "characteristics": {
+                "title": "This section collect the characteristics of components of the category 'layer'.",
                 "type": "object",
                 "properties": {
                     "possiblePositions": {
@@ -1455,7 +1449,7 @@
                         "maxItems": 1
                     },
                     "slat": {
-                        "title": "For example venetian blinds consist of many slats. This section is used to define constants for such slats.",
+                        "title": "For example venetian blinds consist of many slats. This section is used to define characteristics for such slats.",
                         "type": "object",
                         "properties": {
                             "width": {
@@ -1502,6 +1496,49 @@
                         "additionalProperties": false,
                         "minProperties": 1,
                         "required": []
+                    },
+                    "gaps": {
+                        "title": "The gaps for example between a blind and the frame can be important for example regarding glare.",
+                        "type": "object",
+                        "properties": {
+                            "reveal": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "inside",
+                                        "outside",
+                                        "other"
+                                    ],
+                                    "description": "The item defines whether the shading is inside the reveal or outside or something beyond both categories."
+                                },
+                                "additionalItems": false,
+                                "minItems": 1,
+                                "maxItems": 1
+                            },
+                            "dTop": {
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
+                                "description": "dTop is usually the distance between the top of the shading and the rest of the building envelope. It is defined exactly in the reference below."
+                            },
+                            "dBot": {
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
+                                "description": "dBot is usually the distance between the bottom of the shading and the rest of the building envelope. It is defined exactly in the reference below."
+                            },
+                            "dSide": {
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
+                                "description": "dSide is usually the minimum thickness of the air gap between the side of the shading layer and the rest of the building envelope. It is defined exactly in the reference below."
+                            },
+                            "dGlaz": {
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
+                                "description": "dGlaz is usually the distance between the shading and the glass pane facing the interior. It is defined exactly in the reference below."
+                            },
+                            "reference": {
+                                "$ref": "#/definitions/reference",
+                                "description": "This reference defines all parameters of this object."
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": []
                     }
                 },
                 "additionalProperties": false,
@@ -1520,10 +1557,14 @@
             }
         },
         "unit": {
-            "constants": {
-                "title": "This section collect all constants which are specific for components of the category units.",
+            "characteristics": {
+                "title": "This section collects the characteristics of components of the category 'unit'.",
                 "type": "object",
                 "properties": {
+                    "possiblePositions": {
+                        "$ref": "#/definitions/possiblePositions",
+                        "description": "PossiblePositions defines where the unit can be used."
+                    },
                     "gaps": {
                         "title": "The gaps for example between a blind and the frame can be important for example regarding glare.",
                         "type": "object",
@@ -3145,9 +3186,9 @@
                             "$ref": "#/definitions/valid",
                             "description": "From when and until when the data is valid."
                         },
-                        "constants": {
-                            "$ref": "#/definitions/calorimetric/constants",
-                            "description": "Parameters which do not change during the individual measurements can be indicated here as constants. This reduces the file size."
+                        "characteristics": {
+                            "$ref": "#/definitions/calorimetric/characteristics",
+                            "description": "This section defines characteristics which are constant for this calorimetric data set."
                         },
                         "file": {
                             "$ref": "#/definitions/file",
@@ -3371,7 +3412,7 @@
                 "additionalItems": false,
                 "minItems": 1
             },
-            "constants": {
+            "characteristics": {
                 "type": "object",
                 "properties": {
                     "conditions": {
@@ -3807,7 +3848,7 @@
                 ]
             },
             "characteristicsComponent": {
-                "title": "This section defines parameters for optical measurements and simulations. The parameters are lated used either as optical/constants or optical/variables.",
+                "title": "This section defines parameters for optical measurements and simulations. The parameters are lated used either as optical/characteristics or optical/variables.",
                 "type": "object",
                 "properties": {
                     "treatmentBefore": {
@@ -4061,9 +4102,9 @@
                         "$ref": "#/definitions/component/categories",
                         "description": "The component is categorized in order to facilitate queries."
                     },
-                    "constants": {
-                        "$ref": "#/definitions/component/constants",
-                        "description": "There are two types of parameters: constants are defined here and do not change in one data set. Variables may change for each data point. Therefore, variables are stored close to the data points."
+                    "characteristics": {
+                        "$ref": "#/definitions/component/characteristics",
+                        "description": "This section defines characteristics of a component which do not depend on a specific domain such as 'optical' or 'calorimetric'. Therefore, they are constant and valid for all data sets. Characteristics which may vary between data sets about this component are stored on lower levels of the structure. For example, 'optical/globalCharacteristics' defines characteristics which are specific for optical data, but do not change within one optical data set. 'optical/dataPoints/characteristicsComponent' defines characteristics which vary between dataPoints of one optical data set. This structure aims to reduce the size of the data."
                     },
                     "roles": {
                         "type": "object",
@@ -4092,14 +4133,14 @@
                     },
                     "optical": {
                         "$ref": "#/definitions/optical/basics",
-                        "description": "All optical data of the data set is stored in this section. For example the transmittance and reflectance with specific boundary conditions."
+                        "description": "This section is used to define and exchange optical data sets about one component. For example the transmittance and reflectance with specific boundary conditions."
                     },
                     "calorimetric": {
                         "$ref": "#/definitions/calorimetric/basics",
-                        "description": "All calorimetric data of the data set is stored in this section. For example the U value, the g value (or Solar Heat Gain Coefficient)."
+                        "description": "This section is used to define and exchange calorimetric data sets about one component.For example the U value, the g value (or Solar Heat Gain Coefficient)."
                     },
                     "photovoltaic": {
-                        "title": "This section defines all data about building envelopes which can convert irradiance into electric power.",
+                        "title": "This section is used to define and exchange photovoltaic data sets. This means building envelopes which can convert irradiance into electric power.",
                         "oneOf": [
                             {
                                 "type": "object",
@@ -4150,20 +4191,29 @@
                 ]
             },
             "categories": {
-                "type": "array",
-                "items": {
-                    "type": "string",
-                    "enum": [
-                        "material",
-                        "layer",
-                        "unit",
-                        "general",
-                        "specific"
-                    ],
-                    "description": "A building envelope component can have one or more of the following categories. (i) If the component is a plain material, for example a sheet which could be used to build a blind, the category 'material' should be used. (ii) If the component can be treated as a layer for optical simulations of a stack of layers, then the category 'layer' should be used. Venetian blinds are one example of a layer. The center-of-glazing values are important for the simulation of a stack of layers. (iii) If the width, the height and the edges of the component are well defined, then the category 'unit' should be used. For example a window with frame and shading system. (iv) Components often represent a product in general with the general properties of all instances of this product. In this case, the category 'general' should be used. One example can be a glazing which can be manufactured with the width and height defined by the customer. (v) Components can also represent a specific instance of a general product class. For example one specific window at a certain position in a building with its individual width and height. For such cases, the category 'specific' should be used."
+                "title": "##",
+                "type": "object",
+                "properties": {
+                    "componentType": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "material",
+                                "layer",
+                                "unit",
+                                "general",
+                                "specific"
+                            ],
+                            "description": "A building envelope component can have one or more of the following categories. (i) If the component is a plain material, for example a sheet which could be used to build a blind, the category 'material' should be used. (ii) If the component can be treated as a layer for optical simulations of a stack of layers, then the category 'layer' should be used. Venetian blinds are one example of a layer. The center-of-glazing values are important for the simulation of a stack of layers. (iii) If the width, the height and the edges of the component are well defined, then the category 'unit' should be used. For example a window with frame and shading system. (iv) Components often represent a product in general with the general properties of all instances of this product. In this case, the category 'general' should be used. One example can be a glazing which can be manufactured with the width and height defined by the customer. (v) Components can also represent a specific instance of a general product class. For example one specific window at a certain position in a building with its individual width and height. For such cases, the category 'specific' should be used."
+                        },
+                        "additionalItems": false,
+                        "minItems": 0
+                    }
                 },
-                "additionalItems": false,
-                "minItems": 0
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": []
             },
             "material": {
                 "categories": {
@@ -4309,8 +4359,8 @@
                     "id"
                 ]
             },
-            "constants": {
-                "title": "For one dataset, the constants of the component stay the same while the variables may change between different data points.",
+            "characteristics": {
+                "title": "This section defines which characteristics a component can have which do not change between different data sets about this component.",
                 "type": "object",
                 "properties": {
                     "geometry": {
@@ -4354,16 +4404,16 @@
                         "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
                     },
                     "material": {
-                        "$ref": "#/definitions/material/constants",
-                        "description": "If the component is a material, the material-specific constants can be named here."
+                        "$ref": "#/definitions/material/characteristics",
+                        "description": "If the component is a material, the material-specific characteristics can be named here."
                     },
                     "layer": {
-                        "$ref": "#/definitions/layer/constants",
-                        "description": "If the component is a layer, the layer-specific constants can be named here."
+                        "$ref": "#/definitions/layer/characteristics",
+                        "description": "If the component is a layer, the layer-specific characteristics can be named here."
                     },
                     "unit": {
-                        "$ref": "#/definitions/unit/constants",
-                        "description": "If the component is a unit, the unit-specific constants can be named here."
+                        "$ref": "#/definitions/unit/characteristics",
+                        "description": "If the component is a unit, the unit-specific characteristics can be named here."
                     }
                 },
                 "additionalProperties": false,
