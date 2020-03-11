@@ -698,13 +698,27 @@
                     "properties": {
                         "doi": {
                             "type": "string",
-                            "description": "pattern/^10.\\d{4,9}/[-._;()/:A-Z0-9]+$/i, ##### The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
+                            "pattern": "(10[.][0-z/.]*)",
+                            "description": "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication. TODO: Improve the regex pattern to further restrict the string."
+                        },
+                        "arXiv": {
+                            "type": "string",
+                            "pattern": "(arXiv:)[0-z./]*",
+                            "description": "arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
+                        },
+                        "urn": {
+                            "type": "string",
+                            "pattern": "(urn:)[0-z:./-]*",
+                            "description": "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
                         },
                         "webAddress": {
                             "$ref": "#/definitions/webAddress",
-                            "description": "In order to identify a publication, the URL which seems to be the most permanent one should be chosen. For example, The database is identified by its API endpoint."
+                            "description": "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
                         }
-                    }
+                    },
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "required": []
                 },
                 "title": {
                     "$ref": "#/definitions/internationalString",
