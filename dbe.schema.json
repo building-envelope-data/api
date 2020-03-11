@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "$id": "https://www.building-envelopes.org/schema#",
+    "$id": "https://www.buildingenvelopedata.org/schema#",
     "title": "dbe - data schema for building envelopes",
     "description": "This data schema allows to exchange detailed data about building envelopes. In order to make it easy to develop software which For each value, there is exactly one key in the schema to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next updata of this schema.",
     "definitions": {
@@ -13,15 +13,26 @@
                 }
             },
             "additionalProperties": false,
+            "minProperties": 1,
             "required": [
                 "en-US"
             ],
             "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
         },
         "identifier": {
-            "type": "string",
-            "format": "uuid",
-            "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify important objects and arrays."
+            "type": "object",
+            "properties": {
+                "uniqueId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify entities like components, institutions, methods and many more."
+                },
+                "issuedBy": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "This UUID defines the institution which issues the UUID. This institution MUST guarantee the uniqueness of the UUID."
+                }
+            }
         },
         "webAddress": {
             "type": "string",
@@ -895,7 +906,7 @@
                 "type": "string",
                 "enum": [
                     "exterior",
-                    "asBuildingEnvelope"
+                    "asBuildingEnvelope",
                     "inBetween",
                     "interior"
                 ],
