@@ -599,7 +599,7 @@
                     },
                     "calculation": {
                         "$ref": "#/definitions/method/calculation",
-                        "description": "Here you can define the method either as code or as executable."
+                        "description": "Here you can define the calculation procedure in detail."
                     }
                 },
                 "additionalProperties": false,
@@ -608,54 +608,9 @@
                 ]
             },
             "calculation": {
-                "title": "This section is used to define how a method can be calculated, either by code or by an executable.",
-                "type": "array",
-                "items": [
-                    {
-                        "type": "object",
-                        "properties": {
-                            "code": {
-                                "type": "string"
-                            },
-                            "formatting": {
-                                "$ref": "#/definitions/formatting",
-                                "description": "This section defines which format the code has for example a certain version of a programming language."
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": [
-                            "code"
-                        ]
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "executable": {
-                                "type": "object",
-                                "properties": {
-                                    "webAddress": {
-                                        "$ref": "#/definitions/webAddress"
-                                    },
-                                    "description": "The executable can be downloaded directly from this URL."
-                                },
-                                "additionalProperties": false,
-                                "required": [
-                                    "webAddress"
-                                ]
-                            },
-                            "formatting": {
-                                "$ref": "#/definitions/formatting",
-                                "description": "This section defines which format the executable has."
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": [
-                            "executable"
-                        ]
-                    }
-                ],
-                "additionalItems": false,
-                "minItems": 1
+                "title": "This section is used to refer to a web address which defines the calculation procedure in detail.",
+                "$ref": "#/definitions/webAddress",
+                "description": "If the calculation procedure is open, the web address should refer to the repository for example at github.com. If the calculation procedure is closed, the web address should provide an explanation of procedure and may describe options to download executables."
             }
         },
         "reference": {
