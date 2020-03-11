@@ -692,9 +692,19 @@
         "publication": {
             "type": "object",
             "properties": {
-                "id": {
-                    "$ref": "#/definitions/identifier",
-                    "description": "The id represents this specific publication."
+                "identifiers": {
+                    "title": "For publications, there cannot be a single institution guaranteeing the uniqueness of ids. Therefore, several options to define a publication are presented starting with the most important ones.",
+                    "type": "object",
+                    "properties": {
+                        "doi": {
+                            "type": "string",
+                            "description": "pattern/^10.\\d{4,9}/[-._;()/:A-Z0-9]+$/i, ##### The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
+                        },
+                        "webAddress": {
+                            "$ref": "#/definitions/webAddress",
+                            "description": "In order to identify a publication, the URL which seems to be the most permanent one should be chosen. For example, The database is identified by its API endpoint."
+                        }
+                    }
                 },
                 "title": {
                     "$ref": "#/definitions/internationalString",
@@ -4168,7 +4178,7 @@
                 ]
             },
             "categories": {
-                "title": "##",
+                "title": "This section defines the categories which a component can have.",
                 "type": "object",
                 "properties": {
                     "componentType": {

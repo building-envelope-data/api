@@ -1171,6 +1171,25 @@
                     }
                 }
             }
+        },
+        {
+            "id": "473a2f69-2e18-4745-809d-519882b25e8b",
+            "explanation": {
+                "en-US": "Example BIST component"
+            },
+            "calorimetric": {
+                "origin": {
+                    "method": {
+                        "reference": {
+                            "publication": {
+                                "identifier": {
+                                    "doi": "10.1016/j.solener.2017.05.065"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     ]
 }
