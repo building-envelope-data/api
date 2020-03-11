@@ -726,7 +726,7 @@
             },
             "additionalProperties": false,
             "required": [
-                "id"
+                "identifiers"
             ]
         },
         "standard": {

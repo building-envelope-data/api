@@ -307,18 +307,19 @@
                         ]
                     },
                     "cells": {
-                        "amounts": {
+                        "rectangular": {
                             "longitudinal": {
-                                "uncertainValue": 8
+                                "cellNumber": {
+                                    "uncertainValue": 8
+                                }
                             },
                             "transversal": {
-                                "uncertainValue": 8
-                            },
-                            "all": {
-                                "uncertainValue": 64
+                                "cellNumber": {
+                                    "uncertainValue": 8
+                                }
                             }
                         },
-                        "specifications": [
+                        "cellTypes": [
                             {
                                 "id": {
                                     "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
@@ -341,25 +342,31 @@
                                 ]
                             }
                         ],
-                        "list": [
+                        "cellList": [
                             {
                                 "id": {
                                     "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
                                     "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                                 },
-                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                                "cellType": {
+                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                }
                             },
                             {
                                 "id": {
                                     "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
                                     "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                                 },
-                                "cellType": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60"
+                                "cellType": {
+                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                }
                             }
                         ]
                     },
                     "connections": {
-                        "specifications": [
+                        "connectionType": [
                             {
                                 "id": {
                                     "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
@@ -370,9 +377,12 @@
                                 }
                             }
                         ],
-                        "list": [
+                        "connectionList": [
                             {
-                                "connectionType": "4af78493-46fd-48aa-9124-85924f658c62",
+                                "connectionType": {
+                                    "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
                                 "id1": {
                                     "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
                                     "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
@@ -383,103 +393,100 @@
                                 }
                             }
                         ],
-                        "category": "series"
-                    },
-                    "layers": {
-                        "amounts": {
-                            "all": {
-                                "uncertainValue": 5
-                            }
-                        },
-                        "list": [
-                            {
-                                "material": {
-                                    "name": {
-                                        "en-US": "Tempered white glass"
-                                    }
-                                },
-                                "categories": [
-                                    "front",
-                                    "cover"
-                                ],
-                                "thickness": {
-                                    "uncertainValue": 0.005
-                                },
-                                "geometry": {
-                                    "dimensions": {
-                                        "independent": {
-                                            "smallest": {
-                                                "uncertainValue": 0.005
-                                            },
-                                            "intermediate": {
-                                                "uncertainValue": 1.08
-                                            },
-                                            "largest": {
-                                                "uncertainValue": 1.09
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "material": {
-                                    "name": {
-                                        "en-US": "PVB"
-                                    }
-                                },
-                                "categories": [
-                                    "front",
-                                    "embedding"
-                                ]
-                            },
-                            {
-                                "categories": [
-                                    "cell"
-                                ]
-                            },
-                            {
-                                "material": {
-                                    "name": {
-                                        "en-US": "PVB"
-                                    }
-                                },
-                                "categories": [
-                                    "rear",
-                                    "embedding"
-                                ]
-                            },
-                            {
-                                "material": {
-                                    "name": {
-                                        "en-US": "Tempered white glass"
-                                    }
-                                },
-                                "categories": [
-                                    "backing"
-                                ],
-                                "thickness": {
-                                    "uncertainValue": 0.004
-                                },
-                                "geometry": {
-                                    "dimensions": {
-                                        "independent": {
-                                            "smallest": {
-                                                "uncertainValue": 0.004
-                                            },
-                                            "intermediate": {
-                                                "uncertainValue": 1.08
-                                            },
-                                            "largest": {
-                                                "uncertainValue": 1.09
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                        "category": [
+                            "series"
                         ]
                     },
+                    "moduleLayers": [
+                        {
+                            "material": {
+                                "name": {
+                                    "en-US": "Tempered white glass"
+                                }
+                            },
+                            "categories": [
+                                "front",
+                                "cover"
+                            ],
+                            "thickness": {
+                                "uncertainValue": 0.005
+                            },
+                            "geometry": {
+                                "dimensions": {
+                                    "independent": {
+                                        "smallest": {
+                                            "uncertainValue": 0.005
+                                        },
+                                        "intermediate": {
+                                            "uncertainValue": 1.08
+                                        },
+                                        "largest": {
+                                            "uncertainValue": 1.09
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "material": {
+                                "name": {
+                                    "en-US": "PVB"
+                                }
+                            },
+                            "categories": [
+                                "front",
+                                "embedding"
+                            ]
+                        },
+                        {
+                            "categories": [
+                                "cell"
+                            ]
+                        },
+                        {
+                            "material": {
+                                "name": {
+                                    "en-US": "PVB"
+                                }
+                            },
+                            "categories": [
+                                "rear",
+                                "embedding"
+                            ]
+                        },
+                        {
+                            "material": {
+                                "name": {
+                                    "en-US": "Tempered white glass"
+                                }
+                            },
+                            "categories": [
+                                "backing"
+                            ],
+                            "thickness": {
+                                "uncertainValue": 0.004
+                            },
+                            "geometry": {
+                                "dimensions": {
+                                    "independent": {
+                                        "smallest": {
+                                            "uncertainValue": 0.004
+                                        },
+                                        "intermediate": {
+                                            "uncertainValue": 1.08
+                                        },
+                                        "largest": {
+                                            "uncertainValue": 1.09
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
                     "electricConfiguration": {
-                        "grounding": "plus",
+                        "grounding": [
+                            "plus"
+                        ],
                         "connectionCables": {
                             "crossSection": {
                                 "uncertainValue": 4
@@ -602,10 +609,6 @@
                         "uniqueId": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
                         "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
-                    "amounts": {
-                        "trackers": 1,
-                        "inputs": 3
-                    },
                     "power": {
                         "input": {
                             "maximum": 6000
@@ -669,15 +672,25 @@
                         "electric": {
                             "IPcode": [
                                 {
-                                    "standard": "EN IEC 60529",
-                                    "firstDigit": "6",
-                                    "secondDigit": "5"
+                                    "standard": [
+                                        "EN IEC 60529"
+                                    ],
+                                    "firstDigit": [
+                                        "6"
+                                    ],
+                                    "secondDigit": [
+                                        "5"
+                                    ]
                                 }
                             ],
                             "applianceClass": [
                                 {
-                                    "standard": "IEC 61140",
-                                    "class": "I"
+                                    "standard": [
+                                        "IEC 61140"
+                                    ],
+                                    "class": [
+                                        "I"
+                                    ]
                                 }
                             ]
                         }
@@ -703,21 +716,31 @@
                 "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
             },
             "explanation": {
-                "en-US": "Example BIST component"
+                "en-US": "Example for a reference with a publication"
             },
-            "calorimetric": {
-                "origin": {
-                    "method": {
-                        "reference": {
-                            "publication": {
-                                "identifier": {
-                                    "doi": "10.1016/j.solener.2017.05.065"
+            "calorimetric": [
+                {
+                    "id": {
+                        "uniqueId": "473a2f69-2e18-4745-809d-519882b25e8b",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    },
+                    "origin": {
+                        "method": {
+                            "id": {
+                                "uniqueId": "473a2f69-2e18-4745-809d-519882b25e8b",
+                                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                            },
+                            "reference": {
+                                "publication": {
+                                    "identifiers": {
+                                        "doi": "10.1016/j.solener.2017.05.065"
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
+            ]
         }
     ]
 }
