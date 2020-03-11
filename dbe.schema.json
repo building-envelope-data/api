@@ -745,21 +745,11 @@
                     "$ref": "#/definitions/internationalString",
                     "description": "The abstract of the standard"
                 },
-                "standardizers": {
+                "standardizerIds": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "$ref": "#/definitions/identifier",
-                                "description": "Each standardizer is defined by the id of its institution."
-                            }
-                        },
-                        "additionalProperties": false,
-                        "minProperties": 1,
-                        "required": [
-                            "id"
-                        ]
+                        "$ref": "#/definitions/identifier",
+                        "description": "Each institution which has created this standard is defined here by its id."
                     },
                     "additionalItems": false,
                     "minItems": 1,
@@ -801,7 +791,7 @@
             },
             "additionalProperties": false,
             "required": [
-                "standardizers",
+                "standardizerIds",
                 "numeration"
             ],
             "description": "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
