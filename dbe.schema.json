@@ -19,19 +19,39 @@
             ],
             "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
         },
-        "identifier": {
-            "type": "object",
-            "properties": {
-                "uniqueId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify entities like components, institutions, methods and many more."
-                },
-                "issuedBy": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "This UUID defines the institution which issues the UUID. This institution MUST guarantee the uniqueness of the UUID."
+        "identifiers": {
+            "central": {
+                "title": "Buildingenvelopedata.org issues the central identifiers and guarantees their uniqueness.",
+                "type": "string",
+                "format": "uuid",
+                "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify entities like components, institutions, methods and many more."
+            },
+            "decentral": {
+                "title": "Any institution registered at buildingenvelopedata.org can issue decentral identifiers. The institution MUST guarantees their uniqueness.",
+                "type": "object",
+                "properties": {
+                    "uniqueId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify entities like components, institutions, methods and many more."
+                    },
+                    "issuedBy": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "This UUID defines the institution which issues the UUID. This institution MUST guarantee the uniqueness of the UUID."
+                    }
                 }
+            },
+            "centralOrDecentral": {
+                "title": "This definition is used when either a central identifier or a decentral identifier can be used. For example, a component can be a general product. In this case, it usually has a central identifier from buildingenvelopedata.org. But a component can also be a specific instance of a product in a specific building. In this case, it usually has a decentral identifier from the owner of the building.",
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/identifiers/central"
+                    },
+                    {
+                        "$ref": "#/definitions/identifiers/decentral"
+                    }
+                ]
             }
         },
         "webAddress": {
@@ -385,7 +405,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identifier",
+                    "$ref": "#/definitions/identiers/central",
                     "description": "This id represents the stakeholder."
                 },
                 "explanation": {
@@ -403,7 +423,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identifier",
+                    "$ref": "#/definitions/identiers/central",
                     "description": "This id represents the person"
                 },
                 "names": {
@@ -437,7 +457,7 @@
                     "type": "object",
                     "properties": {
                         "id": {
-                            "$ref": "#/definitions/identifier",
+                            "$ref": "#/definitions/identiers/central",
                             "description": "This id which defines the affiliation of the person"
                         },
                         "name": {
@@ -463,7 +483,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identifier",
+                    "$ref": "#/definitions/identiers/central",
                     "description": "This id represents the institution"
                 },
                 "name": {
@@ -531,7 +551,7 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "#/definitions/identifier",
+                        "$ref": "#/definitions/identiers/central",
                         "description": "This id represents the institution which has created a standard."
                     },
                     "abbreviation": {
@@ -553,7 +573,7 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "#/definitions/identifier",
+                        "$ref": "#/definitions/identiers/central",
                         "description": "This id represents the method which is specified below."
                     },
                     "name": {
@@ -703,7 +723,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identifier",
+                    "$ref": "#/definitions/identiers/central",
                     "description": "The id represents this specific standard."
                 },
                 "title": {
@@ -717,7 +737,7 @@
                 "standardizerIds": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/identifier",
+                        "$ref": "#/definitions/identiers/central",
                         "description": "Each institution which has created this standard is defined here by its id."
                     },
                     "additionalItems": false,
@@ -818,11 +838,11 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "#/definitions/identifier",
+                        "$ref": "#/definitions/identifiers/decentral",
                         "description": "The id represents this approval."
                     },
                     "approver": {
-                        "$ref": "#/definitions/identifier",
+                        "$ref": "#/definitions/identiers/central",
                         "description": "This id represents The stakeholder who approved the data."
                     },
                     "verify": {
@@ -920,7 +940,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identifier",
+                    "$ref": "#/definitions/identifiers/decentral",
                     "description": "The id represents this specific format."
                 },
                 "abbreviation": {
@@ -936,7 +956,7 @@
                     "description": "The decription of the format"
                 },
                 "version": {
-                    "$ref": "#/definitions/identifier",
+                    "$ref": "#/definitions/identifiers/decentral",
                     "description": "This id represents a specific version of the format."
                 },
                 "reference": {
@@ -1294,7 +1314,7 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/definitions/identifier",
+                                "$ref": "#/definitions/identifiers/centralOrDecentral",
                                 "description": "The id represents a specific componet of the assembly."
                             },
                             "geometry": {
@@ -1351,11 +1371,11 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "#/definitions/identifier",
+                        "$ref": "#/definitions/identifiers/decentral",
                         "description": "The id represents the material."
                     },
                     "version": {
-                        "$ref": "#/definitions/identifier",
+                        "$ref": "#/definitions/identifiers/decentral",
                         "description": "This id represents a specific version of the material."
                     },
                     "name": {
@@ -1564,7 +1584,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identifier",
+                    "$ref": "#/definitions/identifiers/decentral",
                     "description": "The id represents the data source."
                 },
                 "name": {
@@ -1629,15 +1649,15 @@
                     "type": "object",
                     "properties": {
                         "connectionType": {
-                            "$ref": "#/definitions/identifier",
+                            "$ref": "#/definitions/identifiers/centralOrDecentral",
                             "description": "The id defines the type of the connection."
                         },
                         "id1": {
-                            "$ref": "#/definitions/identifier",
+                            "$ref": "#/definitions/identifiers/centralOrDecentral",
                             "description": "Id1 represents the first component which is connected to the component represented by id2."
                         },
                         "id2": {
-                            "$ref": "#/definitions/identifier",
+                            "$ref": "#/definitions/identifiers/centralOrDecentral",
                             "description": "Id1 represents the second component which is connected to the component represented by id1."
                         },
                         "length": {
@@ -1774,7 +1794,7 @@
                                         "type": "object",
                                         "properties": {
                                             "id": {
-                                                "$ref": "#/definitions/identifier",
+                                                "$ref": "#/definitions/identifiers/centralOrDecentral",
                                                 "description": "The id represents one type of PV cells."
                                             },
                                             "explanation": {
@@ -1862,11 +1882,11 @@
                                         "type": "object",
                                         "properties": {
                                             "id": {
-                                                "$ref": "#/definitions/identifier",
+                                                "$ref": "#/definitions/identifiers/decentral",
                                                 "description": "The id represents one specific cell in the photovoltaic module. It is used to define connections to other parts of the PV module."
                                             },
                                             "cellType": {
-                                                "$ref": "#/definitions/identifier",
+                                                "$ref": "#/definitions/identifiers/centralOrDecentral",
                                                 "description": "The id represents one type of PV cells as defined above."
                                             },
                                             "geometry": {
@@ -1899,7 +1919,7 @@
                                         "type": "object",
                                         "properties": {
                                             "id": {
-                                                "$ref": "#/definitions/identifier",
+                                                "$ref": "#/definitions/identifiers/centralOrDecentral",
                                                 "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
                                             },
                                             "explanation": {
@@ -1920,11 +1940,11 @@
                                         "type": "object",
                                         "properties": {
                                             "id": {
-                                                "$ref": "#/definitions/identifier",
+                                                "$ref": "#/definitions/identifiers/decentral",
                                                 "description": "The id represents one specific diode of the PV module. The id is used to define connections to other parts of the PV module"
                                             },
                                             "diodeType": {
-                                                "$ref": "#/definitions/identifier",
+                                                "$ref": "#/definitions/identifiers/centralOrDecentral",
                                                 "description": "The id defines the type of the diode."
                                             },
                                             "geometry": {
@@ -1953,7 +1973,7 @@
                                         "type": "object",
                                         "properties": {
                                             "id": {
-                                                "$ref": "#/definitions/identifier",
+                                                "$ref": "#/definitions/identifiers/centralOrDecentral",
                                                 "description": "The id represents one type of connections which is used in the the PV module. The id is used to define connections to other parts of the PV module"
                                             },
                                             "explanation": {
@@ -2050,7 +2070,7 @@
                                     "type": "object",
                                     "properties": {
                                         "id": {
-                                            "$ref": "#/definitions/identifier",
+                                            "$ref": "#/definitions/identifiers/centralOrDecentral",
                                             "description": "The id represents one type of junction boxes which is used in the the PV module."
                                         },
                                         "name": {
@@ -2066,11 +2086,11 @@
                                     "type": "array",
                                     "items": {
                                         "id": {
-                                            "$ref": "#/definitions/identifier",
-                                            "description": "The id represents one specific diode of the PV module. The id is used to define connections to other parts of the PV module"
+                                            "$ref": "#/definitions/identifiers/decentral",
+                                            "description": "The id represents one specific junction box of the PV module. The id is used to define connections to other parts of the PV module"
                                         },
                                         "junctionBoxType": {
-                                            "$ref": "#/definitions/identifier",
+                                            "$ref": "#/definitions/identifiers/centralOrDecentral",
                                             "description": "The id defines the type of junction box."
                                         },
                                         "geometry": {
@@ -2102,7 +2122,7 @@
                                     "type": "object",
                                     "properties": {
                                         "id": {
-                                            "$ref": "#/definitions/identifier",
+                                            "$ref": "#/definitions/identifiers/centralOrDecentral",
                                             "description": "The id represents a type of connection cables."
                                         },
                                         "crossSection": {
@@ -2131,7 +2151,7 @@
                                     "type": "object",
                                     "properties": {
                                         "id": {
-                                            "$ref": "#/definitions/identifier",
+                                            "$ref": "#/definitions/identifiers/centralOrDecentral",
                                             "description": "The id represents the type of connector with which the connection cable is connected to another PV module."
                                         },
                                         "name": {
@@ -2582,11 +2602,11 @@
                     "required": []
                 },
                 "inverter": {
-                    "title": "Usually, one inverter converts the direct current (DC) of the modules into alternating current (AC).",
+                    "title": "Usually, an inverter is used to convert the direct current (DC) of the modules into alternating current (AC).",
                     "type": "object",
                     "properties": {
                         "id": {
-                            "$ref": "#/definitions/identifier",
+                            "$ref": "#/definitions/identifiers/centralOrDecentral",
                             "description": "The id represents the inverter."
                         },
                         "trackerNumber": {
@@ -2973,11 +2993,11 @@
                                 "type": "object",
                                 "properties": {
                                     "id": {
-                                        "$ref": "#/definitions/identifier",
+                                        "$ref": "#/definitions/identifiers/decentral",
                                         "description": "The id represents one specific PV module in the PV system. It is used to define connections to other parts of the PV system."
                                     },
                                     "moduleType": {
-                                        "$ref": "#/definitions/identifier",
+                                        "$ref": "#/definitions/identifiers/centralOrDecentral",
                                         "description": "The id represents one type of PV modules."
                                     },
                                     "geometry": {
@@ -3000,7 +3020,7 @@
                                 "type": "object",
                                 "properties": {
                                     "id": {
-                                        "$ref": "#/definitions/identifier",
+                                        "$ref": "#/definitions/identifiers/centralOrDecentral",
                                         "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
                                     },
                                     "explanation": {
@@ -3021,11 +3041,11 @@
                                 "type": "object",
                                 "properties": {
                                     "id": {
-                                        "$ref": "#/definitions/identifier",
+                                        "$ref": "#/definitions/identifiers/decentral",
                                         "description": "The id represents one specific diode of the PV system. The id is used to define connections to other parts of the PV system"
                                     },
                                     "diodeType": {
-                                        "$ref": "#/definitions/identifier",
+                                        "$ref": "#/definitions/identifiers/centralOrDecentral",
                                         "description": "The id defines the type of the diode."
                                     },
                                     "geometry": {
@@ -3046,7 +3066,7 @@
                                 "type": "object",
                                 "properties": {
                                     "id": {
-                                        "$ref": "#/definitions/identifier",
+                                        "$ref": "#/definitions/identifiers/centralOrDecentral",
                                         "description": "The id represents one type of connections which is used in the the PV system. The id is used to define connections to other parts of the PV system"
                                     },
                                     "explanation": {
@@ -3101,7 +3121,7 @@
                     "type": "object",
                     "properties": {
                         "id": {
-                            "$ref": "#/definitions/identifier",
+                            "$ref": "#/definitions/identifiers/decentral",
                             "description": "The id represents a specific calorimetric data set."
                         },
                         "name": {
@@ -3404,7 +3424,7 @@
                     "type": "object",
                     "properties": {
                         "id": {
-                            "$ref": "#/definitions/identifier",
+                            "$ref": "#/definitions/identifiers/decentral",
                             "description": "The id represents the optical data set."
                         },
                         "name": {
@@ -4025,8 +4045,8 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "#/definitions/identifier",
-                        "description": "This id represents the component"
+                        "$ref": "#/definitions/identifiers/centralOrDecentral",
+                        "description": "This id represents the component. A component as a general product has usually a central identifier. One specific instance of this component in a specific building has usually a decentral identifier."
                     },
                     "name": {
                         "$ref": "#/definitions/internationalString",
@@ -4041,7 +4061,7 @@
                         "description": "An explanation with more details about the component"
                     },
                     "version": {
-                        "$ref": "#/definitions/identifier",
+                        "$ref": "#/definitions/identifiers/centralOrDecentral",
                         "description": "The id represents the version of the component."
                     },
                     "categories": {
@@ -4312,7 +4332,7 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "#/definitions/identifier",
+                        "$ref": "#/definitions/identifiers/centralOrDecentral",
                         "description": "This id represents a specific version of a component."
                     },
                     "name": {
