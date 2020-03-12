@@ -499,8 +499,13 @@
                     "description": "The explanation can further explain the role of the institution."
                 },
                 "publicKey": {
-                    "type": "string",
-                    "description": "The public key of the institution for cryptography"
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "description": "A public key of the institution for cryptograpic signatures for approvals."
+                    },
+                    "additionalItems": false,
+                    "minItems": 1
                 },
                 "contact": {
                     "$ref": "#/definitions/contact",
