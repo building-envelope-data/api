@@ -211,7 +211,7 @@
                 "maximum": 100
             }
         },
-        "units": {
+        "numbersWithUnits": {
             "title": "This section defines types for numbers with units",
             "meterWithUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
@@ -1026,15 +1026,15 @@
                         "type": "object",
                         "properties": {
                             "height": {
-                                "$ref": "#/definitions/units/meterWithUncertainty",
+                                "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                                 "description": "The height of the component along the vertical axis of the building envelope. It has the units meter."
                             },
                             "width": {
-                                "$ref": "#/definitions/units/meterWithUncertainty",
+                                "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                                 "description": "The width of the component along the horizontal axis of the building envelope. It has the units meter."
                             },
                             "depth": {
-                                "$ref": "#/definitions/units/meterWithUncertainty",
+                                "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                                 "description": "The depth of the component along the axis perpendicular to the building envelope. It has the units meter."
                             }
                         },
@@ -1050,15 +1050,15 @@
                     "type": "object",
                     "properties": {
                         "smallest": {
-                            "$ref": "#/definitions/units/meterWithUncertainty",
+                            "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                             "description": "The smallest dimension of the component. It has the units meter."
                         },
                         "intermediate": {
-                            "$ref": "#/definitions/units/meterWithUncertainty",
+                            "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                             "description": "The dimension of the component which is larger the `smallest` and smaller than `largest`. It has the units meter."
                         },
                         "largest": {
-                            "$ref": "#/definitions/units/meterWithUncertainty",
+                            "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                             "description": "The largest dimension of the component. It has the units meter."
                         }
                     },
@@ -1137,13 +1137,13 @@
                 "type": "object",
                 "properties": {
                     "x": {
-                        "$ref": "#/definitions/units/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
                     },
                     "y": {
-                        "$ref": "#/definitions/units/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
                     },
                     "z": {
-                        "$ref": "#/definitions/units/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
                     }
                 },
                 "additionalProperties": false,
@@ -1158,13 +1158,13 @@
                 "type": "object",
                 "properties": {
                     "x": {
-                        "$ref": "#/definitions/units/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
                     },
                     "y": {
-                        "$ref": "#/definitions/units/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
                     },
                     "z": {
-                        "$ref": "#/definitions/units/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
                     }
                 },
                 "additionalProperties": false,
@@ -1420,7 +1420,7 @@
                         "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
                     },
                     "density": {
-                        "$ref": "#/definitions/units/kgPerCubicMeterWithUncertainty",
+                        "$ref": "#/definitions/numbersWithUnits/kgPerCubicMeterWithUncertainty",
                         "description": "The density is needed to calculate the weigth of the layer."
                     },
                     "possiblePositions": {
@@ -1458,7 +1458,7 @@
                         "type": "object",
                         "properties": {
                             "width": {
-                                "$ref": "#/definitions/units/meterWithoutUncertainty",
+                                "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty",
                                 "description": "The width of the slat"
                             },
                             "pitch": {
@@ -1558,11 +1558,11 @@
         "angles": {
             "title": "This sections defines angles which are helpful to characterize building envelopes.",
             "tilt": {
-                "$ref": "#/definitions/units/degree",
+                "$ref": "#/definitions/numbersWithUnits/degree",
                 "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
             },
             "maximumClosing": {
-                "$ref": "#/definitions/units/degree",
+                "$ref": "#/definitions/numbersWithUnits/degree",
                 "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
             }
         },
@@ -1673,7 +1673,7 @@
                             "type": "object",
                             "properties": {
                                 "resistance": {
-                                    "$ref": "#/definitions/units/ohmWithUncertainty",
+                                    "$ref": "#/definitions/numbersWithUnits/ohmWithUncertainty",
                                     "description": "The electric resistance of the connection in ohms."
                                 }
                             }
@@ -1712,11 +1712,11 @@
                     "type": "object",
                     "properties": {
                         "I": {
-                            "$ref": "#/definitions/units/ampereWithoutUncertainty",
+                            "$ref": "#/definitions/numbersWithUnits/ampereWithoutUncertainty",
                             "description": "The electric current in amperes."
                         },
                         "V": {
-                            "$ref": "#/definitions/units/voltWithoutUncertainty",
+                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
                             "description": "The electric potential difference in volts."
                         }
                     },
@@ -1755,7 +1755,7 @@
                                                     "description": "The number of cells in the longitudinal direction."
                                                 },
                                                 "spacing": {
-                                                    "$ref": "#/definitions/units/meterWithUncertainty",
+                                                    "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                                                     "description": "The distance between two neighboring cells in the longitudinal direction and in metre (m)."
                                                 }
                                             },
@@ -1774,7 +1774,7 @@
                                                     "description": "The number of cells in the transversal direction."
                                                 },
                                                 "spacing": {
-                                                    "$ref": "#/definitions/units/meterWithUncertainty",
+                                                    "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                                                     "description": "The distance between two neighboring cells in the transversal direction and in metre (m)."
                                                 }
                                             },
@@ -1814,11 +1814,11 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "nominal": {
-                                                        "$ref": "#/definitions/units/wattWithUncertainty",
+                                                        "$ref": "#/definitions/numbersWithUnits/wattWithUncertainty",
                                                         "description": "The nominal power of the cell is measured independently at standard test conditions in watts."
                                                     },
                                                     "effective": {
-                                                        "$ref": "#/definitions/units/wattWithUncertainty",
+                                                        "$ref": "#/definitions/numbersWithUnits/wattWithUncertainty",
                                                         "description": "The effective nominal power of a cell is the nominal power of the module divided by the number of cells."
                                                     }
                                                 },
@@ -1826,7 +1826,7 @@
                                                 "required": []
                                             },
                                             "width": {
-                                                "$ref": "#/definitions/units/meterWithUncertainty",
+                                                "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                                                 "description": "If the cell has more or less the form of a square, then the width between two parallel sides is helpful to calculate how many cells fit into one module."
                                             },
                                             "currentVoltage": {
@@ -1986,7 +1986,7 @@
                                                 "description": "This string can explain the connection type to humans."
                                             },
                                             "resistancePerLength": {
-                                                "$ref": "#/definitions/units/ohmPerMeterWithUncertainty",
+                                                "$ref": "#/definitions/numbersWithUnits/ohmPerMeterWithUncertainty",
                                                 "description": "The electric resistance of the connection per length of the connection in ohms per meter."
                                             },
                                             "colour": {
@@ -2046,11 +2046,11 @@
                                         "maxItem": 2
                                     },
                                     "thickness": {
-                                        "$ref": "#/definitions/units/meterWithUncertainty",
+                                        "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                                         "description": "The thickness of this layer as part of the module."
                                     },
                                     "weight": {
-                                        "$ref": "#/definitions/units/kilogramWithUncertainty",
+                                        "$ref": "#/definitions/numbersWithUnits/kilogramWithUncertainty",
                                         "description": "The weigth of the layer."
                                     },
                                     "geometry": {
@@ -2131,18 +2131,18 @@
                                             "description": "The id represents a type of connection cables."
                                         },
                                         "crossSection": {
-                                            "$ref": "#/definitions/units/squareMillimeterWithUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/squareMillimeterWithUncertainty",
                                             "description": "The cross-sectional area of the connection cable in square millimeters."
                                         },
                                         "length": {
                                             "type": "object",
                                             "properties": {
                                                 "positive": {
-                                                    "$ref": "#/definitions/units/meterWithUncertainty",
+                                                    "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                                                     "description": "The length of the connection cable with the electric plus sign."
                                                 },
                                                 "negative": {
-                                                    "$ref": "#/definitions/units/meterWithUncertainty",
+                                                    "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
                                                     "description": "The length of the connection cable with the electric minus sign."
                                                 }
                                             }
@@ -2183,7 +2183,7 @@
                                     "description": "All properties which depend on the material in general and not on the specific component."
                                 },
                                 "weight": {
-                                    "$ref": "#/definitions/units/kilogramWithUncertainty",
+                                    "$ref": "#/definitions/numbersWithUnits/kilogramWithUncertainty",
                                     "description": "The weigth of the frame."
                                 },
                                 "geometry": {
@@ -2206,7 +2206,7 @@
                                     "type": "object",
                                     "properties": {
                                         "nominal": {
-                                            "$ref": "#/definitions/units/wattWithUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/wattWithUncertainty",
                                             "description": "The nominal power is measured at the maximum power point of the module under standard test conditions."
                                         },
                                         "tolerance": {
@@ -2252,7 +2252,7 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "incidence": {
-                                                                "$ref": "#/definitions/units/degree",
+                                                                "$ref": "#/definitions/numbersWithUnits/degree",
                                                                 "description": "The incidence angle in degree"
                                                             },
                                                             "IAM": {
@@ -2302,11 +2302,11 @@
                                     "type": "object",
                                     "properties": {
                                         "nominal": {
-                                            "$ref": "#/definitions/units/voltWithUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/voltWithUncertainty",
                                             "description": "The nominal voltage is measured at the maximum power point of the module under standard test conditions."
                                         },
                                         "openCircuit": {
-                                            "$ref": "#/definitions/units/voltWithUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/voltWithUncertainty",
                                             "description": "The open circuit voltage is measured under standard test conditions without connecting the module to an electric circuit."
                                         },
                                         "temperatureCoefficient": {
@@ -2314,7 +2314,7 @@
                                             "description": "When the temperature increases compared to standard test conditions, the open circuit voltage changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                         },
                                         "maximumSystem": {
-                                            "$ref": "#/definitions/units/voltWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
                                             "description": "The voltage of a PV system made with these modules should stay below this maximum system voltage."
                                         }
                                     },
@@ -2326,11 +2326,11 @@
                                     "type": "object",
                                     "properties": {
                                         "nominal": {
-                                            "$ref": "#/definitions/units/ampereWithUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/ampereWithUncertainty",
                                             "description": "The nominal current is measured at the maximum power point of the module under standard test conditions."
                                         },
                                         "shortCircuit": {
-                                            "$ref": "#/definitions/units/ampereWithUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/ampereWithUncertainty",
                                             "description": "The short circuit current is measured under standard test conditions with the module connected to an electric circuit which has an electric resistance of zero."
                                         },
                                         "temperatureCoefficient": {
@@ -2351,7 +2351,7 @@
                                     "description": "The effiency of the module is measured at standard test conditions."
                                 },
                                 "weight": {
-                                    "$ref": "#/definitions/units/kilogramWithUncertainty",
+                                    "$ref": "#/definitions/numbersWithUnits/kilogramWithUncertainty",
                                     "description": "The weigth of the PV module."
                                 },
                                 "geometry": {
@@ -2453,11 +2453,11 @@
                                                                 "type": "object",
                                                                 "properties": {
                                                                     "rated": {
-                                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                                        "$ref": "#/definitions/numbersWithUnits/pascalWithoutUncertainty",
                                                                         "description": "The maximum rated pressure in Pascal."
                                                                     },
                                                                     "tested": {
-                                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                                        "$ref": "#/definitions/numbersWithUnits/pascalWithoutUncertainty",
                                                                         "description": "The maximum tested pressure in Pascal."
                                                                     }
                                                                 },
@@ -2469,11 +2469,11 @@
                                                                 "type": "object",
                                                                 "properties": {
                                                                     "rated": {
-                                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                                        "$ref": "#/definitions/numbersWithUnits/pascalWithoutUncertainty",
                                                                         "description": "The maximum rated suction in Pascal."
                                                                     },
                                                                     "tested": {
-                                                                        "$ref": "#/definitions/units/pascalWithoutUncertainty",
+                                                                        "$ref": "#/definitions/numbersWithUnits/pascalWithoutUncertainty",
                                                                         "description": "The maximum tested suction in Pascal."
                                                                     }
                                                                 },
@@ -2556,15 +2556,15 @@
                                     "type": "object",
                                     "properties": {
                                         "minimum": {
-                                            "$ref": "#/definitions/units/kelvinWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
                                             "description": "The minimum operating temperature in Kelvin (K)."
                                         },
                                         "operating": {
-                                            "$ref": "#/definitions/units/kelvinWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
                                             "description": "The operating temperature of the cells under standard test conditions and in Kelvin (K)."
                                         },
                                         "maximum": {
-                                            "$ref": "#/definitions/units/kelvinWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
                                             "description": "The maximum operating temperature in Kelvin (K)."
                                         }
                                     },
@@ -2629,7 +2629,7 @@
                                     "type": "object",
                                     "properties": {
                                         "maximum": {
-                                            "$ref": "#/definitions/units/wattWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/wattWithoutUncertainty",
                                             "description": "The maximum input power from the PV modules to the inverter in watts."
                                         }
                                     },
@@ -2641,11 +2641,11 @@
                                     "type": "object",
                                     "properties": {
                                         "nominal": {
-                                            "$ref": "#/definitions/units/wattWithUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/wattWithUncertainty",
                                             "description": "The nominal output power of the inverter in watts."
                                         },
                                         "maximum": {
-                                            "$ref": "#/definitions/units/wattWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/wattWithoutUncertainty",
                                             "description": "The maximum output power of the inverter in watts."
                                         },
                                         "normalized": {
@@ -2661,7 +2661,7 @@
                                     "type": "object",
                                     "properties": {
                                         "night": {
-                                            "$ref": "#/definitions/units/wattWithUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/wattWithUncertainty",
                                             "description": "The power demand of the inverter at night in watts."
                                         }
                                     },
@@ -2681,15 +2681,15 @@
                                     "type": "object",
                                     "properties": {
                                         "minimum": {
-                                            "$ref": "#/definitions/units/voltWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
                                             "description": "When the input voltage decreases below this value, the inverter switches from operation into standby."
                                         },
                                         "start": {
-                                            "$ref": "#/definitions/units/voltWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
                                             "description": "When the input voltage increase above this value, the inverter switches from standby to operation."
                                         },
                                         "maximum": {
-                                            "$ref": "#/definitions/units/voltWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
                                             "description": "The maximum input voltage for the inverter."
                                         }
                                     },
@@ -2704,11 +2704,11 @@
                                             "type": "object",
                                             "properties": {
                                                 "minimum": {
-                                                    "$ref": "#/definitions/units/hertzWithoutUncertainty",
+                                                    "$ref": "#/definitions/numbersWithUnits/hertzWithoutUncertainty",
                                                     "description": "The minimum frequency of the AC output of the inverter in hertz."
                                                 },
                                                 "maximum": {
-                                                    "$ref": "#/definitions/units/hertzWithoutUncertainty",
+                                                    "$ref": "#/definitions/numbersWithUnits/hertzWithoutUncertainty",
                                                     "description": "The maximum frequency of the AC output of the inverter in hertz."
                                                 }
                                             },
@@ -2733,11 +2733,11 @@
                                     "type": "object",
                                     "properties": {
                                         "maximum": {
-                                            "$ref": "#/definitions/units/ampereWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/ampereWithoutUncertainty",
                                             "description": "The maximum input current for the inverter in amperes."
                                         },
                                         "shortCircuit": {
-                                            "$ref": "#/definitions/units/ampereWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/ampereWithoutUncertainty",
                                             "description": "The maximum short circuit current of the the inverter in amperes."
                                         }
                                     },
@@ -2749,7 +2749,7 @@
                                     "type": "object",
                                     "properties": {
                                         "nominal": {
-                                            "$ref": "#/definitions/units/ampereWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/ampereWithoutUncertainty",
                                             "description": "The nominal AC output current of the inverter in amperes."
                                         }
                                     },
@@ -2763,7 +2763,7 @@
                             "required": []
                         },
                         "weight": {
-                            "$ref": "#/definitions/units/kilogramWithUncertainty",
+                            "$ref": "#/definitions/numbersWithUnits/kilogramWithUncertainty",
                             "description": "The weigth of the inverter."
                         },
                         "geometry": {
@@ -2950,11 +2950,11 @@
                             "type": "object",
                             "properties": {
                                 "minimum": {
-                                    "$ref": "#/definitions/units/kelvinWithoutUncertainty",
+                                    "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
                                     "description": "The minimum ambient temperature in Kelvin (K) for the inverter to operate."
                                 },
                                 "maximum": {
-                                    "$ref": "#/definitions/units/kelvinWithoutUncertainty",
+                                    "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
                                     "description": "The maximum ambient temperature in Kelvin (K) for the inverter to operate."
                                 }
                             },
@@ -3079,11 +3079,11 @@
                                         "description": "This string can explain the connection type to humans."
                                     },
                                     "crossSection": {
-                                        "$ref": "#/definitions/units/squareMillimeterWithoutUncertainty",
+                                        "$ref": "#/definitions/numbersWithUnits/squareMillimeterWithoutUncertainty",
                                         "description": "The cross-sectional area of the connection cable in square millimeters."
                                     },
                                     "resistancePerLength": {
-                                        "$ref": "#/definitions/units/ohmPerMeterWithUncertainty",
+                                        "$ref": "#/definitions/numbersWithUnits/ohmPerMeterWithUncertainty",
                                         "description": "The electric resistance of the connection per length of the connection in ohms per meter."
                                     },
                                     "colour": {
@@ -3196,18 +3196,18 @@
                                         "type": "object",
                                         "properties": {
                                             "flux": {
-                                                "$ref": "#/definitions/units/wattWithUncertainty",
+                                                "$ref": "#/definitions/numbersWithUnits/wattWithUncertainty",
                                                 "description": "The heat flux is driven by the temperature differences. Positive heat flux means heat flux towards the sample. It is meaured in watts."
                                             },
                                             "temperatures": {
                                                 "type": "object",
                                                 "properties": {
                                                     "surrounding": {
-                                                        "$ref": "#/definitions/units/kelvinWithUncertainty",
+                                                        "$ref": "#/definitions/numbersWithUnits/kelvinWithUncertainty",
                                                         "description": "The average temperature of this part of the surroundings."
                                                     },
                                                     "sample": {
-                                                        "$ref": "#/definitions/units/kelvinWithUncertainty",
+                                                        "$ref": "#/definitions/numbersWithUnits/kelvinWithUncertainty",
                                                         "description": "The average temperature of the part of the sample which faces this part of the surroundings."
                                                     }
                                                 },
@@ -3216,7 +3216,7 @@
                                                 "required": []
                                             },
                                             "coefficient": {
-                                                "$ref": "#/definitions/units/wattPerSquareMeterKelvinWithUncertainty",
+                                                "$ref": "#/definitions/numbersWithUnits/wattPerSquareMeterKelvinWithUncertainty",
                                                 "description": "The heat transfer coefficient equals the heat flux divided by the temperature difference. It has the unit watt per square meter per kelvin."
                                             }
                                         },
@@ -3230,18 +3230,18 @@
                                         "type": "object",
                                         "properties": {
                                             "flux": {
-                                                "$ref": "#/definitions/units/wattWithUncertainty",
+                                                "$ref": "#/definitions/numbersWithUnits/wattWithUncertainty",
                                                 "description": "This heat flux is caused by the temperature difference between the fluid inlet of the sample and the fluid outlet. It is meaured in watts."
                                             },
                                             "temperatures": {
                                                 "type": "object",
                                                 "properties": {
                                                     "inlet": {
-                                                        "$ref": "#/definitions/units/kelvinWithUncertainty",
+                                                        "$ref": "#/definitions/numbersWithUnits/kelvinWithUncertainty",
                                                         "description": "The average temperature of the fluid at the inlet of the sample."
                                                     },
                                                     "outlet": {
-                                                        "$ref": "#/definitions/units/kelvinWithUncertainty",
+                                                        "$ref": "#/definitions/numbersWithUnits/kelvinWithUncertainty",
                                                         "description": "The average temperature of the fluid at the outlet of the sample."
                                                     }
                                                 },
@@ -3250,11 +3250,11 @@
                                                 "required": []
                                             },
                                             "massFlow": {
-                                                "$ref": "#/definitions/units/kgPerSecondWithUncertainty",
+                                                "$ref": "#/definitions/numbersWithUnits/kgPerSecondWithUncertainty",
                                                 "description": "The mass flow of the fluid circuit which enters and leaves the sample in kilogram per second."
                                             },
                                             "specificHeatCapacity": {
-                                                "$ref": "#/definitions/units/JPerKgKwithUncertainty",
+                                                "$ref": "#/definitions/numbersWithUnits/JPerKgKwithUncertainty",
                                                 "description": "The specific heat capacity of the fluid in joules per kilogram per Kelvin."
                                             }
                                         },
@@ -3267,7 +3267,7 @@
                                         "type": "object",
                                         "properties": {
                                             "flux": {
-                                                "$ref": "#/definitions/units/wattWithUncertainty",
+                                                "$ref": "#/definitions/numbersWithUnits/wattWithUncertainty",
                                                 "description": "The irradiance is determined on the surface of the sample. Positive irradiance means irradiance towards the sample. It is meaured in watts."
                                             },
                                             "direction": {
@@ -3284,7 +3284,7 @@
                                         "type": "object",
                                         "properties": {
                                             "flux": {
-                                                "$ref": "#/definitions/units/wattWithUncertainty",
+                                                "$ref": "#/definitions/numbersWithUnits/wattWithUncertainty",
                                                 "description": "The electric energy supplied to the sample. Positive electric energy means that it is delivered to the sample."
                                             },
                                             "currentVoltage": {
@@ -3522,11 +3522,11 @@
                                     "type": "object",
                                     "properties": {
                                         "polar": {
-                                            "$ref": "#/definitions/units/degree",
+                                            "$ref": "#/definitions/numbersWithUnits/degree",
                                             "description": "In the spherical coordinate system, the polar angle is measured from a fixed axis such as the z-axis of a cartesian coordinate system."
                                         },
                                         "azimuth": {
-                                            "$ref": "#/definitions/units/degree",
+                                            "$ref": "#/definitions/numbersWithUnits/degree",
                                             "description": "In the spherical coordinate system, the azimuth angle is measured from orthogonal projextion of the direction on a reference plane such as the plane between the x- and y-axis of a cartestian coordinate system."
                                         }
                                     },
@@ -3540,11 +3540,11 @@
                                     "type": "object",
                                     "properties": {
                                         "xz": {
-                                            "$ref": "#/definitions/units/degree",
+                                            "$ref": "#/definitions/numbersWithUnits/degree",
                                             "description": "If the z-axis is normal to the building envelope and the x-axis directs for example vertically upwards in a facade,then the angle xz is measured from the z-axis towards the x-axis. 80° is then from the facade almost vertically upwards and -10° means from the facade downwards, but almost horizontal."
                                         },
                                         "yz": {
-                                            "$ref": "#/definitions/units/degree",
+                                            "$ref": "#/definitions/numbersWithUnits/degree",
                                             "description": "If the z-axis is normal to the building envelope, the x-axis directs for example vertically upwards in a facade and the y-axis is horizontal in an right-handed coordinate system, then the angle yz is measured from the z-axis towards the y axis. From the facade looking to the exterior, 80° means a direction far right, almost parallel to the facade. -10° means from the facade to exterior slightly left, but almost perpendiculat to the facade."
                                         }
                                     },
@@ -3558,7 +3558,7 @@
                                     "type": "object",
                                     "properties": {
                                         "incidence": {
-                                            "$ref": "#/definitions/units/degree",
+                                            "$ref": "#/definitions/numbersWithUnits/degree",
                                             "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
                                         }
                                     },
@@ -3571,7 +3571,7 @@
                                     "type": "object",
                                     "properties": {
                                         "profile": {
-                                            "$ref": "#/definitions/units/degree",
+                                            "$ref": "#/definitions/numbersWithUnits/degree",
                                             "description": "If the sample has a profile angle symmetry, then the profile angle is sufficient to define the direction. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample."
                                         }
                                     },
@@ -3677,7 +3677,7 @@
                         "type": "object",
                         "properties": {
                             "wavelength": {
-                                "$ref": "#/definitions/units/nanometerWithoutUncertainty",
+                                "$ref": "#/definitions/numbersWithUnits/nanometerWithoutUncertainty",
                                 "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/definitions/optical/wavelength/range/bandwidth`."
                             }
                         },
@@ -3692,7 +3692,7 @@
                             "list": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "#/definitions/units/nanometerWithoutUncertainty",
+                                    "$ref": "#/definitions/numbersWithUnits/nanometerWithoutUncertainty",
                                     "description": "An list of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/definitions/wavelength/range/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
                                 },
                                 "additionalItems": false,
@@ -3729,7 +3729,7 @@
                                     "type": "object",
                                     "properties": {
                                         "bandwidth": {
-                                            "$ref": "#/definitions/units/nanometerWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/nanometerWithoutUncertainty",
                                             "description": "When `#/definitions/optical/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/definitions/optical/wavelengths/wavelength`."
                                         }
                                     },
@@ -4405,7 +4405,7 @@
                         "description": "The reference offers several way to define the colour of the component."
                     },
                     "cutOff": {
-                        "$ref": "#/definitions/units/degree",
+                        "$ref": "#/definitions/numbersWithUnits/degree",
                         "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."
                     },
                     "chemicalElements": {
