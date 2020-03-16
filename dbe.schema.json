@@ -400,6 +400,10 @@
             "wattPerSquareMeterKelvinWithUncertainty": {
                 "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                 "description": "Watt per square meter and per kelvin (W/(m^2*K) are the SI units of a heat transfer coefficient. With this type, the uncertainty can be defined."
+            },
+            "wattPerMeterKelvinWithUncertainty": {
+                "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
+                "description": "Watt per meter and per kelvin (W/(m*K)) are the SI units of the thermal conductivity. With this type, the uncertainty can be defined."
             }
         },
         "created": {
@@ -1496,6 +1500,18 @@
                     "possiblePositions": {
                         "$ref": "#/definitions/possiblePositions",
                         "description": "PossiblePositions defines where the material can be used."
+                    },
+                    "thermalConductivity": {
+                        "$ref": "#/definitions/numbersWithUnits/wattPerMeterKelvinWithUncertainty",
+                        "description": "The thermal conductivity of a material quantifies its ability to conduct heat. It has the SI units W/(m*K)."
+                    },
+                    "PoissonsRatio": {
+                        "$ref": "#/definitions/numbers/number",
+                        "description": "The Poisson's ratio is a measure of the expansion of a material in the direction perpendicular to the load. It's a dimensionless quantity."
+                    },
+                    "YoungsModulus": {
+                        "$ref": "#/definitions/numbersWithUnits/pascal",
+                        "description": "The Young's Modulus is a measure for the stiffness of a solid material. It has the SI unit Pascal."
                     }
                 }
             }
