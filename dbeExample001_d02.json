@@ -102,17 +102,11 @@
                     },
                     "origin": {
                         "method": {
-                            "id": {
-                                "uniqueId": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
-                                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                            },
+                            "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
                             "reference": {
                                 "standard": {
                                     "standardizerIds": [
-                                        {
-                                            "uniqueId": "2ed5024f-3b9a-4210-a65f-ecc3bf4a8f04",
-                                            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                        }
+                                        "2ed5024f-3b9a-4210-a65f-ecc3bf4a8f04"
                                     ],
                                     "numeration": {
                                         "mainNumber": 9050
@@ -191,10 +185,7 @@
                     },
                     "approvals": [
                         {
-                            "approver": {
-                                "uniqueId": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
-                                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                            },
+                            "approver": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
                             "signature": "MIIB6gYJKoZIhvcNAQcCoIIB2zCCAdcCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGCAbYwggGyAgEBMIGcMIGOMQswCQYDVQQGEwJVUzEOMAwGA1UECBMFVGV4YXMxFDASBgNVBAcTC1NhbiBBbnRvbmlvMQ0wCwYDVQQKEwRVVFNBMQswCQYDVQQLEwJDUzEXMBUGA1UEAxMOYWkuY3MudXRzYS5lZHUxJDAiBgkqhkiG9w0BCQEWFWp1bGlldEBhaS5jcy51dHNhLmVkdQIJAMvyApGmAWbKMAkGBSsOAwIaBQCggbEwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMDcwMjEyMjI1ODU4WjAjBgkqhkiG9w0BCQQxFgQUdBfDe/KmnhmYA9DILxfq/zKlvwEwUgYJKoZIhvcNAQkPMUUwQzAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwDQYJKoZIhvcNAQEBBQAEQFbJ+8cZivvgvrjj8l1QbK2o7gWdWBM9yav6NJR2eBVj3hKGaKQ+7JNbygcqtVcMDIo1jSpsZas33BvhocwGOqs="
                         }
                     ],
@@ -726,10 +717,7 @@
                     },
                     "origin": {
                         "method": {
-                            "id": {
-                                "uniqueId": "473a2f69-2e18-4745-809d-519882b25e8b",
-                                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                            },
+                            "id": "473a2f69-2e18-4745-809d-519882b25e8b",
                             "reference": {
                                 "publication": {
                                     "identifiers": {

@@ -1,8 +1,10 @@
 {
-    "title": "This is the smallest JSON data which is allowed by the JSON schema.",
     "components": [
         {
-            "id": {}
+            "id": {},
+            "explanation": {
+                "en-US": "This is the smallest JSON data which is allowed by the JSON schema."
+            }
         }
     ]
 }
