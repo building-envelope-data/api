@@ -4262,11 +4262,12 @@
                         "enum": [
                             "baseMaterial",
                             "coating",
+                            "fabric",
                             "film",
                             "frit",
                             "lath",
                             "monolithic",
-                            "nonWovenFabric",
+                            "nonWoven",
                             "PVB",
                             "slat",
                             "weave"
@@ -4296,12 +4297,14 @@
                             "drapes",
                             "dutch",
                             "external",
-                            "fabric"
+                            "fabric",
                             "facade",
                             "festoon",
                             "fixed",
                             "folding",
-                            "frittedGlass",
+                            "fritted",
+                            "glass",
+                            "glazing",
                             "guided",
                             "hinged",
                             "honeycomb",
@@ -4334,7 +4337,7 @@
                             "venetian",
                             "vertical",
                             "window",
-                            "wovenShade"
+                            "woven"
                         ],
                         "description": "Components of the category layer can have the subcategories of this array which further specifies the layer."
                     },
