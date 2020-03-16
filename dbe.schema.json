@@ -60,155 +60,216 @@
             "description": "In extension to the validation keyword `hostname`, a `webAddress` includes a `scheme` like https and possibly a `path` like /folder/item. TODO: Add an additional regex which checks whether the uri contains a `hostname`."
         },
         "numbers": {
-            "numberWithUncertainty": {
-                "type": "object",
-                "properties": {
-                    "uncertainValue": {
-                        "type": "number",
-                        "description": "The number for which an uncertainty can be defined by `uncertainty`."
-                    },
-                    "uncertainty": {
-                        "type": "number",
-                        "minimum": 0,
-                        "description": "The uncertainty of the `uncertainValue` above has the same units as the `uncertainValue`."
-                    },
-                    "confidenceInterval": {
-                        "type": "number",
-                        "enum": [
-                            68.3,
-                            95.4,
-                            99.7,
-                            100.0
-                        ],
-                        "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
-                    }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "uncertainValue"
-                ]
-            },
             "number": {
-                "title": "This type is used when no restrictions on the numbers are possible and no uncertainty can occur.",
-                "type": "number"
+                "type": "number",
+                "description": "If the number is in all cases 100% certain and if no restrictions on the numbers are possible, then this type is used."
             },
-            "nonNegativeNumberWithUncertainty": {
-                "type": "object",
-                "properties": {
-                    "uncertainValue": {
-                        "type": "number",
-                        "minimum": 0,
-                        "description": "The non-negative number for which an uncertainty can be defined by `uncertainty`."
+            "integer": {
+                "type": "integer",
+                "description": "If the integer is in all cases 100% certain and if no restrictions on the numbers are possible, then this type is used."
+            },
+            "uncertaintyNumber": {
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/numbers/number"
                     },
-                    "uncertainty": {
-                        "type": "number",
-                        "minimum": 0,
-                        "description": "The uncertainty of the `uncertainValue` above."
-                    },
-                    "confidenceInterval": {
-                        "type": "number",
-                        "enum": [
-                            68.3,
-                            95.4,
-                            99.7,
-                            100.0
-                        ],
-                        "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
+                    {
+                        "exclusiveMinimum": 0
                     }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "uncertainValue"
+                ],
+                "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
+            },
+            "uncertaintyInteger": {
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/numbers/integer"
+                    },
+                    {
+                        "exclusiveMinimum": 0
+                    }
+                ],
+                "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
+            },
+            "confidenceInterval": {
+                "type": "number",
+                "enum": [
+                    68.3,
+                    95.4,
+                    99.7
+                ],
+                "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma)."
+            },
+            "numberWithUncertainty": {
+                "title": "If a value may have an uncertainty and no further restrictions on the numbers are possible, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "uncertainValue": {
+                                "$ref": "#/definitions/numbers/number"
+                            },
+                            "uncertainty": {
+                                "$ref": "#/definitions/numbers/uncertaintyNumber"
+                            },
+                            "confidenceInterval": {
+                                "$ref": "#/definitions/numbers/confidenceInterval"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "uncertainValue"
+                        ]
+                    },
+                    {
+                        "$ref": "#/definitions/numbers/number",
+                        "description": "If the value is 100% certain, then this this option is used."
+                    }
                 ]
             },
             "nonNegativeNumber": {
-                "title": "This type is used when only non-negative integers are valid and no uncertainty can occur.",
-                "type": "number",
-                "minimum": 0
-            },
-            "nonNegativeIntegerWithUncertainty": {
-                "type": "object",
-                "properties": {
-                    "uncertainValue": {
-                        "type": "integer",
-                        "minimum": 0,
-                        "description": "The non-negative integer for which an uncertainty can be defined by `uncertainty`."
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/numbers/number"
                     },
-                    "uncertainty": {
-                        "type": "integer",
-                        "minimum": 0,
-                        "description": "The uncertainty of the `uncertainValue` above."
-                    },
-                    "confidenceInterval": {
-                        "type": "number",
-                        "enum": [
-                            68.3,
-                            95.4,
-                            99.7,
-                            100.0
-                        ],
-                        "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
+                    {
+                        "minimum": 0
                     }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "uncertainValue"
-                ]
+                ],
+                "description": "If the number is in all cases 100% certain and when only non-negative numbers are valid, then this type is used."
             },
             "nonNegativeInteger": {
-                "title": "This type is used when only non-negative integers are valid and no uncertainty can occur.",
-                "type": "integer",
-                "minimum": 0
-            },
-            "numberBetweenZeroAndOneWithUncertainty": {
-                "title": "This type is used when only numbers between 0 and 1 are valid and when the uncertainty of the value could be necessary.",
-                "type": "object",
-                "properties": {
-                    "uncertainValue": {
-                        "type": "number",
-                        "minimum": 0,
-                        "maximum": 1,
-                        "description": "The number for which an uncertainty can be defined by `uncertainty`."
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/numbers/integer"
                     },
-                    "uncertainty": {
-                        "type": "number",
-                        "minimum": 0,
-                        "maximum": 1,
-                        "description": "The uncertainty of the `uncertainValue` above has the same units as the `uncertainValue`."
-                    },
-                    "confidenceInterval": {
-                        "type": "number",
-                        "enum": [
-                            68.3,
-                            95.4,
-                            99.7,
-                            100.0
-                        ],
-                        "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If 100.0% is chosen as confidence interval, then it must be guaranteed that the true value can neither be smaller than `uncertainValue`-`uncertainty` nor larger than `uncertainValue`+`uncertainty`."
+                    {
+                        "minimum": 0
                     }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "uncertainValue"
+                ],
+                "description": "If the integer is in all cases 100% certain and when only non-negative integers are valid, then this type is used."
+            },
+            "nonNegativeNumberWithUncertainty": {
+                "title": "If a value may have an uncertainty and only non-negative numbers are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "uncertainValue": {
+                                "$ref": "#/definitions/numbers/nonNegativeNumber"
+                            },
+                            "uncertainty": {
+                                "$ref": "#/definitions/numbers/uncertaintyNumber"
+                            },
+                            "confidenceInterval": {
+                                "$ref": "#/definitions/numbers/confidenceInterval"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "uncertainValue"
+                        ]
+                    },
+                    {
+                        "$ref": "#/definitions/numbers/nonNegativeNumber",
+                        "description": "If the value is 100% certain, then this this option is used."
+                    }
+                ]
+            },
+            "nonNegativeIntegerWithUncertainty": {
+                "title": "If an integer may have an uncertainty and only non-negative integers are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "uncertainValue": {
+                                "$ref": "#/definitions/numbers/nonNegativeInteger"
+                            },
+                            "uncertainty": {
+                                "$ref": "#/definitions/numbers/uncertaintyInteger"
+                            },
+                            "confidenceInterval": {
+                                "$ref": "#/definitions/numbers/confidenceInterval"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "uncertainValue"
+                        ]
+                    },
+                    {
+                        "$ref": "#/definitions/numbers/nonNegativeInteger",
+                        "description": "If the value is 100% certain, then this this option is used."
+                    }
                 ]
             },
             "numberBetweenZeroAndOne": {
                 "title": "This type is used when only numbers between 0 and 1 are valid and no uncertainty can occur.",
-                "type": "number",
-                "minimum": 0,
-                "maximum": 1
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/numbers/number"
+                    },
+                    {
+                        "minimum": 0
+                    },
+                    {
+                        "maximum": 1
+                    }
+                ]
+            },
+            "numberBetweenZeroAndOneWithUncertainty": {
+                "title": "If a value may have an uncertainty and only numbers between 0 and 1 are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "uncertainValue": {
+                                "$ref": "#/definitions/numbers/numberBetweenZeroAndOne"
+                            },
+                            "uncertainty": {
+                                "$ref": "#/definitions/numbers/uncertaintyNumber"
+                            },
+                            "confidenceInterval": {
+                                "$ref": "#/definitions/numbers/confidenceInterval"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "uncertainValue"
+                        ]
+                    },
+                    {
+                        "$ref": "#/definitions/numbers/numberBetweenZeroAndOne",
+                        "description": "If the value is 100% certain, then this this option is used."
+                    }
+                ]
             },
             "numberBetweenZeroAndHundred": {
                 "title": "This type is used when only numbers between 0 and 100 are valid and no uncertainty can occur.",
-                "type": "number",
-                "minimum": 0,
-                "maximum": 100
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/numbers/number"
+                    },
+                    {
+                        "minimum": 0
+                    },
+                    {
+                        "maximum": 100
+                    }
+                ]
             },
             "numberBetweenMinusAndPlusHundred": {
                 "title": "This type is used when only numbers between -100 and 100 are valid and no uncertainty can occur.",
-                "type": "number",
-                "minimum": -100,
-                "maximum": 100
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/numbers/number"
+                    },
+                    {
+                        "minimum": -100
+                    },
+                    {
+                        "maximum": 100
+                    }
+                ]
             }
         },
         "numbersWithUnits": {
