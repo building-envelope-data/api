@@ -4,11 +4,19 @@
     "title": "dbe - data schema for building envelopes",
     "description": "This data schema allows to exchange detailed data about building envelopes. In order to make it easy to develop software which For each value, there is exactly one key in the schema to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next updata of this schema.",
     "definitions": {
+        "string": {
+            "type": "string",
+            "description": "If a string depends in no case on a language and if no restrictions on the string are possible, then this type is used."
+        },
+        "latinString": {
+            "$ref": "#/definitions/string",
+            "description": "If a string MUST use the Latin alphabet, the this type is used."
+        },
         "internationalString": {
             "type": "object",
             "properties": {
                 "en-US": {
-                    "type": "string",
+                    "$ref": "#/definitions/latinString",
                     "description": "A string in American English."
                 }
             },
@@ -444,7 +452,7 @@
                     "description": "Phone number of an institution or person"
                 },
                 "address": {
-                    "type": "string",
+                    "$ref": "#/definitions/internationalString",
                     "description": "Postal address of an institution or person"
                 },
                 "email": {
@@ -493,20 +501,20 @@
                         "family": {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "$ref": "#/definitions/latinString"
                             },
                             "additionalItems": false,
                             "minItems": 1,
-                            "description": "The family name(s) also known as surname(s) or last name(s) of a person"
+                            "description": "The family name(s) also known as surname(s) or last name(s) of a person in Latin alphabet."
                         },
                         "given": {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "$ref": "#/definitions/latinString"
                             },
                             "additionalItems": false,
                             "minItems": 0,
-                            "description": "The given name(s) also known as forname(s) or first name(s) of a person"
+                            "description": "The given name(s) also known as forname(s) or first name(s) of a person in Latin alphabet."
                         }
                     },
                     "additionalProperties": false,
@@ -552,8 +560,8 @@
                     "description": "The name of the institution"
                 },
                 "abbreviation": {
-                    "type": "string",
-                    "description": "The abbreviation of the institution"
+                    "$ref": "#/definitions/latinString",
+                    "description": "The abbreviation of the institution in Latin alphabet."
                 },
                 "explanation": {
                     "$ref": "#/definitions/internationalString",
@@ -562,7 +570,7 @@
                 "publicKey": {
                     "type": "array",
                     "items": {
-                        "type": "string",
+                        "$ref": "#/definitions/string",
                         "description": "A public key of the institution for cryptograpic signatures for approvals."
                     },
                     "additionalItems": false,
@@ -621,7 +629,8 @@
                         "description": "This id represents the institution which has created a standard."
                     },
                     "abbreviation": {
-                        "type": "string"
+                        "$ref": "#/definitions/latinString",
+                        "description": "Abbreviation of the standardizer in Latin alphabet."
                     },
                     "explanation": {
                         "$ref": "#/definitions/internationalString",
@@ -814,7 +823,7 @@
                     "type": "object",
                     "properties": {
                         "prefix": {
-                            "type": "string"
+                            "$ref": "#/definitions/string"
                         },
                         "mainNumber": {
                             "type": "integer",
@@ -888,7 +897,7 @@
                     "description": "For which timespan the database is or was available"
                 },
                 "internalComment": {
-                    "type": "string",
+                    "$ref": "#/definitions/internationalString",
                     "description": "If there are any specific issues with a database, the administrators can use this string."
                 }
             },
@@ -916,7 +925,7 @@
                         "description": "This section defines how the approval can be verified."
                     },
                     "signature": {
-                        "type": "string",
+                        "$ref": "#/definitions/string",
                         "description": "This string defines the cryptographic signature of the approved data."
                     },
                     "created": {
@@ -1010,8 +1019,8 @@
                     "description": "The id represents this specific format."
                 },
                 "abbreviation": {
-                    "type": "string",
-                    "description": "The abbreviation of the format"
+                    "$ref": "#/definitions/latinString",
+                    "description": "The abbreviation of the format in Latin alphabet."
                 },
                 "name": {
                     "$ref": "#/definitions/internationalString",
@@ -1449,8 +1458,8 @@
                         "description": "The name of the material"
                     },
                     "abbreviation": {
-                        "type": "string",
-                        "description": "The abbreviation of the material"
+                        "$ref": "#/definitions/latinString",
+                        "description": "The abbreviation of the material in Latin alphabet."
                     },
                     "explanation": {
                         "$ref": "#/definitions/internationalString",
@@ -4119,8 +4128,8 @@
                         "description": "The name of the component"
                     },
                     "abbreviation": {
-                        "type": "string",
-                        "description": "The abbreviation of the component"
+                        "$ref": "#/definitions/latinString",
+                        "description": "The abbreviation of the component in Latin alphabet"
                     },
                     "explanation": {
                         "$ref": "#/definitions/internationalString",
