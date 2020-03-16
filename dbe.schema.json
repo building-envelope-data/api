@@ -405,7 +405,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identiers/central",
+                    "$ref": "#/definitions/identifiers/central",
                     "description": "This id represents the stakeholder."
                 },
                 "explanation": {
@@ -423,7 +423,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identiers/central",
+                    "$ref": "#/definitions/identifiers/central",
                     "description": "This id represents the person"
                 },
                 "names": {
@@ -457,7 +457,7 @@
                     "type": "object",
                     "properties": {
                         "id": {
-                            "$ref": "#/definitions/identiers/central",
+                            "$ref": "#/definitions/identifiers/central",
                             "description": "This id which defines the affiliation of the person"
                         },
                         "name": {
@@ -483,7 +483,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identiers/central",
+                    "$ref": "#/definitions/identifiers/central",
                     "description": "This id represents the institution"
                 },
                 "name": {
@@ -556,7 +556,7 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "#/definitions/identiers/central",
+                        "$ref": "#/definitions/identifiers/central",
                         "description": "This id represents the institution which has created a standard."
                     },
                     "abbreviation": {
@@ -578,7 +578,7 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "#/definitions/identiers/central",
+                        "$ref": "#/definitions/identifiers/central",
                         "description": "This id represents the method which is specified below."
                     },
                     "name": {
@@ -728,7 +728,7 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/definitions/identiers/central",
+                    "$ref": "#/definitions/identifiers/central",
                     "description": "The id represents this specific standard."
                 },
                 "title": {
@@ -742,7 +742,7 @@
                 "standardizerIds": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/identiers/central",
+                        "$ref": "#/definitions/identifiers/central",
                         "description": "Each institution which has created this standard is defined here by its id."
                     },
                     "additionalItems": false,
@@ -847,7 +847,7 @@
                         "description": "The id represents this approval."
                     },
                     "approver": {
-                        "$ref": "#/definitions/identiers/central",
+                        "$ref": "#/definitions/identifiers/central",
                         "description": "This id represents The stakeholder who approved the data."
                     },
                     "verify": {
