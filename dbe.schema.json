@@ -88,7 +88,7 @@
                     "uncertainValue"
                 ]
             },
-            "numberWithoutUncertainty": {
+            "number": {
                 "title": "This type is used when no restrictions on the numbers are possible and no uncertainty can occur.",
                 "type": "number"
             },
@@ -121,7 +121,7 @@
                     "uncertainValue"
                 ]
             },
-            "nonNegativeNumberWithoutUncertainty": {
+            "nonNegativeNumber": {
                 "title": "This type is used when only non-negative integers are valid and no uncertainty can occur.",
                 "type": "number",
                 "minimum": 0
@@ -155,7 +155,7 @@
                     "uncertainValue"
                 ]
             },
-            "nonNegativeIntegerWithoutUncertainty": {
+            "nonNegativeInteger": {
                 "title": "This type is used when only non-negative integers are valid and no uncertainty can occur.",
                 "type": "integer",
                 "minimum": 0
@@ -192,19 +192,19 @@
                     "uncertainValue"
                 ]
             },
-            "numberBetweenZeroAndOneWithoutUncertainty": {
+            "numberBetweenZeroAndOne": {
                 "title": "This type is used when only numbers between 0 and 1 are valid and no uncertainty can occur.",
                 "type": "number",
                 "minimum": 0,
                 "maximum": 1
             },
-            "numberBetweenZeroAndHundredWithoutUncertainty": {
+            "numberBetweenZeroAndHundred": {
                 "title": "This type is used when only numbers between 0 and 100 are valid and no uncertainty can occur.",
                 "type": "number",
                 "minimum": 0,
                 "maximum": 100
             },
-            "numberBetweenMinusAndPlusHundredWithoutUncertainty": {
+            "numberBetweenMinusAndPlusHundred": {
                 "title": "This type is used when only numbers between -100 and 100 are valid and no uncertainty can occur.",
                 "type": "number",
                 "minimum": -100,
@@ -217,11 +217,11 @@
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Meter is the SI unit for length. With this type, the uncertainty can be defined."
             },
-            "meterWithoutUncertainty": {
+            "meter": {
                 "type": "number",
                 "description": "Meter is the SI unit for length. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
-            "nanometerWithoutUncertainty": {
+            "nanometer": {
                 "type": "number",
                 "minimum": 0,
                 "description": "This number represents a length in nanometers. 1 nm equals 10^(-9) meters. This type is used for rare cases in which the option of an uncertainty is not desired."
@@ -234,8 +234,8 @@
                 "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
                 "description": "A square millimeter (mm^2) is a unit for an area. With this type, the uncertainty can be defined."
             },
-            "squareMillimeterWithoutUncertainty": {
-                "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
+            "squareMillimeter": {
+                "$ref": "#/definitions/numbers/nonNegativeNumber",
                 "description": "A square millimeter (mm^2) is a unit for an area. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
             "cubicMeterWithUncertainty": {
@@ -256,64 +256,64 @@
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Watt (W) is the SI unit for power. With this type, the uncertainty can be defined."
             },
-            "wattWithoutUncertainty": {
-                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
+            "watt": {
+                "$ref": "#/definitions/numbers/number",
                 "description": "Watt (W) is the SI unit for power. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
             "kelvinWithUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Kelvin (K) is the SI unit for temperature. With this type, the uncertainty can be defined."
             },
-            "kelvinWithoutUncertainty": {
-                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
+            "kelvin": {
+                "$ref": "#/definitions/numbers/number",
                 "description": "Kelvin (K) is the SI unit for temperature. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
             "voltWithUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Volt (V) is the SI unit for electric potential. With this type, the uncertainty can be defined."
             },
-            "voltWithoutUncertainty": {
-                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
+            "volt": {
+                "$ref": "#/definitions/numbers/number",
                 "description": "Volt (V) is the SI unit for electric potential. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
             "ampereWithUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Ampere (A) is the SI unit for electric current. With this type, the uncertainty can be defined."
             },
-            "ampereWithoutUncertainty": {
-                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
+            "ampere": {
+                "$ref": "#/definitions/numbers/number",
                 "description": "Ampere (A) is the SI unit for electric current. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
             "ohmWithUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Ohm is the derived SI unit for electric resistance. With this type, the uncertainty can be defined."
             },
-            "ohmWithoutUncertainty": {
-                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
+            "ohm": {
+                "$ref": "#/definitions/numbers/number",
                 "description": "Ohm is the derived SI unit for electric resistance. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
             "ohmPerMeterWithUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Ohm per meter is a unit for the electric resistance depending on the length. With this type, the uncertainty can be defined."
             },
-            "ohmPerMeterWithoutUncertainty": {
-                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
+            "ohmPerMeter": {
+                "$ref": "#/definitions/numbers/number",
                 "description": "Ohm per meter is a unit for the electric resistance depending on the length. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
             "kilogramWithUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. With this type, the uncertainty can be defined."
             },
-            "pascalWithoutUncertainty": {
-                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
+            "pascal": {
+                "$ref": "#/definitions/numbers/number",
                 "description": "Pascal (Pa) is the SI unit for pressure. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
             "hertzWithUncertainty": {
                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                 "description": "Hertz (Hz) is a derived SI unit of frequency. With this type, the uncertainty can be defined."
             },
-            "hertzWithoutUncertainty": {
-                "$ref": "#/definitions/numbers/numberWithoutUncertainty",
+            "hertz": {
+                "$ref": "#/definitions/numbers/number",
                 "description": "Hertz (Hz) is a derived SI unit of frequency. This type is used for rare cases in which the option of an uncertainty is not desired."
             },
             "kgPerCubicMeterWithUncertainty": {
@@ -1108,7 +1108,7 @@
                         "type": "array",
                         "items": [
                             {
-                                "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
+                                "$ref": "#/definitions/numbers/nonNegativeInteger",
                                 "description": "This integer indicates the LOD according to the definition of the reference below."
                             },
                             {
@@ -1137,13 +1137,13 @@
                 "type": "object",
                 "properties": {
                     "x": {
-                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meter"
                     },
                     "y": {
-                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meter"
                     },
                     "z": {
-                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meter"
                     }
                 },
                 "additionalProperties": false,
@@ -1158,13 +1158,13 @@
                 "type": "object",
                 "properties": {
                     "x": {
-                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meter"
                     },
                     "y": {
-                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meter"
                     },
                     "z": {
-                        "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty"
+                        "$ref": "#/definitions/numbersWithUnits/meter"
                     }
                 },
                 "additionalProperties": false,
@@ -1458,7 +1458,7 @@
                         "type": "object",
                         "properties": {
                             "width": {
-                                "$ref": "#/definitions/numbersWithUnits/meterWithoutUncertainty",
+                                "$ref": "#/definitions/numbersWithUnits/meter",
                                 "description": "The width of the slat"
                             },
                             "pitch": {
@@ -1712,11 +1712,11 @@
                     "type": "object",
                     "properties": {
                         "I": {
-                            "$ref": "#/definitions/numbersWithUnits/ampereWithoutUncertainty",
+                            "$ref": "#/definitions/numbersWithUnits/ampere",
                             "description": "The electric current in amperes."
                         },
                         "V": {
-                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
+                            "$ref": "#/definitions/numbersWithUnits/volt",
                             "description": "The electric potential difference in volts."
                         }
                     },
@@ -1807,7 +1807,7 @@
                                                 "description": "This string can explain the cell to humans."
                                             },
                                             "efficiency": {
-                                                "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
+                                                "$ref": "#/definitions/numbers/numberBetweenZeroAndOne",
                                                 "description": "The effiency of the cell is measured at standard test conditions."
                                             },
                                             "power": {
@@ -2210,11 +2210,11 @@
                                             "description": "The nominal power is measured at the maximum power point of the module under standard test conditions."
                                         },
                                         "tolerance": {
-                                            "$ref": "#/definitions/numbers/numberBetweenZeroAndHundredWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/numberBetweenZeroAndHundred",
                                             "description": "The tolerance of the nominal power of the module in percent. For example, '5' means, that the nominal power can be 5% larger or smaller than the value provided above."
                                         },
                                         "temperatureCoefficient": {
-                                            "$ref": "#/definitions/numbers/numberBetweenMinusAndPlusHundredWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/numberBetweenMinusAndPlusHundred",
                                             "description": "When the temperature increases compared to standard test conditions, the nominal power changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                         },
                                         "guarantee": {
@@ -2224,11 +2224,11 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "years": {
-                                                        "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
+                                                        "$ref": "#/definitions/numbers/nonNegativeNumber",
                                                         "description": "This number defines the amount of years until which a certain minimum percentage of the nominal power is guaranteed."
                                                     },
                                                     "percentage": {
-                                                        "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
+                                                        "$ref": "#/definitions/numbers/nonNegativeNumber",
                                                         "description": "This number defines which fraction of the nominal power in percent is guaranteed as minimum after the amount of years which are defined above."
                                                     }
                                                 },
@@ -2256,7 +2256,7 @@
                                                                 "description": "The incidence angle in degree"
                                                             },
                                                             "IAM": {
-                                                                "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
+                                                                "$ref": "#/definitions/numbers/nonNegativeNumber",
                                                                 "description": "`IAM` defines the value of the incidence angle modifier at the angle defined by `incidence`."
                                                             }
                                                         }
@@ -2275,7 +2275,7 @@
                                                                 "description": "The section defines the direction of the incident radiation."
                                                             },
                                                             "modifier": {
-                                                                "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
+                                                                "$ref": "#/definitions/numbers/nonNegativeNumber",
                                                                 "description": "For the direction above, this `modifier` can be multiplied with the nominal power to determine the power at a this direction of incidence."
                                                             }
                                                         },
@@ -2310,11 +2310,11 @@
                                             "description": "The open circuit voltage is measured under standard test conditions without connecting the module to an electric circuit."
                                         },
                                         "temperatureCoefficient": {
-                                            "$ref": "#/definitions/numbers/numberBetweenMinusAndPlusHundredWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/numberBetweenMinusAndPlusHundred",
                                             "description": "When the temperature increases compared to standard test conditions, the open circuit voltage changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                         },
                                         "maximumSystem": {
-                                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/volt",
                                             "description": "The voltage of a PV system made with these modules should stay below this maximum system voltage."
                                         }
                                     },
@@ -2334,7 +2334,7 @@
                                             "description": "The short circuit current is measured under standard test conditions with the module connected to an electric circuit which has an electric resistance of zero."
                                         },
                                         "temperatureCoefficient": {
-                                            "$ref": "#/definitions/numbers/numberBetweenMinusAndPlusHundredWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/numberBetweenMinusAndPlusHundred",
                                             "description": "When the temperature increases compared to standard test conditions, the short circuit current changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                         }
                                     },
@@ -2343,11 +2343,11 @@
                                     "required": []
                                 },
                                 "fillFactor": {
-                                    "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
+                                    "$ref": "#/definitions/numbers/numberBetweenZeroAndOne",
                                     "description": "The fill factor is a measure of quality of a solar cell. It is the power at the maximum powerpoint divided by the open circuit voltage and the short circuit current."
                                 },
                                 "efficiency": {
-                                    "$ref": "#/definitions/numbers/numberBetweenZeroAndOneWithoutUncertainty",
+                                    "$ref": "#/definitions/numbers/numberBetweenZeroAndOne",
                                     "description": "The effiency of the module is measured at standard test conditions."
                                 },
                                 "weight": {
@@ -2453,11 +2453,11 @@
                                                                 "type": "object",
                                                                 "properties": {
                                                                     "rated": {
-                                                                        "$ref": "#/definitions/numbersWithUnits/pascalWithoutUncertainty",
+                                                                        "$ref": "#/definitions/numbersWithUnits/pascal",
                                                                         "description": "The maximum rated pressure in Pascal."
                                                                     },
                                                                     "tested": {
-                                                                        "$ref": "#/definitions/numbersWithUnits/pascalWithoutUncertainty",
+                                                                        "$ref": "#/definitions/numbersWithUnits/pascal",
                                                                         "description": "The maximum tested pressure in Pascal."
                                                                     }
                                                                 },
@@ -2469,11 +2469,11 @@
                                                                 "type": "object",
                                                                 "properties": {
                                                                     "rated": {
-                                                                        "$ref": "#/definitions/numbersWithUnits/pascalWithoutUncertainty",
+                                                                        "$ref": "#/definitions/numbersWithUnits/pascal",
                                                                         "description": "The maximum rated suction in Pascal."
                                                                     },
                                                                     "tested": {
-                                                                        "$ref": "#/definitions/numbersWithUnits/pascalWithoutUncertainty",
+                                                                        "$ref": "#/definitions/numbersWithUnits/pascal",
                                                                         "description": "The maximum tested suction in Pascal."
                                                                     }
                                                                 },
@@ -2556,15 +2556,15 @@
                                     "type": "object",
                                     "properties": {
                                         "minimum": {
-                                            "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/kelvin",
                                             "description": "The minimum operating temperature in Kelvin (K)."
                                         },
                                         "operating": {
-                                            "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/kelvin",
                                             "description": "The operating temperature of the cells under standard test conditions and in Kelvin (K)."
                                         },
                                         "maximum": {
-                                            "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/kelvin",
                                             "description": "The maximum operating temperature in Kelvin (K)."
                                         }
                                     },
@@ -2577,7 +2577,7 @@
                                     "type": "array",
                                     "items": {
                                         "years": {
-                                            "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/nonNegativeNumber",
                                             "description": "This number defines the number of years for which the manufacturer offers a guarantee for this module."
                                         },
                                         "reference": {
@@ -2615,11 +2615,11 @@
                             "description": "The id represents the inverter."
                         },
                         "trackerNumber": {
-                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
+                            "$ref": "#/definitions/numbers/nonNegativeInteger",
                             "description": "The number of maximum-power-point (MPP) trackers which the inverter provides."
                         },
                         "inputNumber": {
-                            "$ref": "#/definitions/numbers/nonNegativeIntegerWithoutUncertainty",
+                            "$ref": "#/definitions/numbers/nonNegativeInteger",
                             "description": "The number of DC input ports which the inverter provides. To each input port, one string of PV modules can be connected."
                         },
                         "power": {
@@ -2629,7 +2629,7 @@
                                     "type": "object",
                                     "properties": {
                                         "maximum": {
-                                            "$ref": "#/definitions/numbersWithUnits/wattWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/watt",
                                             "description": "The maximum input power from the PV modules to the inverter in watts."
                                         }
                                     },
@@ -2645,11 +2645,11 @@
                                             "description": "The nominal output power of the inverter in watts."
                                         },
                                         "maximum": {
-                                            "$ref": "#/definitions/numbersWithUnits/wattWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/watt",
                                             "description": "The maximum output power of the inverter in watts."
                                         },
                                         "normalized": {
-                                            "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
+                                            "$ref": "#/definitions/numbers/nonNegativeNumber",
                                             "description": "The output power at maximum efficiency divided by the nominal output power. It is a number without units."
                                         }
                                     },
@@ -2681,15 +2681,15 @@
                                     "type": "object",
                                     "properties": {
                                         "minimum": {
-                                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/volt",
                                             "description": "When the input voltage decreases below this value, the inverter switches from operation into standby."
                                         },
                                         "start": {
-                                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/volt",
                                             "description": "When the input voltage increase above this value, the inverter switches from standby to operation."
                                         },
                                         "maximum": {
-                                            "$ref": "#/definitions/numbersWithUnits/voltWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/volt",
                                             "description": "The maximum input voltage for the inverter."
                                         }
                                     },
@@ -2704,11 +2704,11 @@
                                             "type": "object",
                                             "properties": {
                                                 "minimum": {
-                                                    "$ref": "#/definitions/numbersWithUnits/hertzWithoutUncertainty",
+                                                    "$ref": "#/definitions/numbersWithUnits/hertz",
                                                     "description": "The minimum frequency of the AC output of the inverter in hertz."
                                                 },
                                                 "maximum": {
-                                                    "$ref": "#/definitions/numbersWithUnits/hertzWithoutUncertainty",
+                                                    "$ref": "#/definitions/numbersWithUnits/hertz",
                                                     "description": "The maximum frequency of the AC output of the inverter in hertz."
                                                 }
                                             },
@@ -2733,11 +2733,11 @@
                                     "type": "object",
                                     "properties": {
                                         "maximum": {
-                                            "$ref": "#/definitions/numbersWithUnits/ampereWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/ampere",
                                             "description": "The maximum input current for the inverter in amperes."
                                         },
                                         "shortCircuit": {
-                                            "$ref": "#/definitions/numbersWithUnits/ampereWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/ampere",
                                             "description": "The maximum short circuit current of the the inverter in amperes."
                                         }
                                     },
@@ -2749,7 +2749,7 @@
                                     "type": "object",
                                     "properties": {
                                         "nominal": {
-                                            "$ref": "#/definitions/numbersWithUnits/ampereWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/ampere",
                                             "description": "The nominal AC output current of the inverter in amperes."
                                         }
                                     },
@@ -2950,11 +2950,11 @@
                             "type": "object",
                             "properties": {
                                 "minimum": {
-                                    "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
+                                    "$ref": "#/definitions/numbersWithUnits/kelvin",
                                     "description": "The minimum ambient temperature in Kelvin (K) for the inverter to operate."
                                 },
                                 "maximum": {
-                                    "$ref": "#/definitions/numbersWithUnits/kelvinWithoutUncertainty",
+                                    "$ref": "#/definitions/numbersWithUnits/kelvin",
                                     "description": "The maximum ambient temperature in Kelvin (K) for the inverter to operate."
                                 }
                             },
@@ -3079,7 +3079,7 @@
                                         "description": "This string can explain the connection type to humans."
                                     },
                                     "crossSection": {
-                                        "$ref": "#/definitions/numbersWithUnits/squareMillimeterWithoutUncertainty",
+                                        "$ref": "#/definitions/numbersWithUnits/squareMillimeter",
                                         "description": "The cross-sectional area of the connection cable in square millimeters."
                                     },
                                     "resistancePerLength": {
@@ -3677,7 +3677,7 @@
                         "type": "object",
                         "properties": {
                             "wavelength": {
-                                "$ref": "#/definitions/numbersWithUnits/nanometerWithoutUncertainty",
+                                "$ref": "#/definitions/numbersWithUnits/nanometer",
                                 "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/definitions/optical/wavelength/range/bandwidth`."
                             }
                         },
@@ -3692,7 +3692,7 @@
                             "list": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "#/definitions/numbersWithUnits/nanometerWithoutUncertainty",
+                                    "$ref": "#/definitions/numbersWithUnits/nanometer",
                                     "description": "An list of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/definitions/wavelength/range/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
                                 },
                                 "additionalItems": false,
@@ -3729,7 +3729,7 @@
                                     "type": "object",
                                     "properties": {
                                         "bandwidth": {
-                                            "$ref": "#/definitions/numbersWithUnits/nanometerWithoutUncertainty",
+                                            "$ref": "#/definitions/numbersWithUnits/nanometer",
                                             "description": "When `#/definitions/optical/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/definitions/optical/wavelengths/wavelength`."
                                         }
                                     },
@@ -3856,7 +3856,7 @@
                         "required": []
                     },
                     "instrumentSignature": {
-                        "$ref": "#/definitions/numbers/nonNegativeNumberWithoutUncertainty",
+                        "$ref": "#/definitions/numbers/nonNegativeNumber",
                         "description": "The instrument signature is defined as the mean scatter leel detected when there is no sample scatter present."
                     },
                     "normalization": {
