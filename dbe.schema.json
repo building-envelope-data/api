@@ -4260,7 +4260,6 @@
                     "items": {
                         "type": "string",
                         "enum": [
-                            "PVB",
                             "baseMaterial",
                             "coating",
                             "film",
@@ -4268,9 +4267,9 @@
                             "lath",
                             "monolithic",
                             "nonWovenFabric",
+                            "PVB",
                             "slat",
-                            "wovenFabric",
-                            "lath"
+                            "weave"
                         ],
                         "description": "Components of the category material can have the subcategories of this array which further specifies the material."
                     },
@@ -4285,30 +4284,35 @@
                         "type": "string",
                         "enum": [
                             "appliedFilm",
-                            "coated",
-                            "frittedGlass",
-                            "laminate",
-                            "monolithic",
                             "arm",
                             "austrian",
                             "awning",
                             "alind",
                             "briseSoleil",
+                            "cell",
+                            "coated",
                             "concertina",
                             "conservatory",
                             "drapes",
                             "dutch",
                             "external",
+                            "fabric"
                             "facade",
                             "festoon",
                             "fixed",
                             "folding",
+                            "frittedGlass",
                             "guided",
                             "hinged",
                             "honeycomb",
                             "insect",
+                            "laminate",
+                            "louvered",
                             "marquisolette",
+                            "monolithic",
+                            "nonWoven",
                             "panel",
+                            "perforated",
                             "pergola",
                             "pivot",
                             "plantation",
@@ -4319,6 +4323,7 @@
                             "roman",
                             "roof",
                             "screen",
+                            "shade",
                             "shutter",
                             "slat",
                             "slide",
@@ -4328,7 +4333,8 @@
                             "treillis",
                             "venetian",
                             "vertical",
-                            "window"
+                            "window",
+                            "wovenShade"
                         ],
                         "description": "Components of the category layer can have the subcategories of this array which further specifies the layer."
                     },
