@@ -4312,6 +4312,10 @@
                         "$ref": "#/definitions/identifiers/centralOrDecentral",
                         "description": "The id represents the version of the component."
                     },
+                    "parent": {
+                        "$ref": "#/definitions/identifiers/centralOrDecentral",
+                        "description": "The id represents the parent component. The component of this dataset is a variant of the parent component."
+                    },
                     "categories": {
                         "$ref": "#/definitions/component/categories",
                         "description": "The component is categorized in order to facilitate queries."

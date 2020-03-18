@@ -1,0 +1,734 @@
+{
+    "components": [
+        {
+            "id": {
+                "uniqueId": "8ca1102b-264a-4023-8351-5897ec38e388",
+                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+            },
+            "explanation": {
+                "en-US": "Example: a data set for an component with the id above and optical data."
+            },
+            "optical": [
+                {
+                    "id": {
+                        "uniqueId": "a8435146-5270-46f5-b925-4b00de265823",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    },
+                    "explanation": {
+                        "en-US": "Example: optical data about a nearnormal-nearnormal measurement of the transmittance, spectrally resolved."
+                    },
+                    "dataPoints": [
+                        {
+                            "incidence": {
+                                "direction": [
+                                    [
+                                        "nearnormal"
+                                    ]
+                                ],
+                                "wavelengths": {
+                                    "wavelength": 500
+                                }
+                            },
+                            "emergence": {
+                                "direction": [
+                                    [
+                                        "nearnormal"
+                                    ]
+                                ]
+                            },
+                            "results": {
+                                "transmittance": {
+                                    "uncertainValue": 0.85
+                                }
+                            }
+                        },
+                        {
+                            "incidence": {
+                                "direction": [
+                                    [
+                                        "nearnormal"
+                                    ]
+                                ],
+                                "wavelengths": {
+                                    "wavelength": 1000
+                                }
+                            },
+                            "emergence": {
+                                "direction": [
+                                    [
+                                        "nearnormal"
+                                    ]
+                                ]
+                            },
+                            "results": {
+                                "transmittance": {
+                                    "uncertainValue": 0.9
+                                }
+                            }
+                        },
+                        {
+                            "incidence": {
+                                "direction": [
+                                    [
+                                        "nearnormal"
+                                    ]
+                                ],
+                                "wavelengths": {
+                                    "wavelength": 1500
+                                }
+                            },
+                            "emergence": {
+                                "direction": [
+                                    [
+                                        "nearnormal"
+                                    ]
+                                ]
+                            },
+                            "results": {
+                                "transmittance": {
+                                    "uncertainValue": 0.8
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": {
+                        "uniqueId": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    },
+                    "explanation": {
+                        "en-US": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050."
+                    },
+                    "origin": {
+                        "method": {
+                            "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
+                            "reference": {
+                                "standard": {
+                                    "standardizerIds": [
+                                        "2ed5024f-3b9a-4210-a65f-ecc3bf4a8f04"
+                                    ],
+                                    "numeration": {
+                                        "mainNumber": 9050
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "dataPoints": [
+                        {
+                            "incidence": {
+                                "direction": [
+                                    [
+                                        "nearnormal"
+                                    ]
+                                ],
+                                "wavelengths": {
+                                    "integral": true
+                                },
+                                "range": {
+                                    "spectrum": [
+                                        "solar"
+                                    ]
+                                }
+                            },
+                            "emergence": {
+                                "direction": [
+                                    [
+                                        "hemispherical"
+                                    ]
+                                ]
+                            },
+                            "results": {
+                                "reflectance": {
+                                    "uncertainValue": 0.1
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": {
+                "uniqueId": "17c5ac7e-a8c7-4fbd-80ac-5163a0539965",
+                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+            },
+            "explanation": {
+                "en-US": "Example: a data set for a component with the id above. The component has a solar thermal collector function."
+            },
+            "calorimetric": [
+                {
+                    "id": {
+                        "uniqueId": "da951012-29b7-4b9a-890c-4f4514f676b3",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    },
+                    "name": {
+                        "en-US": "Example BIST collector"
+                    },
+                    "explanation": {
+                        "en-US": "Example: a calorimetric data set."
+                    },
+                    "warnings": {
+                        "en-US": "No warnings"
+                    },
+                    "origin": {
+                        "source": {
+                            "id": {
+                                "uniqueId": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+                                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                            },
+                            "name": {
+                                "en-US": "Fraunhofer ISE"
+                            }
+                        }
+                    },
+                    "approvals": [
+                        {
+                            "approver": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+                            "signature": "MIIB6gYJKoZIhvcNAQcCoIIB2zCCAdcCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGCAbYwggGyAgEBMIGcMIGOMQswCQYDVQQGEwJVUzEOMAwGA1UECBMFVGV4YXMxFDASBgNVBAcTC1NhbiBBbnRvbmlvMQ0wCwYDVQQKEwRVVFNBMQswCQYDVQQLEwJDUzEXMBUGA1UEAxMOYWkuY3MudXRzYS5lZHUxJDAiBgkqhkiG9w0BCQEWFWp1bGlldEBhaS5jcy51dHNhLmVkdQIJAMvyApGmAWbKMAkGBSsOAwIaBQCggbEwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMDcwMjEyMjI1ODU4WjAjBgkqhkiG9w0BCQQxFgQUdBfDe/KmnhmYA9DILxfq/zKlvwEwUgYJKoZIhvcNAQkPMUUwQzAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwDQYJKoZIhvcNAQEBBQAEQFbJ+8cZivvgvrjj8l1QbK2o7gWdWBM9yav6NJR2eBVj3hKGaKQ+7JNbygcqtVcMDIo1jSpsZas33BvhocwGOqs="
+                        }
+                    ],
+                    "created": "2018-09-01T12:00:00+01:00",
+                    "valid": {
+                        "from": "2018-08-01T00:00:00+01:00"
+                    },
+                    "fluxes": [
+                        {
+                            "name": [
+                                "interior"
+                            ],
+                            "convection": {
+                                "flux": {
+                                    "uncertainValue": 15.0,
+                                    "uncertainty": 4,
+                                    "confidenceInterval": 95.4
+                                },
+                                "temperatures": {
+                                    "surrounding": {
+                                        "uncertainValue": 298.0
+                                    }
+                                },
+                                "coefficient": {
+                                    "uncertainValue": 8.0
+                                }
+                            }
+                        },
+                        {
+                            "name": [
+                                "lateral"
+                            ],
+                            "fluid": {
+                                "flux": {
+                                    "uncertainValue": 100.0
+                                },
+                                "temperatures": {
+                                    "inlet": {
+                                        "uncertainValue": 300
+                                    },
+                                    "outlet": {
+                                        "uncertainValue": 320
+                                    }
+                                },
+                                "massFlow": {
+                                    "uncertainValue": 0.02
+                                },
+                                "specificHeatCapacity": {
+                                    "uncertainValue": 4179.6
+                                }
+                            }
+                        },
+                        {
+                            "name": [
+                                "exterior"
+                            ],
+                            "irradiance": {
+                                "flux": {
+                                    "uncertainValue": 1000,
+                                    "uncertainty": 50,
+                                    "confidenceInterval": 68.3
+                                },
+                                "direction": [
+                                    [
+                                        "nearnormal"
+                                    ]
+                                ]
+                            }
+                        }
+                    ],
+                    "results": [
+                        {
+                            "area": {
+                                "category": [
+                                    "centre"
+                                ]
+                            },
+                            "uValue": {
+                                "uncertainValue": 1.0,
+                                "uncertainty": 0.1
+                            },
+                            "gValue": {
+                                "uncertainValue": 0.07,
+                                "uncertainty": 0.01
+                            },
+                            "efficiencies": {
+                                "solarThermal": {
+                                    "uncertainValue": 0.5
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": {
+                "uniqueId": "38dfed0a-2b9a-4748-8d98-e9d278cd12e4",
+                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+            },
+            "explanation": {
+                "en-US": "One BIPV module of building N at Fraunhofer ISE, Freiburg, Germany."
+            },
+            "photovoltaic": {
+                "module": {
+                    "coordinateSystem": {
+                        "categories": [
+                            "rightHanded",
+                            "cartesian"
+                        ]
+                    },
+                    "cells": {
+                        "rectangular": {
+                            "longitudinal": {
+                                "cellNumber": {
+                                    "uncertainValue": 8
+                                }
+                            },
+                            "transversal": {
+                                "cellNumber": {
+                                    "uncertainValue": 8
+                                }
+                            }
+                        },
+                        "cellTypes": [
+                            {
+                                "id": {
+                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "power": {
+                                    "nominal": {
+                                        "uncertainValue": 3.19
+                                    },
+                                    "effective": {
+                                        "uncertainValue": 3.047
+                                    }
+                                },
+                                "width": {
+                                    "uncertainValue": 0.125
+                                },
+                                "categories": [
+                                    "monocrystalline",
+                                    "silicon"
+                                ]
+                            }
+                        ],
+                        "cellList": [
+                            {
+                                "id": {
+                                    "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "cellType": {
+                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                }
+                            },
+                            {
+                                "id": {
+                                    "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "cellType": {
+                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                }
+                            }
+                        ]
+                    },
+                    "connections": {
+                        "connectionType": [
+                            {
+                                "id": {
+                                    "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "explanation": {
+                                    "en-US": "Connection type is unknown."
+                                }
+                            }
+                        ],
+                        "connectionList": [
+                            {
+                                "connectionType": {
+                                    "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "id1": {
+                                    "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "id2": {
+                                    "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                }
+                            }
+                        ],
+                        "category": [
+                            "series"
+                        ]
+                    },
+                    "moduleLayers": [
+                        {
+                            "material": {
+                                "name": {
+                                    "en-US": "Tempered white glass"
+                                }
+                            },
+                            "categories": [
+                                "front",
+                                "cover"
+                            ],
+                            "thickness": {
+                                "uncertainValue": 0.005
+                            },
+                            "geometry": {
+                                "dimensions": {
+                                    "independent": {
+                                        "smallest": {
+                                            "uncertainValue": 0.005
+                                        },
+                                        "intermediate": {
+                                            "uncertainValue": 1.08
+                                        },
+                                        "largest": {
+                                            "uncertainValue": 1.09
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "material": {
+                                "name": {
+                                    "en-US": "PVB"
+                                }
+                            },
+                            "categories": [
+                                "front",
+                                "embedding"
+                            ]
+                        },
+                        {
+                            "categories": [
+                                "cell"
+                            ]
+                        },
+                        {
+                            "material": {
+                                "name": {
+                                    "en-US": "PVB"
+                                }
+                            },
+                            "categories": [
+                                "rear",
+                                "embedding"
+                            ]
+                        },
+                        {
+                            "material": {
+                                "name": {
+                                    "en-US": "Tempered white glass"
+                                }
+                            },
+                            "categories": [
+                                "backing"
+                            ],
+                            "thickness": {
+                                "uncertainValue": 0.004
+                            },
+                            "geometry": {
+                                "dimensions": {
+                                    "independent": {
+                                        "smallest": {
+                                            "uncertainValue": 0.004
+                                        },
+                                        "intermediate": {
+                                            "uncertainValue": 1.08
+                                        },
+                                        "largest": {
+                                            "uncertainValue": 1.09
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "electricConfiguration": {
+                        "grounding": [
+                            "plus"
+                        ],
+                        "connectionCables": {
+                            "crossSection": {
+                                "uncertainValue": 4
+                            },
+                            "length": {
+                                "positive": {
+                                    "uncertainValue": 1
+                                },
+                                "negative": {
+                                    "uncertainValue": 1
+                                }
+                            }
+                        },
+                        "connectorType": {
+                            "id": {
+                                "uniqueId": "91f66c3b-8c08-4e86-9310-1fd8893d30b1",
+                                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                            },
+                            "name": {
+                                "en-US": "Huber und Suhner"
+                            }
+                        }
+                    },
+                    "moduleProperties": {
+                        "power": {
+                            "nominal": {
+                                "uncertainValue": 195
+                            },
+                            "tolerance": 5,
+                            "temperatureCoefficient": -0.32,
+                            "guarantee": [
+                                {
+                                    "years": 10,
+                                    "percentage": 90
+                                },
+                                {
+                                    "years": 15,
+                                    "percentage": 80
+                                }
+                            ],
+                            "angleDependency": {
+                                "incidenceAngleModifier": [
+                                    {
+                                        "incidence": 0,
+                                        "IAM": 1
+                                    },
+                                    {
+                                        "incidence": 60,
+                                        "IAM": 0.924
+                                    },
+                                    {
+                                        "incidence": 90,
+                                        "IAM": 0
+                                    }
+                                ]
+                            }
+                        },
+                        "voltage": {
+                            "nominal": {
+                                "uncertainValue": 36.1
+                            },
+                            "openCircuit": {
+                                "uncertainValue": 43.26
+                            },
+                            "temperatureCoefficient": -0.26,
+                            "maximumSystem": 1000
+                        },
+                        "current": {
+                            "nominal": {
+                                "uncertainValue": 5.4
+                            },
+                            "shortCircuit": {
+                                "uncertainValue": 5.86
+                            },
+                            "temperatureCoefficient": 0.06
+                        },
+                        "fillFactor": 0.769,
+                        "efficiency": 0.1656,
+                        "weight": {
+                            "uncertainValue": 29.7
+                        },
+                        "geometry": {
+                            "dimensions": {
+                                "independent": {
+                                    "smallest": {
+                                        "uncertainValue": 0.01128
+                                    },
+                                    "intermediate": {
+                                        "uncertainValue": 1.08
+                                    },
+                                    "largest": {
+                                        "uncertainValue": 1.09
+                                    }
+                                }
+                            }
+                        },
+                        "guarantee": [
+                            {
+                                "years": 10
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "id": {
+                "uniqueId": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
+                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+            },
+            "name": {
+                "en-US": "Fronius Galvo 3.0"
+            },
+            "explanation": {
+                "en-US": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany."
+            },
+            "photovoltaic": {
+                "inverter": {
+                    "id": {
+                        "uniqueId": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    },
+                    "power": {
+                        "input": {
+                            "maximum": 6000
+                        },
+                        "output": {
+                            "nominal": {
+                                "uncertainValue": 3000
+                            },
+                            "maximum": 3000,
+                            "normalized": 0.5
+                        },
+                        "demand": {
+                            "night": {
+                                "uncertainValue": 1
+                            }
+                        }
+                    },
+                    "voltage": {
+                        "input": {
+                            "minimum": 165,
+                            "start": 185,
+                            "maximum": 550
+                        },
+                        "output": {
+                            "frequency": {
+                                "minimum": 45,
+                                "maximum": 65
+                            }
+                        }
+                    },
+                    "current": {
+                        "input": {
+                            "maximum": 19.8,
+                            "shortCircuit": 19.6
+                        },
+                        "output": {
+                            "nominal": 13
+                        }
+                    },
+                    "weight": {
+                        "uncertainValue": 16.8
+                    },
+                    "geometry": {
+                        "dimensions": {
+                            "installed": [
+                                {
+                                    "height": {
+                                        "uncertainValue": 0.645
+                                    },
+                                    "width": {
+                                        "uncertainValue": 0.431
+                                    },
+                                    "depth": {
+                                        "uncertainValue": 0.204
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "safety": {
+                        "electric": {
+                            "IPcode": [
+                                {
+                                    "standard": [
+                                        "EN IEC 60529"
+                                    ],
+                                    "firstDigit": [
+                                        "6"
+                                    ],
+                                    "secondDigit": [
+                                        "5"
+                                    ]
+                                }
+                            ],
+                            "applianceClass": [
+                                {
+                                    "standard": [
+                                        "IEC 61140"
+                                    ],
+                                    "class": [
+                                        "I"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "temperatures": {
+                        "minimum": 248.15,
+                        "maximum": 323.15
+                    },
+                    "efficiencies": {
+                        "maximum": {
+                            "uncertainValue": 0.961
+                        },
+                        "European": {
+                            "uncertainValue": 0.954
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": {
+                "uniqueId": "473a2f69-2e18-4745-809d-519882b25e8b",
+                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+            },
+            "explanation": {
+                "en-US": "Example for a reference with a publication"
+            },
+            "calorimetric": [
+                {
+                    "id": {
+                        "uniqueId": "473a2f69-2e18-4745-809d-519882b25e8b",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    },
+                    "origin": {
+                        "method": {
+                            "id": "473a2f69-2e18-4745-809d-519882b25e8b",
+                            "reference": {
+                                "publication": {
+                                    "identifiers": {
+                                        "doi": "z10.1016/j.solener.2017.05.065"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
