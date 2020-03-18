@@ -1444,168 +1444,6 @@
             "minProperties": 1,
             "required": []
         },
-        "material": {
-            "basics": {
-                "title": "This sections defines a material.",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "$ref": "#/definitions/identifiers/decentral",
-                        "description": "The id represents the material."
-                    },
-                    "version": {
-                        "$ref": "#/definitions/identifiers/decentral",
-                        "description": "This id represents a specific version of the material."
-                    },
-                    "name": {
-                        "$ref": "#/definitions/internationalString",
-                        "description": "The name of the material"
-                    },
-                    "abbreviation": {
-                        "$ref": "#/definitions/latinString",
-                        "description": "The abbreviation of the material in Latin alphabet."
-                    },
-                    "explanation": {
-                        "$ref": "#/definitions/internationalString",
-                        "description": "An explanation with more details about the component"
-                    },
-                    "chemicalElements": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "pattern": "[A-Z][a-z]?"
-                        },
-                        "additionalItems": false,
-                        "minItems": 1,
-                        "maxItems": 10,
-                        "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
-                    }
-                },
-                "additionalProperties": false,
-                "minProperties": 1,
-                "required": []
-            },
-            "characteristics": {
-                "title": "This section collects the characteristics of a material.",
-                "type": "object",
-                "properties": {
-                    "refractiveIndex": {
-                        "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
-                        "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
-                    },
-                    "density": {
-                        "$ref": "#/definitions/numbersWithUnits/kgPerCubicMeterWithUncertainty",
-                        "description": "The density is needed to calculate the weigth of the layer."
-                    },
-                    "possiblePositions": {
-                        "$ref": "#/definitions/possiblePositions",
-                        "description": "PossiblePositions defines where the material can be used."
-                    },
-                    "thickness": {
-                        "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
-                        "description": "If the material has to flat parallel surfaces, then the thickness is the distance between both surfaces. It has the SI unit meter."
-                    },
-                    "thermalConductivity": {
-                        "$ref": "#/definitions/numbersWithUnits/wattPerMeterKelvinWithUncertainty",
-                        "description": "The thermal conductivity of a material quantifies its ability to conduct heat. It has the SI units W/(m*K)."
-                    },
-                    "PoissonsRatio": {
-                        "$ref": "#/definitions/numbers/number",
-                        "description": "The Poisson's ratio is a measure of the expansion of a material in the direction perpendicular to the load. It's a dimensionless quantity."
-                    },
-                    "YoungsModulus": {
-                        "$ref": "#/definitions/numbersWithUnits/pascal",
-                        "description": "The Young's Modulus is a measure for the stiffness of a solid material. It has the SI unit Pascal."
-                    }
-                }
-            }
-        },
-        "layer": {
-            "characteristics": {
-                "title": "This section collect the characteristics of components of the category 'layer'.",
-                "type": "object",
-                "properties": {
-                    "possiblePositions": {
-                        "$ref": "#/definitions/possiblePositions",
-                        "description": "PossiblePositions defines where the layer can be used."
-                    },
-                    "orientationAxis": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "horizontal",
-                                "vertical"
-                            ],
-                            "description": "The orientation axis is important for example for venetian blinds."
-                        },
-                        "additionalItems": false,
-                        "minItems": 0,
-                        "maxItems": 1
-                    },
-                    "slat": {
-                        "title": "For example venetian blinds consist of many slats. This section is used to define characteristics for such slats.",
-                        "type": "object",
-                        "properties": {
-                            "width": {
-                                "$ref": "#/definitions/numbersWithUnits/meter",
-                                "description": "The width of the slat"
-                            },
-                            "thickness": {
-                                "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
-                                "description": "If the slat is made from a sheet or plate with a certain thickness, this thickness can be defined here. It has the SI units meter."
-                            },
-                            "pitch": {
-                                "$ref": "#/definitions/numbers/numberWithUncertainty",
-                                "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
-                            },
-                            "crownHeight": {
-                                "$ref": "#/definitions/numbers/numberWithUncertainty",
-                                "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
-                            },
-                            "shape": {
-                                "oneOf": [
-                                    {
-                                        "$ref": "#/definitions/geometry/curve/bounded/NURBS",
-                                        "description": "Usually, the shape of a slat is best described by a 2D curve of its cross section."
-                                    },
-                                    {
-                                        "$ref": "#/definitions/geometry/surface/bounded/NURBS",
-                                        "description": "If the shape of the slats needs to be defined in 3D, a surface can be used."
-                                    }
-                                ]
-                            },
-                            "angles": {
-                                "type": "object",
-                                "properties": {
-                                    "tilt": {
-                                        "$ref": "#/definitions/angles/tilt",
-                                        "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
-                                    },
-                                    "maximumClosing": {
-                                        "$ref": "#/definitions/angles/maximumClosing",
-                                        "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
-                                    }
-                                },
-                                "additionalProperties": false,
-                                "minProperties": 1,
-                                "required": []
-                            }
-                        },
-                        "additionalProperties": false,
-                        "minProperties": 1,
-                        "required": []
-                    },
-                    "gaps": {
-                        "$ref": "#/definitions/gaps",
-                        "description": "This section defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
-                    }
-                },
-                "additionalProperties": false,
-                "minProperties": 1,
-                "required": []
-            }
-        },
         "gaps": {
             "title": "The gaps for example between a blind and the frame can be important for example regarding glare.",
             "type": "object",
@@ -1658,24 +1496,6 @@
             "maximumClosing": {
                 "$ref": "#/definitions/numbersWithUnits/degree",
                 "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
-            }
-        },
-        "unit": {
-            "characteristics": {
-                "title": "This section collects the characteristics of components of the category 'unit'.",
-                "type": "object",
-                "properties": {
-                    "possiblePositions": {
-                        "$ref": "#/definitions/possiblePositions",
-                        "description": "PossiblePositions defines where the unit can be used."
-                    },
-                    "gaps": {
-                        "$ref": "#/definitions/gaps",
-                        "description": "This section defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
-                    }
-                },
-                "additionalProperties": false,
-                "required": []
             }
         },
         "source": {
@@ -1796,6 +1616,335 @@
                 "additionalItems": false,
                 "minItems": 1,
                 "maxItems": 1
+            }
+        },
+        "material": {
+            "basics": {
+                "title": "This sections defines a material.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "#/definitions/identifiers/decentral",
+                        "description": "The id represents the material."
+                    },
+                    "version": {
+                        "$ref": "#/definitions/identifiers/decentral",
+                        "description": "This id represents a specific version of the material."
+                    },
+                    "name": {
+                        "$ref": "#/definitions/internationalString",
+                        "description": "The name of the material"
+                    },
+                    "abbreviation": {
+                        "$ref": "#/definitions/latinString",
+                        "description": "The abbreviation of the material in Latin alphabet."
+                    },
+                    "explanation": {
+                        "$ref": "#/definitions/internationalString",
+                        "description": "An explanation with more details about the component"
+                    },
+                    "chemicalElements": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "pattern": "[A-Z][a-z]?"
+                        },
+                        "additionalItems": false,
+                        "minItems": 1,
+                        "maxItems": 10,
+                        "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
+                    }
+                },
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": []
+            },
+            "categories": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "baseMaterial",
+                        "coating",
+                        "fabric",
+                        "film",
+                        "frit",
+                        "lath",
+                        "monolithic",
+                        "nonWoven",
+                        "PVB",
+                        "slat",
+                        "weave"
+                    ],
+                    "description": "Components of the category material can have the subcategories of this array which further specifies the material."
+                },
+                "additionalItems": false,
+                "minItems": 0
+            },
+            "characteristics": {
+                "title": "This section collects the characteristics of a material.",
+                "type": "object",
+                "properties": {
+                    "refractiveIndex": {
+                        "$ref": "#/definitions/numbers/nonNegativeNumberWithUncertainty",
+                        "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
+                    },
+                    "density": {
+                        "$ref": "#/definitions/numbersWithUnits/kgPerCubicMeterWithUncertainty",
+                        "description": "The density is needed to calculate the weigth of the layer."
+                    },
+                    "possiblePositions": {
+                        "$ref": "#/definitions/possiblePositions",
+                        "description": "PossiblePositions defines where the material can be used."
+                    },
+                    "thickness": {
+                        "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
+                        "description": "If the material has to flat parallel surfaces, then the thickness is the distance between both surfaces. It has the SI unit meter."
+                    },
+                    "thermalConductivity": {
+                        "$ref": "#/definitions/numbersWithUnits/wattPerMeterKelvinWithUncertainty",
+                        "description": "The thermal conductivity of a material quantifies its ability to conduct heat. It has the SI units W/(m*K)."
+                    },
+                    "PoissonsRatio": {
+                        "$ref": "#/definitions/numbers/number",
+                        "description": "The Poisson's ratio is a measure of the expansion of a material in the direction perpendicular to the load. It's a dimensionless quantity."
+                    },
+                    "YoungsModulus": {
+                        "$ref": "#/definitions/numbersWithUnits/pascal",
+                        "description": "The Young's Modulus is a measure for the stiffness of a solid material. It has the SI unit Pascal."
+                    }
+                }
+            }
+        },
+        "layer": {
+            "categories": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "appliedFilm",
+                        "arm",
+                        "austrian",
+                        "awning",
+                        "alind",
+                        "briseSoleil",
+                        "cell",
+                        "coated",
+                        "concertina",
+                        "conservatory",
+                        "drapes",
+                        "dutch",
+                        "external",
+                        "fabric",
+                        "facade",
+                        "festoon",
+                        "fixed",
+                        "folding",
+                        "fritted",
+                        "glass",
+                        "glazing",
+                        "guided",
+                        "hinged",
+                        "honeycomb",
+                        "insect",
+                        "laminate",
+                        "louvered",
+                        "marquisolette",
+                        "monolithic",
+                        "nonWoven",
+                        "panel",
+                        "perforated",
+                        "pergola",
+                        "pivot",
+                        "plantation",
+                        "pleated",
+                        "quilts",
+                        "roll-up",
+                        "roller",
+                        "roman",
+                        "roof",
+                        "screen",
+                        "shade",
+                        "shutter",
+                        "slat",
+                        "slide",
+                        "sliding",
+                        "solar",
+                        "terrace",
+                        "treillis",
+                        "venetian",
+                        "vertical",
+                        "window",
+                        "woven"
+                    ],
+                    "description": "Components of the category layer can have the subcategories of this array which further specifies the layer."
+                },
+                "additionalItems": false,
+                "minItems": 0
+            },
+            "characteristics": {
+                "title": "This section collect the characteristics of components of the category 'layer'.",
+                "type": "object",
+                "properties": {
+                    "possiblePositions": {
+                        "$ref": "#/definitions/possiblePositions",
+                        "description": "PossiblePositions defines where the layer can be used."
+                    },
+                    "orientationAxis": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "horizontal",
+                                "vertical"
+                            ],
+                            "description": "The orientation axis is important for example for venetian blinds."
+                        },
+                        "additionalItems": false,
+                        "minItems": 0,
+                        "maxItems": 1
+                    },
+                    "slat": {
+                        "title": "For example venetian blinds consist of many slats. This section is used to define characteristics for such slats.",
+                        "type": "object",
+                        "properties": {
+                            "width": {
+                                "$ref": "#/definitions/numbersWithUnits/meter",
+                                "description": "The width of the slat"
+                            },
+                            "thickness": {
+                                "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
+                                "description": "If the slat is made from a sheet or plate with a certain thickness, this thickness can be defined here. It has the SI units meter."
+                            },
+                            "pitch": {
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
+                                "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
+                            },
+                            "crownHeight": {
+                                "$ref": "#/definitions/numbers/numberWithUncertainty",
+                                "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
+                            },
+                            "shape": {
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/definitions/geometry/curve/bounded/NURBS",
+                                        "description": "Usually, the shape of a slat is best described by a 2D curve of its cross section."
+                                    },
+                                    {
+                                        "$ref": "#/definitions/geometry/surface/bounded/NURBS",
+                                        "description": "If the shape of the slats needs to be defined in 3D, a surface can be used."
+                                    }
+                                ]
+                            },
+                            "angles": {
+                                "type": "object",
+                                "properties": {
+                                    "tilt": {
+                                        "$ref": "#/definitions/angles/tilt",
+                                        "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
+                                    },
+                                    "maximumClosing": {
+                                        "$ref": "#/definitions/angles/maximumClosing",
+                                        "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "required": []
+                            }
+                        },
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": []
+                    },
+                    "gaps": {
+                        "$ref": "#/definitions/gaps",
+                        "description": "This section defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
+                    }
+                },
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": []
+            }
+        },
+        "unit": {
+            "categories": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "blind",
+                        "cladding",
+                        "glazing",
+                        "prefabricatedFacadeElement",
+                        "projectingComponent",
+                        "transomMullionFacade",
+                        "appliedFilm",
+                        "coated",
+                        "frittedGlass",
+                        "laminate",
+                        "monolithic",
+                        "arm",
+                        "austrian",
+                        "awning",
+                        "alind",
+                        "briseSoleil",
+                        "concertina",
+                        "conservatory",
+                        "drapes",
+                        "dutch",
+                        "external",
+                        "facade",
+                        "festoon",
+                        "fixed",
+                        "folding",
+                        "guided",
+                        "hinged",
+                        "honeycomb",
+                        "insect",
+                        "marquisolette",
+                        "panel",
+                        "pergola",
+                        "pivot",
+                        "plantation",
+                        "pleated",
+                        "quilts",
+                        "roll-up",
+                        "roller",
+                        "roman",
+                        "roof",
+                        "screen",
+                        "shutter",
+                        "slat",
+                        "slide",
+                        "sliding",
+                        "solar",
+                        "terrace",
+                        "treillis",
+                        "venetian",
+                        "vertical",
+                        "window"
+                    ],
+                    "description": "Components of the category unit can have the subcategories of this array which further specifies the unit."
+                },
+                "additionalItems": false,
+                "minItems": 0
+            },
+            "characteristics": {
+                "title": "This section collects the characteristics of components of the category 'unit'.",
+                "type": "object",
+                "properties": {
+                    "possiblePositions": {
+                        "$ref": "#/definitions/possiblePositions",
+                        "description": "PossiblePositions defines where the unit can be used."
+                    },
+                    "gaps": {
+                        "$ref": "#/definitions/gaps",
+                        "description": "This section defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
+                    }
+                },
+                "additionalProperties": false,
+                "required": []
             }
         },
         "electric": {
@@ -4272,166 +4421,23 @@
                         },
                         "additionalItems": false,
                         "minItems": 0
+                    },
+                    "material": {
+                        "$ref": "#/definitions/material/categories",
+                        "description": "If the component has the 'componentType':'material', then it can have the material categories defined in this section."
+                    },
+                    "layer": {
+                        "$ref": "#/definitions/layer/categories",
+                        "description": "If the component has the 'componentType':'layer', then it can have the layer categories defined in this section."
+                    },
+                    "unit": {
+                        "$ref": "#/definitions/unit/categories",
+                        "description": "If the component has the 'componentType':'unit', then it can have the unit categories defined in this section."
                     }
                 },
                 "additionalProperties": false,
                 "minProperties": 1,
                 "required": []
-            },
-            "material": {
-                "categories": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "baseMaterial",
-                            "coating",
-                            "fabric",
-                            "film",
-                            "frit",
-                            "lath",
-                            "monolithic",
-                            "nonWoven",
-                            "PVB",
-                            "slat",
-                            "weave"
-                        ],
-                        "description": "Components of the category material can have the subcategories of this array which further specifies the material."
-                    },
-                    "additionalItems": false,
-                    "minItems": 0
-                }
-            },
-            "layer": {
-                "categories": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "appliedFilm",
-                            "arm",
-                            "austrian",
-                            "awning",
-                            "alind",
-                            "briseSoleil",
-                            "cell",
-                            "coated",
-                            "concertina",
-                            "conservatory",
-                            "drapes",
-                            "dutch",
-                            "external",
-                            "fabric",
-                            "facade",
-                            "festoon",
-                            "fixed",
-                            "folding",
-                            "fritted",
-                            "glass",
-                            "glazing",
-                            "guided",
-                            "hinged",
-                            "honeycomb",
-                            "insect",
-                            "laminate",
-                            "louvered",
-                            "marquisolette",
-                            "monolithic",
-                            "nonWoven",
-                            "panel",
-                            "perforated",
-                            "pergola",
-                            "pivot",
-                            "plantation",
-                            "pleated",
-                            "quilts",
-                            "roll-up",
-                            "roller",
-                            "roman",
-                            "roof",
-                            "screen",
-                            "shade",
-                            "shutter",
-                            "slat",
-                            "slide",
-                            "sliding",
-                            "solar",
-                            "terrace",
-                            "treillis",
-                            "venetian",
-                            "vertical",
-                            "window",
-                            "woven"
-                        ],
-                        "description": "Components of the category layer can have the subcategories of this array which further specifies the layer."
-                    },
-                    "additionalItems": false,
-                    "minItems": 0
-                }
-            },
-            "unit": {
-                "categories": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "blind",
-                            "cladding",
-                            "glazing",
-                            "prefabricatedFacadeElement",
-                            "projectingComponent",
-                            "transomMullionFacade",
-                            "appliedFilm",
-                            "coated",
-                            "frittedGlass",
-                            "laminate",
-                            "monolithic",
-                            "arm",
-                            "austrian",
-                            "awning",
-                            "alind",
-                            "briseSoleil",
-                            "concertina",
-                            "conservatory",
-                            "drapes",
-                            "dutch",
-                            "external",
-                            "facade",
-                            "festoon",
-                            "fixed",
-                            "folding",
-                            "guided",
-                            "hinged",
-                            "honeycomb",
-                            "insect",
-                            "marquisolette",
-                            "panel",
-                            "pergola",
-                            "pivot",
-                            "plantation",
-                            "pleated",
-                            "quilts",
-                            "roll-up",
-                            "roller",
-                            "roman",
-                            "roof",
-                            "screen",
-                            "shutter",
-                            "slat",
-                            "slide",
-                            "sliding",
-                            "solar",
-                            "terrace",
-                            "treillis",
-                            "venetian",
-                            "vertical",
-                            "window"
-                        ],
-                        "description": "Components of the category unit can have the subcategories of this array which further specifies the unit."
-                    },
-                    "additionalItems": false,
-                    "minItems": 0
-                }
             },
             "version": {
                 "title": "This section provides definitions about a version of a component.",
