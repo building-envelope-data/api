@@ -1,9 +1,7 @@
-
+﻿
 
 
 zu erledigen:
-- `reference` genauer spezifizieren wo möglich
-- mgf-Format einarbeiten
-- #definitions/webAddress: Add an additional regex which checks whether the uri contains a `hostname`
+
 
 

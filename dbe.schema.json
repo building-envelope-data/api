@@ -1372,7 +1372,7 @@
                         },
                         "additionalItems": false,
                         "minItems": 1,
-                        "description": "This array list all surfaces between solid and non-solid of the component."
+                        "description": "This array lists all surfaces between solid and non-solid of the component."
                     }
                 },
                 "additionalProperties": false,
@@ -1501,6 +1501,10 @@
                         "$ref": "#/definitions/possiblePositions",
                         "description": "PossiblePositions defines where the material can be used."
                     },
+                    "thickness": {
+                        "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
+                        "description": "If the material has to flat parallel surfaces, then the thickness is the distance between both surfaces. It has the SI unit meter."
+                    },
                     "thermalConductivity": {
                         "$ref": "#/definitions/numbersWithUnits/wattPerMeterKelvinWithUncertainty",
                         "description": "The thermal conductivity of a material quantifies its ability to conduct heat. It has the SI units W/(m*K)."
@@ -1546,6 +1550,10 @@
                             "width": {
                                 "$ref": "#/definitions/numbersWithUnits/meter",
                                 "description": "The width of the slat"
+                            },
+                            "thickness": {
+                                "$ref": "#/definitions/numbersWithUnits/meterWithUncertainty",
+                                "description": "If the slat is made from a sheet or plate with a certain thickness, this thickness can be defined here. It has the SI units meter."
                             },
                             "pitch": {
                                 "$ref": "#/definitions/numbers/numberWithUncertainty",
