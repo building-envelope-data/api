@@ -1390,64 +1390,64 @@
                 "assemblyList": {
                     "title": "This list defines subcomponents which are used for this assembly.",
                     "type": "array",
-                    "items": [
-                        {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "$ref": "#/definitions/identifiers/centralOrDecentral",
-                                    "description": "The id represents a specific component of the assembly."
-                                },
-                                "geometry": {
-                                    "$ref": "#/definitions/geometry/basics",
-                                    "description": "The reference defines the geometry of the component."
-                                },
-                                "coordinateSystemComponent": {
-                                    "title": "The assembly has a coordinate system and each component has its own coordinate system. This section defines coordinates of the origin and axis of the component within the coordinate system of the assembly. Often, it is easier to define this relation than to convert all geometries into the coordinate system of the assembly.",
-                                    "type": "object",
-                                    "properties": {
-                                        "origin": {
-                                            "$ref": "#/definitions/geometry/point",
-                                            "description": "This point defines the coordinates of the origin of the component within the coordinate system of the assembly."
-                                        },
-                                        "firstAxis": {
-                                            "$ref": "#/definitions/geometry/vector",
-                                            "description": "The coordinate system of the component has three axis. This vector defines the direction of the first axis within the coordinate system of the assembly."
-                                        },
-                                        "secondAxis": {
-                                            "$ref": "#/definitions/geometry/vector",
-                                            "description": "The coordinate system of the component has three axis. This vector defines the direction of the second axis within the coordinate system of the assembly."
-                                        },
-                                        "thirdAxis": {
-                                            "$ref": "#/definitions/geometry/vector",
-                                            "description": "The coordinate system of the component has three axis. This vector defines the direction of the third axis within the coordinate system of the assembly."
-                                        }
-                                    },
-                                    "additionalProperties": false,
-                                    "minProperties": 4,
-                                    "maxProperties": 4,
-                                    "required": [
-                                        "origin",
-                                        "firstAxis",
-                                        "secondAxis",
-                                        "thirdAxis"
-                                    ]
-                                }
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "#/definitions/identifiers/centralOrDecentral",
+                                "description": "The id represents a specific component of the assembly."
                             },
-                            "additionalProperties": false,
-                            "minProperties": 1,
-                            "required": [
-                                "id"
-                            ]
-                        }
-                    ],
+                            "geometry": {
+                                "$ref": "#/definitions/geometry/basics",
+                                "description": "The reference defines the geometry of the component."
+                            },
+                            "coordinateSystemComponent": {
+                                "title": "The assembly has a coordinate system and each component has its own coordinate system. This section defines coordinates of the origin and axis of the component within the coordinate system of the assembly. Often, it is easier to define this relation than to convert all geometries into the coordinate system of the assembly.",
+                                "type": "object",
+                                "properties": {
+                                    "origin": {
+                                        "$ref": "#/definitions/geometry/point",
+                                        "description": "This point defines the coordinates of the origin of the component within the coordinate system of the assembly."
+                                    },
+                                    "firstAxis": {
+                                        "$ref": "#/definitions/geometry/vector",
+                                        "description": "The coordinate system of the component has three axis. This vector defines the direction of the first axis within the coordinate system of the assembly."
+                                    },
+                                    "secondAxis": {
+                                        "$ref": "#/definitions/geometry/vector",
+                                        "description": "The coordinate system of the component has three axis. This vector defines the direction of the second axis within the coordinate system of the assembly."
+                                    },
+                                    "thirdAxis": {
+                                        "$ref": "#/definitions/geometry/vector",
+                                        "description": "The coordinate system of the component has three axis. This vector defines the direction of the third axis within the coordinate system of the assembly."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "minProperties": 4,
+                                "maxProperties": 4,
+                                "required": [
+                                    "origin",
+                                    "firstAxis",
+                                    "secondAxis",
+                                    "thirdAxis"
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": [
+                            "id"
+                        ]
+                    },
                     "additionalItems": false,
                     "minItems": 2
                 }
             },
             "additionalProperties": false,
             "minProperties": 1,
-            "required": []
+            "required": [
+                "assemblyList"
+            ]
         },
         "gaps": {
             "title": "The gaps for example between a blind and the frame can be important for example regarding glare.",
