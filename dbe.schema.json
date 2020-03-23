@@ -4324,12 +4324,22 @@
                             "description": "The current component is a concretization of a more general component. The more general component is identified by this id."
                         },
                         "generalizationOf": {
-                            "$ref": "#/definitions/identifiers/centralOrDecentral",
-                            "description": "The current component is a generalization of a more concretized component. The more concretized component is identified by this id."
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/identifiers/centralOrDecentral",
+                                "description": "The current component is a generalization of a more concretized component. The more concretized component is identified by this id."
+                            },
+                            "additionalItems": false,
+                            "minItems": 1
                         },
                         "variantOf": {
-                            "$ref": "#/definitions/identifiers/centralOrDecentral",
-                            "description": "The current component is neither a concretization nor a generalization nor an assembly or a part of a second component. But it is a variant of a second component. This means that the current component and the second component share a large part of their characteristics. The second component is identified by this id."
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/identifiers/centralOrDecentral",
+                                "description": "The current component is neither a concretization nor a generalization nor an assembly or a part of a second component. But it is a variant of a second component. This means that the current component and the second component share a large part of their characteristics. The second component is identified by this id."
+                            },
+                            "additionalItems": false,
+                            "minItems": 1
                         },
                         "partOf": {
                             "type": "array",
