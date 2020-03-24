@@ -14,5 +14,8 @@
 1. dbe: Try Bruno's examples from aktuelleUeberarbeitung\vonBUB
 1. dbe: `reference` genauer spezifizieren wo möglich
 1. dbe: #definitions/webAddress: Add an additional regex which checks whether the uri contains a `hostname`
+1. dsb: add section performance indicators
+1. dsb: add section Life Cycle Analysis
+1. dsb: add section Life Cycle Costing
 1. dbe: add frame data according to ISO 10077-2 and WinDat_N2.11_Data_Subm_Proc_Edge-Frame_v1.0_31.05.04.pdf
 1. dbe: add IUPAC nomenclature of organic chemistry to material/basics

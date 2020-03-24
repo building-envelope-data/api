@@ -4319,46 +4319,52 @@
                     },
                     "relations": {
                         "title": "The current component can have relations to other components. These relations can range in the dimension between a very general component such as a general product and and a very concretized component such as a specific component in a specific buildling. A second dimension of relation ranges from being part of another assembled component to being an assembly of other components. A third dimension are variants of components. They share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly. In this section, these relations between components can be defined.",
-                        "concretizationOf": {
-                            "$ref": "#/definitions/identifiers/centralOrDecentral",
-                            "description": "The current component is a concretization of a more general component. The more general component is identified by this id."
-                        },
-                        "generalizationOf": {
-                            "type": "array",
-                            "items": {
+                        "type": "object",
+                        "properties": {
+                            "concretizationOf": {
                                 "$ref": "#/definitions/identifiers/centralOrDecentral",
-                                "description": "The current component is a generalization of a more concretized component. The more concretized component is identified by this id."
+                                "description": "The current component is a concretization of a more general component. The more general component is identified by this id."
                             },
-                            "additionalItems": false,
-                            "minItems": 1
+                            "generalizationOf": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/identifiers/centralOrDecentral",
+                                    "description": "The current component is a generalization of a more concretized component. The more concretized component is identified by this id."
+                                },
+                                "additionalItems": false,
+                                "minItems": 1
+                            },
+                            "variantOf": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/identifiers/centralOrDecentral",
+                                    "description": "The current component is neither a concretization nor a generalization nor an assembly or a part of a second component. But it is a variant of a second component. This means that the current component and the second component share a large part of their characteristics. The second component is identified by this id."
+                                },
+                                "additionalItems": false,
+                                "minItems": 1
+                            },
+                            "partOf": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/identifiers/centralOrDecentral",
+                                    "description": "The current component is a part of an assembly of other components. Each of the other components is defined by its id."
+                                },
+                                "additionalItems": false,
+                                "minItems": 1
+                            },
+                            "assembledOf": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/identifiers/centralOrDecentral",
+                                    "description": "The current component is an assembly of other components. Each of the other components is defined by its id."
+                                },
+                                "additionalItems": false,
+                                "minItems": 1
+                            }
                         },
-                        "variantOf": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/identifiers/centralOrDecentral",
-                                "description": "The current component is neither a concretization nor a generalization nor an assembly or a part of a second component. But it is a variant of a second component. This means that the current component and the second component share a large part of their characteristics. The second component is identified by this id."
-                            },
-                            "additionalItems": false,
-                            "minItems": 1
-                        },
-                        "partOf": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/identifiers/centralOrDecentral",
-                                "description": "The current component is a part of an assembly of other components. Each of the other components is defined by its id."
-                            },
-                            "additionalItems": false,
-                            "minItems": 1
-                        },
-                        "assembledOf": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/identifiers/centralOrDecentral",
-                                "description": "The current component is an assembly of other components. Each of the other components is defined by its id."
-                            },
-                            "additionalItems": false,
-                            "minItems": 1
-                        }
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": []
                     },
                     "categories": {
                         "$ref": "#/definitions/component/categories",
@@ -4553,7 +4559,10 @@
                                 "$ref": "#/definitions/numbers/numberWithUncertainty",
                                 "description": "The Permeability Factor (PF) is defined by AERC 1.1 Appendix F."
                             }
-                        }
+                        },
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": []
                     },
                     "colour": {
                         "$ref": "#/definitions/colour",
@@ -4588,6 +4597,7 @@
                     }
                 },
                 "additionalProperties": false,
+                "minProperties": 1,
                 "required": []
             }
         }
