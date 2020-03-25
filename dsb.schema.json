@@ -4775,6 +4775,24 @@
                                 "additionalItems": false,
                                 "minItems": 1
                             },
+                            "publicAuthorities": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/basicStakeholder",
+                                    "description": "Public authorities grant permissions according to the current regulations. Each public authority is identified by an id."
+                                },
+                                "additionalItems": false,
+                                "minItems": 1
+                            },
+                            "assesors": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/basicStakeholder",
+                                    "description": "Assesors offer to rate a building for example regarding its sustainability. Each assesor is identified by an id."
+                                },
+                                "additionalItems": false,
+                                "minItems": 1
+                            },
                             "facilityManagers": {
                                 "type": "array",
                                 "items": {
@@ -4877,10 +4895,10 @@
                         "required": []
                     },
                     "Revit": {
-                        "title": "#TODO The data about a building can be stored in the closed source format of Autodesk Revit."
+                        "title": "#TODO (Datei, API, Elements) The data about a building can be stored in the closed source format of Autodesk Revit."
                     },
                     "LinkedData": {
-                        "title": "#TODO The data about a building can be stored as linked building data."
+                        "title": "#TODO (SPARQL-Endpunkt, Ontologien) The data about a building can be stored as linked building data."
                     }
                 },
                 "additionalProperties": false,
