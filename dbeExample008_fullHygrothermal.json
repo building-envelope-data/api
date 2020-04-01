@@ -1,9 +1,9 @@
 {
     "components": [
         {
-            "id": {},
+            "id": "0f5942c1-33ce-4d31-b694-079eaf1fb630",
             "explanation": {
-                "en-US": "This is the smallest example of hygrothermal data about a component."
+                "en-US": "This is an example of all key value pairs for the hygrothermal data about a component."
             },
             "hygrothermal": {
                 "WUFI": {
@@ -12,7 +12,7 @@
                         "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
                     "explanation": {
-                        "description": "This hygrothermal data has been provided by WUFI.de."
+                        "en-US": "This hygrothermal data has been provided by WUFI.de."
                     },
                     "formatting": "https://wufi.de/de/wp-content/uploads/sites/9/How-to-import-an-xml-file.pdf",
                     "xmlData": "<placeholder><for><xmlData>"
