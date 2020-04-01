@@ -1,0 +1,15 @@
+{
+    "components": [
+        {
+            "id": {},
+            "explanation": {
+                "en-US": "This is the smallest example of hygrothermal data about a component."
+            },
+            "hygrothermal": {
+                "WUFI": {
+                    "xmlData": "<placeholder><for><xmlData>"
+                }
+            }
+        }
+    ]
+}

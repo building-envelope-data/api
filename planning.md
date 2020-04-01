@@ -3,7 +3,7 @@
 1. Data Schema for Building DB (dsb) which fits to IFC, Revit and Linked Data
 1. dbe: add domain ventilation
 1. dbe: add domain humidity according to WUFI+
-1. dbe: add domain structural engineering
+1. dbe: add domain structural engineering based on https://www.projekt-scope.de/ontologies/tdy/
 1. dbe: add domain fire safety
 1. dbe: add domain acoustical
 1. dbe: sampleSelection über eine reference definieren (vgl. AERC und ES-SO)
@@ -14,6 +14,8 @@
 1. dbe: Try Bruno's examples from aktuelleUeberarbeitung\vonBUB
 1. dbe: `reference` genauer spezifizieren wo möglich
 1. dbe: #definitions/webAddress: Add an additional regex which checks whether the uri contains a `hostname`
+1. dbe: develop a method to create a IFC file including dbe data as a user defined IfcPropertySet
+1. dbe: propose to buildingSMART that the user defined IfcPropertySet becomes a official 'Pset_buildingEnvelopes'.
 1. dsb: add section performance indicators
 1. dsb: add section Life Cycle Analysis
 1. dsb: add section Life Cycle Costing

@@ -5,7 +5,9 @@
             "explanation": {
                 "en-US": "This is an example of a general component which is a modification of a parent component. At the same time, the component is an assembly of two other general components."
             },
-            "parent": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+            "relations": {
+                "concretizationOf": "a99941df-5bb8-4080-89a4-4f3d230afeb6"
+            },
             "characteristics": {
                 "geometry": {
                     "assemblyList": [

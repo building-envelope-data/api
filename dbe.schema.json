@@ -4291,6 +4291,42 @@
                 "minItems": 0
             }
         },
+        "hygrothermal": {
+            "title": "This section is used to define the hygrothermal data of a component.",
+            "type": "object",
+            "properties": {
+                "WUFI": {
+                    "title": "Hgrothermal data from the database of WUFI.de.",
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "$ref": "#/definitions/identifiers/decentral",
+                            "description": "The id represents the hygrothermal data set."
+                        },
+                        "explanation": {
+                            "$ref": "#/definitions/internationalString",
+                            "description": "An explanation with more details about the hygrothermal data in natural language."
+                        },
+                        "formatting": {
+                            "$ref": "#/definitions/webAddress",
+                            "description": "The web address provides a definition of the format of the 'xmlData'."
+                        },
+                        "xmlData": {
+                            "$ref": "#/definitions/latinString",
+                            "description": "The string contains the hygrothermal data for this data according to the format which is specified by 'formatting'."
+                        }
+                    },
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "required": [
+                        "xmlData"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": []
+        },
         "component": {
             "title": "This section collects the definitions regarding components of building envelopes",
             "basics": {
@@ -4405,7 +4441,7 @@
                     },
                     "calorimetric": {
                         "$ref": "#/definitions/calorimetric/basics",
-                        "description": "This section is used to define and exchange calorimetric data sets about one component.For example the U value, the g value (or Solar Heat Gain Coefficient)."
+                        "description": "This section is used to define and exchange calorimetric data sets about one component. For example the U value, the g value (or Solar Heat Gain Coefficient)."
                     },
                     "photovoltaic": {
                         "title": "This section is used to define and exchange photovoltaic data sets. This means building envelopes which can convert irradiance into electric power.",
@@ -4450,6 +4486,10 @@
                                 ]
                             }
                         ]
+                    },
+                    "hygrothermal": {
+                        "$ref": "#/definitions/hygrothermal",
+                        "description": "This section is used to define and to exchange hygrothermal data about one component. For example, the water vapour diffusion resistance factor and the moisture-dependent thermal conductivity."
                     }
                 },
                 "additionalProperties": false,
