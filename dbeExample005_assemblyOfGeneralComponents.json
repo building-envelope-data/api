@@ -1,0 +1,22 @@
+{
+    "components": [
+        {
+            "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+            "explanation": {
+                "en-US": "This is an example of a general component which is an assembly of two other general components."
+            },
+            "characteristics": {
+                "geometry": {
+                    "assemblyList": [
+                        {
+                            "id": "b511af56-891e-4828-a2d1-a4454112e8f8"
+                        },
+                        {
+                            "id": "86089938-f045-4039-b41a-76c70db22369"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
