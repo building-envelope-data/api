@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/calorimetric.json",
+  "title": "calorimetric data",
+  "description": "The array is used to define sets of calorimetric data.",
+  "$defs": {
+    "calorimetric": {
+      "type": "object",
+      "title": "The object is used to define calorimetric data.",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "The id represents a specific calorimetric data set."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "If the calorimetric data set has a name, it can be indicated here."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "This string can explain humans the calorimetric data set."
+        },
+        "warnings": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "Some calorimetric data may easily be misinterpreted. The warnings contain critical information for users to avoid typical mistakes."
+        },
+        "origin": {
+          "$ref": "method.json#/$defs/origin",
+          "description": "For traceability, the origin of the data can be defined."
+        },
+        "approvals": {
+          "$ref": "common.json#/$defs/approvals",
+          "description": "If the calorimetric data is approved by stakeholders, a signature can be provided."
+        },
+        "created": {
+          "$ref": "common.json#/$defs/created",
+          "description": "When the calorimetric data was created."
+        },
+        "valid": {
+          "$ref": "common.json#/$defs/valid",
+          "description": "From when and until when the data is valid."
+        },
+        "characteristics": {
+          "$ref": "#/$defs/characteristics",
+          "description": "This section defines characteristics which are constant for this calorimetric data set."
+        },
+        "file": {
+          "$ref": "common.json#/$defs/file",
+          "description": "The optical data can be provided as a file. If the data is provided as a file and as explicit values below, than it MUST be the same data only in different formats. If one data is derived from another data, it MUST be stored as separate items in the array optical/basics and origin SHOULD be used to identify the method of derivation."
+        },
+        "fluxes": {
+          "title": "This array defines the energy fluxes between the sample and its surroundings.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "exterior",
+                    "interior",
+                    "lateral",
+                    "other"
+                  ],
+                  "description": "The name of the part of the surroundings. If neither exterior nor interior or lateral fits, choose other and describe it in the explanation below."
+                },
+                "additionalItems": false,
+                "minItems": 1,
+                "maxItems": 4
+              },
+              "explanation": {
+                "$ref": "string.json#/$defs/internationalString",
+                "description": "This string explains humans the calorimetric data set."
+              },
+              "convection": {
+                "title": "Convective heat transfer is defined by the temperature difference and the heat transfer coefficient.",
+                "type": "object",
+                "properties": {
+                  "flux": {
+                    "$ref": "number.json#/$defs/wattWithUncertainty",
+                    "description": "The heat flux is driven by the temperature differences. Positive heat flux means heat flux towards the sample. It is meaured in watts."
+                  },
+                  "temperatures": {
+                    "type": "object",
+                    "properties": {
+                      "surrounding": {
+                        "$ref": "number.json#/$defs/kelvinWithUncertainty",
+                        "description": "The average temperature of this part of the surroundings."
+                      },
+                      "sample": {
+                        "$ref": "number.json#/$defs/kelvinWithUncertainty",
+                        "description": "The average temperature of the part of the sample which faces this part of the surroundings."
+                      }
+                    },
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "required": []
+                  },
+                  "coefficient": {
+                    "$ref": "number.json#/$defs/wattPerSquareMeterKelvinWithUncertainty",
+                    "description": "The heat transfer coefficient equals the heat flux divided by the temperature difference. It has the unit watt per square meter per kelvin."
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "flux"
+                ]
+              },
+              "fluid": {
+                "title": "If heat is transfered to the sample by a fluid circuit, this heat flux can be defined by the following properties.",
+                "type": "object",
+                "properties": {
+                  "flux": {
+                    "$ref": "number.json#/$defs/wattWithUncertainty",
+                    "description": "This heat flux is caused by the temperature difference between the fluid inlet of the sample and the fluid outlet. It is meaured in watts."
+                  },
+                  "temperatures": {
+                    "type": "object",
+                    "properties": {
+                      "inlet": {
+                        "$ref": "number.json#/$defs/kelvinWithUncertainty",
+                        "description": "The average temperature of the fluid at the inlet of the sample."
+                      },
+                      "outlet": {
+                        "$ref": "number.json#/$defs/kelvinWithUncertainty",
+                        "description": "The average temperature of the fluid at the outlet of the sample."
+                      }
+                    },
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "required": []
+                  },
+                  "massFlow": {
+                    "$ref": "number.json#/$defs/kgPerSecondWithUncertainty",
+                    "description": "The mass flow of the fluid circuit which enters and leaves the sample in kilogram per second."
+                  },
+                  "specificHeatCapacity": {
+                    "$ref": "number.json#/$defs/JPerKgKwithUncertainty",
+                    "description": "The specific heat capacity of the fluid in joules per kilogram per Kelvin."
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "flux"
+                ]
+              },
+              "irradiance": {
+                "type": "object",
+                "properties": {
+                  "flux": {
+                    "$ref": "number.json#/$defs/wattWithUncertainty",
+                    "description": "The irradiance is determined on the surface of the sample. Positive irradiance means irradiance towards the sample. It is meaured in watts."
+                  },
+                  "direction": {
+                    "$ref": "optical.json#/$defs/direction",
+                    "description": "The direction of the irradiance on the sample."
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "flux"
+                ]
+              },
+              "electric": {
+                "type": "object",
+                "properties": {
+                  "flux": {
+                    "$ref": "number.json#/$defs/wattWithUncertainty",
+                    "description": "The electric energy supplied to the sample. Positive electric energy means that it is delivered to the sample."
+                  },
+                  "currentVoltage": {
+                    "$ref": "common.json#/$defs/currentVoltage",
+                    "description": "The current-voltage characteristic can be important for example for photovoltaics. It can also be used just to define just one current and one voltage."
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "flux"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "required": []
+          },
+          "additionalItems": false,
+          "minItems": 1
+        },
+        "results": {
+          "title": "The results of a calorimetric measurement depend on the reference area. This array can defined results for different reference areas.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "area": {
+                "title": "The results depend on the area of the component which is used to calculate the results. This section defines this area.",
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "centre",
+                        "irradiatedAbsorber",
+                        "outerDimensions",
+                        "projectedIrradiatedAbsorber",
+                        "other"
+                      ],
+                      "description": "(i) `centre` means that the results are valid for the centre of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absober, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance. (v) If none of the other categories apply, `explanation` below must be used to describe the category."
+                    },
+                    "additionalItems": false,
+                    "minItems": 1,
+                    "maxItems": 1
+                  },
+                  "explanation": {
+                    "$ref": "string.json#/$defs/internationalString",
+                    "description": "If `other` is chosen as category above, the area needs to be defined by this explanation. For any other category, the explanation can add details."
+                  }
+                },
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": [
+                  "category"
+                ]
+              },
+              "uValue": {
+                "$ref": "#/$defs/uValue",
+                "description": "The U value, also known as thermal transmittance, can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
+              },
+              "gValue": {
+                "$ref": "#/$defs/gValue",
+                "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
+              },
+              "efficiencies": {
+                "type": "object",
+                "properties": {
+                  "photovoltaic": {
+                    "$ref": "common.json#/$defs/efficiencies/$defs/photovoltaic",
+                    "description": "The photovoltaic efficiency of a component which uses irradiance to provide electric power. This efficiency has no units."
+                  },
+                  "solarThermal": {
+                    "$ref": "common.json#/$defs/efficiencies/$defs/solarThermal",
+                    "description": "The solar thermal efficiency of a component which uses irradiance to provide heat."
+                  }
+                },
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": []
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": []
+          },
+          "additionalItems": false,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "characteristics": {
+      "type": "object",
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "dynamic",
+              "stationary"
+            ],
+            "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "maxItems": 1
+        },
+        "coordinateSystem": {
+          "$ref": "geometry.json#/$defs/coordinateSystem",
+          "description": "The coordinate system is defined by a reference to a publication or standard."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "conditions"
+      ]
+    },
+    "uValue": {
+      "$ref": "number.json#/$defs/numberWithUncertainty",
+      "description": "The U value, also known as thermal transmittance, can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
+    },
+    "gValue": {
+      "$ref": "number.json#/$defs/numberWithUncertainty",
+      "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
+    }
+  },
+  "$ref": "#/$defs/calorimetric"
+}

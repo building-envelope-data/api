@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/string.json",
+  "title": "string types",
+  "description": "This section defines types for strings",
+  "$defs": {
+    "string": {
+      "type": "string",
+      "description": "If a string depends in no case on a language and if no restrictions on the string are possible, then this type is used."
+    },
+    "latinString": {
+      "$ref": "#/$defs/string",
+      "description": "If a string MUST use the Latin alphabet, the this type is used."
+    },
+    "internationalString": {
+      "type": "object",
+      "properties": {
+        "en-US": {
+          "$ref": "#/$defs/latinString",
+          "description": "A string in American English."
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": [
+        "en-US"
+      ],
+      "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
+    }
+  }
+}

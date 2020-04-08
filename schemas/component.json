@@ -1,0 +1,635 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/component.json",
+  "title": "component data",
+  "description": "This section collects the definitions regarding components of building envelopes",
+  "$defs": {
+    "component": {
+      "title": "This section collects the basic definitions about a component.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/centralOrDecentral",
+          "description": "This id represents the component. A component as a general product has usually a central identifier. One specific instance of this component in a specific building has usually a decentral identifier."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The name of the component"
+        },
+        "abbreviation": {
+          "$ref": "string.json#/$defs/latinString",
+          "description": "The abbreviation of the component in Latin alphabet"
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "An explanation with more details about the component"
+        },
+        "version": {
+          "$ref": "identifier.json#/$defs/centralOrDecentral",
+          "description": "The id represents the version of the component."
+        },
+        "relations": {
+          "title": "The current component can have relations to other components. These relations can range in the dimension between a very general component such as a general product and and a very concretized component such as a specific component in a specific buildling. A second dimension of relation ranges from being part of another assembled component to being an assembly of other components. A third dimension are variants of components. They share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly. In this section, these relations between components can be defined.",
+          "type": "object",
+          "properties": {
+            "concretizationOf": {
+              "$ref": "identifier.json#/$defs/centralOrDecentral",
+              "description": "The current component is a concretization of a more general component. The more general component is identified by this id."
+            },
+            "generalizationOf": {
+              "type": "array",
+              "items": {
+                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                "description": "The current component is a generalization of a more concretized component. The more concretized component is identified by this id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "variantOf": {
+              "type": "array",
+              "items": {
+                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                "description": "The current component is neither a concretization nor a generalization nor an assembly or a part of a second component. But it is a variant of a second component. This means that the current component and the second component share a large part of their characteristics. The second component is identified by this id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "partOf": {
+              "type": "array",
+              "items": {
+                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                "description": "The current component is a part of an assembly of other components. Each of the other components is defined by its id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "assembledOf": {
+              "type": "array",
+              "items": {
+                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                "description": "The current component is an assembly of other components. Each of the other components is defined by its id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "categories": {
+          "$ref": "#/$defs/categories",
+          "description": "The component is categorized in order to facilitate queries."
+        },
+        "characteristics": {
+          "$ref": "#/$defs/characteristics",
+          "description": "This section defines characteristics of a component which do not depend on a specific domain such as 'optical' or 'calorimetric'. Therefore, they are constant and valid for all data sets. Characteristics which may vary between data sets about this component are stored on lower levels of the structure. For example, 'optical/globalCharacteristics' defines characteristics which are specific for optical data, but do not change within one optical data set. 'optical/dataPoints/characteristicsComponent' defines characteristics which vary between dataPoints of one optical data set. This structure aims to reduce the size of the data."
+        },
+        "roles": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "$ref": "stakeholder.json#/$defs/basicStakeholder",
+              "description": "The id and description of the owner of the component"
+            },
+            "manufacturer": {
+              "$ref": "stakeholder.json#/$defs/basicStakeholder",
+              "description": "The id and description of the manufacturer of the component"
+            },
+            "developer": {
+              "$ref": "stakeholder.json#/$defs/developer",
+              "description": "The id and description of the institution or person which developed the component"
+            }
+          }
+        },
+        "approvals": {
+          "$ref": "common.json#/$defs/approvals",
+          "description": "If the dataset for this component has been approved by an institution, this approval is specified here."
+        },
+        "available": {
+          "$ref": "common.json#/$defs/available",
+          "description": "Since when and until when the component has been available"
+        },
+        "optical": {
+          "type": "array",
+          "items": {
+            "$ref": "optical.json"
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "description": "This section is used to define and exchange optical data sets about one component. For example the transmittance and reflectance with specific boundary conditions."
+        },
+        "calorimetric": {
+          "type": "array",
+          "items": {
+            "$ref": "calorimetric.json"
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "description": "This section is used to define and exchange calorimetric data sets about one component. For example the U value, the g value (or Solar Heat Gain Coefficient)."
+        },
+        "photovoltaic": {
+          "$ref": "photovoltaic.json",
+          "title": "This section is used to define and exchange photovoltaic data sets. This means building envelopes which can convert irradiance into electric power."
+        },
+        "hygrothermal": {
+          "$ref": "hygrothermal.json",
+          "description": "This section is used to define and to exchange hygrothermal data about one component. For example, the water vapour diffusion resistance factor and the moisture-dependent thermal conductivity."
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": [
+        "id"
+      ]
+    },
+    "categories": {
+      "title": "This section defines the categories which a component can have.",
+      "type": "object",
+      "properties": {
+        "componentType": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "material",
+              "layer",
+              "unit"
+            ],
+            "description": "A building envelope component can have one or more of the following categories. (i) If the component is a plain material, for example a sheet which could be used to build a blind, the category 'material' should be used. (ii) If the component can be treated as a layer for optical simulations of a stack of layers, then the category 'layer' should be used. Venetian blinds are one example of a layer. The center-of-glazing values are important for the simulation of a stack of layers. (iii) If the width, the height and the edges of the component are well defined, then the category 'unit' should be used. For example a window with frame and shading system."
+          },
+          "additionalItems": false,
+          "minItems": 0
+        },
+        "material": {
+          "type": "array",
+          "items": {
+            "$ref": "material.json#/$defs/category"
+          },
+          "additionalItems": false,
+          "minItems": 0,
+          "description": "If the component has the 'componentType':'material', then it can have the material categories defined in this section."
+        },
+        "layer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/layerCategory"
+          },
+          "additionalItems": false,
+          "minItems": 0,
+          "description": "If the component has the 'componentType':'layer', then it can have the layer categories defined in this section."
+        },
+        "unit": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/unitCategory"
+          },
+          "additionalItems": false,
+          "minItems": 0,
+          "description": "If the component has the 'componentType':'unit', then it can have the unit categories defined in this section."
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "version": {
+      "title": "This section provides definitions about a version of a component.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/centralOrDecentral",
+          "description": "This id represents a specific version of a component."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "If the version of the component has a specific name or version number, it can be entered here."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "Here the version can be described in free text."
+        },
+        "roles": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "$ref": "stakeholder.json#/$defs/basicStakeholder",
+              "description": "The id and description of the owner of the component"
+            },
+            "manufacturer": {
+              "$ref": "stakeholder.json#/$defs/basicStakeholder",
+              "description": "The id and description of the manufacturer of the component"
+            },
+            "developer": {
+              "$ref": "stakeholder.json#/$defs/developer",
+              "description": "The id and description of the institution or person which developed the component"
+            }
+          }
+        },
+        "available": {
+          "$ref": "common.json#/$defs/available",
+          "description": "Since when and until when the component has been available"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "characteristics": {
+      "title": "This section defines which characteristics a component can have which do not change between different data sets about this component.",
+      "type": "object",
+      "properties": {
+        "geometry": {
+          "title": "This section defines the geometry of the component which can either be an assembly or a single component.",
+          "oneOf": [
+            {
+              "$ref": "geometry.json"
+            },
+            {
+              "$ref": "#/$defs/assembly"
+            }
+          ]
+        },
+        "airPermeability": {
+          "title": "Air permeability quantifies how easy air can flow through the component.",
+          "type": "object",
+          "properties": {
+            "permeabilityFactor": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "The Permeability Factor (PF) is defined by AERC 1.1 Appendix F."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "colour": {
+          "$ref": "common.json#/$defs/colour",
+          "description": "The reference offers several way to define the colour of the component."
+        },
+        "cutOff": {
+          "$ref": "number.json#/$defs/degree",
+          "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."
+        },
+        "chemicalElements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "[A-Z][a-z]?"
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "maxItems": 10,
+          "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
+        },
+        "material": {
+          "$ref": "material.json#/$defs/characteristics",
+          "description": "If the component is a material, the material-specific characteristics can be named here."
+        },
+        "layer": {
+          "$ref": "#/$defs/layerCharacteristics",
+          "description": "If the component is a layer, the layer-specific characteristics can be named here."
+        },
+        "unit": {
+          "$ref": "#/$defs/unitCharacteristics",
+          "description": "If the component is a unit, the unit-specific characteristics can be named here."
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "layerCategory": {
+      "type": "string",
+      "enum": [
+        "appliedFilm",
+        "arm",
+        "austrian",
+        "awning",
+        "alind",
+        "briseSoleil",
+        "cell",
+        "coated",
+        "concertina",
+        "conservatory",
+        "drapes",
+        "dutch",
+        "external",
+        "fabric",
+        "facade",
+        "festoon",
+        "fixed",
+        "folding",
+        "fritted",
+        "glass",
+        "glazing",
+        "guided",
+        "hinged",
+        "honeycomb",
+        "insect",
+        "laminate",
+        "louvered",
+        "marquisolette",
+        "monolithic",
+        "nonWoven",
+        "panel",
+        "perforated",
+        "pergola",
+        "pivot",
+        "plantation",
+        "pleated",
+        "quilts",
+        "roll-up",
+        "roller",
+        "roman",
+        "roof",
+        "screen",
+        "shade",
+        "shutter",
+        "slat",
+        "slide",
+        "sliding",
+        "solar",
+        "terrace",
+        "treillis",
+        "venetian",
+        "vertical",
+        "window",
+        "woven"
+      ],
+      "description": "Components of the category layer can have the subcategories of this enumeration which further specifies the layer."
+    },
+    "layerCharacteristics": {
+      "title": "This section collect the characteristics of components of the category 'layer'.",
+      "type": "object",
+      "properties": {
+        "possiblePositions": {
+          "$ref": "common.json#/$defs/possiblePositions",
+          "description": "PossiblePositions defines where the layer can be used."
+        },
+        "orientationAxis": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "horizontal",
+              "vertical"
+            ],
+            "description": "The orientation axis is important for example for venetian blinds."
+          },
+          "additionalItems": false,
+          "minItems": 0,
+          "maxItems": 1
+        },
+        "slat": {
+          "title": "For example venetian blinds consist of many slats. This section is used to define characteristics for such slats.",
+          "type": "object",
+          "properties": {
+            "width": {
+              "$ref": "number.json#/$defs/meter",
+              "description": "The width of the slat"
+            },
+            "thickness": {
+              "$ref": "number.json#/$defs/meterWithUncertainty",
+              "description": "If the slat is made from a sheet or plate with a certain thickness, this thickness can be defined here. It has the SI units meter."
+            },
+            "pitch": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
+            },
+            "crownHeight": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
+            },
+            "shape": {
+              "oneOf": [
+                {
+                  "$ref": "geometry.json#/$defs/nurbsBoundedCurve",
+                  "description": "Usually, the shape of a slat is best described by a 2D curve of its cross section."
+                },
+                {
+                  "$ref": "geometry.json#/$defs/nurbsBoundedSurface",
+                  "description": "If the shape of the slats needs to be defined in 3D, a surface can be used."
+                }
+              ]
+            },
+            "angles": {
+              "type": "object",
+              "properties": {
+                "tilt": {
+                  "$ref": "common.json#/$defs/angles/$defs/tilt",
+                  "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
+                },
+                "maximumClosing": {
+                  "$ref": "common.json#/$defs/angles/$defs/maximumClosing",
+                  "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1,
+              "required": []
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "gaps": {
+          "$ref": "#/$defs/gaps",
+          "description": "This section defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "unitCategory": {
+      "type": "string",
+      "enum": [
+        "blind",
+        "cladding",
+        "glazing",
+        "prefabricatedFacadeElement",
+        "projectingComponent",
+        "transomMullionFacade",
+        "appliedFilm",
+        "coated",
+        "frittedGlass",
+        "laminate",
+        "monolithic",
+        "arm",
+        "austrian",
+        "awning",
+        "alind",
+        "briseSoleil",
+        "concertina",
+        "conservatory",
+        "drapes",
+        "dutch",
+        "external",
+        "facade",
+        "festoon",
+        "fixed",
+        "folding",
+        "guided",
+        "hinged",
+        "honeycomb",
+        "insect",
+        "marquisolette",
+        "panel",
+        "pergola",
+        "pivot",
+        "plantation",
+        "pleated",
+        "quilts",
+        "roll-up",
+        "roller",
+        "roman",
+        "roof",
+        "screen",
+        "shutter",
+        "slat",
+        "slide",
+        "sliding",
+        "solar",
+        "terrace",
+        "treillis",
+        "venetian",
+        "vertical",
+        "window"
+      ],
+      "description": "Components of the category unit can have the subcategories of this enumeration which further specifies the unit."
+    },
+    "unitCharacteristics": {
+      "title": "This section collects the characteristics of components of the category 'unit'.",
+      "type": "object",
+      "properties": {
+        "possiblePositions": {
+          "$ref": "common.json#/$defs/possiblePositions",
+          "description": "PossiblePositions defines where the unit can be used."
+        },
+        "gaps": {
+          "$ref": "#/$defs/gaps",
+          "description": "This section defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "gaps": {
+      "title": "The gaps for example between a blind and the frame can be important for example regarding glare.",
+      "type": "object",
+      "properties": {
+        "reveal": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "inside",
+              "outside",
+              "other"
+            ],
+            "description": "The item defines whether the shading is inside the reveal or outside or something beyond both categories."
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "maxItems": 1
+        },
+        "dTop": {
+          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "description": "dTop is usually the distance between the top of the shading and the rest of the building envelope. It is defined exactly in the reference below."
+        },
+        "dBot": {
+          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "description": "dBot is usually the distance between the bottom of the shading and the rest of the building envelope. It is defined exactly in the reference below."
+        },
+        "dSide": {
+          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "description": "dSide is usually the minimum thickness of the air gap between the side of the shading layer and the rest of the building envelope. It is defined exactly in the reference below."
+        },
+        "dGlaz": {
+          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "description": "dGlaz is usually the distance between the shading and the glass pane facing the shading. It is defined exactly in the reference below."
+        },
+        "reference": {
+          "$ref": "common.json#/$defs/reference",
+          "description": "This reference defines all parameters of this object."
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "assembly": {
+      "title": "One component can either consist of a single component or of an assembly of components. This section is used to define an assembly of components. Each item of the array defines one component of the assembly.",
+      "type": "object",
+      "properties": {
+        "coordinateSystemAssembly": {
+          "$ref": "geometry.json#/$defs/coordinateSystem",
+          "description": "Definition of the coordinate system of the assembly."
+        },
+        "assemblyList": {
+          "title": "This list defines subcomponents which are used for this assembly.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                "description": "The id represents a specific component of the assembly."
+              },
+              "geometry": {
+                "$ref": "geometry.json",
+                "description": "The reference defines the geometry of the component."
+              },
+              "coordinateSystemComponent": {
+                "title": "The assembly has a coordinate system and each component has its own coordinate system. This section defines coordinates of the origin and axis of the component within the coordinate system of the assembly. Often, it is easier to define this relation than to convert all geometries into the coordinate system of the assembly.",
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "$ref": "geometry.json#/$defs/point",
+                    "description": "This point defines the coordinates of the origin of the component within the coordinate system of the assembly."
+                  },
+                  "firstAxis": {
+                    "$ref": "geometry.json#/$defs/vector",
+                    "description": "The coordinate system of the component has three axis. This vector defines the direction of the first axis within the coordinate system of the assembly."
+                  },
+                  "secondAxis": {
+                    "$ref": "geometry.json#/$defs/vector",
+                    "description": "The coordinate system of the component has three axis. This vector defines the direction of the second axis within the coordinate system of the assembly."
+                  },
+                  "thirdAxis": {
+                    "$ref": "geometry.json#/$defs/vector",
+                    "description": "The coordinate system of the component has three axis. This vector defines the direction of the third axis within the coordinate system of the assembly."
+                  }
+                },
+                "additionalProperties": false,
+                "minProperties": 4,
+                "maxProperties": 4,
+                "required": [
+                  "origin",
+                  "firstAxis",
+                  "secondAxis",
+                  "thirdAxis"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": [
+              "id"
+            ]
+          },
+          "additionalItems": false,
+          "minItems": 2
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": [
+        "assemblyList"
+      ]
+    }
+  },
+  "$ref": "#/$defs/component"
+}
