@@ -5,6 +5,9 @@
             "explanation": {
                 "en-US": "This is an example of all key value pairs for the hygrothermal data about a component."
             },
+            "roles": {
+                "manufacturer": "75263c05-d81a-41f0-825b-fc8446532fe9"
+            },
             "hygrothermal": {
                 "WUFI": {
                     "id": {
