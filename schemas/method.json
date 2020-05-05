@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/method.json",
+  "title": "method data",
+  "description": "",
+  "$defs": {
+    "method": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/central",
+          "description": "This id represents the method which is specified below."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The name of the method."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "Here the method can be described in free text."
+        },
+        "categories": {
+          "type": "array",
+          "title": "With this array, it is defined whether the method is a measurement or a calculation only or both.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "calculation",
+              "measurement"
+            ]
+          },
+          "additionalItems": false,
+          "minItems": 1
+        },
+        "developer": {
+          "$ref": "stakeholder.json#/$defs/developer",
+          "description": "This section defines who developed the method."
+        },
+        "reference": {
+          "$ref": "common.json#/$defs/reference",
+          "description": "If the method is an implementation of a standard or of a procedure described in a publication, this reference can be defined here."
+        },
+        "created": {
+          "$ref": "common.json#/$defs/created",
+          "description": "This date defines when the method was created."
+        },
+        "valid": {
+          "$ref": "common.json#/$defs/valid",
+          "description": "Here you can define since when the method is valid and until when. This can be helpful for example when a regulation or standard changes."
+        },
+        "available": {
+          "$ref": "common.json#/$defs/available",
+          "description": "Here you can define since when the method has been available and until when. This can be helpful for example when a method is shared considerably later than when it was created. You can also use it to define that the method may have been available for a long time even though it may not be valid for the whole time of its availability."
+        },
+        "calculation": {
+          "$ref": "#/$defs/calculation",
+          "description": "Here you can define the calculation procedure in detail."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "calculation": {
+      "title": "This section is used to refer to a web address which defines the calculation procedure in detail.",
+      "$ref": "common.json#/$defs/webAddress",
+      "description": "If the calculation procedure is open, the web address should refer to the repository for example at github.com. If the calculation procedure is closed, the web address should provide an explanation of procedure and may describe options to download executables."
+    },
+    "origin": {
+      "title": "Origin can be used to define how the data was created.",
+      "type": "object",
+      "properties": {
+        "creator": {
+          "$ref": "stakeholder.json#/$defs/creator",
+          "description": "The creator of the new dataset is identified here."
+        },
+        "method": {
+          "$ref": "#/$defs/method",
+          "description": "The method which has been applied by the creator on the source data is identified here. This method may be a combination of submethods."
+        },
+        "source": {
+          "$ref": "#/$defs/source",
+          "description": "The source data has been the starting point for the creator. If the method is a measurement, there may be no source data."
+        },
+        "database": {
+          "$ref": "#/$defs/database",
+          "description": "The database, where the source data and the method can be found, is identified here."
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
+    },
+    "source": {
+      "title": "The source data is the data which has been the starting point and on which a method was applied by the creator of the new data set.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "The id represents the data source."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "A data set can have a name."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "This string can explain the source data for humans."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "database": {
+      "description": "Information about a database which has implemented the same API specification.",
+      "type": "object",
+      "properties": {
+        "webAddress": {
+          "$ref": "common.json#/$defs/webAddress",
+          "description": "The database is identified by its API endpoint."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The name of the database"
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "A description of the database"
+        },
+        "owner": {
+          "$ref": "stakeholder.json#/$defs/basicStakeholder",
+          "description": "The institution which owns the database"
+        },
+        "admin": {
+          "$ref": "stakeholder.json#/$defs/basicStakeholder",
+          "description": "The institution which administrates the database"
+        },
+        "created": {
+          "$ref": "common.json#/$defs/created",
+          "description": "When the database was created"
+        },
+        "valid": {
+          "$ref": "common.json#/$defs/valid",
+          "description": "For which timespan the data of the database is valid"
+        },
+        "available": {
+          "$ref": "common.json#/$defs/available",
+          "description": "For which timespan the database is or was available"
+        },
+        "internalComment": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "If there are any specific issues with a database, the administrators can use this string."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "webAddress"
+      ]
+    }
+  },
+  "$ref": "#/$defs/method"
+}

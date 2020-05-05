@@ -10,31 +10,37 @@
             },
             "optical": [
                 {
-                    "id": "4e463235-88f0-4a04-890d-8aa05879c519",
+                    "id": {
+                        "uniqueId": "4e463235-88f0-4a04-890d-8aa05879c519"
+                    },
                     "explanation": {
                         "en-US": "This data is provided at page 2 of the file defined below."
                     },
                     "file": {
-                        "webAdress": "http://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf"
+                        "webAddress": "http://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf"
                     },
                     "dataPoints": [
                         {
                             "incidence": {
                                 "direction": [
-                                    "nearnormal"
+                                    [
+                                        "nearnormal"
+                                    ]
                                 ],
                                 "wavelengths": {
                                     "integral": true
                                 },
                                 "range": {
                                     "spectrum": [
-                                        "visual"
+                                        "visible"
                                     ]
                                 }
                             },
                             "emergence": {
                                 "direction": [
-                                    "hemispherical"
+                                    [
+                                        "hemispherical"
+                                    ]
                                 ]
                             },
                             "results": {
@@ -48,17 +54,21 @@
             ],
             "calorimetric": [
                 {
-                    "id": "f68e3624-7319-419a-aecb-da0564ee185d",
+                    "id": {
+                        "uniqueId": "f68e3624-7319-419a-aecb-da0564ee185d"
+                    },
                     "explanation": {
                         "en-US": "This data is provided at page 2 of the file defined below."
                     },
                     "file": {
-                        "webAdress": "http://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf"
+                        "webAddress": "http://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf"
                     },
                     "results": [
                         {
                             "area": {
-                                "category": "centre"
+                                "category": [
+                                    "centre"
+                                ]
                             },
                             "gValue": {
                                 "uncertainValue": 0.32
@@ -78,19 +88,23 @@
             },
             "calorimetric": [
                 {
-                    "id": "15988df6-0d0c-11ea-8d71-362b9e155667",
+                    "id": {
+                        "uniqueId": "15988df6-0d0c-11ea-8d71-362b9e155667"
+                    },
                     "explanation": {
                         "en-US": "This data is provided at page 2 of the file defined below."
                     },
                     "file": {
-                        "webAdress": "http://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf"
+                        "webAddress": "http://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf"
                     },
                     "results": [
                         {
                             "area": {
-                                "category": "centre"
+                                "category": [
+                                    "centre"
+                                ]
                             },
-                            "Uvalue": {
+                            "uValue": {
                                 "uncertainValue": 1.1
                             },
                             "gValue": {

@@ -1,0 +1,45 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://www.buildingenvelopedata.org/schemas/hygrothermal.json",
+    "title": "hygrothermal data",
+    "description": "",
+    "$defs": {
+        "hygrothermal": {
+            "title": "This section is used to define the hygrothermal data of a component.",
+            "type": "object",
+            "properties": {
+                "WUFI": {
+                    "title": "Hgrothermal data from the database of WUFI.de.",
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "$ref": "identifier.json#/$defs/decentral",
+                            "description": "The id represents the hygrothermal data set."
+                        },
+                        "explanation": {
+                            "$ref": "string.json#/$defs/internationalString",
+                            "description": "An explanation with more details about the hygrothermal data in natural language."
+                        },
+                        "formatting": {
+                            "$ref": "common.json#/$defs/webAddress",
+                            "description": "The web address provides a definition of the format of the 'xmlData'."
+                        },
+                        "xmlData": {
+                            "$ref": "string.json#/$defs/latinString",
+                            "description": "The string contains the hygrothermal data for this data according to the format which is specified by 'formatting'."
+                        }
+                    },
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "required": [
+                        "xmlData"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": []
+        }
+    },
+    "$ref": "#/$defs/hygrothermal"
+}

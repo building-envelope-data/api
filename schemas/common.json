@@ -1,0 +1,441 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/common.json",
+  "title": "common definitions",
+  "description": "",
+  "$defs": {
+    "webAddress": {
+      "type": "string",
+      "format": "uri",
+      "description": "In extension to the validation keyword `hostname`, a `webAddress` includes a `scheme` like https and possibly a `path` like /folder/item. TODO: Add an additional regex which checks whether the uri contains a `hostname`."
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date when this data was first stored in the database."
+    },
+    "valid": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The earliest date for which the data is valid."
+        },
+        "until": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The latest date for which the data is valid."
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
+    },
+    "available": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The earliest date at which it was available."
+        },
+        "until": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The latest date at which it was available."
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
+    },
+    "reference": {
+      "title": "This section is used to refer to one standard or one publication.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "standard": {
+              "$ref": "#/$defs/standard",
+              "description": "This section defines which standard is refered to."
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "standard"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "publication": {
+              "$ref": "#/$defs/publication",
+              "description": "This section defines which publication is refered to."
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "publication"
+          ]
+        }
+      ]
+    },
+    "publication": {
+      "type": "object",
+      "properties": {
+        "identifiers": {
+          "title": "For publications, there cannot be a single institution guaranteeing the uniqueness of ids. Therefore, several options to define a publication are presented starting with the most important ones.",
+          "type": "object",
+          "properties": {
+            "doi": {
+              "type": "string",
+              "pattern": "(10[.][0-z/.]*)",
+              "description": "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication. TODO: Improve the regex pattern to further restrict the string."
+            },
+            "arXiv": {
+              "type": "string",
+              "pattern": "(arXiv:)[0-z./]*",
+              "description": "arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
+            },
+            "urn": {
+              "type": "string",
+              "pattern": "(urn:)[0-z:./-]*",
+              "description": "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
+            },
+            "webAddress": {
+              "$ref": "#/$defs/webAddress",
+              "description": "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "title": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The title of the publication"
+        },
+        "abstract": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The abstract of the publication"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "$ref": "stakeholder.json#/$defs/author",
+            "description": "This array lists all persons which have authored the publication"
+          },
+          "additionalItems": false,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "identifiers"
+      ]
+    },
+    "standard": {
+      "title": "Standards are a special kind of publications. Therefore their data structure is different from publications.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/central",
+          "description": "The id represents this specific standard."
+        },
+        "title": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The full title of the standard"
+        },
+        "abstract": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The abstract of the standard"
+        },
+        "standardizerIds": {
+          "type": "array",
+          "items": {
+            "$ref": "identifier.json#/$defs/central",
+            "description": "Each institution which has created this standard is defined here by its id."
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their id."
+        },
+        "numeration": {
+          "type": "object",
+          "properties": {
+            "prefix": {
+              "$ref": "string.json#/$defs/string"
+            },
+            "mainNumber": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "suffix": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          },
+          "additionalProperties": false,
+          "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the abbreviations for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
+          "required": [
+            "mainNumber"
+          ]
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1800,
+          "maximum": 2200,
+          "description": "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
+        },
+        "section": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The section of the standard to which the reference refers to."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "standardizerIds",
+        "numeration"
+      ],
+      "description": "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
+    },
+    "currentVoltage": {
+      "title": "The current-voltage characteristic can be important for example for photovoltaics.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "I": {
+            "$ref": "number.json#/$defs/ampere",
+            "description": "The electric current in amperes."
+          },
+          "V": {
+            "$ref": "number.json#/$defs/volt",
+            "description": "The electric potential difference in volts."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "I",
+          "V"
+        ]
+      },
+      "additionalItems": false,
+      "minItem": 1
+    },
+    "approvals": {
+      "title": "If the validity of a data is important, this section can be used to express the approval of a institution with a cryptographic signature. It's an array, because there may be approvals of several institutions for the same data.",
+      "type": "array",
+      "items": {
+        "$ref": "common.json#/$defs/approval"
+      },
+      "additionalItems": false,
+      "minItems": 1
+    },
+    "approval": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "The id represents this approval."
+        },
+        "approver": {
+          "$ref": "identifier.json#/$defs/central",
+          "description": "This id represents The stakeholder who approved the data."
+        },
+        "verify": {
+          "$ref": "common.json#/$defs/approvalVerification",
+          "description": "This section defines how the approval can be verified."
+        },
+        "signature": {
+          "$ref": "string.json#/$defs/string",
+          "description": "This string defines the cryptographic signature of the approved data."
+        },
+        "created": {
+          "$ref": "common.json#/$defs/created",
+          "description": "When the approval was created"
+        },
+        "valid": {
+          "$ref": "common.json#/$defs/valid",
+          "description": "For which timespan the approval is valid"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "approver"
+      ]
+    },
+    "approvalVerification": {
+      "title": "How to verify the approval",
+      "type": "object",
+      "properties": {
+        "website": {
+          "$ref": "common.json#/$defs/webAddress",
+          "description": "The URL of the website where the approval can be verified."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "Explanation how the approval can be verified"
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "angles": {
+      "title": "This sections defines angles which are helpful to characterize building envelopes.",
+      "$defs": {
+        "tilt": {
+          "$ref": "number.json#/$defs/degree",
+          "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
+        },
+        "maximumClosing": {
+          "$ref": "number.json#/$defs/degree",
+          "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
+        }
+      }
+    },
+    "efficiencies": {
+      "title": "For the conversion of energy into another, this section provides definitions for effiencies.",
+      "$defs": {
+        "photovoltaic": {
+          "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
+          "description": "The photovoltaic efficiency of a component which uses irradiance to provide electric power."
+        },
+        "solarThermal": {
+          "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
+          "description": "The solar thermal efficiency of a component which uses irradiance to provide heat."
+        },
+        "inverter": {
+          "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
+          "description": "The efficiency of an inverter which converts for example direct current into alternating current."
+        }
+      }
+    },
+    "file": {
+      "title": "This section defines the data of a specific file.",
+      "type": "object",
+      "properties": {
+        "webAddress": {
+          "$ref": "common.json#/$defs/webAddress",
+          "description": "The file can be downloaded directly from this URL."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The file name"
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "An explanation of the file"
+        },
+        "formatting": {
+          "$ref": "#/$defs/formatting",
+          "description": "The definition of the format of the file"
+        },
+        "creator": {
+          "$ref": "stakeholder.json#/$defs/creator",
+          "description": "The stakeholder who has created this file"
+        },
+        "approvals": {
+          "$ref": "common.json#/$defs/approvals",
+          "description": "This section contains approvals of the file"
+        },
+        "created": {
+          "$ref": "common.json#/$defs/created",
+          "description": "The date when the file was created"
+        },
+        "valid": {
+          "$ref": "common.json#/$defs/valid",
+          "description": "The timespan during which the file was valid"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "webAddress"
+      ]
+    },
+    "formatting": {
+      "title": "This section is used to define the format of data.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "The id represents this specific format."
+        },
+        "abbreviation": {
+          "$ref": "string.json#/$defs/latinString",
+          "description": "The abbreviation of the format in Latin alphabet."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The full name of the format"
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The decription of the format"
+        },
+        "version": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "This id represents a specific version of the format."
+        },
+        "reference": {
+          "$ref": "common.json#/$defs/reference",
+          "description": "If the format is defined in a standard or a publication, this reference can be defined here."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "colour": {
+      "description": "This section offers several ways to define the colour of a component",
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The name of the colour in common language"
+        },
+        "CRI": {
+          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "description": "The Colour Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
+        },
+        "CIELAB": {
+          "type": "object",
+          "properties": {
+            "L*": {
+              "$ref": "number.json#/$defs/numberWithUncertainty"
+            },
+            "a*": {
+              "$ref": "number.json#/$defs/numberWithUncertainty"
+            },
+            "b*": {
+              "$ref": "number.json#/$defs/numberWithUncertainty"
+            }
+          },
+          "description": "The three parameters L*, a* and b* from CIE define the colour as well as the brightness."
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "possiblePositions": {
+      "title": "The locations where a component can be used",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "exterior",
+          "asBuildingEnvelope",
+          "inBetween",
+          "interior"
+        ],
+        "description": "(i) 'exterior' means that the component can be used on the external side of the building envelope. (ii) 'asBuildingEnvelope' means that the component can be used as building envelope without any additional components. (iii) 'inBetween' means that the component can be used within building envelope for example between two glass panes. (iv) 'interior' means that the component can be used on the internal side of the building envelope."
+      },
+      "additionalItems": false,
+      "minItems": 0
+    }
+  }
+}

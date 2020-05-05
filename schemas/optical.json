@@ -1,0 +1,621 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/optical.json",
+  "title": "optical data",
+  "description": "",
+  "$defs": {
+    "optical": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "The id represents the optical data set."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "If the optical data set has a name, it can be indicated here."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "This string can explain humans the optical data set."
+        },
+        "warnings": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "Some optical data may easily be misinterpreted. The warnings contain critical information for users to avoid typical mistakes."
+        },
+        "origin": {
+          "$ref": "method.json#/$defs/origin",
+          "description": "For traceability, the origin of the data can be defined."
+        },
+        "approvals": {
+          "$ref": "common.json#/$defs/approvals",
+          "description": "If the optical data is approved by stakeholders, a signature can be provided."
+        },
+        "created": {
+          "$ref": "common.json#/$defs/created",
+          "description": "When the optical data was created."
+        },
+        "valid": {
+          "$ref": "common.json#/$defs/valid",
+          "description": "From when and until when the data is valid."
+        },
+        "globalCharacteristicsComponent": {
+          "$ref": "#/$defs/characteristicsComponent",
+          "description": "If one of the characteristics of a component is valid for all 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `dataPoints/characteristicsComponent'."
+        },
+        "file": {
+          "$ref": "common.json#/$defs/file",
+          "description": "The optical data can be provided as a file. If the data is provided as a file and as explicit values below, than it MUST be the same data only in different formats. If one data is derived from another data, it MUST be stored as separate items in the array optical/basics and origin SHOULD be used to identify the method of derivation."
+        },
+        "dataPoints": {
+          "title": "This section provides a list of all data points of this optical data.",
+          "type": "array",
+          "items": {
+            "title": "Each optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation and the optical results.",
+            "type": "object",
+            "properties": {
+              "incidence": {
+                "$ref": "#/$defs/incidence",
+                "description": "This section defines the incident radiation on the component."
+              },
+              "characteristicsComponent": {
+                "$ref": "#/$defs/characteristicsComponent",
+                "description": "If a characteristic of a component varies between 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `optical/globalCharacteristicsComponent'."
+              },
+              "emergence": {
+                "$ref": "#/$defs/emergence",
+                "description": "This section defines the radiation which emerges from the component."
+              },
+              "results": {
+                "$ref": "#/$defs/results",
+                "description": "Results can be for example the transmittance and the reflectance."
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "incidence",
+              "emergence",
+              "results"
+            ]
+          },
+          "additionalItems": false,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "direction": {
+      "title": "This section defines a direction for example of the radiation on a sample. The array offers different ways of describing the direction, for example by two angles.",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "polar": {
+                    "$ref": "number.json#/$defs/degree",
+                    "description": "In the spherical coordinate system, the polar angle is measured from a fixed axis such as the z-axis of a cartesian coordinate system."
+                  },
+                  "azimuth": {
+                    "$ref": "number.json#/$defs/degree",
+                    "description": "In the spherical coordinate system, the azimuth angle is measured from orthogonal projextion of the direction on a reference plane such as the plane between the x- and y-axis of a cartestian coordinate system."
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "polar",
+                  "azimuth"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "xz": {
+                    "$ref": "number.json#/$defs/degree",
+                    "description": "If the z-axis is normal to the building envelope and the x-axis directs for example vertically upwards in a facade,then the angle xz is measured from the z-axis towards the x-axis. 80° is then from the facade almost vertically upwards and -10° means from the facade downwards, but almost horizontal."
+                  },
+                  "yz": {
+                    "$ref": "number.json#/$defs/degree",
+                    "description": "If the z-axis is normal to the building envelope, the x-axis directs for example vertically upwards in a facade and the y-axis is horizontal in an right-handed coordinate system, then the angle yz is measured from the z-axis towards the y axis. From the facade looking to the exterior, 80° means a direction far right, almost parallel to the facade. -10° means from the facade to exterior slightly left, but almost perpendiculat to the facade."
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "xz",
+                  "yz"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "incidence": {
+                    "$ref": "number.json#/$defs/degree",
+                    "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "incidence"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "profile": {
+                    "$ref": "number.json#/$defs/degree",
+                    "description": "If the sample has a profile angle symmetry, then the profile angle is sufficient to define the direction. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample."
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "profile"
+                ]
+              },
+              {
+                "title": "This section should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "diffuse",
+                    "hemispherical",
+                    "nearnormal"
+                  ],
+                  "description": "Nearnormal means a direction almost perpendicular to the sample surface. Hemispherical means all directions into the hemisphere above the sample surface, for example when there is the same irradiance from all directions. Diffuse means all directions except the nearnormal direction. For example, the nearnormal-hemispherical transmittance is always equal to the nearnormal-nearnormal transmittance plus the nearnormal-diffuse transmittance."
+                },
+                "additionalItems": false,
+                "minItems": 1,
+                "maxItems": 1
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "formatting": {
+                "$ref": "common.json#/$defs/formatting",
+                "description": "The definition of the format of the array below needs to specify how the items of the array can be interpreted as a list of directions. For example, the format can define that the list consists of pairs of polar and azimuth angles."
+              },
+              "list": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "description": "In order to reduze the size of the data, multiple directions can be entered as a list/array."
+                },
+                "additionalItems": false,
+                "minItems": 1
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "formatting",
+              "list"
+            ]
+          }
+        ]
+      },
+      "additionalItems": false,
+      "minItems": 1
+    },
+    "polarisation": {
+      "title": "Polarization is a characteristic of radiation which can influence the transmittance and the reflectance. Radiation can be polarized linearly or circular.",
+      "type": "object",
+      "properties": {
+        "linear": {
+          "type": "object",
+          "properties": {
+            "s": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "This property represents the fraction of radiation with its electric field perpendicular to the plane of incidence of the radiation on the sample. s is usually between 0 and 1. Only in raw data there may be exceptions because of the uncertainty. However, s can never be below 0-uncertainty or larger than 1+uncertainty."
+            },
+            "p": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "This property represents the fraction of radiation with its electric field parallel to the plane of incidence of the radiation on the sample. p is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "s",
+            "p"
+          ]
+        },
+        "circular": {
+          "type": "object",
+          "properties": {
+            "l": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "This property represents the fraction of radiation with its electric field rotating in a left-hand sense with respect to the direction of radiation. l is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
+            },
+            "r": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "This property represents the fraction of radiation with its electric field rotating in a right-hand sense with respect to the direction of radiation. r is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "l",
+            "r"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "wavelengths": {
+      "title": "This section offers three options to define the wavelength of radiation: either as a single wavelength, as an array of wavelenghts or as an integral over many wavelengths.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "wavelength": {
+              "$ref": "number.json#/$defs/nanometer",
+              "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/$defs/wavelengthRange/bandwidth`."
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "wavelength"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "list": {
+              "type": "array",
+              "items": {
+                "$ref": "number.json#/$defs/nanometer",
+                "description": "An list of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/$defs/wavelengthRange/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "list"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "integral": {
+              "type": "boolean",
+              "description": "This flag indicates that an integral over many wavelenthgs is considered here. Under `#/$defs/wavelengthRange/spectrum`, the spectrum can be specified over which the integral result is calculated."
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "integral"
+          ]
+        }
+      ]
+    },
+    "wavelengthRange": {
+      "title": "The range can either define the bandwidth or amplification factor of measuring a single wavelength or an entire spectrum of wavenlengths which is measured at the same time.",
+      "oneOf": [
+        {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "bandwidth": {
+                  "$ref": "number.json#/$defs/nanometer",
+                  "description": "When `#/$defs/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/$defs/wavelengths/wavelength`."
+                }
+              },
+              "additionalProperties": false,
+              "required": []
+            },
+            {
+              "type": "object",
+              "properties": {
+                "amplificationFactor": {
+                  "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
+                  "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/$defs/wavelengths/wavelength`."
+                }
+              },
+              "additionalProperties": false,
+              "required": []
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "spectrum": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "infrared",
+                  "solar",
+                  "visible"
+                ],
+                "description": "If `#/$defs/wavelengths/integral` is true, then `#/$defs/wavelengthRange/spectrum` identifies the spectrum of wavelengths over which the integral result is be calculated. For further specification of the spectrum, please search for the applied `#/$defs/standard`."
+              },
+              "additionalItems": false,
+              "minItems": 1,
+              "maxItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "required": []
+        }
+      ]
+    },
+    "incidence": {
+      "title": "This section defines the incident radiation on a sample. It consists of the direction of the irradiance, its polarization, the wavelenthgs and the range of the wavelengths.",
+      "type": "object",
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/direction"
+        },
+        "polarisation": {
+          "$ref": "#/$defs/polarisation"
+        },
+        "wavelengths": {
+          "$ref": "#/$defs/wavelengths"
+        },
+        "range": {
+          "$ref": "#/$defs/wavelengthRange"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "direction"
+      ]
+    },
+    "emergence": {
+      "title": "This section defines the emergent radiation on a sample. It consists of the direction of the emergence, its polarization, the wavelenthgs and the range of the wavelengths.",
+      "type": "object",
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/direction"
+        },
+        "polarisation": {
+          "$ref": "#/$defs/polarisation"
+        },
+        "wavelengths": {
+          "$ref": "#/$defs/wavelengths"
+        },
+        "range": {
+          "$ref": "#/$defs/wavelengthRange"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "direction"
+      ]
+    },
+    "characteristicsComponent": {
+      "title": "This section defines parameters for optical measurements and simulations. The parameters are lated used either as optical/characteristics or optical/variables.",
+      "type": "object",
+      "properties": {
+        "treatmentBefore": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "$ref": "common.json#/$defs/reference",
+              "description": "This reference defines any treatment performed on the sample before measurement."
+            }
+          },
+          "additionalProperties": false,
+          "required": []
+        },
+        "locationOnSample": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "$ref": "common.json#/$defs/reference",
+              "description": "This reference can define the location of measurement on the sample."
+            }
+          },
+          "additionalProperties": false,
+          "required": []
+        },
+        "polarizationSensitivity": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "$ref": "common.json#/$defs/reference",
+              "description": "This reference defines the polarization sensitivity of the receiver of the optical measurement."
+            }
+          },
+          "additionalProperties": false,
+          "required": []
+        },
+        "instrumentSignature": {
+          "$ref": "number.json#/$defs/nonNegativeNumber",
+          "description": "The instrument signature is defined as the mean scatter leel detected when there is no sample scatter present."
+        },
+        "normalization": {
+          "type": "array",
+          "items": [
+            "absolute",
+            "relative",
+            "specular",
+            "diffuseReflectance"
+          ],
+          "additionalItems": false,
+          "minItems": 1,
+          "description": "The normalization methods absolute, relative, specular and diffuse reflectance are defined by ASTM E2387-05:2011.",
+          "required": []
+        },
+        "coordinateSystem": {
+          "$ref": "geometry.json#/$defs/coordinateSystem",
+          "description": "The coordinate system is defined by a reference to a publication or standard."
+        },
+        "referenceSample": {
+          "$ref": "common.json#/$defs/reference",
+          "description": "Optical measurements can depend on the reference sample which is used. The reference defines this reference sample."
+        },
+        "spot": {
+          "$ref": "common.json#/$defs/reference",
+          "description": "The reference defines the size and profile of the irradiance on the sample."
+        },
+        "tilt": {
+          "$ref": "common.json#/$defs/angles/$defs/tilt",
+          "description": "The tilt angle for example of venetian blinds."
+        },
+        "symmetries": {
+          "$ref": "#/$defs/symmetries",
+          "description": "Symmetries of the optical characteristics can be used to reduce the necessary measurements and simulations."
+        },
+        "definitionOfSides": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "$ref": "common.json#/$defs/reference",
+              "description": "A reference can be used to define which side of the component is defined as non-prime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior. The reference should also define which side of the component is the top side and which is the bottom side."
+            },
+            "explanation": {
+              "$ref": "string.json#/$defs/internationalString",
+              "description": "This string can explain which side of the component is defined as nonPrime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior. The string should also define which side of the component is the top side and which is the bottom side."
+            }
+          }
+        },
+        "side": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "nonPrime",
+              "prime",
+              "symmetric"
+            ],
+            "description": "The item defines whether the incidence is on the nonPrime or the prime side of the sample. Both are defined under 'definitionOfSides'. If the results are the same for both sides, 'symmetric' can be used."
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "maxItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "results": {
+      "title": "This section defines the results of the optical measurement or simulation under the specified boundary conditions.",
+      "oneOf": [
+        {
+          "title": "This is the most verbose form of exchanging optical data and the easiest to understand.",
+          "type": "object",
+          "properties": {
+            "transmittance": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "Transmittance is the ratio between the irradiance which is transmitted through the sample and the irradiance on the the sample. It has values between 0 and 1. Exceptions are usually due to measurement uncertainty."
+            },
+            "reflectance": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "Reflectance is the ratio between the irradiance which is reflected by the sample and the irradiance on the the sample."
+            },
+            "absorptanceEmittance": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "Absorptance is the ratio between the irradiance which is absorbed by the sample and the irradiance on the the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelenghts', the absorptance equals the emittance. For the same 'incidence', 'variables' and 'emergence', the result absorptanceEmittance can be calculated by 'absorptanceEmittance = 1 - transmittance - reflectance'."
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "minProperties": 1
+        },
+        {
+          "title": "This is a less verbose form of exchanging optical data. If it is used, also the 'incidence' and 'emergence' need to use arrays and the formatting of the arrays needs to be well defined.",
+          "type": "object",
+          "properties": {
+            "formatting": {
+              "$ref": "common.json#/$defs/formatting"
+            },
+            "transmittance": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "additionalItems": false,
+              "minItems": 2
+            },
+            "reflectance": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "additionalItems": false,
+              "minItems": 2
+            },
+            "absorptanceEmittance": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "description": "Absorptance is the ratio between the irradiance which is absorbed by the sample and the irradiance on the the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelenghts', the absorptance equals the emittance. For the same 'incidence', 'variables' and 'emergence', the result absorptanceEmittance can be calculated by 'absorptanceEmittance = 1 - transmittance - reflectance'.",
+              "additionalItems": false,
+              "minItems": 2
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "minProperties": 1
+        },
+        {
+          "title": "BSDF means Bidirectional Scattering Distribution Function. It is defined as the emergent radiation PER STERADIAN divided by the incident radiation AND THE COSINE OF THE ANGLE OF EMERGENCE. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This section defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
+          "type": "object",
+          "properties": {
+            "formatting": {
+              "$ref": "common.json#/$defs/formatting"
+            },
+            "BTDF": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "additionalItems": false,
+              "minItems": 2,
+              "description": "BTDF means Bidirectional Transmittance Distribution Function. It is defined as the  radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
+            },
+            "BRDF": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "additionalItems": false,
+              "minItems": 2,
+              "description": "BRDF means Bidirectional Reflectance Distribution Function. It is defined as the  radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "minProperties": 1
+        }
+      ]
+    },
+    "symmetries": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "incidenceAngle",
+          "profileAngle",
+          "mirror",
+          "rotational"
+        ],
+        "description": "(i) A component can have an optical symmetry regarding the angle of incidence. This means that the results are the same for all directions of incidence which have the same incidence angle. (ii) Accordingly, an optical symmetry regarding the profile angle means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a mirror symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. (iv) In the case of a rotational symmetry, the results for some directions of incidence are enough to determine the results for the other directions of incidence by rotating them around the line perpendicular to the surface of the component."
+      },
+      "additionalItems": false,
+      "minItems": 0
+    }
+  },
+  "$ref": "#/$defs/optical"
+}

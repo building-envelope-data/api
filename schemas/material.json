@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/material.json",
+  "title": "material data",
+  "description": "",
+  "$defs": {
+    "material": {
+      "title": "This sections defines a material.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "The id represents the material."
+        },
+        "version": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "This id represents a specific version of the material."
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The name of the material"
+        },
+        "abbreviation": {
+          "$ref": "string.json#/$defs/latinString",
+          "description": "The abbreviation of the material in Latin alphabet."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "An explanation with more details about the component"
+        },
+        "chemicalElements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "[A-Z][a-z]?"
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "maxItems": 10,
+          "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "baseMaterial",
+        "coating",
+        "fabric",
+        "film",
+        "frit",
+        "lath",
+        "monolithic",
+        "nonWoven",
+        "PVB",
+        "slat",
+        "weave"
+      ],
+      "description": "Components of the category material can have the subcategories of this enumeration which further specifies the material."
+    },
+    "characteristics": {
+      "title": "This section collects the characteristics of a material.",
+      "type": "object",
+      "properties": {
+        "refractiveIndex": {
+          "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
+          "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
+        },
+        "density": {
+          "$ref": "number.json#/$defs/kgPerCubicMeterWithUncertainty",
+          "description": "The density is needed to calculate the weigth of the layer."
+        },
+        "possiblePositions": {
+          "$ref": "common.json#/$defs/possiblePositions",
+          "description": "PossiblePositions defines where the material can be used."
+        },
+        "thickness": {
+          "$ref": "number.json#/$defs/meterWithUncertainty",
+          "description": "If the material has to flat parallel surfaces, then the thickness is the distance between both surfaces. It has the SI unit meter."
+        },
+        "thermalConductivity": {
+          "$ref": "number.json#/$defs/wattPerMeterKelvinWithUncertainty",
+          "description": "The thermal conductivity of a material quantifies its ability to conduct heat. It has the SI units W/(m*K)."
+        },
+        "PoissonsRatio": {
+          "$ref": "number.json#/$defs/number",
+          "description": "The Poisson's ratio is a measure of the expansion of a material in the direction perpendicular to the load. It's a dimensionless quantity."
+        },
+        "YoungsModulus": {
+          "$ref": "number.json#/$defs/pascal",
+          "description": "The Young's Modulus is a measure for the stiffness of a solid material. It has the SI unit Pascal."
+        }
+      }
+    }
+  },
+  "$ref": "#/$defs/material"
+}

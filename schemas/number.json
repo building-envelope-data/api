@@ -1,0 +1,342 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/number.json",
+  "title": "number types",
+  "description": "This section defines types for numbers with and without uncertainty and units",
+  "$defs": {
+    "number": {
+      "type": "number",
+      "description": "If the number is in all cases 100% certain and if no restrictions on the numbers are possible, then this type is used."
+    },
+    "integer": {
+      "type": "integer",
+      "description": "If the integer is in all cases 100% certain and if no restrictions on the numbers are possible, then this type is used."
+    },
+    "uncertaintyNumber": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/number"
+        },
+        {
+          "exclusiveMinimum": 0
+        }
+      ],
+      "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
+    },
+    "uncertaintyInteger": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/integer"
+        },
+        {
+          "exclusiveMinimum": 0
+        }
+      ],
+      "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
+    },
+    "confidenceInterval": {
+      "type": "number",
+      "enum": [
+        68.3,
+        95.4,
+        99.7
+      ],
+      "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma)."
+    },
+    "numberWithUncertainty": {
+      "title": "If a value may have an uncertainty and no further restrictions on the numbers are possible, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/number"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "uncertainValue"
+          ]
+        },
+        {
+          "$ref": "#/$defs/number",
+          "description": "If the value is 100% certain, then this this option is used."
+        }
+      ]
+    },
+    "nonNegativeNumber": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/number"
+        },
+        {
+          "minimum": 0
+        }
+      ],
+      "description": "If the number is in all cases 100% certain and when only non-negative numbers are valid, then this type is used."
+    },
+    "nonNegativeInteger": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/integer"
+        },
+        {
+          "minimum": 0
+        }
+      ],
+      "description": "If the integer is in all cases 100% certain and when only non-negative integers are valid, then this type is used."
+    },
+    "nonNegativeNumberWithUncertainty": {
+      "title": "If a value may have an uncertainty and only non-negative numbers are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/nonNegativeNumber"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "uncertainValue"
+          ]
+        },
+        {
+          "$ref": "#/$defs/nonNegativeNumber",
+          "description": "If the value is 100% certain, then this this option is used."
+        }
+      ]
+    },
+    "nonNegativeIntegerWithUncertainty": {
+      "title": "If an integer may have an uncertainty and only non-negative integers are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/nonNegativeInteger"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyInteger"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "uncertainValue"
+          ]
+        },
+        {
+          "$ref": "#/$defs/nonNegativeInteger",
+          "description": "If the value is 100% certain, then this this option is used."
+        }
+      ]
+    },
+    "numberBetweenZeroAndOne": {
+      "title": "This type is used when only numbers between 0 and 1 are valid and no uncertainty can occur.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/number"
+        },
+        {
+          "minimum": 0
+        },
+        {
+          "maximum": 1
+        }
+      ]
+    },
+    "numberBetweenZeroAndOneWithUncertainty": {
+      "title": "If a value may have an uncertainty and only numbers between 0 and 1 are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenZeroAndOne"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "uncertainValue"
+          ]
+        },
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndOne",
+          "description": "If the value is 100% certain, then this this option is used."
+        }
+      ]
+    },
+    "numberBetweenZeroAndHundred": {
+      "title": "This type is used when only numbers between 0 and 100 are valid and no uncertainty can occur.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/number"
+        },
+        {
+          "minimum": 0
+        },
+        {
+          "maximum": 100
+        }
+      ]
+    },
+    "numberBetweenMinusAndPlusHundred": {
+      "title": "This type is used when only numbers between -100 and 100 are valid and no uncertainty can occur.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/number"
+        },
+        {
+          "minimum": -100
+        },
+        {
+          "maximum": 100
+        }
+      ]
+    },
+    "meterWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Meter is the SI unit for length. With this type, the uncertainty can be defined."
+    },
+    "meter": {
+      "type": "number",
+      "description": "Meter is the SI unit for length. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "nanometer": {
+      "type": "number",
+      "minimum": 0,
+      "description": "This number represents a length in nanometers. 1 nm equals 10^(-9) meters. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "squareMeterWithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "A square meter (m^2) is a unit for an area. With this type, the uncertainty can be defined."
+    },
+    "squareMillimeterWithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "A square millimeter (mm^2) is a unit for an area. With this type, the uncertainty can be defined."
+    },
+    "squareMillimeter": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "A square millimeter (mm^2) is a unit for an area. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "cubicMeterWithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "A cubic meter is a unit for a volume. With this type, the uncertainty can be defined."
+    },
+    "degree": {
+      "type": "number",
+      "minimum": -360.0,
+      "maximum": 360.0,
+      "description": "A unit to measure angles. A full rotation equals 360°. This type is used for cases in which the option of an uncertainty is not desired."
+    },
+    "radian": {
+      "type": "number",
+      "description": "A unit to measure angles. A full rotation equals 2*Pi. This type is used for cases in which the option of an uncertainty is not desired."
+    },
+    "wattWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Watt (W) is the SI unit for power. With this type, the uncertainty can be defined."
+    },
+    "watt": {
+      "$ref": "#/$defs/number",
+      "description": "Watt (W) is the SI unit for power. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "kelvinWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Kelvin (K) is the SI unit for temperature. With this type, the uncertainty can be defined."
+    },
+    "kelvin": {
+      "$ref": "#/$defs/number",
+      "description": "Kelvin (K) is the SI unit for temperature. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "voltWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Volt (V) is the SI unit for electric potential. With this type, the uncertainty can be defined."
+    },
+    "volt": {
+      "$ref": "#/$defs/number",
+      "description": "Volt (V) is the SI unit for electric potential. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "ampereWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Ampere (A) is the SI unit for electric current. With this type, the uncertainty can be defined."
+    },
+    "ampere": {
+      "$ref": "#/$defs/number",
+      "description": "Ampere (A) is the SI unit for electric current. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "ohmWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Ohm is the derived SI unit for electric resistance. With this type, the uncertainty can be defined."
+    },
+    "ohm": {
+      "$ref": "#/$defs/number",
+      "description": "Ohm is the derived SI unit for electric resistance. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "ohmPerMeterWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Ohm per meter is a unit for the electric resistance depending on the length. With this type, the uncertainty can be defined."
+    },
+    "ohmPerMeter": {
+      "$ref": "#/$defs/number",
+      "description": "Ohm per meter is a unit for the electric resistance depending on the length. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "kilogramWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. With this type, the uncertainty can be defined."
+    },
+    "pascal": {
+      "$ref": "#/$defs/number",
+      "description": "Pascal (Pa) is the SI unit for pressure. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "hertzWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Hertz (Hz) is a derived SI unit of frequency. With this type, the uncertainty can be defined."
+    },
+    "hertz": {
+      "$ref": "#/$defs/number",
+      "description": "Hertz (Hz) is a derived SI unit of frequency. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "kgPerCubicMeterWithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "The density of a material has the SI units kg/m^3. With this type, the uncertainty can be defined."
+    },
+    "JPerKgKwithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "Joule per kilogram and per Kelvin (J/(kg*K)) are the SI units of the specific heat capacity. With this type, the uncertainty can be defined."
+    },
+    "kgPerSecondWithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "Kilogram per second (kg/s) are the SI units of the mass flow. With this type, the uncertainty can be defined."
+    },
+    "wattPerSquareMeterKelvinWithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "Watt per square meter and per kelvin (W/(m^2*K) are the SI units of a heat transfer coefficient. With this type, the uncertainty can be defined."
+    },
+    "wattPerMeterKelvinWithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "Watt per meter and per kelvin (W/(m*K)) are the SI units of the thermal conductivity. With this type, the uncertainty can be defined."
+    }
+  }
+}

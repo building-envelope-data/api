@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://www.buildings.com/schemas/dsb.json",
+    "title": "dsb - data schema for buildings",
+    "description": "This data schema allows to exchange detailed data about buildings. It is meant to be used for the whole life cycle of a building, from the early planning of a building project to construction to facility management to recycling. For each value of this data, there is exactly one key in the schema. The most important purpose of the schema is to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next updata of this schema.",
+    "type": "object",
+    "properties": {
+        "building": {
+            "title": "This section defines data about one building. It is an array so that various data sets about the building can be added as items.",
+            "type": "array",
+            "items": {
+                "$ref": "building.json"
+            },
+            "additionalItems": false,
+            "minItems": 1
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "building"
+    ]
+}

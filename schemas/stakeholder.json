@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/stakeholder.json",
+  "title": "stakeholder data",
+  "description": "",
+  "$defs": {
+    "contact": {
+      "title": "In this section, you find all contact data for an institution or person.",
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "description": "Phone number of an institution or person"
+        },
+        "address": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "Postal address of an institution or person"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "E-mail address of an institution or person"
+        },
+        "website": {
+          "$ref": "common.json#/$defs/webAddress",
+          "description": "Website of an institution or person"
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
+    },
+    "basicStakeholder": {
+      "title": "A stakeholder can be either an institution or a person. This section collects the basic data of stakeholders.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/central",
+          "description": "This id represents the stakeholder."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "This explanation can specify the role of the stakeholder."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "person": {
+      "title": "This section collects all data about a person.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/central",
+          "description": "This id represents the person"
+        },
+        "names": {
+          "type": "object",
+          "properties": {
+            "family": {
+              "type": "array",
+              "items": {
+                "$ref": "string.json#/$defs/latinString"
+              },
+              "additionalItems": false,
+              "minItems": 1,
+              "description": "The family name(s) also known as surname(s) or last name(s) of a person in Latin alphabet."
+            },
+            "given": {
+              "type": "array",
+              "items": {
+                "$ref": "string.json#/$defs/latinString"
+              },
+              "additionalItems": false,
+              "minItems": 0,
+              "description": "The given name(s) also known as forname(s) or first name(s) of a person in Latin alphabet."
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "family"
+          ]
+        },
+        "institution": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "identifier.json#/$defs/central",
+              "description": "This id which defines the affiliation of the person"
+            },
+            "name": {
+              "$ref": "string.json#/$defs/internationalString",
+              "description": "The name of the affiliation of the person"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "name"
+          ]
+        },
+        "contact": {
+          "$ref": "#/$defs/contact",
+          "description": "How to contact the person"
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "institution": {
+      "title": "This sections collects data about an institution.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/central",
+          "description": "This id represents the institution"
+        },
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The name of the institution"
+        },
+        "abbreviation": {
+          "$ref": "string.json#/$defs/latinString",
+          "description": "The abbreviation of the institution in Latin alphabet."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "The explanation can further explain the role of the institution."
+        },
+        "publicKey": {
+          "type": "array",
+          "items": {
+            "$ref": "string.json#/$defs/string",
+            "description": "A public key of the institution for cryptograpic signatures for approvals."
+          },
+          "additionalItems": false,
+          "minItems": 1
+        },
+        "contact": {
+          "$ref": "#/$defs/contact",
+          "description": "How to contact the institution"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "stakeholder": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/institution"
+        },
+        {
+          "$ref": "#/$defs/person"
+        }
+      ]
+    },
+    "owner": {
+      "$ref": "#/$defs/basicStakeholder",
+      "description": "The owner holds the rights for example on a component and is defined by an id."
+    },
+    "submitter": {
+      "$ref": "#/$defs/basicStakeholder",
+      "description": "The submitter submits data to a database and is defined by an id."
+    },
+    "manufacturer": {
+      "$ref": "#/$defs/basicStakeholder",
+      "description": "The manufacturer manufactures or supplies the component and is defined by an id."
+    },
+    "approver": {
+      "$ref": "#/$defs/basicStakeholder",
+      "description": "The approver states that data or a method fulfills certain requirements. She is defined by an id."
+    },
+    "admin": {
+      "$ref": "#/$defs/basicStakeholder",
+      "description": "The admin is in charge of a database and is defined by an id."
+    },
+    "author": {
+      "$ref": "#/$defs/person",
+      "description": "An author is a person who is named as one of the authors of a publication. This person is defined by an id."
+    },
+    "developer": {
+      "$ref": "#/$defs/basicStakeholder",
+      "description": "A developer is a stakeholder who has developed a method or component. This stakeholder is defined by an id."
+    },
+    "creator": {
+      "$ref": "#/$defs/basicStakeholder",
+      "description": "A creator is a stakeholder who has created a data set. This stakeholder is defined by an id."
+    },
+    "standardizer": {
+      "title": "A standardizer is an institution which has issued a standard. This institution is defined by an id.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/central",
+          "description": "This id represents the institution which has created a standard."
+        },
+        "abbreviation": {
+          "$ref": "string.json#/$defs/latinString",
+          "description": "Abbreviation of the standardizer in Latin alphabet."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "This explanation can specify the role of the institution which has created a standard."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "$ref": "#/$defs/stakeholder"
+}

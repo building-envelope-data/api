@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/identifier.json",
+  "title": "identifier",
+  "description": "",
+  "$defs": {
+    "central": {
+      "title": "Buildingenvelopedata.org issues the central identifiers and guarantees their uniqueness.",
+      "type": "string",
+      "format": "uuid",
+      "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify entities like components, institutions, methods and many more."
+    },
+    "decentral": {
+      "title": "Any institution registered at buildingenvelopedata.org can issue decentral identifiers. The institution MUST guarantees their uniqueness.",
+      "type": "object",
+      "properties": {
+        "uniqueId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify entities like components, institutions, methods and many more."
+        },
+        "issuedBy": {
+          "type": "string",
+          "format": "uuid",
+          "description": "This UUID defines the institution which issues the UUID. This institution MUST guarantee the uniqueness of the UUID."
+        }
+      }
+    },
+    "centralOrDecentral": {
+      "title": "This definition is used when either a central identifier or a decentral identifier can be used. For example, a component can be a general product. In this case, it usually has a central identifier from buildingenvelopedata.org. But a component can also be a specific instance of a product in a specific building. In this case, it usually has a decentral identifier from the owner of the building.",
+      "oneOf": [
+        {
+          "$ref": "identifier.json#/$defs/central"
+        },
+        {
+          "$ref": "identifier.json#/$defs/decentral"
+        }
+      ]
+    }
+  },
+  "$ref": "#/$defs/centralOrDecentral"
+}

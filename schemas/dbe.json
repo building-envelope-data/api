@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://www.buildingenvelopedata.org/schemas/dbe.json",
+    "title": "dbe - data schema for building envelopes",
+    "description": "This data schema allows to exchange detailed data about building envelopes. For each value, there is exactly one key in the schema to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next updata of this schema.",
+    "type": "object",
+    "properties": {
+        "components": {
+            "title": "This section defines data about components of a solar building envelope. It is an array so that various data sets about one or more components can be added as items. One component may consist of subcomponents.",
+            "type": "array",
+            "items": {
+                "$ref": "component.json"
+            },
+            "additionalItems": false,
+            "minItems": 1
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "components"
+    ]
+}
