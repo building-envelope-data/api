@@ -1,0 +1,130 @@
+{
+    "components": [
+        {
+            "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+            "calorimetric": [
+                {
+                    "id": {
+                        "uniqueId": "da951012-29b7-4b9a-890c-4f4514f676b3",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    },
+                    "name": {
+                        "en-US": "Example BIST collector"
+                    },
+                    "explanation": {
+                        "en-US": "Example: a calorimetric data set of a buildling-integrated solar thermal element."
+                    },
+                    "warnings": {
+                        "en-US": "No warnings"
+                    },
+                    "origin": {
+                        "source": {
+                            "id": {
+                                "uniqueId": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+                                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                            },
+                            "name": {
+                                "en-US": "Fraunhofer ISE"
+                            }
+                        }
+                    },
+                    "approvals": [
+                        {
+                            "approver": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+                            "signature": "MIIB6gYJKoZIhvcNAQcCoIIB2zCCAdcCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGCAbYwggGyAgEBMIGcMIGOMQswCQYDVQQGEwJVUzEOMAwGA1UECBMFVGV4YXMxFDASBgNVBAcTC1NhbiBBbnRvbmlvMQ0wCwYDVQQKEwRVVFNBMQswCQYDVQQLEwJDUzEXMBUGA1UEAxMOYWkuY3MudXRzYS5lZHUxJDAiBgkqhkiG9w0BCQEWFWp1bGlldEBhaS5jcy51dHNhLmVkdQIJAMvyApGmAWbKMAkGBSsOAwIaBQCggbEwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMDcwMjEyMjI1ODU4WjAjBgkqhkiG9w0BCQQxFgQUdBfDe/KmnhmYA9DILxfq/zKlvwEwUgYJKoZIhvcNAQkPMUUwQzAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwDQYJKoZIhvcNAQEBBQAEQFbJ+8cZivvgvrjj8l1QbK2o7gWdWBM9yav6NJR2eBVj3hKGaKQ+7JNbygcqtVcMDIo1jSpsZas33BvhocwGOqs="
+                        }
+                    ],
+                    "created": "2018-09-01T12:00:00+01:00",
+                    "valid": {
+                        "from": "2018-08-01T00:00:00+01:00"
+                    },
+                    "fluxes": [
+                        {
+                            "name": [
+                                "interior"
+                            ],
+                            "convection": {
+                                "flux": {
+                                    "uncertainValue": 15.0,
+                                    "uncertainty": 4,
+                                    "confidenceInterval": 95.4
+                                },
+                                "temperatures": {
+                                    "surrounding": {
+                                        "uncertainValue": 298.0
+                                    }
+                                },
+                                "coefficient": {
+                                    "uncertainValue": 8.0
+                                }
+                            }
+                        },
+                        {
+                            "name": [
+                                "lateral"
+                            ],
+                            "fluid": {
+                                "flux": {
+                                    "uncertainValue": 100.0
+                                },
+                                "temperatures": {
+                                    "inlet": {
+                                        "uncertainValue": 300
+                                    },
+                                    "outlet": {
+                                        "uncertainValue": 320
+                                    }
+                                },
+                                "massFlow": {
+                                    "uncertainValue": 0.02
+                                },
+                                "specificHeatCapacity": {
+                                    "uncertainValue": 4179.6
+                                }
+                            }
+                        },
+                        {
+                            "name": [
+                                "exterior"
+                            ],
+                            "irradiance": {
+                                "flux": {
+                                    "uncertainValue": 1000,
+                                    "uncertainty": 50,
+                                    "confidenceInterval": 68.3
+                                },
+                                "direction": [
+                                    [
+                                        "nearnormal"
+                                    ]
+                                ]
+                            }
+                        }
+                    ],
+                    "results": [
+                        {
+                            "area": {
+                                "category": [
+                                    "centre"
+                                ]
+                            },
+                            "uValue": {
+                                "uncertainValue": 1.0,
+                                "uncertainty": 0.1
+                            },
+                            "gValue": {
+                                "uncertainValue": 0.07,
+                                "uncertainty": 0.01
+                            },
+                            "efficiencies": {
+                                "solarThermal": {
+                                    "uncertainValue": 0.5
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
