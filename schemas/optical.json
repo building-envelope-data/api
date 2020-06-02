@@ -435,12 +435,15 @@
         },
         "normalization": {
           "type": "array",
-          "items": [
-            "absolute",
-            "relative",
-            "specular",
-            "diffuseReflectance"
-          ],
+          "items": {
+            "type": "string",
+            "enum": [
+              "absolute",
+              "relative",
+              "specular",
+              "diffuseReflectance"
+            ]
+          },
           "additionalItems": false,
           "minItems": 1,
           "description": "The normalization methods absolute, relative, specular and diffuse reflectance are defined by ASTM E2387-05:2011.",
