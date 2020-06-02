@@ -23,9 +23,7 @@
         "bodies": {
           "type": "array",
           "items": {
-            "body": {
-              "$ref": "#/$defs/body"
-            }
+            "$ref": "#/$defs/body"
           },
           "additionalItems": false,
           "minItems": 1,
