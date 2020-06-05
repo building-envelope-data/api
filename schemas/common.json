@@ -224,7 +224,7 @@
         ]
       },
       "additionalItems": false,
-      "minItem": 1
+      "minItems": 1
     },
     "approvals": {
       "title": "If the validity of a data is important, this section can be used to express the approval of a institution with a cryptographic signature. It's an array, because there may be approvals of several institutions for the same data.",

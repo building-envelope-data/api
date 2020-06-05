@@ -450,8 +450,8 @@
                                 "description": "This array defines whether the electric plus or minus is connected to the ground."
                             },
                             "additionalItems": false,
-                            "minItem": 1,
-                            "maxItem": 1
+                            "minItems": 1,
+                            "maxItems": 1
                         },
                         "connectionCables": {
                             "title": "The connection cables are outside of the PV module to connect it to other PV modules.",
@@ -729,8 +729,8 @@
                                                         "description": "The abbreviation define the fire safety class according to EN 13501-1."
                                                     },
                                                     "additionalItems": false,
-                                                    "minItem": 1,
-                                                    "maxItem": 1
+                                                    "minItems": 1,
+                                                    "maxItems": 1
                                                 },
                                                 "smoke": {
                                                     "type": "array",
@@ -744,8 +744,8 @@
                                                         "description": "Abbreviations for smoke according to EN 13501-1."
                                                     },
                                                     "additionalItems": false,
-                                                    "minItem": 1,
-                                                    "maxItem": 1
+                                                    "minItems": 1,
+                                                    "maxItems": 1
                                                 },
                                                 "drops": {
                                                     "type": "array",
@@ -759,8 +759,8 @@
                                                         "description": "Abbreviations for burning drops according to EN 13501-1."
                                                     },
                                                     "additionalItems": false,
-                                                    "minItem": 1,
-                                                    "maxItem": 1
+                                                    "minItems": 1,
+                                                    "maxItems": 1
                                                 }
                                             },
                                             "additionalProperties": false,
