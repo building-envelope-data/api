@@ -216,7 +216,7 @@
           "title": "Boundary representation (brep) defines a component by the surfaces between solid and non-solid.",
           "type": "array",
           "items": {
-            "$ref": "#/$defs/surface"
+            "$ref": "#/$defs/nurbsBoundedSurface"
           },
           "additionalItems": false,
           "minItems": 1,

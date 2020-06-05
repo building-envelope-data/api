@@ -8,124 +8,282 @@
             "explanation": {
                 "en-US": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany."
             },
-            "photovoltaic": {
-                "module": {
-                    "coordinateSystem": {
-                        "categories": [
-                            "rightHanded",
-                            "cartesian"
-                        ]
-                    },
-                    "cells": {
-                        "rectangular": {
-                            "longitudinal": {
-                                "cellNumber": {
-                                    "uncertainValue": 8
-                                }
-                            },
-                            "transversal": {
-                                "cellNumber": {
-                                    "uncertainValue": 8
-                                }
-                            }
+            "photovoltaic": [
+                {
+                    "module": {
+                        "coordinateSystem": {
+                            "categories": [
+                                "rightHanded",
+                                "cartesian"
+                            ]
                         },
-                        "cellTypes": [
-                            {
-                                "id": {
-                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                },
-                                "power": {
-                                    "nominal": {
-                                        "uncertainValue": 3.19
-                                    },
-                                    "effective": {
-                                        "uncertainValue": 3.047
+                        "cells": {
+                            "rectangular": {
+                                "longitudinal": {
+                                    "cellNumber": {
+                                        "uncertainValue": 8
                                     }
                                 },
-                                "width": {
-                                    "uncertainValue": 0.125
+                                "transversal": {
+                                    "cellNumber": {
+                                        "uncertainValue": 8
+                                    }
+                                }
+                            },
+                            "cellTypes": [
+                                {
+                                    "id": {
+                                        "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                    },
+                                    "power": {
+                                        "nominal": {
+                                            "uncertainValue": 3.19
+                                        },
+                                        "effective": {
+                                            "uncertainValue": 3.047
+                                        }
+                                    },
+                                    "width": {
+                                        "uncertainValue": 0.125
+                                    },
+                                    "categories": [
+                                        "monocrystalline",
+                                        "silicon"
+                                    ]
+                                }
+                            ],
+                            "cellList": [
+                                {
+                                    "id": {
+                                        "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
+                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                    },
+                                    "cellType": {
+                                        "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                    }
+                                },
+                                {
+                                    "id": {
+                                        "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
+                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                    },
+                                    "cellType": {
+                                        "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                    }
+                                }
+                            ]
+                        },
+                        "connections": {
+                            "connectionType": [
+                                {
+                                    "id": {
+                                        "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
+                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                    },
+                                    "explanation": {
+                                        "en-US": "Connection type is unknown."
+                                    }
+                                }
+                            ],
+                            "connectionList": [
+                                {
+                                    "connectionType": {
+                                        "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
+                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                    },
+                                    "id1": {
+                                        "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
+                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                    },
+                                    "id2": {
+                                        "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
+                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                    }
+                                }
+                            ],
+                            "category": [
+                                "series"
+                            ]
+                        },
+                        "moduleLayers": [
+                            {
+                                "identification": {
+                                    "name": {
+                                        "en-US": "Tempered white glass"
+                                    }
                                 },
                                 "categories": [
-                                    "monocrystalline",
-                                    "silicon"
+                                    "front",
+                                    "cover"
+                                ],
+                                "thickness": {
+                                    "uncertainValue": 0.005
+                                },
+                                "geometry": {
+                                    "dimensions": {
+                                        "independent": {
+                                            "smallest": {
+                                                "uncertainValue": 0.005
+                                            },
+                                            "intermediate": {
+                                                "uncertainValue": 1.08
+                                            },
+                                            "largest": {
+                                                "uncertainValue": 1.09
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "identification": {
+                                    "name": {
+                                        "en-US": "PVB"
+                                    }
+                                },
+                                "categories": [
+                                    "front",
+                                    "embedding"
                                 ]
-                            }
-                        ],
-                        "cellList": [
-                            {
-                                "id": {
-                                    "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                },
-                                "cellType": {
-                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                }
                             },
                             {
-                                "id": {
-                                    "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                },
-                                "cellType": {
-                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                }
-                            }
-                        ]
-                    },
-                    "connections": {
-                        "connectionType": [
-                            {
-                                "id": {
-                                    "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                },
-                                "explanation": {
-                                    "en-US": "Connection type is unknown."
-                                }
-                            }
-                        ],
-                        "connectionList": [
-                            {
-                                "connectionType": {
-                                    "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                },
-                                "id1": {
-                                    "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                },
-                                "id2": {
-                                    "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                }
-                            }
-                        ],
-                        "category": [
-                            "series"
-                        ]
-                    },
-                    "moduleLayers": [
-                        {
-                            "identification": {
-                                "name": {
-                                    "en-US": "Tempered white glass"
-                                }
+                                "categories": [
+                                    "cell"
+                                ]
                             },
-                            "categories": [
-                                "front",
-                                "cover"
+                            {
+                                "identification": {
+                                    "name": {
+                                        "en-US": "PVB"
+                                    }
+                                },
+                                "categories": [
+                                    "rear",
+                                    "embedding"
+                                ]
+                            },
+                            {
+                                "identification": {
+                                    "name": {
+                                        "en-US": "Tempered white glass"
+                                    }
+                                },
+                                "categories": [
+                                    "backing"
+                                ],
+                                "thickness": {
+                                    "uncertainValue": 0.004
+                                },
+                                "geometry": {
+                                    "dimensions": {
+                                        "independent": {
+                                            "smallest": {
+                                                "uncertainValue": 0.004
+                                            },
+                                            "intermediate": {
+                                                "uncertainValue": 1.08
+                                            },
+                                            "largest": {
+                                                "uncertainValue": 1.09
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "electricConfiguration": {
+                            "grounding": [
+                                "plus"
                             ],
-                            "thickness": {
-                                "uncertainValue": 0.005
+                            "connectionCables": {
+                                "crossSection": {
+                                    "uncertainValue": 4
+                                },
+                                "length": {
+                                    "positive": {
+                                        "uncertainValue": 1
+                                    },
+                                    "negative": {
+                                        "uncertainValue": 1
+                                    }
+                                }
+                            },
+                            "connectorType": {
+                                "id": {
+                                    "uniqueId": "91f66c3b-8c08-4e86-9310-1fd8893d30b1",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "name": {
+                                    "en-US": "Huber und Suhner"
+                                }
+                            }
+                        },
+                        "moduleProperties": {
+                            "power": {
+                                "nominal": {
+                                    "uncertainValue": 195
+                                },
+                                "tolerance": 5,
+                                "temperatureCoefficient": -0.32,
+                                "guarantee": [
+                                    {
+                                        "years": 10,
+                                        "percentage": 90
+                                    },
+                                    {
+                                        "years": 15,
+                                        "percentage": 80
+                                    }
+                                ],
+                                "angleDependency": {
+                                    "incidenceAngleModifier": [
+                                        {
+                                            "incidence": 0,
+                                            "IAM": 1
+                                        },
+                                        {
+                                            "incidence": 60,
+                                            "IAM": 0.924
+                                        },
+                                        {
+                                            "incidence": 90,
+                                            "IAM": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "voltage": {
+                                "nominal": {
+                                    "uncertainValue": 36.1
+                                },
+                                "openCircuit": {
+                                    "uncertainValue": 43.26
+                                },
+                                "temperatureCoefficient": -0.26,
+                                "maximumSystem": 1000
+                            },
+                            "current": {
+                                "nominal": {
+                                    "uncertainValue": 5.4
+                                },
+                                "shortCircuit": {
+                                    "uncertainValue": 5.86
+                                },
+                                "temperatureCoefficient": 0.06
+                            },
+                            "fillFactor": 0.769,
+                            "efficiency": 0.1656,
+                            "weight": {
+                                "uncertainValue": 29.7
                             },
                             "geometry": {
                                 "dimensions": {
                                     "independent": {
                                         "smallest": {
-                                            "uncertainValue": 0.005
+                                            "uncertainValue": 0.01128
                                         },
                                         "intermediate": {
                                             "uncertainValue": 1.08
@@ -135,172 +293,16 @@
                                         }
                                     }
                                 }
-                            }
-                        },
-                        {
-                            "identification": {
-                                "name": {
-                                    "en-US": "PVB"
-                                }
                             },
-                            "categories": [
-                                "front",
-                                "embedding"
-                            ]
-                        },
-                        {
-                            "categories": [
-                                "cell"
-                            ]
-                        },
-                        {
-                            "identification": {
-                                "name": {
-                                    "en-US": "PVB"
-                                }
-                            },
-                            "categories": [
-                                "rear",
-                                "embedding"
-                            ]
-                        },
-                        {
-                            "identification": {
-                                "name": {
-                                    "en-US": "Tempered white glass"
-                                }
-                            },
-                            "categories": [
-                                "backing"
-                            ],
-                            "thickness": {
-                                "uncertainValue": 0.004
-                            },
-                            "geometry": {
-                                "dimensions": {
-                                    "independent": {
-                                        "smallest": {
-                                            "uncertainValue": 0.004
-                                        },
-                                        "intermediate": {
-                                            "uncertainValue": 1.08
-                                        },
-                                        "largest": {
-                                            "uncertainValue": 1.09
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    ],
-                    "electricConfiguration": {
-                        "grounding": [
-                            "plus"
-                        ],
-                        "connectionCables": {
-                            "crossSection": {
-                                "uncertainValue": 4
-                            },
-                            "length": {
-                                "positive": {
-                                    "uncertainValue": 1
-                                },
-                                "negative": {
-                                    "uncertainValue": 1
-                                }
-                            }
-                        },
-                        "connectorType": {
-                            "id": {
-                                "uniqueId": "91f66c3b-8c08-4e86-9310-1fd8893d30b1",
-                                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                            },
-                            "name": {
-                                "en-US": "Huber und Suhner"
-                            }
-                        }
-                    },
-                    "moduleProperties": {
-                        "power": {
-                            "nominal": {
-                                "uncertainValue": 195
-                            },
-                            "tolerance": 5,
-                            "temperatureCoefficient": -0.32,
                             "guarantee": [
                                 {
-                                    "years": 10,
-                                    "percentage": 90
-                                },
-                                {
-                                    "years": 15,
-                                    "percentage": 80
+                                    "years": 10
                                 }
-                            ],
-                            "angleDependency": {
-                                "incidenceAngleModifier": [
-                                    {
-                                        "incidence": 0,
-                                        "IAM": 1
-                                    },
-                                    {
-                                        "incidence": 60,
-                                        "IAM": 0.924
-                                    },
-                                    {
-                                        "incidence": 90,
-                                        "IAM": 0
-                                    }
-                                ]
-                            }
-                        },
-                        "voltage": {
-                            "nominal": {
-                                "uncertainValue": 36.1
-                            },
-                            "openCircuit": {
-                                "uncertainValue": 43.26
-                            },
-                            "temperatureCoefficient": -0.26,
-                            "maximumSystem": 1000
-                        },
-                        "current": {
-                            "nominal": {
-                                "uncertainValue": 5.4
-                            },
-                            "shortCircuit": {
-                                "uncertainValue": 5.86
-                            },
-                            "temperatureCoefficient": 0.06
-                        },
-                        "fillFactor": 0.769,
-                        "efficiency": 0.1656,
-                        "weight": {
-                            "uncertainValue": 29.7
-                        },
-                        "geometry": {
-                            "dimensions": {
-                                "independent": {
-                                    "smallest": {
-                                        "uncertainValue": 0.01128
-                                    },
-                                    "intermediate": {
-                                        "uncertainValue": 1.08
-                                    },
-                                    "largest": {
-                                        "uncertainValue": 1.09
-                                    }
-                                }
-                            }
-                        },
-                        "guarantee": [
-                            {
-                                "years": 10
-                            }
-                        ]
+                            ]
+                        }
                     }
                 }
-            }
+            ]
         }
     ]
 }

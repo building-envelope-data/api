@@ -72,7 +72,7 @@
                     "description": "PossiblePositions defines where the unit can be used."
                 },
                 "gaps": {
-                    "$ref": "#/$defs/gaps",
+                    "$ref": "gaps.json",
                     "description": "This section defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
                 }
             },
