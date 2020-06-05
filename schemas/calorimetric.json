@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/calorimetric.json",
   "title": "calorimetric data",
-  "description": "The array is used to define sets of calorimetric data.",
+  "description": "This schema is used to exchange data about calorimetric measurements or simulations. Therefore, energy fluxes are an important part of this schema.",
   "$defs": {
     "calorimetric": {
       "type": "object",

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/geometry.json",
   "title": "geometry data",
-  "description": "",
+  "description": "There are many highly developed geometry kernels which are well suited to handle complex geometry in their file format. For some cases like the shape of a venetian blind, it may be helpful to be able to exchange the geometry independent of a geometry kernel. This schema offers a way to exchange geometry data.",
   "$defs": {
     "geometry": {
       "title": "This section presents definitions to describe the geometry of a component.",

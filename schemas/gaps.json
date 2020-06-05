@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "$id": "https://www.buildingenvelopedata.org/schemas/component.json",
     "title": "gap data",
-    "description": "This schema can be used to define gaps in building envelope components.",
+    "description": "Building envelopes can be assembled by several parts. The dimensions of the gaps between those parts can be important for example regarding the heat transfer. This schema can be used to define gaps in building envelope components.",
     "$defs": {
         "gaps": {
             "title": "The gaps for example between a blind and the frame can be important for example regarding glare.",

@@ -1,6 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildings.com/schemas/building.json",
+  "title": "building data",
+  "description": "This schema is used to exchange data about a building.",
   "$defs": {
     "building": {
       "title": "This section is used to define a building.",

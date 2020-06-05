@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "$id": "https://www.buildingenvelopedata.org/schemas/photovoltaic.json",
     "title": "photovoltaic data",
-    "description": "This section provides a structure for data about photovoltaic modules which convert irradiance into electricity.",
+    "description": "This schema is used to exchange data about components of building envelopes which contribute to convert irradiance into electricity. A photovoltaic (PV) system is usually assembled of many components, for example PV modules.",
     "$defs": {
         "photovoltaic": {
             "oneOf": [
