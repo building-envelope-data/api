@@ -217,7 +217,8 @@
                                 },
                                 "additionalProperties": false,
                                 "required": [
-                                    "id"
+                                    "id",
+                                    "cellType"
                                 ]
                             },
                             "additionalItems": false,
@@ -274,7 +275,10 @@
                                     }
                                 },
                                 "additionalProperties": false,
-                                "required": []
+                                "required": [
+                                    "id",
+                                    "diodeType"
+                                ]
                             },
                             "additionalItems": false,
                             "minItems": 0
@@ -327,7 +331,10 @@
                     },
                     "additionalProperties": false,
                     "minProperties": 1,
-                    "required": []
+                    "required": [
+                        "connectionType",
+                        "connectionList"
+                    ]
                 },
                 "moduleLayers": {
                     "title": "PV modules typically consist of several layers, for example a glass pane, a lamination material and the PV cells.",
@@ -403,25 +410,33 @@
                             "minProperties": 1,
                             "required": []
                         },
-                        "junctionBox": {
+                        "junctionBoxList": {
                             "type": "array",
                             "items": {
-                                "id": {
-                                    "$ref": "identifier.json#/$defs/decentral",
-                                    "description": "The id represents one specific junction box of the PV module. The id is used to define connections to other parts of the PV module"
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "identifier.json#/$defs/decentral",
+                                        "description": "The id represents one specific junction box of the PV module. The id is used to define connections to other parts of the PV module"
+                                    },
+                                    "junctionBoxType": {
+                                        "$ref": "identifier.json#/$defs/centralOrDecentral",
+                                        "description": "The id defines the type of junction box."
+                                    },
+                                    "geometry": {
+                                        "$ref": "geometry.json",
+                                        "description": "This section defines the geometry and location of the junction box."
+                                    }
                                 },
-                                "junctionBoxType": {
-                                    "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                    "description": "The id defines the type of junction box."
-                                },
-                                "geometry": {
-                                    "$ref": "geometry.json",
-                                    "description": "This section defines the geometry and location of the junction box."
-                                }
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "required": [
+                                    "id",
+                                    "junctionBoxType"
+                                ]
                             },
                             "additionalItems": false,
-                            "minItems": 1,
-                            "maxItems": 1
+                            "minItems": 1
                         },
                         "grounding": {
                             "type": "array",
@@ -1375,7 +1390,10 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": []
+                        "required": [
+                            "id",
+                            "diodeType"
+                        ]
                     },
                     "additionalItems": false,
                     "minItems": 0
