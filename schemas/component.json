@@ -102,10 +102,6 @@
             }
           }
         },
-        "approvals": {
-          "$ref": "common.json#/$defs/approvals",
-          "description": "If the dataset for this component has been approved by an institution, this approval is specified here."
-        },
         "available": {
           "$ref": "common.json#/$defs/available",
           "description": "Since when and until when the component has been available"
