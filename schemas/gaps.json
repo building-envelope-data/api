@@ -9,19 +9,13 @@
             "type": "object",
             "properties": {
                 "reveal": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "inside",
-                            "outside",
-                            "other"
-                        ],
-                        "description": "The item defines whether the shading is inside the reveal or outside or something beyond both categories."
-                    },
-                    "additionalItems": false,
-                    "minItems": 1,
-                    "maxItems": 1
+                    "type": "string",
+                    "enum": [
+                        "inside",
+                        "outside",
+                        "other"
+                    ],
+                    "description": "The item defines whether the shading is inside the reveal or outside or something beyond both categories."
                 },
                 "dTop": {
                     "$ref": "number.json#/$defs/numberWithUncertainty",

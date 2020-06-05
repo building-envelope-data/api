@@ -15,24 +15,18 @@
                         {
                             "incidence": {
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ],
                                 "wavelengths": {
                                     "integral": true
                                 },
                                 "range": {
-                                    "spectrum": [
-                                        "visible"
-                                    ]
+                                    "spectrum": "visible"
                                 }
                             },
                             "emergence": {
                                 "direction": [
-                                    [
-                                        "hemispherical"
-                                    ]
+                                    "hemispherical"
                                 ]
                             },
                             "results": {

@@ -54,9 +54,7 @@
                                     "integral": true
                                 },
                                 "range": {
-                                    "spectrum": [
-                                        "visible"
-                                    ]
+                                    "spectrum": "visible"
                                 }
                             },
                             "emergence": {

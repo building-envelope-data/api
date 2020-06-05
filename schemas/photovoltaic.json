@@ -439,19 +439,13 @@
                             "minItems": 1
                         },
                         "grounding": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "enum": [
-                                    "plus",
-                                    "minus",
-                                    "neither"
-                                ],
-                                "description": "This array defines whether the electric plus or minus is connected to the ground."
-                            },
-                            "additionalItems": false,
-                            "minItems": 1,
-                            "maxItems": 1
+                            "type": "string",
+                            "enum": [
+                                "plus",
+                                "minus",
+                                "neither"
+                            ],
+                            "description": "This array defines whether the electric plus or minus is connected to the ground."
                         },
                         "connectionCables": {
                             "title": "The connection cables are outside of the PV module to connect it to other PV modules.",
@@ -702,65 +696,47 @@
                                             "type": "object",
                                             "properties": {
                                                 "category": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                            "A1",
-                                                            "A1_L",
-                                                            "A1_fl",
-                                                            "A2",
-                                                            "A2_L",
-                                                            "A2_fl",
-                                                            "B",
-                                                            "B_L",
-                                                            "B_fl",
-                                                            "C",
-                                                            "C_L",
-                                                            "C_fl",
-                                                            "D",
-                                                            "D_L",
-                                                            "D_fl",
-                                                            "E",
-                                                            "E_L",
-                                                            "E_fl",
-                                                            "F"
-                                                        ],
-                                                        "description": "The abbreviation define the fire safety class according to EN 13501-1."
-                                                    },
-                                                    "additionalItems": false,
-                                                    "minItems": 1,
-                                                    "maxItems": 1
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "A1",
+                                                        "A1_L",
+                                                        "A1_fl",
+                                                        "A2",
+                                                        "A2_L",
+                                                        "A2_fl",
+                                                        "B",
+                                                        "B_L",
+                                                        "B_fl",
+                                                        "C",
+                                                        "C_L",
+                                                        "C_fl",
+                                                        "D",
+                                                        "D_L",
+                                                        "D_fl",
+                                                        "E",
+                                                        "E_L",
+                                                        "E_fl",
+                                                        "F"
+                                                    ],
+                                                    "description": "The abbreviation define the fire safety class according to EN 13501-1."
                                                 },
                                                 "smoke": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                            "s1",
-                                                            "s2",
-                                                            "s3"
-                                                        ],
-                                                        "description": "Abbreviations for smoke according to EN 13501-1."
-                                                    },
-                                                    "additionalItems": false,
-                                                    "minItems": 1,
-                                                    "maxItems": 1
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "s1",
+                                                        "s2",
+                                                        "s3"
+                                                    ],
+                                                    "description": "Abbreviations for smoke according to EN 13501-1."
                                                 },
                                                 "drops": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                            "d0",
-                                                            "d1",
-                                                            "d2"
-                                                        ],
-                                                        "description": "Abbreviations for burning drops according to EN 13501-1."
-                                                    },
-                                                    "additionalItems": false,
-                                                    "minItems": 1,
-                                                    "maxItems": 1
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "d0",
+                                                        "d1",
+                                                        "d2"
+                                                    ],
+                                                    "description": "Abbreviations for burning drops according to EN 13501-1."
                                                 }
                                             },
                                             "additionalProperties": false,
@@ -827,17 +803,11 @@
                                             "minItems": 1
                                         },
                                         {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "noPerformanceDetermined"
-                                                ],
-                                                "description": "noPerformanceDetermined defines that no tests of the mechanical loads are available."
-                                            },
-                                            "additionalItems": false,
-                                            "minItems": 1,
-                                            "maxItems": 1
+                                            "type": "string",
+                                            "enum": [
+                                                "noPerformanceDetermined"
+                                            ],
+                                            "description": "noPerformanceDetermined defines that no tests of the mechanical loads are available."
                                         }
                                     ]
                                 },
@@ -863,17 +833,11 @@
                                             "minItems": 1
                                         },
                                         {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "noPerformanceDetermined"
-                                                ],
-                                                "description": "noPerformanceDetermined defines that no hail test results are available."
-                                            },
-                                            "additionalItems": false,
-                                            "minItems": 1,
-                                            "maxItems": 1
+                                            "type": "string",
+                                            "enum": [
+                                                "noPerformanceDetermined"
+                                            ],
+                                            "description": "noPerformanceDetermined defines that no hail test results are available."
                                         }
                                     ]
                                 }
@@ -1130,85 +1094,63 @@
                                                 "maxItems": 2
                                             },
                                             "firstDigit": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "X",
-                                                        "0",
-                                                        "1",
-                                                        "2",
-                                                        "3",
-                                                        "4",
-                                                        "5",
-                                                        "5K",
-                                                        "6",
-                                                        "6K"
-                                                    ],
-                                                    "description": "The item defines the first digit of the IP code."
-                                                },
-                                                "additionalItems": false,
-                                                "minItems": 1,
-                                                "maxItems": 1
+                                                "type": "string",
+                                                "enum": [
+                                                    "X",
+                                                    "0",
+                                                    "1",
+                                                    "2",
+                                                    "3",
+                                                    "4",
+                                                    "5",
+                                                    "5K",
+                                                    "6",
+                                                    "6K"
+                                                ],
+                                                "description": "The item defines the first digit of the IP code."
                                             },
                                             "secondDigit": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "X",
-                                                        "0",
-                                                        "1",
-                                                        "2",
-                                                        "3",
-                                                        "4",
-                                                        "5",
-                                                        "5K",
-                                                        "6",
-                                                        "6K",
-                                                        "7",
-                                                        "8",
-                                                        "9",
-                                                        "9K"
-                                                    ],
-                                                    "description": "The item defines the second digit of the IP code."
-                                                },
-                                                "additionalItems": false,
-                                                "minItems": 1,
-                                                "maxItems": 1
+                                                "type": "string",
+                                                "enum": [
+                                                    "X",
+                                                    "0",
+                                                    "1",
+                                                    "2",
+                                                    "3",
+                                                    "4",
+                                                    "5",
+                                                    "5K",
+                                                    "6",
+                                                    "6K",
+                                                    "7",
+                                                    "8",
+                                                    "9",
+                                                    "9K"
+                                                ],
+                                                "description": "The item defines the second digit of the IP code."
                                             },
                                             "thirdDigit": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "A",
-                                                        "B",
-                                                        "C",
-                                                        "D"
-                                                    ],
-                                                    "description": "The item defines the optional third digit of the IP code."
-                                                },
-                                                "additionalItems": false,
-                                                "minItems": 0,
-                                                "maxItems": 1
+                                                "type": "string",
+                                                "enum": [
+                                                    "A",
+                                                    "B",
+                                                    "C",
+                                                    "D",
+                                                    "noThirdDigit"
+                                                ],
+                                                "description": "The item defines the optional third digit of the IP code."
                                             },
                                             "fourthDigit": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "f",
-                                                        "H",
-                                                        "M",
-                                                        "S",
-                                                        "W"
-                                                    ],
-                                                    "description": "The item defines the optional fourth digit of the IP code."
-                                                },
-                                                "additionalItems": false,
-                                                "minItems": 0,
-                                                "maxItems": 1
+                                                "type": "string",
+                                                "enum": [
+                                                    "f",
+                                                    "H",
+                                                    "M",
+                                                    "S",
+                                                    "W",
+                                                    "noFourthDigit"
+                                                ],
+                                                "description": "The item defines the optional fourth digit of the IP code."
                                             }
                                         },
                                         "additionalProperties": false,
@@ -1227,34 +1169,22 @@
                                         "type": "object",
                                         "properties": {
                                             "standard": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "IEC 61140"
-                                                    ],
-                                                    "description": "The item defines according to which standard the appliance class is defined below."
-                                                },
-                                                "additionalItems": false,
-                                                "minItems": 1,
-                                                "maxItems": 1
+                                                "type": "string",
+                                                "enum": [
+                                                    "IEC 61140"
+                                                ],
+                                                "description": "The item defines according to which standard the appliance class is defined below."
                                             },
                                             "class": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "0",
-                                                        "I",
-                                                        "0I",
-                                                        "II",
-                                                        "III"
-                                                    ],
-                                                    "description": "The item defines the appliance class."
-                                                },
-                                                "additionalItems": false,
-                                                "minItems": 1,
-                                                "maxItems": 1
+                                                "type": "string",
+                                                "enum": [
+                                                    "0",
+                                                    "I",
+                                                    "0I",
+                                                    "II",
+                                                    "III"
+                                                ],
+                                                "description": "The item defines the appliance class."
                                             }
                                         },
                                         "additionalProperties": false,
@@ -1494,19 +1424,13 @@
                     "minItems": 0
                 },
                 "category": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "parallel",
-                            "series",
-                            "complex"
-                        ],
-                        "description": "The electric connection can either be in parallel or in series or a more complex pattern."
-                    },
-                    "additionalItems": false,
-                    "minItems": 1,
-                    "maxItems": 1
+                    "type": "string",
+                    "enum": [
+                        "parallel",
+                        "series",
+                        "complex"
+                    ],
+                    "description": "The electric connection can either be in parallel or in series or a more complex pattern."
                 }
             }
         }

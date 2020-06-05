@@ -75,18 +75,13 @@
           "description": "PossiblePositions defines where the layer can be used."
         },
         "orientationAxis": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "horizontal",
-              "vertical"
-            ],
-            "description": "The orientation axis is important for example for venetian blinds."
-          },
-          "additionalItems": false,
-          "minItems": 0,
-          "maxItems": 1
+          "type": "string",
+          "enum": [
+            "horizontal",
+            "vertical",
+            "neither"
+          ],
+          "description": "The orientation axis is important for example for venetian blinds."
         },
         "slat": {
           "title": "For example venetian blinds consist of many slats. This section is used to define characteristics for such slats.",
