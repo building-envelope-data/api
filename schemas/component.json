@@ -34,13 +34,13 @@
           "properties": {
             "concretizationOf": {
               "$ref": "identifier.json#/$defs/centralOrDecentral",
-              "description": "The current component is a concretization of a more general component. The more general component is identified by this id."
+              "description": "The current component is a concretization of a more general component. The more general component is identified by this id. Whenever the current component is a 'concretizationOf' another component, the other component is a 'generalizationOf' the current component."
             },
             "generalizationOf": {
               "type": "array",
               "items": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The current component is a generalization of a more concretized component. The more concretized component is identified by this id."
+                "description": "The current component is a generalization of a more concretized component. The more concretized component is identified by this id. Whenever the current component is a 'generalizationOf' another component, the other component is a 'concretizationOf' the current component."
               },
               "additionalItems": false,
               "minItems": 1
@@ -49,7 +49,7 @@
               "type": "array",
               "items": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The current component is neither a concretization nor a generalization nor an assembly or a part of a second component. But it is a variant of a second component. This means that the current component and the second component share a large part of their characteristics. The second component is identified by this id."
+                "description": "The current component is neither a concretization nor a generalization nor an assembly or a part of a second component. But it is a variant of a second component. This means that the current component and the second component share a large part of their characteristics. The second component is identified by this id. Whenever the current component is a 'variantOf' another component, the other component is a 'variantOf' the current component."
               },
               "additionalItems": false,
               "minItems": 1
@@ -58,7 +58,7 @@
               "type": "array",
               "items": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The current component is a part of an assembly of other components. Each of the other components is defined by its id."
+                "description": "The current component is a part of an assembly of other components. Each of the other components is defined by its id. Whenever the current component is a 'partOf' another component, the other component is 'assembledOf' the current component."
               },
               "additionalItems": false,
               "minItems": 1
@@ -67,7 +67,7 @@
               "type": "array",
               "items": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The current component is an assembly of other components. Each of the other components is defined by its id."
+                "description": "The current component is an assembly of other components. Each of the other components is defined by its id. Whenever the current component is 'assembledOf' another component, the other component is a 'partOf' the current component."
               },
               "additionalItems": false,
               "minItems": 1
