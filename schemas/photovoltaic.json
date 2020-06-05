@@ -335,11 +335,11 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "material": {
-                                "$ref": "material.json",
+                            "identification": {
+                                "$ref": "material.json#/$defs/identification",
                                 "description": "This sections defines the material of the layer"
                             },
-                            "materialProperties": {
+                            "characteristics": {
                                 "$ref": "material.json#/$defs/characteristics",
                                 "description": "All properties which depend on the material in general and not on the specific component."
                             },
@@ -358,8 +358,8 @@
                                     "description": "Typically, a PV module consists of a front cover layer, a front embedding layer, a cell layer, a rear embedding layer and a backing layer. The layer can therefore be defined by multiple strings."
                                 },
                                 "additionalItems": false,
-                                "minItem": 1,
-                                "maxItem": 2
+                                "minItems": 1,
+                                "maxItems": 2
                             },
                             "thickness": {
                                 "$ref": "number.json#/$defs/meterWithUncertainty",

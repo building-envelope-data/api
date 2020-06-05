@@ -173,7 +173,7 @@
         "layer": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/layerCategory"
+            "$ref": "layer.json#/$defs/category"
           },
           "additionalItems": false,
           "minItems": 0,
@@ -182,7 +182,7 @@
         "unit": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/unitCategory"
+            "$ref": "unit.json#/$defs/category"
           },
           "additionalItems": false,
           "minItems": 0,
@@ -288,11 +288,11 @@
           "description": "If the component is a material, the material-specific characteristics can be named here."
         },
         "layer": {
-          "$ref": "#/$defs/layerCharacteristics",
+          "$ref": "layer.json#/$defs/characteristics",
           "description": "If the component is a layer, the layer-specific characteristics can be named here."
         },
         "unit": {
-          "$ref": "#/$defs/unitCharacteristics",
+          "$ref": "unit.json#/$defs/characteristics",
           "description": "If the component is a unit, the unit-specific characteristics can be named here."
         }
       },

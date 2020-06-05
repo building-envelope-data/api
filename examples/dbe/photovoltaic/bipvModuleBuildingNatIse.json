@@ -109,7 +109,7 @@
                     },
                     "moduleLayers": [
                         {
-                            "material": {
+                            "identification": {
                                 "name": {
                                     "en-US": "Tempered white glass"
                                 }
@@ -138,7 +138,7 @@
                             }
                         },
                         {
-                            "material": {
+                            "identification": {
                                 "name": {
                                     "en-US": "PVB"
                                 }
@@ -154,7 +154,7 @@
                             ]
                         },
                         {
-                            "material": {
+                            "identification": {
                                 "name": {
                                     "en-US": "PVB"
                                 }
@@ -165,7 +165,7 @@
                             ]
                         },
                         {
-                            "material": {
+                            "identification": {
                                 "name": {
                                     "en-US": "Tempered white glass"
                                 }
