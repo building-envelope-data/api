@@ -17,7 +17,30 @@
                                 "cartesian"
                             ]
                         },
-                        "cells": {
+                        "cellTypes": [
+                            {
+                                "id": {
+                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "power": {
+                                    "nominal": {
+                                        "uncertainValue": 3.19
+                                    },
+                                    "effective": {
+                                        "uncertainValue": 3.047
+                                    }
+                                },
+                                "width": {
+                                    "uncertainValue": 0.125
+                                },
+                                "categories": [
+                                    "monocrystalline",
+                                    "silicon"
+                                ]
+                            }
+                        ],
+                        "cellPattern": {
                             "rectangular": {
                                 "longitudinal": {
                                     "cellNumber": {
@@ -29,83 +52,58 @@
                                         "uncertainValue": 8
                                     }
                                 }
-                            },
-                            "cellTypes": [
-                                {
-                                    "id": {
-                                        "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    },
-                                    "power": {
-                                        "nominal": {
-                                            "uncertainValue": 3.19
-                                        },
-                                        "effective": {
-                                            "uncertainValue": 3.047
-                                        }
-                                    },
-                                    "width": {
-                                        "uncertainValue": 0.125
-                                    },
-                                    "categories": [
-                                        "monocrystalline",
-                                        "silicon"
-                                    ]
-                                }
-                            ],
-                            "cellList": [
-                                {
-                                    "id": {
-                                        "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
-                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    },
-                                    "cellType": {
-                                        "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    }
+                            }
+                        },
+                        "cells": [
+                            {
+                                "id": {
+                                    "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                                 },
-                                {
-                                    "id": {
-                                        "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
-                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    },
-                                    "cellType": {
-                                        "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    }
+                                "cellType": {
+                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                                 }
-                            ]
-                        },
-                        "connections": {
-                            "connectionTypes": [
-                                {
-                                    "id": {
-                                        "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
-                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    },
-                                    "explanation": {
-                                        "en-US": "Connection type is unknown."
-                                    }
+                            },
+                            {
+                                "id": {
+                                    "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "cellType": {
+                                    "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                                 }
-                            ],
-                            "connectionList": [
-                                {
-                                    "connectionType": {
-                                        "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
-                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    },
-                                    "id1": {
-                                        "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
-                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    },
-                                    "id2": {
-                                        "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
-                                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    }
+                            }
+                        ],
+                        "connectionTypes": [
+                            {
+                                "id": {
+                                    "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "explanation": {
+                                    "en-US": "Connection type is unknown."
                                 }
-                            ],
-                            "category": "series"
-                        },
+                            }
+                        ],
+                        "connectionPattern": "series",
+                        "connections": [
+                            {
+                                "connectionType": {
+                                    "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "id1": {
+                                    "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "id2": {
+                                    "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                }
+                            }
+                        ],
                         "moduleLayers": [
                             {
                                 "identification": {
@@ -219,7 +217,7 @@
                                     "id": "7c43b619-402f-4309-b66f-5672b8ca071d"
                                 }
                             ],
-                            "connectorList": [
+                            "connectors": [
                                 {
                                     "id": "14838e0b-e17b-4c52-8578-fb2cc9170ac4",
                                     "connectorType": "411249fc-14c7-4940-805b-15dc0855b444",

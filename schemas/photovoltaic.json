@@ -55,11 +55,99 @@
                     "$ref": "geometry.json#/$defs/coordinateSystem",
                     "description": "The coordinate system is defined by a reference to a publication or standard."
                 },
-                "cells": {
+                "cellTypes": {
+                    "title": "This array defines which types of cells are used in the PV module.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                                "description": "The id represents one type of PV cells."
+                            },
+                            "explanation": {
+                                "$ref": "string.json#/$defs/internationalString",
+                                "description": "This string can explain the cell to humans."
+                            },
+                            "efficiency": {
+                                "$ref": "number.json#/$defs/numberBetweenZeroAndOne",
+                                "description": "The effiency of the cell is measured at standard test conditions."
+                            },
+                            "power": {
+                                "type": "object",
+                                "properties": {
+                                    "nominal": {
+                                        "$ref": "number.json#/$defs/wattWithUncertainty",
+                                        "description": "The nominal power of the cell is measured independently at standard test conditions in watts."
+                                    },
+                                    "effective": {
+                                        "$ref": "number.json#/$defs/wattWithUncertainty",
+                                        "description": "The effective nominal power of a cell is the nominal power of the module divided by the number of cells."
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": []
+                            },
+                            "width": {
+                                "$ref": "number.json#/$defs/meterWithUncertainty",
+                                "description": "If the cell has more or less the form of a square, then the width between two parallel sides is helpful to calculate how many cells fit into one module."
+                            },
+                            "currentVoltage": {
+                                "$ref": "common.json#/$defs/currentVoltage",
+                                "description": "The current-voltage characteristic is important to calculate the PV performance for conditions other than the standard test conditions."
+                            },
+                            "categories": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "amorphous",
+                                        "arsenide",
+                                        "cadmium",
+                                        "concentrated",
+                                        "copper",
+                                        "crystalline",
+                                        "dyeSensitized",
+                                        "gallium",
+                                        "germanium",
+                                        "hybrid",
+                                        "indium",
+                                        "luminescent",
+                                        "micromorph",
+                                        "monocrystalline",
+                                        "multiJunction",
+                                        "nanocrystalline",
+                                        "organic",
+                                        "perovskite",
+                                        "plasmonic",
+                                        "polycrystalline",
+                                        "quantumDot",
+                                        "selenide",
+                                        "silicon",
+                                        "solidState",
+                                        "telluride",
+                                        "thinFilm",
+                                        "wafer"
+                                    ],
+                                    "description": "A photovoltaic cell can have one or more of these categories. For example, Copper indium gallium selenide PV is a thin film and solid state PV technology and would be described by the corresponding six items in the array."
+                                },
+                                "additionalItems": false,
+                                "minItems": 0
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "id"
+                        ]
+                    },
+                    "additionalItems": false,
+                    "minItems": 1
+                },
+                "cellPattern": {
                     "type": "object",
                     "properties": {
                         "rectangular": {
-                            "title": "If the BIPV module is rectangular with the same amount of cells in each row and the same distances between them, then this section can be used to describe the geometry. 'longitudinal' is the direction with the larger number of cells and 'transversal' with the smaller number of cells. More complex BIPV modules can be defined below as a 'cellList'. ",
+                            "title": "If the BIPV module is rectangular with the same amount of cells in each row and the same distances between them, then this section can be used to describe the geometry. 'longitudinal' is the direction with the larger number of cells and 'transversal' with the smaller number of cells.",
                             "type": "object",
                             "properties": {
                                 "longitudinal": {
@@ -107,234 +195,125 @@
                                 "longitudinal",
                                 "transversal"
                             ]
-                        },
-                        "cellTypes": {
-                            "title": "This array defines which types of cells are used in the PV module.",
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id represents one type of PV cells."
-                                    },
-                                    "explanation": {
-                                        "$ref": "string.json#/$defs/internationalString",
-                                        "description": "This string can explain the cell to humans."
-                                    },
-                                    "efficiency": {
-                                        "$ref": "number.json#/$defs/numberBetweenZeroAndOne",
-                                        "description": "The effiency of the cell is measured at standard test conditions."
-                                    },
-                                    "power": {
-                                        "type": "object",
-                                        "properties": {
-                                            "nominal": {
-                                                "$ref": "number.json#/$defs/wattWithUncertainty",
-                                                "description": "The nominal power of the cell is measured independently at standard test conditions in watts."
-                                            },
-                                            "effective": {
-                                                "$ref": "number.json#/$defs/wattWithUncertainty",
-                                                "description": "The effective nominal power of a cell is the nominal power of the module divided by the number of cells."
-                                            }
-                                        },
-                                        "additionalProperties": false,
-                                        "required": []
-                                    },
-                                    "width": {
-                                        "$ref": "number.json#/$defs/meterWithUncertainty",
-                                        "description": "If the cell has more or less the form of a square, then the width between two parallel sides is helpful to calculate how many cells fit into one module."
-                                    },
-                                    "currentVoltage": {
-                                        "$ref": "common.json#/$defs/currentVoltage",
-                                        "description": "The current-voltage characteristic is important to calculate the PV performance for conditions other than the standard test conditions."
-                                    },
-                                    "categories": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "enum": [
-                                                "amorphous",
-                                                "arsenide",
-                                                "cadmium",
-                                                "concentrated",
-                                                "copper",
-                                                "crystalline",
-                                                "dyeSensitized",
-                                                "gallium",
-                                                "germanium",
-                                                "hybrid",
-                                                "indium",
-                                                "luminescent",
-                                                "micromorph",
-                                                "monocrystalline",
-                                                "multiJunction",
-                                                "nanocrystalline",
-                                                "organic",
-                                                "perovskite",
-                                                "plasmonic",
-                                                "polycrystalline",
-                                                "quantumDot",
-                                                "selenide",
-                                                "silicon",
-                                                "solidState",
-                                                "telluride",
-                                                "thinFilm",
-                                                "wafer"
-                                            ],
-                                            "description": "A photovoltaic cell can have one or more of these categories. For example, Copper indium gallium selenide PV is a thin film and solid state PV technology and would be described by the corresponding six items in the array."
-                                        },
-                                        "additionalItems": false,
-                                        "minItems": 0
-                                    }
-                                },
-                                "additionalProperties": false,
-                                "required": [
-                                    "id"
-                                ]
-                            },
-                            "additionalItems": false,
-                            "minItems": 1
-                        },
-                        "cellList": {
-                            "title": "This section can be used to define the cells with a higher level of detail than 'rectangular'. 'cellList' lists each cells of the PV module.",
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "$ref": "identifier.json#/$defs/decentral",
-                                        "description": "The id represents one specific cell in the photovoltaic module. It is used to define connections to other parts of the PV module."
-                                    },
-                                    "cellType": {
-                                        "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id represents one type of PV cells as defined above."
-                                    },
-                                    "geometry": {
-                                        "$ref": "geometry.json",
-                                        "description": "This section defines the geometry and location of the cell."
-                                    }
-                                },
-                                "additionalProperties": false,
-                                "required": [
-                                    "id",
-                                    "cellType"
-                                ]
-                            },
-                            "additionalItems": false,
-                            "minItems": 1
-                        }
-                    },
-                    "additionalProperties": false,
-                    "minProperties": 2,
-                    "required": [
-                        "cellTypes"
-                    ]
-                },
-                "diodes": {
-                    "type": "object",
-                    "properties": {
-                        "diodeTypes": {
-                            "title": "This array defines the type of diodes which are used in the the PV module.",
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
-                                    },
-                                    "explanation": {
-                                        "$ref": "string.json#/$defs/internationalString",
-                                        "description": "This string can explain the cell to humans."
-                                    }
-                                },
-                                "additionalProperties": false,
-                                "required": []
-                            },
-                            "additionalItems": false,
-                            "minItems": 0
-                        },
-                        "diodeList": {
-                            "title": "This array lists the diodes of the PV module. They are used to bypass shaded cells which would otherwise dissipate energy.",
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "$ref": "identifier.json#/$defs/decentral",
-                                        "description": "The id represents one specific diode of the PV module. The id is used to define connections to other parts of the PV module"
-                                    },
-                                    "diodeType": {
-                                        "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id defines the type of the diode."
-                                    },
-                                    "geometry": {
-                                        "$ref": "geometry.json",
-                                        "description": "This section defines the geometry and location of the diode."
-                                    }
-                                },
-                                "additionalProperties": false,
-                                "required": [
-                                    "id",
-                                    "diodeType"
-                                ]
-                            },
-                            "additionalItems": false,
-                            "minItems": 0
                         }
                     },
                     "additionalProperties": false,
                     "minProperties": 1,
                     "required": []
                 },
-                "connections": {
-                    "type": "object",
-                    "properties": {
-                        "connectionTypes": {
-                            "title": "This array defines the type of electric connections which are used in the the PV module.",
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id represents one type of connections which is used in the the PV module. The id is used to define connections to other parts of the PV module"
-                                    },
-                                    "explanation": {
-                                        "$ref": "string.json#/$defs/internationalString",
-                                        "description": "This string can explain the connection type to humans."
-                                    },
-                                    "resistancePerLength": {
-                                        "$ref": "number.json#/$defs/ohmPerMeterWithUncertainty",
-                                        "description": "The electric resistance of the connection per length of the connection in ohms per meter."
-                                    },
-                                    "colour": {
-                                        "$ref": "common.json#/$defs/colour",
-                                        "description": "The reference offers several way to define the colour of the connection."
-                                    }
-                                },
-                                "additionalProperties": false,
-                                "required": []
+                "cells": {
+                    "title": "This subschema can be used to define the cells with a higher level of detail than 'rectangular'. It lists each cells of the PV module.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "identifier.json#/$defs/decentral",
+                                "description": "The id represents one specific cell in the photovoltaic module. It is used to define connections to other parts of the PV module."
                             },
-                            "additionalItems": false,
-                            "minItems": 0
+                            "cellType": {
+                                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                                "description": "The id represents one type of PV cells as defined above."
+                            },
+                            "geometry": {
+                                "$ref": "geometry.json",
+                                "description": "This section defines the geometry and location of the cell."
+                            }
                         },
-                        "connectionList": {
-                            "$ref": "#/$defs/connections/$defs/bidirectional",
-                            "description": "This section defines a list of all connections between cells and between cells and diodes."
-                        },
-                        "category": {
-                            "$ref": "#/$defs/connections/$defs/category",
-                            "description": "If the connections are in series or parallel, this can be defined here."
-                        }
+                        "additionalProperties": false,
+                        "required": [
+                            "id",
+                            "cellType"
+                        ]
                     },
-                    "additionalProperties": false,
-                    "minProperties": 1,
-                    "required": [
-                        "connectionTypes",
-                        "connectionList"
-                    ]
+                    "additionalItems": false,
+                    "minItems": 1
+                },
+                "diodeTypes": {
+                    "title": "This array defines the type of diodes which are used in the the PV module.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                                "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
+                            },
+                            "explanation": {
+                                "$ref": "string.json#/$defs/internationalString",
+                                "description": "This string can explain the cell to humans."
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": []
+                    },
+                    "additionalItems": false,
+                    "minItems": 0
+                },
+                "diodes": {
+                    "title": "This array lists the diodes of the PV module. They are used to bypass shaded cells which would otherwise dissipate energy.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "identifier.json#/$defs/decentral",
+                                "description": "The id represents one specific diode of the PV module. The id is used to define connections to other parts of the PV module"
+                            },
+                            "diodeType": {
+                                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                                "description": "The id defines the type of the diode."
+                            },
+                            "geometry": {
+                                "$ref": "geometry.json",
+                                "description": "This section defines the geometry and location of the diode."
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "id",
+                            "diodeType"
+                        ]
+                    },
+                    "additionalItems": false,
+                    "minItems": 0
+                },
+                "connectionTypes": {
+                    "title": "This array defines the type of electric connections which are used in the the PV module.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                                "description": "The id represents one type of connections which is used in the the PV module. The id is used to define connections to other parts of the PV module"
+                            },
+                            "explanation": {
+                                "$ref": "string.json#/$defs/internationalString",
+                                "description": "This string can explain the connection type to humans."
+                            },
+                            "resistancePerLength": {
+                                "$ref": "number.json#/$defs/ohmPerMeterWithUncertainty",
+                                "description": "The electric resistance of the connection per length of the connection in ohms per meter."
+                            },
+                            "colour": {
+                                "$ref": "common.json#/$defs/colour",
+                                "description": "The reference offers several way to define the colour of the connection."
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": []
+                    },
+                    "additionalItems": false,
+                    "minItems": 0
+                },
+                "connectionPattern": {
+                    "$ref": "#/$defs/connections/$defs/category",
+                    "description": "If the connections are in series or parallel, this can be defined here."
+                },
+                "connections": {
+                    "$ref": "#/$defs/connections/$defs/bidirectional",
+                    "description": "This section defines a list of all connections between cells and between cells and diodes."
                 },
                 "moduleLayers": {
                     "title": "PV modules typically consist of several layers, for example a glass pane, a lamination material and the PV cells.",
@@ -468,7 +447,7 @@
                             "additionalItems": false,
                             "minItems": 1
                         },
-                        "connectorList": {
+                        "connectors": {
                             "type": "array",
                             "items": {
                                 "title": "Each connector is an instance of a connectorType and receives its own id. It is connected via a cableType and a junctionBoxType to the PV module.",
@@ -1319,7 +1298,7 @@
                     "additionalItems": false,
                     "minItems": 0
                 },
-                "diodeList": {
+                "diodes": {
                     "title": "This array defines the diodes between the modules of this PV system. The diodes are used to bypass shaded modules which would otherwise dissipate energy.",
                     "type": "array",
                     "items": {
@@ -1380,7 +1359,7 @@
                     "additionalItems": false,
                     "minItems": 0
                 },
-                "connectionList": {
+                "connections": {
                     "$ref": "#/$defs/connections/$defs/bidirectional",
                     "description": "This section defines the connections between the modules, diodes and inverters of this PV system."
                 },
