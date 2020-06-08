@@ -77,7 +77,7 @@
                             ]
                         },
                         "connections": {
-                            "connectionType": [
+                            "connectionTypes": [
                                 {
                                     "id": {
                                         "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
@@ -193,29 +193,41 @@
                             }
                         ],
                         "electricConfiguration": {
-                            "grounding": "plus",
-                            "connectionCables": {
-                                "crossSection": {
-                                    "uncertainValue": 4
-                                },
-                                "length": {
-                                    "positive": {
-                                        "uncertainValue": 1
+                            "junctionBoxTypes": [
+                                {
+                                    "id": "6a5083af-7bee-491c-b3fd-d6229f6a56ec"
+                                }
+                            ],
+                            "cableTypes": [
+                                {
+                                    "id": "055f2dc8-2ab0-48c3-8870-faffa1f1edd2",
+                                    "crossSection": {
+                                        "uncertainValue": 4
                                     },
-                                    "negative": {
-                                        "uncertainValue": 1
+                                    "length": {
+                                        "positive": {
+                                            "uncertainValue": 1
+                                        },
+                                        "negative": {
+                                            "uncertainValue": 1
+                                        }
                                     }
                                 }
-                            },
-                            "connectorType": {
-                                "id": {
-                                    "uniqueId": "91f66c3b-8c08-4e86-9310-1fd8893d30b1",
-                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                },
-                                "name": {
-                                    "en-US": "Huber und Suhner"
+                            ],
+                            "connectorTypes": [
+                                {
+                                    "id": "7c43b619-402f-4309-b66f-5672b8ca071d"
                                 }
-                            }
+                            ],
+                            "connectorList": [
+                                {
+                                    "id": "14838e0b-e17b-4c52-8578-fb2cc9170ac4",
+                                    "connectorType": "411249fc-14c7-4940-805b-15dc0855b444",
+                                    "cableType": "53c5cc37-d1cb-482b-ba4b-25c67a853d4f",
+                                    "junctionBoxType": "538a6419-aecd-45c1-8e61-8dd4d3e74988"
+                                }
+                            ],
+                            "grounding": "plus"
                         },
                         "moduleProperties": {
                             "power": {
