@@ -94,9 +94,7 @@
                                     "confidenceInterval": 68.3
                                 },
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ]
                             }
                         }
@@ -104,9 +102,7 @@
                     "results": [
                         {
                             "area": {
-                                "category": [
-                                    "centre"
-                                ]
+                                "category": "centre"
                             },
                             "uValue": {
                                 "uncertainValue": 1.0,

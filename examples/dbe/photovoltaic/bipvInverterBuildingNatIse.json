@@ -84,22 +84,14 @@
                                         "standard": [
                                             "EN IEC 60529"
                                         ],
-                                        "firstDigit": [
-                                            "6"
-                                        ],
-                                        "secondDigit": [
-                                            "5"
-                                        ]
+                                        "firstDigit": "6",
+                                        "secondDigit": "5"
                                     }
                                 ],
                                 "applianceClass": [
                                     {
-                                        "standard": [
-                                            "IEC 61140"
-                                        ],
-                                        "class": [
-                                            "I"
-                                        ]
+                                        "standard": "IEC 61140",
+                                        "class": "I"
                                     }
                                 ]
                             }

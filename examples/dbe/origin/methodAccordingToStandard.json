@@ -30,24 +30,18 @@
                         {
                             "incidence": {
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ],
                                 "wavelengths": {
                                     "integral": true
                                 },
                                 "range": {
-                                    "spectrum": [
-                                        "solar"
-                                    ]
+                                    "spectrum": "solar"
                                 }
                             },
                             "emergence": {
                                 "direction": [
-                                    [
-                                        "hemispherical"
-                                    ]
+                                    "hemispherical"
                                 ]
                             },
                             "results": {
