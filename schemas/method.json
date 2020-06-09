@@ -93,26 +93,31 @@
       "minProperties": 1
     },
     "source": {
-      "title": "The source data is the data which has been the starting point and on which a method was applied by the creator of the new data set.",
-      "type": "object",
-      "properties": {
-        "id": {
-          "$ref": "identifier.json#/$defs/decentral",
-          "description": "The id represents the data source."
+      "title": "The source data is the data which has been the starting point and on which a method was applied by the creator of the new data set. Depending on the method, either one data set or several are used as data sourc",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "identifier.json#/$defs/decentral",
+            "description": "The id represents the data source."
+          },
+          "name": {
+            "$ref": "string.json#/$defs/internationalString",
+            "description": "A data set can have a name."
+          },
+          "explanation": {
+            "$ref": "string.json#/$defs/internationalString",
+            "description": "This string can explain the source data for humans."
+          }
         },
-        "name": {
-          "$ref": "string.json#/$defs/internationalString",
-          "description": "A data set can have a name."
-        },
-        "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
-          "description": "This string can explain the source data for humans."
-        }
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ]
       },
-      "additionalProperties": false,
-      "required": [
-        "id"
-      ]
+      "additionalItems": false,
+      "minItems": 1
     },
     "database": {
       "description": "Information about a database which has implemented the same API specification.",
