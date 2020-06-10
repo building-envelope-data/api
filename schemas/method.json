@@ -82,10 +82,6 @@
         "source": {
           "$ref": "#/$defs/source",
           "description": "The source data has been the starting point for the creator. If the method is a measurement, there may be no source data."
-        },
-        "database": {
-          "$ref": "#/$defs/database",
-          "description": "The database, where the source data and the method can be found, is identified here."
         }
       },
       "additionalProperties": false,
@@ -109,6 +105,10 @@
           "explanation": {
             "$ref": "string.json#/$defs/internationalString",
             "description": "This string can explain the source data for humans."
+          },
+          "database": {
+            "$ref": "#/$defs/database",
+            "description": "The database, where the source data can be found, is identified here."
           }
         },
         "additionalProperties": false,
