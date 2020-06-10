@@ -225,7 +225,7 @@
                                     "junctionBoxType": "538a6419-aecd-45c1-8e61-8dd4d3e74988"
                                 }
                             ],
-                            "grounding": "necessary"
+                            "groundingNecessary": true
                         },
                         "moduleProperties": {
                             "power": {
