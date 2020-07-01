@@ -15,9 +15,7 @@
                         {
                             "incidence": {
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ],
                                 "wavelengths": {
                                     "wavelength": 500
@@ -25,9 +23,7 @@
                             },
                             "emergence": {
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ]
                             },
                             "results": {
@@ -39,9 +35,7 @@
                         {
                             "incidence": {
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ],
                                 "wavelengths": {
                                     "wavelength": 1000
@@ -49,9 +43,7 @@
                             },
                             "emergence": {
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ]
                             },
                             "results": {
@@ -63,9 +55,7 @@
                         {
                             "incidence": {
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ],
                                 "wavelengths": {
                                     "wavelength": 1500
@@ -73,9 +63,7 @@
                             },
                             "emergence": {
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ]
                             },
                             "results": {

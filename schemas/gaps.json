@@ -1,0 +1,46 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://www.buildingenvelopedata.org/schemas/component.json",
+    "title": "gap data",
+    "description": "Building envelopes can be assembled by several parts. The dimensions of the gaps between those parts can be important for example regarding the heat transfer. This schema can be used to define gaps in building envelope components.",
+    "$defs": {
+        "gaps": {
+            "title": "The gaps for example between a blind and the frame can be important for example regarding glare.",
+            "type": "object",
+            "properties": {
+                "reveal": {
+                    "type": "string",
+                    "enum": [
+                        "inside",
+                        "outside",
+                        "other"
+                    ],
+                    "description": "The item defines whether the shading is inside the reveal or outside or something beyond both categories."
+                },
+                "dTop": {
+                    "$ref": "number.json#/$defs/numberWithUncertainty",
+                    "description": "dTop is usually the distance between the top of the shading and the rest of the building envelope. It is defined exactly in the reference below."
+                },
+                "dBot": {
+                    "$ref": "number.json#/$defs/numberWithUncertainty",
+                    "description": "dBot is usually the distance between the bottom of the shading and the rest of the building envelope. It is defined exactly in the reference below."
+                },
+                "dSide": {
+                    "$ref": "number.json#/$defs/numberWithUncertainty",
+                    "description": "dSide is usually the minimum thickness of the air gap between the side of the shading layer and the rest of the building envelope. It is defined exactly in the reference below."
+                },
+                "dGlaz": {
+                    "$ref": "number.json#/$defs/numberWithUncertainty",
+                    "description": "dGlaz is usually the distance between the shading and the glass pane facing the shading. It is defined exactly in the reference below."
+                },
+                "reference": {
+                    "$ref": "common.json#/$defs/reference",
+                    "description": "This reference defines all parameters of this object."
+                }
+            },
+            "additionalProperties": false,
+            "required": []
+        }
+    },
+    "$ref": "#/$defs/gaps"
+}

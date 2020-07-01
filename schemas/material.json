@@ -2,14 +2,14 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/material.json",
   "title": "material data",
-  "description": "",
+  "description": "This schema defines how a material can be identified, which categories can be attributed to the material and which characteristics or properties the material has.",
   "$defs": {
-    "material": {
-      "title": "This sections defines a material.",
+    "identification": {
+      "title": "This sections is used to identify a certain material. It is recommended to use central identifiers, but it also possible to definde materials without identifier.",
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "identifier.json#/$defs/decentral",
+          "$ref": "identifier.json#/$defs/centralOrDecentral",
           "description": "The id represents the material."
         },
         "version": {
@@ -59,7 +59,10 @@
         "slat",
         "weave"
       ],
-      "description": "Components of the category material can have the subcategories of this enumeration which further specifies the material."
+      "description": "Components of the category material can have the subcategories of this enumeration which further specifies the material.",
+      "additionalItems": false,
+      "minItems": 1,
+      "maxItems": 2
     },
     "characteristics": {
       "title": "This section collects the characteristics of a material.",
@@ -93,8 +96,10 @@
           "$ref": "number.json#/$defs/pascal",
           "description": "The Young's Modulus is a measure for the stiffness of a solid material. It has the SI unit Pascal."
         }
-      }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
     }
-  },
-  "$ref": "#/$defs/material"
+  }
 }

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/calorimetric.json",
   "title": "calorimetric data",
-  "description": "The array is used to define sets of calorimetric data.",
+  "description": "This schema is used to exchange data about calorimetric measurements or simulations. Therefore, energy fluxes are an important part of this schema.",
   "$defs": {
     "calorimetric": {
       "type": "object",
@@ -198,21 +198,15 @@
                 "type": "object",
                 "properties": {
                   "category": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "centre",
-                        "irradiatedAbsorber",
-                        "outerDimensions",
-                        "projectedIrradiatedAbsorber",
-                        "other"
-                      ],
-                      "description": "(i) `centre` means that the results are valid for the centre of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absober, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance. (v) If none of the other categories apply, `explanation` below must be used to describe the category."
-                    },
-                    "additionalItems": false,
-                    "minItems": 1,
-                    "maxItems": 1
+                    "type": "string",
+                    "enum": [
+                      "centre",
+                      "irradiatedAbsorber",
+                      "outerDimensions",
+                      "projectedIrradiatedAbsorber",
+                      "other"
+                    ],
+                    "description": "(i) `centre` means that the results are valid for the centre of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absober, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance. (v) If none of the other categories apply, `explanation` below must be used to describe the category."
                   },
                   "explanation": {
                     "$ref": "string.json#/$defs/internationalString",
@@ -267,18 +261,12 @@
       "type": "object",
       "properties": {
         "conditions": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "dynamic",
-              "stationary"
-            ],
-            "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
-          },
-          "additionalItems": false,
-          "minItems": 1,
-          "maxItems": 1
+          "type": "string",
+          "enum": [
+            "dynamic",
+            "stationary"
+          ],
+          "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
         },
         "coordinateSystem": {
           "$ref": "geometry.json#/$defs/coordinateSystem",

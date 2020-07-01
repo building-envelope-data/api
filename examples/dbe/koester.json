@@ -23,24 +23,18 @@
                         {
                             "incidence": {
                                 "direction": [
-                                    [
-                                        "nearnormal"
-                                    ]
+                                    "nearnormal"
                                 ],
                                 "wavelengths": {
                                     "integral": true
                                 },
                                 "range": {
-                                    "spectrum": [
-                                        "visible"
-                                    ]
+                                    "spectrum": "visible"
                                 }
                             },
                             "emergence": {
                                 "direction": [
-                                    [
-                                        "hemispherical"
-                                    ]
+                                    "hemispherical"
                                 ]
                             },
                             "results": {
@@ -66,9 +60,7 @@
                     "results": [
                         {
                             "area": {
-                                "category": [
-                                    "centre"
-                                ]
+                                "category": "centre"
                             },
                             "gValue": {
                                 "uncertainValue": 0.32
@@ -100,9 +92,7 @@
                     "results": [
                         {
                             "area": {
-                                "category": [
-                                    "centre"
-                                ]
+                                "category": "centre"
                             },
                             "uValue": {
                                 "uncertainValue": 1.1

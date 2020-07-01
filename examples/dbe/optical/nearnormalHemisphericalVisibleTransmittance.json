@@ -9,22 +9,7 @@
                         "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
                     "explanation": {
-                        "en-US": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050."
-                    },
-                    "origin": {
-                        "method": {
-                            "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
-                            "reference": {
-                                "standard": {
-                                    "standardizerIds": [
-                                        "2ed5024f-3b9a-4210-a65f-ecc3bf4a8f04"
-                                    ],
-                                    "numeration": {
-                                        "mainNumber": 9050
-                                    }
-                                }
-                            }
-                        }
+                        "en-US": "Example for a nearnormal-hemispherical visible transmittance of a component."
                     },
                     "dataPoints": [
                         {
@@ -36,7 +21,7 @@
                                     "integral": true
                                 },
                                 "range": {
-                                    "spectrum": "solar"
+                                    "spectrum": "visible"
                                 }
                             },
                             "emergence": {

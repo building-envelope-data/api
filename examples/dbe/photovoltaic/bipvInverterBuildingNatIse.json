@@ -11,112 +11,106 @@
             "explanation": {
                 "en-US": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany."
             },
-            "photovoltaic": {
-                "inverter": {
-                    "id": {
-                        "uniqueId": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
-                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                    },
-                    "power": {
-                        "input": {
-                            "maximum": 6000
+            "photovoltaic": [
+                {
+                    "inverter": {
+                        "id": {
+                            "uniqueId": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
+                            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                         },
-                        "output": {
-                            "nominal": {
-                                "uncertainValue": 3000
+                        "power": {
+                            "input": {
+                                "maximum": 6000
                             },
-                            "maximum": 3000,
-                            "normalized": 0.5
-                        },
-                        "demand": {
-                            "night": {
-                                "uncertainValue": 1
+                            "output": {
+                                "nominal": {
+                                    "uncertainValue": 3000
+                                },
+                                "maximum": 3000,
+                                "normalized": 0.5
+                            },
+                            "demand": {
+                                "night": {
+                                    "uncertainValue": 1
+                                }
                             }
-                        }
-                    },
-                    "voltage": {
-                        "input": {
-                            "minimum": 165,
-                            "start": 185,
-                            "maximum": 550
                         },
-                        "output": {
-                            "frequency": {
-                                "minimum": 45,
-                                "maximum": 65
+                        "voltage": {
+                            "input": {
+                                "minimum": 165,
+                                "start": 185,
+                                "maximum": 550
+                            },
+                            "output": {
+                                "frequency": {
+                                    "minimum": 45,
+                                    "maximum": 65
+                                }
                             }
-                        }
-                    },
-                    "current": {
-                        "input": {
-                            "maximum": 19.8,
-                            "shortCircuit": 19.6
                         },
-                        "output": {
-                            "nominal": 13
-                        }
-                    },
-                    "weight": {
-                        "uncertainValue": 16.8
-                    },
-                    "geometry": {
-                        "dimensions": {
-                            "installed": [
-                                {
-                                    "height": {
-                                        "uncertainValue": 0.645
-                                    },
-                                    "width": {
-                                        "uncertainValue": 0.431
-                                    },
-                                    "depth": {
-                                        "uncertainValue": 0.204
+                        "current": {
+                            "input": {
+                                "maximum": 19.8,
+                                "shortCircuit": 19.6
+                            },
+                            "output": {
+                                "nominal": 13
+                            }
+                        },
+                        "weight": {
+                            "uncertainValue": 16.8
+                        },
+                        "geometry": {
+                            "dimensions": {
+                                "installed": [
+                                    {
+                                        "height": {
+                                            "uncertainValue": 0.645
+                                        },
+                                        "width": {
+                                            "uncertainValue": 0.431
+                                        },
+                                        "depth": {
+                                            "uncertainValue": 0.204
+                                        }
                                     }
-                                }
-                            ]
-                        }
-                    },
-                    "safety": {
-                        "electric": {
-                            "IPcode": [
-                                {
-                                    "standard": [
-                                        "EN IEC 60529"
-                                    ],
-                                    "firstDigit": [
-                                        "6"
-                                    ],
-                                    "secondDigit": [
-                                        "5"
-                                    ]
-                                }
-                            ],
-                            "applianceClass": [
-                                {
-                                    "standard": [
-                                        "IEC 61140"
-                                    ],
-                                    "class": [
-                                        "I"
-                                    ]
-                                }
-                            ]
-                        }
-                    },
-                    "temperatures": {
-                        "minimum": 248.15,
-                        "maximum": 323.15
-                    },
-                    "efficiencies": {
-                        "maximum": {
-                            "uncertainValue": 0.961
+                                ]
+                            }
                         },
-                        "European": {
-                            "uncertainValue": 0.954
+                        "safety": {
+                            "electric": {
+                                "IPcode": [
+                                    {
+                                        "standard": [
+                                            "EN IEC 60529"
+                                        ],
+                                        "firstDigit": "6",
+                                        "secondDigit": "5"
+                                    }
+                                ],
+                                "applianceClass": [
+                                    {
+                                        "standard": "IEC 61140",
+                                        "class": "I"
+                                    }
+                                ]
+                            }
+                        },
+                        "temperatures": {
+                            "minimum": 248.15,
+                            "maximum": 323.15
+                        },
+                        "efficiencies": {
+                            "maximum": {
+                                "uncertainValue": 0.961
+                            },
+                            "European": {
+                                "uncertainValue": 0.954
+                            }
                         }
                     }
                 }
-            }
+            ]
         }
     ]
 }

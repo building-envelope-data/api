@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/optical.json",
   "title": "optical data",
-  "description": "",
+  "description": "This schema is used to exchange optical data sets of building envelope components. The results of all important optical measurements and simulations shall be possible to exchange. At the same time, this general format wants to limit the number of the possible representations of one data set to make it easy to develop software which interprets the data correctly.",
   "$defs": {
     "optical": {
       "type": "object",
@@ -158,19 +158,13 @@
               },
               {
                 "title": "This section should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "diffuse",
-                    "hemispherical",
-                    "nearnormal"
-                  ],
-                  "description": "Nearnormal means a direction almost perpendicular to the sample surface. Hemispherical means all directions into the hemisphere above the sample surface, for example when there is the same irradiance from all directions. Diffuse means all directions except the nearnormal direction. For example, the nearnormal-hemispherical transmittance is always equal to the nearnormal-nearnormal transmittance plus the nearnormal-diffuse transmittance."
-                },
-                "additionalItems": false,
-                "minItems": 1,
-                "maxItems": 1
+                "type": "string",
+                "enum": [
+                  "diffuse",
+                  "hemispherical",
+                  "nearnormal"
+                ],
+                "description": "Nearnormal means a direction almost perpendicular to the sample surface. Hemispherical means all directions into the hemisphere above the sample surface, for example when there is the same irradiance from all directions. Diffuse means all directions except the nearnormal direction. For example, the nearnormal-hemispherical transmittance is always equal to the nearnormal-nearnormal transmittance plus the nearnormal-diffuse transmittance."
               }
             ]
           },
@@ -328,19 +322,13 @@
           "type": "object",
           "properties": {
             "spectrum": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "infrared",
-                  "solar",
-                  "visible"
-                ],
-                "description": "If `#/$defs/wavelengths/integral` is true, then `#/$defs/wavelengthRange/spectrum` identifies the spectrum of wavelengths over which the integral result is be calculated. For further specification of the spectrum, please search for the applied `#/$defs/standard`."
-              },
-              "additionalItems": false,
-              "minItems": 1,
-              "maxItems": 1
+              "type": "string",
+              "enum": [
+                "infrared",
+                "solar",
+                "visible"
+              ],
+              "description": "If `#/$defs/wavelengths/integral` is true, then `#/$defs/wavelengthRange/spectrum` identifies the spectrum of wavelengths over which the integral result is measured or calculated. For further specification of the spectrum, please search for the applied standard under origin/method/reference/standard."
             }
           },
           "additionalProperties": false,
@@ -381,10 +369,67 @@
           "$ref": "#/$defs/polarisation"
         },
         "wavelengths": {
-          "$ref": "#/$defs/wavelengths"
+          "title": "This section offers two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts. For integral over many wavelengths, incidence/wavelengths/integral and incidence/range/spectrum are used.",
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "wavelength": {
+                  "$ref": "number.json#/$defs/nanometer",
+                  "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/$defs/wavelengthRange/bandwidth`."
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "wavelength"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "list": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "number.json#/$defs/nanometer",
+                    "description": "An list of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/$defs/wavelengthRange/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
+                  },
+                  "additionalItems": false,
+                  "minItems": 1
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "list"
+              ]
+            }
+          ]
         },
         "range": {
-          "$ref": "#/$defs/wavelengthRange"
+          "title": "The range of the emergence can either define the bandwidth or amplification factor of measuring a single wavelength. If an entire spectrum of wavenlengths is measured or calculated, then 'wavelengths' and 'range' are not used in 'emergence' and only in 'incidence'.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "bandwidth": {
+                  "$ref": "number.json#/$defs/nanometer",
+                  "description": "When `#/$defs/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/$defs/wavelengths/wavelength`."
+                }
+              },
+              "additionalProperties": false,
+              "required": []
+            },
+            {
+              "type": "object",
+              "properties": {
+                "amplificationFactor": {
+                  "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
+                  "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/$defs/wavelengths/wavelength`."
+                }
+              },
+              "additionalProperties": false,
+              "required": []
+            }
+          ]
         }
       },
       "additionalProperties": false,
@@ -483,19 +528,13 @@
           }
         },
         "side": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "nonPrime",
-              "prime",
-              "symmetric"
-            ],
-            "description": "The item defines whether the incidence is on the nonPrime or the prime side of the sample. Both are defined under 'definitionOfSides'. If the results are the same for both sides, 'symmetric' can be used."
-          },
-          "additionalItems": false,
-          "minItems": 1,
-          "maxItems": 1
+          "type": "string",
+          "enum": [
+            "nonPrime",
+            "prime",
+            "symmetric"
+          ],
+          "description": "The item defines whether the incidence is on the nonPrime or the prime side of the sample. Both are defined under 'definitionOfSides'. If the results are the same for both sides, 'symmetric' can be used."
         }
       },
       "additionalProperties": false,

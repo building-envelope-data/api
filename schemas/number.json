@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/number.json",
   "title": "number types",
-  "description": "This section defines types for numbers with and without uncertainty and units",
+  "description": "This schema defines types for numbers with and without uncertainty and units. The number types are used to restrict the range of allowed values to a reasonable range.",
   "$defs": {
     "number": {
       "type": "number",

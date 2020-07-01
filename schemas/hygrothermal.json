@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "$id": "https://www.buildingenvelopedata.org/schemas/hygrothermal.json",
     "title": "hygrothermal data",
-    "description": "",
+    "description": "Humidity needs to be handled properly to create sustainable buildings with high comfort. This schema is used to exchange hygrothermal data which can be used for hygrothermal simulations.",
     "$defs": {
         "hygrothermal": {
             "title": "This section is used to define the hygrothermal data of a component.",
