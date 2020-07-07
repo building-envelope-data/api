@@ -1,0 +1,1 @@
+schema dbe.json is valid
