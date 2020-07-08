@@ -1,0 +1,1 @@
+schema dsb.json is valid
