@@ -1,11 +1,11 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildings.com/schemas/building.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/building.json",
   "title": "building data",
   "description": "This schema is used to exchange data about a building.",
   "$defs": {
     "building": {
-      "title": "This section is used to define a building.",
+      "title": "This schema is used to define a building.",
       "type": "object",
       "properties": {
         "id": {
@@ -29,7 +29,7 @@
           "description": "The id represents the version of the building."
         },
         "relations": {
-          "title": "The current building can have relations to other buildings. These relations can range in the dimension between a very general building in early planning phases and and a very concretized building in later phases of the life cycle. A second dimension of relation ranges from being part of an assembly of buildings to being an assembly of other buildings. A third dimension are variants of buildings for example during the desing phase. The variants share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly. In this section, these relations between buildings can be defined.",
+          "title": "The current building can have relations to other buildings. These relations can range in the dimension between a very general building in early planning phases and and a very concretized building in later phases of the life cycle. A second dimension of relation ranges from being part of an assembly of buildings to being an assembly of other buildings. A third dimension are variants of buildings for example during the desing phase. The variants share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly. In this schema, these relations between buildings can be defined.",
           "type": "object",
           "properties": {
             "concretizationOf": {
@@ -79,7 +79,7 @@
         },
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "This section defines some characteristics of a building which do not depend on a specific section such as 'IFC' or 'Revit' and which may be helpful for searches."
+          "description": "This subschema defines some characteristics of a building which do not depend on a specific section such as 'IFC' or 'Revit' and which may be helpful for searches."
         },
         "roles": {
           "type": "object",
@@ -214,7 +214,6 @@
                 "formatting": {
                   "type": "string",
                   "pattern": "(^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$)",
-                  "$ref": "common.json#/$defs/formatting",
                   "description": "The definition of IFC version which is used to format the IFC file. For example '4.1.0.0'."
                 },
                 "created": {
@@ -229,42 +228,6 @@
                 "formatting",
                 "created"
               ]
-            },
-            "parts": {
-              "title": "This section is used if parts of the data of the building are requested.",
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "$ref": "identifier.json#/$defs/decentral",
-                    "description": "The GlobalId which each IFC entities can have as its first attribute. It is inherited from IfcRoot. This id represents the entity for which 'webAddress' provides the data."
-                  },
-                  "webAddress": {
-                    "$ref": "common.json#/$defs/webAddress",
-                    "description": "The data about this IFC entity can be downloaded for some time from this URL."
-                  },
-                  "formatting": {
-                    "type": "string",
-                    "pattern": "(^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$)",
-                    "$ref": "common.json#/$defs/formatting",
-                    "description": "The definition of IFC version which is used to format the IFC file. For example '4.1.0.0'."
-                  },
-                  "created": {
-                    "$ref": "common.json#/$defs/created",
-                    "description": "The date when the file was created"
-                  }
-                },
-                "additionalProperties": false,
-                "required": [
-                  "id",
-                  "webAddress",
-                  "formatting",
-                  "created"
-                ]
-              },
-              "additionalItems": false,
-              "minItems": 1
             }
           },
           "additionalProperties": false,
@@ -272,10 +235,74 @@
           "required": []
         },
         "Revit": {
-          "title": "#TODO (Datei, API, Elements) The data about a building can be stored in the closed source format of Autodesk Revit."
+          "title": "The data about a building can be stored in the closed source format of Autodesk Revit.",
+          "type": "object",
+          "properties": {
+            "full": {
+              "title": "This section is used if the full data about the building is requested.",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "identifier.json#/$defs/decentral",
+                  "description": "This id represents this set of full data about the building."
+                },
+                "webAddress": {
+                  "$ref": "common.json#/$defs/webAddress",
+                  "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
+                },
+                "explanation": {
+                  "$ref": "string.json#/$defs/internationalString",
+                  "description": "An explanation of the status of the full data set in natural language."
+                },
+                "formatting": {
+                  "type": "string",
+                  "pattern": "(20..)",
+                  "description": "The definition of Revit version which is used to format the Revit file. For example '2020'."
+                },
+                "created": {
+                  "$ref": "common.json#/$defs/created",
+                  "description": "The date when the file was created"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "webAddress",
+                "formatting",
+                "created"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         },
         "LinkedData": {
-          "title": "#TODO (SPARQL-Endpunkt, Ontologien) The data about a building can be stored as linked building data."
+          "title": "The data about a building can be stored as linked building data.",
+          "type": "object",
+          "properties": {
+            "SPARQL": {
+              "title": "This section is used to define the SPARQL endpoint which can be used to access the data about the building.",
+              "type": "object",
+              "properties": {
+                "webAddress": {
+                  "$ref": "common.json#/$defs/webAddress",
+                  "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
+                },
+                "explanation": {
+                  "$ref": "string.json#/$defs/internationalString",
+                  "description": "An explanation of the status of the full data set in natural language."
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "webAddress"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         }
       },
       "additionalProperties": false,
@@ -293,15 +320,15 @@
           "type": "object",
           "properties": {
             "latitude": {
-              "$ref": "number.json#/$defs/numberBetweenMinus90AndPlus90",
+              "$ref": "number.json#/$defs/numberBetweenMinusAndPlusNinety",
               "description": "The latitude of the location of the building as a decimal number according to WGS 84."
             },
             "longitude": {
-              "$ref": "number.json#/$defs/numberBetweenMinus180AndPlus180",
+              "$ref": "number.json#/$defs/numberBetweenMinusAndPlusHundredAndEighty",
               "description": "The longitude of the location of the building as a decimal number according to WGS 84."
             },
             "elevation": {
-              "$ref": "number.json#/$defsWithUnits/meter",
+              "$ref": "number.json#/$defs/meter",
               "description": "The elevation of the location of the building. It has the SI unit meter."
             },
             "address": {

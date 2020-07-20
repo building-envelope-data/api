@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/number.json",
   "title": "number types",
   "description": "This schema defines types for numbers with and without uncertainty and units. The number types are used to restrict the range of allowed values to a reasonable range.",
@@ -212,6 +212,34 @@
         },
         {
           "maximum": 100
+        }
+      ]
+    },
+    "numberBetweenMinusAndPlusNinety": {
+      "title": "This type is used when only numbers between -90 and 90 are valid and no uncertainty can occur.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/number"
+        },
+        {
+          "minimum": -90
+        },
+        {
+          "maximum": 90
+        }
+      ]
+    },
+    "numberBetweenMinusAndPlusHundredAndEighty": {
+      "title": "This type is used when only numbers between -180 and 180 are valid and no uncertainty can occur.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/number"
+        },
+        {
+          "minimum": -180
+        },
+        {
+          "maximum": 180
         }
       ]
     },

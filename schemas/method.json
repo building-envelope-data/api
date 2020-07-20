@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/method.json",
   "title": "method data",
   "description": "A creator applies a method to a source data to create a data set. By defining the method and the source data, the origin of the data set can be traced back. This schema is used to exchange the definition of a method.",

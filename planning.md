@@ -16,8 +16,8 @@
 1. dbe: #definitions/webAddress: Add an additional regex which checks whether the uri contains a `hostname`
 1. dbe: develop a method to create a IFC file including dbe data as a user defined IfcPropertySet
 1. dbe: propose to buildingSMART that the user defined IfcPropertySet becomes a official 'Pset_buildingEnvelopes'.
-1. dsb: add section performance indicators
-1. dsb: add section Life Cycle Analysis
-1. dsb: add section Life Cycle Costing
+1. dsb: add schema performance indicators
+1. dsb: add schema Life Cycle Analysis
+1. dsb: add schema Life Cycle Costing
 1. dbe: add frame data according to ISO 10077-2 and WinDat_N2.11_Data_Subm_Proc_Edge-Frame_v1.0_31.05.04.pdf
 1. dbe: add IUPAC nomenclature of organic chemistry to material/basics

@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "$id": "https://www.buildingenvelopedata.org/schemas/unit.json",
     "title": "unit data",
     "description": "With this schema, the categories can be defined for building envelope unit. The characteristics or properties of the unit can also be defined.",
