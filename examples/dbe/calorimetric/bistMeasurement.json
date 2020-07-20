@@ -18,15 +18,17 @@
                         "en-US": "No warnings"
                     },
                     "origin": {
-                        "source": {
-                            "id": {
-                                "uniqueId": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
-                                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                            },
-                            "name": {
-                                "en-US": "Fraunhofer ISE"
+                        "source": [
+                            {
+                                "id": {
+                                    "uniqueId": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+                                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "name": {
+                                    "en-US": "Fraunhofer ISE"
+                                }
                             }
-                        }
+                        ]
                     },
                     "approvals": [
                         {

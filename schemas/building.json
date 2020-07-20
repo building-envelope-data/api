@@ -235,12 +235,74 @@
           "required": []
         },
         "Revit": {
-          "$ref": "#",
-          "description": "#TODO (Datei, API, Elements) The data about a building can be stored in the closed source format of Autodesk Revit."
+          "title": "The data about a building can be stored in the closed source format of Autodesk Revit.",
+          "type": "object",
+          "properties": {
+            "full": {
+              "title": "This section is used if the full data about the building is requested.",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "identifier.json#/$defs/decentral",
+                  "description": "This id represents this set of full data about the building."
+                },
+                "webAddress": {
+                  "$ref": "common.json#/$defs/webAddress",
+                  "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
+                },
+                "explanation": {
+                  "$ref": "string.json#/$defs/internationalString",
+                  "description": "An explanation of the status of the full data set in natural language."
+                },
+                "formatting": {
+                  "type": "string",
+                  "pattern": "(20..)",
+                  "description": "The definition of Revit version which is used to format the Revit file. For example '2020'."
+                },
+                "created": {
+                  "$ref": "common.json#/$defs/created",
+                  "description": "The date when the file was created"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "webAddress",
+                "formatting",
+                "created"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         },
         "LinkedData": {
-          "$ref": "#",
-          "description": "#TODO (SPARQL-Endpunkt, Ontologien) The data about a building can be stored as linked building data."
+          "title": "The data about a building can be stored as linked building data.",
+          "type": "object",
+          "properties": {
+            "SPARQL": {
+              "title": "This section is used to define the SPARQL endpoint which can be used to access the data about the building.",
+              "type": "object",
+              "properties": {
+                "webAddress": {
+                  "$ref": "common.json#/$defs/webAddress",
+                  "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
+                },
+                "explanation": {
+                  "$ref": "string.json#/$defs/internationalString",
+                  "description": "An explanation of the status of the full data set in natural language."
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "webAddress"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         }
       },
       "additionalProperties": false,

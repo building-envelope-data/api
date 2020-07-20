@@ -5,7 +5,7 @@
     "description": "This data schema allows to exchange detailed data about buildings. It is meant to be used for the whole life cycle of a building, from the early planning of a building project to construction to facility management to recycling. The aim is to restrict the possible representations of one data set as much as possible to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next updata of this schema.",
     "type": "object",
     "properties": {
-        "building": {
+        "buildings": {
             "title": "This section defines data about one building. It is an array so that various data sets about the building can be added as items.",
             "type": "array",
             "items": {
@@ -17,6 +17,6 @@
     },
     "additionalProperties": false,
     "required": [
-        "building"
+        "buildings"
     ]
 }
