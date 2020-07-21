@@ -34,7 +34,7 @@
         },
         "developer": {
           "$ref": "stakeholder.json#/$defs/developer",
-          "description": "This section defines who developed the method."
+          "description": "This schema defines who developed the method."
         },
         "reference": {
           "$ref": "common.json#/$defs/reference",
@@ -82,7 +82,7 @@
       ]
     },
     "calculation": {
-      "title": "This section is used to refer to a web address which defines the calculation procedure in detail.",
+      "title": "This schema is used to refer to a web address which defines the calculation procedure in detail.",
       "$ref": "common.json#/$defs/webAddress",
       "description": "If the calculation procedure is open, the web address should refer to the repository for example at github.com. If the calculation procedure is closed, the web address should provide an explanation of procedure and may describe options to download executables."
     },

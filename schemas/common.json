@@ -51,14 +51,14 @@
       "minProperties": 1
     },
     "reference": {
-      "title": "This section is used to refer to one standard or one publication.",
+      "title": "This schema is used to refer to one standard or one publication.",
       "oneOf": [
         {
           "type": "object",
           "properties": {
             "standard": {
               "$ref": "#/$defs/standard",
-              "description": "This section defines which standard is refered to."
+              "description": "This schema defines which standard is refered to."
             }
           },
           "additionalProperties": false,
@@ -71,7 +71,7 @@
           "properties": {
             "publication": {
               "$ref": "#/$defs/publication",
-              "description": "This section defines which publication is refered to."
+              "description": "This schema defines which publication is refered to."
             }
           },
           "additionalProperties": false,
@@ -227,7 +227,7 @@
       "minItems": 1
     },
     "approvals": {
-      "title": "If the validity of a data is important, this section can be used to express the approval of a institution with a cryptographic signature. It's an array, because there may be approvals of several institutions for the same data.",
+      "title": "If the validity of a data is important, this schema can be used to express the approval of a institution with a cryptographic signature. It's an array, because there may be approvals of several institutions for the same data.",
       "type": "array",
       "items": {
         "$ref": "common.json#/$defs/approval"
@@ -248,7 +248,7 @@
         },
         "verify": {
           "$ref": "common.json#/$defs/approvalVerification",
-          "description": "This section defines how the approval can be verified."
+          "description": "This schema defines how the approval can be verified."
         },
         "signature": {
           "$ref": "string.json#/$defs/string",
@@ -285,7 +285,7 @@
       "required": []
     },
     "angles": {
-      "title": "This sections defines angles which are helpful to characterize building envelopes.",
+      "title": "This schema defines angles which are helpful to characterize building envelopes.",
       "$defs": {
         "tilt": {
           "$ref": "number.json#/$defs/degree",
@@ -298,7 +298,7 @@
       }
     },
     "efficiencies": {
-      "title": "For the conversion of energy into another, this section provides definitions for effiencies.",
+      "title": "For the conversion of energy, this schema provides definitions for effiencies.",
       "$defs": {
         "photovoltaic": {
           "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
@@ -315,7 +315,7 @@
       }
     },
     "file": {
-      "title": "This section defines the data of a specific file.",
+      "title": "This schema defines the data of a specific file.",
       "type": "object",
       "properties": {
         "webAddress": {
@@ -340,7 +340,7 @@
         },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",
-          "description": "This section contains approvals of the file"
+          "description": "This schema contains approvals of the file"
         },
         "created": {
           "$ref": "common.json#/$defs/created",
@@ -357,7 +357,7 @@
       ]
     },
     "formatting": {
-      "title": "This section is used to define the format of data.",
+      "title": "This schema is used to define the format of data.",
       "type": "object",
       "properties": {
         "id": {
@@ -391,7 +391,7 @@
       ]
     },
     "colour": {
-      "description": "This section offers several ways to define the colour of a component",
+      "description": "This schema offers several ways to define the colour of a component",
       "type": "object",
       "properties": {
         "name": {

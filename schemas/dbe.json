@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
         "components": {
-            "title": "This section defines data about components of a solar building envelope. It is an array so that various data sets about one or more components can be added as items. One component may consist of subcomponents.",
+            "title": "This schema defines data about components of a solar building envelope. It is an array so that various data sets about one or more components can be added as items. One component may consist of subcomponents.",
             "type": "array",
             "items": {
                 "$ref": "component.json"

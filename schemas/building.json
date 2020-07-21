@@ -79,12 +79,12 @@
         },
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "This subschema defines some characteristics of a building which do not depend on a specific section such as 'IFC' or 'Revit' and which may be helpful for searches."
+          "description": "This schema defines some characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches."
         },
         "roles": {
           "type": "object",
           "properties": {
-            "title": "This section adds roles which are specific for buildings to the existing roles for building envelopes.",
+            "title": "This schema adds roles which are specific for buildings to the existing roles for building envelopes.",
             "owners": {
               "type": "array",
               "items": {
@@ -196,7 +196,7 @@
           "type": "object",
           "properties": {
             "full": {
-              "title": "This section is used if the full data about the building is requested.",
+              "title": "This schema is used if the full data about the building is requested.",
               "type": "object",
               "properties": {
                 "id": {
@@ -239,7 +239,7 @@
           "type": "object",
           "properties": {
             "full": {
-              "title": "This section is used if the full data about the building is requested.",
+              "title": "This schema is used if the full data about the building is requested.",
               "type": "object",
               "properties": {
                 "id": {
@@ -282,7 +282,7 @@
           "type": "object",
           "properties": {
             "SPARQL": {
-              "title": "This section is used to define the SPARQL endpoint which can be used to access the data about the building.",
+              "title": "This schema is used to define the SPARQL endpoint which can be used to access the data about the building.",
               "type": "object",
               "properties": {
                 "webAddress": {
@@ -312,11 +312,11 @@
       ]
     },
     "characteristics": {
-      "title": "This section defines some characteristics of a building which do not depend on a specific section such as 'IFC' or 'Revit' and which may be helpful for searches.",
+      "title": "This schema defines some characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches.",
       "type": "object",
       "properties": {
         "location": {
-          "title": "This section defines the location of a building.",
+          "title": "This schema defines the location of a building.",
           "type": "object",
           "properties": {
             "latitude": {

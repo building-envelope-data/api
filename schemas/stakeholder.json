@@ -5,7 +5,7 @@
   "description": "",
   "$defs": {
     "contact": {
-      "title": "In this section, you find all contact data for an institution or person.",
+      "title": "In this schema, you find all contact data for an institution or person.",
       "type": "object",
       "properties": {
         "phone": {
@@ -31,7 +31,7 @@
       "minProperties": 1
     },
     "basicStakeholder": {
-      "title": "A stakeholder can be either an institution or a person. This section collects the basic data of stakeholders.",
+      "title": "A stakeholder can be either an institution or a person. This schema collects the basic data of stakeholders.",
       "type": "object",
       "properties": {
         "id": {
@@ -49,7 +49,7 @@
       ]
     },
     "person": {
-      "title": "This section collects all data about a person.",
+      "title": "This schema collects all data about a person.",
       "type": "object",
       "properties": {
         "id": {

@@ -5,7 +5,7 @@
     "description": "Humidity needs to be handled properly to create sustainable buildings with high comfort. This schema is used to exchange hygrothermal data which can be used for hygrothermal simulations.",
     "$defs": {
         "hygrothermal": {
-            "title": "This section is used to define the hygrothermal data of a component.",
+            "title": "This schema is used to define the hygrothermal data of a component.",
             "type": "object",
             "properties": {
                 "WUFI": {

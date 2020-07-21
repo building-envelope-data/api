@@ -5,7 +5,7 @@
   "description": "This schema defines how a material can be identified, which categories can be attributed to the material and which characteristics or properties the material has.",
   "$defs": {
     "identification": {
-      "title": "This sections is used to identify a certain material. It is recommended to use central identifiers, but it also possible to definde materials without identifier.",
+      "title": "This schemas is used to identify a certain material. It is recommended to use central identifiers, but it also possible to definde materials without identifier.",
       "type": "object",
       "properties": {
         "id": {
@@ -65,7 +65,7 @@
       "maxItems": 2
     },
     "characteristics": {
-      "title": "This section collects the characteristics of a material.",
+      "title": "This schema collects the characteristics of a material.",
       "type": "object",
       "properties": {
         "refractiveIndex": {

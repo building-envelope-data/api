@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
         "buildings": {
-            "title": "This section defines data about one building. It is an array so that various data sets about the building can be added as items.",
+            "title": "This schema defines data about one building. It is an array so that various data sets about the building can be added as items.",
             "type": "array",
             "items": {
                 "$ref": "building.json"

@@ -67,7 +67,7 @@
       "minItems": 0
     },
     "characteristics": {
-      "title": "This section collect the characteristics of components of the category 'layer'.",
+      "title": "This schema collect the characteristics of components of the category 'layer'.",
       "type": "object",
       "properties": {
         "possiblePositions": {
@@ -84,7 +84,7 @@
           "description": "The orientation axis is important for example for venetian blinds."
         },
         "slat": {
-          "title": "For example venetian blinds consist of many slats. This section is used to define characteristics for such slats.",
+          "title": "For example venetian blinds consist of many slats. This schema is used to define characteristics for such slats.",
           "type": "object",
           "properties": {
             "width": {
@@ -138,7 +138,7 @@
         },
         "gaps": {
           "$ref": "gaps.json",
-          "description": "This section defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
+          "description": "This schema defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
         }
       },
       "additionalProperties": false,
