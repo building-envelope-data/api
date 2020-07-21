@@ -2,22 +2,33 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/string.json",
   "title": "string types",
-  "description": "This schema defines types for strings",
+  "description": "This section defines types for strings",
   "$defs": {
     "string": {
       "type": "string",
       "description": "If a string depends in no case on a language and if no restrictions on the string are possible, then this type is used."
     },
-    "latinString": {
-      "$ref": "#/$defs/string",
-      "description": "If a string MUST use the Latin alphabet, the this type is used."
+    "latinAlphabet": {
+      "type": "string",
+      "pattern": "[A-Za-z]+",
+      "description": "If a string is limited to characters of the Latin alphabet, then this type is used."
+    },
+    "latinDigitsPunctuation": {
+      "type": "string",
+      "pattern": "[A-Za-z0-9\\]\\[!\"#$%&'()*+,.\/:;<=>?@\\^_`{|}~-]+",
+      "description": "If a string is limited to characters of the Latin alphabet, digits and punctuation, then this type is used."
+    },
+    "ascii": {
+      "type": "string",
+      "pattern": "[\\x00-\\x7F]+",
+      "description": "If a string is limited to ASCII characters, then this type is used."
     },
     "internationalString": {
       "type": "object",
       "properties": {
         "en-US": {
-          "$ref": "#/$defs/latinString",
-          "description": "A string in American English."
+          "$ref": "#/$defs/ascii",
+          "description": "A string in American English. It must consist of ASCII characters."
         }
       },
       "additionalProperties": false,

@@ -365,7 +365,7 @@
           "description": "The id represents this specific format."
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinString",
+          "$ref": "string.json#/$defs/latinDigitsPunctuation",
           "description": "The abbreviation of the format in Latin alphabet."
         },
         "name": {
