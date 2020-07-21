@@ -109,7 +109,7 @@
       "required": []
     },
     "institution": {
-      "title": "This sections collects data about an institution.",
+      "title": "This schema collects data about an institution.",
       "type": "object",
       "properties": {
         "id": {
