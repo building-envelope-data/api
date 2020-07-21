@@ -1,6 +1,6 @@
 # Ideas for future development
 
-1. Data Schema for Building DB (dsb) which fits to IFC, Revit and Linked Data
+1. dbe: add rating like EPh EPc
 1. dbe: add domain ventilation
 1. dbe: add domain humidity according to WUFI+
 1. dbe: add domain structural engineering based on https://www.projekt-scope.de/ontologies/tdy/
