@@ -55,6 +55,25 @@
         "calculation": {
           "$ref": "#/$defs/calculation",
           "description": "Here you can define the calculation procedure in detail."
+        },
+        "service": {
+          "title": "If the method is available as a service, the endpoint and the API specification are defined here.",
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "$ref": "common.json#/$defs/webAddress",
+              "description": "The web address of the endpoint to which input data can be send and which returns output data according to the method."
+            },
+            "specification": {
+              "$ref": "common.json#/$defs/webAddress",
+              "description": "The web address of the API specification which describes how to send input data and receive output data which was processed by the method."
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "endpoint"
+          ],
+          "minProperties": 1
         }
       },
       "additionalProperties": false,
