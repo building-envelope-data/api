@@ -8,10 +8,10 @@
       "type": "string",
       "description": "If a string depends in no case on a language and if no restrictions on the string are possible, then this type is used."
     },
-    "latinAlphabet": {
+    "stringLatinHyphen": {
       "type": "string",
-      "pattern": "[A-Za-z]+",
-      "description": "If a string is limited to characters of the Latin alphabet, then this type is used."
+      "pattern": "[A-Za-z-]+",
+      "description": "If a string is limited to characters of the Latin alphabet and hyphens, then this type is used."
     },
     "latinDigitsPunctuation": {
       "type": "string",

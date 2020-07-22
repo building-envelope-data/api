@@ -62,7 +62,7 @@
             "family": {
               "type": "array",
               "items": {
-                "$ref": "string.json#/$defs/latinAlphabet"
+                "$ref": "string.json#/$defs/stringLatinHyphen"
               },
               "additionalItems": false,
               "minItems": 1,
@@ -71,7 +71,7 @@
             "given": {
               "type": "array",
               "items": {
-                "$ref": "string.json#/$defs/latinAlphabet"
+                "$ref": "string.json#/$defs/stringLatinHyphen"
               },
               "additionalItems": false,
               "minItems": 0,
