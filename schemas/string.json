@@ -18,17 +18,12 @@
       "pattern": "[A-Za-z0-9\\]\\[!\"#$%&'()*+,.\/:;<=>?@\\^_`{|}~-]+",
       "description": "If a string is limited to characters of the Latin alphabet, digits and punctuation, then this type is used."
     },
-    "ascii": {
-      "type": "string",
-      "pattern": "[\\x00-\\x7F]+",
-      "description": "If a string is limited to ASCII characters, then this type is used."
-    },
     "internationalString": {
       "type": "object",
       "properties": {
         "en-US": {
-          "$ref": "#/$defs/ascii",
-          "description": "A string in American English. It must consist of ASCII characters."
+          "$ref": "#/$defs/string",
+          "description": "A string in American English."
         }
       },
       "additionalProperties": false,
