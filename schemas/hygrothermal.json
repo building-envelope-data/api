@@ -25,7 +25,7 @@
                             "description": "The web address provides a definition of the format of the 'xmlData'."
                         },
                         "xmlData": {
-                            "$ref": "string.json#/$defs/latinDigitsPunctuation",
+                            "$ref": "string.json#/$defs/stringLatinDigitsPunctuation",
                             "description": "The string contains the hygrothermal data for this data according to the format which is specified by 'formatting'."
                         }
                     },
