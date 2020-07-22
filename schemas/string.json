@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/string.json",
   "title": "string types",
-  "description": "This section defines types for strings",
+  "description": "This schema defines types for strings",
   "$defs": {
     "string": {
       "type": "string",
