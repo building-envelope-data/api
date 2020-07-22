@@ -28,7 +28,7 @@
                                 }
                             }
                         },
-                        "source": [
+                        "sources": [
                             {
                                 "id": {
                                     "uniqueId": "6ceff10a-075a-4a22-aaa3-f671a649bf9e",

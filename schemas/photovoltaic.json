@@ -93,8 +93,13 @@
                                 "description": "If the cell has more or less the form of a square, then the width between two parallel sides is helpful to calculate how many cells fit into one module."
                             },
                             "currentVoltage": {
-                                "$ref": "common.json#/$defs/currentVoltage",
-                                "description": "The current-voltage characteristic is important to calculate the PV performance for conditions other than the standard test conditions."
+                                "type": "array",
+                                "items": {
+                                    "$ref": "common.json#/$defs/currentVoltage",
+                                    "description": "The current-voltage characteristic is important to calculate the PV performance for conditions other than the standard test conditions."
+                                },
+                                "additionalItems": false,
+                                "minItems": 1
                             },
                             "categories": {
                                 "type": "array",

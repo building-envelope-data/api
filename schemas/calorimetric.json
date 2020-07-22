@@ -171,8 +171,13 @@
                     "description": "The electric energy supplied to the sample. Positive electric energy means that it is delivered to the sample."
                   },
                   "currentVoltage": {
-                    "$ref": "common.json#/$defs/currentVoltage",
-                    "description": "The current-voltage characteristic can be important for example for photovoltaics. It can also be used just to define just one current and one voltage."
+                    "type": "array",
+                    "items": {
+                      "$ref": "common.json#/$defs/currentVoltage",
+                      "description": "The current-voltage characteristic can be important for example for photovoltaics. It can also be used just to define just one current and one voltage."
+                    },
+                    "additionalItems": false,
+                    "minItems": 1
                   }
                 },
                 "additionalProperties": false,

@@ -24,19 +24,19 @@
                             "service": {
                                 "endpoint": "https://method84846.institution3734.org",
                                 "specification": "https://spec.method84846.institution3734.org"
-                            },
-                            "source": [
-                                {
-                                    "id": {
-                                        "uniqueId": "6ceff10a-075a-4a22-aaa3-f671a649bf9e",
-                                        "issuedBy": "de588e6a-1d3c-4909-afdd-bcde4c33864e"
-                                    },
-                                    "database": {
-                                        "webAddress": "http://www.manufacturer1.com/db/"
-                                    }
+                            }
+                        },
+                        "sources": [
+                            {
+                                "id": {
+                                    "uniqueId": "6ceff10a-075a-4a22-aaa3-f671a649bf9e",
+                                    "issuedBy": "de588e6a-1d3c-4909-afdd-bcde4c33864e"
+                                },
+                                "database": {
+                                    "webAddress": "http://www.manufacturer1.com/db/"
                                 }
-                            ]
-                        }
+                            }
+                        ]
                     },
                     "dataPoints": [
                         {

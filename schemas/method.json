@@ -20,8 +20,8 @@
           "description": "Here the method can be described in free text."
         },
         "categories": {
-          "type": "array",
           "title": "With this array, it is defined whether the method is a measurement or a calculation only or both.",
+          "type": "array",
           "items": {
             "type": "string",
             "enum": [
@@ -98,9 +98,14 @@
           "$ref": "#/$defs/method",
           "description": "The method which has been applied by the creator on the source data is identified here. This method may be a combination of submethods."
         },
-        "source": {
-          "$ref": "#/$defs/source",
-          "description": "The source data has been the starting point for the creator. If the method is a measurement, there may be no source data."
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source",
+            "description": "The data sources are the starting point for the creator who applies a method on a the data sources to create a new data set."
+          },
+          "additionalItems": false,
+          "minItems": 1
         }
       },
       "additionalProperties": false,
@@ -108,35 +113,30 @@
       "minProperties": 1
     },
     "source": {
-      "title": "The source data is the data which has been the starting point and on which a method was applied by the creator of the new data set. Depending on the method, either one data set or several are used as data sourc",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "identifier.json#/$defs/decentral",
-            "description": "The id represents the data source."
-          },
-          "name": {
-            "$ref": "string.json#/$defs/internationalString",
-            "description": "A data set can have a name."
-          },
-          "explanation": {
-            "$ref": "string.json#/$defs/internationalString",
-            "description": "This string can explain the source data for humans."
-          },
-          "database": {
-            "$ref": "#/$defs/database",
-            "description": "The database, where the source data can be found, is identified here."
-          }
+      "title": "This schema defines source data which is an input for a method. A creator uses a method and source data to create a new data set.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "The id represents the data source."
         },
-        "additionalProperties": false,
-        "required": [
-          "id"
-        ]
+        "name": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "A data set can have a name."
+        },
+        "explanation": {
+          "$ref": "string.json#/$defs/internationalString",
+          "description": "This string can explain the source data for humans."
+        },
+        "database": {
+          "$ref": "#/$defs/database",
+          "description": "The database, where the source data can be found, is identified here."
+        }
       },
-      "additionalItems": false,
-      "minItems": 1
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
     },
     "database": {
       "description": "Information about a database which has implemented the same API specification.",

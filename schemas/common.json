@@ -204,27 +204,22 @@
     },
     "currentVoltage": {
       "title": "The current-voltage characteristic can be important for example for photovoltaics.",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "I": {
-            "$ref": "number.json#/$defs/ampere",
-            "description": "The electric current in amperes."
-          },
-          "V": {
-            "$ref": "number.json#/$defs/volt",
-            "description": "The electric potential difference in volts."
-          }
+      "type": "object",
+      "properties": {
+        "I": {
+          "$ref": "number.json#/$defs/ampere",
+          "description": "The electric current in amperes."
         },
-        "additionalProperties": false,
-        "required": [
-          "I",
-          "V"
-        ]
+        "V": {
+          "$ref": "number.json#/$defs/volt",
+          "description": "The electric potential difference in volts."
+        }
       },
-      "additionalItems": false,
-      "minItems": 1
+      "additionalProperties": false,
+      "required": [
+        "I",
+        "V"
+      ]
     },
     "approvals": {
       "title": "If the validity of a data is important, this schema can be used to express the approval of a institution with a cryptographic signature. It's an array, because there may be approvals of several institutions for the same data.",

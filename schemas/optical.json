@@ -511,8 +511,13 @@
           "description": "The tilt angle for example of venetian blinds."
         },
         "symmetries": {
-          "$ref": "#/$defs/symmetries",
-          "description": "Symmetries of the optical characteristics can be used to reduce the necessary measurements and simulations."
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/symmetry",
+            "description": "Symmetries of the optical characteristics can be used to reduce the necessary measurements and simulations."
+          },
+          "additionalItems": false,
+          "minItems": 1
         },
         "definitionOfSides": {
           "type": "object",
@@ -643,20 +648,15 @@
         }
       ]
     },
-    "symmetries": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "incidenceAngle",
-          "profileAngle",
-          "mirror",
-          "rotational"
-        ],
-        "description": "(i) A component can have an optical symmetry regarding the angle of incidence. This means that the results are the same for all directions of incidence which have the same incidence angle. (ii) Accordingly, an optical symmetry regarding the profile angle means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a mirror symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. (iv) In the case of a rotational symmetry, the results for some directions of incidence are enough to determine the results for the other directions of incidence by rotating them around the line perpendicular to the surface of the component."
-      },
-      "additionalItems": false,
-      "minItems": 0
+    "symmetry": {
+      "type": "string",
+      "enum": [
+        "incidenceAngle",
+        "profileAngle",
+        "mirror",
+        "rotational"
+      ],
+      "description": "(i) A component can have an optical symmetry regarding the angle of incidence. This means that the results are the same for all directions of incidence which have the same incidence angle. (ii) Accordingly, an optical symmetry regarding the profile angle means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a mirror symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. (iv) In the case of a rotational symmetry, the results for some directions of incidence are enough to determine the results for the other directions of incidence by rotating them around the line perpendicular to the surface of the component."
     }
   },
   "$ref": "#/$defs/optical"
