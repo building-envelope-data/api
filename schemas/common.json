@@ -321,10 +321,6 @@
           "$ref": "string.json#/$defs/sha256Hash",
           "description": "A SHA-256 hash is used to identify the file."
         },
-        "name": {
-          "$ref": "string.json#/$defs/fileName",
-          "description": "The name of the file."
-        },
         "explanation": {
           "$ref": "string.json#/$defs/internationalString",
           "description": "An explanation of the file."
