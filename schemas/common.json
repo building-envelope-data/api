@@ -318,7 +318,7 @@
           "description": "The file can be downloaded directly from this URL."
         },
         "name": {
-          "$ref": "string.json#/$defs/stringLatinDigitsPunctuation",
+          "$ref": "string.json#/$defs/fileName",
           "description": "The file name"
         },
         "explanation": {

@@ -18,6 +18,11 @@
       "pattern": "[A-Za-z0-9\\]\\[!\"#$%&'()*+,.\/:;<=>?@\\^_`{|}~-]+",
       "description": "If a string is limited to characters of the Latin alphabet, digits and punctuation, then this type is used."
     },
+    "fileName": {
+      "type": "string",
+      "pattern": "[\\]\\[!#$%&'()+,.;=@^_`{}~-]+",
+      "description": "File names must consist of printable characters which work on Linux, Winudows and Mac OSX."
+    },
     "xmlString": {
       "type": "string",
       "pattern": "[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]+",
