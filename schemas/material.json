@@ -21,7 +21,7 @@
           "description": "The name of the material"
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/stringLatinDigitsPunctuation",
+          "$ref": "string.json#/$defs/latinStringWithDigitsAndPunctuation",
           "description": "The abbreviation of the material in Latin alphabet."
         },
         "explanation": {
