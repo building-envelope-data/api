@@ -28,6 +28,11 @@
       "pattern": "[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]+",
       "description": "If a string is limited to valid characters in XML, then this type is used."
     },
+    "sha256Hash": {
+      "type": "string",
+      "pattern": "\b[A-Fa-f0-9]{64}\b",
+      "description": "A SHA-256 hash consists of 64 alphanumerical characters."
+    },
     "internationalString": {
       "type": "object",
       "properties": {
