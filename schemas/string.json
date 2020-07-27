@@ -20,12 +20,12 @@
     },
     "fileName": {
       "type": "string",
-      "pattern": "[\\]\\[!#$%&'()+,.;=@^_`{}~-]+",
+      "pattern": "^[A-Za-z0-9\\]\\[!#$%&'()+,.;=@^_`{}~-]+$",
       "description": "File names must consist of printable characters which work on Linux, Winudows and Mac OSX."
     },
     "xmlString": {
       "type": "string",
-      "pattern": "[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]+",
+      "pattern": "^[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]+$",
       "description": "If a string is limited to valid characters in XML, then this type is used."
     },
     "sha256Hash": {
