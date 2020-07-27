@@ -30,7 +30,7 @@
     },
     "sha256Hash": {
       "type": "string",
-      "pattern": "\b[A-Fa-f0-9]{64}\b",
+      "pattern": "^[a-f0-9]{64}$",
       "description": "This type should be used for hashes according to SHA-256."
     },
     "internationalString": {
