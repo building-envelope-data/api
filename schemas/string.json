@@ -10,12 +10,12 @@
     },
     "latinStringWithHyphens": {
       "type": "string",
-      "pattern": "[A-Za-z-]+",
+      "pattern": "^[A-Za-z-]+$",
       "description": "If a string is limited to characters of the Latin alphabet and hyphens, then this type is used."
     },
     "latinStringWithDigitsAndPunctuation": {
       "type": "string",
-      "pattern": "[A-Za-z0-9\\]\\[!\"#$%&'()*+,.\/:;<=>?@\\^_`{|}~-]+",
+      "pattern": "^[A-Za-z0-9\\]\\[!\"#$%&'()*+,.\/:;<=>?@\\\\^_`{|}~-]+$",
       "description": "If a string is limited to characters of the Latin alphabet, digits and punctuation, then this type is used."
     },
     "fileName": {
