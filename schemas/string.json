@@ -31,7 +31,7 @@
     "sha256Hash": {
       "type": "string",
       "pattern": "\b[A-Fa-f0-9]{64}\b",
-      "description": "A SHA-256 hash consists of 64 alphanumerical characters."
+      "description": "This type should be used for hashes according to SHA-256."
     },
     "internationalString": {
       "type": "object",
