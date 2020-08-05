@@ -64,7 +64,7 @@
             "minItems": 0
         },
         "characteristics": {
-            "title": "This section collects the characteristics of components of the category 'unit'.",
+            "title": "This schema collects the characteristics of components of the category 'unit'.",
             "type": "object",
             "properties": {
                 "possiblePositions": {
@@ -73,7 +73,7 @@
                 },
                 "gaps": {
                     "$ref": "gaps.json",
-                    "description": "This section defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
+                    "description": "This schema defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
                 }
             },
             "additionalProperties": false,

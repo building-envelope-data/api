@@ -18,7 +18,7 @@
                         "en-US": "No warnings"
                     },
                     "origin": {
-                        "source": [
+                        "sources": [
                             {
                                 "id": {
                                     "uniqueId": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",

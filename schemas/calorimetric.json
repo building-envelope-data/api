@@ -42,7 +42,7 @@
         },
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "This section defines characteristics which are constant for this calorimetric data set."
+          "description": "This schema defines characteristics which are constant for this calorimetric data set."
         },
         "file": {
           "$ref": "common.json#/$defs/file",
@@ -171,8 +171,13 @@
                     "description": "The electric energy supplied to the sample. Positive electric energy means that it is delivered to the sample."
                   },
                   "currentVoltage": {
-                    "$ref": "common.json#/$defs/currentVoltage",
-                    "description": "The current-voltage characteristic can be important for example for photovoltaics. It can also be used just to define just one current and one voltage."
+                    "type": "array",
+                    "items": {
+                      "$ref": "common.json#/$defs/currentVoltage",
+                      "description": "The current-voltage characteristic can be important for example for photovoltaics. It can also be used just to define just one current and one voltage."
+                    },
+                    "additionalItems": false,
+                    "minItems": 1
                   }
                 },
                 "additionalProperties": false,
@@ -194,7 +199,7 @@
             "type": "object",
             "properties": {
               "area": {
-                "title": "The results depend on the area of the component which is used to calculate the results. This section defines this area.",
+                "title": "The results depend on the area of the component which is used to calculate the results. This schema defines this area.",
                 "type": "object",
                 "properties": {
                   "category": {

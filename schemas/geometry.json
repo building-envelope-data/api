@@ -5,7 +5,7 @@
   "description": "There are many highly developed geometry kernels which are well suited to handle complex geometry in their file format. For some cases like the shape of a venetian blind, it may be helpful to be able to exchange the geometry independent of a geometry kernel. This schema offers a way to exchange geometry data.",
   "$defs": {
     "geometry": {
-      "title": "This section presents definitions to describe the geometry of a component.",
+      "title": "This schema presents definitions to describe the geometry of a component.",
       "type": "object",
       "properties": {
         "centerOfGravity": {
@@ -63,7 +63,7 @@
       "required": []
     },
     "point": {
-      "title": "This section defines a point according to the definition of a coordinate system elsewhere.",
+      "title": "This schema defines a point according to the definition of a coordinate system elsewhere.",
       "type": "object",
       "properties": {
         "x": {
@@ -84,7 +84,7 @@
       ]
     },
     "vector": {
-      "title": "This section defines a geometric vector according to the definition of a coordinate system elsewhere.",
+      "title": "This schema defines a geometric vector according to the definition of a coordinate system elsewhere.",
       "type": "object",
       "properties": {
         "x": {

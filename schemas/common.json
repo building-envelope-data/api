@@ -51,14 +51,14 @@
       "minProperties": 1
     },
     "reference": {
-      "title": "This section is used to refer to one standard or one publication.",
+      "title": "This schema is used to refer to one standard or one publication.",
       "oneOf": [
         {
           "type": "object",
           "properties": {
             "standard": {
               "$ref": "#/$defs/standard",
-              "description": "This section defines which standard is refered to."
+              "description": "This schema defines which standard is refered to."
             }
           },
           "additionalProperties": false,
@@ -71,7 +71,7 @@
           "properties": {
             "publication": {
               "$ref": "#/$defs/publication",
-              "description": "This section defines which publication is refered to."
+              "description": "This schema defines which publication is refered to."
             }
           },
           "additionalProperties": false,
@@ -90,17 +90,17 @@
           "properties": {
             "doi": {
               "type": "string",
-              "pattern": "(10[.][0-z/.]*)",
+              "pattern": "^(10[.][0-z/.]*)$",
               "description": "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication. TODO: Improve the regex pattern to further restrict the string."
             },
             "arXiv": {
               "type": "string",
-              "pattern": "(arXiv:)[0-z./]*",
+              "pattern": "^(arXiv:)[0-z./]*$",
               "description": "arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
             },
             "urn": {
               "type": "string",
-              "pattern": "(urn:)[0-z:./-]*",
+              "pattern": "^(urn:)[0-z:./-]*$",
               "description": "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
             },
             "webAddress": {
@@ -204,30 +204,25 @@
     },
     "currentVoltage": {
       "title": "The current-voltage characteristic can be important for example for photovoltaics.",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "I": {
-            "$ref": "number.json#/$defs/ampere",
-            "description": "The electric current in amperes."
-          },
-          "V": {
-            "$ref": "number.json#/$defs/volt",
-            "description": "The electric potential difference in volts."
-          }
+      "type": "object",
+      "properties": {
+        "I": {
+          "$ref": "number.json#/$defs/ampere",
+          "description": "The electric current in amperes."
         },
-        "additionalProperties": false,
-        "required": [
-          "I",
-          "V"
-        ]
+        "V": {
+          "$ref": "number.json#/$defs/volt",
+          "description": "The electric potential difference in volts."
+        }
       },
-      "additionalItems": false,
-      "minItems": 1
+      "additionalProperties": false,
+      "required": [
+        "I",
+        "V"
+      ]
     },
     "approvals": {
-      "title": "If the validity of a data is important, this section can be used to express the approval of a institution with a cryptographic signature. It's an array, because there may be approvals of several institutions for the same data.",
+      "title": "If the validity of a data is important, this schema can be used to express the approval of a institution with a cryptographic signature. It's an array, because there may be approvals of several institutions for the same data.",
       "type": "array",
       "items": {
         "$ref": "common.json#/$defs/approval"
@@ -248,7 +243,7 @@
         },
         "verify": {
           "$ref": "common.json#/$defs/approvalVerification",
-          "description": "This section defines how the approval can be verified."
+          "description": "This schema defines how the approval can be verified."
         },
         "signature": {
           "$ref": "string.json#/$defs/string",
@@ -285,7 +280,7 @@
       "required": []
     },
     "angles": {
-      "title": "This sections defines angles which are helpful to characterize building envelopes.",
+      "title": "This schema defines angles which are helpful to characterize building envelopes.",
       "$defs": {
         "tilt": {
           "$ref": "number.json#/$defs/degree",
@@ -298,7 +293,7 @@
       }
     },
     "efficiencies": {
-      "title": "For the conversion of energy into another, this section provides definitions for effiencies.",
+      "title": "For the conversion of energy, this schema provides definitions for effiencies.",
       "$defs": {
         "photovoltaic": {
           "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
@@ -315,40 +310,40 @@
       }
     },
     "file": {
-      "title": "This section defines the data of a specific file.",
+      "title": "This schema defines the data of a specific file.",
       "type": "object",
       "properties": {
         "webAddress": {
           "$ref": "common.json#/$defs/webAddress",
           "description": "The file can be downloaded directly from this URL."
         },
-        "name": {
-          "$ref": "string.json#/$defs/internationalString",
-          "description": "The file name"
+        "hash": {
+          "$ref": "string.json#/$defs/sha256Hash",
+          "description": "A SHA-256 hash is used to identify the file."
         },
         "explanation": {
           "$ref": "string.json#/$defs/internationalString",
-          "description": "An explanation of the file"
+          "description": "An explanation of the file."
         },
         "formatting": {
           "$ref": "#/$defs/formatting",
-          "description": "The definition of the format of the file"
+          "description": "The definition of the format of the file."
         },
         "creator": {
           "$ref": "stakeholder.json#/$defs/creator",
-          "description": "The stakeholder who has created this file"
+          "description": "The stakeholder who has created this file."
         },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",
-          "description": "This section contains approvals of the file"
+          "description": "This schema contains approvals of the file."
         },
         "created": {
           "$ref": "common.json#/$defs/created",
-          "description": "The date when the file was created"
+          "description": "The date when the file was created."
         },
         "valid": {
           "$ref": "common.json#/$defs/valid",
-          "description": "The timespan during which the file was valid"
+          "description": "The timespan during which the file was valid."
         }
       },
       "additionalProperties": false,
@@ -357,7 +352,7 @@
       ]
     },
     "formatting": {
-      "title": "This section is used to define the format of data.",
+      "title": "This schema is used to define the format of data.",
       "type": "object",
       "properties": {
         "id": {
@@ -365,7 +360,7 @@
           "description": "The id represents this specific format."
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinString",
+          "$ref": "string.json#/$defs/latinStringWithDigitsAndPunctuation",
           "description": "The abbreviation of the format in Latin alphabet."
         },
         "name": {
@@ -391,7 +386,7 @@
       ]
     },
     "colour": {
-      "description": "This section offers several ways to define the colour of a component",
+      "description": "This schema offers several ways to define the colour of a component",
       "type": "object",
       "properties": {
         "name": {

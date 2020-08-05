@@ -17,7 +17,7 @@
           "description": "The name of the building"
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinString",
+          "$ref": "string.json#/$defs/latinStringWithDigitsAndPunctuation",
           "description": "The abbreviation of the building"
         },
         "explanation": {
@@ -79,12 +79,12 @@
         },
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "This subschema defines some characteristics of a building which do not depend on a specific section such as 'IFC' or 'Revit' and which may be helpful for searches."
+          "description": "This schema defines some characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches."
         },
         "roles": {
           "type": "object",
           "properties": {
-            "title": "This section adds roles which are specific for buildings to the existing roles for building envelopes.",
+            "title": "This schema adds roles which are specific for buildings to the existing roles for building envelopes.",
             "owners": {
               "type": "array",
               "items": {
@@ -196,7 +196,7 @@
           "type": "object",
           "properties": {
             "full": {
-              "title": "This section is used if the full data about the building is requested.",
+              "title": "This schema is used if the full data about the building is requested.",
               "type": "object",
               "properties": {
                 "id": {
@@ -213,7 +213,7 @@
                 },
                 "formatting": {
                   "type": "string",
-                  "pattern": "(^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$)",
+                  "pattern": "^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$",
                   "description": "The definition of IFC version which is used to format the IFC file. For example '4.1.0.0'."
                 },
                 "created": {
@@ -239,7 +239,7 @@
           "type": "object",
           "properties": {
             "full": {
-              "title": "This section is used if the full data about the building is requested.",
+              "title": "This schema is used if the full data about the building is requested.",
               "type": "object",
               "properties": {
                 "id": {
@@ -256,7 +256,7 @@
                 },
                 "formatting": {
                   "type": "string",
-                  "pattern": "(20..)",
+                  "pattern": "^(20..)$",
                   "description": "The definition of Revit version which is used to format the Revit file. For example '2020'."
                 },
                 "created": {
@@ -282,7 +282,7 @@
           "type": "object",
           "properties": {
             "SPARQL": {
-              "title": "This section is used to define the SPARQL endpoint which can be used to access the data about the building.",
+              "title": "This schema is used to define the SPARQL endpoint which can be used to access the data about the building.",
               "type": "object",
               "properties": {
                 "webAddress": {
@@ -312,11 +312,11 @@
       ]
     },
     "characteristics": {
-      "title": "This section defines some characteristics of a building which do not depend on a specific section such as 'IFC' or 'Revit' and which may be helpful for searches.",
+      "title": "This schema defines some characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches.",
       "type": "object",
       "properties": {
         "location": {
-          "title": "This section defines the location of a building.",
+          "title": "This schema defines the location of a building.",
           "type": "object",
           "properties": {
             "latitude": {

@@ -2,21 +2,42 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/string.json",
   "title": "string types",
-  "description": "This section defines types for strings",
+  "description": "This schema defines types for strings",
   "$defs": {
     "string": {
       "type": "string",
       "description": "If a string depends in no case on a language and if no restrictions on the string are possible, then this type is used."
     },
-    "latinString": {
-      "$ref": "#/$defs/string",
-      "description": "If a string MUST use the Latin alphabet, the this type is used."
+    "latinStringWithHyphens": {
+      "type": "string",
+      "pattern": "^[A-Za-z-]+$",
+      "description": "If a string is limited to characters of the Latin alphabet and hyphens, then this type is used."
+    },
+    "latinStringWithDigitsAndPunctuation": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9\\]\\[!\"#$%&'()*+,.\/:;<=>?@\\\\^_`{|}~-]+$",
+      "description": "If a string is limited to characters of the Latin alphabet, digits and punctuation, then this type is used."
+    },
+    "fileName": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9\\]\\[!#$%&'()+,.;=@^_`{}~-]+$",
+      "description": "File names must consist of printable characters which work on Linux, Winudows and Mac OSX."
+    },
+    "xmlString": {
+      "type": "string",
+      "pattern": "^[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]+$",
+      "description": "If a string is limited to valid characters in XML, then this type is used."
+    },
+    "sha256Hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "This type should be used for hashes according to SHA-256."
     },
     "internationalString": {
       "type": "object",
       "properties": {
         "en-US": {
-          "$ref": "#/$defs/latinString",
+          "$ref": "#/$defs/string",
           "description": "A string in American English."
         }
       },

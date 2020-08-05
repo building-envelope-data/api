@@ -48,7 +48,7 @@
           "description": "The optical data can be provided as a file. If the data is provided as a file and as explicit values below, than it MUST be the same data only in different formats. If one data is derived from another data, it MUST be stored as separate items in the array optical/basics and origin SHOULD be used to identify the method of derivation."
         },
         "dataPoints": {
-          "title": "This section provides a list of all data points of this optical data.",
+          "title": "This schema provides a list of all data points of this optical data.",
           "type": "array",
           "items": {
             "title": "Each optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation and the optical results.",
@@ -56,7 +56,7 @@
             "properties": {
               "incidence": {
                 "$ref": "#/$defs/incidence",
-                "description": "This section defines the incident radiation on the component."
+                "description": "This schema defines the incident radiation on the component."
               },
               "characteristicsComponent": {
                 "$ref": "#/$defs/characteristicsComponent",
@@ -64,7 +64,7 @@
               },
               "emergence": {
                 "$ref": "#/$defs/emergence",
-                "description": "This section defines the radiation which emerges from the component."
+                "description": "This schema defines the radiation which emerges from the component."
               },
               "results": {
                 "$ref": "#/$defs/results",
@@ -88,7 +88,7 @@
       ]
     },
     "direction": {
-      "title": "This section defines a direction for example of the radiation on a sample. The array offers different ways of describing the direction, for example by two angles.",
+      "title": "This schema defines a direction for example of the radiation on a sample. The array offers different ways of describing the direction, for example by two angles.",
       "type": "array",
       "items": {
         "oneOf": [
@@ -157,7 +157,7 @@
                 ]
               },
               {
-                "title": "This section should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
+                "title": "This schema should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
                 "type": "string",
                 "enum": [
                   "diffuse",
@@ -241,7 +241,7 @@
       "required": []
     },
     "wavelengths": {
-      "title": "This section offers three options to define the wavelength of radiation: either as a single wavelength, as an array of wavelenghts or as an integral over many wavelengths.",
+      "title": "This schema offers three options to define the wavelength of radiation: either as a single wavelength, as an array of wavelenghts or as an integral over many wavelengths.",
       "oneOf": [
         {
           "type": "object",
@@ -303,7 +303,9 @@
                 }
               },
               "additionalProperties": false,
-              "required": []
+              "required": [
+                "bandwidth"
+              ]
             },
             {
               "type": "object",
@@ -314,7 +316,9 @@
                 }
               },
               "additionalProperties": false,
-              "required": []
+              "required": [
+                "amplificationFactor"
+              ]
             }
           ]
         },
@@ -332,12 +336,14 @@
             }
           },
           "additionalProperties": false,
-          "required": []
+          "required": [
+            "spectrum"
+          ]
         }
       ]
     },
     "incidence": {
-      "title": "This section defines the incident radiation on a sample. It consists of the direction of the irradiance, its polarization, the wavelenthgs and the range of the wavelengths.",
+      "title": "This schema defines the incident radiation on a sample. It consists of the direction of the irradiance, its polarization, the wavelenthgs and the range of the wavelengths.",
       "type": "object",
       "properties": {
         "direction": {
@@ -359,7 +365,7 @@
       ]
     },
     "emergence": {
-      "title": "This section defines the emergent radiation on a sample. It consists of the direction of the emergence, its polarization, the wavelenthgs and the range of the wavelengths.",
+      "title": "This schema defines the emergent radiation on a sample. It consists of the direction of the emergence, its polarization, the wavelenthgs and the range of the wavelengths.",
       "type": "object",
       "properties": {
         "direction": {
@@ -369,7 +375,7 @@
           "$ref": "#/$defs/polarisation"
         },
         "wavelengths": {
-          "title": "This section offers two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts. For integral over many wavelengths, incidence/wavelengths/integral and incidence/range/spectrum are used.",
+          "title": "This schema offers two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts. For integral over many wavelengths, incidence/wavelengths/integral and incidence/range/spectrum are used.",
           "oneOf": [
             {
               "type": "object",
@@ -438,7 +444,7 @@
       ]
     },
     "characteristicsComponent": {
-      "title": "This section defines parameters for optical measurements and simulations. The parameters are lated used either as optical/characteristics or optical/variables.",
+      "title": "This schema defines parameters for optical measurements and simulations. The parameters are lated used either as optical/characteristics or optical/variables.",
       "type": "object",
       "properties": {
         "treatmentBefore": {
@@ -511,8 +517,13 @@
           "description": "The tilt angle for example of venetian blinds."
         },
         "symmetries": {
-          "$ref": "#/$defs/symmetries",
-          "description": "Symmetries of the optical characteristics can be used to reduce the necessary measurements and simulations."
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/symmetry",
+            "description": "Symmetries of the optical characteristics can be used to reduce the necessary measurements and simulations."
+          },
+          "additionalItems": false,
+          "minItems": 1
         },
         "definitionOfSides": {
           "type": "object",
@@ -541,7 +552,7 @@
       "required": []
     },
     "results": {
-      "title": "This section defines the results of the optical measurement or simulation under the specified boundary conditions.",
+      "title": "This schema defines the results of the optical measurement or simulation under the specified boundary conditions.",
       "oneOf": [
         {
           "title": "This is the most verbose form of exchanging optical data and the easiest to understand.",
@@ -608,7 +619,7 @@
           "minProperties": 1
         },
         {
-          "title": "BSDF means Bidirectional Scattering Distribution Function. It is defined as the emergent radiation PER STERADIAN divided by the incident radiation AND THE COSINE OF THE ANGLE OF EMERGENCE. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This section defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
+          "title": "BSDF means Bidirectional Scattering Distribution Function. It is defined as the emergent radiation PER STERADIAN divided by the incident radiation AND THE COSINE OF THE ANGLE OF EMERGENCE. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This schema defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
           "type": "object",
           "properties": {
             "formatting": {
@@ -643,20 +654,15 @@
         }
       ]
     },
-    "symmetries": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "incidenceAngle",
-          "profileAngle",
-          "mirror",
-          "rotational"
-        ],
-        "description": "(i) A component can have an optical symmetry regarding the angle of incidence. This means that the results are the same for all directions of incidence which have the same incidence angle. (ii) Accordingly, an optical symmetry regarding the profile angle means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a mirror symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. (iv) In the case of a rotational symmetry, the results for some directions of incidence are enough to determine the results for the other directions of incidence by rotating them around the line perpendicular to the surface of the component."
-      },
-      "additionalItems": false,
-      "minItems": 0
+    "symmetry": {
+      "type": "string",
+      "enum": [
+        "incidenceAngle",
+        "profileAngle",
+        "mirror",
+        "rotational"
+      ],
+      "description": "(i) A component can have an optical symmetry regarding the angle of incidence. This means that the results are the same for all directions of incidence which have the same incidence angle. (ii) Accordingly, an optical symmetry regarding the profile angle means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a mirror symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. (iv) In the case of a rotational symmetry, the results for some directions of incidence are enough to determine the results for the other directions of incidence by rotating them around the line perpendicular to the surface of the component."
     }
   },
   "$ref": "#/$defs/optical"
