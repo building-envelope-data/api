@@ -303,7 +303,9 @@
                 }
               },
               "additionalProperties": false,
-              "required": []
+              "required": [
+                "bandwidth"
+              ]
             },
             {
               "type": "object",
@@ -314,7 +316,9 @@
                 }
               },
               "additionalProperties": false,
-              "required": []
+              "required": [
+                "amplificationFactor"
+              ]
             }
           ]
         },
@@ -332,7 +336,9 @@
             }
           },
           "additionalProperties": false,
-          "required": []
+          "required": [
+            "spectrum"
+          ]
         }
       ]
     },
