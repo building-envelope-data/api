@@ -302,7 +302,7 @@
                   "description": "When `#/$defs/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/$defs/wavelengths/wavelength`."
                 }
               },
-              "additionalProperties": false,
+              "additionalProperties": true,
               "required": [
                 "bandwidth"
               ]
@@ -315,7 +315,7 @@
                   "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/$defs/wavelengths/wavelength`."
                 }
               },
-              "additionalProperties": false,
+              "additionalProperties": true,
               "required": [
                 "amplificationFactor"
               ]
