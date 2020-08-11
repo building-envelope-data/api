@@ -204,8 +204,8 @@
       "additionalProperties": false,
       "required": []
     },
-    "wavelengths": {
-      "title": "This schema offers three options to define the wavelength of radiation: either as a single wavelength, as an array of wavelenghts or as an integral over many wavelengths.",
+    "wavelengthsWithoutIntegral": {
+      "title": "This schema offers two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts.",
       "oneOf": [
         {
           "type": "object",
@@ -237,6 +237,14 @@
           "required": [
             "list"
           ]
+        }
+      ]
+    },
+    "wavelengths": {
+      "title": "This schema offers three options to define the wavelength of radiation: either as a single wavelength, as an array of wavelenghts or as an integral over many wavelengths.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/wavelengthsWithoutIntegral"
         },
         {
           "type": "object",
@@ -339,40 +347,8 @@
           "$ref": "#/$defs/polarisation"
         },
         "wavelengths": {
-          "title": "This schema offers two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts. For integral over many wavelengths, incidence/wavelengths/integral and incidence/range/spectrum are used.",
-          "oneOf": [
-            {
-              "type": "object",
-              "properties": {
-                "wavelength": {
-                  "$ref": "number.json#/$defs/nanometer",
-                  "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/$defs/wavelengthRange/bandwidth`."
-                }
-              },
-              "additionalProperties": false,
-              "required": [
-                "wavelength"
-              ]
-            },
-            {
-              "type": "object",
-              "properties": {
-                "list": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "number.json#/$defs/nanometer",
-                    "description": "An list of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/$defs/wavelengthRange/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
-                  },
-                  "additionalItems": false,
-                  "minItems": 1
-                }
-              },
-              "additionalProperties": false,
-              "required": [
-                "list"
-              ]
-            }
-          ]
+          "$ref": "#/$defs/wavelengthsWithoutIntegral",
+          "description": "This property offers two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts. For integral over many wavelengths, incidence/wavelengths/integral and incidence/range/spectrum are used."
         },
         "range": {
           "title": "The range of the emergence can either define the bandwidth or amplification factor of measuring a single wavelength. If an entire spectrum of wavenlengths is measured or calculated, then 'wavelengths' and 'range' are not used in 'emergence' and only in 'incidence'.",
