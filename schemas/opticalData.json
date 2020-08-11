@@ -362,7 +362,7 @@
                 }
               },
               "additionalProperties": false,
-              "required": []
+              "required": ["bandwidth"]
             },
             {
               "type": "object",
@@ -373,7 +373,7 @@
                 }
               },
               "additionalProperties": false,
-              "required": []
+              "required": ["amplificationFactor"]
             }
           ]
         }
@@ -396,7 +396,7 @@
             }
           },
           "additionalProperties": false,
-          "required": []
+          "required": ["reference"]
         },
         "locationOnSample": {
           "type": "object",
@@ -407,7 +407,7 @@
             }
           },
           "additionalProperties": false,
-          "required": []
+          "required": ["reference"]
         },
         "polarizationSensitivity": {
           "type": "object",
@@ -418,7 +418,7 @@
             }
           },
           "additionalProperties": false,
-          "required": []
+          "required": ["reference"]
         },
         "instrumentSignature": {
           "$ref": "number.json#/$defs/nonNegativeNumber",
@@ -437,8 +437,7 @@
           },
           "additionalItems": false,
           "minItems": 1,
-          "description": "The normalization methods absolute, relative, specular and diffuse reflectance are defined by ASTM E2387-05:2011.",
-          "required": []
+          "description": "The normalization methods absolute, relative, specular and diffuse reflectance are defined by ASTM E2387-05:2011."
         },
         "coordinateSystem": {
           "$ref": "geometry.json#/$defs/coordinateSystem",
@@ -476,7 +475,9 @@
               "$ref": "string.json#/$defs/internationalString",
               "description": "This string can explain which side of the component is defined as nonPrime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior. The string should also define which side of the component is the top side and which is the bottom side."
             }
-          }
+          },
+          "minProperties": 1,
+          "required": []
         },
         "side": {
           "type": "string",
@@ -489,6 +490,7 @@
         }
       },
       "additionalProperties": false,
+      "minProperties": 1,
       "required": []
     },
     "results": {
