@@ -11,32 +11,34 @@
                     "explanation": {
                         "en-US": "Example to define bandwidith and amplification factor"
                     },
-                    "dataPoints": [
-                        {
-                            "incidence": {
-                                "direction": [
-                                    "nearnormal"
-                                ],
-                                "wavelengths": {
-                                    "wavelength": 500
+                    "data": {
+                        "dataPoints": [
+                            {
+                                "incidence": {
+                                    "direction": [
+                                        "nearnormal"
+                                    ],
+                                    "wavelengths": {
+                                        "wavelength": 500
+                                    },
+                                    "range": {
+                                        "bandwidth": 4,
+                                        "amplificationFactor": 2
+                                    }
                                 },
-                                "range": {
-                                    "bandwidth": 4,
-                                    "amplificationFactor": 2
-                                }
-                            },
-                            "emergence": {
-                                "direction": [
-                                    "nearnormal"
-                                ]
-                            },
-                            "results": {
-                                "transmittance": {
-                                    "uncertainValue": 0.85
+                                "emergence": {
+                                    "direction": [
+                                        "nearnormal"
+                                    ]
+                                },
+                                "results": {
+                                    "transmittance": {
+                                        "uncertainValue": 0.85
+                                    }
                                 }
                             }
-                        }
-                    ]
+                        ]
+                    }
                 }
             ]
         }
