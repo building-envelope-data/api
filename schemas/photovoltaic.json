@@ -594,7 +594,7 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "direction": {
-                                                        "$ref": "optical.json#/$defs/direction",
+                                                        "$ref": "opticalData.json#/$defs/direction",
                                                         "description": "This schema defines the direction of the incident radiation."
                                                     },
                                                     "modifier": {
@@ -886,7 +886,7 @@
                             "description": "The reference offers several way to define the colour of the component."
                         },
                         "uValue": {
-                            "$ref": "calorimetric.json#/$defs/uValue",
+                            "$ref": "calorimetricData.json#/$defs/uValue",
                             "description": "The U value, also known as thermal transmittance, characterizes the rate of heat transfer through this PV module."
                         }
                     },
