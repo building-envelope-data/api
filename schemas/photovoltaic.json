@@ -86,6 +86,7 @@
                                     }
                                 },
                                 "additionalProperties": false,
+                                "minProperties": 1,
                                 "required": []
                             },
                             "width": {
@@ -169,7 +170,6 @@
                                         }
                                     },
                                     "additionalProperties": false,
-                                    "minProperties": 1,
                                     "required": [
                                         "cellNumber"
                                     ]
@@ -188,14 +188,12 @@
                                         }
                                     },
                                     "additionalProperties": false,
-                                    "minProperties": 1,
                                     "required": [
                                         "cellNumber"
                                     ]
                                 }
                             },
                             "additionalProperties": false,
-                            "minProperties": 2,
                             "required": [
                                 "longitudinal",
                                 "transversal"
@@ -250,6 +248,7 @@
                             }
                         },
                         "additionalProperties": false,
+                        "minProperties": 1,
                         "required": []
                     },
                     "additionalItems": false,
@@ -307,6 +306,7 @@
                             }
                         },
                         "additionalProperties": false,
+                        "minProperties": 1,
                         "required": []
                     },
                     "additionalItems": false,
@@ -370,6 +370,7 @@
                             }
                         },
                         "additionalProperties": false,
+                        "minProperties": 1,
                         "required": []
                     },
                     "additionalItems": false,
@@ -424,7 +425,10 @@
                                                 "$ref": "number.json#/$defs/meterWithUncertainty",
                                                 "description": "The length of the connection cable with the electric minus sign."
                                             }
-                                        }
+                                        },
+                                        "additionalProperties": false,
+                                        "minProperties": 1,
+                                        "required": []
                                     }
                                 },
                                 "additionalProperties": false,
@@ -446,7 +450,10 @@
                                     "name": {
                                         "$ref": "string.json#/$defs/internationalString",
                                         "description": "The name of the connector type."
-                                    }
+                                    },
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "required": []
                                 }
                             },
                             "additionalItems": false,
@@ -476,7 +483,6 @@
                                     }
                                 },
                                 "additionalProperties": false,
-                                "minProperties": 1,
                                 "required": [
                                     "id"
                                 ]
@@ -581,7 +587,10 @@
                                                     "IAM": {
                                                         "$ref": "number.json#/$defs/nonNegativeNumber",
                                                         "description": "`IAM` defines the value of the incidence angle modifier at the angle defined by `incidence`."
-                                                    }
+                                                    },
+                                                    "additionalProperties": false,
+                                                    "minProperties": 1,
+                                                    "required": []
                                                 }
                                             },
                                             "additionalItems": false,
@@ -1297,6 +1306,7 @@
                             }
                         },
                         "additionalProperties": false,
+                        "minProperties": 1,
                         "required": []
                     },
                     "additionalItems": false,
@@ -1358,6 +1368,7 @@
                             }
                         },
                         "additionalProperties": false,
+                        "minProperties": 1,
                         "required": []
                     },
                     "additionalItems": false,
