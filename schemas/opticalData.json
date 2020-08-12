@@ -7,9 +7,9 @@
     "data": {
       "type": "object",
       "properties": {
-        "globalCharacteristicsComponent": {
-          "$ref": "#/$defs/characteristicsComponent",
-          "description": "If one of the characteristics of a component is valid for all 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `dataPoints/characteristicsComponent'."
+        "globalComponentCharacteristics": {
+          "$ref": "#/$defs/componentCharacteristics",
+          "description": "If one of the characteristics of a component is valid for all 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `dataPoints/componentCharacteristics'."
         },
         "dataPoints": {
           "title": "This schema provides a list of all data points of this optical data.",
@@ -22,9 +22,9 @@
                 "$ref": "#/$defs/incidence",
                 "description": "This schema defines the incident radiation on the component."
               },
-              "characteristicsComponent": {
-                "$ref": "#/$defs/characteristicsComponent",
-                "description": "If a characteristic of a component varies between 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `optical/globalCharacteristicsComponent'."
+              "componentCharacteristics": {
+                "$ref": "#/$defs/componentCharacteristics",
+                "description": "If a characteristic of a component varies between 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `optical/globalComponentCharacteristics'."
               },
               "emergence": {
                 "$ref": "#/$defs/emergence",
@@ -383,7 +383,7 @@
         "direction"
       ]
     },
-    "characteristicsComponent": {
+    "componentCharacteristics": {
       "title": "This schema defines parameters for optical measurements and simulations. The parameters are later used either as optical/characteristics or optical/variables.",
       "type": "object",
       "properties": {

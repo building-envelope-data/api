@@ -83,7 +83,7 @@
         },
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "This schema defines characteristics of a component which do not depend on a specific domain such as 'optical' or 'calorimetric'. Therefore, they are constant and valid for all data sets. Characteristics which may vary between data sets about this component are stored on lower levels of the structure. For example, 'optical/globalCharacteristics' defines characteristics which are specific for optical data, but do not change within one optical data set. 'optical/dataPoints/characteristicsComponent' defines characteristics which vary between dataPoints of one optical data set. This structure aims to reduce the size of the data."
+          "description": "This schema defines characteristics of a component which do not depend on a specific domain such as 'optical' or 'calorimetric'. Therefore, they are constant and valid for all data sets. Characteristics which may vary between data sets about this component are stored on lower levels of the structure. For example, 'optical/globalCharacteristics' defines characteristics which are specific for optical data, but do not change within one optical data set. 'optical/dataPoints/componentCharacteristics' defines characteristics which vary between dataPoints of one optical data set. This structure aims to reduce the size of the data."
         },
         "roles": {
           "type": "object",
