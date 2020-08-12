@@ -54,13 +54,13 @@ compile-dsb : ## Compile the schema DSB
 test : test-dbe test-dsb ## Validate test files of the DBE and DSB schemas
 .PHONY : test
 
-test-dbe : DIRECTORY = ./tests/dbe/
+test-dbe : DIRECTORY = ./tests/valid/dbe/
 test-dbe : SCHEMA = ./schemas/dbe.json
 test-dbe : REFERENCED_SCHEMAS = ${dbe_referenced_schemas}
 test-dbe : parameterized-test-or-example ## Validate test files of the DBE schemas
 .PHONY : test-dbe
 
-test-dsb : DIRECTORY = ./tests/dsb/
+test-dsb : DIRECTORY = ./tests/valid/dsb/
 test-dsb : SCHEMA = ./schemas/dsb.json
 test-dsb : REFERENCED_SCHEMAS = ${dsb_referenced_schemas}
 test-dsb : parameterized-test-or-example ## Validate test files of the DSB schemas
