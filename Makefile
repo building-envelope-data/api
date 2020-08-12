@@ -89,3 +89,11 @@ parameterized-test-or-example :
 			$(addprefix -r,${REFERENCED_SCHEMAS}) ; \
 	done
 .PHONY : parameterized-test-or-example
+
+dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
+	find \
+		. \
+		\( -name "*.json" \) \
+		-type f \
+		-exec sed -i -e "$(shell printf '1s/^\357\273\277//')" -e "s/\r//" {} +
+.PHONY : dos2unix
