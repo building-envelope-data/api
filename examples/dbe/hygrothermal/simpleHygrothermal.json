@@ -7,8 +7,10 @@
             },
             "hygrothermal": [
                 {
-                    "WUFI": {
-                        "xmlData": "<placeholder><for><xmlData>"
+                    "data": {
+                        "WUFI": {
+                            "xmlData": "<placeholder><for><xmlData>"
+                        }
                     }
                 }
             ]
