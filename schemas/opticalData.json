@@ -5,50 +5,76 @@
   "description": "This schema is used to exchange optical data sets of building envelope components. The results of all important optical measurements and simulations shall be possible to exchange. At the same time, this general format wants to limit the number of the possible representations of one data set to make it easy to develop software which interprets the data correctly.",
   "$defs": {
     "data": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "componentCharacteristics": {
+              "$ref": "#/$defs/componentCharacteristics",
+              "description": "If one of the characteristics of a component is valid for all 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `dataPoints/componentCharacteristics'."
+            },
+            "dataPoints": {
+              "title": "Optical data points",
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/dataPoint"
+              },
+              "additionalItems": false,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "required": ["dataPoints"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "componentCharacteristics": {
+              "$ref": "#/$defs/componentCharacteristics",
+              "description": "If one of the characteristics of a component is valid for all 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `data[*]/componentCharacteristics'."
+            },
+            "data": {
+              "title": "Optical data",
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/data"
+              },
+              "additionalItems": false,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "required": ["data"]
+        }
+      ]
+    },
+    "dataPoint": {
+      "title": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation and the optical results.",
       "type": "object",
       "properties": {
-        "globalComponentCharacteristics": {
-          "$ref": "#/$defs/componentCharacteristics",
-          "description": "If one of the characteristics of a component is valid for all 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `dataPoints/componentCharacteristics'."
+        "incidence": {
+          "$ref": "#/$defs/incidence",
+          "description": "This schema defines the incident radiation on the component."
         },
-        "dataPoints": {
-          "title": "This schema provides a list of all data points of this optical data.",
-          "type": "array",
-          "items": {
-            "title": "Each optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation and the optical results.",
-            "type": "object",
-            "properties": {
-              "incidence": {
-                "$ref": "#/$defs/incidence",
-                "description": "This schema defines the incident radiation on the component."
-              },
-              "componentCharacteristics": {
-                "$ref": "#/$defs/componentCharacteristics",
-                "description": "If a characteristic of a component varies between 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `optical/globalComponentCharacteristics'."
-              },
-              "emergence": {
-                "$ref": "#/$defs/emergence",
-                "description": "This schema defines the radiation which emerges from the component."
-              },
-              "results": {
-                "$ref": "#/$defs/results",
-                "description": "Results can be for example the transmittance and the reflectance."
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "incidence",
-              "emergence",
-              "results"
-            ]
-          },
-          "additionalItems": false,
-          "minItems": 1
+        "componentCharacteristics": {
+          "$ref": "#/$defs/componentCharacteristics",
+          "description": "If a characteristic of a component varies between 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `optical/globalComponentCharacteristics'."
+        },
+        "emergence": {
+          "$ref": "#/$defs/emergence",
+          "description": "This schema defines the radiation which emerges from the component."
+        },
+        "results": {
+          "$ref": "#/$defs/results",
+          "description": "Results can be for example the transmittance and the reflectance."
         }
       },
       "additionalProperties": false,
-      "minProperties": 1,
-      "required": []
+      "required": [
+        "incidence",
+        "emergence",
+        "results"
+      ]
     },
     "direction": {
       "title": "This schema defines a direction for example of the radiation on a sample. The array offers different ways of describing the direction, for example by two angles.",
