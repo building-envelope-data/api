@@ -9,32 +9,8 @@ help : ## Print this help
 .PHONY : help
 .DEFAULT_GOAL := help
 
-dbe_referenced_schemas = \
-	./schemas/calorimetric.json \
-	./schemas/calorimetricData.json \
-	./schemas/common.json \
-	./schemas/component.json \
-	./schemas/gaps.json \
-	./schemas/geometry.json \
-	./schemas/hygrothermal.json \
-	./schemas/hygrothermalData.json \
-	./schemas/identifier.json \
-	./schemas/layer.json \
-	./schemas/material.json \
-	./schemas/method.json \
-	./schemas/number.json \
-	./schemas/optical.json \
-	./schemas/opticalData.json \
-	./schemas/photovoltaic.json \
-	./schemas/photovoltaicData.json \
-	./schemas/stakeholder.json \
-	./schemas/string.json \
-	./schemas/unit.json
-
-dsb_referenced_schemas = \
-	./schemas/building.json \
-	./schemas/dbe.json \
-	${dbe_referenced_schemas}
+schema_file_paths = $(shell find ./schemas/ -name "*.json")
+schema_file_references = $(addprefix -r ,${schema_file_paths})
 
 compile : compile-dbe compile-dsb ## Compile the schemas DBE and DSB
 .PHONY : compile
@@ -42,53 +18,59 @@ compile : compile-dbe compile-dsb ## Compile the schemas DBE and DSB
 compile-dbe : ## Compile the schema DBE
 	ajv compile \
 		-s ./schemas/dbe.json \
-		$(addprefix -r,${dbe_referenced_schemas})
+		${schema_file_references}
 .PHONY : validate-dbe
 
 compile-dsb : ## Compile the schema DSB
 	ajv compile \
 		-s ./schemas/dsb.json \
-		$(addprefix -r,${dsb_referenced_schemas})
+		${schema_file_references}
 .PHONY : validate-dsb
 
-test : test-dbe test-dsb ## Validate test files of the DBE and DSB schemas
+test : ## Validate test files
+	echo "=============================================" && \
+	echo "Testing supposed to be valid tests" && \
+	echo "= = = = = = = = = = = = = = = = = = = = = = =" && \
+	for schema_name in $(shell ls --indicator-style=none ./tests/valid/) ; do \
+		echo "---------------------------------------------" && \
+		echo "Testing schema ./schemas/$${schema_name}.json" && \
+		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
+		for test_file in $$(find ./tests/valid/$${schema_name} -name "*.json") ; do \
+			ajv validate \
+				-s ./schemas/$${schema_name}.json \
+				-d $${test_file} \
+				${schema_file_references} ; \
+		done ; \
+	done && \
+	echo "=============================================" && \
+	echo "Testing supposed to be INvalid tests" && \
+	echo "= = = = = = = = = = = = = = = = = = = = = = =" && \
+	for schema_name in $(shell ls --indicator-style=none ./tests/invalid/) ; do \
+		echo "---------------------------------------------" && \
+		echo "Testing schema ./schemas/$${schema_name}.json" && \
+		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
+		for test_file in $$(find ./tests/invalid/$${schema_name} -name "*.json") ; do \
+			ajv validate \
+				-s ./schemas/$${schema_name}.json \
+				-d $${test_file} \
+				${schema_file_references} ; \
+		done ; \
+	done
 .PHONY : test
 
-test-dbe : DIRECTORY = ./tests/valid/dbe/
-test-dbe : SCHEMA = ./schemas/dbe.json
-test-dbe : REFERENCED_SCHEMAS = ${dbe_referenced_schemas}
-test-dbe : parameterized-test-or-example ## Validate test files of the DBE schemas
-.PHONY : test-dbe
-
-test-dsb : DIRECTORY = ./tests/valid/dsb/
-test-dsb : SCHEMA = ./schemas/dsb.json
-test-dsb : REFERENCED_SCHEMAS = ${dsb_referenced_schemas}
-test-dsb : parameterized-test-or-example ## Validate test files of the DSB schemas
-.PHONY : test-dsb
-
-example : example-dbe example-dsb ## Validate example files of the DBE and DSB schemas
-.PHONY : example
-
-example-dbe : DIRECTORY = ./examples/dbe/
-example-dbe : SCHEMA = ./schemas/dbe.json
-example-dbe : REFERENCED_SCHEMAS = ${dbe_referenced_schemas}
-example-dbe : parameterized-test-or-example ## Validate example files of the DBE schemas
-.PHONY : example-dbe
-
-example-dsb : DIRECTORY = ./examples/dsb/
-example-dsb : SCHEMA = ./schemas/dsb.json
-example-dsb : REFERENCED_SCHEMAS = ${dsb_referenced_schemas}
-example-dsb : parameterized-test-or-example ## Validate example files of the DSB schemas
-.PHONY : example-dsb
-
-parameterized-test-or-example :
-	for test_file in $(shell find ${DIRECTORY} -name '*.json') ; do \
-		ajv validate \
-			-s ${SCHEMA} \
-			-d $${test_file} \
-			$(addprefix -r,${REFERENCED_SCHEMAS}) ; \
+example : ## Validate example files of the DBE and DSB schemas
+	for schema_name in $(shell ls --indicator-style=none ./examples/) ; do \
+		echo "---------------------------------------------" && \
+		echo "Validating schema ./schemas/$${schema_name}.json" && \
+		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
+		for example_file in $$(find ./examples/$${schema_name} -name "*.json") ; do \
+			ajv validate \
+				-s ./schemas/$${schema_name}.json \
+				-d $${example_file} \
+				${schema_file_references} ; \
+		done ; \
 	done
-.PHONY : parameterized-test-or-example
+.PHONY : example
 
 dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
 	find \
