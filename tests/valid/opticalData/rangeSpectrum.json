@@ -1,0 +1,27 @@
+{
+  "dataPoints": [
+    {
+      "incidence": {
+        "direction": [
+          "nearnormal"
+        ],
+        "wavelengths": {
+          "wavelength": 500
+        },
+        "range": {
+          "spectrum": "solar"
+        }
+      },
+      "emergence": {
+        "direction": [
+          "nearnormal"
+        ]
+      },
+      "results": {
+        "transmittance": {
+          "uncertainValue": 0.85
+        }
+      }
+    }
+  ]
+}

@@ -40,87 +40,89 @@
                     "valid": {
                         "from": "2018-08-01T00:00:00+01:00"
                     },
-                    "fluxes": [
-                        {
-                            "name": [
-                                "interior"
-                            ],
-                            "convection": {
-                                "flux": {
-                                    "uncertainValue": 15.0,
-                                    "uncertainty": 4,
-                                    "confidenceInterval": 95.4
-                                },
-                                "temperatures": {
-                                    "surrounding": {
-                                        "uncertainValue": 298.0
-                                    }
-                                },
-                                "coefficient": {
-                                    "uncertainValue": 8.0
-                                }
-                            }
-                        },
-                        {
-                            "name": [
-                                "lateral"
-                            ],
-                            "fluid": {
-                                "flux": {
-                                    "uncertainValue": 100.0
-                                },
-                                "temperatures": {
-                                    "inlet": {
-                                        "uncertainValue": 300
+                    "data": {
+                        "fluxes": [
+                            {
+                                "name": [
+                                    "interior"
+                                ],
+                                "convection": {
+                                    "flux": {
+                                        "uncertainValue": 15.0,
+                                        "uncertainty": 4,
+                                        "confidenceInterval": 95.4
                                     },
-                                    "outlet": {
-                                        "uncertainValue": 320
+                                    "temperatures": {
+                                        "surrounding": {
+                                            "uncertainValue": 298.0
+                                        }
+                                    },
+                                    "coefficient": {
+                                        "uncertainValue": 8.0
                                     }
-                                },
-                                "massFlow": {
-                                    "uncertainValue": 0.02
-                                },
-                                "specificHeatCapacity": {
-                                    "uncertainValue": 4179.6
+                                }
+                            },
+                            {
+                                "name": [
+                                    "lateral"
+                                ],
+                                "fluid": {
+                                    "flux": {
+                                        "uncertainValue": 100.0
+                                    },
+                                    "temperatures": {
+                                        "inlet": {
+                                            "uncertainValue": 300
+                                        },
+                                        "outlet": {
+                                            "uncertainValue": 320
+                                        }
+                                    },
+                                    "massFlow": {
+                                        "uncertainValue": 0.02
+                                    },
+                                    "specificHeatCapacity": {
+                                        "uncertainValue": 4179.6
+                                    }
+                                }
+                            },
+                            {
+                                "name": [
+                                    "exterior"
+                                ],
+                                "irradiance": {
+                                    "flux": {
+                                        "uncertainValue": 1000,
+                                        "uncertainty": 50,
+                                        "confidenceInterval": 68.3
+                                    },
+                                    "direction": [
+                                        "nearnormal"
+                                    ]
                                 }
                             }
-                        },
-                        {
-                            "name": [
-                                "exterior"
-                            ],
-                            "irradiance": {
-                                "flux": {
-                                    "uncertainValue": 1000,
-                                    "uncertainty": 50,
-                                    "confidenceInterval": 68.3
+                        ],
+                        "results": [
+                            {
+                                "area": {
+                                    "category": "centre"
                                 },
-                                "direction": [
-                                    "nearnormal"
-                                ]
-                            }
-                        }
-                    ],
-                    "results": [
-                        {
-                            "area": {
-                                "category": "centre"
-                            },
-                            "uValue": {
-                                "uncertainValue": 1.0,
-                                "uncertainty": 0.1
-                            },
-                            "gValue": {
-                                "uncertainValue": 0.07,
-                                "uncertainty": 0.01
-                            },
-                            "efficiencies": {
-                                "solarThermal": {
-                                    "uncertainValue": 0.5
+                                "uValue": {
+                                    "uncertainValue": 1.0,
+                                    "uncertainty": 0.1
+                                },
+                                "gValue": {
+                                    "uncertainValue": 0.07,
+                                    "uncertainty": 0.01
+                                },
+                                "efficiencies": {
+                                    "solarThermal": {
+                                        "uncertainValue": 0.5
+                                    }
                                 }
                             }
-                        }
-                    ]
+                        ]
+                    }
                 }
             ]
         }

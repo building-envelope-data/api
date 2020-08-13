@@ -11,68 +11,70 @@
                     "explanation": {
                         "en-US": "Example: optical data about a nearnormal-nearnormal measurement of the transmittance, spectrally resolved."
                     },
-                    "dataPoints": [
-                        {
-                            "incidence": {
-                                "direction": [
-                                    "nearnormal"
-                                ],
-                                "wavelengths": {
-                                    "wavelength": 500
+                    "data": {
+                        "dataPoints": [
+                            {
+                                "incidence": {
+                                    "direction": [
+                                        "nearnormal"
+                                    ],
+                                    "wavelengths": {
+                                        "wavelength": 500
+                                    }
+                                },
+                                "emergence": {
+                                    "direction": [
+                                        "nearnormal"
+                                    ]
+                                },
+                                "results": {
+                                    "transmittance": {
+                                        "uncertainValue": 0.85
+                                    }
                                 }
                             },
-                            "emergence": {
-                                "direction": [
-                                    "nearnormal"
-                                ]
+                            {
+                                "incidence": {
+                                    "direction": [
+                                        "nearnormal"
+                                    ],
+                                    "wavelengths": {
+                                        "wavelength": 1000
+                                    }
+                                },
+                                "emergence": {
+                                    "direction": [
+                                        "nearnormal"
+                                    ]
+                                },
+                                "results": {
+                                    "transmittance": {
+                                        "uncertainValue": 0.9
+                                    }
+                                }
                             },
-                            "results": {
-                                "transmittance": {
-                                    "uncertainValue": 0.85
+                            {
+                                "incidence": {
+                                    "direction": [
+                                        "nearnormal"
+                                    ],
+                                    "wavelengths": {
+                                        "wavelength": 1500
+                                    }
+                                },
+                                "emergence": {
+                                    "direction": [
+                                        "nearnormal"
+                                    ]
+                                },
+                                "results": {
+                                    "transmittance": {
+                                        "uncertainValue": 0.8
+                                    }
                                 }
                             }
-                        },
-                        {
-                            "incidence": {
-                                "direction": [
-                                    "nearnormal"
-                                ],
-                                "wavelengths": {
-                                    "wavelength": 1000
-                                }
-                            },
-                            "emergence": {
-                                "direction": [
-                                    "nearnormal"
-                                ]
-                            },
-                            "results": {
-                                "transmittance": {
-                                    "uncertainValue": 0.9
-                                }
-                            }
-                        },
-                        {
-                            "incidence": {
-                                "direction": [
-                                    "nearnormal"
-                                ],
-                                "wavelengths": {
-                                    "wavelength": 1500
-                                }
-                            },
-                            "emergence": {
-                                "direction": [
-                                    "nearnormal"
-                                ]
-                            },
-                            "results": {
-                                "transmittance": {
-                                    "uncertainValue": 0.8
-                                }
-                            }
-                        }
-                    ]
+                        ]
+                    }
                 }
             ]
         }

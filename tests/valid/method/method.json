@@ -1,0 +1,33 @@
+{
+  "id": "bcba3ff9-8cb7-4524-943a-786d301d39ef",
+  "name": {
+    "en-US": "Method to calculate derived measurement values"
+  },
+  "explanation": {
+    "en-US": "dummy"
+  },
+  "categories": ["calculation"],
+  "developer": {
+    "id": "bcba3ff9-8cb7-4524-943a-786d301d39e2"
+  },
+  "reference": {
+    "$ref": "common.json#/$defs/reference",
+    "description": "'reference' is tested separately. TODO unklar, wie man mit units umgeht, die anderswo getestet werden"
+  },
+  "created": {
+    "$ref": "common.json#/$defs/created",
+    "description": "This date defines when the method was created."
+  },
+  "valid": {
+    "$ref": "common.json#/$defs/valid",
+    "description": "Here you can define since when the method is valid and until when. This can be helpful for example when a regulation or standard changes."
+  },
+  "available": {
+    "$ref": "common.json#/$defs/available",
+    "description": "Here you can define since when the method has been available and until when. This can be helpful for example when a method is shared considerably later than when it was created. You can also use it to define that the method may have been available for a long time even though it may not be valid for the whole time of its availability."
+  },
+  "calculation": {
+    "$ref": "#/$defs/calculation",
+    "description": "Here you can define the calculation procedure in detail."
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "componentCharacteristics": {
+    "instrumentSignature": 42
+  },
+  "data": [
+    {
+      "componentCharacteristics": {
+        "normalization": ["absolute"]
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": [
+              "nearnormal"
+            ],
+            "wavelengths": {
+              "wavelength": 500
+            },
+            "range": {
+              "spectrum": "solar"
+            }
+          },
+          "emergence": {
+            "direction": [
+              "nearnormal"
+            ]
+          },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.85
+            }
+          }
+        }
+      ]
+    },
+    {
+      "componentCharacteristics": {
+        "normalization": ["relative"]
+      },
+      "data": [
+        {
+          "componentCharacteristics": {
+            "side": "symmetric"
+          },
+          "dataPoints": [
+            {
+              "incidence": {
+                "direction": [
+                  "nearnormal"
+                ],
+                "wavelengths": {
+                  "wavelength": 500
+                },
+                "range": {
+                  "spectrum": "solar"
+                }
+              },
+              "emergence": {
+                "direction": [
+                  "nearnormal"
+                ]
+              },
+              "results": {
+                "transmittance": {
+                  "uncertainValue": 0.85
+                }
+              }
+            }
+          ]
+        },
+        {
+          "componentCharacteristics": {
+            "side": "prime"
+          },
+          "dataPoints": [
+            {
+              "incidence": {
+                "direction": [
+                  "nearnormal"
+                ],
+                "wavelengths": {
+                  "wavelength": 500
+                },
+                "range": {
+                  "spectrum": "solar"
+                }
+              },
+              "emergence": {
+                "direction": [
+                  "nearnormal"
+                ]
+              },
+              "results": {
+                "transmittance": {
+                  "uncertainValue": 0.85
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

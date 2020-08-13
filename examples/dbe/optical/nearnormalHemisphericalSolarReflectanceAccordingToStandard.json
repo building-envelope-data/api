@@ -26,31 +26,33 @@
                             }
                         }
                     },
-                    "dataPoints": [
-                        {
-                            "incidence": {
-                                "direction": [
-                                    "nearnormal"
-                                ],
-                                "wavelengths": {
-                                    "integral": true
+                    "data": {
+                        "dataPoints": [
+                            {
+                                "incidence": {
+                                    "direction": [
+                                        "nearnormal"
+                                    ],
+                                    "wavelengths": {
+                                        "integral": true
+                                    },
+                                    "range": {
+                                        "spectrum": "solar"
+                                    }
                                 },
-                                "range": {
-                                    "spectrum": "solar"
-                                }
-                            },
-                            "emergence": {
-                                "direction": [
-                                    "hemispherical"
-                                ]
-                            },
-                            "results": {
-                                "reflectance": {
-                                    "uncertainValue": 0.1
+                                "emergence": {
+                                    "direction": [
+                                        "hemispherical"
+                                    ]
+                                },
+                                "results": {
+                                    "reflectance": {
+                                        "uncertainValue": 0.1
+                                    }
                                 }
                             }
-                        }
-                    ]
+                        ]
+                    }
                 }
             ]
         }
