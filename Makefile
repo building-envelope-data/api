@@ -12,20 +12,13 @@ help : ## Print this help
 schema_file_paths = $(shell find ./schemas/ -name "*.json")
 schema_file_references = $(addprefix -r ,${schema_file_paths})
 
-compile : compile-dbe compile-dsb ## Compile the schemas DBE and DSB
+compile : ## Compile schemas
+	for schema_file_path in ${schema_file_paths} ; do \
+		ajv compile \
+			-s $${schema_file_path} \
+			${schema_file_references} ; \
+	done
 .PHONY : compile
-
-compile-dbe : ## Compile the schema DBE
-	ajv compile \
-		-s ./schemas/dbe.json \
-		${schema_file_references}
-.PHONY : validate-dbe
-
-compile-dsb : ## Compile the schema DSB
-	ajv compile \
-		-s ./schemas/dsb.json \
-		${schema_file_references}
-.PHONY : validate-dsb
 
 test : ## Validate test files
 	echo "=============================================" && \
@@ -35,10 +28,10 @@ test : ## Validate test files
 		echo "---------------------------------------------" && \
 		echo "Testing schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
-		for test_file in $$(find ./tests/valid/$${schema_name} -name "*.json") ; do \
+		for test_file_path in $$(find ./tests/valid/$${schema_name} -name "*.json") ; do \
 			ajv validate \
 				-s ./schemas/$${schema_name}.json \
-				-d $${test_file} \
+				-d $${test_file_path} \
 				${schema_file_references} ; \
 		done ; \
 	done && \
@@ -49,16 +42,16 @@ test : ## Validate test files
 		echo "---------------------------------------------" && \
 		echo "Testing schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
-		for test_file in $$(find ./tests/invalid/$${schema_name} -name "*.json") ; do \
+		for test_file_path in $$(find ./tests/invalid/$${schema_name} -name "*.json") ; do \
 			ajv validate \
 				-s ./schemas/$${schema_name}.json \
-				-d $${test_file} \
+				-d $${test_file_path} \
 				${schema_file_references} ; \
 		done ; \
 	done
 .PHONY : test
 
-example : ## Validate example files of the DBE and DSB schemas
+example : ## Validate example files
 	for schema_name in $(shell ls --indicator-style=none ./examples/) ; do \
 		echo "---------------------------------------------" && \
 		echo "Validating schema ./schemas/$${schema_name}.json" && \
