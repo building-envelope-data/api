@@ -1,6 +1,9 @@
 # Concise introduction to GNU Make:
 # https://swcarpentry.github.io/make-novice/reference.html
 
+name = building_envelopes_data
+tag = latest
+
 # Taken from https://www.client9.com/self-documenting-makefiles/
 help : ## Print this help
 	@awk -F ':|##' '/^[^\t].+?:.*?##/ {\
@@ -8,6 +11,45 @@ help : ## Print this help
 	}' $(MAKEFILE_LIST)
 .PHONY : help
 .DEFAULT_GOAL := help
+
+# --------------------- #
+# Interface with Docker #
+# --------------------- #
+
+name : ## Print value of variable `name`
+	@echo ${name}
+.PHONY : name
+
+tag : ## Print value of variable `tag`
+	@echo ${tag}
+.PHONY : tag
+
+build : ## Build image with name `${name}` and tag '${tag}', for example, `make build`
+	docker build \
+		--tag ${name}:${tag} \
+		--build-arg UID=$(shell id --user) \
+		--build-arg GID=$(shell id --group) \
+		.
+.PHONY : build
+
+remove : ## Remove image with name `${name}` and tag '${tag}'
+	docker rmi ${name}:${tag}
+.PHONY : remove
+
+shell : build ## Enter shell in fresh container for image with name `${name}` and tag '${tag}'
+	docker run \
+		--interactive \
+		--tty \
+		--user $(shell id --user):$(shell id --group) \
+		--mount type=bind,source="$(shell pwd)",destination=/app \
+		--mount type=volume,source=${name}_pip,destination=/home/me/.local \
+		${name}:${tag} \
+		bash
+.PHONY : shell
+
+# ------------------------------------------------ #
+# Tasks to run, for example, in a Docker container #
+# ------------------------------------------------ #
 
 schema_file_paths = $(shell find ./schemas/ -name "*.json")
 schema_file_references = $(addprefix -r ,${schema_file_paths})
