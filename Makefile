@@ -43,7 +43,7 @@ test : ## Validate test files
 		echo "Testing schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for test_file_path in $$(find ./tests/invalid/$${schema_name} -name "*.json") ; do \
-			ajv validate \
+			! ajv validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${test_file_path} \
 				${schema_file_references} ; \
