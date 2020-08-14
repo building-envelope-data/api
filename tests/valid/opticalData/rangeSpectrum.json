@@ -5,9 +5,7 @@
         "direction": [
           "nearnormal"
         ],
-        "wavelengths": {
-          "wavelength": 500
-        },
+        "wavelengths": 500,
         "range": {
           "spectrum": "solar"
         }

@@ -5,8 +5,10 @@
         "direction": [
           "nearnormal"
         ],
-        "wavelengths": 500,
-        "range": {}
+        "wavelengths": "integral",
+        "range": {
+          "bandwidth": 4
+        }
       },
       "emergence": {
         "direction": [

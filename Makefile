@@ -51,6 +51,41 @@ test : ## Validate test files
 	done
 .PHONY : test
 
+# If `ajv-cli` supported fragments to refer to definitions inside schema files,
+# then we could use the following to test definitions in isolation:
+# test : ## Validate test files
+# 	echo "=============================================" && \
+# 	echo "Testing supposed to be valid tests" && \
+# 	echo "= = = = = = = = = = = = = = = = = = = = = = =" && \
+# 	for truncated_test_directory_path in $(shell find ./tests/valid -mindepth 1 -type d -printf '%P ') ; do \
+# 		schema_file_path_with_fragment=./schemas/$$(echo $${truncated_test_directory_path} | sed -e 's_\([^/]\+\)_$$defs/\1_g' -e 's_$$defs/\([^/]\+\)\/_\1.json#/_') && \
+# 		echo "---------------------------------------------" && \
+# 		echo "Testing schema ./schemas/$${schema_name}.json" && \
+# 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
+# 		for test_file_path in $$(find ./tests/valid/$${truncated_test_directory_path} -name "*.json") ; do \
+# 			ajv validate \
+# 				-s $${schema_file_path_with_fragment} \
+# 				-d $${test_file_path} \
+# 				${schema_file_references} ; \
+# 		done ; \
+# 	done && \
+# 	echo "=============================================" && \
+# 	echo "Testing supposed to be INvalid tests" && \
+# 	echo "= = = = = = = = = = = = = = = = = = = = = = =" && \
+# 	for truncated_test_directory_path in $(shell find ./tests/valid -mindepth 1 -type d -printf '%P ') ; do \
+# 		schema_file_path_with_fragment=./schemas/$$(echo $${truncated_test_directory_path} | sed -e 's_\([^/]\+\)_$$defs/\1_g' -e 's_$$defs/\([^/]\+\)\/_\1.json#/_') && \
+# 		echo "---------------------------------------------" && \
+# 		echo "Testing schema ./schemas/$${schema_name}.json" && \
+# 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
+# 		for test_file_path in $$(find ./tests/invalid/$${truncated_test_directory_path} -name "*.json") ; do \
+# 			! ajv validate \
+# 				-s $${schema_file_path_with_fragment} \
+# 				-d $${test_file_path} \
+# 				${schema_file_references} ; \
+# 		done ; \
+# 	done
+# .PHONY : test
+
 example : ## Validate example files
 	for schema_name in $(shell ls --indicator-style=none ./examples/) ; do \
 		echo "---------------------------------------------" && \
