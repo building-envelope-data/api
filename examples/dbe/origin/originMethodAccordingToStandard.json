@@ -47,9 +47,7 @@
                                     "direction": [
                                         "nearnormal"
                                     ],
-                                    "wavelengths": {
-                                        "integral": true
-                                    },
+                                    "wavelengths": "integral",
                                     "range": {
                                         "spectrum": "solar"
                                     }
