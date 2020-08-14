@@ -377,37 +377,16 @@
       "type": "object",
       "properties": {
         "treatmentBefore": {
-          "type": "object",
-          "properties": {
-            "reference": {
-              "$ref": "common.json#/$defs/reference",
-              "description": "This reference defines any treatment performed on the sample before measurement."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["reference"]
+          "$ref": "common.json#/$defs/reference",
+          "description": "This reference defines any treatment performed on the sample before measurement."
         },
         "locationOnSample": {
-          "type": "object",
-          "properties": {
-            "reference": {
-              "$ref": "common.json#/$defs/reference",
-              "description": "This reference can define the location of measurement on the sample."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["reference"]
+          "$ref": "common.json#/$defs/reference",
+          "description": "This reference can define the location of measurement on the sample."
         },
         "polarizationSensitivity": {
-          "type": "object",
-          "properties": {
-            "reference": {
-              "$ref": "common.json#/$defs/reference",
-              "description": "This reference defines the polarization sensitivity of the receiver of the optical measurement."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["reference"]
+          "$ref": "common.json#/$defs/reference",
+          "description": "This reference defines the polarization sensitivity of the receiver of the optical measurement."
         },
         "instrumentSignature": {
           "$ref": "number.json#/$defs/nonNegativeNumber",
