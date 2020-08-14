@@ -40,7 +40,6 @@ directory `./examples`.
 5. List all GNU Make targets by running `make help`. The targets `name`, `tag`,
    `build`, `remove`, and `shell` can be used to interface with Docker. The
    other ones can be used within `bash` inside a Docker container:
-   * `help` lists available targets,
    * `compile` validates the schemas against the JSON Schema meta-schemas,
    * `test` validates the tests against the schemas,
    * `example` validates the examples against the schemas, and
