@@ -5,7 +5,7 @@
   "data": [
     {
       "componentCharacteristics": {
-        "normalization": ["absolute"]
+        "normalization": "absolute"
       },
       "dataPoints": [
         {
@@ -35,7 +35,7 @@
     },
     {
       "componentCharacteristics": {
-        "normalization": ["relative"]
+        "normalization": "relative"
       },
       "data": [
         {

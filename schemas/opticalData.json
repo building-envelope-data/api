@@ -450,18 +450,13 @@
           "description": "The instrument signature is defined as the mean scatter level detected when there is no sample scatter present."
         },
         "normalization": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "absolute",
-              "relative",
-              "specular",
-              "diffuseReflectance"
-            ]
-          },
-          "additionalItems": false,
-          "minItems": 1,
+          "type": "string",
+          "enum": [
+            "absolute",
+            "relative",
+            "specular",
+            "diffuseReflectance"
+          ],
           "description": "The normalization methods absolute, relative, specular and diffuse reflectance are defined by ASTM E2387-05:2011."
         },
         "coordinateSystem": {
