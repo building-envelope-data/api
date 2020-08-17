@@ -524,13 +524,13 @@
           "minProperties": 1
         },
         {
-          "title": "BSDF means Bidirectional Scattering Distribution Function. It is defined as the emergent radiation PER STERADIAN divided by the incident radiation AND THE COSINE OF THE ANGLE OF EMERGENCE. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This schema defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
+          "title": "The Bidirectional Scattering Distribution Function (BSDF) is defined as the emergent radiation PER STERADIAN divided by the incident radiation AND THE COSINE OF THE ANGLE OF EMERGENCE. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This schema defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
           "type": "object",
           "properties": {
             "formatting": {
               "$ref": "common.json#/$defs/formatting"
             },
-            "BTDF": {
+            "bidirectionalTransmittanceDistributionFunction": {
               "type": "array",
               "items": {
                 "type": "number",
@@ -539,9 +539,9 @@
               },
               "additionalItems": false,
               "minItems": 2,
-              "description": "BTDF means Bidirectional Transmittance Distribution Function. It is defined as the  radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
+              "description": "The Bidirectional Transmittance Distribution Function (BTDF) is defined as the radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
             },
-            "BRDF": {
+            "bidirectionalReflectanceDistributionFunction": {
               "type": "array",
               "items": {
                 "type": "number",
@@ -550,7 +550,7 @@
               },
               "additionalItems": false,
               "minItems": 2,
-              "description": "BRDF means Bidirectional Reflectance Distribution Function. It is defined as the  radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
+              "description": "The Bidirectional Reflectance Distribution Function (BRDF) is defined as the radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
             }
           },
           "additionalProperties": false,

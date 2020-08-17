@@ -115,7 +115,7 @@
                                             }
                                         }
                                     },
-                                    "BTDF": [
+                                    "bidirectionalTransmittanceDistributionFunction": [
                                         0.626200,
                                         0.001085,
                                         0.000830,
