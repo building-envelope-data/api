@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/common.json",
   "title": "common definitions",
-  "description": "This schema collects definitions which are used in several other schemas.",
+  "description": "Definitions which are used in several other schemas.",
   "$defs": {
     "webAddress": {
       "type": "string",
@@ -51,14 +51,14 @@
       "minProperties": 1
     },
     "reference": {
-      "title": "This schema is used to refer to one standard or one publication.",
+      "title": "Refer to one standard or one publication.",
       "oneOf": [
         {
           "type": "object",
           "properties": {
             "standard": {
               "$ref": "#/$defs/standard",
-              "description": "This schema defines which standard is refered to."
+              "description": "The standard refered to."
             }
           },
           "additionalProperties": false,
@@ -71,7 +71,7 @@
           "properties": {
             "publication": {
               "$ref": "#/$defs/publication",
-              "description": "This schema defines which publication is refered to."
+              "description": "The publication refered to."
             }
           },
           "additionalProperties": false,
@@ -222,7 +222,7 @@
       ]
     },
     "approvals": {
-      "title": "If the validity of a data is important, this schema can be used to express the approval of a institution with a cryptographic signature. It's an array, because there may be approvals of several institutions for the same data.",
+      "title": "Institutions can approve data with cryptographic signatures which among other things can be used to ensure integrity and authenticity of data. The same data may be approved by several institutions.",
       "type": "array",
       "items": {
         "$ref": "common.json#/$defs/approval"
@@ -243,11 +243,11 @@
         },
         "verify": {
           "$ref": "common.json#/$defs/approvalVerification",
-          "description": "This schema defines how the approval can be verified."
+          "description": "How the approval can be verified."
         },
         "signature": {
           "$ref": "string.json#/$defs/string",
-          "description": "This string defines the cryptographic signature of the approved data."
+          "description": "The cryptographic signature of the approved data."
         },
         "created": {
           "$ref": "common.json#/$defs/created",
@@ -280,7 +280,7 @@
       "required": []
     },
     "angles": {
-      "title": "This schema defines angles which are helpful to characterize building envelopes.",
+      "title": "Angles which are helpful to characterize building envelopes.",
       "$defs": {
         "tilt": {
           "$ref": "number.json#/$defs/degree",
@@ -293,7 +293,7 @@
       }
     },
     "efficiencies": {
-      "title": "For the conversion of energy, this schema provides definitions for effiencies.",
+      "title": "Definitions of effiencies for the conversion of energy.",
       "$defs": {
         "photovoltaic": {
           "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
@@ -310,7 +310,7 @@
       }
     },
     "file": {
-      "title": "This schema defines the data of a specific file.",
+      "title": "The data of a specific file.",
       "type": "object",
       "properties": {
         "webAddress": {
@@ -335,7 +335,7 @@
         },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",
-          "description": "This schema contains approvals of the file."
+          "description": "Approvals of the file."
         },
         "created": {
           "$ref": "common.json#/$defs/created",
@@ -352,7 +352,7 @@
       ]
     },
     "formatting": {
-      "title": "This schema is used to define the format of data.",
+      "title": "The format of data.",
       "type": "object",
       "properties": {
         "id": {
@@ -386,7 +386,7 @@
       ]
     },
     "colour": {
-      "description": "This schema offers several ways to define the colour of a component",
+      "description": "Colour of a component",
       "type": "object",
       "properties": {
         "name": {

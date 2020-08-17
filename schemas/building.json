@@ -2,10 +2,10 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/building.json",
   "title": "building data",
-  "description": "This schema is used to exchange data about a building.",
+  "description": "Data about a building.",
   "$defs": {
     "building": {
-      "title": "This schema is used to define a building.",
+      "title": "Data about a building.",
       "type": "object",
       "properties": {
         "id": {
@@ -29,7 +29,7 @@
           "description": "The id represents the version of the building."
         },
         "relations": {
-          "title": "The current building can have relations to other buildings. These relations can range in the dimension between a very general building in early planning phases and and a very concretized building in later phases of the life cycle. A second dimension of relation ranges from being part of an assembly of buildings to being an assembly of other buildings. A third dimension are variants of buildings for example during the desing phase. The variants share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly. In this schema, these relations between buildings can be defined.",
+          "title": "Relations of the current building to other buildings. These relations can range in the dimension between a very general building in early planning phases and and a very concretized building in later phases of the life cycle. A second dimension of relation ranges from being part of an assembly of buildings to being an assembly of other buildings. A third dimension are variants of buildings for example during the desing phase. The variants share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly.",
           "type": "object",
           "properties": {
             "concretizationOf": {
@@ -79,12 +79,12 @@
         },
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "This schema defines some characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches."
+          "description": "Characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches."
         },
         "roles": {
           "type": "object",
           "properties": {
-            "title": "This schema adds roles which are specific for buildings to the existing roles for building envelopes.",
+            "title": "Roles which are specific for buildings to the existing roles for building envelopes.",
             "owners": {
               "type": "array",
               "items": {
@@ -196,7 +196,7 @@
           "type": "object",
           "properties": {
             "full": {
-              "title": "This schema is used if the full data about the building is requested.",
+              "title": "The full data about the building.",
               "type": "object",
               "properties": {
                 "id": {
@@ -239,7 +239,7 @@
           "type": "object",
           "properties": {
             "full": {
-              "title": "This schema is used if the full data about the building is requested.",
+              "title": "The full data about the building.",
               "type": "object",
               "properties": {
                 "id": {
@@ -282,7 +282,7 @@
           "type": "object",
           "properties": {
             "SPARQL": {
-              "title": "This schema is used to define the SPARQL endpoint which can be used to access the data about the building.",
+              "title": "The SPARQL endpoint which can be used to access the data about the building.",
               "type": "object",
               "properties": {
                 "webAddress": {
@@ -312,11 +312,11 @@
       ]
     },
     "characteristics": {
-      "title": "This schema defines some characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches.",
+      "title": "Characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches.",
       "type": "object",
       "properties": {
         "location": {
-          "title": "This schema defines the location of a building.",
+          "title": "The location of a building.",
           "type": "object",
           "properties": {
             "latitude": {

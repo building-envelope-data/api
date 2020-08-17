@@ -2,10 +2,10 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/material.json",
   "title": "material data",
-  "description": "This schema defines how a material can be identified, which categories can be attributed to the material and which characteristics or properties the material has.",
+  "description": "How a material can be identified, which categories can be attributed to the material and which characteristics or properties the material has.",
   "$defs": {
     "identification": {
-      "title": "This schemas is used to identify a certain material. It is recommended to use central identifiers, but it also possible to definde materials without identifier.",
+      "title": "Identify a certain material. It is recommended to use central identifiers, but it also possible to definde materials without identifier.",
       "type": "object",
       "properties": {
         "id": {
@@ -184,7 +184,7 @@
       "maxItems": 2
     },
     "characteristics": {
-      "title": "This schema collects the characteristics of a material.",
+      "title": "The characteristics of a material.",
       "type": "object",
       "properties": {
         "refractiveIndex": {

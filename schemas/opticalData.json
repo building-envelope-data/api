@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/opticalData.json",
   "title": "optical data",
-  "description": "This schema is used to exchange optical data sets of building envelope components. The results of all important optical measurements and simulations shall be possible to exchange. At the same time, this general format wants to limit the number of the possible representations of one data set to make it easy to develop software which interprets the data correctly.",
+  "description": "Optical data sets of building envelope components. The results of all important optical measurements and simulations shall be possible to exchange. At the same time, this general format wants to limit the number of the possible representations of one data set to make it easy to develop software which interprets the data correctly.",
   "$defs": {
     "data": {
       "oneOf": [
@@ -54,7 +54,7 @@
       "properties": {
         "incidence": {
           "$ref": "#/$defs/incidence",
-          "description": "This schema defines the incident radiation on the component."
+          "description": "The incident radiation on the component."
         },
         "componentCharacteristics": {
           "$ref": "#/$defs/componentCharacteristics",
@@ -62,7 +62,7 @@
         },
         "emergence": {
           "$ref": "#/$defs/emergence",
-          "description": "This schema defines the radiation which emerges from the component."
+          "description": "The radiation which emerges from the component."
         },
         "results": {
           "$ref": "#/$defs/results",
@@ -77,7 +77,7 @@
       ]
     },
     "direction": {
-      "title": "This schema defines a direction for example of the radiation on a sample. The array offers different ways of describing the direction, for example by two angles.",
+      "title": "The direction for example of the radiation on a sample. The array offers different ways of describing the direction, for example by two angles.",
       "type": "array",
       "items": {
         "oneOf": [
@@ -146,7 +146,7 @@
                 ]
               },
               {
-                "title": "This schema should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
+                "title": "This should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
                 "type": "string",
                 "enum": [
                   "diffuse",
@@ -194,11 +194,11 @@
           "properties": {
             "s": {
               "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "This property represents the fraction of radiation with its electric field perpendicular to the plane of incidence of the radiation on the sample. s is usually between 0 and 1. Only in raw data there may be exceptions because of the uncertainty. However, s can never be below 0-uncertainty or larger than 1+uncertainty."
+              "description": "The fraction of radiation with its electric field perpendicular to the plane of incidence of the radiation on the sample. s is usually between 0 and 1. Only in raw data there may be exceptions because of the uncertainty. However, s can never be below 0-uncertainty or larger than 1+uncertainty."
             },
             "p": {
               "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "This property represents the fraction of radiation with its electric field parallel to the plane of incidence of the radiation on the sample. p is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
+              "description": "The fraction of radiation with its electric field parallel to the plane of incidence of the radiation on the sample. p is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
             }
           },
           "additionalProperties": false,
@@ -212,11 +212,11 @@
           "properties": {
             "l": {
               "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "This property represents the fraction of radiation with its electric field rotating in a left-hand sense with respect to the direction of radiation. l is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
+              "description": "The fraction of radiation with its electric field rotating in a left-hand sense with respect to the direction of radiation. l is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
             },
             "r": {
               "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "This property represents the fraction of radiation with its electric field rotating in a right-hand sense with respect to the direction of radiation. r is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
+              "description": "The fraction of radiation with its electric field rotating in a right-hand sense with respect to the direction of radiation. r is usually between 0 and 1 and can never be below `0 - uncertainty` or larger than `1 + uncertainty`."
             }
           },
           "additionalProperties": false,
@@ -231,7 +231,7 @@
       "required": []
     },
     "wavelengthsWithoutIntegral": {
-      "title": "This schema offers two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts.",
+      "title": "Two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts.",
       "oneOf": [
         {
           "$ref": "number.json#/$defs/nanometer",
@@ -249,7 +249,7 @@
       ]
     },
     "wavelengths": {
-      "title": "This schema offers three options to define the wavelength of radiation: either as a single wavelength, as an array of wavelenghts or as an integral over many wavelengths.",
+      "title": "Three options to define the wavelength of radiation: either as a single wavelength, as an array of wavelenghts or as an integral over many wavelengths.",
       "oneOf": [
         {
           "$ref": "#/$defs/wavelengthsWithoutIntegral"
@@ -314,7 +314,7 @@
       ]
     },
     "incidence": {
-      "title": "This schema defines the incident radiation on a sample. It consists of the direction of the irradiance, its polarization, the wavelenthgs and the range of the wavelengths.",
+      "title": "The incident radiation on a sample. It consists of the direction of the irradiance, its polarization, the wavelenthgs and the range of the wavelengths.",
       "type": "object",
       "properties": {
         "direction": {
@@ -336,7 +336,7 @@
       ]
     },
     "emergence": {
-      "title": "This schema defines the emergent radiation on a sample. It consists of the direction of the emergence, its polarization, the wavelenthgs and the range of the wavelengths.",
+      "title": "The emergent radiation on a sample. It consists of the direction of the emergence, its polarization, the wavelenthgs and the range of the wavelengths.",
       "type": "object",
       "properties": {
         "direction": {
@@ -347,7 +347,7 @@
         },
         "wavelengths": {
           "$ref": "#/$defs/wavelengthsWithoutIntegral",
-          "description": "This property offers two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts. For integral over many wavelengths, incidence/wavelengths/integral and incidence/range/spectrum are used."
+          "description": "Two options to define the wavelength of radiation: either as a single wavelength or as an array of wavelenghts. For integral over many wavelengths, incidence/wavelengths/integral and incidence/range/spectrum are used."
         },
         "range": {
           "title": "The range of the emergence can either define the bandwidth or amplification factor of measuring a single wavelength. If an entire spectrum of wavenlengths is measured or calculated, then 'wavelengths' and 'range' are not used in 'emergence' and only in 'incidence'.",
@@ -373,7 +373,7 @@
       ]
     },
     "componentCharacteristics": {
-      "title": "This schema defines parameters for optical measurements and simulations. The parameters are later used either as optical/characteristics or optical/variables.",
+      "title": "Parameters for optical measurements and simulations. The parameters are later used either as optical/characteristics or optical/variables.",
       "type": "object",
       "properties": {
         "treatmentBefore": {
@@ -457,7 +457,7 @@
       "required": []
     },
     "results": {
-      "title": "This schema defines the results of the optical measurement or simulation under the specified boundary conditions.",
+      "title": "The results of the optical measurement or simulation under the specified boundary conditions.",
       "oneOf": [
         {
           "title": "This is the most verbose form of exchanging optical data and the easiest to understand.",
@@ -524,7 +524,7 @@
           "minProperties": 1
         },
         {
-          "title": "The Bidirectional Scattering Distribution Function (BSDF) is defined as the emergent radiation PER STERADIAN divided by the incident radiation AND THE COSINE OF THE ANGLE OF EMERGENCE. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions. This schema defines the results of the BSDF measurement or simulation under the specified boundary conditions.",
+          "title": "The results of the Bidirectional Scattering Distribution Function (BSDF) measurement or simulation under the specified boundary conditions. BSDF is defined as the emergent radiation PER STERADIAN divided by the incident radiation AND THE COSINE OF THE ANGLE OF EMERGENCE. Bidirectional means that the direction of the incident radiation on the sample is defined and also the direction of the emergent radiation to the detector. BSDF data often involves many data points with various combinations of incidence and emergence directions.",
           "type": "object",
           "properties": {
             "formatting": {

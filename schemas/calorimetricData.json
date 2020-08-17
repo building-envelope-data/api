@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/calorimetricData.json",
   "title": "calorimetric data",
-  "description": "This schema is used to exchange data about calorimetric measurements or simulations. Therefore, energy fluxes are an important part of this schema.",
+  "description": "Data about calorimetric measurements or simulations. In particular, energy fluxes are important.",
   "$defs": {
     "data": {
       "type": "object",
@@ -10,7 +10,7 @@
       "properties": {
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "This schema defines characteristics which are constant for this calorimetric data set."
+          "description": "Characteristics which are constant for this calorimetric data set."
         },
         "fluxes": {
           "title": "This array defines the energy fluxes between the sample and its surroundings.",
@@ -164,7 +164,7 @@
             "type": "object",
             "properties": {
               "area": {
-                "title": "The results depend on the area of the component which is used to calculate the results. This schema defines this area.",
+                "title": "The component which is used to calculate the results.",
                 "type": "object",
                 "properties": {
                   "category": {

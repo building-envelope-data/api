@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "$id": "https://www.buildingenvelopedata.org/schemas/photovoltaicData.json",
     "title": "photovoltaic data",
-    "description": "This schema is used to exchange data about components of building envelopes which contribute to convert irradiance into electricity. A photovoltaic (PV) system is usually assembled of many components, for example PV modules.",
+    "description": "Data about components of building envelopes which contribute to convert irradiance into electricity. A photovoltaic (PV) system is usually assembled of many components, for example PV modules.",
     "$defs": {
         "data": {
             "oneOf": [
@@ -24,7 +24,7 @@
                     "properties": {
                         "inverter": {
                             "$ref": "#/$defs/inverter",
-                            "description": "If the component can convert DC to AC, it can be named inverter and be defined by this schema."
+                            "description": "If the component can convert DC to AC, it can be named inverter and be defined here."
                         }
                     },
                     "additionalProperties": false,
@@ -56,7 +56,7 @@
                     "description": "The coordinate system is defined by a reference to a publication or standard."
                 },
                 "cellTypes": {
-                    "title": "This array defines which types of cells are used in the PV module.",
+                    "title": "Which types of cells are used in the PV module.",
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -153,7 +153,7 @@
                     "type": "object",
                     "properties": {
                         "rectangular": {
-                            "title": "If the BIPV module is rectangular with the same amount of cells in each row and the same distances between them, then this schema can be used to describe the geometry. 'longitudinal' is the direction with the larger number of cells and 'transversal' with the smaller number of cells.",
+                            "title": "If the BIPV module is rectangular with the same amount of cells in each row and the same distances between them, then the geometry can be described here. 'longitudinal' is the direction with the larger number of cells and 'transversal' with the smaller number of cells.",
                             "type": "object",
                             "properties": {
                                 "longitudinal": {
@@ -220,7 +220,7 @@
                             },
                             "geometry": {
                                 "$ref": "geometry.json",
-                                "description": "This schema defines the geometry and location of the cell."
+                                "description": "The geometry and location of the cell."
                             }
                         },
                         "additionalProperties": false,
@@ -233,7 +233,7 @@
                     "minItems": 1
                 },
                 "diodeTypes": {
-                    "title": "This array defines the type of diodes which are used in the the PV module.",
+                    "title": "The type of diodes which are used in the the PV module.",
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -266,11 +266,11 @@
                             },
                             "diodeType": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id defines the type of the diode."
+                                "description": "The type of the diode."
                             },
                             "geometry": {
                                 "$ref": "geometry.json",
-                                "description": "This schema defines the geometry and location of the diode."
+                                "description": "The geometry and location of the diode."
                             }
                         },
                         "additionalProperties": false,
@@ -318,7 +318,7 @@
                 },
                 "connections": {
                     "$ref": "#/$defs/connections/$defs/bidirectional",
-                    "description": "This schema defines a list of all connections between cells and between cells and diodes."
+                    "description": "The connections between cells and between cells and diodes."
                 },
                 "moduleLayers": {
                     "title": "PV modules typically consist of several layers, for example a glass pane, a lamination material and the PV cells.",
@@ -328,7 +328,7 @@
                         "properties": {
                             "identification": {
                                 "$ref": "material.json#/$defs/identification",
-                                "description": "This schemas defines the material of the layer"
+                                "description": "The material of the layer"
                             },
                             "characteristics": {
                                 "$ref": "material.json#/$defs/characteristics",
@@ -362,7 +362,7 @@
                             },
                             "geometry": {
                                 "$ref": "geometry.json",
-                                "description": "This schema defines the geometry and location of the layer including its dimensions."
+                                "description": "The geometry and location of the layer including its dimensions."
                             },
                             "colour": {
                                 "$ref": "common.json#/$defs/colour",
@@ -471,15 +471,15 @@
                                     },
                                     "connectorType": {
                                         "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id defines the type of junction box."
+                                        "description": "The type of junction box."
                                     },
                                     "cableType": {
                                         "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id defines the type of junction box."
+                                        "description": "The type of junction box."
                                     },
                                     "junctionBoxType": {
                                         "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id defines the type of junction box."
+                                        "description": "The type of junction box."
                                     }
                                 },
                                 "additionalProperties": false,
@@ -505,7 +505,7 @@
                     "properties": {
                         "material": {
                             "$ref": "material.json",
-                            "description": "This schemas defines the material of the layer"
+                            "description": "The material of the layer"
                         },
                         "materialProperties": {
                             "$ref": "material.json#/$defs/characteristics",
@@ -517,7 +517,7 @@
                         },
                         "geometry": {
                             "$ref": "geometry.json",
-                            "description": "This schema defines the geometry and location of the cell."
+                            "description": "The geometry and location of the cell."
                         },
                         "colour": {
                             "$ref": "common.json#/$defs/colour",
@@ -547,7 +547,7 @@
                                     "description": "When the temperature increases compared to standard test conditions, the nominal power changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                                 },
                                 "guarantee": {
-                                    "title": "This schema defines if a guarantee is available specifically for the nominal power of the module. It is defined by fractions of the nominal power until a certain number of of years. For example, `years`=10 and `percentage`=90 means that 10 year old modules have at least 90% of their nominal power. `percentage`=0 means that no guarantee for the power is provided.",
+                                    "title": "Whether a guarantee is available specifically for the nominal power of the module. It is defined by fractions of the nominal power until a certain number of of years. For example, `years`=10 and `percentage`=90 means that 10 year old modules have at least 90% of their nominal power. `percentage`=0 means that no guarantee for the power is provided.",
                                     "type": "array",
                                     "items": {
                                         "type": "object",
@@ -604,7 +604,7 @@
                                                 "properties": {
                                                     "direction": {
                                                         "$ref": "opticalData.json#/$defs/direction",
-                                                        "description": "This schema defines the direction of the incident radiation."
+                                                        "description": "The direction of the incident radiation."
                                                     },
                                                     "modifier": {
                                                         "$ref": "number.json#/$defs/nonNegativeNumber",
@@ -688,18 +688,18 @@
                         },
                         "geometry": {
                             "$ref": "geometry.json",
-                            "description": "This schema defines the geometry of the PV module including the dimensions width, height and depth (thickness)."
+                            "description": "The geometry of the PV module including the dimensions width, height and depth (thickness)."
                         },
                         "safety": {
-                            "title": "This schema defines data about the safety of PV modules.",
+                            "title": "Data about the safety of PV modules.",
                             "type": "object",
                             "properties": {
                                 "fire": {
-                                    "title": "This schema defines the fire safety class of the PV module depending on the region for which the class is valid.",
+                                    "title": "The fire safety class of the PV module depending on the region for which the class is valid.",
                                     "type": "object",
                                     "properties": {
                                         "EN": {
-                                            "title": "This schema defines the fire safety class according to the regulations of the European Union. EN 13501-1 defines the categories as well as the additional classification for smoke development and burning drops falling from the component.",
+                                            "title": "The fire safety class according to the regulations of the European Union. EN 13501-1 defines the categories as well as the additional classification for smoke development and burning drops falling from the component.",
                                             "type": "object",
                                             "properties": {
                                                 "category": {
@@ -854,7 +854,7 @@
                             "required": []
                         },
                         "temperatures": {
-                            "title": "This schema defines the operating temperatures.",
+                            "title": "The operating temperatures.",
                             "type": "object",
                             "properties": {
                                 "minimum": {
@@ -875,7 +875,7 @@
                             "required": []
                         },
                         "guarantee": {
-                            "title": "This schema defines if a a general guarantee for the product. It is defined by the number of years and can refer to a publication or standard for details. `years`=0 means that no guarantee is provided. It is an array so that references for different number of years can be defined.",
+                            "title": "Whether a a general guarantee for the product. It is defined by the number of years and can refer to a publication or standard for details. `years`=0 means that no guarantee is provided. It is an array so that references for different number of years can be defined.",
                             "type": "array",
                             "items": {
                                 "years": {
@@ -1070,18 +1070,18 @@
                 },
                 "geometry": {
                     "$ref": "geometry.json",
-                    "description": "This schema defines the geometry of the inverter including the dimensions width, height and depth (thickness)."
+                    "description": "The geometry of the inverter including the dimensions width, height and depth (thickness)."
                 },
                 "safety": {
-                    "title": "This schema defines data about the safety of the inverter.",
+                    "title": "Data about the safety of the inverter.",
                     "type": "object",
                     "properties": {
                         "electric": {
-                            "title": "This schema defines the electric safety of the inverter.",
+                            "title": "The electric safety of the inverter.",
                             "type": "object",
                             "properties": {
                                 "IPcode": {
-                                    "title": "This schema defines the electric safety according to the International Protection Marking, also called Ingress Protection Marking. Codes between IPXX and IP69K are defined. `standard` defines which standard defines the details of the of the IP code. `firstDigit` defines the protection against solid particles and the `secondDigit` against liquid ingress. `thirdDigit` is optional and defines the access to dangerous active parts. `fourthDigit` is optional, too, and can define additional information.",
+                                    "title": "The electric safety according to the International Protection Marking, also called Ingress Protection Marking. Codes between IPXX and IP69K are defined. `standard` defines which standard defines the details of the of the IP code. `firstDigit` defines the protection against solid particles and the `secondDigit` against liquid ingress. `thirdDigit` is optional and defines the access to dangerous active parts. `fourthDigit` is optional, too, and can define additional information.",
                                     "type": "array",
                                     "items": {
                                         "type": "object",
@@ -1114,7 +1114,7 @@
                                                     "6",
                                                     "6K"
                                                 ],
-                                                "description": "The item defines the first digit of the IP code."
+                                                "description": "The first digit of the IP code."
                                             },
                                             "secondDigit": {
                                                 "type": "string",
@@ -1134,7 +1134,7 @@
                                                     "9",
                                                     "9K"
                                                 ],
-                                                "description": "The item defines the second digit of the IP code."
+                                                "description": "The second digit of the IP code."
                                             },
                                             "thirdDigit": {
                                                 "type": "string",
@@ -1191,7 +1191,7 @@
                                                     "II",
                                                     "III"
                                                 ],
-                                                "description": "The item defines the appliance class."
+                                                "description": "The appliance class."
                                             }
                                         },
                                         "additionalProperties": false,
@@ -1214,7 +1214,7 @@
                     "required": []
                 },
                 "temperatures": {
-                    "title": "This schema defines the operating temperatures.",
+                    "title": "The operating temperatures.",
                     "type": "object",
                     "properties": {
                         "minimum": {
@@ -1264,7 +1264,7 @@
                     "description": "The coordinate system is defined by a reference to a publication or standard."
                 },
                 "modules": {
-                    "title": "This array defines the modules of the PV system.",
+                    "title": "The modules of the PV system.",
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -1279,7 +1279,7 @@
                             },
                             "geometry": {
                                 "$ref": "geometry.json",
-                                "description": "This schema defines the geometry and location of the PV module."
+                                "description": "The geometry and location of the PV module."
                             }
                         },
                         "additionalProperties": false,
@@ -1291,7 +1291,7 @@
                     "minItems": 1
                 },
                 "diodeTypes": {
-                    "title": "This array defines the type of diodes which are used in the the PV module.",
+                    "title": "The type of diodes which are used in the the PV module.",
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -1324,11 +1324,11 @@
                             },
                             "diodeType": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id defines the type of the diode."
+                                "description": "The type of the diode."
                             },
                             "geometry": {
                                 "$ref": "geometry.json",
-                                "description": "This schema defines the geometry and location of the diode."
+                                "description": "The geometry and location of the diode."
                             }
                         },
                         "additionalProperties": false,
@@ -1380,14 +1380,14 @@
                 },
                 "grounding": {
                     "$ref": "#/$defs/connections/$defs/grounding",
-                    "description": "This subschema defines the connections between the module and the ground."
+                    "description": "The connections between the module and the ground."
                 },
                 "inverters": {
                     "title": "Usually, one inverter converts the direct current (DC) of the modules into alternating current (AC). But also several inverters could be used.",
                     "type": "array",
                     "items": {
                         "$ref": "#/$defs/inverter",
-                        "description": "This schema defines one inverter."
+                        "description": "One inverter."
                     },
                     "additionalItems": false,
                     "minItems": 1
@@ -1400,14 +1400,14 @@
         "connections": {
             "$defs": {
                 "bidirectional": {
-                    "title": "This array defines connections between two components without defining a direction for these connections.",
+                    "title": "Connections between two components without defining a direction for these connections.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "connectionType": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id defines the type of the connection."
+                                "description": "The type of the connection."
                             },
                             "id1": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
@@ -1450,14 +1450,14 @@
                     "description": "The electric connection can either be in parallel or in series or a more complex pattern."
                 },
                 "grounding": {
-                    "title": "This array defines electric connections between components and the ground.",
+                    "title": "Electric connections between components and the ground.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "connectionType": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id defines the type of the connection."
+                                "description": "The type of the connection."
                             },
                             "length": {
                                 "$ref": "number.json#/$defs/numberWithUncertainty",

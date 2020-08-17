@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "$id": "https://www.buildingenvelopedata.org/schemas/unit.json",
     "title": "unit data",
-    "description": "With this schema, the categories can be defined for building envelope unit. The characteristics or properties of the unit can also be defined.",
+    "description": "The categories for building envelope unit. The characteristics or properties of the unit can also be defined.",
     "$defs": {
         "category": {
             "type": "string",
@@ -64,7 +64,7 @@
             "minItems": 0
         },
         "characteristics": {
-            "title": "This schema collects the characteristics of components of the category 'unit'.",
+            "title": "The characteristics of components of the category 'unit'.",
             "type": "object",
             "properties": {
                 "possiblePositions": {
@@ -73,7 +73,7 @@
                 },
                 "gaps": {
                     "$ref": "gaps.json",
-                    "description": "This schema defines the gaps for example between a blind and the frame. They can be important for example regarding glare."
+                    "description": "The gaps for example between a blind and the frame. They can be important for example regarding glare."
                 }
             },
             "additionalProperties": false,
