@@ -209,7 +209,7 @@
                     ]
                 },
                 "cells": {
-                    "title": "This subschema can be used to define the cells with a higher level of detail than 'rectangular'. It lists each cells of the photovoltaic module.",
+                    "title": "This subschema can be used to define the cells with a higher level of detail than 'rectangular'. It lists each cell of the photovoltaic module.",
                     "type": "array",
                     "items": {
                         "type": "object",
