@@ -11,7 +11,7 @@
                     "properties": {
                         "module": {
                             "$ref": "#/$defs/module",
-                            "description": "If the component can turn irradiance into DC current, it can be named BIPV module and defined here."
+                            "description": "If the component can turn irradiance into direct current, it can be named BIPV module and defined here."
                         }
                     },
                     "additionalProperties": false,
@@ -24,7 +24,7 @@
                     "properties": {
                         "inverter": {
                             "$ref": "#/$defs/inverter",
-                            "description": "If the component can convert DC to AC, it can be named inverter and be defined here."
+                            "description": "If the component can convert direct current to alternating current, it can be named inverter and be defined here."
                         }
                     },
                     "additionalProperties": false,
@@ -909,7 +909,7 @@
             "required": []
         },
         "inverter": {
-            "title": "Usually, an inverter is used to convert the direct current (DC) of the modules into alternating current (AC).",
+            "title": "Usually, an inverter is used to convert the direct current of the modules into alternating current (AC).",
             "type": "object",
             "properties": {
                 "id": {
@@ -922,7 +922,7 @@
                 },
                 "inputNumber": {
                     "$ref": "number.json#/$defs/nonNegativeInteger",
-                    "description": "The number of DC input ports which the inverter provides. To each input port, one string of PV modules can be connected."
+                    "description": "The number of direct current input ports which the inverter provides. To each input port, one string of PV modules can be connected."
                 },
                 "power": {
                     "type": "object",
@@ -1007,11 +1007,11 @@
                                     "properties": {
                                         "minimum": {
                                             "$ref": "number.json#/$defs/hertz",
-                                            "description": "The minimum frequency of the AC output of the inverter in hertz."
+                                            "description": "The minimum frequency of the alternating current output of the inverter in hertz."
                                         },
                                         "maximum": {
                                             "$ref": "number.json#/$defs/hertz",
-                                            "description": "The maximum frequency of the AC output of the inverter in hertz."
+                                            "description": "The maximum frequency of the alternating current output of the inverter in hertz."
                                         }
                                     },
                                     "additionalProperties": false,
@@ -1052,7 +1052,7 @@
                             "properties": {
                                 "nominal": {
                                     "$ref": "number.json#/$defs/ampere",
-                                    "description": "The nominal AC output current of the inverter in amperes."
+                                    "description": "The nominal alternating current output current of the inverter in amperes."
                                 }
                             },
                             "additionalProperties": false,
@@ -1383,7 +1383,7 @@
                     "description": "The connections between the module and the ground."
                 },
                 "inverters": {
-                    "title": "Usually, one inverter converts the direct current (DC) of the modules into alternating current (AC). But also several inverters could be used.",
+                    "title": "Usually, one inverter converts the direct current of the modules into alternating current. But also several inverters could be used.",
                     "type": "array",
                     "items": {
                         "$ref": "#/$defs/inverter",
