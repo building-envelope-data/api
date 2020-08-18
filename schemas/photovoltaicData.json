@@ -150,59 +150,63 @@
                     "minItems": 1
                 },
                 "cellPattern": {
-                    "type": "object",
-                    "properties": {
-                        "rectangular": {
-                            "title": "If the building-integrated photovoltaic module is rectangular with the same amount of cells in each row and the same distances between them, then the geometry can be described here. 'longitudinal' is the direction with the larger number of cells and 'transversal' with the smaller number of cells.",
+                    "oneOf": [
+                        {
                             "type": "object",
                             "properties": {
-                                "longitudinal": {
+                              "rectangular": {
+                                "title": "If the building-integrated photovoltaic module is rectangular with the same amount of cells in each row and the same distances between them, then the geometry can be described here. 'longitudinal' is the direction with the larger number of cells and 'transversal' with the smaller number of cells.",
+                                "type": "object",
+                                "properties": {
+                                  "longitudinal": {
                                     "title": "'longitudinal' is the direction with the larger number of cells.",
                                     "type": "object",
                                     "properties": {
-                                        "cellNumber": {
-                                            "$ref": "number.json#/$defs/nonNegativeIntegerWithUncertainty",
-                                            "description": "The number of cells in the longitudinal direction."
-                                        },
-                                        "spacing": {
-                                            "$ref": "number.json#/$defs/meterWithUncertainty",
-                                            "description": "The distance between two neighboring cells in the longitudinal direction and in metre (m)."
-                                        }
+                                      "cellNumber": {
+                                        "$ref": "number.json#/$defs/nonNegativeIntegerWithUncertainty",
+                                        "description": "The number of cells in the longitudinal direction."
+                                      },
+                                      "spacing": {
+                                        "$ref": "number.json#/$defs/meterWithUncertainty",
+                                        "description": "The distance between two neighboring cells in the longitudinal direction and in metre (m)."
+                                      }
                                     },
                                     "additionalProperties": false,
                                     "required": [
-                                        "cellNumber"
+                                      "cellNumber"
                                     ]
-                                },
-                                "transversal": {
+                                  },
+                                  "transversal": {
                                     "title": "'transversal' is the direction with the smaller number of cells.",
                                     "type": "object",
                                     "properties": {
-                                        "cellNumber": {
-                                            "$ref": "number.json#/$defs/nonNegativeIntegerWithUncertainty",
-                                            "description": "The number of cells in the transversal direction."
-                                        },
-                                        "spacing": {
-                                            "$ref": "number.json#/$defs/meterWithUncertainty",
-                                            "description": "The distance between two neighboring cells in the transversal direction and in metre (m)."
-                                        }
+                                      "cellNumber": {
+                                        "$ref": "number.json#/$defs/nonNegativeIntegerWithUncertainty",
+                                        "description": "The number of cells in the transversal direction."
+                                      },
+                                      "spacing": {
+                                        "$ref": "number.json#/$defs/meterWithUncertainty",
+                                        "description": "The distance between two neighboring cells in the transversal direction and in metre (m)."
+                                      }
                                     },
                                     "additionalProperties": false,
                                     "required": [
-                                        "cellNumber"
+                                      "cellNumber"
                                     ]
-                                }
+                                  }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                  "longitudinal",
+                                  "transversal"
+                                ]
+                              }
                             },
                             "additionalProperties": false,
-                            "required": [
-                                "longitudinal",
-                                "transversal"
-                            ]
+                            "minProperties": 1,
+                            "required": []
                         }
-                    },
-                    "additionalProperties": false,
-                    "minProperties": 1,
-                    "required": []
+                    ]
                 },
                 "cells": {
                     "title": "This subschema can be used to define the cells with a higher level of detail than 'rectangular'. It lists each cells of the photovoltaic module.",
