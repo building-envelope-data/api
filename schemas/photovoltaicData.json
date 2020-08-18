@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "$id": "https://www.buildingenvelopedata.org/schemas/photovoltaicData.json",
     "title": "photovoltaic data",
-    "description": "Data about components of building envelopes which contribute to convert irradiance into electricity. A photovoltaic (PV) system is usually assembled of many components, for example PV modules.",
+    "description": "Data about components of building envelopes which contribute to convert irradiance into electricity. A photovoltaic system is usually assembled of many components, for example photovoltaic modules.",
     "$defs": {
         "data": {
             "oneOf": [
@@ -11,7 +11,7 @@
                     "properties": {
                         "module": {
                             "$ref": "#/$defs/module",
-                            "description": "If the component can turn irradiance into DC current, it can be named BIPV module and defined here."
+                            "description": "If the component can turn irradiance into direct current, it can be named building-integrated photovoltaic module and defined here."
                         }
                     },
                     "additionalProperties": false,
@@ -24,7 +24,7 @@
                     "properties": {
                         "inverter": {
                             "$ref": "#/$defs/inverter",
-                            "description": "If the component can convert DC to AC, it can be named inverter and be defined here."
+                            "description": "If the component can convert direct current to alternating current, it can be named inverter and be defined here."
                         }
                     },
                     "additionalProperties": false,
@@ -37,7 +37,7 @@
                     "properties": {
                         "system": {
                             "$ref": "#/$defs/system",
-                            "description": "If the building component consists of several PV modules and an inverter, it can be named BIPV system and defined here."
+                            "description": "If the building component consists of several photovoltaic modules and an inverter, it can be named building-integrated photovoltaic system and defined here."
                         }
                     },
                     "additionalProperties": false,
@@ -48,7 +48,7 @@
             ]
         },
         "module": {
-            "title": "A photovoltaic (PV) module consists of PV cells which are connected and turn irradiance into electric power.",
+            "title": "A photovoltaic module consists of photovoltaic cells which are connected and turn irradiance into electric power.",
             "type": "object",
             "properties": {
                 "coordinateSystem": {
@@ -56,14 +56,14 @@
                     "description": "The coordinate system is defined by a reference to a publication or standard."
                 },
                 "cellTypes": {
-                    "title": "Which types of cells are used in the PV module.",
+                    "title": "Which types of cells are used in the photovoltaic module.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "id": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id represents one type of PV cells."
+                                "description": "The id represents one type of photovoltaic cells."
                             },
                             "explanation": {
                                 "$ref": "string.json#/$defs/internationalString",
@@ -97,7 +97,7 @@
                                 "type": "array",
                                 "items": {
                                     "$ref": "common.json#/$defs/currentVoltage",
-                                    "description": "The current-voltage characteristic is important to calculate the PV performance for conditions other than the standard test conditions."
+                                    "description": "The current-voltage characteristic is important to calculate the photovoltaic performance for conditions other than the standard test conditions."
                                 },
                                 "additionalItems": false,
                                 "minItems": 1
@@ -135,7 +135,7 @@
                                         "thinFilm",
                                         "wafer"
                                     ],
-                                    "description": "A photovoltaic cell can have one or more of these categories. For example, Copper indium gallium selenide PV is a thin film and solid state PV technology and would be described by the corresponding six items in the array."
+                                    "description": "A photovoltaic cell can have one or more of these categories. For example, Copper indium gallium selenide photovoltaic is a thin film and solid state photovoltaic technology and would be described by the corresponding six items in the array."
                                 },
                                 "additionalItems": false,
                                 "minItems": 0
@@ -150,73 +150,77 @@
                     "minItems": 1
                 },
                 "cellPattern": {
-                    "type": "object",
-                    "properties": {
-                        "rectangular": {
-                            "title": "If the BIPV module is rectangular with the same amount of cells in each row and the same distances between them, then the geometry can be described here. 'longitudinal' is the direction with the larger number of cells and 'transversal' with the smaller number of cells.",
+                    "oneOf": [
+                        {
                             "type": "object",
                             "properties": {
-                                "longitudinal": {
+                              "rectangular": {
+                                "title": "If the building-integrated photovoltaic module is rectangular with the same amount of cells in each row and the same distances between them, then the geometry can be described here. 'longitudinal' is the direction with the larger number of cells and 'transversal' with the smaller number of cells.",
+                                "type": "object",
+                                "properties": {
+                                  "longitudinal": {
                                     "title": "'longitudinal' is the direction with the larger number of cells.",
                                     "type": "object",
                                     "properties": {
-                                        "cellNumber": {
-                                            "$ref": "number.json#/$defs/nonNegativeIntegerWithUncertainty",
-                                            "description": "The number of cells in the longitudinal direction."
-                                        },
-                                        "spacing": {
-                                            "$ref": "number.json#/$defs/meterWithUncertainty",
-                                            "description": "The distance between two neighboring cells in the longitudinal direction and in metre (m)."
-                                        }
+                                      "cellNumber": {
+                                        "$ref": "number.json#/$defs/nonNegativeIntegerWithUncertainty",
+                                        "description": "The number of cells in the longitudinal direction."
+                                      },
+                                      "spacing": {
+                                        "$ref": "number.json#/$defs/meterWithUncertainty",
+                                        "description": "The distance between two neighboring cells in the longitudinal direction and in metre (m)."
+                                      }
                                     },
                                     "additionalProperties": false,
                                     "required": [
-                                        "cellNumber"
+                                      "cellNumber"
                                     ]
-                                },
-                                "transversal": {
+                                  },
+                                  "transversal": {
                                     "title": "'transversal' is the direction with the smaller number of cells.",
                                     "type": "object",
                                     "properties": {
-                                        "cellNumber": {
-                                            "$ref": "number.json#/$defs/nonNegativeIntegerWithUncertainty",
-                                            "description": "The number of cells in the transversal direction."
-                                        },
-                                        "spacing": {
-                                            "$ref": "number.json#/$defs/meterWithUncertainty",
-                                            "description": "The distance between two neighboring cells in the transversal direction and in metre (m)."
-                                        }
+                                      "cellNumber": {
+                                        "$ref": "number.json#/$defs/nonNegativeIntegerWithUncertainty",
+                                        "description": "The number of cells in the transversal direction."
+                                      },
+                                      "spacing": {
+                                        "$ref": "number.json#/$defs/meterWithUncertainty",
+                                        "description": "The distance between two neighboring cells in the transversal direction and in metre (m)."
+                                      }
                                     },
                                     "additionalProperties": false,
                                     "required": [
-                                        "cellNumber"
+                                      "cellNumber"
                                     ]
-                                }
+                                  }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                  "longitudinal",
+                                  "transversal"
+                                ]
+                              }
                             },
                             "additionalProperties": false,
-                            "required": [
-                                "longitudinal",
-                                "transversal"
-                            ]
+                            "minProperties": 1,
+                            "required": []
                         }
-                    },
-                    "additionalProperties": false,
-                    "minProperties": 1,
-                    "required": []
+                    ]
                 },
                 "cells": {
-                    "title": "This subschema can be used to define the cells with a higher level of detail than 'rectangular'. It lists each cells of the PV module.",
+                    "title": "This subschema can be used to define the cells with a higher level of detail than 'rectangular'. It lists each cell of the photovoltaic module.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "id": {
                                 "$ref": "identifier.json#/$defs/decentral",
-                                "description": "The id represents one specific cell in the photovoltaic module. It is used to define connections to other parts of the PV module."
+                                "description": "The id represents one specific cell in the photovoltaic module. It is used to define connections to other parts of the photovoltaic module."
                             },
                             "cellType": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id represents one type of PV cells as defined above."
+                                "description": "The id represents one type of photovoltaic cells as defined above."
                             },
                             "geometry": {
                                 "$ref": "geometry.json",
@@ -233,14 +237,14 @@
                     "minItems": 1
                 },
                 "diodeTypes": {
-                    "title": "The type of diodes which are used in the the PV module.",
+                    "title": "The type of diodes which are used in the the photovoltaic module.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "id": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
+                                "description": "The id represents one type of diodes which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
                             },
                             "explanation": {
                                 "$ref": "string.json#/$defs/internationalString",
@@ -255,14 +259,14 @@
                     "minItems": 0
                 },
                 "diodes": {
-                    "title": "This array lists the diodes of the PV module. They are used to bypass shaded cells which would otherwise dissipate energy.",
+                    "title": "This array lists the diodes of the photovoltaic module. They are used to bypass shaded cells which would otherwise dissipate energy.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "id": {
                                 "$ref": "identifier.json#/$defs/decentral",
-                                "description": "The id represents one specific diode of the PV module. The id is used to define connections to other parts of the PV module"
+                                "description": "The id represents one specific diode of the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
                             },
                             "diodeType": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
@@ -283,14 +287,14 @@
                     "minItems": 0
                 },
                 "connectionTypes": {
-                    "title": "This array defines the type of electric connections which are used in the the PV module.",
+                    "title": "This array defines the type of electric connections which are used in the the photovoltaic module.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "id": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id represents one type of connections which is used in the the PV module. The id is used to define connections to other parts of the PV module"
+                                "description": "The id represents one type of connections which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
                             },
                             "explanation": {
                                 "$ref": "string.json#/$defs/internationalString",
@@ -321,7 +325,7 @@
                     "description": "The connections between cells and between cells and diodes."
                 },
                 "moduleLayers": {
-                    "title": "PV modules typically consist of several layers, for example a glass pane, a lamination material and the PV cells.",
+                    "title": "Photovoltaic modules typically consist of several layers, for example a glass pane, a lamination material and the photovoltaic cells.",
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -346,7 +350,7 @@
                                         "front",
                                         "rear"
                                     ],
-                                    "description": "Typically, a PV module consists of a front cover layer, a front embedding layer, a cell layer, a rear embedding layer and a backing layer. The layer can therefore be defined by multiple strings."
+                                    "description": "Typically, a photovoltaic module consists of a front cover layer, a front embedding layer, a cell layer, a rear embedding layer and a backing layer. The layer can therefore be defined by multiple strings."
                                 },
                                 "additionalItems": false,
                                 "minItems": 1,
@@ -386,7 +390,7 @@
                                 "properties": {
                                     "id": {
                                         "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id represents one type of junction boxes which is used in the the PV module."
+                                        "description": "The id represents one type of junction boxes which is used in the the photovoltaic module."
                                     },
                                     "name": {
                                         "$ref": "string.json#/$defs/internationalString",
@@ -401,7 +405,7 @@
                             "minItems": 1
                         },
                         "cableTypes": {
-                            "title": "The connection cables are outside of the PV module to connect it to other PV modules.",
+                            "title": "The connection cables are outside of the photovoltaic module to connect it to other photovoltaic modules.",
                             "type": "array",
                             "items": {
                                 "type": "object",
@@ -445,7 +449,7 @@
                                 "properties": {
                                     "id": {
                                         "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id represents the type of connector with which the connection cable is connected to another PV module."
+                                        "description": "The id represents the type of connector with which the connection cable is connected to another photovoltaic module."
                                     },
                                     "name": {
                                         "$ref": "string.json#/$defs/internationalString",
@@ -462,12 +466,12 @@
                         "connectors": {
                             "type": "array",
                             "items": {
-                                "title": "Each connector is an instance of a connectorType and receives its own id. It is connected via a cableType and a junctionBoxType to the PV module.",
+                                "title": "Each connector is an instance of a connectorType and receives its own id. It is connected via a cableType and a junctionBoxType to the photovoltaic module.",
                                 "type": "object",
                                 "properties": {
                                     "id": {
                                         "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                        "description": "The id represents one specific junction box of the PV module. The id is used to define connections to other parts of the PV module"
+                                        "description": "The id represents one specific junction box of the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
                                     },
                                     "connectorType": {
                                         "$ref": "identifier.json#/$defs/centralOrDecentral",
@@ -500,7 +504,7 @@
                     "required": []
                 },
                 "frame": {
-                    "title": "PV modules often have a frame which increases the mechanical stability of the module.",
+                    "title": "Photovoltaic modules often have a frame which increases the mechanical stability of the module.",
                     "type": "object",
                     "properties": {
                         "material": {
@@ -647,7 +651,7 @@
                                 },
                                 "maximumSystem": {
                                     "$ref": "number.json#/$defs/volt",
-                                    "description": "The voltage of a PV system made with these modules should stay below this maximum system voltage."
+                                    "description": "The voltage of a photovoltaic system made with these modules should stay below this maximum system voltage."
                                 }
                             },
                             "additionalProperties": false,
@@ -684,18 +688,18 @@
                         },
                         "weight": {
                             "$ref": "number.json#/$defs/kilogramWithUncertainty",
-                            "description": "The weigth of the PV module."
+                            "description": "The weigth of the photovoltaic module."
                         },
                         "geometry": {
                             "$ref": "geometry.json",
-                            "description": "The geometry of the PV module including the dimensions width, height and depth (thickness)."
+                            "description": "The geometry of the photovoltaic module including the dimensions width, height and depth (thickness)."
                         },
                         "safety": {
-                            "title": "Data about the safety of PV modules.",
+                            "title": "Data about the safety of photovoltaic modules.",
                             "type": "object",
                             "properties": {
                                 "fire": {
-                                    "title": "The fire safety class of the PV module depending on the region for which the class is valid.",
+                                    "title": "The fire safety class of the photovoltaic module depending on the region for which the class is valid.",
                                     "type": "object",
                                     "properties": {
                                         "EN": {
@@ -827,7 +831,7 @@
                                                 "properties": {
                                                     "reference": {
                                                         "$ref": "common.json#/$defs/reference",
-                                                        "description": "If the PV module passed a hail test, then the reference can refer for example to a standard according to which the test was performed."
+                                                        "description": "If the photovoltaic module passed a hail test, then the reference can refer for example to a standard according to which the test was performed."
                                                     }
                                                 },
                                                 "additionalProperties": false,
@@ -896,7 +900,7 @@
                         },
                         "uValue": {
                             "$ref": "calorimetricData.json#/$defs/uValue",
-                            "description": "The U value, also known as thermal transmittance, characterizes the rate of heat transfer through this PV module."
+                            "description": "The U value, also known as thermal transmittance, characterizes the rate of heat transfer through this photovoltaic module."
                         }
                     },
                     "additionalProperties": false,
@@ -909,7 +913,7 @@
             "required": []
         },
         "inverter": {
-            "title": "Usually, an inverter is used to convert the direct current (DC) of the modules into alternating current (AC).",
+            "title": "Usually, an inverter is used to convert the direct current of the modules into alternating current (AC).",
             "type": "object",
             "properties": {
                 "id": {
@@ -922,7 +926,7 @@
                 },
                 "inputNumber": {
                     "$ref": "number.json#/$defs/nonNegativeInteger",
-                    "description": "The number of DC input ports which the inverter provides. To each input port, one string of PV modules can be connected."
+                    "description": "The number of direct current input ports which the inverter provides. To each input port, one string of photovoltaic modules can be connected."
                 },
                 "power": {
                     "type": "object",
@@ -932,7 +936,7 @@
                             "properties": {
                                 "maximum": {
                                     "$ref": "number.json#/$defs/watt",
-                                    "description": "The maximum input power from the PV modules to the inverter in watts."
+                                    "description": "The maximum input power from the photovoltaic modules to the inverter in watts."
                                 }
                             },
                             "additionalProperties": false,
@@ -1007,11 +1011,11 @@
                                     "properties": {
                                         "minimum": {
                                             "$ref": "number.json#/$defs/hertz",
-                                            "description": "The minimum frequency of the AC output of the inverter in hertz."
+                                            "description": "The minimum frequency of the alternating current output of the inverter in hertz."
                                         },
                                         "maximum": {
                                             "$ref": "number.json#/$defs/hertz",
-                                            "description": "The maximum frequency of the AC output of the inverter in hertz."
+                                            "description": "The maximum frequency of the alternating current output of the inverter in hertz."
                                         }
                                     },
                                     "additionalProperties": false,
@@ -1052,7 +1056,7 @@
                             "properties": {
                                 "nominal": {
                                     "$ref": "number.json#/$defs/ampere",
-                                    "description": "The nominal AC output current of the inverter in amperes."
+                                    "description": "The nominal alternating current output current of the inverter in amperes."
                                 }
                             },
                             "additionalProperties": false,
@@ -1248,7 +1252,7 @@
                 },
                 "transformer": {
                     "type": "boolean",
-                    "description": "It is important to know if the inverter uses a transformer or not. Usually, PV modules which need to be grounded also need an inverter which use a transformer."
+                    "description": "It is important to know if the inverter uses a transformer or not. Usually, photovoltaic modules which need to be grounded also need an inverter which use a transformer."
                 }
             },
             "additionalProperties": false,
@@ -1256,7 +1260,7 @@
             "required": []
         },
         "system": {
-            "title": "A photovoltaic (PV) system consists of PV modules which are connected and turn irradiance into electric power.",
+            "title": "A photovoltaic (photovoltaic) system consists of photovoltaic modules which are connected and turn irradiance into electric power.",
             "type": "object",
             "properties": {
                 "coordinateSystem": {
@@ -1264,22 +1268,22 @@
                     "description": "The coordinate system is defined by a reference to a publication or standard."
                 },
                 "modules": {
-                    "title": "The modules of the PV system.",
+                    "title": "The modules of the photovoltaic system.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "id": {
                                 "$ref": "identifier.json#/$defs/decentral",
-                                "description": "The id represents one specific PV module in the PV system. It is used to define connections to other parts of the PV system."
+                                "description": "The id represents one specific photovoltaic module in the photovoltaic system. It is used to define connections to other parts of the photovoltaic system."
                             },
                             "moduleType": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id represents one type of PV modules."
+                                "description": "The id represents one type of photovoltaic modules."
                             },
                             "geometry": {
                                 "$ref": "geometry.json",
-                                "description": "The geometry and location of the PV module."
+                                "description": "The geometry and location of the photovoltaic module."
                             }
                         },
                         "additionalProperties": false,
@@ -1291,14 +1295,14 @@
                     "minItems": 1
                 },
                 "diodeTypes": {
-                    "title": "The type of diodes which are used in the the PV module.",
+                    "title": "The type of diodes which are used in the the photovoltaic module.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "id": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id represents one type of diodes which is used in the the PV module. The id is used to define connections to other parts of the PV module"
+                                "description": "The id represents one type of diodes which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
                             },
                             "explanation": {
                                 "$ref": "string.json#/$defs/internationalString",
@@ -1313,14 +1317,14 @@
                     "minItems": 0
                 },
                 "diodes": {
-                    "title": "This array defines the diodes between the modules of this PV system. The diodes are used to bypass shaded modules which would otherwise dissipate energy.",
+                    "title": "This array defines the diodes between the modules of this photovoltaic system. The diodes are used to bypass shaded modules which would otherwise dissipate energy.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "id": {
                                 "$ref": "identifier.json#/$defs/decentral",
-                                "description": "The id represents one specific diode of the PV system. The id is used to define connections to other parts of the PV system"
+                                "description": "The id represents one specific diode of the photovoltaic system. The id is used to define connections to other parts of the photovoltaic system"
                             },
                             "diodeType": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
@@ -1341,14 +1345,14 @@
                     "minItems": 0
                 },
                 "connectionTypes": {
-                    "title": "This array defines the type of electric connections between the modules, diodes and inverters of this PV system.",
+                    "title": "This array defines the type of electric connections between the modules, diodes and inverters of this photovoltaic system.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
                             "id": {
                                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                                "description": "The id represents one type of connections which is used in the the PV system. The id is used to define connections to other parts of the PV system"
+                                "description": "The id represents one type of connections which is used in the the photovoltaic system. The id is used to define connections to other parts of the photovoltaic system"
                             },
                             "explanation": {
                                 "$ref": "string.json#/$defs/internationalString",
@@ -1376,14 +1380,14 @@
                 },
                 "connections": {
                     "$ref": "#/$defs/connections/$defs/bidirectional",
-                    "description": "This subschema defines the connections between the modules, diodes and inverters of this PV system."
+                    "description": "This subschema defines the connections between the modules, diodes and inverters of this photovoltaic system."
                 },
                 "grounding": {
                     "$ref": "#/$defs/connections/$defs/grounding",
                     "description": "The connections between the module and the ground."
                 },
                 "inverters": {
-                    "title": "Usually, one inverter converts the direct current (DC) of the modules into alternating current (AC). But also several inverters could be used.",
+                    "title": "Usually, one inverter converts the direct current of the modules into alternating current. But also several inverters could be used.",
                     "type": "array",
                     "items": {
                         "$ref": "#/$defs/inverter",
