@@ -9,8 +9,8 @@
       "title": "The object is used to define calorimetric data.",
       "properties": {
         "characteristics": {
-          "$ref": "#/$defs/characteristics",
-          "description": "Characteristics like quasi-stationary or dynamic conditions."
+          "title": "Characteristics like quasi-stationary or dynamic conditions.",
+          "$ref": "#/$defs/characteristics"
         },
         "fluxes": {
           "title": "Energy fluxes between the sample and its surroundings.",
