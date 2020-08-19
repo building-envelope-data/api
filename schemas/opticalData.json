@@ -70,11 +70,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "incidence",
-        "emergence",
-        "results"
-      ]
+      "required": ["incidence", "emergence", "results"]
     },
     "direction": {
       "title": "The direction for example of the radiation on a sample. The array offers different ways of describing the direction, for example by two angles.",
@@ -96,10 +92,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "polar",
-                  "azimuth"
-                ]
+                "required": ["polar", "azimuth"]
               },
               {
                 "type": "object",
@@ -114,10 +107,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "xz",
-                  "yz"
-                ]
+                "required": ["xz", "yz"]
               },
               {
                 "type": "object",
@@ -128,9 +118,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "incidence"
-                ]
+                "required": ["incidence"]
               },
               {
                 "type": "object",
@@ -141,18 +129,12 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "profile"
-                ]
+                "required": ["profile"]
               },
               {
                 "title": "This should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
                 "type": "string",
-                "enum": [
-                  "diffuse",
-                  "hemispherical",
-                  "nearnormal"
-                ],
+                "enum": ["diffuse", "hemispherical", "nearnormal"],
                 "description": "Nearnormal means a direction almost perpendicular to the sample surface. Hemispherical means all directions into the hemisphere above the sample surface, for example when there is the same irradiance from all directions. Diffuse means all directions except the nearnormal direction. For example, the nearnormal-hemispherical transmittance is always equal to the nearnormal-nearnormal transmittance plus the nearnormal-diffuse transmittance."
               }
             ]
@@ -175,10 +157,7 @@
               }
             },
             "additionalProperties": false,
-            "required": [
-              "formatting",
-              "list"
-            ]
+            "required": ["formatting", "list"]
           }
         ]
       },
@@ -202,10 +181,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "s",
-            "p"
-          ]
+          "required": ["s", "p"]
         },
         "circular": {
           "type": "object",
@@ -220,10 +196,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "l",
-            "r"
-          ]
+          "required": ["l", "r"]
         }
       },
       "additionalProperties": false,
@@ -274,9 +247,7 @@
                 }
               },
               "additionalProperties": true,
-              "required": [
-                "bandwidth"
-              ]
+              "required": ["bandwidth"]
             },
             {
               "type": "object",
@@ -287,9 +258,7 @@
                 }
               },
               "additionalProperties": true,
-              "required": [
-                "amplificationFactor"
-              ]
+              "required": ["amplificationFactor"]
             }
           ]
         },
@@ -298,18 +267,12 @@
           "properties": {
             "spectrum": {
               "type": "string",
-              "enum": [
-                "infrared",
-                "solar",
-                "visible"
-              ],
+              "enum": ["infrared", "solar", "visible"],
               "description": "If `#/$defs/wavelengths/integral` is true, then `#/$defs/wavelengthRange/spectrum` identifies the spectrum of wavelengths over which the integral result is measured or calculated. For further specification of the spectrum, please search for the applied standard under origin/method/reference/standard."
             }
           },
           "additionalProperties": false,
-          "required": [
-            "spectrum"
-          ]
+          "required": ["spectrum"]
         }
       ]
     },
@@ -331,9 +294,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "direction"
-      ]
+      "required": ["direction"]
     },
     "emergence": {
       "title": "The emergent radiation on a sample. It consists of the direction of the emergence, its polarization, the wavelenthgs and the range of the wavelengths.",
@@ -368,9 +329,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "direction"
-      ]
+      "required": ["direction"]
     },
     "componentCharacteristics": {
       "title": "Parameters for optical measurements and simulations. The parameters are later used either as optical/characteristics or optical/variables.",
@@ -394,12 +353,7 @@
         },
         "normalization": {
           "type": "string",
-          "enum": [
-            "absolute",
-            "relative",
-            "specular",
-            "diffuseReflectance"
-          ],
+          "enum": ["absolute", "relative", "specular", "diffuseReflectance"],
           "description": "The normalization methods absolute, relative, specular and diffuse reflectance are defined by ASTM E2387-05:2011."
         },
         "coordinateSystem": {
@@ -444,11 +398,7 @@
         },
         "side": {
           "type": "string",
-          "enum": [
-            "nonPrime",
-            "prime",
-            "symmetric"
-          ],
+          "enum": ["nonPrime", "prime", "symmetric"],
           "description": "The item defines whether the incidence is on the nonPrime or the prime side of the sample. Both are defined under 'definitionOfSides'. If the results are the same for both sides, 'symmetric' can be used."
         }
       },
@@ -561,12 +511,7 @@
     },
     "symmetry": {
       "type": "string",
-      "enum": [
-        "incidenceAngle",
-        "profileAngle",
-        "mirror",
-        "rotational"
-      ],
+      "enum": ["incidenceAngle", "profileAngle", "mirror", "rotational"],
       "description": "(i) A component can have an optical symmetry regarding the angle of incidence. This means that the results are the same for all directions of incidence which have the same incidence angle. (ii) Accordingly, an optical symmetry regarding the profile angle means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a mirror symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. (iv) In the case of a rotational symmetry, the results for some directions of incidence are enough to determine the results for the other directions of incidence by rotating them around the line perpendicular to the surface of the component."
     }
   },

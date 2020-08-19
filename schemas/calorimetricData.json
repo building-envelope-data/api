@@ -40,10 +40,7 @@
       "properties": {
         "conditions": {
           "type": "string",
-          "enum": [
-            "dynamic",
-            "stationary"
-          ],
+          "enum": ["dynamic", "stationary"],
           "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
         },
         "coordinateSystem": {
@@ -52,9 +49,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "conditions"
-      ]
+      "required": ["conditions"]
     },
     "flux": {
       "type": "object",
@@ -63,12 +58,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": [
-              "exterior",
-              "interior",
-              "lateral",
-              "other"
-            ],
+            "enum": ["exterior", "interior", "lateral", "other"],
             "description": "The name of the part of the surroundings. If neither exterior nor interior or lateral fits, choose other and describe it in the explanation below."
           },
           "additionalItems": false,
@@ -109,9 +99,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "flux"
-          ]
+          "required": ["flux"]
         },
         "fluid": {
           "title": "If heat is transfered to the sample by a fluid circuit, this heat flux can be defined by the following properties.",
@@ -147,9 +135,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "flux"
-          ]
+          "required": ["flux"]
         },
         "irradiance": {
           "type": "object",
@@ -164,9 +150,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "flux"
-          ]
+          "required": ["flux"]
         },
         "electric": {
           "type": "object",
@@ -186,9 +170,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "flux"
-          ]
+          "required": ["flux"]
         }
       },
       "additionalProperties": false,
@@ -226,14 +208,10 @@
             }
           },
           "then": {
-            "required": [
-              "explanation"
-            ]
+            "required": ["explanation"]
           },
           "else": {
-            "required": [
-              "category"
-            ]
+            "required": ["category"]
           },
           "additionalProperties": false
         },

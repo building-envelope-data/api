@@ -1,40 +1,40 @@
 {
-    "buildings": [
-        {
-            "id": "8ca1102b-264a-4023-8351-5897ec38e388",
-            "name": {
-                "en-US": "The name of the building."
-            },
-            "explanation": {
-                "en-US": "A simple example for data about a building."
-            },
-            "IFC": {
-                "full": {
-                    "id": {
-                        "uniqueId": "8ca1102b-264a-4023-8351-5897ec38e388",
-                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                    },
-                    "webAddress": "http://www.owner034.com/dje1102b-264a-4023-8351-5897ec38e388",
-                    "formatting": "4.1.0.0",
-                    "created": "2018-09-01T12:00:00+01:00"
-                }
-            },
-            "Revit": {
-                "full": {
-                    "id": {
-                        "uniqueId": "8ca1102b-264a-4023-8351-5897ec38e388",
-                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                    },
-                    "webAddress": "http://www.owner034.com/7371102b-264a-4023-8351-5897ec38e388",
-                    "formatting": "2020",
-                    "created": "2018-09-01T12:00:00+01:00"
-                }
-            },
-            "LinkedData": {
-                "SPARQL": {
-                    "webAddress": "http://www.owner034.com/kdje102b-264a-4023-8351-5897ec38e388"
-                }
-            }
+  "buildings": [
+    {
+      "id": "8ca1102b-264a-4023-8351-5897ec38e388",
+      "name": {
+        "en-US": "The name of the building."
+      },
+      "explanation": {
+        "en-US": "A simple example for data about a building."
+      },
+      "IFC": {
+        "full": {
+          "id": {
+            "uniqueId": "8ca1102b-264a-4023-8351-5897ec38e388",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "webAddress": "http://www.owner034.com/dje1102b-264a-4023-8351-5897ec38e388",
+          "formatting": "4.1.0.0",
+          "created": "2018-09-01T12:00:00+01:00"
         }
-    ]
+      },
+      "Revit": {
+        "full": {
+          "id": {
+            "uniqueId": "8ca1102b-264a-4023-8351-5897ec38e388",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "webAddress": "http://www.owner034.com/7371102b-264a-4023-8351-5897ec38e388",
+          "formatting": "2020",
+          "created": "2018-09-01T12:00:00+01:00"
+        }
+      },
+      "LinkedData": {
+        "SPARQL": {
+          "webAddress": "http://www.owner034.com/kdje102b-264a-4023-8351-5897ec38e388"
+        }
+      }
+    }
+  ]
 }

@@ -1,0 +1,6 @@
+.git
+*.pdf
+*.md
+Makefile
+Dockerfile
+tags

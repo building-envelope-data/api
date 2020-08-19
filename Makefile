@@ -142,6 +142,10 @@ example : ## Validate example files
 	done
 .PHONY : example
 
+format : ## Format files with [Prettier](https://prettier.io)
+	prettier --write .
+.PHONY : format
+
 dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
 	find \
 		. \

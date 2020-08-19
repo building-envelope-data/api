@@ -36,11 +36,7 @@
     },
     "confidenceInterval": {
       "type": "number",
-      "enum": [
-        68.3,
-        95.4,
-        99.7
-      ],
+      "enum": [68.3, 95.4, 99.7],
       "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma)."
     },
     "numberWithUncertainty": {
@@ -60,9 +56,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "uncertainValue"
-          ]
+          "required": ["uncertainValue"]
         },
         {
           "$ref": "#/$defs/number",
@@ -109,9 +103,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "uncertainValue"
-          ]
+          "required": ["uncertainValue"]
         },
         {
           "$ref": "#/$defs/nonNegativeNumber",
@@ -136,9 +128,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "uncertainValue"
-          ]
+          "required": ["uncertainValue"]
         },
         {
           "$ref": "#/$defs/nonNegativeInteger",
@@ -177,9 +167,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "uncertainValue"
-          ]
+          "required": ["uncertainValue"]
         },
         {
           "$ref": "#/$defs/numberBetweenZeroAndOne",

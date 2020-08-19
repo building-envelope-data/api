@@ -10,18 +10,14 @@
       "dataPoints": [
         {
           "incidence": {
-            "direction": [
-              "nearnormal"
-            ],
+            "direction": ["nearnormal"],
             "wavelengths": 500,
             "range": {
               "spectrum": "solar"
             }
           },
           "emergence": {
-            "direction": [
-              "nearnormal"
-            ]
+            "direction": ["nearnormal"]
           },
           "results": {
             "transmittance": {
@@ -43,18 +39,14 @@
           "dataPoints": [
             {
               "incidence": {
-                "direction": [
-                  "nearnormal"
-                ],
+                "direction": ["nearnormal"],
                 "wavelengths": 500,
                 "range": {
                   "spectrum": "solar"
                 }
               },
               "emergence": {
-                "direction": [
-                  "nearnormal"
-                ]
+                "direction": ["nearnormal"]
               },
               "results": {
                 "transmittance": {
@@ -71,18 +63,14 @@
           "dataPoints": [
             {
               "incidence": {
-                "direction": [
-                  "nearnormal"
-                ],
+                "direction": ["nearnormal"],
                 "wavelengths": 500,
                 "range": {
                   "spectrum": "solar"
                 }
               },
               "emergence": {
-                "direction": [
-                  "nearnormal"
-                ]
+                "direction": ["nearnormal"]
               },
               "results": {
                 "transmittance": {
