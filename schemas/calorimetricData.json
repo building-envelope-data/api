@@ -218,10 +218,24 @@
               "description": "If `other` is chosen as category above, the area needs to be defined by this explanation. For any other category, the explanation can add details."
             }
           },
-          "additionalProperties": false,
-          "required": [
-            "category"
-          ]
+          "if": {
+            "properties": {
+              "category": {
+                "const": "other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "explanation"
+            ]
+          },
+          "else": {
+            "required": [
+              "category"
+            ]
+          },
+          "additionalProperties": false
         },
         "uValue": {
           "$ref": "#/$defs/uValue"
