@@ -13,7 +13,7 @@
           "description": "Characteristics which are constant for this calorimetric data set."
         },
         "fluxes": {
-          "title": "This array defines the energy fluxes between the sample and its surroundings.",
+          "title": "Energy fluxes between the sample and its surroundings.",
           "type": "array",
           "items": {
             "$ref": "#/$defs/flux"
