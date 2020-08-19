@@ -7,6 +7,7 @@ directories `./tests/valid` and `./tests/invalid`, and examples in the
 directory `./examples`.
 
 ## On your Linux machine
+
 1. Open your
    [favorite shell](https://www.redhat.com/sysadmin/favorite-shell),
    for example, good old
@@ -45,6 +46,7 @@ directory `./examples`.
    ```
 
 ### With Docker
+
 4. Install
    [Docker Desktop](https://www.docker.com/products/docker-desktop),
    and
@@ -56,10 +58,10 @@ directory `./examples`.
    The targets `name`, `tag`,
    `build`, `remove`, and `shell` can be used to interface with Docker. The
    other ones can be used within `bash` inside a Docker container:
-   * `compile` validates the schemas against the JSON Schema meta-schemas,
-   * `test` validates the tests against the schemas,
-   * `example` validates the examples against the schemas, and
-   * `dos2unix` converts Windows-style to UNIX-style line endings.
+   - `compile` validates the schemas against the JSON Schema meta-schemas,
+   - `test` validates the tests against the schemas,
+   - `example` validates the examples against the schemas, and
+   - `dos2unix` converts Windows-style to UNIX-style line endings.
 6. Drop into `bash` with the working directory `/app`, which
    is mounted to the host's working directory, inside a fresh Docker container
    based on Debian Linux everything installed by running
@@ -87,6 +89,7 @@ directory `./examples`.
    or pressing `Ctrl-D`.
 
 ### Without Docker
+
 4. Install
    [GNU Bash](https://www.gnu.org/software/bash/),
    [GNU Make](https://www.gnu.org/software/make/),
