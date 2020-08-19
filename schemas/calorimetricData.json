@@ -10,7 +10,7 @@
       "properties": {
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "Characteristics which are constant for this calorimetric data set."
+          "description": "Characteristics like quasi-stationary or dynamic conditions."
         },
         "fluxes": {
           "title": "Energy fluxes between the sample and its surroundings.",
