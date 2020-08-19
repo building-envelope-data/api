@@ -1,26 +1,26 @@
 {
-    "$schema": "../../../schemas/common.json#$defs/reference",
-    "title": "Unit test of a reference to a standard",
-    "reference": {
-        "standard": {
-            "id": "bcba3ff9-8cb7-4524-943a-786d301d39e1",
-            "title": {
-                "en-US": "dummy"
-            },
-            "abstract": {
-                "en-US": "dummy"
-            },
-            "standardizerIds": [
-                "bcba3ff9-8cb7-4524-943a-786d301d39e2",
-                "bcba3ff9-8cb7-4524-943a-786d301d39e3"
-            ],
-            "numeration": {
-                "prefix": "prefix",
-                "mainNumber": 19467,
-                "suffix": 1,
-                "year": 2020,
-                "section": "Section 2.1.5"
-            }
-        }
+  "$schema": "../../../schemas/common.json#$defs/reference",
+  "title": "Unit test of a reference to a standard",
+  "reference": {
+    "standard": {
+      "id": "bcba3ff9-8cb7-4524-943a-786d301d39e1",
+      "title": {
+        "en-US": "dummy"
+      },
+      "abstract": {
+        "en-US": "dummy"
+      },
+      "standardizerIds": [
+        "bcba3ff9-8cb7-4524-943a-786d301d39e2",
+        "bcba3ff9-8cb7-4524-943a-786d301d39e3"
+      ],
+      "numeration": {
+        "prefix": "prefix",
+        "mainNumber": 19467,
+        "suffix": 1,
+        "year": 2020,
+        "section": "Section 2.1.5"
+      }
     }
+  }
 }

@@ -24,10 +24,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": [
-              "calculation",
-              "measurement"
-            ]
+            "enum": ["calculation", "measurement"]
           },
           "additionalItems": false,
           "minItems": 1
@@ -70,16 +67,12 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "endpoint"
-          ],
+          "required": ["endpoint"],
           "minProperties": 1
         }
       },
       "additionalProperties": false,
-      "required": [
-        "id"
-      ]
+      "required": ["id"]
     },
     "calculation": {
       "title": "A web address which defines the calculation procedure in detail.",
@@ -134,9 +127,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "id"
-      ]
+      "required": ["id"]
     },
     "database": {
       "description": "Information about a database which has implemented the same API specification.",
@@ -180,9 +171,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "webAddress"
-      ]
+      "required": ["webAddress"]
     }
   },
   "$ref": "#/$defs/method"

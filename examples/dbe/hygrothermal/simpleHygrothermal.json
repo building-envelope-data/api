@@ -1,19 +1,19 @@
 {
-    "components": [
+  "components": [
+    {
+      "id": "0f5942c1-33ce-4d31-b694-079eaf1fb630",
+      "explanation": {
+        "en-US": "This is the smallest example of hygrothermal data about a component."
+      },
+      "hygrothermal": [
         {
-            "id": "0f5942c1-33ce-4d31-b694-079eaf1fb630",
-            "explanation": {
-                "en-US": "This is the smallest example of hygrothermal data about a component."
-            },
-            "hygrothermal": [
-                {
-                    "data": {
-                        "WUFI": {
-                            "xmlData": "<placeholder><for><xmlData>"
-                        }
-                    }
-                }
-            ]
+          "data": {
+            "WUFI": {
+              "xmlData": "<placeholder><for><xmlData>"
+            }
+          }
         }
-    ]
+      ]
+    }
+  ]
 }

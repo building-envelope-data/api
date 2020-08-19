@@ -2,18 +2,14 @@
   "dataPoints": [
     {
       "incidence": {
-        "direction": [
-          "nearnormal"
-        ],
+        "direction": ["nearnormal"],
         "wavelengths": "integral",
         "range": {
           "bandwidth": 4
         }
       },
       "emergence": {
-        "direction": [
-          "nearnormal"
-        ]
+        "direction": ["nearnormal"]
       },
       "results": {
         "transmittance": {

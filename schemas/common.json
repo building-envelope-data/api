@@ -62,9 +62,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "standard"
-          ]
+          "required": ["standard"]
         },
         {
           "type": "object",
@@ -75,9 +73,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "publication"
-          ]
+          "required": ["publication"]
         }
       ]
     },
@@ -131,9 +127,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "identifiers"
-      ]
+      "required": ["identifiers"]
     },
     "standard": {
       "title": "Standards are a special kind of publications. Therefore their data structure is different from publications.",
@@ -180,9 +174,7 @@
           },
           "additionalProperties": false,
           "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the abbreviations for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
-          "required": [
-            "mainNumber"
-          ]
+          "required": ["mainNumber"]
         },
         "year": {
           "type": "integer",
@@ -196,10 +188,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "standardizerIds",
-        "numeration"
-      ],
+      "required": ["standardizerIds", "numeration"],
       "description": "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
     },
     "currentVoltage": {
@@ -216,10 +205,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "I",
-        "V"
-      ]
+      "required": ["I", "V"]
     },
     "approvals": {
       "title": "Institutions can approve data with cryptographic signatures which among other things can be used to ensure integrity and authenticity of data. The same data may be approved by several institutions.",
@@ -259,9 +245,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "approver"
-      ]
+      "required": ["approver"]
     },
     "approvalVerification": {
       "title": "How to verify the approval",
@@ -347,9 +331,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "webAddress"
-      ]
+      "required": ["webAddress"]
     },
     "formatting": {
       "title": "The format of data.",
@@ -381,9 +363,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "id"
-      ]
+      "required": ["id"]
     },
     "colour": {
       "description": "Colour of a component",
@@ -421,12 +401,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": [
-          "exterior",
-          "asBuildingEnvelope",
-          "inBetween",
-          "interior"
-        ],
+        "enum": ["exterior", "asBuildingEnvelope", "inBetween", "interior"],
         "description": "(i) 'exterior' means that the component can be used on the external side of the building envelope. (ii) 'asBuildingEnvelope' means that the component can be used as building envelope without any additional components. (iii) 'inBetween' means that the component can be used within building envelope for example between two glass panes. (iv) 'interior' means that the component can be used on the internal side of the building envelope."
       },
       "additionalItems": false,
