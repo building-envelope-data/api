@@ -11,7 +11,7 @@
                     "explanation": {
                         "en-US": "Example: bidirectional optical data in the most compressed form as file."
                     },
-                    "file": {
+                    "resource": {
                         "webAddress": "https://oc.ise.fraunhofer.de/ceef5dc1-2501-4ea9-a994-a1ae41ea1f11",
                         "explanation": {
                             "en-US": "This file contains BSDF data about sample VX412005."
