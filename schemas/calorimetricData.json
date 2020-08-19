@@ -22,7 +22,7 @@
           "minItems": 1
         },
         "results": {
-          "title": "The results of a calorimetric measurement depend on the reference area. This array can defined results for different reference areas.",
+          "title": "Results for different reference areas.",
           "type": "array",
           "items": {
             "$ref": "#/$defs/result"
