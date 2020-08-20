@@ -75,14 +75,6 @@ directory `./examples`.
    ```shell
    make compile
    ```
-   validating the tests by running
-   ```shell
-   make test
-   ```
-   and validating the examples by running
-   ```shell
-   make example
-   ```
 8. Drop out of the container by running
    ```shell
    exit
