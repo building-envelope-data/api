@@ -160,21 +160,21 @@ see also [GraphQL Server Specification: Connections](https://relay.dev/docs/en/g
 see also [GraphQL Server Specification: Object Identification](https://relay.dev/docs/en/graphql-server-specification.html#object-identification)
 """
 type Query {
-  node(id: Uuid!, timestamp: DateTime, locale: Locale): Node!
-  data(id: Uuid!, timestamp: DateTime, locale: Locale): Data!
+  node(id: ID!): Node!
+  data(dataId: Uuid!, timestamp: DateTime, locale: Locale): Data!
   calorimetricData(
-    id: Uuid!
+    dataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): CalorimetricData!
   hygrothermalData(
-    id: Uuid!
+    dataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): HygrothermalData!
-  opticalData(id: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
+  opticalData(dataId: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
   photovoltaicData(
-    id: Uuid!
+    dataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): PhotovoltaicData!
@@ -248,27 +248,27 @@ type Query {
 
 """
 [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
-inspired
+and
+[Global Object Identification](https://graphql.org/learn/global-object-identification/)
+compliant
 [Node](https://relay.dev/graphql/connections.htm#sec-Node)
 interface.
 
-TODO For relay nodes the identifier should be of type `ID` (and base64 encoded) and should determine other fields like `name` and `description` (at least within the same request). Therefore, it should be a combination of the `Uuid` and the `Locale` below. Shall we, to conform to Relay, make `id` that combination base64 encoded and at another field named `uuid` or `...`?
+See also
+[Node](https://graphql.org/learn/global-object-identification/#node-interface).
+
+Note that according to
+[Field stability](https://graphql.org/learn/global-object-identification/#field-stability),
+if two objects appear in a query, both implementing `Node` with identical
+identifiers, then the two objects must be equal. For example, for queried data,
+the identifier could be a Base64-encoded concatenation of the data identifier,
+which is a `Uuid`, and the requested locale.
 """
 interface Node {
   """
-  Identifier
+  Base64-encoded identifier
   """
-  id: Uuid!
-
-  """
-  Timestamp
-  """
-  timestamp: DateTime!
-
-  """
-  Locale of text
-  """
-  locale: Locale
+  id: ID!
 }
 
 """
@@ -403,7 +403,7 @@ interface Data {
   Identifier, which together with timestamp uniquely identifies data and
   version (within the database).
   """
-  id: Uuid!
+  dataId: Uuid!
 
   """
   Timestamp that designates the version. For example, correction of some
@@ -496,7 +496,8 @@ interface Data {
 }
 
 type OpticalData implements Node & Data {
-  id: Uuid!
+  id: ID!
+  dataId: Uuid!
   timestamp: DateTime!
   locale: Locale
   databaseId: Uuid!
@@ -519,7 +520,8 @@ type OpticalData implements Node & Data {
 }
 
 type CalorimetricData implements Node & Data {
-  id: Uuid!
+  id: ID!
+  dataId: Uuid!
   timestamp: DateTime!
   locale: Locale
   databaseId: Uuid!
@@ -545,7 +547,8 @@ type CalorimetricData implements Node & Data {
 }
 
 type HygrothermalData implements Node & Data {
-  id: Uuid!
+  id: ID!
+  dataId: Uuid!
   timestamp: DateTime!
   locale: Locale
   databaseId: Uuid!
@@ -563,7 +566,8 @@ type HygrothermalData implements Node & Data {
 }
 
 type PhotovoltaicData implements Node & Data {
-  id: Uuid!
+  id: ID!
+  dataId: Uuid!
   timestamp: DateTime!
   locale: Locale
   databaseId: Uuid!
@@ -611,7 +615,7 @@ type MethodSource {
 }
 
 type CrossDatabaseReference {
-  id: Uuid!
+  dataId: Uuid!
   databaseId: Uuid!
 }
 
