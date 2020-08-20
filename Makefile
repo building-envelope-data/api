@@ -42,7 +42,6 @@ shell : build ## Enter shell in fresh container for image with name `${name}` an
 		--tty \
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
-		--mount type=volume,source=${name}_pip,destination=/home/me/.local \
 		${name}:${tag} \
 		bash
 .PHONY : shell

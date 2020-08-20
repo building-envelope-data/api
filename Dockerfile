@@ -70,7 +70,7 @@ RUN \
     make \
     npm && \
   # Upgrade Node package manager to version 6.14.7
-  npm install npm@6.14.7 -g && \
+  npm install npm@6.14.7 --global && \
   # Install Node development tools
   npm install --global ajv-cli@3.2.1 && \
   npm install --global prettier@2.0.5 && \
