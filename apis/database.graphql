@@ -1,0 +1,832 @@
+"""
+TODO: Multiple resources describing the same data in different formats
+        "file": {
+          "$ref": "common.json#/$defs/file",
+          "description": "The optical data can be provided as a file. If the data is provided as a file and as explicit values below, than it MUST be the same data only in different formats. If one data is derived from another data, it MUST be stored as separate items in the array optical/basics and origin SHOULD be used to identify the method of derivation."
+        }
+
+The
+[Internet Engineering Task Force (IETF)](https://www.ietf.org)
+is an Internet standards organization. It publishes standards in
+[Request for Comments (RFC)](https://ietf.org/standards/rfcs/)
+documents. They are
+[searchable](https://www.rfc-editor.org/search/rfc_search.php)
+and
+[indexed](https://www.rfc-editor.org/rfc-index.html).
+Examples are
+[Hypertext Transfer Protocol (HTTP)](https://tools.ietf.org/html/rfc7231)
+and
+[Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc8446).
+
+The
+[Internet Assigned Numbers Authority (IANA)](https://www.iana.org)
+allocates and maintains unique codes and numbering systems that are used in
+technical standards that drive the Internet like
+[domain names](https://www.iana.org/domains),
+[Internet Protocol addresses](https://www.iana.org/numbers), and
+[registries](https://www.iana.org/protocols).
+Examples of the last are
+[HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+and
+[media type registry](https://www.iana.org/assignments/media-types/media-types.xhtml).
+
+The
+[International Organization for Standardization (ISO)](https://www.iso.org)
+develops and publishes
+[International Standards](https://www.iso.org/standards-catalogue/browse-by-ics.html).
+Examples are
+[ISO 8601 Date And Time Format](https://www.iso.org/iso-8601-date-and-time-format.html)
+and
+[ISO 3166 Country Codes](https://www.iso.org/iso-3166-country-codes.html).
+
+The library
+[graphql-scalars](https://github.com/Urigo/graphql-scalars)
+introduces custom scalar types for creating precise type-safe GraphQL schemas.
+We took some inspiration from
+[GitHub GraphQL API](https://docs.github.com/en/graphql).
+"""
+scalar TodoRemoveThisScalarItIsHereJustSoThatTheAboveCommentIsNotASyntaxError
+
+"""
+[RFC 4122](https://tools.ietf.org/html/rfc4122)
+compliant
+[non-nil](https://tools.ietf.org/html/rfc4122#section-4.1.7)
+[Universally Unique Identifier (UUID)](https://tools.ietf.org/html/rfc4122#section-4.1)
+string represented as 32 hexadecimal digits in five groups separated by hyphens
+in the form `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`, like
+`"936da01f-9abd-4d9d-80c7-02af85c822a8"`. Such identifiers are not equal to
+`"00000000-0000-0000-0000-000000000000"` and match the regular expression
+`^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$`.
+"""
+scalar Uuid
+
+"""
+[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+encoded date and time string with offset from Coordinated Universal Time (UTC),
+where the fraction of a second permits at most 6 digits. For example, in UTC it
+may be in the form `yyyy-MM-ddTHH:mm:ss.ffffffZ`, like
+`"2009-06-15T13:45:30.381739Z"`, and in local time in the form
+`yyyy-MM-ddTHH:mm:ss.ffffffzzz`, like `"2009-06-15T13:45:30.381739-07:00"`.
+
+Note that
+[RFC 3339](https://tools.ietf.org/html/rfc3339)
+is a profile of the ISO 8601 standard for representation of dates and times
+using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""
+[RFC 3986](https://tools.ietf.org/html/rfc3986)
+and
+[RFC 3987](https://tools.ietf.org/html/rfc3987)
+compliant
+[absolute Uniform Resource Locator (URL)](https://tools.ietf.org/html/rfc3986#section-4.3)
+string with optional
+[fragment identifier](https://tools.ietf.org/html/rfc3986#section-3.5).
+
+See also
+[URL Living Standard](https://url.spec.whatwg.org/#absolute-url-with-fragment-string)
+and
+[Identifying resources on the Web](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web).
+"""
+scalar Url
+
+"""
+[BCP 47](https://tools.ietf.org/html/bcp47)
+compliant
+[Language Tag](https://tools.ietf.org/html/bcp47#section-2)
+string like `"de-AT"`, `"sr-Latn-RS"`, `"en-US"`, or `"en-GB"`, where the language
+part is essentially an
+[ISO 639 Language Code](https://www.iso.org/iso-639-language-codes.html),
+the script an
+[ISO 15924:2004 Script Code](https://www.iso.org/standard/29546.html),
+and the region an
+[ISO 3166-1 Country Code](https://www.iso.org/iso-3166-country-codes.html).
+
+Note that the
+[Internet Assigned Numbers Authority (IANA)](https://www.iana.org)
+maintains the
+[Language Subtag Registry](https://www.iana.org/assignments/lang-subtags-templates/lang-subtags-templates.xhtml).
+"""
+scalar Locale
+
+"""
+[June 2018 GraphQL](http://spec.graphql.org/June2018/)
+compliant
+[query](http://spec.graphql.org/June2018/#sec-Language.Operations)
+string without
+[variables](http://spec.graphql.org/June2018/#sec-Language.Variables)
+and without unnecessary white-space for the present schema.
+"""
+scalar GraphQlQuery
+
+"""
+[June 2018 GraphQL](http://spec.graphql.org/June2018/)
+compliant
+[JavaScript Object Notation (JSON)](https://tools.ietf.org/html/rfc8259)
+[serialized](http://spec.graphql.org/June2018/#sec-JSON-Serialization)
+[response](http://spec.graphql.org/June2018/#sec-Response)
+string without unnecessary white-space for the present schema.
+"""
+scalar JsonGraphQlResponse
+
+"""
+Anything
+"""
+scalar Any
+
+type Query {
+  data(id: Uuid!, timestamp: DateTime, locale: Locale): Data!
+  hasOpticalData(
+    componentId: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): Boolean!
+  opticalData(
+    componentId: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): [OpticalData!]!
+  calorimetricData(
+    componentId: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): [CalorimetricData!]!
+  hasCalorimetricData(componentId: Uuid!, timestamp: DateTime): Boolean!
+  hasHygrothermalData(componentId: Uuid!, timestamp: DateTime): Boolean!
+  hasPhotovoltaicData(componentId: Uuid!, timestamp: DateTime): Boolean!
+  hygrothermalData(
+    componentId: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): [HygrothermalData!]!
+  photovoltaicData(
+    componentId: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): [PhotovoltaicData!]!
+  searchComponents(
+    where: SearchComponentsPropositionInput!
+    timestamp: DateTime
+    locale: Locale
+  ): SearchComponentsResult!
+}
+
+input ClosedIntervalInput {
+  lowerBound: Float!
+  upperBound: Float!
+}
+
+input PercentagePropositionInput {
+  equalTo: Float
+  greaterThanOrEqualTo: Float
+  inClosedInterval: ClosedIntervalInput
+  lessThanOrEqualTo: Float
+}
+
+input SearchComponentsPropositionInput {
+  and: [SearchComponentsPropositionInput!]
+  gValue: PercentagePropositionInput
+  nearnormalHemisphericalVisibleTransmittance: PercentagePropositionInput
+  not: SearchComponentsPropositionInput
+  or: [SearchComponentsPropositionInput!]
+  uValue: PercentagePropositionInput
+}
+
+type SearchComponentsResult {
+  results: [SearchComponentResult!]!
+  timestamp: DateTime!
+}
+
+type SearchComponentResult {
+  calorimetricData: [CalorimetricData!]!
+  componentId: Uuid!
+  hygrothermalData: [HygrothermalData!]!
+  opticalData: [OpticalData!]!
+  photovoltaicData: [PhotovoltaicData!]!
+}
+
+"Measured or calculated data"
+interface Data {
+  """
+  Identifier, which together with timestamp uniquely identifies data and
+  version (within the database).
+  """
+  id: Uuid!
+
+  """
+  Timestamp that designates the version. For example, correction of some
+  grammatical error in the description results in a new version designated by
+  a new timestamp, or adding an approval by some stakeholder.
+  """
+  timestamp: DateTime!
+
+  """
+  Database identifier issued by the metabase. The database's meta data can be
+  obtained by sending the GraphQL query
+  `database(id: ..., timestamp: ...) { ... }`
+  to the metabase.
+
+  TODO Remove the database identifier. Add it on the fly in the metabase.
+  """
+  databaseId: Uuid!
+
+  """
+  Component identifier issued by the metabase. The components's meta data can
+  be obtained by sending the GraphQL query
+  `component(id: ..., timestamp: ...) { ... }`
+  to the metabase.
+  """
+  componentId: Uuid!
+
+  """
+  Name
+  """
+  name: String
+
+  """
+  Description
+  """
+  description: String
+
+  """
+  Critical information to avoid mistakes due to data misinterpretation.
+  """
+  warnings: [String!]!
+
+  """
+  Creator identifier issued by the metabase. The creator's meta data can be
+  obtained by sending the GraphQL query
+  `stakeholder(id: ..., timestamp: ...) { ... }`
+  to the metabase.
+  """
+  creatorId: Uuid!
+
+  """
+  Creation timestamp
+  """
+  creationTimestamp: DateTime!
+
+  """
+  Method that was applied to create this data set.
+  """
+  appliedMethod: AppliedMethod!
+
+  """
+  Validity date and time range
+  """
+  validity: OpenEndedDateTimeRange!
+
+  """
+  Approvals by stakeholders in the form of GnuPG signatures. To verify
+  signatures you need all signed data. It is thus advisable to include all
+  fields in the query. For verification you can then temporarily remove the
+  fields that are not signed. See the type `Approval` for details.
+  """
+  approvals: [Approval!]!
+
+  """
+  Multiple HTTP resources with meta information of the actual data requestable
+  through the protocol HTTP over TLS, in short, HTTPS, with `GET` requests.
+
+  TODO The resources in this array are meant to only be meaningful TOGETHER. We would also like to have the same data in different forms. So, what we actually need is `[[GetHttpsResource!]!]!`, where the items in the first array represent the same data in different forms. Then, it is unclear however, how the conversion between these different forms happened. So, we rather want something like `[X!]!`, where X contains a list of resources that are only meaningful together and meta information like which conversion method was used. Now, it is unclear what the source data was though. So, we actually want two properties, one for the raw data, and another one for data obtained by converting the raw data with respect to some conversion method. However, what do we do if the conversion happended in a chain (or a tree or what not)? ----- Let's use a tree instead of a list? And, offer a list of list property without meta information (by flattening the tree) for convenience if some people are not interested in the gory details?
+  """
+  resources: [GetHttpsResource!]!
+
+  """
+  Approval by the database of the result without the field `approval` itself.
+  """
+  approval: ResponseApproval!
+}
+
+type OpticalData implements Data {
+  id: Uuid!
+  timestamp: DateTime!
+  databaseId: Uuid!
+  componentId: Uuid!
+  name: String
+  description: String
+  warnings: [String!]!
+  creatorId: Uuid!
+  creationTimestamp: DateTime!
+  appliedMethod: AppliedMethod!
+  validity: OpenEndedDateTimeRange!
+  resources: [GetHttpsResource!]!
+  approvals: [DataApproval!]!
+  approval: ResponseApproval!
+  """
+  Mirrored nearnormal hemispherical visible transmittance values that occur in
+  the data
+  """
+  nearnormalHemisphericalVisibleTransmittances: [Float!]!
+}
+
+type CalorimetricData implements Data {
+  id: Uuid!
+  timestamp: DateTime!
+  databaseId: Uuid!
+  componentId: Uuid!
+  name: String
+  description: String
+  warnings: [String!]!
+  creatorId: Uuid!
+  creationTimestamp: DateTime!
+  appliedMethod: AppliedMethod!
+  validity: OpenEndedDateTimeRange!
+  resources: [GetHttpsResource!]!
+  approvals: [DataApproval!]!
+  approval: ResponseApproval!
+  """
+  Mirrored `g` values that occur in the data
+  """
+  gValues: [Float!]!
+  """
+  Mirrored `u` values that occur in the data
+  """
+  uValues: [Float!]!
+}
+
+type HygrothermalData implements Data {
+  id: Uuid!
+  timestamp: DateTime!
+  databaseId: Uuid!
+  componentId: Uuid!
+  name: String
+  description: String
+  warnings: [String!]!
+  creatorId: Uuid!
+  creationTimestamp: DateTime!
+  appliedMethod: AppliedMethod!
+  validity: OpenEndedDateTimeRange!
+  resources: [GetHttpsResource!]!
+  approvals: [DataApproval!]!
+  approval: ResponseApproval!
+}
+
+type PhotovoltaicData implements Data {
+  id: Uuid!
+  timestamp: DateTime!
+  databaseId: Uuid!
+  componentId: Uuid!
+  name: String
+  description: String
+  warnings: [String!]!
+  creatorId: Uuid!
+  creationTimestamp: DateTime!
+  appliedMethod: AppliedMethod!
+  validity: OpenEndedDateTimeRange!
+  resources: [GetHttpsResource!]!
+  approvals: [DataApproval!]!
+  approval: ResponseApproval!
+}
+
+type AppliedMethod {
+  """
+  Method identifier of method that was applied by the creator on the source
+  data. The method's meta data can be obtained by sending the GraphQL query
+  `method(id: ..., timestamp: ...) { ... }`
+  to the metabase.
+  """
+  methodId: Uuid!
+
+  """
+  Named parameters to configure the method.
+  """
+  parameters: [MethodParameter!]!
+
+  """
+  Named data sources to which the method was applied.
+  """
+  sourceIds: [MethodSource!]!
+}
+
+type MethodParameter {
+  name: String!
+  value: Any!
+}
+
+type MethodSource {
+  name: String!
+  value: CrossDatabaseReference!
+}
+
+type CrossDatabaseReference {
+  id: Uuid!
+  databaseId: Uuid!
+}
+
+"""
+Open-ended data and time range
+"""
+type OpenEndedDateTimeRange {
+  """
+  From beginning of time represented by `null`, or some date and time
+  """
+  from: DateTime
+
+  """
+  Until some date and time, or end of time represented by `null`
+  """
+  until: DateTime
+}
+
+"""
+Approval with
+[GnuPG](https://www.gnupg.org)
+signature.
+
+TODO Have a website like [How to verify your Ubuntu download](https://ubuntu.com/tutorials/how-to-verify-ubuntu#1-overview) with the explanations in an easier to digest format than below.
+
+To verify an approval,
+1. install [GnuPG](https://www.gnupg.org),
+2. save the approved response in a file `response.json`,
+3. save the ASCII-armored signature in a file `response.json.asc`,
+4. * retrieve the public key for the given fingerprint from the metabase's
+     keyserver by running
+     `gpg --keyserver keyserver.buildingenvelopedata.org --recv-keys <FINGERPRINT>`
+     and make sure that the key belongs to the approver and was allowed for
+     signing at a given timestamp by sending a request of the form
+     ```
+     database(id: ..., timestamp: <TIMESTAMP>) {
+       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+     }
+     ```
+     or
+     ```
+     stakeholder(id: ..., timestamp: <TIMESTAMP>) {
+       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+     }
+     ```
+   * or retrieve the allowed-for-signing key from the metabase's GraphQL
+     endpoint by sending a request of the form
+     ```
+     database(id: ..., timestamp: <TIMESTAMP>) {
+       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+     }
+     ```
+     or
+     ```
+     stakeholder(id: ..., timestamp: <TIMESTAMP>) {
+       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+     }
+     ```
+     save the ASCII-armored key in a file `my.gpg.asc`, and import it by running
+     `gpg --import ./my.gpg.asc`.
+   * TODO Should we also support fetching keys via `gpg --fetch-keys https://buildingenvelopedata.org/gnuPgKey/<FINGERPRINT>.asc`?
+   where `<TIMESTAMP>` is the timestamp at which the approval was created (for
+   response approvals this is the timestamp of the response).
+   TODO Verify that the key was valid at the timestamp (valid in the sense of the date-time validity range)? Should `status: ALLOWED` imply validity?
+5. verify the signature with the public key by running
+   `gpg --verify response.json.asc response.json`.
+
+To create an approval,
+1. install [GnuPG](https://www.gnupg.org),
+2. create a master key by running
+   `gpg --full-generate-key`,
+   selecting option `3. DSA (sign only)`,
+   choosing the keysize `2048`,
+   setting the validity `2y = key expires in 2 years`, and
+   answering all subsequent questions in particular adding a strong passphrase.
+3. create a signing subkey by running
+   `gpg --edit-key <YOUR_EMAIL_ADDRESS>`,
+   entering the command `addkey`
+   selecting option `(3) DSA (sign only)`,
+   choosing the keysize `2048`,
+   setting the validity `2y = key expires in 2 years`, and
+   answering all subsequent questions, and
+   entering the command `save`.
+4. list your keys with fingerprints by running
+   `gpg --list-keys --with-subkey-fingerprint <YOUR_EMAIL_ADDRESS>`.
+5. add your signing key to the metabase by exporting it with
+   `gpg --export --armor --output key.asc <SIGNING_KEY_FINGERPRINT>`
+   and uploading it with
+   `TODO Use keyserver and email addresses, or GraphQL endpoints`,
+6. save the response to be approved in a file `response.json`,
+7. compute the signature and write it to `response.json.asc` by running
+   `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> response.json`, and
+8. add the signature as approval to the database through its interface.
+
+Best practices for managing GnuPG keys within an institution:
+* In the metabase, each institution has at least one representative and the
+  institution's GnuPG keys are but the keys of all its representatives.
+* Each representative of an institution within the metabase who is allowed to
+  approve data for its institution adds its signing key to the metabase and its
+  keyserver (both are coupled and one cannot be done without the other) either
+  with the GraphQL mutation
+  ```
+  TODO add code example
+  ```
+  or by running
+  `gpg --keyserver keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`
+  TODO This does actually not work because the representative needs to authenticate herself. How can this be accomplished? Can we send an access token?
+* When a representative's signing subkey is compromised she revokes it as
+  described in
+  [Revoking key components](https://www.gnupg.org/gph/en/manual.html#AEN305)
+  and publishes the revocation either with the corresponding GraphQL mutation
+  ```
+  TODO add code example
+  ```
+  or by running
+  `gpg --keyserver keyserver.buildingenvelopedata.org --send-key <SIGNING_KEY_FINGERPRINT>`.
+  TODO As above this does not work because of missing authentication.
+* When a representative leaves a company or is no longer allowed to approve data,
+  the metabase it informed about that with the GraphQL mutation
+  ```
+  TODO add code example
+  ```
+
+Best practices for accepting approvals by databases:
+* Check that the fingerprint belongs to a non-revoked and valid GnuPG key of an
+  active representative of an institution who is allowed to make signatures for
+  that institution.
+* Check that the query contains all necessary fields and sub-fields and
+  specifies a timestamp.
+* Check that the response is the result of the given query.
+* Check that the signature is valid for the given response.
+TODO Add GraphQL examples where possible.
+
+TODO Should we MISuse the [trust model](https://www.gnupg.org/gph/en/manual.html#AEN335) to reflect whether a key of a representative may be used for signing in the name of an institution. This would make it possible for an institution to revoke trust from a representative when he or she leaves the institution. And this revocation would be visible on the keyserver (I suppose) and not just within the metabase's meta information accessible via GraphQL. For example, the metabase has its own signing key, it trusts an institution's primary representative (the one with the most power), and that representative trusts other representatives. Now, if one of the other representatives leaves, the primary one can revoke trust in that other representative. If the primary representative hands its power over to some other one and leaves, the metabase revokes trust in the primary one and adds trust to the other one. The web of trust from the metabase to some representative would thus make sure that the representative is to be trusted to sign for the institution. ..... No, we should not. The trust model is meant for something else, namely whether a public key itself really belongs to the person it says it does.
+
+TODO Note that a represenative's key must be stored within the relation because one user may represent multiple institutions. Does this conflict with the fact that keyservers associate keys with email addresses and that these are associated with users (and currently there is only one per user)?
+
+Note that GnuPG is compliant with
+[OpenPGP Message Format](https://tools.ietf.org/html/rfc4880).
+
+For an introduction to GnuPG consult
+[The GNU Privacy Handbook](https://www.gnupg.org/gph/en/manual.html)
+or the article series
+[Getting started with GPG (GnuPG)](https://www.redhat.com/sysadmin/getting-started-gpg),
+[How to create GPG keypairs](https://www.redhat.com/sysadmin/creating-gpg-keypairs), and
+[Digital signatures with GnuPG](https://www.redhat.com/sysadmin/digital-signatures-gnupg).
+.
+"""
+interface Approval {
+  """
+  Detached ASCII-armored GnuPG signature.
+
+  With the query response saved in the file `response.json`, the signature can
+  be computed and written to `response.json.asc` by running
+  `gpg --detach-sig --armor response.json`
+  (to write it to standard output instead, add the option `--output -`). And,
+  the signature can be verified by running
+  `gpg --verify response.json.asc response.json`.
+  Note that to compute a signature you need a GnuPG signing private key in your
+  key ring and to verify a signature you need the GnuPG signing public key
+  whose corresponding private key was used to compute the signature.
+  """
+  signature: String!
+
+  """
+  Fingerprint of the GnuPG signing key used to compute the signature.
+
+  The key's fingerprint, long identifier, and short identifier are related as
+  in the follow example:
+  * fingerprint: 0D69 E11F 12BD BA07 7B37  26AB 4E1F 799A A4FF 2279
+  * long id:                                    4E1F 799A A4FF 2279
+  * short id:                                             A4FF 2279
+  Fingerprints can be used anywhere where an identifier is expected. For
+  security reasons it should be used instead of long and short identifier. Its
+  only disadvantage is that it is less practical for manual human use.
+  """
+  keyFingerprint: String!
+}
+
+"""
+Approval of data by third party with GnuPG signature.
+
+Steps to approve data:
+1. An institution adds data to a database.
+2. Some institution (may be the same) queries the data with a GraphQL query.
+3. The latter institution reviews the data and, if correct, signs it with one
+   of its GnuPG signing keys.
+4. The institution adds its approval of the data to the database.
+
+Storing the GraphQL query with the signature is necessary because it needs to be
+known exactly which JSON data was signed.
+
+Note that the query to be signed should only include paths that are part of the
+data and not part of some associates.
+
+TODO Come up with a better name like `ThirdPartyApproval`, `FixApproval` or a combination.
+"""
+type DataApproval implements Approval {
+  """
+  Creation timestamp
+  """
+  timestamp: DateTime!
+
+  """
+  Detached ASCII-armored GnuPG signature of the GraphQL query response.
+  """
+  signature: String!
+
+  """
+  Fingerprint of the GnuPG signing key used to compute the signature.
+  """
+  keyFingerprint: String!
+
+  """
+  GraphQL query whose response is signed. The query must include the parameter
+  `timestamp`, for example,
+  `opticalData(id: ..., timestamp: ...) { ... }`,
+  as otherwise, it may not be reproducible. It should neither include other
+  data approvals by third parties nor the response approval by the database.
+  All other fields and sub-fields should be included. Despite these
+  restrictions specifying the query explicitely is necessary because approvals
+  should not become invalid when the GraphQL schema changes.
+  """
+  query: GraphQlQuery!
+
+  """
+  JSON serialized GraphQL response that is sigend.
+
+  With the response put in the file `response.json`, the GnuPG signature put in
+  the file `response.json.asc`, and the GnuPG public key of the approver added
+  to the GnuPG key ring, the signature can be verified by running
+  `gpg --verify response.json.asc response.json`.
+
+  To compare the response `response.json` and another response `another.json`,
+  run the command
+  ```
+  diff --side-by-side --suppress-common-lines \
+    <(jq --sort-keys --monochrome-output . response.json) \
+    <(jq --sort-keys --monochrome-output . another.json)
+  ```
+  in a
+  [Bourne-again shell (Bash)](https://www.gnu.org/software/bash/),
+  see
+  [Faster and simpler with the command line: deep-comparing two 5GB JSON files 3X faster by ditching the code](https://genius.engineering/faster-and-simpler-with-the-command-line-deep-comparing-two-5gb-json-files-3x-faster-by-ditching-the-code/)
+  and
+  [Using jq or alternative command line tools to compare JSON files](https://stackoverflow.com/questions/31930041/using-jq-or-alternative-command-line-tools-to-compare-json-files/37175540#37175540).
+
+  Comparing responses is necessary to verify that the data `another.json` you
+  received in a query that includes this approval matches the approved data.
+  Which is of course the case if all involved organizations are trustworthy.
+  However, verified signatures and matching responses together prove data
+  integrity (at least if private keys used to make the signatures in the first
+  place are not compromised).
+  """
+  response: JsonGraphQlResponse!
+
+  """
+  Validity date and time range.
+  """
+  validity: OpenEndedDateTimeRange!
+
+  """
+  Approver identifier issued by the metabase. The approver's meta data can be
+  obtained by sending the GraphQL query
+  `stakeholder(id: ..., timestamp: ...) { ... }`
+  to the metabase.
+  """
+  approverId: Uuid!
+}
+
+"""
+Approval of response by database with
+[GnuPG](https://www.gnupg.org)
+signature.
+
+TODO Come up with a better name like `DatabaseApproval`, `DynamicApproval` or a combination.
+"""
+type ResponseApproval implements Approval {
+  """
+  Detached ASCII-armored GnuPG signature of the GraphQL query response.
+  """
+  signature: String!
+
+  keyFingerprint: String!
+}
+
+"""
+HTTP resource with meta information requestable through the protocol
+[HTTP over TLS](https://tools.ietf.org/html/rfc2818)
+with `GET` requests. The protocol is colloquially called Hypertext Transfer
+Protocol Secure (HTTPS) and uses
+[Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc8446)
+to secure
+[Hypertext Transfer Protocol (HTTP)](https://tools.ietf.org/html/rfc7231)
+connections over the internet.
+
+If an HTTP `GET` request of the resource is
+[successful](https://tools.ietf.org/html/rfc7231#section-6.3)
+with
+[HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6)
+[200](https://tools.ietf.org/html/rfc7231#section-6.3.1),
+the response message body is the resource's content. Otherwise, there is some
+issue that can be identified and hopefully resolved by examining the status
+code.
+
+Note that the
+[Internet Assigned Numbers Authority (IANA)](https://www.iana.org)
+maintains the
+[HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
+See also
+[HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
+"""
+type GetHttpsResource {
+  """
+  Name to use when saving the resource as file. This is necessary in case
+  multiple resources refer to each other by name. The name should be a valid
+  file name in popular operating systems like various Linux distributions,
+  Windows, and Mac OS X, and it should be usable. Because of various
+  idiosyncrasies of different file systems and command-line interpreters,
+  the name should match the regular expression `^[0-9a-z-._]$`. For some
+  reasons see
+  [Answer 1](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os/358861#358861)
+  and
+  [Answer 2](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os/748264#748264)
+  to the dated question
+  [What characters are safe in cross-platform file names for Linux, Windows and OS-X](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os),
+  and
+  [Best Practices for Filenames on the Web](https://www.surrealcms.com/blog/best-practices-for-filenames-on-the-web.html).
+  """
+  name: String
+
+  "Description"
+  description: String
+
+  """
+  Hash value of sucessful HTTP response message body with
+  [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6)
+  [200](https://tools.ietf.org/html/rfc7231#section-6.3.1)
+  computed with
+  Secure Hash Algorithm 256 (SHA-256)
+  as described in the
+  [United States's Federal Information Processing Standard 180-4 (FIPS 180-4)](https://csrc.nist.gov/publications/detail/fips/180/4/final)
+  by the
+  [National Institute of Standards and Technology (NIST)](https://www.nist.gov).
+  See also
+  [RFC 6234](https://tools.ietf.org/html/rfc6234).
+
+  In Linux,
+  1. install
+     [Coreutils - GNU core utilities](https://www.gnu.org/software/coreutils/),
+     to get the command-line tool
+     [`sha256sum`](http://www.gnu.org/software/coreutils/sha256sum), and
+  2. save the message body in a file, say `message.body`.
+
+  Then, to compute the hash value,
+  3. run the command `sha256sum message.body`, which prints the hash value to
+     standard output.
+
+  And, to check the hash value,
+  4. run the command `echo '<HASH_VALUE>  message.body' | sha256sum --check`,
+     where `<HASH_VALUE>` needs to be replaced by the hash value. Note that
+     there are two spaces between `<HASH_VALUE>` and `message.body`.
+
+  In Mac OS X, the command-line tool `shasum` comes pre-installed and can be
+  used instead of `sha256sum` by adding the option `--algorithm 256` that is
+  by literally replacing `sha256sum` in the above commands by
+  `shasum --algorithm 256`.
+
+  In Windows (TODO Test the following steps in Windows!),
+  1. install
+     [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
+  2. save the message body in a file, say `message.body`.
+  3. open a PowerShell window, for example, by pressing `WIN+R`,
+     typing in `powershell`, and pressing `<enter>`, and
+  4. change directory to the folder with the saved files.
+
+  Then, to compute the hash value,
+  5. run the command
+     `(Get-FileHash -Algorithm SHA256 .\message.body).Hash`,
+     which prints the hash value. For details see the documentation
+     [Get-FileHash](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash).
+
+  And, to check the hash value,
+  6. save the message body's hash in a file, say `message.body.sha`,
+  7. run the command
+     `(Get-FileHash -Algorithm SHA256 .\message.body).Hash -eq (Get-Content .\message.body.sha).split(" ")[0].ToUpper()`,
+     which prints `True` on success.
+
+  In case [OpenSSL](https://www.openssl.org) is installed, to compute the hash
+  value, you may also run `openssl dgst -sha256 message.body`.
+  """
+  hashValue: String!
+
+  """
+  Locator with scheme `https` meant to be used with protocol
+  [HTTP over TLS](https://tools.ietf.org/html/rfc2818).
+  """
+  locator: Url!
+
+  """
+  Identifier of data format of successful HTTP response message body with
+  [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6)
+  [200](https://tools.ietf.org/html/rfc7231#section-6.3.1).
+  The identifier is issued by the metabase. The format's meta data can be
+  obtained by sending the GraphQL query
+  `dataFormat(id: ..., timestamp: ...) { ... }`
+  to the metabase.
+
+  The data format consists of a
+  [media type](https://www.iana.org/assignments/media-types/media-types.xhtml)
+  and additional information to unambiguously identify the specific format and
+  to locate the format specification. General archive formats like
+  [7-Zip](https://www.7-zip.org)
+  with unknown internal structure are not supported because each file in the
+  archive would need to be associated with a 
+  """
+  formatId: Uuid!
+}
