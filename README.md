@@ -60,7 +60,8 @@ directory `./examples`.
    other ones can be used within `bash` inside a Docker container:
    - `compile` validates the schemas against the JSON Schema meta-schemas,
    - `test` validates the tests against the schemas,
-   - `example` validates the examples against the schemas, and
+   - `example` validates the examples against the schemas,
+   - `format` formats source files, and
    - `dos2unix` converts Windows-style to UNIX-style line endings.
 6. Drop into `bash` with the working directory `/app`, which
    is mounted to the host's working directory, inside a fresh Docker container
