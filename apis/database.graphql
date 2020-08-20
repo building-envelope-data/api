@@ -339,6 +339,7 @@ input PhotovoltaicDataPropositionInput {
 
 type DataConnection {
   edges: [DataEdge!]!
+  nodes: [Data!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
@@ -350,6 +351,7 @@ type DataEdge {
 
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
+  nodes: [OpticalData!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
@@ -361,6 +363,7 @@ type OpticalDataEdge {
 
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
+  nodes: [HygrothermalData!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
@@ -372,6 +375,7 @@ type HygrothermalDataEdge {
 
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
+  nodes: [PhotovoltaicData!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
@@ -383,6 +387,7 @@ type PhotovoltaicDataEdge {
 
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
+  nodes: [CalorimetricData!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
