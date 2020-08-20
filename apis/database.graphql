@@ -131,45 +131,157 @@ string without unnecessary white-space for the present schema.
 scalar JsonGraphQlResponse
 
 """
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
+compliant
+[Cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
+string.
+"""
+scalar Cursor
+
+"""
+Non-negative integer
+"""
+scalar NonNegativeInt
+
+"""
 Anything
 """
 scalar Any
 
+"""
+Fetch data, ask whether there is data, and search for data.
+
+[Pagination](https://graphql.org/learn/pagination/)
+
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
+see also [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections)
+
+[Global Object Identification](https://graphql.org/learn/global-object-identification/)
+see also [GraphQL Server Specification: Object Identification](https://relay.dev/docs/en/graphql-server-specification.html#object-identification)
+"""
 type Query {
+  node(id: Uuid!, timestamp: DateTime, locale: Locale): Node!
   data(id: Uuid!, timestamp: DateTime, locale: Locale): Data!
+  calorimetricData(
+    id: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): CalorimetricData!
+  hygrothermalData(
+    id: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): HygrothermalData!
+  opticalData(id: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
+  photovoltaicData(
+    id: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): PhotovoltaicData!
+  allData(
+    where: DataPropositionInput!
+    timestamp: DateTime
+    locale: Locale
+    first: NonNegativeInt
+    after: Cursor
+    last: NonNegativeInt
+    before: Cursor
+  ): DataConnection
+  allCalorimetricData(
+    where: CalorimetricDataPropositionInput!
+    timestamp: DateTime
+    locale: Locale
+    first: NonNegativeInt
+    after: Cursor
+    last: NonNegativeInt
+    before: Cursor
+  ): CalorimetricDataConnection
+  allHygrothermalData(
+    where: HygrothermalDataPropositionInput!
+    timestamp: DateTime
+    locale: Locale
+    first: NonNegativeInt
+    after: Cursor
+    last: NonNegativeInt
+    before: Cursor
+  ): HygrothermalDataConnection
+  allOpticalData(
+    where: OpticalDataPropositionInput!
+    timestamp: DateTime
+    locale: Locale
+    first: NonNegativeInt
+    after: Cursor
+    last: NonNegativeInt
+    before: Cursor
+  ): OpticalDataConnection
+  allPhotovoltaicData(
+    where: PhotovoltaicDataPropositionInput!
+    timestamp: DateTime
+    locale: Locale
+    first: NonNegativeInt
+    after: Cursor
+    last: NonNegativeInt
+    before: Cursor
+  ): PhotovoltaicDataConnection
+  hasData(componentId: Uuid!, timestamp: DateTime, locale: Locale): Boolean!
+  hasCalorimetricData(
+    componentId: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): Boolean!
+  hasHygrothermalData(
+    componentId: Uuid!
+    timestamp: DateTime
+    locale: Locale
+  ): Boolean!
   hasOpticalData(
     componentId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
-  opticalData(
+  hasPhotovoltaicData(
     componentId: Uuid!
     timestamp: DateTime
     locale: Locale
-  ): [OpticalData!]!
-  calorimetricData(
-    componentId: Uuid!
-    timestamp: DateTime
-    locale: Locale
-  ): [CalorimetricData!]!
-  hasCalorimetricData(componentId: Uuid!, timestamp: DateTime): Boolean!
-  hasHygrothermalData(componentId: Uuid!, timestamp: DateTime): Boolean!
-  hasPhotovoltaicData(componentId: Uuid!, timestamp: DateTime): Boolean!
-  hygrothermalData(
-    componentId: Uuid!
-    timestamp: DateTime
-    locale: Locale
-  ): [HygrothermalData!]!
-  photovoltaicData(
-    componentId: Uuid!
-    timestamp: DateTime
-    locale: Locale
-  ): [PhotovoltaicData!]!
-  searchComponents(
-    where: SearchComponentsPropositionInput!
-    timestamp: DateTime
-    locale: Locale
-  ): SearchComponentsResult!
+  ): Boolean!
+}
+
+"""
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
+inspired
+[Node](https://relay.dev/graphql/connections.htm#sec-Node)
+interface.
+
+TODO For relay nodes the identifier should be of type `ID` (and base64 encoded) and should determine other fields like `name` and `description` (at least within the same request). Therefore, it should be a combination of the `Uuid` and the `Locale` below. Shall we, to conform to Relay, make `id` that combination base64 encoded and at another field named `uuid` or `...`?
+"""
+interface Node {
+  """
+  Identifier
+  """
+  id: Uuid!
+
+  """
+  Timestamp
+  """
+  timestamp: DateTime!
+
+  """
+  Locale of text
+  """
+  locale: Locale
+}
+
+"""
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
+inspired
+[PageInfo](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo)
+type.
+"""
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: Cursor!
+  endCursor: Cursor!
 }
 
 input ClosedIntervalInput {
@@ -177,33 +289,107 @@ input ClosedIntervalInput {
   upperBound: Float!
 }
 
-input PercentagePropositionInput {
+input FloatPropositionInput {
   equalTo: Float
   greaterThanOrEqualTo: Float
   inClosedInterval: ClosedIntervalInput
   lessThanOrEqualTo: Float
 }
 
-input SearchComponentsPropositionInput {
-  and: [SearchComponentsPropositionInput!]
-  gValue: PercentagePropositionInput
-  nearnormalHemisphericalVisibleTransmittance: PercentagePropositionInput
-  not: SearchComponentsPropositionInput
-  or: [SearchComponentsPropositionInput!]
-  uValue: PercentagePropositionInput
+input DataPropositionInput {
+  componentId: Uuid
+  and: [DataPropositionInput!]
+  gValue: FloatPropositionInput
+  nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
+  not: DataPropositionInput
+  or: [DataPropositionInput!]
+  uValue: FloatPropositionInput
 }
 
-type SearchComponentsResult {
-  results: [SearchComponentResult!]!
+input OpticalDataPropositionInput {
+  componentId: Uuid
+  and: [OpticalDataPropositionInput!]
+  nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
+  not: OpticalDataPropositionInput
+  or: [OpticalDataPropositionInput!]
+}
+
+input CalorimetricDataPropositionInput {
+  componentId: Uuid
+  and: [CalorimetricDataPropositionInput!]
+  gValue: FloatPropositionInput
+  not: CalorimetricDataPropositionInput
+  or: [CalorimetricDataPropositionInput!]
+  uValue: FloatPropositionInput
+}
+
+input HygrothermalDataPropositionInput {
+  componentId: Uuid
+  and: [HygrothermalDataPropositionInput!]
+  not: HygrothermalDataPropositionInput
+  or: [HygrothermalDataPropositionInput!]
+}
+
+input PhotovoltaicDataPropositionInput {
+  componentId: Uuid
+  and: [PhotovoltaicDataPropositionInput!]
+  not: PhotovoltaicDataPropositionInput
+  or: [PhotovoltaicDataPropositionInput!]
+}
+
+type DataConnection {
+  edges: [DataEdge!]!
+  pageInfo: PageInfo!
   timestamp: DateTime!
 }
 
-type SearchComponentResult {
-  calorimetricData: [CalorimetricData!]!
-  componentId: Uuid!
-  hygrothermalData: [HygrothermalData!]!
-  opticalData: [OpticalData!]!
-  photovoltaicData: [PhotovoltaicData!]!
+type DataEdge {
+  cursor: Cursor!
+  node: Data!
+}
+
+type OpticalDataConnection {
+  edges: [OpticalDataEdge!]!
+  pageInfo: PageInfo!
+  timestamp: DateTime!
+}
+
+type OpticalDataEdge {
+  cursor: Cursor!
+  node: OpticalData!
+}
+
+type HygrothermalDataConnection {
+  edges: [HygrothermalDataEdge!]!
+  pageInfo: PageInfo!
+  timestamp: DateTime!
+}
+
+type HygrothermalDataEdge {
+  cursor: Cursor!
+  node: HygrothermalData!
+}
+
+type PhotovoltaicDataConnection {
+  edges: [PhotovoltaicDataEdge!]!
+  pageInfo: PageInfo!
+  timestamp: DateTime!
+}
+
+type PhotovoltaicDataEdge {
+  cursor: Cursor!
+  node: PhotovoltaicData!
+}
+
+type CalorimetricDataConnection {
+  edges: [CalorimetricDataEdge!]!
+  pageInfo: PageInfo!
+  timestamp: DateTime!
+}
+
+type CalorimetricDataEdge {
+  cursor: Cursor!
+  node: CalorimetricData!
 }
 
 "Measured or calculated data"
@@ -297,11 +483,17 @@ interface Data {
   Approval by the database of the result without the field `approval` itself.
   """
   approval: ResponseApproval!
+
+  """
+  Locale of text
+  """
+  locale: Locale
 }
 
-type OpticalData implements Data {
+type OpticalData implements Node & Data {
   id: Uuid!
   timestamp: DateTime!
+  locale: Locale
   databaseId: Uuid!
   componentId: Uuid!
   name: String
@@ -321,9 +513,10 @@ type OpticalData implements Data {
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
 }
 
-type CalorimetricData implements Data {
+type CalorimetricData implements Node & Data {
   id: Uuid!
   timestamp: DateTime!
+  locale: Locale
   databaseId: Uuid!
   componentId: Uuid!
   name: String
@@ -346,9 +539,10 @@ type CalorimetricData implements Data {
   uValues: [Float!]!
 }
 
-type HygrothermalData implements Data {
+type HygrothermalData implements Node & Data {
   id: Uuid!
   timestamp: DateTime!
+  locale: Locale
   databaseId: Uuid!
   componentId: Uuid!
   name: String
@@ -363,9 +557,10 @@ type HygrothermalData implements Data {
   approval: ResponseApproval!
 }
 
-type PhotovoltaicData implements Data {
+type PhotovoltaicData implements Node & Data {
   id: Uuid!
   timestamp: DateTime!
+  locale: Locale
   databaseId: Uuid!
   componentId: Uuid!
   name: String
@@ -826,7 +1021,7 @@ type GetHttpsResource {
   to locate the format specification. General archive formats like
   [7-Zip](https://www.7-zip.org)
   with unknown internal structure are not supported because each file in the
-  archive would need to be associated with a 
+  archive would need to be associated with a
   """
   formatId: Uuid!
 }
