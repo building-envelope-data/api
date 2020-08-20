@@ -73,6 +73,7 @@ RUN \
   npm install npm@6.14.7 -g && \
   # Install Node development tools
   npm install --global ajv-cli@3.2.1 && \
+  npm install --global graphql-schema-linter && \
   npm install --global prettier@2.0.5 && \
   # Remove unused packages, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes && \
