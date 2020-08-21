@@ -1,10 +1,4 @@
 """
-TODO: Multiple resources describing the same data in different formats
-        "file": {
-          "$ref": "common.json#/$defs/file",
-          "description": "The optical data can be provided as a file. If the data is provided as a file and as explicit values below, than it MUST be the same data only in different formats. If one data is derived from another data, it MUST be stored as separate items in the array optical/basics and origin SHOULD be used to identify the method of derivation."
-        }
-
 The
 [Internet Engineering Task Force (IETF)](https://www.ietf.org)
 is an Internet standards organization. It publishes standards in
@@ -478,11 +472,34 @@ interface Data {
 
   """
   Multiple HTTP resources with meta information of the actual data requestable
-  through the protocol HTTP over TLS, in short, HTTPS, with `GET` requests.
+  through the protocol HTTP over TLS, in short, HTTPS, with `GET` requests. The
+  first resource's data is the result of applying the method `appliedMethod`.
+  The other resources' data is the result of applying some conversion method or
+  a chain of such methods to the first resource's data. Detailed information
+  about which conversion method applied to which data resulted in which other
+  data is recorded in the tree with the root `resourceRoot`.
 
-  TODO The resources in this array are meant to only be meaningful TOGETHER. We would also like to have the same data in different forms. So, what we actually need is `[[GetHttpsResource!]!]!`, where the items in the first array represent the same data in different forms. Then, it is unclear however, how the conversion between these different forms happened. So, we rather want something like `[X!]!`, where X contains a list of resources that are only meaningful together and meta information like which conversion method was used. Now, it is unclear what the source data was though. So, we actually want two properties, one for the raw data, and another one for data obtained by converting the raw data with respect to some conversion method. However, what do we do if the conversion happended in a chain (or a tree or what not)? ----- Let's use a tree instead of a list? And, offer a list of list property without meta information (by flattening the tree) for convenience if some people are not interested in the gory details?
+  Note that all resources describe the same data only in different formats.
   """
   resources: [GetHttpsResource!]!
+
+  """
+  Root vertex made up of
+  * an HTTP resource with meta information of the actual data
+    requestable through the protocol HTTP over
+    TLS, in short, HTTPS, with `GET` requests, where the data is
+    the result of applying
+    the method `appliedMethod`, and
+  * child vertices, where each child vertex is made up of an HTTP resource whose
+    data is the result of applying some conversion method to the root's data,
+    child vertices of itself, and the applied conversion method.
+
+  By traversing the tree from the root at each vertex it is clear how its data
+  was obtained from its parent's data.
+
+  Note that all resources describe the same data only in different formats.
+  """
+  resourceRoot: GetHttpsResourceRoot!
 
   """
   Approval by the database of the result without the field `approval` itself.
@@ -510,6 +527,7 @@ type OpticalData implements Node & Data {
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
+  resourceRoot: GetHttpsResourceRoot!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
   """
@@ -534,6 +552,7 @@ type CalorimetricData implements Node & Data {
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
+  resourceRoot: GetHttpsResourceRoot!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
   """
@@ -561,6 +580,7 @@ type HygrothermalData implements Node & Data {
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
+  resourceRoot: GetHttpsResourceRoot!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
 }
@@ -580,6 +600,7 @@ type PhotovoltaicData implements Node & Data {
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
+  resourceRoot: GetHttpsResourceRoot!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
 }
@@ -602,6 +623,25 @@ type AppliedMethod {
   Named data sources to which the method was applied.
   """
   sourceIds: [MethodSource!]!
+}
+
+"""
+An applied method whose sources are implicit from the context in which it is
+used.
+"""
+type AppliedMethodWithImplicitSources {
+  """
+  Method identifier of method that was applied by the creator on the source
+  data. The method's meta data can be obtained by sending the GraphQL query
+  `method(id: ..., timestamp: ...) { ... }`
+  to the metabase.
+  """
+  methodId: Uuid!
+
+  """
+  Named parameters to configure the method.
+  """
+  parameters: [MethodParameter!]!
 }
 
 type MethodParameter {
@@ -930,24 +970,8 @@ See also
 """
 type GetHttpsResource {
   """
-  Name to use when saving the resource as file. This is necessary in case
-  multiple resources refer to each other by name. The name should be a valid
-  file name in popular operating systems like various Linux distributions,
-  Windows, and Mac OS X, and it should be usable. Because of various
-  idiosyncrasies of different file systems and command-line interpreters,
-  the name should match the regular expression `^[0-9a-z-._]$`. For some
-  reasons see
-  [Answer 1](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os/358861#358861)
-  and
-  [Answer 2](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os/748264#748264)
-  to the dated question
-  [What characters are safe in cross-platform file names for Linux, Windows and OS-X](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os),
-  and
-  [Best Practices for Filenames on the Web](https://www.surrealcms.com/blog/best-practices-for-filenames-on-the-web.html).
+  Description
   """
-  name: String
-
-  "Description"
   description: String
 
   """
@@ -1027,10 +1051,111 @@ type GetHttpsResource {
   The data format consists of a
   [media type](https://www.iana.org/assignments/media-types/media-types.xhtml)
   and additional information to unambiguously identify the specific format and
-  to locate the format specification. General archive formats like
-  [7-Zip](https://www.7-zip.org)
-  with unknown internal structure are not supported because each file in the
-  archive would need to be associated with a
+  to locate the format specification.
+
+  In case of an archive format, for each archived file, meta information like
+  its data format is specified in `archivedFilesMetaInformation`. The file and
+  directory names in the archive should match the regular expression
+  `^[0-9a-z-._]$` for reasons elaborated in `FileMetaInformation#path`.
   """
   formatId: Uuid!
+
+  """
+  Archived files meta information with relative paths from the archive root and
+  data format specifications. These must be specified in case the data format
+  is an, for our purposes, underspecified archive format like
+  [7-Zip](https://www.7-zip.org)
+  with an a priori unknown internal structure.
+  """
+  archivedFilesMetaInformation: [FileMetaInformation!]!
+}
+
+type FileMetaInformation {
+  """
+  Relative file path, where
+  * the string-serialized
+    [POSIX-style path](https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap03.html#tag_03_266)
+    is obtained by prepending the string `./` and joining all components with the
+    forward slash `/`, see also,
+    [IEEE/Open Group 1003.1-2017 - IEEE Standard for Information Technology--Portable Operating System Interface (POSIX(TR)) Base Specifications, Issue 7](https://standards.ieee.org/standard/1003_1-2017.html),
+    and
+  * the string-serialized
+    [Windows-style path](https://docs.microsoft.com/en-us/dotnet/standard/io/file-path-formats)
+    is obtained by prepending the
+    string `.\` and joining all components with the backward slash `\`, see also
+    [Naming Files, Paths, and Namespaces](https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file).
+
+  Each path component should be a valid file or directory name in popular
+  operating systems like various Linux distributions, Windows, and Mac OS X,
+  and it should be usable. Because of various idiosyncrasies of different file
+  systems and command-line interpreters, each component should match the regular
+  expression `^[0-9a-z-._]$`. For some reasons see
+  [Answer 1](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os/358861#358861)
+  and
+  [Answer 2](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os/748264#748264)
+  to the dated question
+  [What characters are safe in cross-platform file names for Linux, Windows and OS-X](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os),
+  and also
+  [Best Practices for Filenames on the Web](https://www.surrealcms.com/blog/best-practices-for-filenames-on-the-web.html).
+  """
+  path: [String!]!
+
+  """
+  Identifier of the data format.  The identifier is issued by the metabase. The
+  format's meta data can be obtained by sending the GraphQL query
+  `dataFormat(id: ..., timestamp: ...) { ... }`
+  to the metabase.
+
+  The data format consists of a
+  [media type](https://www.iana.org/assignments/media-types/media-types.xhtml)
+  and additional information to unambiguously identify the specific format and
+  to locate the format specification.
+  """
+  formatId: Uuid!
+}
+
+"""
+A root or non-root resource is the result of some measurement or simulation, or
+of applying some conversion method to its parent resource.  Its child resources
+are the results of applying conversion methods to it, the child resources of
+its child resources are the results of applying conversion methods to the child
+resources, and so forth. The applied conversion methods are specified in the
+child resources.
+"""
+interface GetHttpsResourceVertex {
+  """
+  Resource
+  """
+  resource: GetHttpsResource!
+
+  """
+  Child resources obtained by applying conversion methods to the present
+  resource.
+  """
+  children: [GetHttpsResourceNonRootVertex!]!
+}
+
+"""
+A root resource is the direct result of some measurement or simulation.
+
+TODO Using trees is problematic because it is unknown at query time how deep the tree is.
+"""
+type GetHttpsResourceRoot implements GetHttpsResourceVertex {
+  resource: GetHttpsResource!
+  children: [GetHttpsResourceNonRootVertex!]!
+}
+
+"""
+A non-root resource is the result of applying some conversion method to its
+parent resource.
+"""
+type GetHttpsResourceNonRootVertex implements GetHttpsResourceVertex {
+  resource: GetHttpsResource!
+  children: [GetHttpsResourceNonRootVertex!]!
+
+  """
+  Conversion method applied to the parent resource to obtain the present
+  resource.
+  """
+  appliedConversionMethod: AppliedMethodWithImplicitSources!
 }
