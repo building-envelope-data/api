@@ -54,7 +54,8 @@ schema_file_paths = $(shell find ./schemas/ -name "*.json")
 schema_file_references = $(addprefix -r ,${schema_file_paths})
 
 compile : ## Compile schemas
-	for schema_file_path in ${schema_file_paths} ; do \
+	-graphql-schema-linter ./apis/*.graphql
+	-for schema_file_path in ${schema_file_paths} ; do \
 		ajv compile \
 			-s $${schema_file_path} \
 			${schema_file_references} ; \
