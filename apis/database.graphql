@@ -1,4 +1,31 @@
 """
+Read-only GraphQL schema for databases that store measurement and simulation
+data in various formats and refer to the "metabase" for meta information like
+data format specifications.
+
+It follows best practices for
+* [Global Object Identification](https://graphql.org/learn/global-object-identification/)
+  as exemplified in
+  [GraphQL Server Specification: Object Identification](https://relay.dev/docs/en/graphql-server-specification.html#object-identification),
+  and
+* [Pagination](https://graphql.org/learn/pagination/),
+  by adhering to the
+  [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+  as exemplified in
+  [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections).
+
+Global object identifiers as requird by the best practice are exposed by the
+property `id` and universally unique identifiers as issued by the "metabase"
+are exposed by the property `dataId`. In essence, `id` is the Base64-encoded
+concatenation of `dataId` and the requested locale.
+
+TODO Is this separation really required or could we just use `dataId` as `id`? Having both makes things unnecessarily complicated.
+TODO Instead of `dataId` we could use `_id` or `uuid` or ...?
+
+For interoperability with the "metabase", implementations must serve HTTP
+requests as elaborated on
+[Serving over HTTP](https://graphql.org/learn/serving-over-http/).
+
 The
 [Internet Engineering Task Force (IETF)](https://www.ietf.org)
 is an Internet standards organization. It publishes standards in
@@ -39,7 +66,9 @@ introduces custom scalar types for creating precise type-safe GraphQL schemas.
 We took some inspiration from
 [GitHub GraphQL API](https://docs.github.com/en/graphql).
 """
-scalar TodoRemoveThisScalarItIsHereJustSoThatTheAboveCommentIsNotASyntaxError
+schema {
+  query: Query
+}
 
 """
 [RFC 4122](https://tools.ietf.org/html/rfc4122)
@@ -144,14 +173,6 @@ scalar Any
 
 """
 Fetch data, ask whether there is data, and search for data.
-
-[Pagination](https://graphql.org/learn/pagination/)
-
-[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
-see also [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections)
-
-[Global Object Identification](https://graphql.org/learn/global-object-identification/)
-see also [GraphQL Server Specification: Object Identification](https://relay.dev/docs/en/graphql-server-specification.html#object-identification)
 """
 type Query {
   node(id: ID!): Node!
