@@ -677,7 +677,15 @@ type MethodSource {
 
 type CrossDatabaseReference {
   dataId: Uuid!
+  dataKind: DataKind!
   databaseId: Uuid!
+}
+
+enum DataKind {
+  CALORIMETRIC_DATA
+  HYGROTHERMAL_DATA
+  OPTICAL_DATA
+  PHOTOVOLTAIC_DATA
 }
 
 """
