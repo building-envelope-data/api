@@ -1053,10 +1053,14 @@ type GetHttpsResource {
   and additional information to unambiguously identify the specific format and
   to locate the format specification.
 
-  In case of an archive format, for each archived file, meta information like
-  its data format is specified in `archivedFilesMetaInformation`. The file and
-  directory names in the archive should match the regular expression
-  `^[0-9a-z-._]$` for reasons elaborated in `FileMetaInformation#path`.
+  In case of an
+  [archive format](https://en.wikipedia.org/wiki/Archive_file),
+  for each archived file (that is, each file in the archive), meta information
+  like its data format is specified in `archivedFilesMetaInformation`. The file
+  and directory names in the archive should match the regular expression
+  `^[0-9a-z-._]$` for reasons elaborated in `FileMetaInformation#path`. See
+  also
+  [List of archive formats](https://en.wikipedia.org/wiki/List_of_archive_formats).
   """
   formatId: Uuid!
 
