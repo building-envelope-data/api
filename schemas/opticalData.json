@@ -72,97 +72,169 @@
       "additionalProperties": false,
       "required": ["incidence", "emergence", "results"]
     },
-    "direction": {
-      "title": "The direction for example of the radiation on a sample. The array offers different ways of describing the direction, for example by two angles.",
-      "type": "array",
-      "items": {
-        "oneOf": [
-          {
-            "anyOf": [
-              {
-                "type": "object",
-                "properties": {
-                  "polar": {
-                    "$ref": "number.json#/$defs/degree",
-                    "description": "In the spherical coordinate system, the polar angle is measured from a fixed axis such as the z-axis of a cartesian coordinate system."
+    "directionOfIncidence": {
+      "title": "The direction of the incident radiation on a sample.",
+      "oneOf": [
+        {
+          "oneOf": [
+            {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "polar": {
+                      "$ref": "number.json#/$defs/degree",
+                      "description": "In the spherical coordinate system, the polar angle is measured from a fixed axis such as the z-axis of a cartesian coordinate system."
+                    },
+                    "azimuth": {
+                      "$ref": "number.json#/$defs/degree",
+                      "description": "In the spherical coordinate system, the azimuth angle is measured from orthogonal projextion of the direction on a reference plane such as the plane between the x- and y-axis of a cartestian coordinate system."
+                    }
                   },
-                  "azimuth": {
-                    "$ref": "number.json#/$defs/degree",
-                    "description": "In the spherical coordinate system, the azimuth angle is measured from orthogonal projextion of the direction on a reference plane such as the plane between the x- and y-axis of a cartestian coordinate system."
-                  }
+                  "additionalProperties": false,
+                  "required": ["polar", "azimuth"]
                 },
-                "additionalProperties": false,
-                "required": ["polar", "azimuth"]
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "xz": {
-                    "$ref": "number.json#/$defs/degree",
-                    "description": "If the z-axis is normal to the building envelope and the x-axis directs for example vertically upwards in a facade,then the angle xz is measured from the z-axis towards the x-axis. 80° is then from the facade almost vertically upwards and -10° means from the facade downwards, but almost horizontal."
+                {
+                  "type": "object",
+                  "properties": {
+                    "incidence": {
+                      "$ref": "number.json#/$defs/degree",
+                      "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
+                    }
                   },
-                  "yz": {
-                    "$ref": "number.json#/$defs/degree",
-                    "description": "If the z-axis is normal to the building envelope, the x-axis directs for example vertically upwards in a facade and the y-axis is horizontal in an right-handed coordinate system, then the angle yz is measured from the z-axis towards the y axis. From the facade looking to the exterior, 80° means a direction far right, almost parallel to the facade. -10° means from the facade to exterior slightly left, but almost perpendiculat to the facade."
-                  }
+                  "additionalProperties": false,
+                  "required": ["incidence"]
                 },
-                "additionalProperties": false,
-                "required": ["xz", "yz"]
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "incidence": {
-                    "$ref": "number.json#/$defs/degree",
-                    "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
-                  }
+                {
+                  "type": "object",
+                  "properties": {
+                    "profile": {
+                      "$ref": "number.json#/$defs/degree",
+                      "description": "If the sample has a profile angle symmetry, then the profile angle is sufficient to define the direction. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample."
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": ["profile"]
                 },
-                "additionalProperties": false,
-                "required": ["incidence"]
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "profile": {
-                    "$ref": "number.json#/$defs/degree",
-                    "description": "If the sample has a profile angle symmetry, then the profile angle is sufficient to define the direction. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample."
-                  }
-                },
-                "additionalProperties": false,
-                "required": ["profile"]
-              },
-              {
-                "title": "This should be used for cases with nearnormal or hemispherical incidence or emergence. For other cases, the other items of the array `direction` should be used.",
-                "type": "string",
-                "enum": ["diffuse", "hemispherical", "nearnormal"],
-                "description": "Nearnormal means a direction almost perpendicular to the sample surface. Hemispherical means all directions into the hemisphere above the sample surface, for example when there is the same irradiance from all directions. Diffuse means all directions except the nearnormal direction. For example, the nearnormal-hemispherical transmittance is always equal to the nearnormal-nearnormal transmittance plus the nearnormal-diffuse transmittance."
-              }
-            ]
-          },
-          {
-            "type": "object",
-            "properties": {
-              "formatting": {
-                "$ref": "common.json#/$defs/formatting",
-                "description": "The definition of the format of the array below needs to specify how the items of the array can be interpreted as a list of directions. For example, the format can define that the list consists of pairs of polar and azimuth angles."
-              },
-              "list": {
-                "type": "array",
-                "items": {
-                  "type": "number",
-                  "description": "In order to reduze the size of the data, multiple directions can be entered as a list/array."
-                },
-                "additionalItems": false,
-                "minItems": 1
-              }
+                {
+                  "title": "When the sample is irradiated (almost) perpedicular.",
+                  "type": "string",
+                  "enum": ["nearnormal"],
+                  "description": "Nearnormal is defined by CIE 130 as an incidence angle of 10° or less."
+                }
+              ]
             },
-            "additionalProperties": false,
-            "required": ["formatting", "list"]
-          }
-        ]
-      },
-      "additionalItems": false,
-      "minItems": 1
+            {
+              "title": "When the sample is irradiated from many directions at the same time.",
+              "type": "string",
+              "enum": ["hemispherical"],
+              "description": "Hemispherical means that the incidence arrives from all directions of the the hemisphere on the sample surface."
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "formatting": {
+              "$ref": "common.json#/$defs/formatting",
+              "description": "The definition of the format of the array below needs to specify how the items of the array can be interpreted as a list of directions. For example, the format can define that the list consists of pairs of polar and azimuth angles."
+            },
+            "list": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "description": "In order to reduze the size of the data, multiple directions can be entered as a list/array."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "required": ["formatting", "list"]
+        }
+      ]
+    },
+    "directionOfEmergence": {
+      "title": "The direction of radiation emerging from a sample either by transmission or reflection.",
+      "oneOf": [
+        {
+          "oneOf": [
+            {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "polar": {
+                      "$ref": "number.json#/$defs/degree",
+                      "description": "In the spherical coordinate system, the polar angle is measured from a fixed axis such as the z-axis of a cartesian coordinate system."
+                    },
+                    "azimuth": {
+                      "$ref": "number.json#/$defs/degree",
+                      "description": "In the spherical coordinate system, the azimuth angle is measured from orthogonal projextion of the direction on a reference plane such as the plane between the x- and y-axis of a cartestian coordinate system."
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": ["polar", "azimuth"]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "incidence": {
+                      "$ref": "number.json#/$defs/degree",
+                      "description": "If the sample has a rotational symmetry, then the incidence angle is sufficient to define the direction."
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": ["incidence"]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "profile": {
+                      "$ref": "number.json#/$defs/degree",
+                      "description": "If the sample has a profile angle symmetry, then the profile angle is sufficient to define the direction. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample."
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": ["profile"]
+                },
+                {
+                  "title": "When the emergence is (almost) perpedicular to the sample.",
+                  "type": "string",
+                  "enum": ["nearnormal"],
+                  "description": "Nearnormal is defined by CIE 130 as an incidence angle of 10° or less."
+                }
+              ]
+            },
+            {
+              "title": "When the emergence in many directions is treated as a sum.",
+              "type": "string",
+              "enum": ["diffuse", "hemispherical"],
+              "description": "Nearnormal is defined by CIE 130 as an incidence angle of 10° or less. Hemispherical means all directions into the hemisphere above the sample surface. Diffuse means all directions with an incidence angle larger than 10°."
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "formatting": {
+              "$ref": "common.json#/$defs/formatting",
+              "description": "The definition of the format of the array below needs to specify how the items of the array can be interpreted as a list of directions. For example, the format can define that the list consists of pairs of polar and azimuth angles."
+            },
+            "list": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "description": "In order to reduze the size of the data, multiple directions can be entered as a list/array."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "required": ["formatting", "list"]
+        }
+      ]
     },
     "polarisation": {
       "title": "Polarization is a characteristic of radiation which can influence the transmittance and the reflectance. Radiation can be polarized linearly or circular.",
