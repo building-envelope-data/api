@@ -134,10 +134,34 @@
         "contact": {
           "$ref": "#/$defs/contact",
           "description": "How to contact the institution"
+        },
+        "accreditations": {
+          "title": "An array of standards for which the institution is accredited.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/accreditation"
+          },
+          "additionalItems": false,
+          "minItems": 1
         }
       },
       "additionalProperties": false,
       "required": ["id"]
+    },
+    "accreditation": {
+      "type": "object",
+      "properties": {
+        "standard": {
+          "$ref": "common.json#/$defs/standard",
+          "description": "The standard for which an institution is accredited."
+        },
+        "approvals": {
+          "$ref": "common.json#/$defs/approvals",
+          "description": "Approval that the institution is accredited according to the standard."
+        }
+      },
+      "additionalProperties": false,
+      "required": ["standard", "approvals"]
     },
     "stakeholder": {
       "oneOf": [
