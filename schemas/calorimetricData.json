@@ -145,7 +145,7 @@
               "description": "The irradiance is determined on the surface of the sample. Positive irradiance means irradiance towards the sample. It is meaured in watts."
             },
             "direction": {
-              "$ref": "opticalData.json#/$defs/direction",
+              "$ref": "opticalData.json#/$defs/directionOfIncidence",
               "description": "The direction of the irradiance on the sample."
             }
           },

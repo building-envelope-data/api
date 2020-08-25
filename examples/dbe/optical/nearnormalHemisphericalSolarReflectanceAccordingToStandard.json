@@ -28,14 +28,14 @@
             "dataPoints": [
               {
                 "incidence": {
-                  "direction": ["nearnormal"],
+                  "direction": "nearnormal",
                   "wavelengths": "integral",
                   "range": {
                     "spectrum": "solar"
                   }
                 },
                 "emergence": {
-                  "direction": ["hemispherical"]
+                  "direction": "hemispherical"
                 },
                 "results": {
                   "reflectance": {
