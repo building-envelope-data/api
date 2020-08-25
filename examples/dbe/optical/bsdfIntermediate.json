@@ -15,62 +15,80 @@
             "dataPoints": [
               {
                 "incidence": {
-                  "direction": [
-                    {
-                      "formatting": {
-                        "id": {
-                          "uniqueId": "a636f9ea-96c3-45ea-8fff-cf7a32978546",
-                          "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                        },
-                        "name": {
-                          "en-US": "LBNL/Klems Full"
-                        },
-                        "version": {
-                          "uniqueId": "8a63be87-9931-4572-8eae-ba64077c3cee",
-                          "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                        },
-                        "reference": {
-                          "publication": {
-                            "identifiers": {
-                              "doi": "10.1016/j.solener.2017.05.065"
-                            }
+                  "direction": {
+                    "formatting": {
+                      "id": {
+                        "uniqueId": "a636f9ea-96c3-45ea-8fff-cf7a32978546",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      },
+                      "name": {
+                        "en-US": "LBNL/Klems Full"
+                      },
+                      "version": {
+                        "uniqueId": "8a63be87-9931-4572-8eae-ba64077c3cee",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      },
+                      "reference": {
+                        "publication": {
+                          "identifiers": {
+                            "doi": "10.1016/j.solener.2017.05.065"
                           }
                         }
-                      },
-                      "list": [0, 1, 0, 5, 10, 8, 5, 15, 10, 16]
-                    }
-                  ],
+                      }
+                    },
+                    "list": [
+                      0,
+                      1,
+                      0,
+                      5,
+                      10,
+                      8,
+                      5,
+                      15,
+                      10,
+                      16
+                    ]
+                  },
                   "wavelengths": "integral",
                   "range": {
                     "spectrum": "visible"
                   }
                 },
                 "emergence": {
-                  "direction": [
-                    {
-                      "formatting": {
-                        "id": {
-                          "uniqueId": "a636f9ea-96c3-45ea-8fff-cf7a32978546",
-                          "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                        },
-                        "name": {
-                          "en-US": "LBNL/Klems Full"
-                        },
-                        "version": {
-                          "uniqueId": "8a63be87-9931-4572-8eae-ba64077c3cee",
-                          "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                        },
-                        "reference": {
-                          "publication": {
-                            "identifiers": {
-                              "doi": "10.1016/j.solener.2017.05.065"
-                            }
+                  "direction": {
+                    "formatting": {
+                      "id": {
+                        "uniqueId": "a636f9ea-96c3-45ea-8fff-cf7a32978546",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      },
+                      "name": {
+                        "en-US": "LBNL/Klems Full"
+                      },
+                      "version": {
+                        "uniqueId": "8a63be87-9931-4572-8eae-ba64077c3cee",
+                        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      },
+                      "reference": {
+                        "publication": {
+                          "identifiers": {
+                            "doi": "10.1016/j.solener.2017.05.065"
                           }
                         }
-                      },
-                      "list": [0, 1, 0, 5, 10, 8, 5, 15, 10, 16]
-                    }
-                  ]
+                      }
+                    },
+                    "list": [
+                      0,
+                      1,
+                      0,
+                      5,
+                      10,
+                      8,
+                      5,
+                      15,
+                      10,
+                      16
+                    ]
+                  }
                 },
                 "results": {
                   "formatting": {

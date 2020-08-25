@@ -15,11 +15,11 @@
             "dataPoints": [
               {
                 "incidence": {
-                  "direction": ["nearnormal"],
+                  "direction": "nearnormal",
                   "wavelengths": 500
                 },
                 "emergence": {
-                  "direction": ["nearnormal"]
+                  "direction": "nearnormal"
                 },
                 "results": {
                   "transmittance": {
@@ -29,11 +29,11 @@
               },
               {
                 "incidence": {
-                  "direction": ["nearnormal"],
+                  "direction": "nearnormal",
                   "wavelengths": 1000
                 },
                 "emergence": {
-                  "direction": ["nearnormal"]
+                  "direction": "nearnormal"
                 },
                 "results": {
                   "transmittance": {
@@ -43,11 +43,11 @@
               },
               {
                 "incidence": {
-                  "direction": ["nearnormal"],
+                  "direction": "nearnormal",
                   "wavelengths": 1500
                 },
                 "emergence": {
-                  "direction": ["nearnormal"]
+                  "direction": "nearnormal"
                 },
                 "results": {
                   "transmittance": {

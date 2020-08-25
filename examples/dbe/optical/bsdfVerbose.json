@@ -15,24 +15,20 @@
             "dataPoints": [
               {
                 "incidence": {
-                  "direction": [
-                    {
-                      "polar": 10,
-                      "azimuth": 45
-                    }
-                  ],
+                  "direction": {
+                    "polar": 10,
+                    "azimuth": 45
+                  },
                   "wavelengths": "integral",
                   "range": {
                     "spectrum": "visible"
                   }
                 },
                 "emergence": {
-                  "direction": [
-                    {
-                      "polar": 20,
-                      "azimuth": 60
-                    }
-                  ]
+                  "direction": {
+                    "polar": 20,
+                    "azimuth": 60
+                  }
                 },
                 "results": {
                   "transmittance": {
@@ -42,24 +38,20 @@
               },
               {
                 "incidence": {
-                  "direction": [
-                    {
-                      "polar": 30,
-                      "azimuth": 15
-                    }
-                  ],
+                  "direction": {
+                    "polar": 30,
+                    "azimuth": 15
+                  },
                   "wavelengths": "integral",
                   "range": {
                     "spectrum": "visible"
                   }
                 },
                 "emergence": {
-                  "direction": [
-                    {
-                      "polar": 10,
-                      "azimuth": 70
-                    }
-                  ]
+                  "direction": {
+                    "polar": 10,
+                    "azimuth": 70
+                  }
                 },
                 "results": {
                   "transmittance": {

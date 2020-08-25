@@ -15,14 +15,14 @@
             "dataPoints": [
               {
                 "incidence": {
-                  "direction": ["nearnormal"],
+                  "direction": "nearnormal",
                   "wavelengths": "integral",
                   "range": {
                     "spectrum": "visible"
                   }
                 },
                 "emergence": {
-                  "direction": ["hemispherical"]
+                  "direction": "hemispherical"
                 },
                 "results": {
                   "reflectance": {
