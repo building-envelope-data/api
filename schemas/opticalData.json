@@ -308,6 +308,50 @@
         }
       ]
     },
+    "wavelengthUncertainty": {
+      "title": "The range can either define the bandwidth or amplification factor of measuring a single wavelength or an entire spectrum of wavenlengths which is measured at the same time.",
+      "oneOf": [
+        {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "bandwidth": {
+                  "$ref": "number.json#/$defs/nanometer",
+                  "description": "When `#/$defs/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/$defs/wavelengths/wavelength`."
+                }
+              },
+              "additionalProperties": true,
+              "required": ["bandwidth"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "amplificationFactor": {
+                  "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
+                  "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/$defs/wavelengths/wavelength`."
+                }
+              },
+              "additionalProperties": true,
+              "required": ["amplificationFactor"]
+            }
+          ]
+        }
+      ]
+    },
+    "wavelengthsIntegral": {
+      "title": "To define an integral over many wavelengths.",
+      "type": "object",
+      "properties": {
+        "integral": {
+          "type": "string",
+          "enum": ["infrared", "solar", "visible", "other"],
+          "description": "The enumeration defines over which spectrum the integral result is measured or calculated. For `other`, the spectrum MUST be defined under origin/method/reference. For all other, it SHOULD be defined there."
+        }
+      },
+      "additionalProperties": false,
+      "required": ["integral"]
+    },
     "wavelengths": {
       "title": "The verbose representation offers two options to define the wavelength of radiation: either as a single wavelength with the option of defining the uncertainty or as an integral over many wavelengths.",
       "oneOf": [
@@ -315,6 +359,32 @@
           "type": "object",
           "properties": {
             "wavelength": { "$ref": "#/$defs/singleWavelength" },
+            "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
+          },
+          "additionalProperties": false,
+          "required": ["wavelength"]
+        },
+        {
+          "$ref": "#/$defs/wavelengthsIntegral"
+        }
+      ]
+    },
+    "wavelengthsList": {
+      "title": "The intermediate representation offers two options to define the wavelengths of radiation: either as an array of wavelenghts or as an integral over many wavelengths.",
+      "oneOf": [
+        {
+          "title": "To define the wavelengths as a list with the option of defining the uncertainty",
+          "type": "object",
+          "properties": {
+            "wavelength": {
+              "type": "array",
+              "items": {
+                "$ref": "number.json#/$defs/nanometer",
+                "description": "An list of wavelengths, each in nanometers."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
             "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
           },
           "additionalProperties": false,
@@ -352,76 +422,6 @@
       },
       "additionalProperties": false,
       "required": ["wavelength"]
-    },
-    "wavelengthsIntegral": {
-      "title": "To define an integral over many wavelengths.",
-      "type": "object",
-      "properties": {
-        "integral": {
-          "type": "string",
-          "enum": ["infrared", "solar", "visible", "other"],
-          "description": "The enumeration defines over which spectrum the integral result is measured or calculated. For `other`, the spectrum MUST be defined under origin/method/reference. For all other, it SHOULD be defined there."
-        }
-      },
-      "additionalProperties": false,
-      "required": ["integral"]
-    },
-    "wavelengthsList": {
-      "title": "The intermediate representation offers two options to define the wavelengths of radiation: either as an array of wavelenghts or as an integral over many wavelengths.",
-      "oneOf": [
-        {
-          "title": "To define the wavelengths as a list with the option of defining the uncertainty",
-          "type": "object",
-          "properties": {
-            "wavelength": {
-              "type": "array",
-              "items": {
-                "$ref": "number.json#/$defs/nanometer",
-                "description": "An list of wavelengths, each in nanometers."
-              },
-              "additionalItems": false,
-              "minItems": 1
-            },
-            "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
-          },
-          "additionalProperties": false,
-          "required": ["wavelength"]
-        },
-        {
-          "$ref": "#/$defs/wavelengthsIntegral"
-        }
-      ]
-    },
-    "wavelengthUncertainty": {
-      "title": "The range can either define the bandwidth or amplification factor of measuring a single wavelength or an entire spectrum of wavenlengths which is measured at the same time.",
-      "oneOf": [
-        {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "bandwidth": {
-                  "$ref": "number.json#/$defs/nanometer",
-                  "description": "When `#/$defs/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/$defs/wavelengths/wavelength`."
-                }
-              },
-              "additionalProperties": true,
-              "required": ["bandwidth"]
-            },
-            {
-              "type": "object",
-              "properties": {
-                "amplificationFactor": {
-                  "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
-                  "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/$defs/wavelengths/wavelength`."
-                }
-              },
-              "additionalProperties": true,
-              "required": ["amplificationFactor"]
-            }
-          ]
-        }
-      ]
     },
     "incidence": {
       "title": "The incident radiation on a sample. It consists of the direction of the irradiance, its polarization, the wavelenthgs and the range of the wavelengths.",
