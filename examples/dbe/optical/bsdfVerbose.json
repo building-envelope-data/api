@@ -19,10 +19,7 @@
                     "polar": 10,
                     "azimuth": 45
                   },
-                  "wavelengths": "integral",
-                  "range": {
-                    "spectrum": "visible"
-                  }
+                  "wavelengths": { "integral": "visible" }
                 },
                 "emergence": {
                   "direction": {
@@ -42,10 +39,7 @@
                     "polar": 30,
                     "azimuth": 15
                   },
-                  "wavelengths": "integral",
-                  "range": {
-                    "spectrum": "visible"
-                  }
+                  "wavelengths": { "integral": "visible" }
                 },
                 "emergence": {
                   "direction": {

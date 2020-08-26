@@ -16,10 +16,7 @@
               {
                 "incidence": {
                   "direction": "nearnormal",
-                  "wavelengths": "integral",
-                  "range": {
-                    "spectrum": "visible"
-                  }
+                  "wavelengths": { "integral": "visible" }
                 },
                 "emergence": {
                   "direction": "hemispherical"
