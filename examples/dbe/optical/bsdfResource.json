@@ -11,10 +11,10 @@
           "explanation": {
             "en-US": "Example: bidirectional optical data in the most compressed form as file."
           },
-          "resource": {
+          "file": {
             "webAddress": "https://oc.ise.fraunhofer.de/ceef5dc1-2501-4ea9-a994-a1ae41ea1f11",
             "explanation": {
-              "en-US": "This file contains BSDF data about sample VX412005."
+              "en-US": "TODO:INSTEAD OF FILES, DATA SHALL BE EXCHANGED AS RESOURCE VIA GRAPHQL WHICH CAN ALSO BE A STREAM. WE NEED AN EXAMPLE FOR THAT. This file contains BSDF data about sample VX412005."
             },
             "formatting": {
               "id": {
