@@ -10,14 +10,11 @@
       "dataPoints": [
         {
           "incidence": {
-            "direction": ["nearnormal"],
-            "wavelengths": 500,
-            "range": {
-              "spectrum": "solar"
-            }
+            "direction": "nearnormal",
+            "wavelengths": { "integral": "solar" }
           },
           "emergence": {
-            "direction": ["nearnormal"]
+            "direction": "nearnormal"
           },
           "results": {
             "transmittance": {
@@ -34,19 +31,16 @@
       "data": [
         {
           "componentCharacteristics": {
-            "side": "symmetric"
+            "surface": "symmetric"
           },
           "dataPoints": [
             {
               "incidence": {
-                "direction": ["nearnormal"],
-                "wavelengths": 500,
-                "range": {
-                  "spectrum": "solar"
-                }
+                "direction": "nearnormal",
+                "wavelengths": { "integral": "solar" }
               },
               "emergence": {
-                "direction": ["nearnormal"]
+                "direction": "nearnormal"
               },
               "results": {
                 "transmittance": {
@@ -58,19 +52,16 @@
         },
         {
           "componentCharacteristics": {
-            "side": "prime"
+            "surface": "prime"
           },
           "dataPoints": [
             {
               "incidence": {
-                "direction": ["nearnormal"],
-                "wavelengths": 500,
-                "range": {
-                  "spectrum": "solar"
-                }
+                "direction": "nearnormal",
+                "wavelengths": { "integral": "solar" }
               },
               "emergence": {
-                "direction": ["nearnormal"]
+                "direction": "nearnormal"
               },
               "results": {
                 "transmittance": {

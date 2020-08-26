@@ -4,9 +4,11 @@
       "incidence": {
         "direction": "nearnormal",
         "wavelengths": {
-          "wavelength": 1,
-          "bandwidth": 4,
-          "amplificationFactor": 1
+          "wavelength": 500,
+          "uncertainty": {
+            "bandwidth": 4,
+            "amplificationFactor": 2
+          }
         }
       },
       "emergence": {
