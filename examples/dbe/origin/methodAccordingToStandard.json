@@ -16,9 +16,7 @@
               "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
               "reference": {
                 "standard": {
-                  "standardizerIds": [
-                    "2ed5024f-3b9a-4210-a65f-ecc3bf4a8f04"
-                  ],
+                  "standardizerIds": ["2ed5024f-3b9a-4210-a65f-ecc3bf4a8f04"],
                   "numeration": {
                     "mainNumber": 9050
                   }
@@ -31,10 +29,7 @@
               {
                 "incidence": {
                   "direction": "nearnormal",
-                  "wavelengths": "integral",
-                  "range": {
-                    "spectrum": "solar"
-                  }
+                  "wavelengths": { "integral": "solar" }
                 },
                 "emergence": {
                   "direction": "hemispherical"

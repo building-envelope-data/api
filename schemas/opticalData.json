@@ -325,14 +325,42 @@
         }
       ]
     },
+    "shiftedWavelengths": {
+      "title": "If the wavelength of the incidence is shifted for example by fluorescence to another wavelength, this wavelength can be defined with this schema together with its uncertainty in verbose representation.",
+      "type": "object",
+      "properties": {
+        "wavelength": { "$ref": "#/$defs/singleWavelength" },
+        "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
+      },
+      "additionalProperties": false,
+      "required": ["wavelength"]
+    },
+    "shiftedWavelengthsList": {
+      "title": "If the wavelength of the incidence is shifted for example by fluorescence to another wavelength, this wavelength can be defined with this schema together with its uncertainty in intermediate representation.",
+      "type": "object",
+      "properties": {
+        "wavelength": {
+          "type": "array",
+          "items": {
+            "$ref": "number.json#/$defs/nanometer",
+            "description": "An list of wavelengths, each in nanometers."
+          },
+          "additionalItems": false,
+          "minItems": 1
+        },
+        "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
+      },
+      "additionalProperties": false,
+      "required": ["wavelength"]
+    },
     "wavelengthsIntegral": {
       "title": "To define an integral over many wavelengths.",
       "type": "object",
       "properties": {
         "integral": {
           "type": "string",
-          "enum": ["infrared", "solar", "visible"],
-          "description": "The enumeration defines over which spectrum the integral result is measured or calculated. For further specification of the spectrum, please search for the applied standard under origin/method/reference/standard."
+          "enum": ["infrared", "solar", "visible", "other"],
+          "description": "The enumeration defines over which spectrum the integral result is measured or calculated. For `other`, the spectrum MUST be defined under origin/method/reference. For all other, it SHOULD be defined there."
         }
       },
       "additionalProperties": false,
@@ -349,7 +377,7 @@
               "type": "array",
               "items": {
                 "$ref": "number.json#/$defs/nanometer",
-                "description": "An list of wavelengths, each in nanometers. If the uncertainty is identical, it can be defined under `#/$defs/wavelengthRange/bandwidth`. If the uncertainty is not identical and relevant, the array should not be used."
+                "description": "An list of wavelengths, each in nanometers."
               },
               "additionalItems": false,
               "minItems": 1
@@ -406,7 +434,8 @@
           "$ref": "#/$defs/polarisation"
         },
         "wavelengths": {
-          "$ref": "#/$defs/wavelengths"
+          "$ref": "#/$defs/wavelengths",
+          "description": "Used to define the wavelengths of the optical data regardless whether the incidence or the emergence was split into smaller spectra."
         }
       },
       "additionalProperties": false,
@@ -423,14 +452,15 @@
           "$ref": "#/$defs/polarisation"
         },
         "wavelengths": {
-          "$ref": "#/$defs/wavelengthsList"
+          "$ref": "#/$defs/wavelengthsList",
+          "description": "Used to define the wavelengths of the optical data regardless whether the incidence or the emergence was split into smaller spectra."
         }
       },
       "additionalProperties": false,
       "required": ["direction", "wavelengths"]
     },
     "emergence": {
-      "title": "The emergent radiation on a sample. It consists of the direction of the emergence, its polarization, the wavelenthgs and the range of the wavelengths.",
+      "title": "The emergent radiation on a sample in verbose representation. It consists of the direction of the emergence and the options to define its polarization and a wavelength shifted by flourescence.",
       "type": "object",
       "properties": {
         "direction": {
@@ -439,15 +469,15 @@
         "polarisation": {
           "$ref": "#/$defs/polarisation"
         },
-        "wavelengths": {
-          "$ref": "#/$defs/wavelengths"
+        "shiftedWavelengths": {
+          "$ref": "#/$defs/shiftedWavelengths"
         }
       },
       "additionalProperties": false,
-      "required": ["direction", "wavelengths"]
+      "required": ["direction"]
     },
     "emergenceList": {
-      "title": "The emergent radiation on a sample. It consists of the direction of the emergence, its polarization, the wavelenthgs and the range of the wavelengths.",
+      "title": "The emergent radiation on a sample in intermediate representation. It consists of the directions of the emergence and the option to define the polarization of the emergence and wavelengths shifted by flourescence.",
       "type": "object",
       "properties": {
         "direction": {
@@ -456,12 +486,12 @@
         "polarisation": {
           "$ref": "#/$defs/polarisation"
         },
-        "wavelengths": {
-          "$ref": "#/$defs/wavelengthsList"
+        "shiftedWavelengths": {
+          "$ref": "#/$defs/shiftedWavelengthsList"
         }
       },
       "additionalProperties": false,
-      "required": ["direction", "wavelengths"]
+      "required": ["direction"]
     },
     "componentCharacteristics": {
       "title": "Parameters for optical measurements and simulations. The parameters are later used either as optical/characteristics or optical/variables.",

@@ -43,10 +43,7 @@
               {
                 "incidence": {
                   "direction": "nearnormal",
-                  "wavelengths": "integral",
-                  "range": {
-                    "spectrum": "solar"
-                  }
+                  "wavelengths": { "integral": "solar" }
                 },
                 "emergence": {
                   "direction": "hemispherical"

@@ -16,7 +16,7 @@
               {
                 "incidence": {
                   "direction": "nearnormal",
-                  "wavelengths": 500
+                  "wavelengths": { "wavelength": 500 }
                 },
                 "emergence": {
                   "direction": "nearnormal"
@@ -30,7 +30,7 @@
               {
                 "incidence": {
                   "direction": "nearnormal",
-                  "wavelengths": 1000
+                  "wavelengths": { "wavelength": 1000 }
                 },
                 "emergence": {
                   "direction": "nearnormal"
@@ -44,7 +44,7 @@
               {
                 "incidence": {
                   "direction": "nearnormal",
-                  "wavelengths": 1500
+                  "wavelengths": { "wavelength": 1500 }
                 },
                 "emergence": {
                   "direction": "nearnormal"
