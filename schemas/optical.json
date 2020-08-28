@@ -40,8 +40,16 @@
           "description": "From when and until when the data is valid."
         },
         "data": {
-          "$ref": "opticalData.json",
-          "description": "The measured or simulated data"
+          "oneOf": [
+            {
+              "$ref": "opticalData.json",
+              "description": "The measured or simulated data in JSON"
+            },
+            {
+              "$ref": "common.json#/$defs/file",
+              "description": "The measured or simulated data in some data format as HTTP resource fetchable with GET requests."
+            }
+          ]
         }
       },
       "additionalProperties": false,
