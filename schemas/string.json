@@ -16,8 +16,8 @@
     },
     "fileOrDirectoryName": {
       "type": "string",
-      "pattern": "^[0-9a-z-._]+$",
-      "description": "File and directory names consist of characters that work in popular file systems in Linux, Windows, and Mac OSX."
+      "pattern": "^[a-z0-9-._]+$",
+      "description": "File and directory names consisting of characters that work in popular file systems in Linux, Windows, and Mac OS X."
     },
     "extensibleMarkupLanguageDocument": {
       "type": "string",
