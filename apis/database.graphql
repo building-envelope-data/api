@@ -808,8 +808,6 @@ Best practices for accepting approvals by databases:
 * Check that the signature is valid for the given response.
 TODO Add GraphQL examples where possible.
 
-TODO Note that a represenative's key must be stored within the relation because one user may represent multiple institutions. Does this conflict with the fact that keyservers associate keys with email addresses and that these are associated with users (and currently there is only one per user)?
-
 Note that GnuPG is compliant with
 [OpenPGP Message Format](https://tools.ietf.org/html/rfc4880).
 
