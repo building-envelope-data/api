@@ -6,7 +6,8 @@ data format specifications.
 It follows best practices for
 * [Global Object Identification](https://graphql.org/learn/global-object-identification/)
   as exemplified in
-  [GraphQL Server Specification: Object Identification](https://relay.dev/docs/en/graphql-server-specification.html#object-identification),
+  [GraphQL Server Specification: Object Identification](https://relay.dev/docs/en/graphql-server-specification.html#object-identification)
+  (see also [GraphQL Global Object Identification Specification](https://relay.dev/graphql/objectidentification.htm)),
   and
 * [Pagination](https://graphql.org/learn/pagination/),
   by adhering to the
@@ -18,9 +19,6 @@ Global object identifiers as requird by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
 are exposed by the property `dataId`. In essence, `id` is the Base64-encoded
 concatenation of `dataId` and the requested locale.
-
-TODO Is this separation really required or could we just use `dataId` as `id`? Having both makes things unnecessarily complicated.
-TODO Instead of `dataId` we could use `_id` or `uuid` or ...?
 
 For interoperability with the "metabase", implementations must serve HTTP
 requests as elaborated on
@@ -180,18 +178,18 @@ type Query {
   node(id: ID!): Node!
   data(dataId: Uuid!, timestamp: DateTime, locale: Locale): Data!
   calorimetricData(
-    dataId: Uuid!
+    calorimetricDataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): CalorimetricData!
   hygrothermalData(
-    dataId: Uuid!
+    hygrothermalDataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): HygrothermalData!
-  opticalData(dataId: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
+  opticalData(opticalDataId: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
   photovoltaicData(
-    dataId: Uuid!
+    photovoltaicDataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): PhotovoltaicData!
@@ -430,19 +428,9 @@ interface Data {
   timestamp: DateTime!
 
   """
-  Database identifier issued by the metabase. The database's meta data can be
-  obtained by sending the GraphQL query
-  `database(id: ..., timestamp: ...) { ... }`
-  to the metabase.
-
-  TODO Remove the database identifier. Add it on the fly in the metabase.
-  """
-  databaseId: Uuid!
-
-  """
   Component identifier issued by the metabase. The components's meta data can
   be obtained by sending the GraphQL query
-  `component(id: ..., timestamp: ...) { ... }`
+  `component(componentId: ..., timestamp: ...) { ... }`
   to the metabase.
   """
   componentId: Uuid!
@@ -465,7 +453,7 @@ interface Data {
   """
   Creator identifier issued by the metabase. The creator's meta data can be
   obtained by sending the GraphQL query
-  `stakeholder(id: ..., timestamp: ...) { ... }`
+  `stakeholder(stakeholderId: ..., timestamp: ...) { ... }`
   to the metabase.
   """
   creatorId: Uuid!
@@ -632,7 +620,7 @@ type AppliedMethod {
   """
   Method identifier of method that was applied by the creator on the source
   data. The method's meta data can be obtained by sending the GraphQL query
-  `method(id: ..., timestamp: ...) { ... }`
+  `method(methodId: ..., timestamp: ...) { ... }`
   to the metabase.
   """
   methodId: Uuid!
@@ -656,7 +644,7 @@ type AppliedMethodWithImplicitSources {
   """
   Method identifier of method that was applied by the creator on the source
   data. The method's meta data can be obtained by sending the GraphQL query
-  `method(id: ..., timestamp: ...) { ... }`
+  `method(methodId: ..., timestamp: ...) { ... }`
   to the metabase.
   """
   methodId: Uuid!
@@ -710,8 +698,6 @@ Approval with
 [GnuPG](https://www.gnupg.org)
 signature.
 
-TODO Have a website like [How to verify your Ubuntu download](https://ubuntu.com/tutorials/how-to-verify-ubuntu#1-overview) with the explanations in an easier to digest format than below.
-
 To verify an approval,
 1. install [GnuPG](https://www.gnupg.org),
 2. save the approved response in a file `response.json`,
@@ -719,38 +705,39 @@ To verify an approval,
 4. * retrieve the public key for the given fingerprint from the metabase's
      keyserver by running
      `gpg --keyserver keyserver.buildingenvelopedata.org --recv-keys <FINGERPRINT>`
-     and make sure that the key belongs to the approver and was allowed for
-     signing at a given timestamp by sending a request of the form
+     (or
+     `gpg --fetch-keys https://buildingenvelopedata.org/gnuPgKey/<FINGERPRINT>.asc`)
+     and make sure that the key belongs to the approver, was allowed for
+     signing, and was valid at a given timestamp by sending a request of the
+     form
      ```
-     database(id: ..., timestamp: <TIMESTAMP>) {
-       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+     database(databaseId: ..., timestamp: <TIMESTAMP>) {
+       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
      }
      ```
      or
      ```
-     stakeholder(id: ..., timestamp: <TIMESTAMP>) {
-       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+     stakeholder(stakeholderId: ..., timestamp: <TIMESTAMP>) {
+       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
      }
      ```
-   * or retrieve the allowed-for-signing key from the metabase's GraphQL
-     endpoint by sending a request of the form
+   * or retrieve the allowed-for-signing and valid-at-the-given-time key from
+     the metabase's GraphQL endpoint by sending a request of the form
      ```
-     database(id: ..., timestamp: <TIMESTAMP>) {
-       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+     database(databaseId: ..., timestamp: <TIMESTAMP>) {
+       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
      }
      ```
      or
      ```
-     stakeholder(id: ..., timestamp: <TIMESTAMP>) {
-       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+     stakeholder(stakeholderId: ..., timestamp: <TIMESTAMP>) {
+       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
      }
      ```
      save the ASCII-armored key in a file `my.gpg.asc`, and import it by running
      `gpg --import ./my.gpg.asc`.
-   * TODO Should we also support fetching keys via `gpg --fetch-keys https://buildingenvelopedata.org/gnuPgKey/<FINGERPRINT>.asc`?
    where `<TIMESTAMP>` is the timestamp at which the approval was created (for
    response approvals this is the timestamp of the response).
-   TODO Verify that the key was valid at the timestamp (valid in the sense of the date-time validity range)? Should `status: ALLOWED` imply validity?
 5. verify the signature with the public key by running
    `gpg --verify response.json.asc response.json`.
 
@@ -820,10 +807,6 @@ Best practices for accepting approvals by databases:
 * Check that the signature is valid for the given response.
 TODO Add GraphQL examples where possible.
 
-TODO Should we MISuse the [trust model](https://www.gnupg.org/gph/en/manual.html#AEN335) to reflect whether a key of a representative may be used for signing in the name of an institution. This would make it possible for an institution to revoke trust from a representative when he or she leaves the institution. And this revocation would be visible on the keyserver (I suppose) and not just within the metabase's meta information accessible via GraphQL. For example, the metabase has its own signing key, it trusts an institution's primary representative (the one with the most power), and that representative trusts other representatives. Now, if one of the other representatives leaves, the primary one can revoke trust in that other representative. If the primary representative hands its power over to some other one and leaves, the metabase revokes trust in the primary one and adds trust to the other one. The web of trust from the metabase to some representative would thus make sure that the representative is to be trusted to sign for the institution. ..... No, we should not. The trust model is meant for something else, namely whether a public key itself really belongs to the person it says it does.
-
-TODO Note that a represenative's key must be stored within the relation because one user may represent multiple institutions. Does this conflict with the fact that keyservers associate keys with email addresses and that these are associated with users (and currently there is only one per user)?
-
 Note that GnuPG is compliant with
 [OpenPGP Message Format](https://tools.ietf.org/html/rfc4880).
 
@@ -867,7 +850,10 @@ interface Approval {
 }
 
 """
-Approval of data by third party with GnuPG signature.
+Approval of data by third party with GnuPG signature that is created at some
+point in time. It becomes invalid when the approved data changes, even if the
+change is but a spelling-error correction in meta data like the description.
+In that case, the third party needs to re-create its approval.
 
 Steps to approve data:
 1. An institution adds data to a database.
@@ -880,9 +866,13 @@ Storing the GraphQL query with the signature is necessary because it needs to be
 known exactly which JSON data was signed.
 
 Note that the query to be signed only includes paths that are part of the data
-and not part of some associates. TODO Elaborate.
-
-TODO Come up with a better name like `ThirdPartyApproval`, `FixApproval` or a combination.
+and not part of some associates, which are actually all paths in the present
+GraphQL schema. However, the actual GraphQL schema of the database is in
+general an extension of the present GraphQL schema and may have paths to some
+associates like data format specifics of HTTP resources that it may fetch from
+the "metabase" and provides for convenience. These specifics should not be
+sigend as a change of, for example, the data format description would
+invalidate the signature although the data itself did not change.
 """
 type DataApproval implements Approval {
   """
@@ -903,7 +893,7 @@ type DataApproval implements Approval {
   """
   GraphQL query whose response is signed. The query includes the parameter
   `timestamp`, for example,
-  `opticalData(id: ..., timestamp: ...) { ... }`,
+  `opticalData(opticalDataId: ..., timestamp: ...) { ... }`,
   as otherwise it is not reproducible. It does neither include other data
   approvals by third parties nor the response approval by the database.  All
   other fields and sub-fields of this GraphQL schema at the time given by
@@ -952,7 +942,7 @@ type DataApproval implements Approval {
   """
   Approver identifier issued by the metabase. The approver's meta data can be
   obtained by sending the GraphQL query
-  `stakeholder(id: ..., timestamp: ...) { ... }`
+  `stakeholder(stakeholderId: ..., timestamp: ...) { ... }`
   to the metabase.
   """
   approverId: Uuid!
@@ -961,9 +951,7 @@ type DataApproval implements Approval {
 """
 Approval of response by database with
 [GnuPG](https://www.gnupg.org)
-signature.
-
-TODO Come up with a better name like `DatabaseApproval`, `DynamicApproval` or a combination.
+signature created on the fly.
 """
 type ResponseApproval implements Approval {
   """
@@ -1040,7 +1028,7 @@ type GetHttpsResource {
   by literally replacing `sha256sum` in the above commands by
   `shasum --algorithm 256`.
 
-  In Windows (TODO Test the following steps in Windows!),
+  In Windows,
   1. install
      [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
   2. save the message body in a file, say `message.body`.
@@ -1077,7 +1065,7 @@ type GetHttpsResource {
   [200](https://tools.ietf.org/html/rfc7231#section-6.3.1).
   The identifier is issued by the metabase. The format's meta data can be
   obtained by sending the GraphQL query
-  `dataFormat(id: ..., timestamp: ...) { ... }`
+  `dataFormat(dataFormatId: ..., timestamp: ...) { ... }`
   to the metabase.
 
   The data format consists of a
@@ -1149,7 +1137,7 @@ type FileMetaInformation {
   """
   Identifier of the data format.  The identifier is issued by the metabase. The
   format's meta data can be obtained by sending the GraphQL query
-  `dataFormat(id: ..., timestamp: ...) { ... }`
+  `dataFormat(dataFormatId: ..., timestamp: ...) { ... }`
   to the metabase.
 
   The data format consists of a
@@ -1183,8 +1171,6 @@ interface GetHttpsResourceVertex {
 
 """
 A root resource is the direct result of some measurement or simulation.
-
-TODO Using trees in this representation is problematic because it is unknown at query time how deep the tree is. We could represent it as an array of vertices with references to parents (or children) through array indices or names. That representation would not force a tree structure though.
 """
 type GetHttpsResourceRoot implements GetHttpsResourceVertex {
   resource: GetHttpsResource!
