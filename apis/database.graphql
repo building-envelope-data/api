@@ -1024,7 +1024,7 @@ type GetHttpsResource {
   by literally replacing `sha256sum` in the above commands by
   `shasum --algorithm 256`.
 
-  In Windows (TODO Test the following steps in Windows!),
+  In Windows,
   1. install
      [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
   2. save the message body in a file, say `message.body`.
