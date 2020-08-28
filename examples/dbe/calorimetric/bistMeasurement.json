@@ -8,15 +8,9 @@
             "uniqueId": "da951012-29b7-4b9a-890c-4f4514f676b3",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
-          "name": {
-            "en-US": "Example BIST collector"
-          },
-          "explanation": {
-            "en-US": "Example: a calorimetric data set of a buildling-integrated solar thermal element."
-          },
-          "warnings": {
-            "en-US": "No warnings"
-          },
+          "name": "Example BIST collector",
+          "explanation": "Example: a calorimetric data set of a buildling-integrated solar thermal element.",
+          "warnings": "No warnings",
           "origin": {
             "sources": [
               {
@@ -24,9 +18,7 @@
                   "uniqueId": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
                   "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                 },
-                "name": {
-                  "en-US": "Fraunhofer ISE"
-                }
+                "name": "Fraunhofer ISE"
               }
             ]
           },

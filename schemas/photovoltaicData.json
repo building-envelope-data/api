@@ -60,7 +60,7 @@
                 "description": "The id represents one type of photovoltaic cells."
               },
               "explanation": {
-                "$ref": "string.json#/$defs/internationalString",
+                "$ref": "string.json#/$defs/string",
                 "description": "This string can explain the cell to humans."
               },
               "efficiency": {
@@ -229,7 +229,7 @@
                 "description": "The id represents one type of diodes which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
               },
               "explanation": {
-                "$ref": "string.json#/$defs/internationalString",
+                "$ref": "string.json#/$defs/string",
                 "description": "This string can explain the cell to humans."
               }
             },
@@ -276,7 +276,7 @@
                 "description": "The id represents one type of connections which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
               },
               "explanation": {
-                "$ref": "string.json#/$defs/internationalString",
+                "$ref": "string.json#/$defs/string",
                 "description": "This string can explain the connection type to humans."
               },
               "resistancePerLength": {
@@ -372,7 +372,7 @@
                     "description": "The id represents one type of junction boxes which is used in the the photovoltaic module."
                   },
                   "name": {
-                    "$ref": "string.json#/$defs/internationalString",
+                    "$ref": "string.json#/$defs/string",
                     "description": "The name of the junctionBox."
                   }
                 },
@@ -431,7 +431,7 @@
                     "description": "The id represents the type of connector with which the connection cable is connected to another photovoltaic module."
                   },
                   "name": {
-                    "$ref": "string.json#/$defs/internationalString",
+                    "$ref": "string.json#/$defs/string",
                     "description": "The name of the connector type."
                   },
                   "additionalProperties": false,
@@ -1228,7 +1228,7 @@
                 "description": "The id represents one type of diodes which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
               },
               "explanation": {
-                "$ref": "string.json#/$defs/internationalString",
+                "$ref": "string.json#/$defs/string",
                 "description": "This string can explain the cell to humans."
               }
             },
@@ -1275,7 +1275,7 @@
                 "description": "The id represents one type of connections which is used in the the photovoltaic system. The id is used to define connections to other parts of the photovoltaic system"
               },
               "explanation": {
-                "$ref": "string.json#/$defs/internationalString",
+                "$ref": "string.json#/$defs/string",
                 "description": "This string can explain the connection type to humans."
               },
               "crossSection": {

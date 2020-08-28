@@ -109,11 +109,11 @@
           "required": []
         },
         "title": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "The title of the publication"
         },
         "abstract": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "The abstract of the publication"
         },
         "authors": {
@@ -138,11 +138,11 @@
           "description": "The id represents this specific standard."
         },
         "title": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "The full title of the standard"
         },
         "abstract": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "The abstract of the standard"
         },
         "standardizerIds": {
@@ -183,7 +183,7 @@
           "description": "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
         },
         "section": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "The section of the standard to which the reference refers to."
         }
       },
@@ -256,7 +256,7 @@
           "description": "The URL of the website where the approval can be verified."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "Explanation how the approval can be verified"
         }
       },
@@ -306,7 +306,7 @@
           "description": "A SHA-256 hash is used to identify the file."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "An explanation of the file."
         },
         "formatting": {
@@ -346,11 +346,11 @@
           "description": "The abbreviation of the format in Latin alphabet."
         },
         "name": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "The full name of the format"
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "The decription of the format"
         },
         "version": {
@@ -370,7 +370,7 @@
       "type": "object",
       "properties": {
         "name": {
-          "$ref": "string.json#/$defs/internationalString",
+          "$ref": "string.json#/$defs/string",
           "description": "The name of the colour in common language"
         },
         "CRI": {

@@ -2,20 +2,14 @@
   "components": [
     {
       "id": "d0d2f01f-04f2-4d68-bf93-aa7148eb1150",
-      "name": {
-        "en-US": "Solar Control Glazing"
-      },
-      "explanation": {
-        "en-US": "Koester uses this solar control glazing in combination with Retrolux blinds as example."
-      },
+      "name": "Solar Control Glazing",
+      "explanation": "Koester uses this solar control glazing in combination with Retrolux blinds as example.",
       "optical": [
         {
           "id": {
             "uniqueId": "4e463235-88f0-4a04-890d-8aa05879c519"
           },
-          "explanation": {
-            "en-US": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf."
-          },
+          "explanation": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
           "dataPoints": [
             {
               "incidence": {
@@ -44,9 +38,7 @@
           "id": {
             "uniqueId": "f68e3624-7319-419a-aecb-da0564ee185d"
           },
-          "explanation": {
-            "en-US": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf."
-          },
+          "explanation": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
           "results": [
             {
               "area": {
@@ -62,20 +54,14 @@
     },
     {
       "id": "15988a2c-0d0c-11ea-8d71-362b9e155667",
-      "name": {
-        "en-US": "Heat Control Glazing"
-      },
-      "explanation": {
-        "en-US": "Koester uses this heat control glazing in combination with Retrolux blinds as example."
-      },
+      "name": "Heat Control Glazing",
+      "explanation": "Koester uses this heat control glazing in combination with Retrolux blinds as example.",
       "calorimetric": [
         {
           "id": {
             "uniqueId": "15988df6-0d0c-11ea-8d71-362b9e155667"
           },
-          "explanation": {
-            "en-US": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf."
-          },
+          "explanation": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
           "results": [
             {
               "area": {

@@ -8,9 +8,7 @@
             "uniqueId": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
-          "explanation": {
-            "en-US": "Example: bidirectional optical data in an intermediate form between the most verbose form and the most compressed form as a file."
-          },
+          "explanation": "Example: bidirectional optical data in an intermediate form between the most verbose form and the most compressed form as a file.",
           "data": {
             "dataPoints": [
               {
@@ -19,9 +17,7 @@
                     "uniqueId": "a636f9ea-96c3-45ea-8fff-cf7a32978546",
                     "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                   },
-                  "name": {
-                    "en-US": "LBNL/Klems Full"
-                  },
+                  "name": "LBNL/Klems Full",
                   "version": {
                     "uniqueId": "8a63be87-9931-4572-8eae-ba64077c3cee",
                     "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
@@ -47,9 +43,7 @@
                       "uniqueId": "a636f9ea-96c3-45ea-8fff-cf7a32978546",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
-                    "name": {
-                      "en-US": "LBNL/Klems Full"
-                    },
+                    "name": "LBNL/Klems Full",
                     "version": {
                       "uniqueId": "8a63be87-9931-4572-8eae-ba64077c3cee",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
