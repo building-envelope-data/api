@@ -430,16 +430,6 @@ interface Data {
   timestamp: DateTime!
 
   """
-  Database identifier issued by the metabase. The database's meta data can be
-  obtained by sending the GraphQL query
-  `database(id: ..., timestamp: ...) { ... }`
-  to the metabase.
-
-  TODO Remove the database identifier. Add it on the fly in the metabase.
-  """
-  databaseId: Uuid!
-
-  """
   Component identifier issued by the metabase. The components's meta data can
   be obtained by sending the GraphQL query
   `component(id: ..., timestamp: ...) { ... }`
