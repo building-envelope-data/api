@@ -17,7 +17,7 @@
               "description": "The id represents the hygrothermal data set."
             },
             "explanation": {
-              "$ref": "string.json#/$defs/string",
+              "type": "string",
               "description": "An explanation with more details about the hygrothermal data in natural language."
             },
             "formatting": {

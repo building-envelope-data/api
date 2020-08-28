@@ -13,15 +13,15 @@
           "description": "The id represents a specific calorimetric data set."
         },
         "name": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "If the calorimetric data set has a name, it can be indicated here."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "This string can explain humans the calorimetric data set."
         },
         "warnings": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "Some calorimetric data may easily be misinterpreted. The warnings contain critical information for users to avoid typical mistakes."
         },
         "origin": {

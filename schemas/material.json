@@ -17,7 +17,7 @@
           "description": "This id represents a specific version of the material."
         },
         "name": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "The name of the material"
         },
         "abbreviation": {
@@ -25,7 +25,7 @@
           "description": "The abbreviation of the material in Latin alphabet."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "An explanation with more details about the component"
         },
         "chemicalElements": {

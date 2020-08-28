@@ -13,7 +13,7 @@
           "description": "Phone number of an institution or person"
         },
         "address": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "Postal address of an institution or person"
         },
         "email": {
@@ -39,7 +39,7 @@
           "description": "This id represents the stakeholder."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "This explanation can specify the role of the stakeholder."
         }
       },
@@ -87,7 +87,7 @@
               "description": "The affiliation of the person"
             },
             "name": {
-              "$ref": "string.json#/$defs/string",
+              "type": "string",
               "description": "The name of the affiliation of the person"
             }
           },
@@ -111,7 +111,7 @@
           "description": "This id represents the institution"
         },
         "name": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "The name of the institution"
         },
         "abbreviation": {
@@ -119,13 +119,13 @@
           "description": "The abbreviation of the institution in Latin alphabet."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "The explanation can further explain the role of the institution."
         },
         "publicKey": {
           "type": "array",
           "items": {
-            "$ref": "string.json#/$defs/string",
+            "type": "string",
             "description": "A public key of the institution for cryptograpic signatures for approvals."
           },
           "additionalItems": false,
@@ -218,7 +218,7 @@
           "description": "Abbreviation of the standardizer in Latin alphabet."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "This explanation can specify the role of the institution which has created a standard."
         }
       },

@@ -13,7 +13,7 @@
           "description": "This id represents the component. A component as a general product has usually a central identifier. One specific instance of this component in a specific building has usually a decentral identifier."
         },
         "name": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "The name of the component"
         },
         "abbreviation": {
@@ -21,7 +21,7 @@
           "description": "The abbreviation of the component in Latin alphabet"
         },
         "explanation": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "An explanation with more details about the component"
         },
         "version": {
@@ -202,11 +202,11 @@
           "description": "This id represents a specific version of a component."
         },
         "name": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "If the version of the component has a specific name or version number, it can be entered here."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/string",
+          "type": "string",
           "description": "Here the version can be described in free text."
         },
         "roles": {

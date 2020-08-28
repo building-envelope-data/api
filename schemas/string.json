@@ -4,10 +4,6 @@
   "title": "string types",
   "description": "Types for strings",
   "$defs": {
-    "string": {
-      "type": "string",
-      "description": "If a string depends in no case on a language and if no restrictions on the string are possible, then this type is used."
-    },
     "latinStringWithHyphens": {
       "type": "string",
       "pattern": "^[A-Za-z-]+$",
