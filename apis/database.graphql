@@ -808,8 +808,6 @@ Best practices for accepting approvals by databases:
 * Check that the signature is valid for the given response.
 TODO Add GraphQL examples where possible.
 
-TODO Should we MISuse the [trust model](https://www.gnupg.org/gph/en/manual.html#AEN335) to reflect whether a key of a representative may be used for signing in the name of an institution. This would make it possible for an institution to revoke trust from a representative when he or she leaves the institution. And this revocation would be visible on the keyserver (I suppose) and not just within the metabase's meta information accessible via GraphQL. For example, the metabase has its own signing key, it trusts an institution's primary representative (the one with the most power), and that representative trusts other representatives. Now, if one of the other representatives leaves, the primary one can revoke trust in that other representative. If the primary representative hands its power over to some other one and leaves, the metabase revokes trust in the primary one and adds trust to the other one. The web of trust from the metabase to some representative would thus make sure that the representative is to be trusted to sign for the institution. ..... No, we should not. The trust model is meant for something else, namely whether a public key itself really belongs to the person it says it does.
-
 TODO Note that a represenative's key must be stored within the relation because one user may represent multiple institutions. Does this conflict with the fact that keyservers associate keys with email addresses and that these are associated with users (and currently there is only one per user)?
 
 Note that GnuPG is compliant with
