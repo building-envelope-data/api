@@ -1171,8 +1171,6 @@ interface GetHttpsResourceVertex {
 
 """
 A root resource is the direct result of some measurement or simulation.
-
-TODO Using trees in this representation is problematic because it is unknown at query time how deep the tree is. We could represent it as an array of vertices with references to parents (or children) through array indices or names. That representation would not force a tree structure though.
 """
 type GetHttpsResourceRoot implements GetHttpsResourceVertex {
   resource: GetHttpsResource!
