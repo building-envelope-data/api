@@ -850,7 +850,10 @@ interface Approval {
 }
 
 """
-Approval of data by third party with GnuPG signature.
+Approval of data by third party with GnuPG signature that is created at some
+point in time. It becomes invalid when the approved data changes, even if the
+change is but a spelling-error correction in meta data like the description.
+In that case, the third party needs to re-create its approval.
 
 Steps to approve data:
 1. An institution adds data to a database.
@@ -870,8 +873,6 @@ associates like data format specifics of HTTP resources that it may fetch from
 the "metabase" and provides for convenience. These specifics should not be
 sigend as a change of, for example, the data format description would
 invalidate the signature although the data itself did not change.
-
-TODO Come up with a better name like `ThirdPartyApproval`, `FixApproval` or a combination.
 """
 type DataApproval implements Approval {
   """
@@ -950,9 +951,7 @@ type DataApproval implements Approval {
 """
 Approval of response by database with
 [GnuPG](https://www.gnupg.org)
-signature.
-
-TODO Come up with a better name like `DatabaseApproval`, `DynamicApproval` or a combination.
+signature created on the fly.
 """
 type ResponseApproval implements Approval {
   """
