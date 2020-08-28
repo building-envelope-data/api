@@ -863,7 +863,13 @@ Storing the GraphQL query with the signature is necessary because it needs to be
 known exactly which JSON data was signed.
 
 Note that the query to be signed only includes paths that are part of the data
-and not part of some associates. TODO Elaborate.
+and not part of some associates, which are actually all paths in the present
+GraphQL schema. However, the actual GraphQL schema of the database is in
+general an extension of the present GraphQL schema and may have paths to some
+associates like data format specifics of HTTP resources that it may fetch from
+the "metabase" and provides for convenience. These specifics should not be
+sigend as a change of, for example, the data format description would
+invalidate the signature although the data itself did not change.
 
 TODO Come up with a better name like `ThirdPartyApproval`, `FixApproval` or a combination.
 """
