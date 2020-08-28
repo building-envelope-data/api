@@ -17,7 +17,7 @@
           "description": "The name of the building"
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinStringWithDigitsAndPunctuation",
+          "$ref": "string.json#/$defs/latinWithDigitsAndPunctuation",
           "description": "The abbreviation of the building"
         },
         "explanation": {

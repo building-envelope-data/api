@@ -1,18 +1,18 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/string.json",
-  "title": "string types",
-  "description": "Types for strings",
+  "title": "String type definitions",
+  "description": "Definitions of string types",
   "$defs": {
-    "latinStringWithHyphens": {
+    "latinWithHyphens": {
       "type": "string",
       "pattern": "^[A-Za-z-]+$",
-      "description": "If a string is limited to characters of the Latin alphabet and hyphens, then this type is used."
+      "description": "Non-empty string with Latin alphabet characters or the hyphen character."
     },
-    "latinStringWithDigitsAndPunctuation": {
+    "latinWithDigitsAndPunctuation": {
       "type": "string",
       "pattern": "^[A-Za-z0-9\\]\\[!\"#$%&'()*+,./:;<=>?@\\\\^_`{|}~-]+$",
-      "description": "If a string is limited to characters of the Latin alphabet, digits and punctuation, then this type is used."
+      "description": "Non-empty string with Latin alphabet, digit, and punctuation characters."
     },
     "fileOrDirectoryName": {
       "type": "string",
@@ -22,12 +22,12 @@
     "extensibleMarkupLanguageDocument": {
       "type": "string",
       "pattern": "^[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]+$",
-      "description": "Extensible Markup Language (XML) document serialized as JSON string"
+      "description": "Non-empty Extensible Markup Language (XML) document serialized as non-empty string."
     },
     "sha256Hash": {
       "type": "string",
-      "pattern": "^[a-f0-9]{64}$",
-      "description": "This type should be used for hashes according to SHA-256."
+      "pattern": "^[A-Fa-f0-9]{64}$",
+      "description": "SHA-256 hash values."
     }
   }
 }
