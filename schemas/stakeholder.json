@@ -54,30 +54,9 @@
           "$ref": "identifier.json#/$defs/central",
           "description": "This id represents the person"
         },
-        "names": {
-          "type": "object",
-          "properties": {
-            "family": {
-              "type": "array",
-              "items": {
-                "$ref": "string.json#/$defs/latinWithHyphens"
-              },
-              "additionalItems": false,
-              "minItems": 1,
-              "description": "The family name(s) also known as surname(s) or last name(s) of a person in Latin alphabet."
-            },
-            "given": {
-              "type": "array",
-              "items": {
-                "$ref": "string.json#/$defs/latinWithHyphens"
-              },
-              "additionalItems": false,
-              "minItems": 0,
-              "description": "The given name(s) also known as forname(s) or first name(s) of a person in Latin alphabet."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["family"]
+        "fullName": {
+          "type": "string",
+          "description": "Full name"
         },
         "institution": {
           "type": "object",
