@@ -66,6 +66,8 @@ introduces custom scalar types for creating precise type-safe GraphQL schemas.
 We took some inspiration from
 [GitHub GraphQL API](https://docs.github.com/en/graphql).
 """
+scalar Schema
+
 schema {
   query: Query
 }
