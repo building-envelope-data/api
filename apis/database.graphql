@@ -705,38 +705,39 @@ To verify an approval,
 4. * retrieve the public key for the given fingerprint from the metabase's
      keyserver by running
      `gpg --keyserver keyserver.buildingenvelopedata.org --recv-keys <FINGERPRINT>`
-     and make sure that the key belongs to the approver and was allowed for
-     signing at a given timestamp by sending a request of the form
+     (or
+     `gpg --fetch-keys https://buildingenvelopedata.org/gnuPgKey/<FINGERPRINT>.asc`)
+     and make sure that the key belongs to the approver, was allowed for
+     signing, and was valid at a given timestamp by sending a request of the
+     form
      ```
      database(databaseId: ..., timestamp: <TIMESTAMP>) {
-       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
      }
      ```
      or
      ```
      stakeholder(stakeholderId: ..., timestamp: <TIMESTAMP>) {
-       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
      }
      ```
-   * or retrieve the allowed-for-signing key from the metabase's GraphQL
-     endpoint by sending a request of the form
+   * or retrieve the allowed-for-signing and valid-at-the-given-time key from
+     the metabase's GraphQL endpoint by sending a request of the form
      ```
      database(databaseId: ..., timestamp: <TIMESTAMP>) {
-       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
      }
      ```
      or
      ```
      stakeholder(stakeholderId: ..., timestamp: <TIMESTAMP>) {
-       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED)
+       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
      }
      ```
      save the ASCII-armored key in a file `my.gpg.asc`, and import it by running
      `gpg --import ./my.gpg.asc`.
-   * TODO Should we also support fetching keys via `gpg --fetch-keys https://buildingenvelopedata.org/gnuPgKey/<FINGERPRINT>.asc`?
    where `<TIMESTAMP>` is the timestamp at which the approval was created (for
    response approvals this is the timestamp of the response).
-   TODO Verify that the key was valid at the timestamp (valid in the sense of the date-time validity range)? Should `status: ALLOWED` imply validity?
 5. verify the signature with the public key by running
    `gpg --verify response.json.asc response.json`.
 
