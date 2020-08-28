@@ -700,8 +700,6 @@ Approval with
 [GnuPG](https://www.gnupg.org)
 signature.
 
-TODO Have a website like [How to verify your Ubuntu download](https://ubuntu.com/tutorials/how-to-verify-ubuntu#1-overview) with the explanations in an easier to digest format than below.
-
 To verify an approval,
 1. install [GnuPG](https://www.gnupg.org),
 2. save the approved response in a file `response.json`,
