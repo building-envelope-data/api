@@ -17,7 +17,7 @@
           "description": "The name of the component"
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinWithDigitsAndPunctuation",
+          "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the component in Latin alphabet"
         },
         "explanation": {

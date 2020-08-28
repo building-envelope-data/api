@@ -115,7 +115,7 @@
           "description": "The name of the institution"
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinWithDigitsAndPunctuation",
+          "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the institution in Latin alphabet."
         },
         "explanation": {
@@ -214,7 +214,7 @@
           "description": "This id represents the institution which has created a standard."
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinWithDigitsAndPunctuation",
+          "$ref": "string.json#/$defs/abbreviation",
           "description": "Abbreviation of the standardizer in Latin alphabet."
         },
         "explanation": {

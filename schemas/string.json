@@ -4,15 +4,10 @@
   "title": "String type definitions",
   "description": "Definitions of string types",
   "$defs": {
-    "latinWithHyphens": {
+    "abbreviation": {
       "type": "string",
-      "pattern": "^[A-Za-z-]+$",
-      "description": "Non-empty string with Latin alphabet characters or the hyphen character."
-    },
-    "latinWithDigitsAndPunctuation": {
-      "type": "string",
-      "pattern": "^[A-Za-z0-9\\]\\[!\"#$%&'()*+,./:;<=>?@\\\\^_`{|}~-]+$",
-      "description": "Non-empty string with Latin alphabet, digit, and punctuation characters."
+      "pattern": "^.+$",
+      "description": "Non-empty string."
     },
     "fileOrDirectoryName": {
       "type": "string",
