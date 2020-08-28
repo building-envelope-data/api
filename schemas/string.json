@@ -19,10 +19,10 @@
       "pattern": "^[0-9a-z-._]+$",
       "description": "File and directory names consist of characters that work in popular file systems in Linux, Windows, and Mac OSX."
     },
-    "xmlString": {
+    "extensibleMarkupLanguageDocument": {
       "type": "string",
       "pattern": "^[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]+$",
-      "description": "If a string is limited to valid characters in XML, then this type is used."
+      "description": "Extensible Markup Language (XML) document serialized as JSON string"
     },
     "sha256Hash": {
       "type": "string",
