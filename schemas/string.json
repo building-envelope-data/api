@@ -14,10 +14,10 @@
       "pattern": "^[A-Za-z0-9\\]\\[!\"#$%&'()*+,./:;<=>?@\\\\^_`{|}~-]+$",
       "description": "If a string is limited to characters of the Latin alphabet, digits and punctuation, then this type is used."
     },
-    "fileName": {
+    "fileOrDirectoryName": {
       "type": "string",
-      "pattern": "^[A-Za-z0-9\\]\\[!#$%&'()+,.;=@^_`{}~-]+$",
-      "description": "File names must consist of printable characters which work on Linux, Winudows and Mac OSX."
+      "pattern": "^[0-9a-z-._]+$",
+      "description": "File and directory names consist of characters that work in popular file systems in Linux, Windows, and Mac OSX."
     },
     "xmlString": {
       "type": "string",
