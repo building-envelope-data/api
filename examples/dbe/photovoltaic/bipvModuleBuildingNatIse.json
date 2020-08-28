@@ -75,7 +75,7 @@
                     "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
                     "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                   },
-                  "explanation":  "Connection type is unknown.",
+                  "explanation":  "Connection type is unknown."
                 }
               ],
               "connectionPattern": "series",
