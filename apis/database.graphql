@@ -6,7 +6,8 @@ data format specifications.
 It follows best practices for
 * [Global Object Identification](https://graphql.org/learn/global-object-identification/)
   as exemplified in
-  [GraphQL Server Specification: Object Identification](https://relay.dev/docs/en/graphql-server-specification.html#object-identification),
+  [GraphQL Server Specification: Object Identification](https://relay.dev/docs/en/graphql-server-specification.html#object-identification)
+  (see also [GraphQL Global Object Identification Specification](https://relay.dev/graphql/objectidentification.htm)),
   and
 * [Pagination](https://graphql.org/learn/pagination/),
   by adhering to the
