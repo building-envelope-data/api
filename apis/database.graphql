@@ -20,7 +20,6 @@ property `id` and universally unique identifiers as issued by the "metabase"
 are exposed by the property `dataId`. In essence, `id` is the Base64-encoded
 concatenation of `dataId` and the requested locale.
 
-TODO Is this separation really required or could we just use `dataId` as `id`? Having both makes things unnecessarily complicated.
 TODO Instead of `dataId` we could use `_id` or `uuid` or ...?
 
 For interoperability with the "metabase", implementations must serve HTTP
