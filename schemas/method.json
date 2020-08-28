@@ -12,11 +12,11 @@
           "description": "This id represents the method which is specified below."
         },
         "name": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "The name of the method."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "Here the method can be described in free text."
         },
         "categories": {
@@ -114,11 +114,11 @@
           "description": "The id represents the data source."
         },
         "name": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "A data set can have a name."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "This string can explain the source data for humans."
         },
         "database": {
@@ -138,11 +138,11 @@
           "description": "The database is identified by its API endpoint."
         },
         "name": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "The name of the database"
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "A description of the database"
         },
         "owner": {
@@ -166,7 +166,7 @@
           "description": "For which timespan the database is or was available"
         },
         "internalComment": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "If there are any specific issues with a database, the administrators can use this string."
         }
       },

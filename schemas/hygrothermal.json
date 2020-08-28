@@ -12,15 +12,15 @@
           "description": "The id represents the hygrothermal data set."
         },
         "name": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "If the hygrothermal data set has a name, it can be indicated here."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "This string can explain humans the hygrothermal data set."
         },
         "warnings": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "Some hygrothermal data may easily be misinterpreted. The warnings contain critical information for users to avoid typical mistakes."
         },
         "origin": {

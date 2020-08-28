@@ -547,7 +547,7 @@
               "description": "A reference can be used to define which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define a prime direction which is used to calculate the azimuth of the direction of incidence. Ideally, the manufacturer should define the surfaces and prime direction of a component in one document and optical data should refer to this document."
             },
             "explanation": {
-              "$ref": "string.json#/$defs/internationalString",
+              "type": "string",
               "description": "This string can explain which side of the component is defined as nonPrime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior. The string should also define which side of the component is the top side and which is the bottom side."
             }
           },

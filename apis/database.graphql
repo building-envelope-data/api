@@ -1133,7 +1133,7 @@ type FileMetaInformation {
   systems like various Linux distributions, Windows, and Mac OS X, and it is
   usable. Because of various idiosyncrasies of different file systems and
   command-line interpreters, each component matches the regular expression
-  `^[0-9a-z-._]$`. For some reasons see
+  `^[a-z0-9-._]+$`. For some reasons see
   [Answer 1](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os/358861#358861)
   and
   [Answer 2](https://superuser.com/questions/358855/what-characters-are-safe-in-cross-platform-file-names-for-linux-windows-and-os/748264#748264)

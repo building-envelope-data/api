@@ -5,12 +5,8 @@
         "uniqueId": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
         "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
       },
-      "name": {
-        "en-US": "Fronius Galvo 3.0"
-      },
-      "explanation": {
-        "en-US": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany."
-      },
+      "name": "Fronius Galvo 3.0",
+      "explanation": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany.",
       "photovoltaic": [
         {
           "data": {

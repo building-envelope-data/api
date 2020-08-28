@@ -8,9 +8,7 @@
             "uniqueId": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
-          "explanation": {
-            "en-US": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050."
-          },
+          "explanation": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050.",
           "origin": {
             "method": {
               "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",

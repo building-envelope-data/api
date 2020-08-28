@@ -17,15 +17,15 @@
           "description": "This id represents a specific version of the material."
         },
         "name": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "The name of the material"
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinStringWithDigitsAndPunctuation",
+          "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the material in Latin alphabet."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "An explanation with more details about the component"
         },
         "chemicalElements": {

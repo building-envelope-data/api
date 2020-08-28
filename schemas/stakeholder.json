@@ -13,7 +13,7 @@
           "description": "Phone number of an institution or person"
         },
         "address": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "Postal address of an institution or person"
         },
         "email": {
@@ -39,7 +39,7 @@
           "description": "This id represents the stakeholder."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "This explanation can specify the role of the stakeholder."
         }
       },
@@ -54,30 +54,9 @@
           "$ref": "identifier.json#/$defs/central",
           "description": "This id represents the person"
         },
-        "names": {
-          "type": "object",
-          "properties": {
-            "family": {
-              "type": "array",
-              "items": {
-                "$ref": "string.json#/$defs/latinStringWithHyphens"
-              },
-              "additionalItems": false,
-              "minItems": 1,
-              "description": "The family name(s) also known as surname(s) or last name(s) of a person in Latin alphabet."
-            },
-            "given": {
-              "type": "array",
-              "items": {
-                "$ref": "string.json#/$defs/latinStringWithHyphens"
-              },
-              "additionalItems": false,
-              "minItems": 0,
-              "description": "The given name(s) also known as forname(s) or first name(s) of a person in Latin alphabet."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["family"]
+        "fullName": {
+          "type": "string",
+          "description": "Full name"
         },
         "institution": {
           "type": "object",
@@ -87,7 +66,7 @@
               "description": "The affiliation of the person"
             },
             "name": {
-              "$ref": "string.json#/$defs/internationalString",
+              "type": "string",
               "description": "The name of the affiliation of the person"
             }
           },
@@ -111,21 +90,21 @@
           "description": "This id represents the institution"
         },
         "name": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "The name of the institution"
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinStringWithDigitsAndPunctuation",
+          "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the institution in Latin alphabet."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "The explanation can further explain the role of the institution."
         },
         "publicKey": {
           "type": "array",
           "items": {
-            "$ref": "string.json#/$defs/string",
+            "type": "string",
             "description": "A public key of the institution for cryptograpic signatures for approvals."
           },
           "additionalItems": false,
@@ -214,11 +193,11 @@
           "description": "This id represents the institution which has created a standard."
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinStringWithDigitsAndPunctuation",
+          "$ref": "string.json#/$defs/abbreviation",
           "description": "Abbreviation of the standardizer in Latin alphabet."
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "This explanation can specify the role of the institution which has created a standard."
         }
       },

@@ -13,15 +13,15 @@
           "description": "This id represents the building. The identifier is issued from www.buildings.com and allows searches for all data about this building over the whole lifetime of the building."
         },
         "name": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "The name of the building"
         },
         "abbreviation": {
-          "$ref": "string.json#/$defs/latinStringWithDigitsAndPunctuation",
+          "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the building"
         },
         "explanation": {
-          "$ref": "string.json#/$defs/internationalString",
+          "type": "string",
           "description": "An explanation with more details about the building"
         },
         "version": {
@@ -205,7 +205,7 @@
                   "description": "The IFC file with full data about the building can be downloaded for some time from this URL."
                 },
                 "explanation": {
-                  "$ref": "string.json#/$defs/internationalString",
+                  "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 },
                 "formatting": {
@@ -243,7 +243,7 @@
                   "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
                 },
                 "explanation": {
-                  "$ref": "string.json#/$defs/internationalString",
+                  "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 },
                 "formatting": {
@@ -277,7 +277,7 @@
                   "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
                 },
                 "explanation": {
-                  "$ref": "string.json#/$defs/internationalString",
+                  "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 }
               },
@@ -329,7 +329,7 @@
       "required": []
     },
     "address": {
-      "$ref": "string.json#/$defs/internationalString",
+      "type": "string",
       "description": "The address for example of a building, of an institution or person. It consists for example of the street, the city, the county, the postal code and the country."
     }
   },

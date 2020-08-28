@@ -1,50 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/string.json",
-  "title": "string types",
-  "description": "Types for strings",
+  "title": "String type definitions",
+  "description": "Definitions of string types",
   "$defs": {
-    "string": {
+    "abbreviation": {
       "type": "string",
-      "description": "If a string depends in no case on a language and if no restrictions on the string are possible, then this type is used."
+      "pattern": "^.+$",
+      "description": "Non-empty string."
     },
-    "latinStringWithHyphens": {
+    "fileOrDirectoryName": {
       "type": "string",
-      "pattern": "^[A-Za-z-]+$",
-      "description": "If a string is limited to characters of the Latin alphabet and hyphens, then this type is used."
+      "pattern": "^[a-z0-9-._]+$",
+      "description": "File and directory names consisting of characters that work in popular file systems in Linux, Windows, and Mac OS X."
     },
-    "latinStringWithDigitsAndPunctuation": {
-      "type": "string",
-      "pattern": "^[A-Za-z0-9\\]\\[!\"#$%&'()*+,./:;<=>?@\\\\^_`{|}~-]+$",
-      "description": "If a string is limited to characters of the Latin alphabet, digits and punctuation, then this type is used."
-    },
-    "fileName": {
-      "type": "string",
-      "pattern": "^[A-Za-z0-9\\]\\[!#$%&'()+,.;=@^_`{}~-]+$",
-      "description": "File names must consist of printable characters which work on Linux, Winudows and Mac OSX."
-    },
-    "xmlString": {
+    "extensibleMarkupLanguageDocument": {
       "type": "string",
       "pattern": "^[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]+$",
-      "description": "If a string is limited to valid characters in XML, then this type is used."
+      "description": "Non-empty Extensible Markup Language (XML) document serialized as non-empty string."
     },
     "sha256Hash": {
       "type": "string",
-      "pattern": "^[a-f0-9]{64}$",
-      "description": "This type should be used for hashes according to SHA-256."
-    },
-    "internationalString": {
-      "type": "object",
-      "properties": {
-        "en-US": {
-          "$ref": "#/$defs/string",
-          "description": "A string in American English."
-        }
-      },
-      "additionalProperties": false,
-      "minProperties": 1,
-      "required": ["en-US"],
-      "description": "It has been decided to keep everything in English so far. If other languages are included at a later stage, this structure makes it easy."
+      "pattern": "^[A-Fa-f0-9]{64}$",
+      "description": "SHA-256 hash values."
     }
   }
 }
