@@ -230,7 +230,7 @@
           "title": "When the emergence in many directions is treated as a sum.",
           "type": "string",
           "enum": ["diffuse", "hemispherical"],
-          "description": "Nearnormal is defined by CIE 130 as an incidence angle of 10° or less. Hemispherical means all directions into the hemisphere above the sample surface. Diffuse means all directions with an incidence angle larger than 10°."
+          "description": "Hemispherical means all directions into the hemisphere above the sample surface. Diffuse means all directions with an incidence angle larger than 10°."
         },
         {
           "type": "object",
