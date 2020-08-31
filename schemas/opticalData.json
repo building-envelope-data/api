@@ -289,10 +289,6 @@
       "minProperties": 1,
       "required": []
     },
-    "singleWavelength": {
-      "$ref": "number.json#/$defs/nanometer",
-      "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/$defs/wavelengthRange/bandwidth`."
-    },
     "wavelengthUncertainty": {
       "title": "The range can either define the bandwidth or amplification factor of measuring a single wavelength or an entire spectrum of wavenlengths which is measured at the same time.",
       "anyOf": [
@@ -320,6 +316,18 @@
         }
       ]
     },
+    "uncertainWavelength": {
+      "type": "object",
+      "properties": {
+        "wavelength": {
+          "$ref": "number.json#/$defs/nanometer",
+          "description": "A single wavelength in nanometers. If necessary, its uncertainty can be specified with `uncertainty`."
+        },
+        "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
+      },
+      "additionalProperties": false,
+      "required": ["wavelength"]
+    },
     "wavelengthsIntegral": {
       "title": "To define an integral over many wavelengths.",
       "type": "object",
@@ -337,13 +345,7 @@
       "title": "The verbose representation offers two options to define the wavelength of radiation: either as a single wavelength with the option of defining the uncertainty or as an integral over many wavelengths.",
       "oneOf": [
         {
-          "type": "object",
-          "properties": {
-            "wavelength": { "$ref": "#/$defs/singleWavelength" },
-            "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
-          },
-          "additionalProperties": false,
-          "required": ["wavelength"]
+          "$ref": "#/$defs/uncertainWavelength"
         },
         {
           "$ref": "#/$defs/wavelengthsIntegral"
@@ -378,13 +380,7 @@
     },
     "shiftedWavelengths": {
       "title": "If the wavelength of the incidence is shifted for example by fluorescence to another wavelength, this wavelength can be defined with this schema together with its uncertainty in verbose representation.",
-      "type": "object",
-      "properties": {
-        "wavelength": { "$ref": "#/$defs/singleWavelength" },
-        "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
-      },
-      "additionalProperties": false,
-      "required": ["wavelength"]
+      "$ref": "#/$defs/uncertainWavelength"
     },
     "shiftedWavelengthsList": {
       "title": "If the wavelength of the incidence is shifted for example by fluorescence to another wavelength, this wavelength can be defined with this schema together with its uncertainty in intermediate representation.",
