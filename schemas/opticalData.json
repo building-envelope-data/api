@@ -356,14 +356,14 @@
       "title": "The intermediate representation offers two options to define the wavelengths of radiation: either as an array of wavelenghts or as an integral over many wavelengths.",
       "oneOf": [
         {
-          "title": "To define the wavelengths as a list with the option of defining the uncertainty",
+          "title": "Wavelengths with uncertainty",
           "type": "object",
           "properties": {
             "wavelength": {
               "type": "array",
               "items": {
                 "$ref": "number.json#/$defs/nanometer",
-                "description": "An list of wavelengths, each in nanometers."
+                "description": "Wavelength in nanometer."
               },
               "additionalItems": false,
               "minItems": 1
@@ -390,7 +390,7 @@
           "type": "array",
           "items": {
             "$ref": "number.json#/$defs/nanometer",
-            "description": "An list of wavelengths, each in nanometers."
+            "description": "Wavelength in nanometer."
           },
           "additionalItems": false,
           "minItems": 1
