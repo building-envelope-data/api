@@ -8,6 +8,7 @@
       "oneOf": [
         {
           "type": "object",
+          "description": "Internal node of the data tree with only leaf data point nodes. It specifies component characteristics that are identical for child data points.",
           "properties": {
             "componentCharacteristics": {
               "$ref": "#/$defs/componentCharacteristics",
@@ -28,6 +29,7 @@
         },
         {
           "type": "object",
+          "description": "Internal node of the data tree. It specifies component characteristics that are identical for descendant data points.",
           "properties": {
             "componentCharacteristics": {
               "$ref": "#/$defs/componentCharacteristics",
