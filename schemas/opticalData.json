@@ -12,7 +12,7 @@
           "properties": {
             "componentCharacteristics": {
               "$ref": "#/$defs/componentCharacteristics",
-              "description": "If one of the characteristics of a component is valid for all 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined within the `dataPoints`."
+              "description": "Component characteristics that are identical for all child data points in `dataPoints`. Such characteristics must be specified here and not in child data points in `dataPoints[*]/componentCharacteristics`."
             },
             "dataPoints": {
               "title": "Optical data points",
@@ -33,7 +33,7 @@
           "properties": {
             "componentCharacteristics": {
               "$ref": "#/$defs/componentCharacteristics",
-              "description": "If one of the characteristics of a component is valid for all 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined in `data[*]/componentCharacteristics'."
+              "description": "Component characteristics that are identical for descendant data points in `data`. Such characteristics must be specified here and not in descendant nodes in `data` like `data[*]/componentCharacteristics` or `data[*]/dataPoints[*]/componentCharacteristics`."
             },
             "data": {
               "title": "Optical data",
@@ -63,7 +63,7 @@
             },
             "componentCharacteristics": {
               "$ref": "#/$defs/componentCharacteristics",
-              "description": "If a characteristic of a component varies between 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined at a higher level of `data`."
+              "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, must be specified in their parent node."
             },
             "emergence": {
               "$ref": "#/$defs/emergence",
@@ -91,7 +91,7 @@
             },
             "componentCharacteristics": {
               "$ref": "#/$defs/componentCharacteristics",
-              "description": "If a characteristic of a component varies between 'dataPoints', then this characteristic MUST be defined here and MUST NOT be defined at a higher level of `data`."
+              "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, must be specified in their parent node."
             },
             "emergence": {
               "$ref": "#/$defs/emergenceList",
