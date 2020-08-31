@@ -290,41 +290,33 @@
       "required": []
     },
     "singleWavelength": {
-      "oneOf": [
-        {
-          "$ref": "number.json#/$defs/nanometer",
-          "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/$defs/wavelengthRange/bandwidth`."
-        }
-      ]
+      "$ref": "number.json#/$defs/nanometer",
+      "description": "A single wavelength in nanometers. If necessary, the uncertainty can be defined under `#/$defs/wavelengthRange/bandwidth`."
     },
     "wavelengthUncertainty": {
       "title": "The range can either define the bandwidth or amplification factor of measuring a single wavelength or an entire spectrum of wavenlengths which is measured at the same time.",
-      "oneOf": [
+      "anyOf": [
         {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "bandwidth": {
-                  "$ref": "number.json#/$defs/nanometer",
-                  "description": "When `#/$defs/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/$defs/wavelengths/wavelength`."
-                }
-              },
-              "additionalProperties": true,
-              "required": ["bandwidth"]
-            },
-            {
-              "type": "object",
-              "properties": {
-                "amplificationFactor": {
-                  "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
-                  "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/$defs/wavelengths/wavelength`."
-                }
-              },
-              "additionalProperties": true,
-              "required": ["amplificationFactor"]
+          "type": "object",
+          "properties": {
+            "bandwidth": {
+              "$ref": "number.json#/$defs/nanometer",
+              "description": "When `#/$defs/wavelengths/wavelength` is defined as the center, bandwidth defines is the range of wavelengths around it. It can be interpreted as the uncertainty of the `#/$defs/wavelengths/wavelength`."
             }
-          ]
+          },
+          "additionalProperties": true,
+          "required": ["bandwidth"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "amplificationFactor": {
+              "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
+              "description": "range/bandwidth is difficult to measure. Often it is easier to determine the amplificationFactor as a measure for the uncertainty of the `#/$defs/wavelengths/wavelength`."
+            }
+          },
+          "additionalProperties": true,
+          "required": ["amplificationFactor"]
         }
       ]
     },
