@@ -327,7 +327,7 @@
         "integral": {
           "type": "string",
           "enum": ["infrared", "solar", "visible", "other"],
-          "description": "The enumeration defines over which spectrum the integral result is measured or calculated. For `other`, the spectrum MUST be defined under origin/method/reference. For all other, it SHOULD be defined there."
+          "description": "The enumeration defines over which spectrum the integral result is measured or calculated. For `other`, the spectrum MUST be defined under `origin/method/reference`. For all other, it SHOULD be defined there."
         }
       },
       "additionalProperties": false,
