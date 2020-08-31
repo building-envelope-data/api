@@ -1,10 +1,12 @@
 # Building Envelopes Data
 
 [JSON Schema](https://json-schema.org)
-schemas for building envelopes data. Schemas are located in the directory
-`./schemas`, test JSON files that are supposed to be valid or invalid in the
-directories `./tests/valid` and `./tests/invalid`, and examples in the
-directory `./examples`.
+and
+[GraphQL](https://graphql.org)
+schemas for building envelopes data. JSON schemas are located in the directory
+`./schemas`, GraphQL schemas in the directory `./apis`, test JSON files that
+are supposed to be valid or invalid in the directories `./tests/valid` and
+`./tests/invalid`, and examples in the directory `./examples`.
 
 ## On your Linux machine
 
@@ -58,7 +60,10 @@ directory `./examples`.
    The targets `name`, `tag`,
    `build`, `remove`, and `shell` can be used to interface with Docker. The
    other ones can be used within `bash` inside a Docker container:
-   - `compile` validates the schemas against the JSON Schema meta-schemas,
+   - `compile` validates the JSON schemas against the
+      [JSON Schema meta-schemas](https://json-schema.org/specification-links.html#draft-7)
+      and the GraphQL schemas against the
+      [GrahpQL specification](http://spec.graphql.org/June2018/),
    - `test` validates the tests against the schemas,
    - `example` validates the examples against the schemas,
    - `format` formats source files, and
