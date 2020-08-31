@@ -1,0 +1,18 @@
+{
+  "id": "bcba3ff9-8cb7-4524-943a-786d301d39ef",
+  "name": "Method to calculate derived measurement values",
+  "explanation": "dummy",
+  "categories": ["calculation"],
+  "developer": {
+    "id": "bcba3ff9-8cb7-4524-943a-786d301d39e2"
+  },
+  "created": "2007-03-13T20:20:39+00:00",
+  "valid": {
+    "from": "2007-03-13T20:20:39+00:00",
+    "until": "2008-03-13T20:20:39+00:00"
+  },
+  "available": {
+    "from": "2007-03-13T20:20:39+00:00",
+    "until": "2008-03-13T20:20:39+00:00"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "components": [
+    {
+      "id": {},
+      "explanation": "This is the smallest JSON data which is allowed by the JSON schema."
+    }
+  ]
+}

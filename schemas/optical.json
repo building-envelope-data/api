@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/optical.json",
+  "title": "optical data",
+  "description": "Optical data sets of building envelope components. The results of all important optical measurements and simulations shall be possible to exchange. At the same time, this general format wants to limit the number of the possible representations of one data set to make it easy to develop software which interprets the data correctly.",
+  "$defs": {
+    "optical": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "The id represents the optical data set."
+        },
+        "name": {
+          "type": "string",
+          "description": "If the optical data set has a name, it can be indicated here."
+        },
+        "explanation": {
+          "type": "string",
+          "description": "This string can explain humans the optical data set."
+        },
+        "warnings": {
+          "type": "string",
+          "description": "Some optical data may easily be misinterpreted. The warnings contain critical information for users to avoid typical mistakes."
+        },
+        "origin": {
+          "$ref": "method.json#/$defs/origin",
+          "description": "For traceability, the origin of the data can be defined."
+        },
+        "approvals": {
+          "$ref": "common.json#/$defs/approvals",
+          "description": "If the optical data is approved by stakeholders, a signature can be provided."
+        },
+        "created": {
+          "$ref": "common.json#/$defs/created",
+          "description": "When the optical data was created."
+        },
+        "valid": {
+          "$ref": "common.json#/$defs/valid",
+          "description": "From when and until when the data is valid."
+        },
+        "data": {
+          "oneOf": [
+            {
+              "$ref": "opticalData.json",
+              "description": "The measured or simulated data in JSON"
+            },
+            {
+              "$ref": "common.json#/$defs/file",
+              "description": "The measured or simulated data in some data format as HTTP resource fetchable with GET requests."
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    }
+  },
+  "$ref": "#/$defs/optical"
+}

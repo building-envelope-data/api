@@ -1,0 +1,23 @@
+{
+  "dataPoints": [
+    {
+      "incidence": {
+        "direction": "nearnormal",
+        "wavelengths": {
+          "wavelength": 500
+        }
+      },
+      "emergence": {
+        "direction": "nearnormal",
+        "shiftedWavelengths": {
+          "wavelength": 600
+        }
+      },
+      "results": {
+        "transmittance": {
+          "uncertainValue": 0.85
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "componentCharacteristics": {
+    "instrumentSignature": 42
+  },
+  "data": [
+    {
+      "componentCharacteristics": {
+        "normalization": "absolute"
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": "nearnormal",
+            "wavelengths": { "integral": "solar" }
+          },
+          "emergence": {
+            "direction": "nearnormal"
+          },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.85
+            }
+          }
+        }
+      ]
+    },
+    {
+      "componentCharacteristics": {
+        "normalization": "relative"
+      },
+      "data": [
+        {
+          "componentCharacteristics": {
+            "surface": "symmetric"
+          },
+          "dataPoints": [
+            {
+              "incidence": {
+                "direction": "nearnormal",
+                "wavelengths": { "integral": "solar" }
+              },
+              "emergence": {
+                "direction": "nearnormal"
+              },
+              "results": {
+                "transmittance": {
+                  "uncertainValue": 0.85
+                }
+              }
+            }
+          ]
+        },
+        {
+          "componentCharacteristics": {
+            "surface": "prime"
+          },
+          "dataPoints": [
+            {
+              "incidence": {
+                "direction": "nearnormal",
+                "wavelengths": { "integral": "solar" }
+              },
+              "emergence": {
+                "direction": "nearnormal"
+              },
+              "results": {
+                "transmittance": {
+                  "uncertainValue": 0.85
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

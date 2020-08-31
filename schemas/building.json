@@ -1,0 +1,337 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/building.json",
+  "title": "building data",
+  "description": "Data about a building.",
+  "$defs": {
+    "building": {
+      "title": "Data about a building.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "identifier.json#/$defs/central",
+          "description": "This id represents the building. The identifier is issued from www.buildings.com and allows searches for all data about this building over the whole lifetime of the building."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the building"
+        },
+        "abbreviation": {
+          "$ref": "string.json#/$defs/abbreviation",
+          "description": "The abbreviation of the building"
+        },
+        "explanation": {
+          "type": "string",
+          "description": "An explanation with more details about the building"
+        },
+        "version": {
+          "$ref": "identifier.json#/$defs/decentral",
+          "description": "The id represents the version of the building."
+        },
+        "relations": {
+          "title": "Relations of the current building to other buildings. These relations can range in the dimension between a very general building in early planning phases and and a very concretized building in later phases of the life cycle. A second dimension of relation ranges from being part of an assembly of buildings to being an assembly of other buildings. A third dimension are variants of buildings for example during the desing phase. The variants share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly.",
+          "type": "object",
+          "properties": {
+            "concretizationOf": {
+              "$ref": "identifier.json#/$defs/centralOrDecentral",
+              "description": "The current building is a concretization of a more general building. The more general building is identified by this id."
+            },
+            "generalizationOf": {
+              "type": "array",
+              "items": {
+                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                "description": "The current building is a generalization of a more concretized building. The more concretized building is identified by this id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "variantOf": {
+              "type": "array",
+              "items": {
+                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                "description": "The current building is neither a concretization nor a generalization nor an assembly or a part of a second building. But it is a variant of a second building. This means that the current building and the second building share a large part of their characteristics. The second building is identified by this id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "partOf": {
+              "type": "array",
+              "items": {
+                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                "description": "The current building is a part of an assembly of other buildings. Each of the other buildings is defined by its id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "assembledOf": {
+              "type": "array",
+              "items": {
+                "$ref": "identifier.json#/$defs/centralOrDecentral",
+                "description": "The current building is an assembly of other buildings. Each of the other buildings is defined by its id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "characteristics": {
+          "$ref": "#/$defs/characteristics",
+          "description": "Characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches."
+        },
+        "roles": {
+          "type": "object",
+          "properties": {
+            "title": "Roles which are specific for buildings to the existing roles for building envelopes.",
+            "owners": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "The owners own the building at the moment indicated by the timestamp of this data. Each owner is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "architects": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "Architects offer to design the building. Each architect is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "BIMmanager": {
+              "$ref": "stakeholder.json#/$defs/basicStakeholder",
+              "description": "The BIM manager MUST guarantee the uniqueness of the decentral identifiers. She is responsible for the database of the building at the moment indicated by the timestamp of this data. The BIM manager is identified by an id."
+            },
+            "planners": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "The planners provide assistance to the stakeholders, for example for the detailed planning in a domain like structural analysis or the technical building plant. Each planner is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "contractors": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "Contractors offer to construct the whole building or parts of it. Each contractor is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "suppliers": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "Suppliers offer to supply components for the building. Each supplier is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "investors": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "Investors offer financial credits to the stakeholders or offer to buy the building from the owners. Each investor is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "tenants": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "Tenants rent space in the building. Each tenant is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "publicAuthorities": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "Public authorities grant permissions according to the current regulations. Each public authority is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "assesors": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "Assesors offer to rate a building for example regarding its sustainability. Each assesor is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            },
+            "facilityManagers": {
+              "type": "array",
+              "items": {
+                "$ref": "stakeholder.json#/$defs/basicStakeholder",
+                "description": "Facility managers are responsible for a good operation of the building. Each facility manager is identified by an id."
+              },
+              "additionalItems": false,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": ["owner", "BIMmanager"]
+        },
+        "approvals": {
+          "$ref": "common.json#/$defs/approvals",
+          "description": "If the dataset for this building has been approved by an institution, this approval is specified here."
+        },
+        "IFC": {
+          "title": "The data about a building can be stored in the open source format Industry Foundation Classes (IFC).",
+          "type": "object",
+          "properties": {
+            "full": {
+              "title": "The full data about the building.",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "identifier.json#/$defs/decentral",
+                  "description": "This id represents this set of full data about the building."
+                },
+                "webAddress": {
+                  "$ref": "common.json#/$defs/webAddress",
+                  "description": "The IFC file with full data about the building can be downloaded for some time from this URL."
+                },
+                "explanation": {
+                  "type": "string",
+                  "description": "An explanation of the status of the full data set in natural language."
+                },
+                "formatting": {
+                  "type": "string",
+                  "pattern": "^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$",
+                  "description": "The definition of IFC version which is used to format the IFC file. For example '4.1.0.0'."
+                },
+                "created": {
+                  "$ref": "common.json#/$defs/created",
+                  "description": "The date when the file was created"
+                }
+              },
+              "additionalProperties": false,
+              "required": ["id", "webAddress", "formatting", "created"]
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "Revit": {
+          "title": "The data about a building can be stored in the closed source format of Autodesk Revit.",
+          "type": "object",
+          "properties": {
+            "full": {
+              "title": "The full data about the building.",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "identifier.json#/$defs/decentral",
+                  "description": "This id represents this set of full data about the building."
+                },
+                "webAddress": {
+                  "$ref": "common.json#/$defs/webAddress",
+                  "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
+                },
+                "explanation": {
+                  "type": "string",
+                  "description": "An explanation of the status of the full data set in natural language."
+                },
+                "formatting": {
+                  "type": "string",
+                  "pattern": "^(20..)$",
+                  "description": "The definition of Revit version which is used to format the Revit file. For example '2020'."
+                },
+                "created": {
+                  "$ref": "common.json#/$defs/created",
+                  "description": "The date when the file was created"
+                }
+              },
+              "additionalProperties": false,
+              "required": ["id", "webAddress", "formatting", "created"]
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "LinkedData": {
+          "title": "The data about a building can be stored as linked building data.",
+          "type": "object",
+          "properties": {
+            "SPARQL": {
+              "title": "The SPARQL endpoint which can be used to access the data about the building.",
+              "type": "object",
+              "properties": {
+                "webAddress": {
+                  "$ref": "common.json#/$defs/webAddress",
+                  "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
+                },
+                "explanation": {
+                  "type": "string",
+                  "description": "An explanation of the status of the full data set in natural language."
+                }
+              },
+              "additionalProperties": false,
+              "required": ["webAddress"]
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": ["id"]
+    },
+    "characteristics": {
+      "title": "Characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches.",
+      "type": "object",
+      "properties": {
+        "location": {
+          "title": "The location of a building.",
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "$ref": "number.json#/$defs/numberBetweenMinusAndPlusNinety",
+              "description": "The latitude of the location of the building as a decimal number according to WGS 84."
+            },
+            "longitude": {
+              "$ref": "number.json#/$defs/numberBetweenMinusAndPlusHundredAndEighty",
+              "description": "The longitude of the location of the building as a decimal number according to WGS 84."
+            },
+            "elevation": {
+              "$ref": "number.json#/$defs/meter",
+              "description": "The elevation of the location of the building. It has the SI unit meter."
+            },
+            "address": {
+              "$ref": "#/$defs/address",
+              "description": "The address of the building. It consists for example of the street, the city, the county, the postal code and the country."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": ["latitude", "longitude"]
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "address": {
+      "type": "string",
+      "description": "The address for example of a building, of an institution or person. It consists for example of the street, the city, the county, the postal code and the country."
+    }
+  },
+  "$ref": "#/$defs/building"
+}

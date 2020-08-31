@@ -1,0 +1,267 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/geometry.json",
+  "title": "geometry data",
+  "description": "Describe geoemtry data. There are many highly developed geometry kernels which are well suited to handle complex geometry in their file format. For some cases like the shape of a venetian blind, it may be helpful to be able to exchange the geometry independent of a geometry kernel.",
+  "$defs": {
+    "geometry": {
+      "title": "Describe the geometry of a component.",
+      "type": "object",
+      "properties": {
+        "centerOfGravity": {
+          "$ref": "#/$defs/point",
+          "description": "Definition of the center of gravity of the component"
+        },
+        "dimensions": {
+          "$ref": "#/$defs/dimensions",
+          "description": "Height, width and depth of the component."
+        },
+        "coordinateSystem": {
+          "$ref": "#/$defs/coordinateSystem",
+          "description": "Definition of the coordinate systems to which the other coordinates refer to."
+        },
+        "bodies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/body"
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "description": "This array lists all the bodies of which the component consists."
+        },
+        "file": {
+          "$ref": "common.json#/$defs/file",
+          "description": "Instead of or in addition to the keys above, a file can be used to define the geometry of the component."
+        },
+        "LOD": {
+          "title": "The Level of Development or Level of Detail (LOD) is used to describe how accurate the reality is modelled. As geometry/LOD refers to geometry, it is sometimes also called Level of Geometry.",
+          "type": "array",
+          "items": [
+            {
+              "$ref": "number.json#/$defs/nonNegativeInteger",
+              "description": "This integer indicates the LOD according to the definition of the reference below."
+            },
+            {
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "$ref": "common.json#/$defs/reference",
+                  "description": "This reference defines the LOD which is indicated above."
+                }
+              },
+              "additionalProperties": false,
+              "required": ["reference"]
+            }
+          ],
+          "additionalItems": false,
+          "minItems": 2
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "point": {
+      "title": "A point according to the definition of a coordinate system elsewhere.",
+      "type": "object",
+      "properties": {
+        "x": {
+          "$ref": "number.json#/$defs/meter"
+        },
+        "y": {
+          "$ref": "number.json#/$defs/meter"
+        },
+        "z": {
+          "$ref": "number.json#/$defs/meter"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["x", "y", "z"]
+    },
+    "vector": {
+      "title": "A geometric vector according to the definition of a coordinate system elsewhere.",
+      "type": "object",
+      "properties": {
+        "x": {
+          "$ref": "number.json#/$defs/meter"
+        },
+        "y": {
+          "$ref": "number.json#/$defs/meter"
+        },
+        "z": {
+          "$ref": "number.json#/$defs/meter"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["x", "y", "z"]
+    },
+    "coordinateSystem": {
+      "title": "Definition of the coordinate system of the data set",
+      "type": "object",
+      "properties": {
+        "reference": {
+          "$ref": "common.json#/$defs/reference",
+          "description": "The coordinate system needs to be well defined. If no suitable reference exists, please create a new publication in the database."
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "cartesian",
+              "cylindrical",
+              "leftHanded",
+              "polar",
+              "rightHanded",
+              "spherical"
+            ],
+            "description": "Often, a right-handed cartesian coordinate system is used."
+          },
+          "additionalItems": false,
+          "minItems": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "nurbsBoundedSurface": {
+      "title": "A non-uniform rational B-spline (NURBS) surface is a very general way to define a surface. It is created by two NURBS curves.",
+      "type": "object",
+      "properties": {
+        "uDirection": {
+          "$ref": "#/$defs/nurbsBoundedCurve"
+        },
+        "vDirection": {
+          "$ref": "#/$defs/nurbsBoundedCurve"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["uDirection", "vDirection"]
+    },
+    "nurbsBoundedCurve": {
+      "title": "A non-uniform rational B-spline (NURBS) is a very general way to define a curve.",
+      "type": "object",
+      "properties": {
+        "degree": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "The degree of a NURBS curve defines the polynomial degree of the basis functions of the curve. For degree=1, the curve is a linear interpolation between the control points."
+        },
+        "controlPoints": {
+          "title": "The control points have a strong influence on the shape of the curve.",
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": [
+              {
+                "$ref": "#/$defs/point",
+                "description": "If the curve is 3D, the 3D points are appropriate. For 2D curves, the value for the z-axis should be 0."
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "weights": {
+                    "type": "number",
+                    "description": "The weight of a control points determines its influences on the shape of the curve."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["weights"]
+              }
+            ],
+            "additionalItems": false,
+            "minItems": 2
+          },
+          "additionalItems": false,
+          "minItems": 2,
+          "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots."
+        },
+        "knots": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "description": "Each knot is a number which is either equal or larger than the preceding knot. Although usually the control points are used to shape the curve, the knots could also be used for this purpose. The first and last knot are usually repeated so that the curve ends exactly at these points."
+          },
+          "additionalItems": false,
+          "minItems": 2,
+          "description": "The number of control points plus the degree plus 1 has to be equal to the number of knots."
+        }
+      },
+      "additionalProperties": false,
+      "required": ["degree", "controlPoints", "knots"]
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "brep": {
+          "title": "Boundary representation (brep) defines a component by the surfaces between solid and non-solid.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nurbsBoundedSurface"
+          },
+          "additionalItems": false,
+          "minItems": 1,
+          "description": "This array lists all surfaces between solid and non-solid of the component."
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "installed": {
+          "title": "This geometric definition of the dimensions refers to the installation of the component in a building envelope and a view perpendicular to the building envelope. The dimensions can be used to define a bounding box which includes all parts of the component. If a component can be installed in different ways, more than one set of dimensions can be defined.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "height": {
+                "$ref": "number.json#/$defs/meterWithUncertainty",
+                "description": "The height of the component along the vertical axis of the building envelope. It has the units meter."
+              },
+              "width": {
+                "$ref": "number.json#/$defs/meterWithUncertainty",
+                "description": "The width of the component along the horizontal axis of the building envelope. It has the units meter."
+              },
+              "depth": {
+                "$ref": "number.json#/$defs/meterWithUncertainty",
+                "description": "The depth of the component along the axis perpendicular to the building envelope. It has the units meter."
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": []
+          },
+          "additionalItems": false,
+          "minItems": 1
+        },
+        "independent": {
+          "title": "When the dimensions of a component are defined independent of a specific installation or coordinate system, then the dimensions can only be sorted by their values. The dimensions can be used to define a bounding box which includes all parts of the component.",
+          "type": "object",
+          "properties": {
+            "smallest": {
+              "$ref": "number.json#/$defs/meterWithUncertainty",
+              "description": "The smallest dimension of the component. It has the units meter."
+            },
+            "intermediate": {
+              "$ref": "number.json#/$defs/meterWithUncertainty",
+              "description": "The dimension of the component which is larger the `smallest` and smaller than `largest`. It has the units meter."
+            },
+            "largest": {
+              "$ref": "number.json#/$defs/meterWithUncertainty",
+              "description": "The largest dimension of the component. It has the units meter."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    }
+  },
+  "$ref": "#/$defs/geometry"
+}

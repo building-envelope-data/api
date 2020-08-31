@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/hygrothermalData.json",
+  "title": "hygrothermal data",
+  "description": "Hygrothermal data which can be used for hygrothermal simulations. Humidity needs to be handled properly to create sustainable buildings with high comfort.",
+  "$defs": {
+    "data": {
+      "title": "The hygrothermal data of a component.",
+      "type": "object",
+      "properties": {
+        "WUFI": {
+          "title": "Hgrothermal data from the database of WUFI.de.",
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "identifier.json#/$defs/decentral",
+              "description": "The id represents the hygrothermal data set."
+            },
+            "explanation": {
+              "type": "string",
+              "description": "An explanation with more details about the hygrothermal data in natural language."
+            },
+            "formatting": {
+              "$ref": "common.json#/$defs/webAddress",
+              "description": "The web address provides a definition of the format of the 'xmlData'."
+            },
+            "xmlData": {
+              "$ref": "string.json#/$defs/extensibleMarkupLanguageDocument",
+              "description": "Hygrothermal data in Extensible Markup Language (XML) format in the exact data format specified by the property 'formatting'."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": ["xmlData"]
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    }
+  },
+  "$ref": "#/$defs/data"
+}

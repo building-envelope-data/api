@@ -1,0 +1,61 @@
+{
+  "components": [
+    {
+      "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+      "optical": [
+        {
+          "id": {
+            "uniqueId": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "explanation": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050.",
+          "origin": {
+            "creator": {
+              "id": "2b283844-5c84-4ded-82dc-e9e69044ea29"
+            },
+            "method": {
+              "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
+              "reference": {
+                "standard": {
+                  "standardizerIds": ["2ed5024f-3b9a-4210-a65f-ecc3bf4a8f04"],
+                  "numeration": {
+                    "mainNumber": 9050
+                  }
+                }
+              }
+            },
+            "sources": [
+              {
+                "id": {
+                  "uniqueId": "6ceff10a-075a-4a22-aaa3-f671a649bf9e",
+                  "issuedBy": "de588e6a-1d3c-4909-afdd-bcde4c33864e"
+                },
+                "database": {
+                  "webAddress": "http://www.manufacturer1.com/db/"
+                }
+              }
+            ]
+          },
+          "data": {
+            "dataPoints": [
+              {
+                "incidence": {
+                  "direction": "nearnormal",
+                  "wavelengths": { "integral": "solar" }
+                },
+                "emergence": {
+                  "direction": "hemispherical"
+                },
+                "results": {
+                  "reflectance": {
+                    "uncertainValue": 0.1
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/layer.json",
+  "title": "layer data",
+  "description": "The categories, characteristics, and properties of a layer.",
+  "$defs": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "appliedFilm",
+        "arm",
+        "austrian",
+        "awning",
+        "blind",
+        "briseSoleil",
+        "cell",
+        "coated",
+        "concertina",
+        "conservatory",
+        "drapes",
+        "dutch",
+        "external",
+        "fabric",
+        "facade",
+        "festoon",
+        "fixed",
+        "folding",
+        "fritted",
+        "glass",
+        "glazing",
+        "guided",
+        "hinged",
+        "honeycomb",
+        "insect",
+        "laminate",
+        "louvered",
+        "marquisolette",
+        "monolithic",
+        "nonWoven",
+        "panel",
+        "perforated",
+        "pergola",
+        "pivot",
+        "plantation",
+        "pleated",
+        "quilts",
+        "roll-up",
+        "roller",
+        "roman",
+        "roof",
+        "screen",
+        "shade",
+        "shutter",
+        "slat",
+        "slide",
+        "sliding",
+        "solar",
+        "terrace",
+        "treillis",
+        "venetian",
+        "vertical",
+        "window",
+        "woven"
+      ],
+      "description": "Components of the category layer can have the subcategories of this enumeration which further specifies the layer.",
+      "additionalItems": false,
+      "minItems": 0
+    },
+    "characteristics": {
+      "title": "The characteristics of components of the category 'layer'.",
+      "type": "object",
+      "properties": {
+        "possiblePositions": {
+          "$ref": "common.json#/$defs/possiblePositions",
+          "description": "PossiblePositions defines where the layer can be used."
+        },
+        "orientationAxis": {
+          "type": "string",
+          "enum": ["horizontal", "vertical", "neither"],
+          "description": "The orientation axis is important for example for venetian blinds."
+        },
+        "slat": {
+          "title": "Characteristics of slats, for example, of venetian blinds.",
+          "type": "object",
+          "properties": {
+            "width": {
+              "$ref": "number.json#/$defs/meter",
+              "description": "The width of the slat"
+            },
+            "thickness": {
+              "$ref": "number.json#/$defs/meterWithUncertainty",
+              "description": "If the slat is made from a sheet or plate with a certain thickness, this thickness can be defined here. It has the SI units meter."
+            },
+            "pitch": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
+            },
+            "crownHeight": {
+              "$ref": "number.json#/$defs/numberWithUncertainty",
+              "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
+            },
+            "shape": {
+              "oneOf": [
+                {
+                  "$ref": "geometry.json#/$defs/nurbsBoundedCurve",
+                  "description": "Usually, the shape of a slat is best described by a 2D curve of its cross section."
+                },
+                {
+                  "$ref": "geometry.json#/$defs/nurbsBoundedSurface",
+                  "description": "If the shape of the slats needs to be defined in 3D, a surface can be used."
+                }
+              ]
+            },
+            "angles": {
+              "type": "object",
+              "properties": {
+                "tilt": {
+                  "$ref": "common.json#/$defs/angles/$defs/tilt",
+                  "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
+                },
+                "maximumClosing": {
+                  "$ref": "common.json#/$defs/angles/$defs/maximumClosing",
+                  "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1,
+              "required": []
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "gaps": {
+          "$ref": "gaps.json",
+          "description": "The gaps for example between a blind and the frame. They can be important for example regarding glare."
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    }
+  }
+}

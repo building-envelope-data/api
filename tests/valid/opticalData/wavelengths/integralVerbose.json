@@ -1,0 +1,18 @@
+{
+  "dataPoints": [
+    {
+      "incidence": {
+        "direction": "nearnormal",
+        "wavelengths": { "integral": "solar" }
+      },
+      "emergence": {
+        "direction": "nearnormal"
+      },
+      "results": {
+        "transmittance": {
+          "uncertainValue": 0.85
+        }
+      }
+    }
+  ]
+}

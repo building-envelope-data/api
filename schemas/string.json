@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/string.json",
+  "title": "String type definitions",
+  "description": "Definitions of string types",
+  "$defs": {
+    "abbreviation": {
+      "type": "string",
+      "pattern": "^.+$",
+      "description": "Non-empty string."
+    },
+    "fileOrDirectoryName": {
+      "type": "string",
+      "pattern": "^[a-z0-9-._]+$",
+      "description": "File and directory names consisting of characters that work in popular file systems in Linux, Windows, and Mac OS X."
+    },
+    "extensibleMarkupLanguageDocument": {
+      "type": "string",
+      "pattern": "^[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]+$",
+      "description": "Non-empty Extensible Markup Language (XML) document serialized as non-empty string."
+    },
+    "sha256Hash": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$",
+      "description": "SHA-256 hash values."
+    }
+  }
+}

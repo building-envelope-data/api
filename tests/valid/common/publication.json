@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/common.json#$defs/reference",
+  "title": "Unit test of a reference to a publication",
+  "reference": {
+    "publication": {
+      "identifiers": {
+        "doi": "10.18777/ieashc-task56-2020-0002",
+        "arXiv": "arXiv:2006.04699",
+        "urn": "urn:nbn:de:0011-n-5652323",
+        "webAddress": "http://publica.fraunhofer.de/documents/N-565232.html"
+      },
+      "title": "dummy",
+      "abstract": "dummy",
+      "authors": [
+        "bcba3ff9-8cb7-4524-943a-786d301d39e2",
+        "bcba3ff9-8cb7-4524-943a-786d301d39e3"
+      ]
+    }
+  }
+}
