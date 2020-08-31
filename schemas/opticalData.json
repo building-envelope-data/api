@@ -179,7 +179,7 @@
               "type": "array",
               "items": {
                 "type": "number",
-                "description": "In order to reduce the size of the data, multiple directions can be entered as a list/array."
+                "description": "In order to reduce the size of the data, multiple directions can be entered as a array."
               },
               "additionalItems": false,
               "minItems": 1
