@@ -155,7 +155,7 @@
                 {
                   "title": "When the sample is irradiated (almost) perpedicular.",
                   "type": "string",
-                  "enum": ["nearnormal"],
+                  "const": "nearnormal",
                   "description": "Nearnormal is defined by CIE 130 as an incidence angle of 10° or less."
                 }
               ]
@@ -163,8 +163,8 @@
             {
               "title": "When the sample is irradiated from many directions at the same time.",
               "type": "string",
-              "enum": ["hemispherical"],
-              "description": "Hemispherical means that the incidence arrives from all directions of the the hemisphere on the sample surface."
+              "const": "hemispherical",
+              "description": "Hemispherical means that the incidence arrives from all directions of the hemisphere on the sample surface."
             }
           ]
         },
