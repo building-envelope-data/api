@@ -107,7 +107,7 @@
         }
       ]
     },
-    "directionOfIncidence": {
+    "incidenceDirection": {
       "title": "The direction of the incident radiation on a sample.",
       "oneOf": [
         {
@@ -190,7 +190,7 @@
         }
       ]
     },
-    "directionOfEmergence": {
+    "emergenceDirection": {
       "title": "The direction of radiation emerging from a sample either by transmission or reflection.",
       "oneOf": [
         {
@@ -430,7 +430,7 @@
       "type": "object",
       "properties": {
         "direction": {
-          "$ref": "#/$defs/directionOfIncidence"
+          "$ref": "#/$defs/incidenceDirection"
         },
         "polarisation": {
           "$ref": "#/$defs/polarisation"
@@ -466,7 +466,7 @@
       "type": "object",
       "properties": {
         "direction": {
-          "$ref": "#/$defs/directionOfEmergence"
+          "$ref": "#/$defs/emergenceDirection"
         },
         "polarisation": {
           "$ref": "#/$defs/polarisation"
