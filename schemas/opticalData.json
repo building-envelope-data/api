@@ -238,6 +238,15 @@
             "formatting": {
               "$ref": "common.json#/$defs/formatting",
               "description": "The definition of the format of the array below needs to specify how the items of the array can be interpreted as a list of directions. For example, the format can define that the list consists of pairs of polar and azimuth angles."
+            },
+            "list": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "description": "In order to reduce the size of the data, multiple directions can be entered as a array."
+              },
+              "additionalItems": false,
+              "minItems": 1
             }
           },
           "additionalProperties": false,
