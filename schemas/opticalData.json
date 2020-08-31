@@ -111,7 +111,7 @@
       "title": "The direction of the incident radiation on a sample.",
       "oneOf": [
         {
-          "anyOf": [
+          "oneOf": [
             {
               "title": "The direction of incidence in a spherical coordinate system according to ISO IEC 80000-2.",
               "type": "object",
@@ -190,7 +190,7 @@
       "title": "The direction of radiation emerging from a sample either by transmission or reflection.",
       "oneOf": [
         {
-          "anyOf": [
+          "oneOf": [
             {
               "title": "The direction of incidence in a spherical coordinate system according to ISO IEC 80000-2.",
               "type": "object",
