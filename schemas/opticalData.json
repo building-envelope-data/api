@@ -169,7 +169,7 @@
           "properties": {
             "formatting": {
               "$ref": "common.json#/$defs/formatting",
-              "description": "The definition of the format of the array below needs to specify how the items of the array can be interpreted as a list of directions. For example, the format can define that the list consists of pairs of polar and azimuth angles."
+              "description": "Definition of how `list` can be interpreted as directions. For example, the format can define that `list` consists of pairs of polar and azimuth angles."
             },
             "list": {
               "type": "array",
@@ -237,7 +237,7 @@
           "properties": {
             "formatting": {
               "$ref": "common.json#/$defs/formatting",
-              "description": "The definition of the format of the array below needs to specify how the items of the array can be interpreted as a list of directions. For example, the format can define that the list consists of pairs of polar and azimuth angles."
+              "description": "Definition of how `list` can be interpreted as directions. For example, the format can define that `list` consists of pairs of polar and azimuth angles."
             },
             "list": {
               "type": "array",
