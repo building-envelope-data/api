@@ -165,24 +165,7 @@
           "description": "Hemispherical means that the incidence arrives from all directions of the hemisphere on the sample surface."
         },
         {
-          "type": "object",
-          "properties": {
-            "formatting": {
-              "$ref": "common.json#/$defs/formatting",
-              "description": "Definition of how `list` can be interpreted as directions. For example, the format can define that `list` consists of pairs of polar and azimuth angles."
-            },
-            "list": {
-              "type": "array",
-              "items": {
-                "type": "number",
-                "description": "In order to reduce the size of the data, multiple directions can be entered as a array."
-              },
-              "additionalItems": false,
-              "minItems": 1
-            }
-          },
-          "additionalProperties": false,
-          "required": ["formatting", "list"]
+          "$ref": "#/$defs/customDirection"
         }
       ]
     },
@@ -233,26 +216,29 @@
           "description": "Hemispherical means all directions into the hemisphere above the sample surface. Diffuse means all directions with an incidence angle larger than 10°."
         },
         {
-          "type": "object",
-          "properties": {
-            "formatting": {
-              "$ref": "common.json#/$defs/formatting",
-              "description": "Definition of how `list` can be interpreted as directions. For example, the format can define that `list` consists of pairs of polar and azimuth angles."
-            },
-            "list": {
-              "type": "array",
-              "items": {
-                "type": "number",
-                "description": "In order to reduce the size of the data, multiple directions can be entered as a array."
-              },
-              "additionalItems": false,
-              "minItems": 1
-            }
-          },
-          "additionalProperties": false,
-          "required": ["formatting", "list"]
+          "$ref": "#/$defs/customDirection"
         }
       ]
+    },
+    "customDirection": {
+      "type": "object",
+      "properties": {
+        "formatting": {
+          "$ref": "common.json#/$defs/formatting",
+          "description": "Definition of how `list` can be interpreted as directions. For example, the format can define that `list` consists of pairs of polar and azimuth angles."
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "description": "In order to reduce the size of the data, multiple directions can be entered as a array."
+          },
+          "additionalItems": false,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": ["formatting", "list"]
     },
     "directionList": {
       "title": "In intermediate representation, the directions of incidence and emergence are defined as lists.",
