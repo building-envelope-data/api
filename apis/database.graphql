@@ -701,6 +701,9 @@ type DataEdge {
   node: Data!
 }
 
+"""
+See `DataConnection`.
+"""
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
   nodes: [OpticalData!]!
@@ -708,11 +711,17 @@ type OpticalDataConnection {
   timestamp: DateTime!
 }
 
+"""
+See `DataEdge`.
+"""
 type OpticalDataEdge {
   cursor: Cursor!
   node: OpticalData!
 }
 
+"""
+See `DataConnection`.
+"""
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
   nodes: [HygrothermalData!]!
@@ -720,11 +729,17 @@ type HygrothermalDataConnection {
   timestamp: DateTime!
 }
 
+"""
+See `DataEdge`.
+"""
 type HygrothermalDataEdge {
   cursor: Cursor!
   node: HygrothermalData!
 }
 
+"""
+See `DataConnection`.
+"""
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
   nodes: [PhotovoltaicData!]!
@@ -732,11 +747,17 @@ type PhotovoltaicDataConnection {
   timestamp: DateTime!
 }
 
+"""
+See `DataEdge`.
+"""
 type PhotovoltaicDataEdge {
   cursor: Cursor!
   node: PhotovoltaicData!
 }
 
+"""
+See `DataConnection`.
+"""
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
   nodes: [CalorimetricData!]!
@@ -744,6 +765,9 @@ type CalorimetricDataConnection {
   timestamp: DateTime!
 }
 
+"""
+See `DataEdge`.
+"""
 type CalorimetricDataEdge {
   cursor: Cursor!
   node: CalorimetricData!
