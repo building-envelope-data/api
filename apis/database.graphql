@@ -409,14 +409,44 @@ interface Node {
 
 """
 [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
-inspired
+compliant
 [PageInfo](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo)
 type.
+
+Note that although the introspection query results on
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
+use the scalar type `String` for cursors, the specification of
+[cursors](https://relay.dev/graphql/connections.htm#sec-Cursor)
+says that a cursor must only be of
+> a type that serializes as a `String`; this may be a `String`, a non‐null
+> wrapper around a `String`, a custom scalar that serializes as a `String`, or
+> a non‐null wrapper around a custom scalar that serializes as a `String`.
 """
 type PageInfo {
+  """
+  Whether more edges exist following the set defined by the client's arguments.
+  For details see
+  [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
+  """
   hasNextPage: Boolean!
+
+  """
+  Whether more edges exist prior to the set defined by the clients arguments.
+  For details see
+  [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
+  """
   hasPreviousPage: Boolean!
+
+  """
+  Cursor corresponding to the first node in edges. For details see
+  [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
+  """
   startCursor: Cursor!
+
+  """
+  Cursor corresponding to the last node in edges. For details see
+  [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
+  """
   endCursor: Cursor!
 }
 
