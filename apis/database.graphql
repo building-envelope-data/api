@@ -402,7 +402,7 @@ which is a `Uuid`, and the requested locale.
 """
 interface Node {
   """
-  Base64-encoded identifier
+  Base64-encoded identifier.
   """
   id: ID!
 }
