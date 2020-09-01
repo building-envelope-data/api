@@ -450,28 +450,104 @@ type PageInfo {
   endCursor: Cursor!
 }
 
+"""
+Closed interval from lower to upper bound. Each `Float` `x` is in the interval if
+and only if `x` is greater than or equal to the lower bound and less than or
+equal to the upper bound. In particular, if the lower bound is equal to the
+upper bound, then the interval consists of exactly one float; and, if the lower
+bound is greater than the upper bound, then the interval is empty.
+"""
 input ClosedIntervalInput {
+  """
+  Lower bound.
+  """
   lowerBound: Float!
+
+  """
+  Upper bound.
+  """
   upperBound: Float!
 }
 
+"""
+Proposition for values of type `Float`. Multiple sub-propositions are combined
+conjunctively.
+"""
 input FloatPropositionInput {
+  """
+  True for values that are equal to `equalTo`, otherwise false.
+  """
   equalTo: Float
+
+  """
+  True for values that are greater than or equal to `greaterThanOrEqualTo`,
+  otherwise false.
+  """
   greaterThanOrEqualTo: Float
+
+  """
+  True for values that are in the closed interval `inClosedInterval`, otherwise
+  false.
+  """
   inClosedInterval: ClosedIntervalInput
+
+  """
+  True for values that are less than or equal to `lessThanOrEqualTo`, otherwise
+  false.
+  """
   lessThanOrEqualTo: Float
 }
 
+"""
+Proposition for values of type `Data`. Multiple sub-propositions are combined
+conjunctively.
+"""
 input DataPropositionInput {
+  """
+  True for data for the component with identifier `componentId`, otherwise
+  false.
+  """
   componentId: Uuid
+
+  """
+  True for data for which each proposition in `and` is true, otherwise false.
+  """
   and: [DataPropositionInput!]
+
+  """
+  True for data that has a `g` value for which the proposition `gValue` is
+  true, otherwise false.
+  """
   gValue: FloatPropositionInput
+
+  """
+  True for data that has a nearnormal hemispherical visible transmittance value
+  for which the proposition `nearnormalHemisphericalVisibleTransmittance` is
+  true, otherwise false.
+  """
   nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
+
+  """
+  True for data for which the proposition `not` is false, otherwise false.
+  """
   not: DataPropositionInput
+
+  """
+  True for data for which at least one proposition in `or` is true, otherwise
+  false.
+  """
   or: [DataPropositionInput!]
+
+  """
+  True for data that has a `u` value for which the proposition `uValue` is
+  true, otherwise false.
+  """
   uValue: FloatPropositionInput
 }
 
+"""
+See `DataPropositionInput`.
+"""
 input OpticalDataPropositionInput {
   componentId: Uuid
   and: [OpticalDataPropositionInput!]
@@ -480,6 +556,9 @@ input OpticalDataPropositionInput {
   or: [OpticalDataPropositionInput!]
 }
 
+"""
+See `DataPropositionInput`.
+"""
 input CalorimetricDataPropositionInput {
   componentId: Uuid
   and: [CalorimetricDataPropositionInput!]
@@ -489,6 +568,9 @@ input CalorimetricDataPropositionInput {
   uValue: FloatPropositionInput
 }
 
+"""
+See `DataPropositionInput`.
+"""
 input HygrothermalDataPropositionInput {
   componentId: Uuid
   and: [HygrothermalDataPropositionInput!]
@@ -496,6 +578,9 @@ input HygrothermalDataPropositionInput {
   or: [HygrothermalDataPropositionInput!]
 }
 
+"""
+See `DataPropositionInput`.
+"""
 input PhotovoltaicDataPropositionInput {
   componentId: Uuid
   and: [PhotovoltaicDataPropositionInput!]
