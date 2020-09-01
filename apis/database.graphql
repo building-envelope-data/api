@@ -483,6 +483,11 @@ type PageInfo {
   [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
   """
   endCursor: Cursor!
+
+  """
+  Number of edges. This is equal to the number of nodes.
+  """
+  count: NonNegativeInt!
 }
 
 """
@@ -626,6 +631,7 @@ input PhotovoltaicDataPropositionInput {
 type DataConnection {
   edges: [DataEdge!]!
   nodes: [Data!]!
+  totalCount: NonNegativeInt!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
