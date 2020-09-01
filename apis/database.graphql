@@ -471,13 +471,15 @@ type PageInfo {
   hasPreviousPage: Boolean!
 
   """
-  Cursor corresponding to the first node in edges. For details see
+  Cursor corresponding to the first edge in the set defined by the client's
+  arguments. For details see
   [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
   """
   startCursor: Cursor!
 
   """
-  Cursor corresponding to the last node in edges. For details see
+  Cursor corresponding to the last edge in the set defined by the client's
+  arguments. For details see
   [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
   """
   endCursor: Cursor!
