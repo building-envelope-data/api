@@ -264,6 +264,39 @@ type Query {
   `first` and `after` and the
   [backward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Backward-pagination-arguments)
   `last` and `before`.
+
+  Example:
+  ```
+  query {
+    allData(
+      where: {
+        or: [
+          {
+            componentId: "810e84b4-9ebf-416c-88ea-aade848f1fdf",
+            gValue: { greaterThanOrEqualTo: 0.5 },
+            not: {
+              uValue: { lessThanOrEqualTo: 0.5 }
+            }
+          },
+          {
+            nearnormalHemisphericalVisibleTransmittance: {
+              inClosedInterval: {
+                lowerBound: 0.2,
+                upperBound: 0.8
+              }
+            }
+          }
+        ]
+      }
+    ): {
+      edges {
+        node {
+          dataId
+        }
+      }
+    }
+  }
+  ```
   """
   allData(
     where: DataPropositionInput!
