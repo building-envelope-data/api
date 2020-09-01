@@ -676,8 +676,28 @@ type DataConnection {
   timestamp: DateTime!
 }
 
+"""
+Materialized edge from somewhere to data to paginate data using opaque
+cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Edge Types](https://relay.dev/graphql/connections.htm#sec-Edge-Types).
+"""
 type DataEdge {
+  """
+  Opaque
+  [cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
+  that designates the present edge for pagination.
+  """
   cursor: Cursor!
+
+  """
+  Data node the edge points to.
+  """
   node: Data!
 }
 
