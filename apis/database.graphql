@@ -485,7 +485,8 @@ type PageInfo {
   endCursor: Cursor!
 
   """
-  Number of edges. This is equal to the number of nodes.
+  Number of edges in the set defined by the client's arguments. This is equal
+  to the number of nodes.
   """
   count: NonNegativeInt!
 }
