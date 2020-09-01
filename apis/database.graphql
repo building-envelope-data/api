@@ -172,36 +172,151 @@ Anything
 scalar Any
 
 """
-Fetch data, ask whether there is data, and search for data.
+Fetch data, ask whether there is data, and search for data. Each field except
+`node` accepts
+- an optional timestamp to specify for which point in time the query is to be
+  made and
+- an optional locale to specify essentially the language of prose in the result.
+Each field's value is uniquely determined by the required arguments,
+timestamp, and locale throughout time.
+
+If timestamp is not given, the moment the query is received is used. And, if
+locale is not given, the default locale is used, which may differ from database
+to database.
 """
 type Query {
+  """
+  Fetch node by global object identifier as elaborated on
+  [Global Object Identification](https://graphql.org/learn/global-object-identification/)
+  where two nodes with identical identifiers must be equal as elaborated in
+  [Field stability](https://graphql.org/learn/global-object-identification/#field-stability).
+
+  See also
+  [Node root field](https://graphql.org/learn/global-object-identification/#node-root-field)
+  """
   node(id: ID!): Node!
-  data(dataId: Uuid!, timestamp: DateTime, locale: Locale): Data!
+
+  """
+  Fetch data by universally unique identifier, and optional timestamp and
+  locale, where all three arguments together uniquely determine the data
+  throughout time.
+  """
+  data(
+    dataId: Uuid!,
+    "If not given, the moment the query is received is used."
+    timestamp: DateTime,
+    "If not given, the default locale is used, which may differ from database to database."
+    locale: Locale
+  ): Data!
+
+  """
+  See `Query#data`.
+  """
   calorimetricData(
     calorimetricDataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): CalorimetricData!
+
+  """
+  See `Query#data`.
+  """
   hygrothermalData(
     hygrothermalDataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): HygrothermalData!
-  opticalData(opticalDataId: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
+
+  """
+  See `Query#data`.
+  """
+  opticalData(
+    opticalDataId: Uuid!,
+    timestamp: DateTime,
+    locale: Locale
+  ): OpticalData!
+
+  """
+  See `Query#data`.
+  """
   photovoltaicData(
     photovoltaicDataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): PhotovoltaicData!
+
+  """
+  Search for all data for which the proposition is true.
+
+  The result is a
+  [connection](https://relay.dev/graphql/connections.htm#sec-Connection-Types)
+  with
+  [edges](https://relay.dev/graphql/connections.htm#sec-Edge-Types)
+  and
+  [nodes](https://relay.dev/graphql/connections.htm#sec-Node)
+  as specified in the
+  [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+  where the nodes are the actual data, and connection and edges are used for
+  meta information and
+  [pagination](https://graphql.org/learn/pagination/)
+  together with the
+  [forward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Forward-pagination-arguments)
+  `first` and `after` and the
+  [backward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Backward-pagination-arguments)
+  `last` and `before`.
+
+  Example:
+  ```
+  query {
+    allData(
+      where: {
+        or: [
+          {
+            componentId: "810e84b4-9ebf-416c-88ea-aade848f1fdf",
+            gValue: { greaterThanOrEqualTo: 0.5 },
+            not: {
+              uValue: { lessThanOrEqualTo: 0.5 }
+            }
+          },
+          {
+            nearnormalHemisphericalVisibleTransmittance: {
+              inClosedInterval: {
+                lowerBound: 0.2,
+                upperBound: 0.8
+              }
+            }
+          }
+        ]
+      }
+    ): {
+      edges {
+        node {
+          dataId
+        }
+      }
+    }
+  }
+  ```
+  """
   allData(
     where: DataPropositionInput!
+    "If not given, the moment the query is received is used."
     timestamp: DateTime
+    "If not given, the default locale is used, which may differ from database to database."
     locale: Locale
+    "Maximum number of data edges after the cursor `after`."
     first: NonNegativeInt
+    "Data cursor after which to return at most `first` data edges."
     after: Cursor
+    "Maximum number of data edges before the cursor `before`."
     last: NonNegativeInt
+    "Data cursor before which to return at most `last` data edges."
     before: Cursor
   ): DataConnection
+
+  """
+  See `Query#allData`.
+  """
   allCalorimetricData(
     where: CalorimetricDataPropositionInput!
     timestamp: DateTime
@@ -211,6 +326,10 @@ type Query {
     last: NonNegativeInt
     before: Cursor
   ): CalorimetricDataConnection
+
+  """
+  See `Query#allData`.
+  """
   allHygrothermalData(
     where: HygrothermalDataPropositionInput!
     timestamp: DateTime
@@ -220,6 +339,10 @@ type Query {
     last: NonNegativeInt
     before: Cursor
   ): HygrothermalDataConnection
+
+  """
+  See `Query#allData`.
+  """
   allOpticalData(
     where: OpticalDataPropositionInput!
     timestamp: DateTime
@@ -229,6 +352,10 @@ type Query {
     last: NonNegativeInt
     before: Cursor
   ): OpticalDataConnection
+
+  """
+  See `Query#allData`.
+  """
   allPhotovoltaicData(
     where: PhotovoltaicDataPropositionInput!
     timestamp: DateTime
@@ -238,22 +365,49 @@ type Query {
     last: NonNegativeInt
     before: Cursor
   ): PhotovoltaicDataConnection
-  hasData(componentId: Uuid!, timestamp: DateTime, locale: Locale): Boolean!
+
+  """
+  Whether there is data for the component with the given universally unique
+  identifier at the given timestamp in the given locale.
+  """
+  hasData(
+    componentId: Uuid!,
+    "If not given, the moment the query is received is used."
+    timestamp: DateTime
+    "If not given, the default locale is used, which may differ from database to database."
+    locale: Locale
+  ): Boolean!
+
+  """
+  See `Query#hasData`.
+  """
   hasCalorimetricData(
     componentId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
+
+  """
+  See `Query#hasData`.
+  """
   hasHygrothermalData(
     componentId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
+
+  """
+  See `Query#hasData`.
+  """
   hasOpticalData(
     componentId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
+
+  """
+  See `Query#hasData`.
+  """
   hasPhotovoltaicData(
     componentId: Uuid!
     timestamp: DateTime
@@ -281,46 +435,160 @@ which is a `Uuid`, and the requested locale.
 """
 interface Node {
   """
-  Base64-encoded identifier
+  Base64-encoded identifier.
   """
   id: ID!
 }
 
 """
 [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
-inspired
+compliant
 [PageInfo](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo)
 type.
+
+Note that although the introspection query results on
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
+use the scalar type `String` for cursors, the specification of
+[cursors](https://relay.dev/graphql/connections.htm#sec-Cursor)
+says that a cursor must only be of
+> a type that serializes as a `String`; this may be a `String`, a non‐null
+> wrapper around a `String`, a custom scalar that serializes as a `String`, or
+> a non‐null wrapper around a custom scalar that serializes as a `String`.
 """
 type PageInfo {
+  """
+  Whether more edges exist following the set defined by the client's arguments.
+  For details see
+  [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
+  """
   hasNextPage: Boolean!
+
+  """
+  Whether more edges exist prior to the set defined by the clients arguments.
+  For details see
+  [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
+  """
   hasPreviousPage: Boolean!
+
+  """
+  Cursor corresponding to the first edge in the set defined by the client's
+  arguments. For details see
+  [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
+  """
   startCursor: Cursor!
+
+  """
+  Cursor corresponding to the last edge in the set defined by the client's
+  arguments. For details see
+  [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
+  """
   endCursor: Cursor!
+
+  """
+  Number of edges in the set defined by the client's arguments. This is equal
+  to the number of nodes.
+  """
+  count: NonNegativeInt!
 }
 
+"""
+Closed interval from lower to upper bound. Each `Float` `x` is in the interval if
+and only if `x` is greater than or equal to the lower bound and less than or
+equal to the upper bound. In particular, if the lower bound is equal to the
+upper bound, then the interval consists of exactly one float; and, if the lower
+bound is greater than the upper bound, then the interval is empty.
+"""
 input ClosedIntervalInput {
+  """
+  Lower bound.
+  """
   lowerBound: Float!
+
+  """
+  Upper bound.
+  """
   upperBound: Float!
 }
 
+"""
+Proposition for values of type `Float`. Multiple sub-propositions are combined
+conjunctively.
+"""
 input FloatPropositionInput {
+  """
+  True for values that are equal to `equalTo`, otherwise false.
+  """
   equalTo: Float
+
+  """
+  True for values that are greater than or equal to `greaterThanOrEqualTo`,
+  otherwise false.
+  """
   greaterThanOrEqualTo: Float
+
+  """
+  True for values that are in the closed interval `inClosedInterval`, otherwise
+  false.
+  """
   inClosedInterval: ClosedIntervalInput
+
+  """
+  True for values that are less than or equal to `lessThanOrEqualTo`, otherwise
+  false.
+  """
   lessThanOrEqualTo: Float
 }
 
+"""
+Proposition for values of type `Data`. Multiple sub-propositions are combined
+conjunctively.
+"""
 input DataPropositionInput {
+  """
+  True for data for the component with identifier `componentId`, otherwise
+  false.
+  """
   componentId: Uuid
+
+  """
+  True for data for which each proposition in `and` is true, otherwise false.
+  """
   and: [DataPropositionInput!]
+
+  """
+  True for data that has a `g` value for which the proposition `gValue` is
+  true, otherwise false.
+  """
   gValue: FloatPropositionInput
+
+  """
+  True for data that has a nearnormal hemispherical visible transmittance value
+  for which the proposition `nearnormalHemisphericalVisibleTransmittance` is
+  true, otherwise false.
+  """
   nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
+
+  """
+  True for data for which the proposition `not` is false, otherwise false.
+  """
   not: DataPropositionInput
+
+  """
+  True for data for which at least one proposition in `or` is true, otherwise
+  false.
+  """
   or: [DataPropositionInput!]
+
+  """
+  True for data that has a `u` value for which the proposition `uValue` is
+  true, otherwise false.
+  """
   uValue: FloatPropositionInput
 }
 
+"""
+See `DataPropositionInput`.
+"""
 input OpticalDataPropositionInput {
   componentId: Uuid
   and: [OpticalDataPropositionInput!]
@@ -329,6 +597,9 @@ input OpticalDataPropositionInput {
   or: [OpticalDataPropositionInput!]
 }
 
+"""
+See `DataPropositionInput`.
+"""
 input CalorimetricDataPropositionInput {
   componentId: Uuid
   and: [CalorimetricDataPropositionInput!]
@@ -338,6 +609,9 @@ input CalorimetricDataPropositionInput {
   uValue: FloatPropositionInput
 }
 
+"""
+See `DataPropositionInput`.
+"""
 input HygrothermalDataPropositionInput {
   componentId: Uuid
   and: [HygrothermalDataPropositionInput!]
@@ -345,6 +619,9 @@ input HygrothermalDataPropositionInput {
   or: [HygrothermalDataPropositionInput!]
 }
 
+"""
+See `DataPropositionInput`.
+"""
 input PhotovoltaicDataPropositionInput {
   componentId: Uuid
   and: [PhotovoltaicDataPropositionInput!]
@@ -352,18 +629,81 @@ input PhotovoltaicDataPropositionInput {
   or: [PhotovoltaicDataPropositionInput!]
 }
 
+"""
+Materialized connection from somewhere to data to paginate data using opaque
+cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Connection Types](https://relay.dev/graphql/connections.htm#sec-Connection-Types).
+"""
 type DataConnection {
+  """
+  Edges to data nodes that expose opaque cursors for pagination.
+  """
   edges: [DataEdge!]!
+
+  """
+  Data nodes to avoid the layer of indirection through edges in case edge meta
+  data is not needed. It is equal to the list comprehension
+  ```
+  [edge.node for edge in edges]
+  ```
+  """
   nodes: [Data!]!
+
+  """
+  Total number of data edges (and nodes) of which a slice is `edges` (and
+  `nodes`). Note that the number of edges (and nodes) of the present slice is
+  `pageInfo.count`.
+  """
+  totalCount: NonNegativeInt!
+
+  """
+  Information about the present slice of all data edges (and nodes).
+  """
   pageInfo: PageInfo!
+
+  """
+  Timestamp at or for which the connection, its edges and nodes are returned.
+  In case no timestamp was given as argument, this is the moment in time the
+  query was made. Otherwise, it is the given timestamp. All data edges and
+  nodes are fetched as they were at this timestamp.
+  """
   timestamp: DateTime!
 }
 
+"""
+Materialized edge from somewhere to data to paginate data using opaque
+cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Edge Types](https://relay.dev/graphql/connections.htm#sec-Edge-Types).
+"""
 type DataEdge {
+  """
+  Opaque
+  [cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
+  that designates the present edge for pagination.
+  """
   cursor: Cursor!
+
+  """
+  Data node the edge points to.
+  """
   node: Data!
 }
 
+"""
+See `DataConnection`.
+"""
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
   nodes: [OpticalData!]!
@@ -371,11 +711,17 @@ type OpticalDataConnection {
   timestamp: DateTime!
 }
 
+"""
+See `DataEdge`.
+"""
 type OpticalDataEdge {
   cursor: Cursor!
   node: OpticalData!
 }
 
+"""
+See `DataConnection`.
+"""
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
   nodes: [HygrothermalData!]!
@@ -383,11 +729,17 @@ type HygrothermalDataConnection {
   timestamp: DateTime!
 }
 
+"""
+See `DataEdge`.
+"""
 type HygrothermalDataEdge {
   cursor: Cursor!
   node: HygrothermalData!
 }
 
+"""
+See `DataConnection`.
+"""
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
   nodes: [PhotovoltaicData!]!
@@ -395,11 +747,17 @@ type PhotovoltaicDataConnection {
   timestamp: DateTime!
 }
 
+"""
+See `DataEdge`.
+"""
 type PhotovoltaicDataEdge {
   cursor: Cursor!
   node: PhotovoltaicData!
 }
 
+"""
+See `DataConnection`.
+"""
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
   nodes: [CalorimetricData!]!
@@ -407,12 +765,17 @@ type CalorimetricDataConnection {
   timestamp: DateTime!
 }
 
+"""
+See `DataEdge`.
+"""
 type CalorimetricDataEdge {
   cursor: Cursor!
   node: CalorimetricData!
 }
 
-"Measured or calculated data"
+"""
+Measured, simulated, or calculated data.
+"""
 interface Data {
   """
   Identifier, which together with timestamp uniquely identifies data and
@@ -541,6 +904,7 @@ type OpticalData implements Node & Data {
   resourceRoot: GetHttpsResourceRoot!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
+
   """
   Mirrored nearnormal hemispherical visible transmittance values that occur in
   the data
@@ -566,10 +930,12 @@ type CalorimetricData implements Node & Data {
   resourceRoot: GetHttpsResourceRoot!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
+
   """
   Mirrored `g` values that occur in the data
   """
   gValues: [Float!]!
+
   """
   Mirrored `u` values that occur in the data
   """
@@ -616,6 +982,10 @@ type PhotovoltaicData implements Node & Data {
   approval: ResponseApproval!
 }
 
+"""
+Applied method, that is the application of a method with fixed arguments to
+specific source data.
+"""
 type AppliedMethod {
   """
   Method identifier of method that was applied by the creator on the source
@@ -626,18 +996,28 @@ type AppliedMethod {
   methodId: Uuid!
 
   """
-  Named parameters to configure the method.
+  Named arguments to configure the method.
+  - For each parameter required by the method, there must be exactly one
+    argument in the list.
+  - Each argument in the list must correspond to an optional or required
+    parameter of the method.
+  - Each distinct pair of arguments in the list has different names.
   """
-  parameters: [MethodParameter!]!
+  arguments: [MethodArgument!]!
 
   """
   Named data sources to which the method was applied.
+  - For each source required by the method, there must be exactly one source in
+    the list.
+  - Each source in the list must correspond to an optional or required source
+    of the method.
+  - Each distinct pair of source in the list has different names.
   """
   sourceIds: [MethodSource!]!
 }
 
 """
-An applied method whose sources are implicit from the context in which it is
+Applied method whose sources are implicit from the context in which it is
 used.
 """
 type AppliedMethodWithImplicitSources {
@@ -650,27 +1030,59 @@ type AppliedMethodWithImplicitSources {
   methodId: Uuid!
 
   """
-  Named parameters to configure the method.
+  Named arguments to configure the method.
+  - For each parameter required by the method, there must be exactly one
+    argument in the list.
+  - Each argument in the list must correspond to an optional or required
+    parameter of the method.
+  - Each distinct pair of arguments in the list has different names.
   """
-  parameters: [MethodParameter!]!
+  arguments: [MethodArgument!]!
 }
 
-type MethodParameter {
+"""
+Named argument of a method.
+"""
+type MethodArgument {
+  """
+  Name
+  """
   name: String!
+
+  """
+  Value
+  """
   value: Any!
 }
 
+"""
+Named data source of a method.
+"""
 type MethodSource {
+  """
+  Name
+  """
   name: String!
+
+  """
+  Value
+  """
   value: CrossDatabaseReference!
 }
 
+"""
+Cross-database data reference.
+"""
 type CrossDatabaseReference {
   dataId: Uuid!
+  timestamp: Timestamp!
   dataKind: DataKind!
   databaseId: Uuid!
 }
 
+"""
+Data kind, either calorimetric, hygrothermal, optical, or photovoltaic.
+"""
 enum DataKind {
   CALORIMETRIC_DATA
   HYGROTHERMAL_DATA
@@ -891,7 +1303,7 @@ type DataApproval implements Approval {
   keyFingerprint: String!
 
   """
-  GraphQL query whose response is signed. The query includes the parameter
+  GraphQL query whose response is signed. The query includes the argument
   `timestamp`, for example,
   `opticalData(opticalDataId: ..., timestamp: ...) { ... }`,
   as otherwise it is not reproducible. It does neither include other data
