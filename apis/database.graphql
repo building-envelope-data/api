@@ -773,7 +773,9 @@ type CalorimetricDataEdge {
   node: CalorimetricData!
 }
 
-"Measured or calculated data"
+"""
+Measured, simulated, or calculated data.
+"""
 interface Data {
   """
   Identifier, which together with timestamp uniquely identifies data and
