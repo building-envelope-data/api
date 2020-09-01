@@ -648,7 +648,7 @@ type DataConnection {
 
   """
   Data nodes to avoid the layer of indirection through edges in case edge meta
-  data is not needed. It is equal to the array comprehension
+  data is not needed. It is equal to the list comprehension
   ```
   [edge.node for edge in edges]
   ```
@@ -982,6 +982,10 @@ type PhotovoltaicData implements Node & Data {
   approval: ResponseApproval!
 }
 
+"""
+Applied method, that is the application of a method with fixed arguments to
+specific source data.
+"""
 type AppliedMethod {
   """
   Method identifier of method that was applied by the creator on the source
@@ -992,18 +996,28 @@ type AppliedMethod {
   methodId: Uuid!
 
   """
-  Named parameters to configure the method.
+  Named arguments to configure the method.
+  - For each parameter required by the method, there must be exactly one
+    argument in the list.
+  - Each argument in the list must correspond to an optional or required
+    parameter of the method.
+  - Each distinct pair of arguments in the list has different names.
   """
-  parameters: [MethodParameter!]!
+  arguments: [MethodArgument!]!
 
   """
   Named data sources to which the method was applied.
+  - For each source required by the method, there must be exactly one source in
+    the list.
+  - Each source in the list must correspond to an optional or required source
+    of the method.
+  - Each distinct pair of source in the list has different names.
   """
   sourceIds: [MethodSource!]!
 }
 
 """
-An applied method whose sources are implicit from the context in which it is
+Applied method whose sources are implicit from the context in which it is
 used.
 """
 type AppliedMethodWithImplicitSources {
@@ -1016,21 +1030,49 @@ type AppliedMethodWithImplicitSources {
   methodId: Uuid!
 
   """
-  Named parameters to configure the method.
+  Named arguments to configure the method.
+  - For each parameter required by the method, there must be exactly one
+    argument in the list.
+  - Each argument in the list must correspond to an optional or required
+    parameter of the method.
+  - Each distinct pair of arguments in the list has different names.
   """
-  parameters: [MethodParameter!]!
+  arguments: [MethodArgument!]!
 }
 
-type MethodParameter {
+"""
+Named argument of a method.
+"""
+type MethodArgument {
+  """
+  Name
+  """
   name: String!
+
+  """
+  Value
+  """
   value: Any!
 }
 
+"""
+Named data source of a method.
+"""
 type MethodSource {
+  """
+  Name
+  """
   name: String!
+
+  """
+  Value
+  """
   value: CrossDatabaseReference!
 }
 
+"""
+Cross-database data reference.
+"""
 type CrossDatabaseReference {
   dataId: Uuid!
   timestamp: Timestamp!
@@ -1038,6 +1080,9 @@ type CrossDatabaseReference {
   databaseId: Uuid!
 }
 
+"""
+Data kind, either calorimetric, hygrothermal, optical, or photovoltaic.
+"""
 enum DataKind {
   CALORIMETRIC_DATA
   HYGROTHERMAL_DATA
