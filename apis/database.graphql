@@ -1033,6 +1033,7 @@ type MethodSource {
 
 type CrossDatabaseReference {
   dataId: Uuid!
+  timestamp: Timestamp!
   dataKind: DataKind!
   databaseId: Uuid!
 }
