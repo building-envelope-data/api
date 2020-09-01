@@ -904,6 +904,7 @@ type OpticalData implements Node & Data {
   resourceRoot: GetHttpsResourceRoot!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
+
   """
   Mirrored nearnormal hemispherical visible transmittance values that occur in
   the data
@@ -929,10 +930,12 @@ type CalorimetricData implements Node & Data {
   resourceRoot: GetHttpsResourceRoot!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
+
   """
   Mirrored `g` values that occur in the data
   """
   gValues: [Float!]!
+
   """
   Mirrored `u` values that occur in the data
   """
