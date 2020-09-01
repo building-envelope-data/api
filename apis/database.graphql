@@ -172,36 +172,118 @@ Anything
 scalar Any
 
 """
-Fetch data, ask whether there is data, and search for data.
+Fetch data, ask whether there is data, and search for data. Each field except
+`node` accepts
+- an optional timestamp to specify for which point in time the query is to be
+  made and
+- an optional locale to specify essentially the language of prose in the result.
+Each field's value is uniquely determined by the required parameters,
+timestamp, and locale throughout time.
+
+If timestamp is not given, the moment the query is received is used. And, if
+locale is not given, the default locale is used, which may differ from database
+to database.
 """
 type Query {
+  """
+  Fetch node by global object identifier as elaborated on
+  [Global Object Identification](https://graphql.org/learn/global-object-identification/)
+  where two nodes with identical identifiers must be equal as elaborated in
+  [Field stability](https://graphql.org/learn/global-object-identification/#field-stability).
+
+  See also
+  [Node root field](https://graphql.org/learn/global-object-identification/#node-root-field)
+  """
   node(id: ID!): Node!
-  data(dataId: Uuid!, timestamp: DateTime, locale: Locale): Data!
+
+  """
+  Fetch data by universally unique identifier, and optional timestamp and
+  locale, where all three parameters together uniquely determine the data
+  throughout time.
+  """
+  data(
+    dataId: Uuid!,
+    "If not given, the moment the query is received is used."
+    timestamp: DateTime,
+    "If not given, the default locale is used, which may differ from database to database."
+    locale: Locale
+  ): Data!
+
+  """
+  See `Query#data`.
+  """
   calorimetricData(
     calorimetricDataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): CalorimetricData!
+
+  """
+  See `Query#data`.
+  """
   hygrothermalData(
     hygrothermalDataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): HygrothermalData!
-  opticalData(opticalDataId: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
+
+  """
+  See `Query#data`.
+  """
+  opticalData(
+    opticalDataId: Uuid!,
+    timestamp: DateTime,
+    locale: Locale
+  ): OpticalData!
+
+  """
+  See `Query#data`.
+  """
   photovoltaicData(
     photovoltaicDataId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): PhotovoltaicData!
+
+  """
+  Search for all data for which the proposition is true.
+
+  The result is a
+  [connection](https://relay.dev/graphql/connections.htm#sec-Connection-Types)
+  with
+  [edges](https://relay.dev/graphql/connections.htm#sec-Edge-Types)
+  and
+  [nodes](https://relay.dev/graphql/connections.htm#sec-Node)
+  as specified in the
+  [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+  where the nodes are the actual data, and connection and edges are used for
+  meta information and
+  [pagination](https://graphql.org/learn/pagination/)
+  together with the
+  [forward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Forward-pagination-arguments)
+  `first` and `after` and the
+  [backward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Backward-pagination-arguments)
+  `last` and `before`.
+  """
   allData(
     where: DataPropositionInput!
+    "If not given, the moment the query is received is used."
     timestamp: DateTime
+    "If not given, the default locale is used, which may differ from database to database."
     locale: Locale
+    "Maximum number of data edges after the cursor `after`."
     first: NonNegativeInt
+    "Data cursor after which to return at most `first` data edges."
     after: Cursor
+    "Maximum number of data edges before the cursor `before`."
     last: NonNegativeInt
+    "Data cursor before which to return at most `last` data edges."
     before: Cursor
   ): DataConnection
+
+  """
+  See `Query#allData`.
+  """
   allCalorimetricData(
     where: CalorimetricDataPropositionInput!
     timestamp: DateTime
@@ -211,6 +293,10 @@ type Query {
     last: NonNegativeInt
     before: Cursor
   ): CalorimetricDataConnection
+
+  """
+  See `Query#allData`.
+  """
   allHygrothermalData(
     where: HygrothermalDataPropositionInput!
     timestamp: DateTime
@@ -220,6 +306,10 @@ type Query {
     last: NonNegativeInt
     before: Cursor
   ): HygrothermalDataConnection
+
+  """
+  See `Query#allData`.
+  """
   allOpticalData(
     where: OpticalDataPropositionInput!
     timestamp: DateTime
@@ -229,6 +319,10 @@ type Query {
     last: NonNegativeInt
     before: Cursor
   ): OpticalDataConnection
+
+  """
+  See `Query#allData`.
+  """
   allPhotovoltaicData(
     where: PhotovoltaicDataPropositionInput!
     timestamp: DateTime
@@ -238,22 +332,49 @@ type Query {
     last: NonNegativeInt
     before: Cursor
   ): PhotovoltaicDataConnection
-  hasData(componentId: Uuid!, timestamp: DateTime, locale: Locale): Boolean!
+
+  """
+  Whether there is data for the component with the given universally unique
+  identifier at the given timestamp in the given locale.
+  """
+  hasData(
+    componentId: Uuid!,
+    "If not given, the moment the query is received is used."
+    timestamp: DateTime
+    "If not given, the default locale is used, which may differ from database to database."
+    locale: Locale
+  ): Boolean!
+
+  """
+  See `Query#hasData`.
+  """
   hasCalorimetricData(
     componentId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
+
+  """
+  See `Query#hasData`.
+  """
   hasHygrothermalData(
     componentId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
+
+  """
+  See `Query#hasData`.
+  """
   hasOpticalData(
     componentId: Uuid!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
+
+  """
+  See `Query#hasData`.
+  """
   hasPhotovoltaicData(
     componentId: Uuid!
     timestamp: DateTime
