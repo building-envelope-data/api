@@ -177,7 +177,7 @@ Fetch data, ask whether there is data, and search for data. Each field except
 - an optional timestamp to specify for which point in time the query is to be
   made and
 - an optional locale to specify essentially the language of prose in the result.
-Each field's value is uniquely determined by the required parameters,
+Each field's value is uniquely determined by the required arguments,
 timestamp, and locale throughout time.
 
 If timestamp is not given, the moment the query is received is used. And, if
@@ -198,7 +198,7 @@ type Query {
 
   """
   Fetch data by universally unique identifier, and optional timestamp and
-  locale, where all three parameters together uniquely determine the data
+  locale, where all three arguments together uniquely determine the data
   throughout time.
   """
   data(
@@ -1012,7 +1012,7 @@ type DataApproval implements Approval {
   keyFingerprint: String!
 
   """
-  GraphQL query whose response is signed. The query includes the parameter
+  GraphQL query whose response is signed. The query includes the argument
   `timestamp`, for example,
   `opticalData(opticalDataId: ..., timestamp: ...) { ... }`,
   as otherwise it is not reproducible. It does neither include other data
