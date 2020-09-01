@@ -629,11 +629,50 @@ input PhotovoltaicDataPropositionInput {
   or: [PhotovoltaicDataPropositionInput!]
 }
 
+"""
+Materialized connection from somewhere to data to paginate data using opaque
+cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Connection Types](https://relay.dev/graphql/connections.htm#sec-Connection-Types).
+"""
 type DataConnection {
+  """
+  Edges to data nodes that expose opaque cursors for pagination.
+  """
   edges: [DataEdge!]!
+
+  """
+  Data nodes to avoid the layer of indirection through edges in case edge meta
+  data is not needed. It is equal to the array comprehension
+  ```
+  [edge.node for edge in edges]
+  ```
+  """
   nodes: [Data!]!
+
+  """
+  Total number of data edges (and nodes) of which a slice is `edges` (and
+  `nodes`). Note that the number of edges (and nodes) of the present slice is
+  `pageInfo.count`.
+  """
   totalCount: NonNegativeInt!
+
+  """
+  Information about the present slice of all data edges (and nodes).
+  """
   pageInfo: PageInfo!
+
+  """
+  Timestamp at or for which the connection, its edges and nodes are returned.
+  In case no timestamp was given as argument, this is the moment in time the
+  query was made. Otherwise, it is the given timestamp. All data edges and
+  nodes are fetched as they were at this timestamp.
+  """
   timestamp: DateTime!
 }
 
