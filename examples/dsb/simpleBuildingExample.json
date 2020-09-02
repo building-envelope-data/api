@@ -12,7 +12,7 @@
           },
           "webAddress": "http://www.owner034.com/dje1102b-264a-4023-8351-5897ec38e388",
           "formatting": "4.1.0.0",
-          "created": "2018-09-01T12:00:00+01:00"
+          "createdAt": "2018-09-01T12:00:00+01:00"
         }
       },
       "Revit": {
@@ -23,7 +23,7 @@
           },
           "webAddress": "http://www.owner034.com/7371102b-264a-4023-8351-5897ec38e388",
           "formatting": "2020",
-          "created": "2018-09-01T12:00:00+01:00"
+          "createdAt": "2018-09-01T12:00:00+01:00"
         }
       },
       "LinkedData": {

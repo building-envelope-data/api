@@ -23,6 +23,11 @@
           "type": "string",
           "description": "Some optical data may easily be misinterpreted. The warnings contain critical information for users to avoid typical mistakes."
         },
+        "createdAt": {
+          "title": "Creation timestamp",
+          "description": "When the present data set was created, for example, after completion of a measurement, simulation, or calculation.",
+          "$ref": "common.json#/$defs/timestamp"
+        },
         "origin": {
           "$ref": "method.json#/$defs/origin",
           "description": "For traceability, the origin of the data can be defined."

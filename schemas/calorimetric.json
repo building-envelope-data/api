@@ -32,8 +32,8 @@
           "$ref": "common.json#/$defs/approvals",
           "description": "If the calorimetric data is approved by stakeholders, a signature can be provided."
         },
-        "created": {
-          "$ref": "common.json#/$defs/created",
+        "createdAt": {
+          "$ref": "common.json#/$defs/timestamp",
           "description": "When the calorimetric data was created."
         },
         "valid": {

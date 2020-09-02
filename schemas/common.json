@@ -9,10 +9,9 @@
       "format": "uri",
       "description": "In extension to the validation keyword `hostname`, a `webAddress` includes a `scheme` like https and possibly a `path` like /folder/item. TODO: Add an additional regex which checks whether the uri contains a `hostname`."
     },
-    "created": {
+    "timestamp": {
       "type": "string",
-      "format": "date-time",
-      "description": "The date when this data was first stored in the database."
+      "format": "date-time"
     },
     "valid": {
       "type": "object",
@@ -235,8 +234,8 @@
           "type": "string",
           "description": "The cryptographic signature of the approved data."
         },
-        "created": {
-          "$ref": "common.json#/$defs/created",
+        "createdAt": {
+          "$ref": "common.json#/$defs/timestamp",
           "description": "When the approval was created"
         },
         "valid": {
@@ -321,8 +320,8 @@
           "$ref": "common.json#/$defs/approvals",
           "description": "Approvals of the file."
         },
-        "created": {
-          "$ref": "common.json#/$defs/created",
+        "createdAt": {
+          "$ref": "common.json#/$defs/timestamp",
           "description": "The date when the file was created."
         },
         "valid": {
