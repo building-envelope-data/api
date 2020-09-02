@@ -845,7 +845,7 @@ interface Data {
   appliedMethod: AppliedMethod!
 
   """
-  Validity date and time range
+  Validity date and time range.
   """
   validity: OpenEndedDateTimeRange!
 
@@ -1119,16 +1119,16 @@ enum DataKind {
 }
 
 """
-Open-ended data and time range
+Open-ended data and time range.
 """
 type OpenEndedDateTimeRange {
   """
-  From beginning of time represented by `null`, or some date and time
+  From beginning of time represented by `null`, or some date and time.
   """
   from: DateTime
 
   """
-  Until some date and time, or end of time represented by `null`
+  Until some date and time, or end of time represented by `null`.
   """
   until: DateTime
 }
