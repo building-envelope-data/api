@@ -816,7 +816,7 @@ interface Data {
   name: String
 
   """
-  Description
+  Description for humans
   """
   description: String
 
@@ -834,9 +834,10 @@ interface Data {
   creatorId: Uuid!
 
   """
-  Creation timestamp
+  Creation timestamp, designating when the present data set was created, for
+  example, after completion of a measurement, simulation, or calculation.
   """
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
 
   """
   Method that was applied to create this data set.
@@ -909,7 +910,7 @@ type OpticalData implements Node & Data {
   description: String
   warnings: [String!]!
   creatorId: Uuid!
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
@@ -935,7 +936,7 @@ type CalorimetricData implements Node & Data {
   description: String
   warnings: [String!]!
   creatorId: Uuid!
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
@@ -965,7 +966,7 @@ type HygrothermalData implements Node & Data {
   description: String
   warnings: [String!]!
   creatorId: Uuid!
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
@@ -985,7 +986,7 @@ type PhotovoltaicData implements Node & Data {
   description: String
   warnings: [String!]!
   creatorId: Uuid!
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
