@@ -1317,7 +1317,9 @@ type DataApproval implements Approval {
   """
   GraphQL query whose response is signed. The query includes the argument
   `timestamp`, for example,
-  `opticalData(opticalDataId: ..., timestamp: ...) { ... }`,
+  ```
+  opticalData(opticalDataId: ..., timestamp: ...) { ... }
+  ```
   as otherwise it is not reproducible. It does neither include other data
   approvals by third parties nor the response approval by the database.  All
   other fields and sub-fields of this GraphQL schema at the time given by
