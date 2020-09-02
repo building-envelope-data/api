@@ -850,10 +850,8 @@ interface Data {
   validity: OpenEndedDateTimeRange!
 
   """
-  Approvals by stakeholders in the form of GnuPG signatures. To verify
-  signatures you need all signed data. It is thus advisable to include all
-  fields in the query. For verification you can then temporarily remove the
-  fields that are not signed. See the type `Approval` for details.
+  Approvals by stakeholders in the form of GnuPG signatures. See the type
+  `Approval` for details on how to verify data and approvals.
   """
   approvals: [Approval!]!
 
