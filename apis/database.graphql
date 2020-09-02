@@ -1093,7 +1093,7 @@ type CrossDatabaseReference {
   """
   Timestamp of referenced data to designate the data's version.
   """
-  dataTimestamp: Timestamp!
+  dataTimestamp: DateTime!
 
   """
   Kind of the referenced data.
