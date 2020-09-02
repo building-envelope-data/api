@@ -563,6 +563,7 @@ input DataPropositionInput {
 
   """
   True for data for which each proposition in `and` is true, otherwise false.
+  In particular, it is true if there is no proposition in `and`.
   """
   and: [DataPropositionInput!]
 
@@ -586,7 +587,7 @@ input DataPropositionInput {
 
   """
   True for data for which at least one proposition in `or` is true, otherwise
-  false.
+  false. In particular, it is false if there is no proposition in `or`.
   """
   or: [DataPropositionInput!]
 
