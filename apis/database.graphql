@@ -540,6 +540,17 @@ input FloatPropositionInput {
 }
 
 """
+Proposition for values of type `Uuid`. Multiple sub-propositions are combined
+conjunctively, where the conjunction of an empty set of sub-propositions is true.
+"""
+input UuidPropositionInput {
+  """
+  True for values that are equal to `equalTo`, otherwise false.
+  """
+  equalTo: Uuid
+}
+
+"""
 Proposition for values of type `Data`. Multiple sub-propositions are combined
 conjunctively.
 """
@@ -548,7 +559,7 @@ input DataPropositionInput {
   True for data for the component with identifier `componentId`, otherwise
   false.
   """
-  componentId: Uuid
+  componentId: UuidPropositionInput
 
   """
   True for data for which each proposition in `and` is true, otherwise false.
