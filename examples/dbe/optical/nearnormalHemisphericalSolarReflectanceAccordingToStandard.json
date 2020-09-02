@@ -9,7 +9,7 @@
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
           "description": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050.",
-          "origin": {
+          "appliedMethod": {
             "method": {
               "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
               "reference": {
@@ -20,26 +20,30 @@
                   }
                 }
               }
-            }
+            },
+            "arguments": [],
+            "sources": []
           },
-          "data": {
-            "dataPoints": [
-              {
-                "incidence": {
-                  "direction": "nearnormal",
-                  "wavelengths": { "integral": "solar" }
-                },
-                "emergence": {
-                  "direction": "hemispherical"
-                },
-                "results": {
-                  "reflectance": {
-                    "uncertainValue": 0.1
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": "nearnormal",
+                    "wavelengths": { "integral": "solar" }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "reflectance": {
+                      "uncertainValue": 0.1
+                    }
                   }
                 }
-              }
-            ]
-          }
+              ]
+            }
+          ]
         }
       ]
     }

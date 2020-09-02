@@ -29,8 +29,8 @@
           "minItems": 1,
           "description": "This array lists all the bodies of which the component consists."
         },
-        "file": {
-          "$ref": "common.json#/$defs/file",
+        "getHttpsResource": {
+          "$ref": "common.json#/$defs/getHttpsResource",
           "description": "Instead of or in addition to the keys above, a file can be used to define the geometry of the component."
         },
         "LOD": {

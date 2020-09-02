@@ -1,11 +1,8 @@
 {
   "dataPoints": [
     {
-      "formatting": {
-        "id": {
-          "uniqueId": "8a63be87-9931-4572-8eae-ba64077c3cee",
-          "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-        }
+      "format": {
+        "id": "8a63be87-9931-4572-8eae-ba64077c3cee"
       },
       "incidence": {
         "direction": [1, 2, 3],

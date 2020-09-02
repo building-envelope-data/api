@@ -81,8 +81,8 @@
           "title": "Intermediate representation. This representation uses lists for directions, wavelengths and results. It is not as explicit as the verbose representation and not as compressed as the resource representation.",
           "type": "object",
           "properties": {
-            "formatting": {
-              "$ref": "common.json#/$defs/formatting",
+            "format": {
+              "$ref": "common.json#/$defs/dataFormat",
               "description": "The definition of the format of the arrays MUST specify how the lists of directions, wavelengths and results have to be interpreted."
             },
             "incidence": {
@@ -103,7 +103,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["formatting", "incidence", "emergence", "results"]
+          "required": ["format", "incidence", "emergence", "results"]
         }
       ]
     },
@@ -380,8 +380,8 @@
         "customDirection": {
           "type": "object",
           "properties": {
-            "formatting": {
-              "$ref": "common.json#/$defs/formatting",
+            "format": {
+              "$ref": "common.json#/$defs/dataFormat",
               "description": "Definition of how `list` can be interpreted as directions. For example, the format can define that `list` consists of pairs of polar and azimuth angles."
             },
             "list": {
@@ -395,7 +395,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["formatting", "list"]
+          "required": ["format", "list"]
         },
         "uncertainWavelength": {
           "type": "object",
@@ -577,8 +577,8 @@
           "title": "The results of the optical measurement or simulation in intermediate represenation",
           "type": "object",
           "properties": {
-            "formatting": {
-              "$ref": "common.json#/$defs/formatting"
+            "format": {
+              "$ref": "common.json#/$defs/dataFormat"
             },
             "transmittance": {
               "type": "array",

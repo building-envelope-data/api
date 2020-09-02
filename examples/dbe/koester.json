@@ -10,26 +10,28 @@
             "uniqueId": "4e463235-88f0-4a04-890d-8aa05879c519"
           },
           "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
-          "data": {
-            "dataPoints": [
-              {
-                "incidence": {
-                  "direction": "nearnormal",
-                  "wavelengths": {
-                    "integral": "visible"
-                  }
-                },
-                "emergence": {
-                  "direction": "hemispherical"
-                },
-                "results": {
-                  "transmittance": {
-                    "uncertainValue": 0.63
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": "nearnormal",
+                    "wavelengths": {
+                      "integral": "visible"
+                    }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": {
+                      "uncertainValue": 0.63
+                    }
                   }
                 }
-              }
-            ]
-          }
+              ]
+            }
+          ]
         }
       ],
       "calorimetric": [
@@ -38,18 +40,20 @@
             "uniqueId": "f68e3624-7319-419a-aecb-da0564ee185d"
           },
           "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
-          "data": {
-            "results": [
-              {
-                "area": {
-                  "category": "centre"
-                },
-                "gValue": {
-                  "uncertainValue": 0.32
+          "data": [
+            {
+              "results": [
+                {
+                  "area": {
+                    "category": "centre"
+                  },
+                  "gValue": {
+                    "uncertainValue": 0.32
+                  }
                 }
-              }
-            ]
-          }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -63,21 +67,23 @@
             "uniqueId": "15988df6-0d0c-11ea-8d71-362b9e155667"
           },
           "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
-          "data": {
-            "results": [
-              {
-                "area": {
-                  "category": "centre"
-                },
-                "uValue": {
-                  "uncertainValue": 1.1
-                },
-                "gValue": {
-                  "uncertainValue": 0.52
+          "data": [
+            {
+              "results": [
+                {
+                  "area": {
+                    "category": "centre"
+                  },
+                  "uValue": {
+                    "uncertainValue": 1.1
+                  },
+                  "gValue": {
+                    "uncertainValue": 0.52
+                  }
                 }
-              }
-            ]
-          }
+              ]
+            }
+          ]
         }
       ]
     }

@@ -9,7 +9,7 @@
             "uniqueId": "473a2f69-2e18-4745-809d-519882b25e8b",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
-          "origin": {
+          "appliedMethod": {
             "method": {
               "id": "473a2f69-2e18-4745-809d-519882b25e8b",
               "reference": {
@@ -19,7 +19,9 @@
                   }
                 }
               }
-            }
+            },
+            "arguments": [],
+            "sources": []
           }
         }
       ]

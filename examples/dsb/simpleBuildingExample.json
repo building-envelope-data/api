@@ -11,7 +11,7 @@
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
           "webAddress": "http://www.owner034.com/dje1102b-264a-4023-8351-5897ec38e388",
-          "formatting": "4.1.0.0",
+          "dataFormat": "4.1.0.0",
           "createdAt": "2018-09-01T12:00:00+01:00"
         }
       },
@@ -22,7 +22,7 @@
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
           "webAddress": "http://www.owner034.com/7371102b-264a-4023-8351-5897ec38e388",
-          "formatting": "2020",
+          "dataFormat": "2020",
           "createdAt": "2018-09-01T12:00:00+01:00"
         }
       },

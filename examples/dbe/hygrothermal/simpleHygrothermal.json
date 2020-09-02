@@ -5,11 +5,13 @@
       "description": "This is the smallest example of hygrothermal data about a component.",
       "hygrothermal": [
         {
-          "data": {
-            "WUFI": {
-              "xmlData": "<placeholder><for><xmlData>"
+          "data": [
+            {
+              "WUFI": {
+                "xmlData": "<placeholder><for><xmlData>"
+              }
             }
-          }
+          ]
         }
       ]
     }
