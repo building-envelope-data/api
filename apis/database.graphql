@@ -1087,9 +1087,24 @@ type MethodSource {
 Cross-database data reference.
 """
 type CrossDatabaseReference {
+  """
+  Identifier of the referenced data.
+  """
   dataId: Uuid!
+
+  """
+  Timestamp of referenced data to designate the data's version.
+  """
   timestamp: Timestamp!
+
+  """
+  Kind of the referenced data.
+  """
   dataKind: DataKind!
+
+  """
+  Identifier of the database that manages the referenced data.
+  """
   databaseId: Uuid!
 }
 
