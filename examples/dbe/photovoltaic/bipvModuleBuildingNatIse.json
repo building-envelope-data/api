@@ -5,7 +5,7 @@
         "uniqueId": "38dfed0a-2b9a-4748-8d98-e9d278cd12e4",
         "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
       },
-      "explanation": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany.",
+      "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany.",
       "photovoltaic": [
         {
           "data": {
@@ -75,7 +75,7 @@
                     "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
                     "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                   },
-                  "explanation": "Connection type is unknown."
+                  "description": "Connection type is unknown."
                 }
               ],
               "connectionPattern": "series",

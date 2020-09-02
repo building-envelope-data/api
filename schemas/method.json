@@ -15,7 +15,7 @@
           "type": "string",
           "description": "The name of the method."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "Here the method can be described in free text."
         },
@@ -117,7 +117,7 @@
           "type": "string",
           "description": "A data set can have a name."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "This string can explain the source data for humans."
         },
@@ -141,7 +141,7 @@
           "type": "string",
           "description": "The name of the database"
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "A description of the database"
         },

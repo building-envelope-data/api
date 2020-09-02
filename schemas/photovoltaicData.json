@@ -59,7 +59,7 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The id represents one type of photovoltaic cells."
               },
-              "explanation": {
+              "description": {
                 "type": "string",
                 "description": "This string can explain the cell to humans."
               },
@@ -228,7 +228,7 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The id represents one type of diodes which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
               },
-              "explanation": {
+              "description": {
                 "type": "string",
                 "description": "This string can explain the cell to humans."
               }
@@ -275,7 +275,7 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The id represents one type of connections which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
               },
-              "explanation": {
+              "description": {
                 "type": "string",
                 "description": "This string can explain the connection type to humans."
               },
@@ -1227,7 +1227,7 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The id represents one type of diodes which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
               },
-              "explanation": {
+              "description": {
                 "type": "string",
                 "description": "This string can explain the cell to humans."
               }
@@ -1274,7 +1274,7 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The id represents one type of connections which is used in the the photovoltaic system. The id is used to define connections to other parts of the photovoltaic system"
               },
-              "explanation": {
+              "description": {
                 "type": "string",
                 "description": "This string can explain the connection type to humans."
               },

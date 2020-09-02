@@ -24,7 +24,7 @@
           "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the material in Latin alphabet."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "An explanation with more details about the component"
         },

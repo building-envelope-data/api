@@ -20,7 +20,7 @@
           "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the building"
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "An explanation with more details about the building"
         },
@@ -204,7 +204,7 @@
                   "$ref": "common.json#/$defs/webAddress",
                   "description": "The IFC file with full data about the building can be downloaded for some time from this URL."
                 },
-                "explanation": {
+                "description": {
                   "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 },
@@ -242,7 +242,7 @@
                   "$ref": "common.json#/$defs/webAddress",
                   "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
                 },
-                "explanation": {
+                "description": {
                   "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 },
@@ -276,7 +276,7 @@
                   "$ref": "common.json#/$defs/webAddress",
                   "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
                 },
-                "explanation": {
+                "description": {
                   "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 }

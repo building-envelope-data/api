@@ -255,7 +255,7 @@
           "$ref": "common.json#/$defs/webAddress",
           "description": "The URL of the website where the approval can be verified."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "Explanation how the approval can be verified"
         }
@@ -305,7 +305,7 @@
           "$ref": "string.json#/$defs/sha256Hash",
           "description": "A SHA-256 hash is used to identify the file."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "An explanation of the file."
         },
@@ -349,7 +349,7 @@
           "type": "string",
           "description": "The full name of the format"
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "The decription of the format"
         },

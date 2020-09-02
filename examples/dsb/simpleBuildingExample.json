@@ -3,7 +3,7 @@
     {
       "id": "8ca1102b-264a-4023-8351-5897ec38e388",
       "name": "The name of the building.",
-      "explanation": "A simple example for data about a building.",
+      "description": "A simple example for data about a building.",
       "IFC": {
         "full": {
           "id": {

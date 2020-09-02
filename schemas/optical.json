@@ -15,7 +15,7 @@
           "type": "string",
           "description": "If the optical data set has a name, it can be indicated here."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "This string can explain humans the optical data set."
         },

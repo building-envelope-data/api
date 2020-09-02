@@ -1,7 +1,7 @@
 {
   "id": "bcba3ff9-8cb7-4524-943a-786d301d39ef",
   "name": "Method to calculate derived measurement values",
-  "explanation": "dummy",
+  "description": "dummy",
   "categories": ["calculation"],
   "developer": {
     "id": "bcba3ff9-8cb7-4524-943a-786d301d39e2"

@@ -6,7 +6,7 @@
         "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
       },
       "name": "Fronius Galvo 3.0",
-      "explanation": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany.",
+      "description": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany.",
       "photovoltaic": [
         {
           "data": {

@@ -2,7 +2,7 @@
   "components": [
     {
       "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
-      "explanation": "This is an example of a general component which is assembled of two subcomponents and which is part of a larger assembly.",
+      "description": "This is an example of a general component which is assembled of two subcomponents and which is part of a larger assembly.",
       "relations": {
         "partOf": [
           {

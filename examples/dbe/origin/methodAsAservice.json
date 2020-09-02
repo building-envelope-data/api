@@ -11,7 +11,7 @@
           "origin": {
             "method": {
               "id": "473a2f69-2e18-4745-809d-519882b25e8b",
-              "explanation": "Example of a method which is offered as a service.",
+              "description": "Example of a method which is offered as a service.",
               "reference": {
                 "publication": {
                   "identifiers": {
