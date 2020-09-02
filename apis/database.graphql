@@ -512,7 +512,7 @@ input ClosedIntervalInput {
 
 """
 Proposition for values of type `Float`. Multiple sub-propositions are combined
-conjunctively.
+conjunctively, where the conjunction of an empty set of sub-propositions is true.
 """
 input FloatPropositionInput {
   """
@@ -552,7 +552,7 @@ input UuidPropositionInput {
 
 """
 Proposition for values of type `Data`. Multiple sub-propositions are combined
-conjunctively.
+conjunctively, where the conjunction of an empty set of sub-propositions is true.
 """
 input DataPropositionInput {
   """
