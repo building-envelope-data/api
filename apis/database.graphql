@@ -1494,7 +1494,7 @@ type GetHttpsResource {
   hashValue: String!
 
   """
-  Locator with scheme `https` meant to be used with protocol
+  Locator with scheme `https` to be used with protocol
   [HTTP over TLS](https://tools.ietf.org/html/rfc2818).
   """
   locator: Url!
@@ -1544,6 +1544,9 @@ type GetHttpsResource {
   archivedFilesMetaInformation: [FileMetaInformation!]!
 }
 
+"""
+File meta information.
+"""
 type FileMetaInformation {
   """
   Relative file path, where
@@ -1575,7 +1578,7 @@ type FileMetaInformation {
   path: [String!]!
 
   """
-  Identifier of the data format.  The identifier is issued by the metabase. The
+  Identifier of the data format. The identifier is issued by the metabase. The
   format's meta data can be obtained by sending the GraphQL query
   `dataFormat(dataFormatId: ..., timestamp: ...) { ... }`
   to the metabase.
