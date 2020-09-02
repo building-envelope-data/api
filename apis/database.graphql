@@ -20,7 +20,7 @@ property `id` and universally unique identifiers as issued by the "metabase"
 are exposed by the property `dataId`. In essence, `id` is the Base64-encoded
 concatenation of `dataId` and the requested locale.
 
-For interoperability with the "metabase", implementations must serve HTTP
+For interoperability with the "metabase", implementations serve HTTP
 requests as elaborated on
 [Serving over HTTP](https://graphql.org/learn/serving-over-http/).
 
@@ -188,7 +188,7 @@ type Query {
   """
   Fetch node by global object identifier as elaborated on
   [Global Object Identification](https://graphql.org/learn/global-object-identification/)
-  where two nodes with identical identifiers must be equal as elaborated in
+  where two nodes with identical identifiers are equal as elaborated in
   [Field stability](https://graphql.org/learn/global-object-identification/#field-stability).
 
   See also
@@ -429,8 +429,8 @@ See also
 Note that according to
 [Field stability](https://graphql.org/learn/global-object-identification/#field-stability),
 if two objects appear in a query, both implementing `Node` with identical
-identifiers, then the two objects must be equal. For example, for queried data,
-the identifier could be a Base64-encoded concatenation of the data identifier,
+identifiers, then the two objects are equal. For example, for queried data, the
+identifier could be a Base64-encoded concatenation of the data identifier,
 which is a `Uuid`, and the requested locale.
 """
 interface Node {
@@ -450,7 +450,7 @@ Note that although the introspection query results on
 [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
 use the scalar type `String` for cursors, the specification of
 [cursors](https://relay.dev/graphql/connections.htm#sec-Cursor)
-says that a cursor must only be of
+says that a cursor is of
 > a type that serializes as a `String`; this may be a `String`, a non‐null
 > wrapper around a `String`, a custom scalar that serializes as a `String`, or
 > a non‐null wrapper around a custom scalar that serializes as a `String`.
@@ -1009,21 +1009,21 @@ type AppliedMethod {
 
   """
   Named arguments to configure the method.
-  - For each parameter required by the method, there must be exactly one
-    argument in the list.
-  - Each argument in the list must correspond to an optional or required
-    parameter of the method.
-  - Each distinct pair of arguments in the list has different names.
+  - For each parameter required by the method, there is exactly one argument in
+    the list.
+  - Each argument in the list corresponds to an optional or required parameter
+    of the method.
+  - Each two distinct arguments in the list have different names.
   """
   arguments: [MethodArgument!]!
 
   """
   Named data sources to which the method was applied.
-  - For each source required by the method, there must be exactly one source in
-    the list.
-  - Each source in the list must correspond to an optional or required source
-    of the method.
-  - Each distinct pair of source in the list has different names.
+  - For each source required by the method, there is exactly one source in the
+    list.
+  - Each source in the list corresponds to an optional or required source of
+    the method.
+  - Each two distinct sources in the list have different names.
   """
   sourceIds: [MethodSource!]!
 }
@@ -1043,11 +1043,11 @@ type AppliedMethodWithImplicitSources {
 
   """
   Named arguments to configure the method.
-  - For each parameter required by the method, there must be exactly one
-    argument in the list.
-  - Each argument in the list must correspond to an optional or required
-    parameter of the method.
-  - Each distinct pair of arguments in the list has different names.
+  - For each parameter required by the method, there is exactly one argument in
+    the list.
+  - Each argument in the list corresponds to an optional or required parameter
+    of the method.
+  - Each two distinct arguments in the list have different names.
   """
   arguments: [MethodArgument!]!
 }
@@ -1324,7 +1324,7 @@ type DataApproval implements Approval {
   approvals by third parties nor the response approval by the database.  All
   other fields and sub-fields of this GraphQL schema at the time given by
   `timestamp` are included. Despite these restrictions specifying the query
-  explicitely is necessary because approvals must not become invalid when the
+  explicitely is necessary because approvals shall not become invalid when the
   GraphQL schema changes.
   """
   query: GraphQlQuery!
