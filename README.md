@@ -66,8 +66,11 @@ are supposed to be valid or invalid in the directories `./tests/valid` and
       [GrahpQL specification](http://spec.graphql.org/June2018/),
    - `test` validates the tests against the schemas,
    - `example` validates the examples against the schemas,
-   - `format` formats source files, and
-   - `dos2unix` converts Windows-style to UNIX-style line endings.
+   - `format` formats source files,
+   - `dos2unix` converts Windows-style to UNIX-style line endings,
+   - `install-tools` installs development tools, and
+   - `update-tools` updates development tools to the latest compatible minor
+     versions.
 6. Drop into `bash` with the working directory `/app`, which
    is mounted to the host's working directory, inside a fresh Docker container
    based on Debian Linux everything installed by running
@@ -91,12 +94,24 @@ are supposed to be valid or invalid in the directories `./tests/valid` and
 4. Install
    [GNU Bash](https://www.gnu.org/software/bash/),
    [GNU Make](https://www.gnu.org/software/make/),
-   and the command-line interface for
+   and
+   [npm](https://www.npmjs.com).
+5. Install the development tools in `package.json` by running
+   ```
+   make install-tools
+   ```
+   which in particular installs the command-line interface for
    [Another JSON Schema Validator (AJV)](https://github.com/ajv-validator/ajv),
    namely
-   [`ajv-cli`](https://github.com/ajv-validator/ajv-cli).
-5. Drop into `bash`.
-6. Do something with the project as elaborated above.
+   [`ajv-cli`](https://github.com/ajv-validator/ajv-cli)
+   as Node package to be executed through
+   [`npx`](https://github.com/npm/npx),
+   for example,
+   ```
+   npx ajv --help
+   ```
+6. Drop into `bash`.
+7. Do something with the project as elaborated above.
 
 Note that another
 [POSIX-compatible shell](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18)

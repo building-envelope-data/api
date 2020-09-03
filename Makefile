@@ -42,8 +42,9 @@ shell : build ## Enter shell in fresh container for image with name `${name}` an
 		--tty \
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
+		--mount type=volume,source=${name}_node_modules,destination=/app/node_modules \
 		${name}:${tag} \
-		bash
+		bash -c "make install-tools && exec bash"
 .PHONY : shell
 
 # ------------------------------------------------ #
@@ -55,10 +56,10 @@ schema_file_references = $(addprefix -r ,${schema_file_paths})
 
 compile : ## Compile schemas
 	-for schema_file_path in ./apis/*.graphql ; do \
-		graphql-schema-linter $${schema_file_path} ; \
+		npx --no-install graphql-schema-linter $${schema_file_path} ; \
 	done
 	-for schema_file_path in ${schema_file_paths} ; do \
-		ajv compile \
+		npx --no-install ajv compile \
 			-s $${schema_file_path} \
 			${schema_file_references} ; \
 	done
@@ -73,7 +74,7 @@ test : ## Validate test files
 		echo "Testing schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for test_file_path in $$(find ./tests/valid/$${schema_name} -name "*.json") ; do \
-			ajv validate \
+			npx --no-install ajv validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${test_file_path} \
 				${schema_file_references} ; \
@@ -87,7 +88,7 @@ test : ## Validate test files
 		echo "Testing schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for test_file_path in $$(find ./tests/invalid/$${schema_name} -name "*.json") ; do \
-			! ajv validate \
+			! npx --no-install ajv validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${test_file_path} \
 				${schema_file_references} ; \
@@ -136,7 +137,7 @@ example : ## Validate example files
 		echo "Validating schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for example_file in $$(find ./examples/$${schema_name} -name "*.json") ; do \
-			ajv validate \
+			npx --no-install ajv validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${example_file} \
 				${schema_file_references} ; \
@@ -145,7 +146,7 @@ example : ## Validate example files
 .PHONY : example
 
 format : ## Format files with [Prettier](https://prettier.io)
-	prettier --write .
+	npx --no-install prettier --write .
 .PHONY : format
 
 dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
@@ -155,3 +156,16 @@ dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage
 		-type f \
 		-exec sed -i -e "$(shell printf '1s/^\357\273\277//')" -e "s/\r//" {} +
 .PHONY : dos2unix
+
+install-tools : ## Install development tools if necessary
+	if [ \
+			"$$(npm install --no-optional --dry-run --json | jq "(.added + .removed + .updated + .moved + .failed) | length")" \
+			-ne 0 \
+		 ]; then \
+		npm ci --no-optional ; \
+	fi
+.PHONY : install-tools
+
+update-tools : ## Update development tools to the latest compatible minor versions
+	npm install --no-optional
+.PHONY : update-tools
