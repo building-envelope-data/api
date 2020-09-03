@@ -66,7 +66,7 @@ compile : ## Compile schemas
 .PHONY : compile
 
 test : ## Validate test files
-	echo "=============================================" && \
+	-echo "=============================================" && \
 	echo "Testing supposed to be valid tests" && \
 	echo "= = = = = = = = = = = = = = = = = = = = = = =" && \
 	for schema_name in $(shell ls --indicator-style=none ./tests/valid/) ; do \
@@ -79,8 +79,8 @@ test : ## Validate test files
 				-d $${test_file_path} \
 				${schema_file_references} ; \
 		done ; \
-	done && \
-	echo "=============================================" && \
+	done
+	-echo "=============================================" && \
 	echo "Testing supposed to be INvalid tests" && \
 	echo "= = = = = = = = = = = = = = = = = = = = = = =" && \
 	for schema_name in $(shell ls --indicator-style=none ./tests/invalid/) ; do \
@@ -132,9 +132,17 @@ test : ## Validate test files
 # .PHONY : test
 
 example : ## Validate example files
-	for schema_name in $(shell ls --indicator-style=none ./examples/) ; do \
+	-for schema_name in $(shell ls --indicator-style=none ./queries/) ; do \
 		echo "---------------------------------------------" && \
-		echo "Validating schema ./schemas/$${schema_name}.json" && \
+		echo "Queries against schema ./apis/$${schema_name}.graphql" && \
+		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
+		npx --no-install eslint \
+			 --ext graphql \
+			./queries/$${schema_name}/**.graphql ; \
+	done
+	-for schema_name in $(shell ls --indicator-style=none ./examples/) ; do \
+		echo "---------------------------------------------" && \
+		echo "Examples for schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for example_file in $$(find ./examples/$${schema_name} -name "*.json") ; do \
 			npx --no-install ajv validate \

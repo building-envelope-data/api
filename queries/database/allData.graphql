@@ -1,0 +1,29 @@
+  query {
+    allData(
+      where: {
+        or: [
+          {
+            componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" },
+            gValue: { greaterThanOrEqualTo: 0.5 },
+            not: {
+              uValue: { lessThanOrEqualTo: 0.5 }
+            }
+          },
+          {
+            nearnormalHemisphericalVisibleTransmittance: {
+              inClosedInterval: {
+                lowerBound: 0.2,
+                upperBound: 0.8
+              }
+            }
+          }
+        ]
+      }
+    ) {
+      edges {
+        node {
+          dataId
+        }
+      }
+    }
+  }

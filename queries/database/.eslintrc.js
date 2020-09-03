@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const databaseSchema = fs.readFileSync(
-  path.join(__dirname, "apis/database.graphql"),
+  path.join(__dirname, "../../apis/database.graphql"),
   "utf8"
 );
 
