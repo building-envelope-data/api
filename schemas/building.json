@@ -20,7 +20,7 @@
           "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the building"
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "An explanation with more details about the building"
         },
@@ -204,22 +204,22 @@
                   "$ref": "common.json#/$defs/webAddress",
                   "description": "The IFC file with full data about the building can be downloaded for some time from this URL."
                 },
-                "explanation": {
+                "description": {
                   "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 },
-                "formatting": {
+                "dataFormat": {
                   "type": "string",
                   "pattern": "^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$",
                   "description": "The definition of IFC version which is used to format the IFC file. For example '4.1.0.0'."
                 },
-                "created": {
-                  "$ref": "common.json#/$defs/created",
+                "createdAt": {
+                  "$ref": "common.json#/$defs/timestamp",
                   "description": "The date when the file was created"
                 }
               },
               "additionalProperties": false,
-              "required": ["id", "webAddress", "formatting", "created"]
+              "required": ["id", "webAddress", "dataFormat", "createdAt"]
             }
           },
           "additionalProperties": false,
@@ -242,22 +242,22 @@
                   "$ref": "common.json#/$defs/webAddress",
                   "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
                 },
-                "explanation": {
+                "description": {
                   "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 },
-                "formatting": {
+                "dataFormat": {
                   "type": "string",
                   "pattern": "^(20..)$",
                   "description": "The definition of Revit version which is used to format the Revit file. For example '2020'."
                 },
-                "created": {
-                  "$ref": "common.json#/$defs/created",
+                "createdAt": {
+                  "$ref": "common.json#/$defs/timestamp",
                   "description": "The date when the file was created"
                 }
               },
               "additionalProperties": false,
-              "required": ["id", "webAddress", "formatting", "created"]
+              "required": ["id", "webAddress", "dataFormat", "createdAt"]
             }
           },
           "additionalProperties": false,
@@ -276,7 +276,7 @@
                   "$ref": "common.json#/$defs/webAddress",
                   "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
                 },
-                "explanation": {
+                "description": {
                   "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 }

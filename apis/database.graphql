@@ -272,7 +272,7 @@ type Query {
       where: {
         or: [
           {
-            componentId: "810e84b4-9ebf-416c-88ea-aade848f1fdf",
+            componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" },
             gValue: { greaterThanOrEqualTo: 0.5 },
             not: {
               uValue: { lessThanOrEqualTo: 0.5 }
@@ -288,7 +288,7 @@ type Query {
           }
         ]
       }
-    ): {
+    ) {
       edges {
         node {
           dataId
@@ -816,7 +816,7 @@ interface Data {
   name: String
 
   """
-  Description
+  Description for humans
   """
   description: String
 
@@ -834,9 +834,10 @@ interface Data {
   creatorId: Uuid!
 
   """
-  Creation timestamp
+  Creation timestamp, designating when the present data set was created, for
+  example, after completion of a measurement, simulation, or calculation.
   """
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
 
   """
   Method that was applied to create this data set.
@@ -844,15 +845,13 @@ interface Data {
   appliedMethod: AppliedMethod!
 
   """
-  Validity date and time range
+  Validity date and time range.
   """
   validity: OpenEndedDateTimeRange!
 
   """
-  Approvals by stakeholders in the form of GnuPG signatures. To verify
-  signatures you need all signed data. It is thus advisable to include all
-  fields in the query. For verification you can then temporarily remove the
-  fields that are not signed. See the type `Approval` for details.
+  Approvals by stakeholders in the form of GnuPG signatures. See the type
+  `Approval` for details on how to verify data and approvals.
   """
   approvals: [Approval!]!
 
@@ -909,7 +908,7 @@ type OpticalData implements Node & Data {
   description: String
   warnings: [String!]!
   creatorId: Uuid!
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
@@ -935,7 +934,7 @@ type CalorimetricData implements Node & Data {
   description: String
   warnings: [String!]!
   creatorId: Uuid!
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
@@ -965,7 +964,7 @@ type HygrothermalData implements Node & Data {
   description: String
   warnings: [String!]!
   creatorId: Uuid!
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
@@ -985,7 +984,7 @@ type PhotovoltaicData implements Node & Data {
   description: String
   warnings: [String!]!
   creatorId: Uuid!
-  creationTimestamp: DateTime!
+  createdAt: DateTime!
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
@@ -1086,9 +1085,24 @@ type MethodSource {
 Cross-database data reference.
 """
 type CrossDatabaseReference {
+  """
+  Identifier of the referenced data.
+  """
   dataId: Uuid!
-  timestamp: Timestamp!
+
+  """
+  Timestamp of referenced data to designate the data's version.
+  """
+  dataTimestamp: DateTime!
+
+  """
+  Kind of the referenced data.
+  """
   dataKind: DataKind!
+
+  """
+  Identifier of the database that manages the referenced data.
+  """
   databaseId: Uuid!
 }
 
@@ -1103,16 +1117,16 @@ enum DataKind {
 }
 
 """
-Open-ended data and time range
+Open-ended data and time range.
 """
 type OpenEndedDateTimeRange {
   """
-  From beginning of time represented by `null`, or some date and time
+  From beginning of time represented by `null`, or some date and time.
   """
   from: DateTime
 
   """
-  Until some date and time, or end of time represented by `null`
+  Until some date and time, or end of time represented by `null`.
   """
   until: DateTime
 }
@@ -1480,7 +1494,7 @@ type GetHttpsResource {
   hashValue: String!
 
   """
-  Locator with scheme `https` meant to be used with protocol
+  Locator with scheme `https` to be used with protocol
   [HTTP over TLS](https://tools.ietf.org/html/rfc2818).
   """
   locator: Url!
@@ -1530,6 +1544,9 @@ type GetHttpsResource {
   archivedFilesMetaInformation: [FileMetaInformation!]!
 }
 
+"""
+File meta information.
+"""
 type FileMetaInformation {
   """
   Relative file path, where
@@ -1561,7 +1578,7 @@ type FileMetaInformation {
   path: [String!]!
 
   """
-  Identifier of the data format.  The identifier is issued by the metabase. The
+  Identifier of the data format. The identifier is issued by the metabase. The
   format's meta data can be obtained by sending the GraphQL query
   `dataFormat(dataFormatId: ..., timestamp: ...) { ... }`
   to the metabase.

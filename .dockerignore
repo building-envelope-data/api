@@ -3,4 +3,6 @@
 *.md
 Makefile
 Dockerfile
+npm-debug.log
+node_modules
 tags

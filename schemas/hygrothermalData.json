@@ -16,11 +16,11 @@
               "$ref": "identifier.json#/$defs/decentral",
               "description": "The id represents the hygrothermal data set."
             },
-            "explanation": {
+            "description": {
               "type": "string",
               "description": "An explanation with more details about the hygrothermal data in natural language."
             },
-            "formatting": {
+            "dataFormat": {
               "$ref": "common.json#/$defs/webAddress",
               "description": "The web address provides a definition of the format of the 'xmlData'."
             },

@@ -20,7 +20,7 @@
           "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the component in Latin alphabet"
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "An explanation with more details about the component"
         },
@@ -205,7 +205,7 @@
           "type": "string",
           "description": "If the version of the component has a specific name or version number, it can be entered here."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "Here the version can be described in free text."
         },

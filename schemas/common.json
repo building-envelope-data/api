@@ -9,23 +9,23 @@
       "format": "uri",
       "description": "In extension to the validation keyword `hostname`, a `webAddress` includes a `scheme` like https and possibly a `path` like /folder/item. TODO: Add an additional regex which checks whether the uri contains a `hostname`."
     },
-    "created": {
+    "timestamp": {
       "type": "string",
-      "format": "date-time",
-      "description": "The date when this data was first stored in the database."
+      "format": "date-time"
     },
-    "valid": {
+    "openEndedDateTimeRange": {
+      "title": "Open-ended data and time range",
       "type": "object",
       "properties": {
         "from": {
           "type": "string",
           "format": "date-time",
-          "description": "The earliest date for which the data is valid."
+          "description": "From beginning of time represented by `null`, or some date and time."
         },
         "until": {
           "type": "string",
           "format": "date-time",
-          "description": "The latest date for which the data is valid."
+          "description": "Until some date and time, or end of time represented by `null`."
         }
       },
       "additionalProperties": false,
@@ -235,12 +235,12 @@
           "type": "string",
           "description": "The cryptographic signature of the approved data."
         },
-        "created": {
-          "$ref": "common.json#/$defs/created",
+        "createdAt": {
+          "$ref": "common.json#/$defs/timestamp",
           "description": "When the approval was created"
         },
-        "valid": {
-          "$ref": "common.json#/$defs/valid",
+        "validity": {
+          "$ref": "common.json#/$defs/openEndedDateTimeRange",
           "description": "For which timespan the approval is valid"
         }
       },
@@ -255,7 +255,7 @@
           "$ref": "common.json#/$defs/webAddress",
           "description": "The URL of the website where the approval can be verified."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "Explanation how the approval can be verified"
         }
@@ -293,77 +293,97 @@
         }
       }
     },
-    "file": {
-      "title": "The data of a specific file.",
+    "getHttpsResource": {
+      "title": "GET HTTP(S) resource",
+      "description": "HTTP resource with meta information requestable through the protocol [HTTP over TLS](https://tools.ietf.org/html/rfc2818) with `GET` requests. The protocol is colloquially called Hypertext Transfer Protocol Secure (HTTPS) and uses [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc8446) to secure [Hypertext Transfer Protocol (HTTP)](https://tools.ietf.org/html/rfc7231) connections over the internet.\n\nIf an HTTP `GET` request of the resource is [successful](https://tools.ietf.org/html/rfc7231#section-6.3) with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1), the response message body is the resource's content. Otherwise, there is some issue that can be identified and hopefully resolved by examining the status code.\n\nNote that the [Internet Assigned Numbers Authority (IANA)](https://www.iana.org) maintains the [HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml). See also [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).",
       "type": "object",
       "properties": {
-        "webAddress": {
-          "$ref": "common.json#/$defs/webAddress",
-          "description": "The file can be downloaded directly from this URL."
-        },
-        "hash": {
-          "$ref": "string.json#/$defs/sha256Hash",
-          "description": "A SHA-256 hash is used to identify the file."
-        },
-        "explanation": {
+        "description": {
           "type": "string",
-          "description": "An explanation of the file."
+          "title": "Description"
         },
-        "formatting": {
-          "$ref": "#/$defs/formatting",
-          "description": "The definition of the format of the file."
+        "hashValue": {
+          "$ref": "string.json#/$defs/sha256Hash",
+          "description": "Hash value of sucessful HTTP response message body with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1) computed with Secure Hash Algorithm 256 (SHA-256) as described in the [United States's Federal Information Processing Standard 180-4 (FIPS 180-4)](https://csrc.nist.gov/publications/detail/fips/180/4/final) by the [National Institute of Standards and Technology (NIST)](https://www.nist.gov). See also [RFC 6234](https://tools.ietf.org/html/rfc6234)."
         },
-        "creator": {
-          "$ref": "stakeholder.json#/$defs/creator",
-          "description": "The stakeholder who has created this file."
+        "locator": {
+          "$ref": "common.json#/$defs/webAddress",
+          "description": "Locator with scheme `https` to be used with protocol [HTTP over TLS](https://tools.ietf.org/html/rfc2818)."
         },
-        "approvals": {
-          "$ref": "common.json#/$defs/approvals",
-          "description": "Approvals of the file."
+        "format": {
+          "$ref": "#/$defs/dataFormat",
+          "description": "Data format of successful HTTP response message body with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1)."
         },
-        "created": {
-          "$ref": "common.json#/$defs/created",
-          "description": "The date when the file was created."
-        },
-        "valid": {
-          "$ref": "common.json#/$defs/valid",
-          "description": "The timespan during which the file was valid."
+        "archivedFilesMetaInformation": {
+          "description": "Archived files meta information with relative paths from the archive root and data format specifications. In case the data format is not an archive, the list is empty. Otherwise, in case the data format is an, for our purposes, underspecified archive format like [7-Zip](https://www.7-zip.org) with an a priori unknown internal structure, for each archived file, there is exactly one list entry.\n\nNote that the [extensions of file names](https://en.wikipedia.org/wiki/Filename_extension) in the archive are not sufficient as data format because file extensions are not standardized and not sufficiently precise. For example, the extension `docx` is commonly used for documents with the media type [application/vnd.openxmlformats-officedocument.wordprocessingml.document](https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.wordprocessingml.document) but does not tell which exact version of the standard is meant.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/fileMetaInformation"
+          },
+          "minItems": 0
         }
       },
       "additionalProperties": false,
-      "required": ["webAddress"]
+      "required": ["hashValue", "locator", "format", "archivedFilesMetaInformation"]
     },
-    "formatting": {
-      "title": "The format of data.",
+    "dataFormat": {
+      "title": "Data format",
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "identifier.json#/$defs/decentral",
-          "description": "The id represents this specific format."
+          "$ref": "identifier.json#/$defs/central",
+          "description": "Central identifier"
         },
-        "abbreviation": {
-          "$ref": "string.json#/$defs/abbreviation",
-          "description": "The abbreviation of the format in Latin alphabet."
+        "timestamp": {
+          "$ref": "common.json#/$defs/timestamp",
+          "description": "Timestamp that designates the version"
         },
         "name": {
-          "type": "string",
-          "description": "The full name of the format"
+          "title": "Full name",
+          "type": "string"
         },
-        "explanation": {
-          "type": "string",
-          "description": "The decription of the format"
+        "abbreviation": {
+          "title": "Abbreviation",
+          "$ref": "string.json#/$defs/abbreviation"
         },
-        "version": {
-          "$ref": "identifier.json#/$defs/decentral",
-          "description": "This id represents a specific version of the format."
+        "description": {
+          "title": "Description",
+          "type": "string"
         },
         "reference": {
           "$ref": "common.json#/$defs/reference",
-          "description": "If the format is defined in a standard or a publication, this reference can be defined here."
+          "description": "Reference to standard or publication in which the present format is defined."
+        },
+        "mediaType": {
+          "title": "Media Type",
+          "description": "Media type as specified in the [Request for Comments (RFC)](https://www.ietf.org/rfc/) publication [RFC6838](https://tools.ietf.org/html/rfc6838) by the [Internet Engineering Task Force (IETF)](https://www.ietf.org) and listed in the registry [Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) maintained by the [Internet Assigned Numbers Authority (IANA)](https://www.iana.org), for example, [`application/json`](https://www.iana.org/assignments/media-types/application/json) for content in [JavaScript Object Notation (JSON)](https://tools.ietf.org/html/rfc7159) or [`text/xml; charset=\"utf-8\"`](https://www.iana.org/assignments/media-types/text/xml) for content in [Extensible Markup Language (XML)](https://www.w3.org/TR/2008/REC-xml-20081126/) encoded in [8-bit Unicode Transformation Format (UTF-8)](https://tools.ietf.org/html/rfc3629).\n\nNote that the media type [`application/json`](https://www.iana.org/assignments/media-types/application/json) is considered binary and does not support the parameter `charset`. The reason is that JSON content shall be encoded in UTF-8, UTF-16, or UTF-32, see [RFC7159, Section 8.1](https://tools.ietf.org/html/rfc7159#section-8.1), and thus as explained in section 3 of [RFC4627](https://www.ietf.org/rfc/rfc4627.txt) it is possible to determine whether an octet stream is UTF-8, UTF-16, or UTF-32.",
+          "type": "string"
         }
       },
       "additionalProperties": false,
       "required": ["id"]
+    },
+    "fileMetaInformation": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "title": "Relative file path",
+          "type": "array",
+          "items": {
+            "title": "File path component",
+            "description": "Either a directory name or a file name.",
+            "type": "string",
+            "pattern": "^[a-z0-9-._]+$"
+          },
+          "minItems": 1
+        },
+        "format": {
+          "title": "Data format",
+          "$ref": "#/$defs/dataFormat"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["path", "format"]
     },
     "colour": {
       "description": "Colour of a component",

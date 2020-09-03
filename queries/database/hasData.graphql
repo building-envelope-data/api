@@ -1,0 +1,5 @@
+query {
+  hasData(
+    componentId: "810e84b4-9ebf-416c-88ea-aade848f1fdf"
+  )
+}

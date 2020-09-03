@@ -1,0 +1,34 @@
+{
+  "name": "building-envelope-data",
+  "version": "",
+  "description": "",
+  "main": "",
+  "engines": {
+    "node": "10.21.x"
+  },
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ise621/building-envelope-data.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/ise621/building-envelope-data/issues"
+  },
+  "homepage": "https://github.com/ise621/building-envelope-data#readme",
+  "devDependencies": {
+    "@graphql-inspector/cli": "2.x",
+    "@graphql-inspector/config": "2.x",
+    "ajv-cli": "3.x",
+    "format-graphql": "1.x",
+    "graphql": "15.x",
+    "graphql-schema-linter": "0.x",
+    "prettier": "2.x"
+  }
+}

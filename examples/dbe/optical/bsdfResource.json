@@ -8,33 +8,32 @@
             "uniqueId": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
-          "explanation": "Example: bidirectional optical data in the most compressed form as file.",
-          "data": {
-            "webAddress": "https://oc.ise.fraunhofer.de/ceef5dc1-2501-4ea9-a994-a1ae41ea1f11",
-            "explanation": "TODO:INSTEAD OF FILES, DATA SHALL BE EXCHANGED AS RESOURCE VIA GRAPHQL WHICH CAN ALSO BE A STREAM. WE NEED AN EXAMPLE FOR THAT. This file contains BSDF data about sample VX412005.",
-            "formatting": {
-              "id": {
-                "uniqueId": "a636f9ea-96c3-45ea-8fff-cf7a32978546",
-                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-              },
-              "name": "LBNL/Klems Full",
-              "version": {
-                "uniqueId": "8a63be87-9931-4572-8eae-ba64077c3cee",
-                "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-              },
-              "reference": {
-                "publication": {
-                  "identifiers": {
-                    "doi": "10.1016/j.solener.2017.05.065"
+          "description": "Example: bidirectional optical data in the most compressed form as file.",
+          "creator": {
+            "id": "03030f13-13cc-4d29-a166-b9919f9c7972"
+          },
+          "createdAt": "2019-09-01T12:00:00+01:00",
+          "data": [
+            {
+              "description": "This resource contains BSDF data about sample VX412005.",
+              "hashValue": "d13baa5b91ea95462b1d26b3a3b1874b6be955af5a9630d1d1d0ea9bb981bf0e",
+              "locator": "https://oc.ise.fraunhofer.de/ceef5dc1-2501-4ea9-a994-a1ae41ea1f11",
+              "format": {
+                "id": "a636f9ea-96c3-45ea-8fff-cf7a32978546",
+                "timestamp": "2019-09-01T12:00:00+01:00",
+                "name": "LBNL/Klems Full",
+                "reference": {
+                  "publication": {
+                    "identifiers": {
+                      "doi": "10.1016/j.solener.2017.05.065"
+                    }
                   }
-                }
-              }
-            },
-            "creator": {
-              "id": "03030f13-13cc-4d29-a166-b9919f9c7972"
-            },
-            "created": "2019-09-01T12:00:00+01:00"
-          }
+                },
+                "mediaType": "application/xml; charset=UTF-8"
+              },
+              "archivedFilesMetaInformation": []
+            }
+          ]
         }
       ]
     }

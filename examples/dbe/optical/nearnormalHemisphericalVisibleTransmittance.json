@@ -8,25 +8,27 @@
             "uniqueId": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
-          "explanation": "Example for a nearnormal-hemispherical visible transmittance of a component.",
-          "data": {
-            "dataPoints": [
-              {
-                "incidence": {
-                  "direction": "nearnormal",
-                  "wavelengths": { "integral": "visible" }
-                },
-                "emergence": {
-                  "direction": "hemispherical"
-                },
-                "results": {
-                  "reflectance": {
-                    "uncertainValue": 0.1
+          "description": "Example for a nearnormal-hemispherical visible transmittance of a component.",
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": "nearnormal",
+                    "wavelengths": { "integral": "visible" }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "reflectance": {
+                      "uncertainValue": 0.1
+                    }
                   }
                 }
-              }
-            ]
-          }
+              ]
+            }
+          ]
         }
       ]
     }

@@ -42,8 +42,9 @@ shell : build ## Enter shell in fresh container for image with name `${name}` an
 		--tty \
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
+		--mount type=volume,source=${name}_node_modules,destination=/app/node_modules \
 		${name}:${tag} \
-		bash
+		bash -c "make install-tools && exec bash"
 .PHONY : shell
 
 # ------------------------------------------------ #
@@ -54,16 +55,18 @@ schema_file_paths = $(shell find ./schemas/ -name "*.json")
 schema_file_references = $(addprefix -r ,${schema_file_paths})
 
 compile : ## Compile schemas
-	-graphql-schema-linter ./apis/*.graphql
+	-for schema_file_path in ./apis/*.graphql ; do \
+		npx --no-install graphql-schema-linter $${schema_file_path} ; \
+	done
 	-for schema_file_path in ${schema_file_paths} ; do \
-		ajv compile \
+		npx --no-install ajv compile \
 			-s $${schema_file_path} \
 			${schema_file_references} ; \
 	done
 .PHONY : compile
 
 test : ## Validate test files
-	echo "=============================================" && \
+	-echo "=============================================" && \
 	echo "Testing supposed to be valid tests" && \
 	echo "= = = = = = = = = = = = = = = = = = = = = = =" && \
 	for schema_name in $(shell ls --indicator-style=none ./tests/valid/) ; do \
@@ -71,13 +74,13 @@ test : ## Validate test files
 		echo "Testing schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for test_file_path in $$(find ./tests/valid/$${schema_name} -name "*.json") ; do \
-			ajv validate \
+			npx --no-install ajv validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${test_file_path} \
 				${schema_file_references} ; \
 		done ; \
-	done && \
-	echo "=============================================" && \
+	done
+	-echo "=============================================" && \
 	echo "Testing supposed to be INvalid tests" && \
 	echo "= = = = = = = = = = = = = = = = = = = = = = =" && \
 	for schema_name in $(shell ls --indicator-style=none ./tests/invalid/) ; do \
@@ -85,7 +88,7 @@ test : ## Validate test files
 		echo "Testing schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for test_file_path in $$(find ./tests/invalid/$${schema_name} -name "*.json") ; do \
-			! ajv validate \
+			! npx --no-install ajv validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${test_file_path} \
 				${schema_file_references} ; \
@@ -129,12 +132,23 @@ test : ## Validate test files
 # .PHONY : test
 
 example : ## Validate example files
-	for schema_name in $(shell ls --indicator-style=none ./examples/) ; do \
+	-for schema_name in $(shell ls --indicator-style=none ./queries/) ; do \
 		echo "---------------------------------------------" && \
-		echo "Validating schema ./schemas/$${schema_name}.json" && \
+		echo "Queries against schema ./apis/$${schema_name}.graphql" && \
+		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
+		for query_file in $$(find ./queries/$${schema_name} -name "*.graphql") ; do \
+			echo "$${query_file}" && \
+			npx --no-install graphql-inspector validate \
+				$${query_file} \
+				./apis/$${schema_name}.graphql ; \
+		done ; \
+	done
+	-for schema_name in $(shell ls --indicator-style=none ./examples/) ; do \
+		echo "---------------------------------------------" && \
+		echo "Examples for schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for example_file in $$(find ./examples/$${schema_name} -name "*.json") ; do \
-			ajv validate \
+			npx --no-install ajv validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${example_file} \
 				${schema_file_references} ; \
@@ -143,7 +157,7 @@ example : ## Validate example files
 .PHONY : example
 
 format : ## Format files with [Prettier](https://prettier.io)
-	prettier --write .
+	npx --no-install prettier --write .
 .PHONY : format
 
 dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
@@ -153,3 +167,16 @@ dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage
 		-type f \
 		-exec sed -i -e "$(shell printf '1s/^\357\273\277//')" -e "s/\r//" {} +
 .PHONY : dos2unix
+
+install-tools : ## Install development tools if necessary
+	if [ \
+			"$$(npm install --no-optional --dry-run --json | jq "(.added + .removed + .updated + .moved + .failed) | length")" \
+			-ne 0 \
+		 ]; then \
+		npm ci --no-optional ; \
+	fi
+.PHONY : install-tools
+
+update-tools : ## Update development tools to the latest compatible minor versions
+	npm install --no-optional
+.PHONY : update-tools

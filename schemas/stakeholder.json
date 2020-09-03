@@ -38,7 +38,7 @@
           "$ref": "identifier.json#/$defs/central",
           "description": "This id represents the stakeholder."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "This explanation can specify the role of the stakeholder."
         }
@@ -97,7 +97,7 @@
           "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the institution in Latin alphabet."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "The explanation can further explain the role of the institution."
         },
@@ -196,7 +196,7 @@
           "$ref": "string.json#/$defs/abbreviation",
           "description": "Abbreviation of the standardizer in Latin alphabet."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "This explanation can specify the role of the institution which has created a standard."
         }

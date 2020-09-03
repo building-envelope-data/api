@@ -1,0 +1,4 @@
+projects:
+  database:
+    schema: './apis/database.graphql'
+    documents: './queries/database/**/*.graphql'
