@@ -98,14 +98,15 @@ WORKDIR /app
 #---------------------------#
 # Install development tools #
 #---------------------------#
+# * GraphQL Inspector to serve, diff, introspect, coverage-check GraphQL
+#   schemas, and to validate GraphQL fragments and operations against schemas,
+#   see https://graphql-inspector.com
 # * Another JSON Schema Validator (AJV) command-line interface to validate
 #   schemas and files, see https://github.com/ajv-validator/ajv-cli
-# * graphql-schema-linter to validate GraphQL schemas, see
-#   https://github.com/cjoudrey/graphql-schema-linter
-# * eslint-plugin-graphql to check GraphQL queries against GraphQL schemas, see
-#   https://github.com/apollographql/eslint-plugin-graphql
 # * format-graphql to sort definitions and fields in GraphQL schemas, see
 #   https://github.com/gajus/format-graphql
+# * graphql-schema-linter to validate GraphQL schemas, see
+#   https://github.com/cjoudrey/graphql-schema-linter
 # * Prettier to format JSON and GraphQL code, see https://prettier.io
 COPY --chown=me:us \
   package.json ./

@@ -23,11 +23,9 @@
   },
   "homepage": "https://github.com/ise621/building-envelope-data#readme",
   "devDependencies": {
-    "@babel/core": "7.x",
-    "@babel/eslint-parser": "7.x",
+    "@graphql-inspector/cli": "2.x",
+    "@graphql-inspector/config": "2.x",
     "ajv-cli": "3.x",
-    "eslint": "7.x",
-    "eslint-plugin-graphql": "4.x",
     "format-graphql": "1.x",
     "graphql": "15.x",
     "graphql-schema-linter": "0.x",

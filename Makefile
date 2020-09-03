@@ -136,9 +136,12 @@ example : ## Validate example files
 		echo "---------------------------------------------" && \
 		echo "Queries against schema ./apis/$${schema_name}.graphql" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
-		npx --no-install eslint \
-			 --ext graphql \
-			./queries/$${schema_name}/**.graphql ; \
+		for query_file in $$(find ./queries/$${schema_name} -name "*.graphql") ; do \
+			echo "$${query_file}" && \
+			npx --no-install graphql-inspector validate \
+				$${query_file} \
+				./apis/$${schema_name}.graphql ; \
+		done ; \
 	done
 	-for schema_name in $(shell ls --indicator-style=none ./examples/) ; do \
 		echo "---------------------------------------------" && \
