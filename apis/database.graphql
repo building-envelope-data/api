@@ -272,7 +272,7 @@ type Query {
       where: {
         or: [
           {
-            componentId: "810e84b4-9ebf-416c-88ea-aade848f1fdf",
+            componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" },
             gValue: { greaterThanOrEqualTo: 0.5 },
             not: {
               uValue: { lessThanOrEqualTo: 0.5 }
@@ -288,7 +288,7 @@ type Query {
           }
         ]
       }
-    ): {
+    ) {
       edges {
         node {
           dataId
