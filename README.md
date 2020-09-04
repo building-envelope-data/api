@@ -6,7 +6,8 @@ and
 schemas for building envelopes data. JSON schemas are located in the directory
 `./schemas`, GraphQL schemas in the directory `./apis`, test JSON files that
 are supposed to be valid or invalid in the directories `./tests/valid` and
-`./tests/invalid`, and examples in the directory `./examples`.
+`./tests/invalid`, example JSON files in the directory `./examples`, and
+example GraphQL queries in the directory `./queries`.
 
 ## On your Linux machine
 
