@@ -2,3 +2,6 @@ projects:
   database:
     schema: './apis/database.graphql'
     documents: './queries/database/**/*.graphql'
+  metabase:
+    schema: './apis/metabase.graphql'
+    documents: './queries/metabase/**/*.graphql'
