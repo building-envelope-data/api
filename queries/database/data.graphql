@@ -1,0 +1,94 @@
+query {
+  data(
+    dataId: "810e84b4-9ebf-416c-88ea-aade848f1fdf",
+    timestamp: "2019-09-01T12:00:00+01:00",
+    locale: "en-GB"
+  ) {
+    dataId
+    timestamp
+    componentId
+    name
+    description
+    warnings
+    creatorId
+    createdAt
+    appliedMethod {
+      methodId
+      arguments {
+        name
+        value
+      }
+      sources {
+        name
+        value {
+          dataId
+          dataTimestamp
+          dataKind
+          databaseId
+        }
+      }
+    }
+    validity {
+      from
+      until
+    }
+    approvals {
+      timestamp
+      signature
+      keyFingerprint
+      query
+      response
+      validity {
+        from
+        until
+      }
+      approverId
+    }
+    resources {
+      description
+      hashValue
+      locator
+      formatId
+      archivedFilesMetaInformation {
+        path
+        formatId
+      }
+    }
+    resourceRoot {
+      resource {
+        description
+        hashValue
+        locator
+        formatId
+        archivedFilesMetaInformation {
+          path
+          formatId
+        }
+      }
+      children {
+        resource {
+          description
+          hashValue
+          locator
+          formatId
+          archivedFilesMetaInformation {
+            path
+            formatId
+          }
+        }
+        appliedConversionMethod {
+          methodId
+          arguments {
+            name
+            value
+          }
+        }
+      }
+    }
+    approval {
+      signature
+      keyFingerprint
+    }
+    locale
+  }
+}
