@@ -48,7 +48,7 @@ run : build ## Run command `${COMMAND}` in fresh container for image with name `
 		--mount type=volume,source=${name}_node_modules,destination=/app/node_modules \
 		${OPTIONS} \
 		${name}:${tag} \
-		bash -c "make install-tools && exec ${COMMAND}"
+		bash -c "make install-tools && (exec ${COMMAND})"
 .PHONY : run
 
 shell : COMMAND = bash
