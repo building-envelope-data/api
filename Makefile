@@ -36,7 +36,7 @@ remove : ## Remove image with name `${name}` and tag '${tag}'
 	docker rmi ${name}:${tag}
 .PHONY : remove
 
-shell : build ## Enter shell in fresh container for image with name `${name}` and tag '${tag}'
+run : build ## Run command `${COMMAND}` in fresh container for image with name `${name}` and tag '${tag}', for example, `make COMMAND="ls -al" run`
 	docker run \
 		--interactive \
 		--tty \
@@ -44,7 +44,11 @@ shell : build ## Enter shell in fresh container for image with name `${name}` an
 		--mount type=bind,source="$(shell pwd)",destination=/app \
 		--mount type=volume,source=${name}_node_modules,destination=/app/node_modules \
 		${name}:${tag} \
-		bash -c "make install-tools && exec bash"
+		bash -c "make install-tools && exec ${COMMAND}"
+.PHONY : run
+
+shell : COMMAND = bash
+shell : run ## Enter `bash` shell in fresh container for image with name `${name}` and tag '${tag}'
 .PHONY : shell
 
 # ------------------------------------------------ #
