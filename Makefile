@@ -4,6 +4,9 @@
 name = building_envelopes_data
 tag = latest
 
+DATABASE_PORT = 4000
+METABASE_PORT = 4001
+
 # Taken from https://www.client9.com/self-documenting-makefiles/
 help : ## Print this help
 	@awk -F ':|##' '/^[^\t].+?:.*?##/ {\
@@ -43,6 +46,7 @@ run : build ## Run command `${COMMAND}` in fresh container for image with name `
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
 		--mount type=volume,source=${name}_node_modules,destination=/app/node_modules \
+		${OPTIONS} \
 		${name}:${tag} \
 		bash -c "make install-tools && exec ${COMMAND}"
 .PHONY : run
@@ -50,6 +54,16 @@ run : build ## Run command `${COMMAND}` in fresh container for image with name `
 shell : COMMAND = bash
 shell : run ## Enter `bash` shell in fresh container for image with name `${name}` and tag '${tag}'
 .PHONY : shell
+
+serve : COMMAND = \
+					npx --no-install graphql-inspector serve ./apis/database.graphql --port 4000 & \
+					npx --no-install graphql-inspector serve ./apis/metabase.graphql --port 4001 & \
+					bash
+serve : OPTIONS = \
+					--publish ${DATABASE_PORT}:4000 \
+					--publish ${METABASE_PORT}:4001
+serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT:-4000}` and `${METABASE_PORT:-4001}`, for example, `make DATABASE_PORT=8000 METABASE_PORT=8001 serve` (afterwards, open the GraphiQL IDE, a graphical interactive in-browser GraphQL IDE, in your web browser under http://localhost:${*BASE_PORT})
+.PHONY : serve
 
 # ------------------------------------------------ #
 # Tasks to run, for example, in a Docker container #

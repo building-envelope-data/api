@@ -57,9 +57,9 @@ are supposed to be valid or invalid in the directories `./tests/valid` and
    ```shell
    make help
    ```
-   The targets `name`, `tag`, `build`, `remove`, `run`, and `shell` can be used
-   to interface with Docker. The other ones can be used within `bash` inside
-   a Docker container:
+   The targets `name`, `tag`, `build`, `remove`, `run`, `shell`, and `serve`
+   can be used to interface with Docker. The other ones can be used within
+   `bash` inside a Docker container:
    - `compile` validates the JSON schemas against the
       [JSON Schema meta-schemas](https://json-schema.org/specification-links.html#draft-7)
       and the GraphQL schemas against the
