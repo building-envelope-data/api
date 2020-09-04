@@ -859,7 +859,7 @@ interface Data {
   Approvals by stakeholders in the form of GnuPG signatures. See the type
   `Approval` for details on how to verify data and approvals.
   """
-  approvals: [Approval!]!
+  approvals: [DataApproval!]!
 
   """
   Multiple HTTP resources with meta information of the actual data requestable
