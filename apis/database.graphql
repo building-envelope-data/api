@@ -194,7 +194,7 @@ type Query {
   See also
   [Node root field](https://graphql.org/learn/global-object-identification/#node-root-field)
   """
-  node(id: ID!): Node!
+  node("Global object identifier." id: ID!): Node!
 
   """
   Fetch data by universally unique identifier, and optional timestamp and
@@ -202,10 +202,11 @@ type Query {
   throughout time.
   """
   data(
-    dataId: Uuid!,
-    "If not given, the moment the query is received is used."
-    timestamp: DateTime,
-    "If not given, the default locale is used, which may differ from database to database."
+    "Data identifier."
+    dataId: Uuid!
+    "Timestamp. If not given, the moment the query is received is used."
+    timestamp: DateTime
+    "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
   ): Data!
 
@@ -231,8 +232,8 @@ type Query {
   See `Query#data`.
   """
   opticalData(
-    opticalDataId: Uuid!,
-    timestamp: DateTime,
+    opticalDataId: Uuid!
+    timestamp: DateTime
     locale: Locale
   ): OpticalData!
 
@@ -299,10 +300,11 @@ type Query {
   ```
   """
   allData(
+    "Compound boolean expression that is true for data being searched for."
     where: DataPropositionInput!
-    "If not given, the moment the query is received is used."
+    "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
-    "If not given, the default locale is used, which may differ from database to database."
+    "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
     "Maximum number of data edges after the cursor `after`."
     first: NonNegativeInt
@@ -367,14 +369,15 @@ type Query {
   ): PhotovoltaicDataConnection
 
   """
-  Whether there is data for the component with the given universally unique
-  identifier at the given timestamp in the given locale.
+  Whether there is data for which the proposition is true at the given
+  timestamp in the given locale.
   """
   hasData(
-    componentId: Uuid!,
-    "If not given, the moment the query is received is used."
+    "Compound boolean expression that is true for data being searched for."
+    where: CalorimetricDataPropositionInput!
+    "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
-    "If not given, the default locale is used, which may differ from database to database."
+    "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
   ): Boolean!
 
@@ -382,7 +385,7 @@ type Query {
   See `Query#hasData`.
   """
   hasCalorimetricData(
-    componentId: Uuid!
+    where: CalorimetricDataPropositionInput!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -391,7 +394,7 @@ type Query {
   See `Query#hasData`.
   """
   hasHygrothermalData(
-    componentId: Uuid!
+    where: CalorimetricDataPropositionInput!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -400,7 +403,7 @@ type Query {
   See `Query#hasData`.
   """
   hasOpticalData(
-    componentId: Uuid!
+    where: CalorimetricDataPropositionInput!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -409,7 +412,7 @@ type Query {
   See `Query#hasData`.
   """
   hasPhotovoltaicData(
-    componentId: Uuid!
+    where: CalorimetricDataPropositionInput!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -853,7 +856,7 @@ interface Data {
   Approvals by stakeholders in the form of GnuPG signatures. See the type
   `Approval` for details on how to verify data and approvals.
   """
-  approvals: [Approval!]!
+  approvals: [DataApproval!]!
 
   """
   Multiple HTTP resources with meta information of the actual data requestable
@@ -1024,7 +1027,7 @@ type AppliedMethod {
     the method.
   - Each two distinct sources in the list have different names.
   """
-  sourceIds: [MethodSource!]!
+  sources: [MethodSource!]!
 }
 
 """
