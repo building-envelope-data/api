@@ -1030,7 +1030,7 @@ type AppliedMethod {
     the method.
   - Each two distinct sources in the list have different names.
   """
-  sourceIds: [MethodSource!]!
+  sources: [MethodSource!]!
 }
 
 """
