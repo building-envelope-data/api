@@ -4,6 +4,9 @@
 name = building_envelopes_data
 tag = latest
 
+DATABASE_PORT = 4000
+METABASE_PORT = 4001
+
 # Taken from https://www.client9.com/self-documenting-makefiles/
 help : ## Print this help
 	@awk -F ':|##' '/^[^\t].+?:.*?##/ {\
@@ -36,16 +39,31 @@ remove : ## Remove image with name `${name}` and tag '${tag}'
 	docker rmi ${name}:${tag}
 .PHONY : remove
 
-shell : build ## Enter shell in fresh container for image with name `${name}` and tag '${tag}'
+run : build ## Run command `${COMMAND}` in fresh container for image with name `${name}` and tag '${tag}', for example, `make COMMAND="ls -al" run`
 	docker run \
 		--interactive \
 		--tty \
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
 		--mount type=volume,source=${name}_node_modules,destination=/app/node_modules \
+		${OPTIONS} \
 		${name}:${tag} \
-		bash -c "make install-tools && exec bash"
+		bash -c "make install-tools && (exec ${COMMAND})"
+.PHONY : run
+
+shell : COMMAND = bash
+shell : run ## Enter `bash` shell in fresh container for image with name `${name}` and tag '${tag}'
 .PHONY : shell
+
+serve : COMMAND = \
+					npx --no-install graphql-inspector serve ./apis/database.graphql --port 4000 & \
+					npx --no-install graphql-inspector serve ./apis/metabase.graphql --port 4001 & \
+					bash
+serve : OPTIONS = \
+					--publish ${DATABASE_PORT}:4000 \
+					--publish ${METABASE_PORT}:4001
+serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` and `${METABASE_PORT}` with defaults 4000 and 4001, for example, `make serve` or `make DATABASE_PORT=8000 METABASE_PORT=8001 serve` (afterwards, open the GraphiQL IDE, a graphical interactive in-browser GraphQL IDE, in your web browser on localhost with the respective port)
+.PHONY : serve
 
 # ------------------------------------------------ #
 # Tasks to run, for example, in a Docker container #
@@ -98,7 +116,7 @@ test : ## Validate test files
 
 # If `ajv-cli` supported fragments to refer to definitions inside schema files,
 # then we could use the following to test definitions in isolation:
-# test : ## Validate test files
+# test :
 # 	echo "=============================================" && \
 # 	echo "Testing supposed to be valid tests" && \
 # 	echo "= = = = = = = = = = = = = = = = = = = = = = =" && \
@@ -156,9 +174,17 @@ example : ## Validate example files
 	done
 .PHONY : example
 
-format : ## Format files with [Prettier](https://prettier.io)
+format : ## Format files with Prettier
 	npx --no-install prettier --write .
 .PHONY : format
+
+introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.schema.json
+	for schema_file in ./apis/*.graphql ; do \
+		npx --no-install graphql-inspector introspect \
+			$${schema_file} \
+			--write $${schema_file}.schema.json ; \
+	done
+.PHONY : introspect
 
 dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
 	find \
@@ -168,6 +194,8 @@ dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage
 		-exec sed -i -e "$(shell printf '1s/^\357\273\277//')" -e "s/\r//" {} +
 .PHONY : dos2unix
 
+# For the dry run in the condition we should use `npm ci` However, that command
+# does not support dry runs.
 install-tools : ## Install development tools if necessary
 	if [ \
 			"$$(npm install --no-optional --dry-run --json | jq "(.added + .removed + .updated + .moved + .failed) | length")" \

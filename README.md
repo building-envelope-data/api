@@ -57,9 +57,9 @@ are supposed to be valid or invalid in the directories `./tests/valid` and
    ```shell
    make help
    ```
-   The targets `name`, `tag`,
-   `build`, `remove`, and `shell` can be used to interface with Docker. The
-   other ones can be used within `bash` inside a Docker container:
+   The targets `name`, `tag`, `build`, `remove`, `run`, `shell`, and `serve`
+   can be used to interface with Docker. The other ones can be used within
+   `bash` inside a Docker container:
    - `compile` validates the JSON schemas against the
       [JSON Schema meta-schemas](https://json-schema.org/specification-links.html#draft-7)
       and the GraphQL schemas against the
@@ -67,6 +67,7 @@ are supposed to be valid or invalid in the directories `./tests/valid` and
    - `test` validates the tests against the schemas,
    - `example` validates the examples against the schemas,
    - `format` formats source files,
+   - `introspect` introspects the GraphQL schemas,
    - `dos2unix` converts Windows-style to UNIX-style line endings,
    - `install-tools` installs development tools, and
    - `update-tools` updates development tools to the latest compatible minor
