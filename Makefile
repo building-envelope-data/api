@@ -189,7 +189,7 @@ introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.s
 dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
 	find \
 		. \
-		\( -name "*.json" \) \
+		\( -name "*.json" -o -name "*.graphql" \) \
 		-type f \
 		-exec sed -i -e "$(shell printf '1s/^\357\273\277//')" -e "s/\r//" {} +
 .PHONY : dos2unix
