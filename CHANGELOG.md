@@ -11,9 +11,9 @@ and this project adheres to
 
 ### Added
 
--
--
--
+- Document previously undocumented database GraphQL schema #101
+- Add more tooling for GraphQL schema, queries, and mutations #104
+- Add query examples for `data`, `allData`, and `hasData` #105
 -
 -
 -
@@ -34,8 +34,8 @@ and this project adheres to
 
 ### Changed
 
--
--
+- Improve propositions used in GraphQL queries to search for data #102
+- Further align database GraphQL schema and JSON schema #103
 -
 -
 -
