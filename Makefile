@@ -168,6 +168,8 @@ dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage
 		-exec sed -i -e "$(shell printf '1s/^\357\273\277//')" -e "s/\r//" {} +
 .PHONY : dos2unix
 
+# For the dry run in the condition we should use `npm ci` However, that command
+# does not support dry runs.
 install-tools : ## Install development tools if necessary
 	if [ \
 			"$$(npm install --no-optional --dry-run --json | jq "(.added + .removed + .updated + .moved + .failed) | length")" \
