@@ -1,13 +1,67 @@
   query {
-    allData(
+    byComponentId: allData(
+      where: { componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } }
+    ) {
+      nodes {
+        dataId
+      }
+    }
+
+    byNegation: allData(
+      where: { not: { gValue: { greaterThanOrEqualTo: 0.5 } } }
+    ) {
+      nodes {
+        dataId
+      }
+    }
+
+    byConjunction: allData(
+      where: {
+        and: [
+          { gValue: { equalTo: 0.5 } },
+          { uValue: { greaterThanOrEqualTo: 0.5 } }
+        ]
+      }
+    ) {
+      nodes {
+        dataId
+      }
+    }
+
+    byDisjunction: allData(
+      where: {
+        or: [
+          { gValue: { greaterThanOrEqualTo: 0.5 } },
+          { uValue: { lessThanOrEqualTo: 0.5 } },
+          {
+            nearnormalHemisphericalVisibleTransmittance: {
+              inClosedInterval: {
+                lowerBound: 0.2,
+                upperBound: 0.8
+              }
+            }
+          }
+        ]
+      }
+    ) {
+      nodes {
+        dataId
+      }
+    }
+
+    byComplex: allData(
       where: {
         or: [
           {
-            componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" },
-            gValue: { greaterThanOrEqualTo: 0.5 },
-            not: {
-              uValue: { lessThanOrEqualTo: 0.5 }
-            }
+            and: [
+              { componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } },
+              { gValue: { greaterThanOrEqualTo: 0.5 } },
+              {
+                not: {
+                  uValue: { lessThanOrEqualTo: 0.5 }
+                }
+              }
+            ]
           },
           {
             nearnormalHemisphericalVisibleTransmittance: {
