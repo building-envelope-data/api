@@ -324,7 +324,12 @@
         }
       },
       "additionalProperties": false,
-      "required": ["hashValue", "locator", "format", "archivedFilesMetaInformation"]
+      "required": [
+        "hashValue",
+        "locator",
+        "format",
+        "archivedFilesMetaInformation"
+      ]
     },
     "dataFormat": {
       "title": "Data format",

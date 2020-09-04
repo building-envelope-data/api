@@ -194,10 +194,7 @@ type Query {
   See also
   [Node root field](https://graphql.org/learn/global-object-identification/#node-root-field)
   """
-  node(
-    "Global object identifier."
-    id: ID!
-  ): Node!
+  node("Global object identifier." id: ID!): Node!
 
   """
   Fetch data by universally unique identifier, and optional timestamp and
@@ -206,9 +203,9 @@ type Query {
   """
   data(
     "Data identifier."
-    dataId: Uuid!,
+    dataId: Uuid!
     "Timestamp. If not given, the moment the query is received is used."
-    timestamp: DateTime,
+    timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
   ): Data!
@@ -235,8 +232,8 @@ type Query {
   See `Query#data`.
   """
   opticalData(
-    opticalDataId: Uuid!,
-    timestamp: DateTime,
+    opticalDataId: Uuid!
+    timestamp: DateTime
     locale: Locale
   ): OpticalData!
 

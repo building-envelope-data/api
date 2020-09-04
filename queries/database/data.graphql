@@ -1,7 +1,7 @@
 query {
   data(
-    dataId: "810e84b4-9ebf-416c-88ea-aade848f1fdf",
-    timestamp: "2019-09-01T12:00:00+01:00",
+    dataId: "810e84b4-9ebf-416c-88ea-aade848f1fdf"
+    timestamp: "2019-09-01T12:00:00+01:00"
     locale: "en-GB"
   ) {
     dataId
