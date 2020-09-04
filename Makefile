@@ -160,6 +160,14 @@ format : ## Format files with [Prettier](https://prettier.io)
 	npx --no-install prettier --write .
 .PHONY : format
 
+introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.schema.json
+	for schema_file in ./apis/*.graphql ; do \
+		npx --no-install graphql-inspector introspect \
+			$${schema_file} \
+			--write $${schema_file}.schema.json ; \
+	done
+.PHONY : introspect
+
 dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
 	find \
 		. \
