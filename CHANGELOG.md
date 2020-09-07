@@ -36,7 +36,7 @@ and this project adheres to
 
 - Improve propositions used in GraphQL queries to search for data #102
 - Further align database GraphQL schema and JSON schema #103
--
+- Flatten data HTTP resource trees to make them queryable with one query without having to know the trees depth #108
 -
 -
 -
