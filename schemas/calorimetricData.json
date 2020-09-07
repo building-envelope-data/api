@@ -18,7 +18,6 @@
           "items": {
             "$ref": "#/$defs/flux"
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "results": {
@@ -27,7 +26,6 @@
           "items": {
             "$ref": "#/$defs/result"
           },
-          "additionalItems": false,
           "minItems": 1
         }
       },
@@ -61,7 +59,7 @@
             "enum": ["exterior", "interior", "lateral", "other"],
             "description": "The name of the part of the surroundings. If neither exterior nor interior or lateral fits, choose other and describe it in the explanation below."
           },
-          "additionalItems": false,
+          "uniqueItems": true,
           "minItems": 1,
           "maxItems": 4
         },
@@ -165,7 +163,6 @@
                 "$ref": "common.json#/$defs/currentVoltage",
                 "description": "The current-voltage characteristic can be important for example for photovoltaics. It can also be used just to define just one current and one voltage."
               },
-              "additionalItems": false,
               "minItems": 1
             }
           },

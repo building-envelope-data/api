@@ -63,7 +63,7 @@
         "woven"
       ],
       "description": "Components of the category layer can have the subcategories of this enumeration which further specifies the layer.",
-      "additionalItems": false,
+      "uniqueItems": true,
       "minItems": 0
     },
     "characteristics": {

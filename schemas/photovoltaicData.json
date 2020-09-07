@@ -93,7 +93,6 @@
                   "$ref": "common.json#/$defs/currentVoltage",
                   "description": "The current-voltage characteristic is important to calculate the photovoltaic performance for conditions other than the standard test conditions."
                 },
-                "additionalItems": false,
                 "minItems": 1
               },
               "categories": {
@@ -131,14 +130,13 @@
                   ],
                   "description": "A photovoltaic cell can have one or more of these categories. For example, Copper indium gallium selenide photovoltaic is a thin film and solid state photovoltaic technology and would be described by the corresponding six items in the array."
                 },
-                "additionalItems": false,
+                "uniqueItems": true,
                 "minItems": 0
               }
             },
             "additionalProperties": false,
             "required": ["id"]
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "cellPattern": {
@@ -215,7 +213,6 @@
             "additionalProperties": false,
             "required": ["id", "cellType"]
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "diodeTypes": {
@@ -237,7 +234,6 @@
             "minProperties": 1,
             "required": []
           },
-          "additionalItems": false,
           "minItems": 0
         },
         "diodes": {
@@ -262,7 +258,6 @@
             "additionalProperties": false,
             "required": ["id", "diodeType"]
           },
-          "additionalItems": false,
           "minItems": 0
         },
         "connectionTypes": {
@@ -292,7 +287,6 @@
             "minProperties": 1,
             "required": []
           },
-          "additionalItems": false,
           "minItems": 0
         },
         "connectionPattern": {
@@ -331,7 +325,7 @@
                   ],
                   "description": "Typically, a photovoltaic module consists of a front cover layer, a front embedding layer, a cell layer, a rear embedding layer and a backing layer. The layer can therefore be defined by multiple strings."
                 },
-                "additionalItems": false,
+                "uniqueItems": true,
                 "minItems": 1,
                 "maxItems": 2
               },
@@ -356,7 +350,6 @@
             "minProperties": 1,
             "required": []
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "electricConfiguration": {
@@ -380,7 +373,6 @@
                 "minProperties": 1,
                 "required": []
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "cableTypes": {
@@ -418,7 +410,6 @@
                 "minProperties": 1,
                 "required": []
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "connectorTypes": {
@@ -439,7 +430,6 @@
                   "required": []
                 }
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "connectors": {
@@ -468,7 +458,6 @@
                 "additionalProperties": false,
                 "required": ["id"]
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "groundingNecessary": {
@@ -545,7 +534,6 @@
                     "additionalProperties": false,
                     "required": ["years", "percentage"]
                   },
-                  "additionalItems": false,
                   "minItems": 1
                 },
                 "angleDependency": {
@@ -571,7 +559,6 @@
                           "required": []
                         }
                       },
-                      "additionalItems": false,
                       "minItems": 1
                     },
                     "incidenceDirectionModifier": {
@@ -592,7 +579,6 @@
                         "additionalProperties": false,
                         "required": ["direction", "modifier"]
                       },
-                      "additionalItems": false,
                       "minItems": 1
                     }
                   },
@@ -771,12 +757,11 @@
                         "minProperties": 2,
                         "required": ["reference"]
                       },
-                      "additionalItems": false,
                       "minItems": 1
                     },
                     {
                       "type": "string",
-                      "enum": ["noPerformanceDetermined"],
+                      "const": "noPerformanceDetermined",
                       "description": "noPerformanceDetermined defines that no tests of the mechanical loads are available."
                     }
                   ]
@@ -797,12 +782,11 @@
                         "minProperties": 2,
                         "required": ["reference"]
                       },
-                      "additionalItems": false,
                       "minItems": 1
                     },
                     {
                       "type": "string",
-                      "enum": ["noPerformanceDetermined"],
+                      "const": "noPerformanceDetermined",
                       "description": "noPerformanceDetermined defines that no hail test results are available."
                     }
                   ]
@@ -846,7 +830,6 @@
                   "description": "The reference can define a publication or standard with details of the guarantee."
                 }
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "colour": {
@@ -1052,7 +1035,7 @@
                           "enum": ["EN IEC 60529", "ISO 20653"],
                           "description": "The item defines according to which standard the IP code is defined below."
                         },
-                        "additionalItems": false,
+                        "uniqueItems": true,
                         "minItems": 1,
                         "maxItems": 2
                       },
@@ -1117,7 +1100,7 @@
                     "properties": {
                       "standard": {
                         "type": "string",
-                        "enum": ["IEC 61140"],
+                        "const": "IEC 61140",
                         "description": "The item defines according to which standard the appliance class is defined below."
                       },
                       "class": {
@@ -1214,7 +1197,6 @@
             "additionalProperties": false,
             "required": ["id"]
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "diodeTypes": {
@@ -1236,7 +1218,6 @@
             "minProperties": 1,
             "required": []
           },
-          "additionalItems": false,
           "minItems": 0
         },
         "diodes": {
@@ -1261,7 +1242,6 @@
             "additionalProperties": false,
             "required": ["id", "diodeType"]
           },
-          "additionalItems": false,
           "minItems": 0
         },
         "connectionTypes": {
@@ -1295,7 +1275,6 @@
             "minProperties": 1,
             "required": []
           },
-          "additionalItems": false,
           "minItems": 0
         },
         "connections": {
@@ -1313,7 +1292,6 @@
             "$ref": "#/$defs/inverter",
             "description": "One inverter."
           },
-          "additionalItems": false,
           "minItems": 1
         }
       },
@@ -1358,7 +1336,6 @@
             "additionalProperties": false,
             "required": ["id1", "id2"]
           },
-          "additionalItems": false,
           "minItems": 0
         },
         "category": {
@@ -1402,7 +1379,6 @@
             "additionalProperties": false,
             "required": ["id1", "grounding"]
           },
-          "additionalItems": false,
           "minItems": 0
         }
       }

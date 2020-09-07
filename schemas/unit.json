@@ -60,7 +60,7 @@
         "window"
       ],
       "description": "Components of the category unit can have the subcategories of this enumeration which further specifies the unit.",
-      "additionalItems": false,
+      "uniqueItems": true,
       "minItems": 0
     },
     "characteristics": {
