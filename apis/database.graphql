@@ -897,14 +897,14 @@ interface Data {
   """
   Locale of text
   """
-  locale: Locale
+  locale: Locale!
 }
 
 type OpticalData implements Node & Data {
   id: ID!
   dataId: Uuid!
   timestamp: DateTime!
-  locale: Locale
+  locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
   name: String
@@ -930,7 +930,7 @@ type CalorimetricData implements Node & Data {
   id: ID!
   dataId: Uuid!
   timestamp: DateTime!
-  locale: Locale
+  locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
   name: String
@@ -960,7 +960,7 @@ type HygrothermalData implements Node & Data {
   id: ID!
   dataId: Uuid!
   timestamp: DateTime!
-  locale: Locale
+  locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
   name: String
@@ -980,7 +980,7 @@ type PhotovoltaicData implements Node & Data {
   id: ID!
   dataId: Uuid!
   timestamp: DateTime!
-  locale: Locale
+  locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
   name: String
