@@ -790,18 +790,28 @@ type CalorimetricDataEdge {
 
 """
 Measured, simulated, or calculated data.
+
+The data identifier identifies the data modulo patches and locale, together
+with timestamp only modulo locale, together with locale only modulo patches,
+and together with both all data. In the last case, in particular, the order of
+any list values of (sub-)fields is fix.
+
+For non-patch versions a new data identifier is needed.
+
+Note that the term 'patch' is used in the sense of
+[Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html)
 """
 interface Data {
   """
-  Identifier, which together with timestamp uniquely identifies data and
+  Identifier, which together with timestamp uniquely identifies data and patch
   version (within the database).
   """
   dataId: Uuid!
 
   """
-  Timestamp that designates the version. For example, correction of some
-  grammatical error in the description results in a new version designated by
-  a new timestamp, or adding an approval by some stakeholder.
+  Timestamp that designates the patch version. For example, correction of some
+  grammatical error in the description results in a new patch version
+  designated by a new timestamp, or adding an approval by some stakeholder.
   """
   timestamp: DateTime!
 
