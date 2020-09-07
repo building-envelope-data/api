@@ -107,7 +107,6 @@
             "type": "string",
             "description": "A public key of the institution for cryptograpic signatures for approvals."
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "contact": {
@@ -120,7 +119,6 @@
           "items": {
             "$ref": "#/$defs/accreditation"
           },
-          "additionalItems": false,
           "minItems": 1
         }
       },

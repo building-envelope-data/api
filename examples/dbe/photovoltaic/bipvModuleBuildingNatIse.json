@@ -205,7 +205,7 @@
                     },
                     "tolerance": 5,
                     "temperatureCoefficient": -0.32,
-                    "guarantee": [
+                    "guarantees": [
                       {
                         "years": 10,
                         "percentage": 90
@@ -271,7 +271,7 @@
                       }
                     }
                   },
-                  "guarantee": [
+                  "guarantees": [
                     {
                       "years": 10
                     }

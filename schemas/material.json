@@ -153,9 +153,9 @@
               "Og"
             ]
           },
-          "additionalItems": false,
           "minItems": 1,
           "maxItems": 10,
+          "uniqueItems": true,
           "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
         }
       },
@@ -178,10 +178,7 @@
         "slat",
         "weave"
       ],
-      "description": "Components of the category material can have the subcategories of this enumeration which further specifies the material.",
-      "additionalItems": false,
-      "minItems": 1,
-      "maxItems": 2
+      "description": "Components of the category material can have the subcategories of this enumeration which further specifies the material."
     },
     "characteristics": {
       "title": "The characteristics of a material.",

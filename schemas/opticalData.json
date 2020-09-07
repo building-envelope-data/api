@@ -20,7 +20,6 @@
               "items": {
                 "$ref": "#/$defs/dataPoint"
               },
-              "additionalItems": false,
               "minItems": 1
             }
           },
@@ -41,7 +40,6 @@
               "items": {
                 "$ref": "#/$defs/data"
               },
-              "additionalItems": false,
               "minItems": 1
             }
           },
@@ -150,7 +148,6 @@
             "$ref": "#/$defs/symmetry",
             "description": "Symmetries of the optical characteristics can be used to reduce the necessary measurements and simulations."
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "definitionOfSurfacesAndPrimeDirection": {
@@ -390,7 +387,6 @@
                 "type": "number",
                 "description": "In order to reduce the size of the data, multiple directions can be entered as a array."
               },
-              "additionalItems": false,
               "minItems": 1
             }
           },
@@ -491,7 +487,6 @@
             "type": "number",
             "description": "In order to reduce the size of the data, multiple directions can be entered as an array."
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "wavelengths": {
@@ -507,7 +502,6 @@
                     "$ref": "number.json#/$defs/nanometer",
                     "description": "Wavelength in nanometer."
                   },
-                  "additionalItems": false,
                   "minItems": 1
                 },
                 "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
@@ -530,7 +524,6 @@
                 "$ref": "number.json#/$defs/nanometer",
                 "description": "Wavelength in nanometer."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
@@ -587,7 +580,6 @@
                 "minimum": 0,
                 "maximum": 1
               },
-              "additionalItems": false,
               "minItems": 2
             },
             "reflectance": {
@@ -597,7 +589,6 @@
                 "minimum": 0,
                 "maximum": 1
               },
-              "additionalItems": false,
               "minItems": 2
             },
             "absorptanceEmittance": {
@@ -608,7 +599,6 @@
                 "maximum": 1
               },
               "description": "Absorptance is the ratio between the irradiance which is absorbed by the sample and the irradiance on the the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelenghts', the absorptance equals the emittance. For the same 'incidence', 'variables' and 'emergence', the result absorptanceEmittance can be calculated by 'absorptanceEmittance = 1 - transmittance - reflectance'.",
-              "additionalItems": false,
               "minItems": 2
             },
             "bidirectionalTransmittanceDistributionFunction": {
@@ -618,7 +608,6 @@
                 "minimum": 0,
                 "maximum": 1
               },
-              "additionalItems": false,
               "minItems": 2,
               "description": "The Bidirectional Transmittance Distribution Function (BTDF) is defined as the radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
             },
@@ -629,7 +618,6 @@
                 "minimum": 0,
                 "maximum": 1
               },
-              "additionalItems": false,
               "minItems": 2,
               "description": "The Bidirectional Reflectance Distribution Function (BRDF) is defined as the radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
             }

@@ -33,7 +33,6 @@
           "items": {
             "type": "string"
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "creator": {
