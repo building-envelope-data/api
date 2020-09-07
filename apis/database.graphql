@@ -875,29 +875,23 @@ interface Data {
   The other resources' data is the result of applying some conversion method or
   a chain of such methods to the first resource's data. Detailed information
   about which conversion method applied to which data resulted in which other
-  data is recorded in the tree with the root `resourceRoot`.
+  data is recorded in the tree `resourceTree` with the root `resourceTree.root`
+  and the non-root vertices `resourceTree.nonRootVertices`.
 
   Note that all resources describe the same data only in different formats.
   """
   resources: [GetHttpsResource!]!
 
   """
-  Root vertex made up of
-  * an HTTP resource with meta information of the actual data
-    requestable through the protocol HTTP over
-    TLS, in short, HTTPS, with `GET` requests, where the data is
-    the result of applying
-    the method `appliedMethod`, and
-  * child vertices, where each child vertex is made up of an HTTP resource whose
-    data is the result of applying some conversion method to the root's data,
-    child vertices of itself, and the applied conversion method.
-
-  By traversing the tree from the root at each vertex it is clear how its data
-  was obtained from its parent's data.
+  Multiple HTTP resources organized as tree with meta information of the actual
+  data requestable through the protocol HTTP over TLS, in short, HTTPS, with
+  `GET` requests. The root-resource's data is the result of applying the method
+  `appliedMethod`. Each non-root-resource's data is the result of applying
+  a specified conversion method to its parent resource's data.
 
   Note that all resources describe the same data only in different formats.
   """
-  resourceRoot: GetHttpsResourceRoot!
+  resourceTree: GetHttpsResourceTree!
 
   """
   Approval by the database of the result without the field `approval` itself.
@@ -925,7 +919,7 @@ type OpticalData implements Node & Data {
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
-  resourceRoot: GetHttpsResourceRoot!
+  resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
 
@@ -951,7 +945,7 @@ type CalorimetricData implements Node & Data {
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
-  resourceRoot: GetHttpsResourceRoot!
+  resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
 
@@ -981,7 +975,7 @@ type HygrothermalData implements Node & Data {
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
-  resourceRoot: GetHttpsResourceRoot!
+  resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
 }
@@ -1001,7 +995,7 @@ type PhotovoltaicData implements Node & Data {
   appliedMethod: AppliedMethod!
   validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
-  resourceRoot: GetHttpsResourceRoot!
+  resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
 }
@@ -1041,27 +1035,35 @@ type AppliedMethod {
 }
 
 """
-Applied method whose sources are implicit from the context in which it is
-used.
+Applied conversion method to exactly one named source identified by tree-vertex
+identifier.
 """
-type AppliedMethodWithImplicitSources {
+type ToTreeVertexAppliedConversionMethod {
   """
-  Method identifier of method that was applied by the creator on the source
-  data. The method's meta data can be obtained by sending the GraphQL query
+  Method identifier of conversion method that was applied by the creator on the
+  source data. The method's meta data can be obtained by sending the GraphQL
+  query
   `method(methodId: ..., timestamp: ...) { ... }`
   to the metabase.
   """
   methodId: Uuid!
 
   """
-  Named arguments to configure the method.
+  Named arguments to configure the conversion method.
   - For each parameter required by the method, there is exactly one argument in
     the list.
   - Each argument in the list corresponds to an optional or required parameter
     of the method.
   - Each two distinct arguments in the list have different names.
   """
-  arguments: [MethodArgument!]!
+  arguments: [NamedMethodArgument!]!
+
+  """
+  Named data source identified by tree-vertex identifier to which the
+  conversion method was applied. The conversion method requires exactly one
+  named source and a value for this source is given.
+  """
+  source: NamedTreeVertexMethodSource!
 }
 
 """
@@ -1092,6 +1094,21 @@ type NamedMethodSource {
   Method source as cross-database data reference.
   """
   value: CrossDatabaseDataReference!
+}
+
+"""
+Named local data source of a method.
+"""
+type NamedTreeVertexMethodSource {
+  """
+  Name
+  """
+  name: String!
+
+  """
+  Method source as tree-vertex identifier.
+  """
+  value: ID!
 }
 
 """
@@ -1558,6 +1575,96 @@ type GetHttpsResource {
 }
 
 """
+Multiple HTTP resources organized as tree with meta information of the actual
+data requestable through the protocol HTTP over TLS, in short, HTTPS, with
+`GET` requests. Each vertex specifies
+* a vertex identifier (unique among the tree vertices),
+* child vertex identifiers, and
+* an HTTP resource.
+Each non-root vertex also specifies an applied conversion method with its
+parent vertex's identifier as source, where indeed the non-root-resource's data
+is the result of applying the conversion method to its parent resource's data.
+
+The root vertex is in the field `root` and non-root resource vertices are in
+the field `nonRootVertices`. The order of a vertex's child identifiers is
+identical to the order in which they occur in the list of non-root vertices.
+
+Note that all resources describe the same data only in different formats.
+"""
+interface GetHttpsResourceTree {
+  """
+  Root resource vertex.
+  """
+  root: GetHttpsResourceTreeRoot!
+
+  """
+  Non-root resource vertices in breadth-first order starting from, but not
+  including, the root vertex.
+
+  By traversing the tree from the root at each vertex it is clear how the
+  vertex's data was obtained from the parent's data and by remembering or
+  composing the chain of applied conversion methods how the vertex's data was
+  obtained from the root's data.
+  """
+  nonRootVertices: [GetHttpsResourceTreeNonRootVertex!]!
+}
+
+"""
+A root or non-root resource is the result of some measurement or simulation, or
+of applying some conversion method to its parent resource. Its child resources
+are the results of applying conversion methods to it, the child resources of
+its child resources are the results of applying conversion methods to the child
+resources, and so forth. The applied conversion methods are specified in the
+child resources.
+"""
+interface GetHttpsResourceTreeVertex {
+  """
+  Vertex identifier unique among the tree vertices. It is used to set-up edges,
+  that is, parent/child relationships, in the flattened tree structure.
+  """
+  vertexId: ID!
+
+  """
+  Identifiers of child resource vertices whose resource data is obtained by
+  applying conversion methods to this vertex's resource data. Note that each
+  child vertex's conversion method has the present vertex's identifier as
+  source value.
+  """
+  childIds: [ID!]!
+
+  """
+  Resource
+  """
+  value: GetHttpsResource!
+}
+
+"""
+A root resource is the direct result of some measurement or simulation.
+"""
+type GetHttpsResourceTreeRoot implements GetHttpsResourceTreeVertex {
+  vertexId: ID!
+  childIds: [ID!]!
+  value: GetHttpsResource!
+}
+
+"""
+A non-root resource is the result of applying some conversion method to its
+parent resource.
+"""
+type GetHttpsResourceTreeNonRootVertex implements GetHttpsResourceTreeVertex {
+  vertexId: ID!
+  childIds: [ID!]!
+  value: GetHttpsResource!
+
+  """
+  Conversion method applied to the parent resource to obtain the present
+  vertex's resource. The parent resource is identified by the vertex identifier
+  `appliedConversionMethod.source.value`.
+  """
+  appliedConversionMethod: ToTreeVertexAppliedConversionMethod!
+}
+
+"""
 File meta information.
 """
 type FileMetaInformation {
@@ -1602,48 +1709,4 @@ type FileMetaInformation {
   to locate the format specification.
   """
   formatId: Uuid!
-}
-
-"""
-A root or non-root resource is the result of some measurement or simulation, or
-of applying some conversion method to its parent resource.  Its child resources
-are the results of applying conversion methods to it, the child resources of
-its child resources are the results of applying conversion methods to the child
-resources, and so forth. The applied conversion methods are specified in the
-child resources.
-"""
-interface GetHttpsResourceVertex {
-  """
-  Resource
-  """
-  resource: GetHttpsResource!
-
-  """
-  Child resources obtained by applying conversion methods to the present
-  resource.
-  """
-  children: [GetHttpsResourceNonRootVertex!]!
-}
-
-"""
-A root resource is the direct result of some measurement or simulation.
-"""
-type GetHttpsResourceRoot implements GetHttpsResourceVertex {
-  resource: GetHttpsResource!
-  children: [GetHttpsResourceNonRootVertex!]!
-}
-
-"""
-A non-root resource is the result of applying some conversion method to its
-parent resource.
-"""
-type GetHttpsResourceNonRootVertex implements GetHttpsResourceVertex {
-  resource: GetHttpsResource!
-  children: [GetHttpsResourceNonRootVertex!]!
-
-  """
-  Conversion method applied to the parent resource to obtain the present
-  resource.
-  """
-  appliedConversionMethod: AppliedMethodWithImplicitSources!
 }
