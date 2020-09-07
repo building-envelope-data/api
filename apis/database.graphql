@@ -1079,15 +1079,15 @@ type MethodSource {
   name: String!
 
   """
-  Value
+  Cross-database data reference
   """
-  value: CrossDatabaseReference!
+  value: CrossDatabaseDataReference!
 }
 
 """
 Cross-database data reference.
 """
-type CrossDatabaseReference {
+type CrossDatabaseDataReference {
   """
   Identifier of the referenced data.
   """
