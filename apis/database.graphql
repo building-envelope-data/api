@@ -1017,7 +1017,7 @@ type AppliedMethod {
     of the method.
   - Each two distinct arguments in the list have different names.
   """
-  arguments: [MethodArgument!]!
+  arguments: [NamedMethodArgument!]!
 
   """
   Named data sources to which the method was applied.
@@ -1027,7 +1027,7 @@ type AppliedMethod {
     the method.
   - Each two distinct sources in the list have different names.
   """
-  sources: [MethodSource!]!
+  sources: [NamedMethodSource!]!
 }
 
 """
@@ -1057,7 +1057,7 @@ type AppliedMethodWithImplicitSources {
 """
 Named argument of a method.
 """
-type MethodArgument {
+type NamedMethodArgument {
   """
   Name
   """
@@ -1072,7 +1072,7 @@ type MethodArgument {
 """
 Named data source of a method.
 """
-type MethodSource {
+type NamedMethodSource {
   """
   Name
   """
