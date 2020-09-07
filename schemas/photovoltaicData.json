@@ -1082,12 +1082,12 @@
                       },
                       "thirdDigit": {
                         "type": "string",
-                        "enum": ["A", "B", "C", "D", "noThirdDigit"],
+                        "enum": ["A", "B", "C", "D"],
                         "description": "The item defines the optional third digit of the IP code."
                       },
                       "fourthDigit": {
                         "type": "string",
-                        "enum": ["f", "H", "M", "S", "W", "noFourthDigit"],
+                        "enum": ["f", "H", "M", "S", "W"],
                         "description": "The item defines the optional fourth digit of the IP code."
                       }
                     },
