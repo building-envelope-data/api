@@ -821,14 +821,19 @@
               "title": "Whether a a general guarantee for the product. It is defined by the number of years and can refer to a publication or standard for details. `years`=0 means that no guarantee is provided. It is an array so that references for different number of years can be defined.",
               "type": "array",
               "items": {
-                "years": {
-                  "$ref": "number.json#/$defs/nonNegativeNumber",
-                  "description": "This number defines the number of years for which the manufacturer offers a guarantee for this module."
+                "type": "object",
+                "properties": {
+                  "years": {
+                    "$ref": "number.json#/$defs/nonNegativeNumber",
+                    "description": "This number defines the number of years for which the manufacturer offers a guarantee for this module."
+                  },
+                  "reference": {
+                    "$ref": "common.json#/$defs/reference",
+                    "description": "The reference can define a publication or standard with details of the guarantee."
+                  }
                 },
-                "reference": {
-                  "$ref": "common.json#/$defs/reference",
-                  "description": "The reference can define a publication or standard with details of the guarantee."
-                }
+                "additionalProperties": false,
+                "required": ["years"]
               },
               "minItems": 1
             },
