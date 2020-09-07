@@ -54,19 +54,25 @@ query {
         formatId
       }
     }
-    resourceRoot {
-      resource {
-        description
-        hashValue
-        locator
-        formatId
-        archivedFilesMetaInformation {
-          path
+    resourceTree {
+      root {
+        vertexId
+        childIds
+        value {
+          description
+          hashValue
+          locator
           formatId
+          archivedFilesMetaInformation {
+            path
+            formatId
+          }
         }
       }
-      children {
-        resource {
+      nonRootVertices {
+        vertexId
+        childIds
+        value {
           description
           hashValue
           locator
@@ -79,6 +85,10 @@ query {
         appliedConversionMethod {
           methodId
           arguments {
+            name
+            value
+          }
+          source {
             name
             value
           }
