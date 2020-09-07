@@ -516,7 +516,7 @@
                   "$ref": "number.json#/$defs/numberBetweenMinusAndPlusHundred",
                   "description": "When the temperature increases compared to standard test conditions, the nominal power changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
                 },
-                "guarantee": {
+                "guarantees": {
                   "title": "Whether a guarantee is available specifically for the nominal power of the module. It is defined by fractions of the nominal power until a certain number of of years. For example, `years`=10 and `percentage`=90 means that 10 year old modules have at least 90% of their nominal power. `percentage`=0 means that no guarantee for the power is provided.",
                   "type": "array",
                   "items": {
@@ -817,7 +817,7 @@
               "minProperties": 1,
               "required": []
             },
-            "guarantee": {
+            "guarantees": {
               "title": "Whether a a general guarantee for the product. It is defined by the number of years and can refer to a publication or standard for details. `years`=0 means that no guarantee is provided. It is an array so that references for different number of years can be defined.",
               "type": "array",
               "items": {
