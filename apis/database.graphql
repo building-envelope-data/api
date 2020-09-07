@@ -1064,7 +1064,7 @@ type NamedMethodArgument {
   name: String!
 
   """
-  Value
+  Method argument value.
   """
   value: Any!
 }
@@ -1079,7 +1079,7 @@ type NamedMethodSource {
   name: String!
 
   """
-  Cross-database data reference
+  Method source as cross-database data reference.
   """
   value: CrossDatabaseDataReference!
 }
