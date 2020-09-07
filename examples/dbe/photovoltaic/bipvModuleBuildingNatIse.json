@@ -2,7 +2,7 @@
   "components": [
     {
       "id": {
-        "uniqueId": "38dfed0a-2b9a-4748-8d98-e9d278cd12e4",
+        "value": "38dfed0a-2b9a-4748-8d98-e9d278cd12e4",
         "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
       },
       "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany.",
@@ -17,7 +17,7 @@
                 "cellTypes": [
                   {
                     "id": {
-                      "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                      "value": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
                     "power": {
@@ -51,21 +51,21 @@
                 "cells": [
                   {
                     "id": {
-                      "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
+                      "value": "764ca288-0c51-11ea-8d71-362b9e155667",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
                     "cellType": {
-                      "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                      "value": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     }
                   },
                   {
                     "id": {
-                      "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
+                      "value": "764ca508-0c51-11ea-8d71-362b9e155667",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
                     "cellType": {
-                      "uniqueId": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                      "value": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     }
                   }
@@ -73,7 +73,7 @@
                 "connectionTypes": [
                   {
                     "id": {
-                      "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
+                      "value": "4af78493-46fd-48aa-9124-85924f658c62",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
                     "description": "Connection type is unknown."
@@ -83,15 +83,15 @@
                 "connections": [
                   {
                     "connectionType": {
-                      "uniqueId": "4af78493-46fd-48aa-9124-85924f658c62",
+                      "value": "4af78493-46fd-48aa-9124-85924f658c62",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
                     "id1": {
-                      "uniqueId": "764ca508-0c51-11ea-8d71-362b9e155667",
+                      "value": "764ca508-0c51-11ea-8d71-362b9e155667",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
                     "id2": {
-                      "uniqueId": "764ca288-0c51-11ea-8d71-362b9e155667",
+                      "value": "764ca288-0c51-11ea-8d71-362b9e155667",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     }
                   }

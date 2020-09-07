@@ -5,7 +5,7 @@
       "calorimetric": [
         {
           "id": {
-            "uniqueId": "da951012-29b7-4b9a-890c-4f4514f676b3",
+            "value": "da951012-29b7-4b9a-890c-4f4514f676b3",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
           "name": "Example BIST collector",
@@ -21,7 +21,7 @@
                 "name": "mySource",
                 "value": {
                   "dataId": {
-                    "uniqueId": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+                    "value": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
                     "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                   },
                   "dataTimestamp": "2018-09-01T12:00:00+01:00",

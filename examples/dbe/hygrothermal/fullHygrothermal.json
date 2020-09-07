@@ -14,7 +14,7 @@
             {
               "WUFI": {
                 "id": {
-                  "uniqueId": "8ca1102b-264a-4023-8351-5897ec38e388",
+                  "value": "8ca1102b-264a-4023-8351-5897ec38e388",
                   "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                 },
                 "description": "This hygrothermal data has been provided by WUFI.de.",

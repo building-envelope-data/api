@@ -2,7 +2,7 @@
   "components": [
     {
       "id": {
-        "uniqueId": "8ca1102b-264a-4023-8351-5897ec38e388",
+        "value": "8ca1102b-264a-4023-8351-5897ec38e388",
         "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
       },
       "description": "This is the smallest example of a specific component. For example, 'ce588e6a-1d3c-4909-afdd-bcde4c33864e' can represent a construction company and '8ca1102b-264a-4023-8351-5897ec38e388' a specific window in a specific building project.",

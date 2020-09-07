@@ -7,7 +7,7 @@
       "optical": [
         {
           "id": {
-            "uniqueId": "4e463235-88f0-4a04-890d-8aa05879c519"
+            "value": "4e463235-88f0-4a04-890d-8aa05879c519"
           },
           "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
           "data": [
@@ -37,7 +37,7 @@
       "calorimetric": [
         {
           "id": {
-            "uniqueId": "f68e3624-7319-419a-aecb-da0564ee185d"
+            "value": "f68e3624-7319-419a-aecb-da0564ee185d"
           },
           "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
           "data": [
@@ -64,7 +64,7 @@
       "calorimetric": [
         {
           "id": {
-            "uniqueId": "15988df6-0d0c-11ea-8d71-362b9e155667"
+            "value": "15988df6-0d0c-11ea-8d71-362b9e155667"
           },
           "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
           "data": [
