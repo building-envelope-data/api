@@ -151,14 +151,14 @@
             "description": "A building envelope component can have one or more of the following categories. (i) If the component is a plain material, for example a sheet which could be used to build a blind, the category 'material' should be used. (ii) If the component can be treated as a layer for optical simulations of a stack of layers, then the category 'layer' should be used. Venetian blinds are one example of a layer. The center-of-glazing values are important for the simulation of a stack of layers. (iii) If the width, the height and the edges of the component are well defined, then the category 'unit' should be used. For example a window with frame and shading system."
           },
           "uniqueItems": true,
-          "minItems": 0
+          "minItems": 1
         },
         "material": {
           "type": "array",
           "items": {
             "$ref": "material.json#/$defs/category"
           },
-          "minItems": 0,
+          "minItems": 1,
           "description": "If the component has the 'componentType':'material', then the material categories can defined here."
         },
         "layer": {
@@ -166,7 +166,7 @@
           "items": {
             "$ref": "layer.json#/$defs/category"
           },
-          "minItems": 0,
+          "minItems": 1,
           "description": "If the component has the 'componentType':'layer', then the layer categories can defined here."
         },
         "unit": {
@@ -174,7 +174,7 @@
           "items": {
             "$ref": "unit.json#/$defs/category"
           },
-          "minItems": 0,
+          "minItems": 1,
           "description": "If the component has the 'componentType':'unit', then the unit categories can be defined here."
         }
       },

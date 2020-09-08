@@ -1221,7 +1221,7 @@
             "minProperties": 1,
             "required": []
           },
-          "minItems": 0
+          "minItems": 1
         },
         "diodes": {
           "title": "This array defines the diodes between the modules of this photovoltaic system. The diodes are used to bypass shaded modules which would otherwise dissipate energy.",
@@ -1245,7 +1245,7 @@
             "additionalProperties": false,
             "required": ["id", "diodeType"]
           },
-          "minItems": 0
+          "minItems": 1
         },
         "connectionTypes": {
           "title": "This array defines the type of electric connections between the modules, diodes and inverters of this photovoltaic system.",
@@ -1278,7 +1278,7 @@
             "minProperties": 1,
             "required": []
           },
-          "minItems": 0
+          "minItems": 1
         },
         "connections": {
           "$ref": "#/$defs/connections/$defs/bidirectional",
@@ -1339,7 +1339,7 @@
             "additionalProperties": false,
             "required": ["id1", "id2"]
           },
-          "minItems": 0
+          "minItems": 1
         },
         "category": {
           "type": "string",
@@ -1382,7 +1382,7 @@
             "additionalProperties": false,
             "required": ["id1", "grounding"]
           },
-          "minItems": 0
+          "minItems": 1
         }
       }
     }
