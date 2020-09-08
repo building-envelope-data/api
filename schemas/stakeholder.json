@@ -102,7 +102,7 @@
               }
             },
             "additionalProperties": false,
-            "required": ["name", "person"]
+            "required": ["kind", "person"]
           },
           "minItems": 0
         }
@@ -130,10 +130,8 @@
               "title": "Kind",
               "type": "string"
             },
-            "institution": {
-              "title": "Institution",
-              "$ref": "#/$defs/institution"
-            }
+            "additionalProperties": false,
+            "required": ["kind", "institution"]
           },
           "additionalProperties": false,
           "required": ["name", "institution"]
