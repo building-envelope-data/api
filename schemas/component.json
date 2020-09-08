@@ -85,16 +85,16 @@
           "type": "object",
           "properties": {
             "owner": {
-              "$ref": "stakeholder.json#/$defs/basicStakeholder",
-              "description": "The id and description of the owner of the component"
+              "$ref": "stakeholder.json",
+              "description": "Owner of the component"
             },
             "manufacturer": {
-              "$ref": "stakeholder.json#/$defs/basicStakeholder",
-              "description": "The id and description of the manufacturer of the component"
+              "$ref": "stakeholder.json",
+              "description": "Manufacturer of the component"
             },
             "developer": {
-              "$ref": "stakeholder.json#/$defs/developer",
-              "description": "The id and description of the institution or person which developed the component"
+              "$ref": "stakeholder.json",
+              "description": "Institution or person which developed the component"
             }
           }
         },
@@ -202,16 +202,16 @@
           "type": "object",
           "properties": {
             "owner": {
-              "$ref": "stakeholder.json#/$defs/basicStakeholder",
-              "description": "The id and description of the owner of the component"
+              "$ref": "stakeholder.json",
+              "description": "Owner of the component"
             },
             "manufacturer": {
-              "$ref": "stakeholder.json#/$defs/basicStakeholder",
-              "description": "The id and description of the manufacturer of the component"
+              "$ref": "stakeholder.json",
+              "description": "Manufacturer of the component"
             },
             "developer": {
-              "$ref": "stakeholder.json#/$defs/developer",
-              "description": "The id and description of the institution or person which developed the component"
+              "$ref": "stakeholder.json",
+              "description": "Institution or person which developed the component"
             }
           }
         },

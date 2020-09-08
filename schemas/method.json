@@ -30,7 +30,7 @@
           "minItems": 1
         },
         "developer": {
-          "$ref": "stakeholder.json#/$defs/developer",
+          "$ref": "stakeholder.json",
           "description": "Who developed the method."
         },
         "reference": {
@@ -176,11 +176,11 @@
           "description": "A description of the database"
         },
         "owner": {
-          "$ref": "stakeholder.json#/$defs/basicStakeholder",
+          "$ref": "stakeholder.json#/$defs/institution",
           "description": "The institution which owns the database"
         },
         "admin": {
-          "$ref": "stakeholder.json#/$defs/basicStakeholder",
+          "$ref": "stakeholder.json#/$defs/institution",
           "description": "The institution which administrates the database"
         },
         "createdAt": {
