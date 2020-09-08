@@ -36,7 +36,7 @@
         },
         "creator": {
           "title": "Creator",
-          "$ref": "stakeholder.json#/$defs/creator"
+          "$ref": "stakeholder.json"
         },
         "createdAt": {
           "title": "Creation timestamp",

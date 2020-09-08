@@ -119,8 +119,8 @@
         "authors": {
           "type": "array",
           "items": {
-            "$ref": "stakeholder.json#/$defs/author",
-            "description": "This array lists all persons which have authored the publication"
+            "$ref": "stakeholder.json#/$defs/person",
+            "description": "Persons who authored the publication."
           },
           "minItems": 1
         }
