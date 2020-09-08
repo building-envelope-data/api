@@ -39,7 +39,7 @@ and this project adheres to
 - Flatten data HTTP resource trees to make them queryable with one query without having to know the trees depth #108
 - Only us `additionalItems` for tuple validation and __not__ for list validation, use `uniqueItems` for lists of enumerated items, use `const` for one-valued enums, and don't have special this-property-has-no-value values for optional properties #110
 - Improve titles and descriptions of identifiers, name `uniqueId` of decentral identifiers `value`, and make identifiers be issued by databases instead of institutions #107
--
+- Clean-up the stakeholder JSON schema, in particular, how stakeholders are referenced in specific roles #111
 -
 -
 -
