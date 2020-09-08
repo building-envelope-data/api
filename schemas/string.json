@@ -23,6 +23,10 @@
       "type": "string",
       "pattern": "^[A-Fa-f0-9]{64}$",
       "description": "SHA-256 hash values."
+    },
+    "gnuPgKey": {
+      "type": "string",
+      "description": "[GnuPG](https://gnupg.org) key"
     }
   }
 }
