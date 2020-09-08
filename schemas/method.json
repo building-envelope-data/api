@@ -90,14 +90,14 @@
         "arguments": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/argument",
+            "$ref": "#/$defs/namedArgument",
             "description": "Named arguments to configure the method."
           }
         },
         "sources": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/source",
+            "$ref": "#/$defs/namedSource",
             "description": "Named data sources to which the method was applied."
           }
         }
@@ -105,7 +105,7 @@
       "additionalProperties": false,
       "required": ["method", "arguments", "sources"]
     },
-    "argument": {
+    "namedArgument": {
       "type": "object",
       "properties": {
         "name": {
@@ -119,7 +119,7 @@
       "additionalProperties": false,
       "required": ["name", "value"]
     },
-    "source": {
+    "namedSource": {
       "title": "Source data which is an input for a method. A creator uses a method and source data to create a new data set.",
       "type": "object",
       "properties": {
