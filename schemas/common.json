@@ -427,7 +427,7 @@
         "description": "(i) 'exterior' means that the component can be used on the external side of the building envelope. (ii) 'asBuildingEnvelope' means that the component can be used as building envelope without any additional components. (iii) 'inBetween' means that the component can be used within building envelope for example between two glass panes. (iv) 'interior' means that the component can be used on the internal side of the building envelope."
       },
       "uniqueItems": true,
-      "minItems": 0
+      "minItems": 1
     }
   }
 }

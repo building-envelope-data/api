@@ -68,11 +68,11 @@
         "gnuPgKeys": {
           "type": "array",
           "items": {
-            "title": "GnuPG keys",
-            "description": "Used for digital signatures in approvals.",
-            "type": "string"
+            "title": "GnuPG keys of currently or once affiliated persons",
+            "description": "Used for digital signatures in approvals. When checking such signatures, make sure that at the time the approval was created, the person who created it was associated with the institution, had the right to create approvals for the institution, owned the used GnuPG key, and that the key was not revoked at the time.",
+            "type": "string.json#/$defs/gnuPgKey"
           },
-          "minItems": 0
+          "minItems": 1
         },
         "contact": {
           "title": "Contact information",
@@ -85,7 +85,7 @@
           "items": {
             "$ref": "#/$defs/accreditation"
           },
-          "minItems": 0
+          "minItems": 1
         },
         "affiliations": {
           "type": "array",
@@ -99,12 +99,25 @@
               "person": {
                 "title": "Person",
                 "$ref": "#/$defs/person"
+              },
+              "contact": {
+                "title": "Contact information of person within institution",
+                "$ref": "#/$defs/contact"
+              },
+              "gnuPgKeys": {
+                "type": "array",
+                "items": {
+                  "title": "GnuPG keys of person within institution",
+                  "description": "Used for digital signatures in approvals by person for institution.",
+                  "type": "string.json#/$defs/gnuPgKey"
+                },
+                "minItems": 1
               }
             },
             "additionalProperties": false,
-            "required": ["name", "person"]
+            "required": ["kind", "person"]
           },
-          "minItems": 0
+          "minItems": 1
         }
       },
       "additionalProperties": false,
@@ -122,24 +135,42 @@
           "title": "Full name",
           "type": "string"
         },
-        "affiliation": {
-          "title": "Affiliation",
-          "type": "object",
-          "properties": {
-            "kind": {
-              "title": "Kind",
-              "type": "string"
+        "affiliations": {
+          "title": "Affiliations",
+          "type": "array",
+          "items": {
+            "title": "Affiliation",
+            "type": "object",
+            "properties": {
+              "kind": {
+                "title": "Kind",
+                "type": "string"
+              },
+              "institution": {
+                "title": "Institution",
+                "$ref": "#/$defs/institution"
+              },
+              "contact": {
+                "title": "Contact information of person within institution",
+                "$ref": "#/$defs/contact"
+              },
+              "gnuPgKeys": {
+                "type": "array",
+                "items": {
+                  "title": "GnuPG keys of person within institution",
+                  "description": "Used for digital signatures in approvals by person for institution.",
+                  "type": "string.json#/$defs/gnuPgKey"
+                },
+                "minItems": 1
+              }
             },
-            "institution": {
-              "title": "Institution",
-              "$ref": "#/$defs/institution"
-            }
+            "additionalProperties": false,
+            "required": ["kind", "institution"]
           },
-          "additionalProperties": false,
-          "required": ["name", "institution"]
+          "minItems": 1
         },
         "contact": {
-          "title": "Contact information",
+          "title": "Personal contact information",
           "$ref": "#/$defs/contact"
         }
       },

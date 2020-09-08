@@ -115,7 +115,7 @@
             "description": "Often, a right-handed cartesian coordinate system is used."
           },
           "uniqueItems": true,
-          "minItems": 0
+          "minItems": 1
         }
       },
       "additionalProperties": false,

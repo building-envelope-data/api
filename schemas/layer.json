@@ -64,7 +64,7 @@
       ],
       "description": "Components of the category layer can have the subcategories of this enumeration which further specifies the layer.",
       "uniqueItems": true,
-      "minItems": 0
+      "minItems": 1
     },
     "characteristics": {
       "title": "The characteristics of components of the category 'layer'.",
