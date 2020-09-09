@@ -143,9 +143,7 @@
           "$ref": "#/$defs/number"
         },
         {
-          "minimum": 0
-        },
-        {
+          "minimum": 0,
           "maximum": 1
         }
       ]
@@ -182,9 +180,7 @@
           "$ref": "#/$defs/number"
         },
         {
-          "minimum": 0
-        },
-        {
+          "minimum": 0,
           "maximum": 100
         }
       ]
@@ -196,9 +192,7 @@
           "$ref": "#/$defs/number"
         },
         {
-          "minimum": -100
-        },
-        {
+          "minimum": -100,
           "maximum": 100
         }
       ]
@@ -210,9 +204,7 @@
           "$ref": "#/$defs/number"
         },
         {
-          "minimum": -90
-        },
-        {
+          "minimum": -90,
           "maximum": 90
         }
       ]
@@ -224,9 +216,7 @@
           "$ref": "#/$defs/number"
         },
         {
-          "minimum": -180
-        },
-        {
+          "minimum": -180,
           "maximum": 180
         }
       ]

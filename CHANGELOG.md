@@ -41,7 +41,7 @@ and this project adheres to
 - Improve titles and descriptions of identifiers, name `uniqueId` of decentral identifiers `value`, and make identifiers be issued by databases instead of institutions #107
 - Clean-up the stakeholder JSON schema, in particular, how stakeholders are referenced in specific roles #111
 - Associate contact information and GnuPG keys with a person's and institution's affiliations #112
--
+- Check and correct usages of `oneOf`, `anyOf`, and `allOf` #113
 -
 -
 -
