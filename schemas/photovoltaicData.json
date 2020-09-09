@@ -509,8 +509,8 @@
                   "description": "The tolerance of the nominal power of the module in percent. For example, '5' means, that the nominal power can be 5% larger or smaller than the value provided above."
                 },
                 "temperatureCoefficient": {
-                  "$ref": "number.json#/$defs/numberBetweenMinusAndPlusHundred",
-                  "description": "When the temperature increases compared to standard test conditions, the nominal power changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
+                  "description": "When the temperature increases compared to standard test conditions, the nominal power changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantify this change.",
+                  "$ref": "number.json#/$defs/percentPerKelvin"
                 },
                 "guarantees": {
                   "title": "Whether a guarantee is available specifically for the nominal power of the module. It is defined by fractions of the nominal power until a certain number of of years. For example, `years`=10 and `percentage`=90 means that 10 year old modules have at least 90% of their nominal power. `percentage`=0 means that no guarantee for the power is provided.",
@@ -599,8 +599,8 @@
                   "description": "The open circuit voltage is measured under standard test conditions without connecting the module to an electric circuit."
                 },
                 "temperatureCoefficient": {
-                  "$ref": "number.json#/$defs/numberBetweenMinusAndPlusHundred",
-                  "description": "When the temperature increases compared to standard test conditions, the open circuit voltage changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
+                  "$ref": "number.json#/$defs/percentPerKelvin",
+                  "description": "When the temperature increases compared to standard test conditions, the open circuit voltage changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantify this change."
                 },
                 "maximumSystem": {
                   "$ref": "number.json#/$defs/volt",
@@ -623,8 +623,8 @@
                   "description": "The short circuit current is measured under standard test conditions with the module connected to an electric circuit which has an electric resistance of zero."
                 },
                 "temperatureCoefficient": {
-                  "$ref": "number.json#/$defs/numberBetweenMinusAndPlusHundred",
-                  "description": "When the temperature increases compared to standard test conditions, the short circuit current changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantifies this change."
+                  "$ref": "number.json#/$defs/percentPerKelvin",
+                  "description": "When the temperature increases compared to standard test conditions, the short circuit current changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantify this change."
                 }
               },
               "additionalProperties": false,

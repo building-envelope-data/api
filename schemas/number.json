@@ -281,6 +281,12 @@
     "wattPerMeterKelvinWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Watt per meter and per kelvin (W/(m*K)) are the SI units of the thermal conductivity. With this type, the uncertainty can be defined."
+    },
+    "percentPerKelvin": {
+      "description": "Percent per Kelvin (%/K), for example used for temperature coefficients without uncertainty.",
+      "type": "number",
+      "minimum": -100,
+      "maximum": 100
     }
   }
 }
