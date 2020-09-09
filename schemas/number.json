@@ -135,14 +135,14 @@
         }
       ]
     },
-    "numberBetweenMinusAndPlusNinety": {
-      "description": "This type is used when only numbers between -90 and 90 are valid and no uncertainty can occur.",
+    "latitude": {
+      "description": "Latitude geographic coordinate that specifies the north–south position of a point on the Earth's surface.",
       "type": "number",
       "minimum": -90,
       "maximum": 90
     },
-    "numberBetweenMinusAndPlusHundredAndEighty": {
-      "description": "This type is used when only numbers between -180 and 180 are valid and no uncertainty can occur.",
+    "longitude": {
+      "description": "Longitude geographic coordinate that specifies the east-west position of a point on the Earth's surface.",
       "type": "number",
       "minimum": -180,
       "maximum": 180

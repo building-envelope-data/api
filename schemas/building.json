@@ -289,11 +289,11 @@
           "type": "object",
           "properties": {
             "latitude": {
-              "$ref": "number.json#/$defs/numberBetweenMinusAndPlusNinety",
+              "$ref": "number.json#/$defs/latitude",
               "description": "The latitude of the location of the building as a decimal number according to WGS 84."
             },
             "longitude": {
-              "$ref": "number.json#/$defs/numberBetweenMinusAndPlusHundredAndEighty",
+              "$ref": "number.json#/$defs/longitude",
               "description": "The longitude of the location of the building as a decimal number according to WGS 84."
             },
             "elevation": {
