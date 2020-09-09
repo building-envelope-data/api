@@ -4,34 +4,18 @@
   "title": "number types",
   "description": "Types for numbers with and without uncertainty and units. The number types are used to restrict the range of allowed values to a reasonable range.",
   "$defs": {
-    "number": {
-      "type": "number",
-      "description": "If the number is in all cases 100% certain and if no restrictions on the numbers are possible, then this type is used."
-    },
     "integer": {
       "type": "integer",
       "description": "If the integer is in all cases 100% certain and if no restrictions on the numbers are possible, then this type is used."
     },
     "uncertaintyNumber": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "exclusiveMinimum": 0
-        }
-      ],
+      "type": "number",
+      "exclusiveMinimum": 0,
       "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
     },
     "uncertaintyInteger": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/integer"
-        },
-        {
-          "exclusiveMinimum": 0
-        }
-      ],
+      "type": "integer",
+      "exclusiveMinimum": 0,
       "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
     },
     "confidenceInterval": {
@@ -46,7 +30,7 @@
           "type": "object",
           "properties": {
             "uncertainValue": {
-              "$ref": "#/$defs/number"
+              "type": "number"
             },
             "uncertainty": {
               "$ref": "#/$defs/uncertaintyNumber"
@@ -59,31 +43,19 @@
           "required": ["uncertainValue"]
         },
         {
-          "$ref": "#/$defs/number",
+          "type": "number",
           "description": "If the value is 100% certain, then this this option is used."
         }
       ]
     },
     "nonNegativeNumber": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": 0
-        }
-      ],
+      "type": "number",
+      "minimum": 0,
       "description": "If the number is in all cases 100% certain and when only non-negative numbers are valid, then this type is used."
     },
     "nonNegativeInteger": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/integer"
-        },
-        {
-          "minimum": 0
-        }
-      ],
+      "type": "integer",
+      "minimum": 0,
       "description": "If the integer is in all cases 100% certain and when only non-negative integers are valid, then this type is used."
     },
     "nonNegativeNumberWithUncertainty": {
@@ -137,16 +109,10 @@
       ]
     },
     "numberBetweenZeroAndOne": {
-      "title": "This type is used when only numbers between 0 and 1 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": 0,
-          "maximum": 1
-        }
-      ]
+      "description": "This type is used when only numbers between 0 and 1 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     },
     "numberBetweenZeroAndOneWithUncertainty": {
       "title": "If a value may have an uncertainty and only numbers between 0 and 1 are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
@@ -174,52 +140,28 @@
       ]
     },
     "numberBetweenZeroAndHundred": {
-      "title": "This type is used when only numbers between 0 and 100 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": 0,
-          "maximum": 100
-        }
-      ]
+      "description": "This type is used when only numbers between 0 and 100 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
     },
     "numberBetweenMinusAndPlusHundred": {
-      "title": "This type is used when only numbers between -100 and 100 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": -100,
-          "maximum": 100
-        }
-      ]
+      "description": "This type is used when only numbers between -100 and 100 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": -100,
+      "maximum": 100
     },
     "numberBetweenMinusAndPlusNinety": {
-      "title": "This type is used when only numbers between -90 and 90 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": -90,
-          "maximum": 90
-        }
-      ]
+      "description": "This type is used when only numbers between -90 and 90 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
     },
     "numberBetweenMinusAndPlusHundredAndEighty": {
-      "title": "This type is used when only numbers between -180 and 180 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": -180,
-          "maximum": 180
-        }
-      ]
+      "description": "This type is used when only numbers between -180 and 180 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180
     },
     "meterWithUncertainty": {
       "$ref": "#/$defs/numberWithUncertainty",
@@ -265,7 +207,7 @@
       "description": "Watt (W) is the SI unit for power. With this type, the uncertainty can be defined."
     },
     "watt": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Watt (W) is the SI unit for power. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "kelvinWithUncertainty": {
@@ -273,7 +215,7 @@
       "description": "Kelvin (K) is the SI unit for temperature. With this type, the uncertainty can be defined."
     },
     "kelvin": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Kelvin (K) is the SI unit for temperature. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "voltWithUncertainty": {
@@ -281,7 +223,7 @@
       "description": "Volt (V) is the SI unit for electric potential. With this type, the uncertainty can be defined."
     },
     "volt": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Volt (V) is the SI unit for electric potential. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "ampereWithUncertainty": {
@@ -289,7 +231,7 @@
       "description": "Ampere (A) is the SI unit for electric current. With this type, the uncertainty can be defined."
     },
     "ampere": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Ampere (A) is the SI unit for electric current. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "ohmWithUncertainty": {
@@ -297,7 +239,7 @@
       "description": "Ohm is the derived SI unit for electric resistance. With this type, the uncertainty can be defined."
     },
     "ohm": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Ohm is the derived SI unit for electric resistance. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "ohmPerMeterWithUncertainty": {
@@ -305,7 +247,7 @@
       "description": "Ohm per meter is a unit for the electric resistance depending on the length. With this type, the uncertainty can be defined."
     },
     "ohmPerMeter": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Ohm per meter is a unit for the electric resistance depending on the length. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "kilogramWithUncertainty": {
@@ -313,7 +255,7 @@
       "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. With this type, the uncertainty can be defined."
     },
     "pascal": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Pascal (Pa) is the SI unit for pressure. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "hertzWithUncertainty": {
@@ -321,7 +263,7 @@
       "description": "Hertz (Hz) is a derived SI unit of frequency. With this type, the uncertainty can be defined."
     },
     "hertz": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Hertz (Hz) is a derived SI unit of frequency. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "kgPerCubicMeterWithUncertainty": {

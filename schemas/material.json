@@ -205,7 +205,7 @@
           "description": "The thermal conductivity of a material quantifies its ability to conduct heat. It has the SI units W/(m*K)."
         },
         "PoissonsRatio": {
-          "$ref": "number.json#/$defs/number",
+          "type": "number",
           "description": "The Poisson's ratio is a measure of the expansion of a material in the direction perpendicular to the load. It's a dimensionless quantity."
         },
         "YoungsModulus": {
