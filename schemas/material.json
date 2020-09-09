@@ -204,11 +204,11 @@
           "$ref": "number.json#/$defs/wattPerMeterKelvinWithUncertainty",
           "description": "The thermal conductivity of a material quantifies its ability to conduct heat. It has the SI units W/(m*K)."
         },
-        "PoissonsRatio": {
+        "poissonsRatio": {
           "type": "number",
           "description": "The Poisson's ratio is a measure of the expansion of a material in the direction perpendicular to the load. It's a dimensionless quantity."
         },
-        "YoungsModulus": {
+        "youngsModulus": {
           "$ref": "number.json#/$defs/pascal",
           "description": "The Young's Modulus is a measure for the stiffness of a solid material. It has the SI unit Pascal."
         }
