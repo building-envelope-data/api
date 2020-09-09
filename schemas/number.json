@@ -254,7 +254,7 @@
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "The density of a material has the SI units kg/m^3. With this type, the uncertainty can be defined."
     },
-    "JPerKgKwithUncertainty": {
+    "jPerKgKwithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Joule per kilogram and per Kelvin (J/(kg*K)) are the SI units of the specific heat capacity. With this type, the uncertainty can be defined."
     },
