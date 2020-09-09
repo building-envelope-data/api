@@ -779,7 +779,6 @@
                           }
                         },
                         "additionalProperties": false,
-                        "minProperties": 2,
                         "required": ["reference"]
                       },
                       "minItems": 1
