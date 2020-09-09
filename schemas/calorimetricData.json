@@ -128,7 +128,7 @@
               "description": "The mass flow of the fluid circuit which enters and leaves the sample in kilogram per second."
             },
             "specificHeatCapacity": {
-              "$ref": "number.json#/$defs/jPerKgKwithUncertainty",
+              "$ref": "number.json#/$defs/joulePerKgKwithUncertainty",
               "description": "The specific heat capacity of the fluid in joules per kilogram per Kelvin."
             }
           },
