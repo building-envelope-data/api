@@ -4,10 +4,6 @@
   "title": "number types",
   "description": "Types for numbers with and without uncertainty and units. The number types are used to restrict the range of allowed values to a reasonable range.",
   "$defs": {
-    "integer": {
-      "type": "integer",
-      "description": "If the integer is in all cases 100% certain and if no restrictions on the numbers are possible, then this type is used."
-    },
     "uncertaintyNumber": {
       "type": "number",
       "exclusiveMinimum": 0,
