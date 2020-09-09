@@ -279,6 +279,12 @@
     "percent": {
       "description": "Percent, for example, the number 5 of this type means 5 %.",
       "type": "number"
+    },
+    "percentBetweenZeroAndOneHundred": {
+      "description": "Percent, for example, the number 5 of this type means 5 %.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
     }
   }
 }
