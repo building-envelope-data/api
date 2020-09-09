@@ -135,18 +135,6 @@
         }
       ]
     },
-    "numberBetweenZeroAndHundred": {
-      "description": "This type is used when only numbers between 0 and 100 are valid and no uncertainty can occur.",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "numberBetweenMinusAndPlusHundred": {
-      "description": "This type is used when only numbers between -100 and 100 are valid and no uncertainty can occur.",
-      "type": "number",
-      "minimum": -100,
-      "maximum": 100
-    },
     "numberBetweenMinusAndPlusNinety": {
       "description": "This type is used when only numbers between -90 and 90 are valid and no uncertainty can occur.",
       "type": "number",
@@ -287,6 +275,10 @@
       "type": "number",
       "minimum": -100,
       "maximum": 100
+    },
+    "percent": {
+      "description": "Percent, for example, the number 5 of this type means 5 %.",
+      "type": "number"
     }
   }
 }

@@ -505,8 +505,10 @@
                   "description": "The nominal power is measured at the maximum power point of the module under standard test conditions."
                 },
                 "tolerance": {
-                  "$ref": "number.json#/$defs/numberBetweenZeroAndHundred",
-                  "description": "The tolerance of the nominal power of the module in percent. For example, '5' means, that the nominal power can be 5% larger or smaller than the value provided above."
+                  "description": "The tolerance of the nominal power of the module in percent. For example, '5' means, that the nominal power can be 5% larger or smaller than the value provided above.",
+                  "$ref": "number.json#/$defs/percent",
+                  "minimum": 0,
+                  "maximum": 100
                 },
                 "temperatureCoefficient": {
                   "description": "When the temperature increases compared to standard test conditions, the nominal power changes. The temperature coefficient has the unit percent per Kelvin (%/K) to quantify this change.",
