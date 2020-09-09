@@ -42,7 +42,7 @@ and this project adheres to
 - Clean-up the stakeholder JSON schema, in particular, how stakeholders are referenced in specific roles #111
 - Associate contact information and GnuPG keys with a person's and institution's affiliations #112
 - Check and correct usages of `oneOf`, `anyOf`, and `allOf` #113
--
+- Use specific instead of general and (almost) meaningless number definitions #114
 -
 -
 -
