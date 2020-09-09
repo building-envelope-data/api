@@ -189,7 +189,7 @@
           "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
         },
         "density": {
-          "$ref": "number.json#/$defs/kgPerCubicMeterWithUncertainty",
+          "$ref": "number.json#/$defs/kilogramPerCubicMeterWithUncertainty",
           "description": "The density is needed to calculate the weigth of the layer."
         },
         "possiblePositions": {
