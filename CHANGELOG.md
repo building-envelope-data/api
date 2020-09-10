@@ -43,7 +43,7 @@ and this project adheres to
 - Associate contact information and GnuPG keys with a person's and institution's affiliations #112
 - Check and correct usages of `oneOf`, `anyOf`, and `allOf` #113
 - Use specific instead of general and (almost) meaningless number definitions #114
--
+- Improve titles and descriptions in the JSON Schema for optical data #115
 -
 -
 -
