@@ -1242,7 +1242,6 @@ To create an approval,
    `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
    or by running
    `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`.
-   TODO This does actually not work because the representative needs to authenticate herself. How can this be accomplished? Can we send an access token?
 6. save the response to be approved in a file `response.json`,
 7. compute the signature and write it to `response.json.asc` by running
    `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> response.json`, and
@@ -1267,7 +1266,6 @@ Best practices for managing GnuPG keys within an institution:
   `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
   or by running
   `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`.
-  TODO This does actually not work because the representative needs to authenticate herself. How can this be accomplished? Can we send an access token?
 * When a representative's signing subkey is compromised she revokes it as
   described in
   [Revoking key components](https://www.gnupg.org/gph/en/manual.html#AEN305)
@@ -1284,7 +1282,6 @@ Best practices for managing GnuPG keys within an institution:
   `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
   or by running
   `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-key <SIGNING_KEY_FINGERPRINT>`.
-  TODO As above this does not work because of missing authentication.
 * When a representative leaves a company or is no longer allowed to approve data,
   the metabase is informed about that with the GraphQL mutation
   ```
