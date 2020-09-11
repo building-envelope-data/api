@@ -1310,7 +1310,6 @@ Best practices for accepting approvals by databases:
   specifies a timestamp.
 * Check that the response is the result of the given query.
 * Check that the signature is valid for the given response.
-TODO Add GraphQL examples where possible.
 
 Note that GnuPG is compliant with
 [OpenPGP Message Format](https://tools.ietf.org/html/rfc4880).
