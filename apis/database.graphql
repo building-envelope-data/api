@@ -1172,7 +1172,7 @@ To verify an approval,
 3. save the ASCII-armored signature in a file `response.json.asc`,
 4. * retrieve the public key for the given fingerprint from the metabase's
      keyserver by running
-     `gpg --keyserver keyserver.buildingenvelopedata.org --recv-keys <FINGERPRINT>`
+     `gpg --keyserver hkp://keyserver.buildingenvelopedata.org --recv-keys <FINGERPRINT>`
      (or
      `gpg --fetch-keys https://buildingenvelopedata.org/gnuPgKey/<FINGERPRINT>.asc`)
      and make sure that the key belongs to the approver, was allowed for
@@ -1247,7 +1247,7 @@ Best practices for managing GnuPG keys within an institution:
   TODO add code example
   ```
   or by running
-  `gpg --keyserver keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`
+  `gpg --keyserver hkp://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`
   TODO This does actually not work because the representative needs to authenticate herself. How can this be accomplished? Can we send an access token?
 * When a representative's signing subkey is compromised she revokes it as
   described in
@@ -1257,7 +1257,7 @@ Best practices for managing GnuPG keys within an institution:
   TODO add code example
   ```
   or by running
-  `gpg --keyserver keyserver.buildingenvelopedata.org --send-key <SIGNING_KEY_FINGERPRINT>`.
+  `gpg --keyserver hkp://keyserver.buildingenvelopedata.org --send-key <SIGNING_KEY_FINGERPRINT>`.
   TODO As above this does not work because of missing authentication.
 * When a representative leaves a company or is no longer allowed to approve data,
   the metabase it informed about that with the GraphQL mutation
