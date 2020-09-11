@@ -44,7 +44,7 @@ and this project adheres to
 - Check and correct usages of `oneOf`, `anyOf`, and `allOf` #113
 - Use specific instead of general and (almost) meaningless number definitions #114
 - Improve titles and descriptions in the JSON Schema for optical data #115
--
+- Improve documentation of approvals in the database GraphQL schema #117
 -
 -
 -
