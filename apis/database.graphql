@@ -1227,10 +1227,22 @@ To create an approval,
    entering the command `save`.
 4. list your keys with fingerprints by running
    `gpg --list-keys --with-subkey-fingerprint <YOUR_EMAIL_ADDRESS>`.
-5. add your signing key to the metabase by exporting it with
-   `gpg --export --armor --output key.asc <SIGNING_KEY_FINGERPRINT>`
-   and uploading it with
-   `TODO Use keyserver and email addresses, or GraphQL endpoints`,
+5. adds it your signing key to the metabase and its keyserver (both are
+   coupled and one cannot be done without the other) either with the GraphQL
+   mutation
+   ```
+   mutation {
+     sendKeys(input: {
+       asciiArmoredKeys: <ASCII_ARMORED_KEYS>
+       keyFingerprint: <SIGNING_KEY_FINGERPRINT>
+     }) { }
+   }
+   ```
+   where `<ASCII_ARMORED_KEYS>` is the standard output of running
+   `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
+   or by running
+   `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`.
+   TODO This does actually not work because the representative needs to authenticate herself. How can this be accomplished? Can we send an access token?
 6. save the response to be approved in a file `response.json`,
 7. compute the signature and write it to `response.json.asc` by running
    `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> response.json`, and
@@ -1244,25 +1256,53 @@ Best practices for managing GnuPG keys within an institution:
   keyserver (both are coupled and one cannot be done without the other) either
   with the GraphQL mutation
   ```
-  TODO add code example
+  mutation {
+    sendKeys(input: {
+      asciiArmoredKeys: <ASCII_ARMORED_KEYS>
+      keyFingerprint: <SIGNING_KEY_FINGERPRINT>
+    }) { }
+  }
   ```
+  where `<ASCII_ARMORED_KEYS>` is the standard output of running
+  `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
   or by running
-  `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`
+  `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`.
   TODO This does actually not work because the representative needs to authenticate herself. How can this be accomplished? Can we send an access token?
 * When a representative's signing subkey is compromised she revokes it as
   described in
   [Revoking key components](https://www.gnupg.org/gph/en/manual.html#AEN305)
   and publishes the revocation either with the corresponding GraphQL mutation
   ```
-  TODO add code example
+  mutation {
+    sendKeys(input: {
+      asciiArmoredKeys: <ASCII_ARMORED_KEYS>
+      keyFingerprint: <SIGNING_KEY_FINGERPRINT>
+    }) { }
+  }
   ```
+  where `<ASCII_ARMORED_KEYS>` is the standard output of running
+  `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
   or by running
   `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-key <SIGNING_KEY_FINGERPRINT>`.
   TODO As above this does not work because of missing authentication.
 * When a representative leaves a company or is no longer allowed to approve data,
-  the metabase it informed about that with the GraphQL mutation
+  the metabase is informed about that with the GraphQL mutation
   ```
-  TODO add code example
+  mutation {
+    removeInstitutionRepresentative(input: {
+      userId: <USER_ID>
+      institutionId: <INSTITUTION_ID>
+    }) { }
+  }
+  ```
+  or
+  ```
+  mutation {
+    forbidInstitutionRepresentativeToSignData(input: {
+      userId: <USER_ID>
+      institutionId: <INSTITUTION_ID>
+    }) { }
+  }
   ```
 
 Best practices for accepting approvals by databases:
