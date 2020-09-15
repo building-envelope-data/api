@@ -39,7 +39,7 @@ remove : ## Remove image with name `${name}` and tag '${tag}'
 	docker rmi ${name}:${tag}
 .PHONY : remove
 
-run : build ## Run command `${COMMAND}` in fresh container for image with name `${name}` and tag '${tag}', for example, `make COMMAND="ls -al" run`
+run : build ## Run command `${COMMAND}` in fresh container for image with name `${name}` and tag '${tag}', for example, `make COMMAND="ls -al" run (note that Node development tools are installed to or updated in the Docker volume `${name}_node_modules` when necessary --- stop and remove containers using the volume and remove the volume by running `make remove-containers remove-volumes`)`
 	docker run \
 		--interactive \
 		--tty \
@@ -54,6 +54,21 @@ run : build ## Run command `${COMMAND}` in fresh container for image with name `
 shell : COMMAND = bash
 shell : run ## Enter `bash` shell in fresh container for image with name `${name}` and tag '${tag}'
 .PHONY : shell
+
+remove-containers : containers = $(shell docker ps --all --quiet --filter ancestor=building_envelopes_data)
+remove-containers : ## Stop and remove containers for image with name `${name}`
+	if [ "$(strip ${containers})" = '' ] ; then \
+		echo 'There are no containers for image with name `${name}`' ; \
+	else \
+		echo 'About to stop and remove containers with identifier(s) `${containers}`' && \
+		docker container stop ${containers} && \
+		docker container rm ${containers} ; \
+	fi
+.PHONY : remove-containers
+
+remove-volumes : ## Remove volumes created on the fly and used by running `make run` and `make shell` (note that all containers using the volume must be removed first, for example by running `make remove-containers`)
+	docker volume rm ${name}_node_modules
+.PHONY : remove-volumes
 
 serve : COMMAND = \
 					npx --no-install graphql-inspector serve ./apis/database.graphql --port 4000 & \

@@ -58,9 +58,10 @@ example GraphQL queries in the directory `./queries`.
    ```shell
    make help
    ```
-   The targets `name`, `tag`, `build`, `remove`, `run`, `shell`, and `serve`
-   can be used to interface with Docker. The other ones can be used within
-   `bash` inside a Docker container:
+   The targets `name`, `tag`, `build`, `remove`, `run`, `shell`,
+   `remove-containers`, `remove-volumes`, and `serve` can be used to interface
+   with Docker. The other ones can be used within `bash` inside a Docker
+   container:
    - `compile` validates the JSON schemas against the
      [JSON Schema meta-schemas](https://json-schema.org/specification-links.html#draft-7)
      and the GraphQL schemas against the
