@@ -1,6 +1,4 @@
-# We use Debian as base image for the reasons given on
-# https://pythonspeed.com/articles/base-image-python-docker-images/
-# see https://www.debian.org
+# Use Debian as base image, see https://www.debian.org
 FROM debian:10.5-slim
 
 ##################
@@ -27,10 +25,6 @@ RUN \
 #-------------------------------#
 # Make `bash` the default shell #
 #-------------------------------#
-# In particular, `ln ... bash /bin/sh` makes Python's `subprocess` module use
-# `bash` by default. If we want to make sure that `bash` is always used
-# regardless of the default shell, we can pass `executable="/bin/bash"` to
-# Python's `subprocess#run` function.
 RUN \
   ln --symbolic --force \
     bash /bin/sh && \
@@ -48,8 +42,8 @@ RUN \
   # Install `dumb-init`
   apt-get install --assume-yes --no-install-recommends \
     dumb-init && \
-  # Remove unused packages, erase archive files, and remove lists of packages
-  apt-get autoremove --assume-yes && \
+  # Remove unused packages and configuration files, erase archive files, and remove lists of packages
+  apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
   rm --recursive --force /var/lib/apt/lists/*
 
@@ -70,8 +64,8 @@ RUN \
     npm && \
   # Upgrade Node package manager to version 6.14.7
   npm install --global npm@6.14.7 && \
-  # Remove unused packages, erase archive files, and remove lists of packages
-  apt-get autoremove --assume-yes && \
+  # Remove unused packages and configuration files, erase archive files, and remove lists of packages
+  apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
   rm --recursive --force /var/lib/apt/lists/*
 
@@ -121,9 +115,10 @@ RUN \
 #-------------------------------------------#
 # Set-up for containers based on this image #
 #-------------------------------------------#
-# Create mount points to mount the project and the installed Python
-# dependencies.
+# Create mount points to mount the project and the installed Node development
+# tools.
 VOLUME /app/
+VOLUME /app/node_modules/
 
 # Run commands within the process supervisor and init system `dumb-init`
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
