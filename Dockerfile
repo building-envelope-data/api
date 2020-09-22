@@ -42,8 +42,8 @@ RUN \
   # Install `dumb-init`
   apt-get install --assume-yes --no-install-recommends \
     dumb-init && \
-  # Remove unused packages, erase archive files, and remove lists of packages
-  apt-get autoremove --assume-yes && \
+  # Remove unused packages and configuration files, erase archive files, and remove lists of packages
+  apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
   rm --recursive --force /var/lib/apt/lists/*
 
@@ -64,8 +64,8 @@ RUN \
     npm && \
   # Upgrade Node package manager to version 6.14.7
   npm install --global npm@6.14.7 && \
-  # Remove unused packages, erase archive files, and remove lists of packages
-  apt-get autoremove --assume-yes && \
+  # Remove unused packages and configuration files, erase archive files, and remove lists of packages
+  apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
   rm --recursive --force /var/lib/apt/lists/*
 
