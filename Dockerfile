@@ -115,9 +115,10 @@ RUN \
 #-------------------------------------------#
 # Set-up for containers based on this image #
 #-------------------------------------------#
-# Create mount points to mount the project and the installed Python
-# dependencies.
+# Create mount points to mount the project and the installed Node development
+# tools.
 VOLUME /app/
+VOLUME /app/node_modules/
 
 # Run commands within the process supervisor and init system `dumb-init`
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
