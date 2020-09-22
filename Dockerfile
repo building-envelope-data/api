@@ -1,6 +1,4 @@
-# We use Debian as base image for the reasons given on
-# https://pythonspeed.com/articles/base-image-python-docker-images/
-# see https://www.debian.org
+# Use Debian as base image, see https://www.debian.org
 FROM debian:10.5-slim
 
 ##################
