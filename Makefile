@@ -39,7 +39,7 @@ remove : ## Remove image with name `${name}` and tag '${tag}'
 	docker rmi ${name}:${tag}
 .PHONY : remove
 
-run : build ## Run command `${COMMAND}` in fresh container for image with name `${name}` and tag '${tag}', for example, `make COMMAND="ls -al" run (note that Node development tools are installed to or updated in the Docker volume `${name}_node_modules` when necessary --- stop and remove containers using the volume and remove the volume by running `make remove-containers remove-volumes`)`
+run : build ## Run command `${COMMAND}` in fresh container for image with name `${name}` and tag '${tag}', for example, `make COMMAND="ls -al"` run (note that Node development tools are installed to or updated in the Docker volume `${name}_node_modules` when necessary --- stop and remove containers using the volume and remove the volume by running `make remove-containers remove-volumes`)
 	docker run \
 		--interactive \
 		--tty \
