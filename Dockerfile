@@ -25,10 +25,6 @@ RUN \
 #-------------------------------#
 # Make `bash` the default shell #
 #-------------------------------#
-# In particular, `ln ... bash /bin/sh` makes Python's `subprocess` module use
-# `bash` by default. If we want to make sure that `bash` is always used
-# regardless of the default shell, we can pass `executable="/bin/bash"` to
-# Python's `subprocess#run` function.
 RUN \
   ln --symbolic --force \
     bash /bin/sh && \
