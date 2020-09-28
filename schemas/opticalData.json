@@ -294,7 +294,7 @@
     },
     "absorptanceEmittance": {
       "$ref": "number.json#/$defs/numberWithUncertainty",
-      "description": "Absorptance is the ratio between the irradiance absorbed by the sample and the irradiance on the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelenghts', absorptance is equal to emittance. For the same 'incidence', 'variables', and 'emergence', the absorptance-emittance value is equal to `1 - transmittance - reflectance`."
+      "description": "Absorptance is the ratio between the irradiance absorbed by the sample and the irradiance on the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelengths', absorptance is equal to emittance. For the same 'incidence', 'variables', and 'emergence', the absorptance-emittance value is equal to `1 - transmittance - reflectance`."
     },
     "verbose": {
       "$defs": {
@@ -535,7 +535,7 @@
           "minItems": 1
         },
         "wavelengths": {
-          "description": "Either a list of wavelenghts or an integral over wavelengths.",
+          "description": "Either a list of wavelengths or an integral over wavelengths.",
           "oneOf": [
             {
               "title": "Wavelengths with uncertainty",
