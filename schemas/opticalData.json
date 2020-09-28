@@ -52,7 +52,7 @@
     },
     "dataPoint": {
       "title": "Optical data point",
-      "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation, and the optical results, either in verbose or intermediate representation.",
+      "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent radiation, and the optical results, either in verbose or intermediate representation.",
       "oneOf": [
         {
           "title": "Verbose representation",
