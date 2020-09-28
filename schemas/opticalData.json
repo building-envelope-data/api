@@ -469,7 +469,7 @@
         },
         "incidence": {
           "title": "Incident radiation",
-          "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelenthgs and range of wavelengths.",
+          "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelengths and range of wavelengths.",
           "type": "object",
           "properties": {
             "direction": {
@@ -578,7 +578,7 @@
         },
         "incidence": {
           "title": "Incident radiation",
-          "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelenthgs and range of wavelengths.",
+          "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelengths and range of wavelengths.",
           "type": "object",
           "properties": {
             "direction": {
