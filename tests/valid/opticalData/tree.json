@@ -11,7 +11,9 @@
         {
           "incidence": {
             "direction": "nearnormal",
-            "wavelengths": { "integral": "solar" }
+            "wavelengths": {
+              "integral": "solar"
+            }
           },
           "emergence": {
             "direction": "nearnormal"
@@ -37,7 +39,9 @@
             {
               "incidence": {
                 "direction": "nearnormal",
-                "wavelengths": { "integral": "solar" }
+                "wavelengths": {
+                  "integral": "solar"
+                }
               },
               "emergence": {
                 "direction": "nearnormal"
@@ -58,7 +62,9 @@
             {
               "incidence": {
                 "direction": "nearnormal",
-                "wavelengths": { "integral": "solar" }
+                "wavelengths": {
+                  "integral": "solar"
+                }
               },
               "emergence": {
                 "direction": "nearnormal"
@@ -70,6 +76,28 @@
               }
             }
           ]
+        },
+        {
+          "componentCharacteristics": {
+            "definitionOfSurfacesAndPrimeDirection": {
+              "properties": {
+                "reference": {
+                  "publication": {
+                    "identifiers": {
+                      "webAddress": "https://www.baufachinformation.de/energiewendebauen-forschungserkenntnisse-von-der-komponente-bis-zum-quartier/bu/20069015283"
+                    },
+                    "title": "Energiewendebauen. Forschungserkenntnisse von der Komponente bis zum Quartier",
+                    "authors": [
+                      "Müller, Dirk"
+                    ]
+                  }
+                },
+                "description": {
+                  "description": "Angular convention for optical measurements of EasyLeno(R) Textiles."
+                }
+              }
+            }
+          }
         }
       ]
     }
