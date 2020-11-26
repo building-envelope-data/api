@@ -52,72 +52,32 @@
     },
     "dataPoint": {
       "title": "Optical data point",
-      "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation, and the optical results, either in verbose or intermediate representation.",
-      "oneOf": [
-        {
-          "title": "Verbose representation",
-          "description": "The most explicit form of representing optical data.",
-          "type": "object",
-          "properties": {
-            "incidence": {
-              "$ref": "#/$defs/verbose/$defs/incidence",
-              "title": "Incident radiation",
-              "description": "Incident radiation on the component."
-            },
-            "componentCharacteristics": {
-              "$ref": "#/$defs/componentCharacteristics",
-              "title": "Component characteristics",
-              "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
-            },
-            "emergence": {
-              "$ref": "#/$defs/verbose/$defs/emergence",
-              "title": "Emergent radiation",
-              "description": "Radiation that emerges from the component."
-            },
-            "results": {
-              "$ref": "#/$defs/verbose/$defs/results",
-              "title": "Results",
-              "description": "For example transmittance and reflectance."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["incidence", "emergence", "results"]
+      "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation, and the optical results.",
+      "type": "object",
+      "properties": {
+        "incidence": {
+          "$ref": "#/$defs/incidence",
+          "title": "Incident radiation",
+          "description": "Incident radiation on the component."
         },
-        {
-          "title": "Intermediate representation",
-          "description": "Lists are used for directions, wavelengths, and results. This representation is less explicit than the verbose one and not as concise as custom special-purpose representations.",
-          "type": "object",
-          "properties": {
-            "format": {
-              "$ref": "common.json#/$defs/dataFormat",
-              "title": "Format",
-              "description": "Specifies how the lists of directions, wavelengths, and results are to be interpreted."
-            },
-            "incidence": {
-              "$ref": "#/$defs/intermediate/$defs/incidence",
-              "title": "Incident radiation",
-              "description": "Incident radiation on the component."
-            },
-            "componentCharacteristics": {
-              "$ref": "#/$defs/componentCharacteristics",
-              "title": "Component characteristics",
-              "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
-            },
-            "emergence": {
-              "$ref": "#/$defs/intermediate/$defs/emergence",
-              "title": "Emergent radiation",
-              "description": "Radiation that emerges from the component."
-            },
-            "results": {
-              "$ref": "#/$defs/intermediate/$defs/results",
-              "title": "Results",
-              "description": "For example transmittance and reflectance."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["format", "incidence", "emergence", "results"]
+        "componentCharacteristics": {
+          "$ref": "#/$defs/componentCharacteristics",
+          "title": "Component characteristics",
+          "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
+        },
+        "emergence": {
+          "$ref": "#/$defs/emergence",
+          "title": "Emergent radiation",
+          "description": "Radiation that emerges from the component."
+        },
+        "results": {
+          "$ref": "#/$defs/results",
+          "title": "Results",
+          "description": "For example transmittance and reflectance."
         }
-      ]
+      },
+      "additionalProperties": false,
+      "required": ["incidence", "emergence", "results"]
     },
     "componentCharacteristics": {
       "title": "Component characteristics",
@@ -296,377 +256,229 @@
       "$ref": "number.json#/$defs/numberWithUncertainty",
       "description": "Absorptance is the ratio between the irradiance absorbed by the sample and the irradiance on the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelenghts', absorptance is equal to emittance. For the same 'incidence', 'variables', and 'emergence', the absorptance-emittance value is equal to `1 - transmittance - reflectance`."
     },
-    "verbose": {
-      "$defs": {
-        "incidenceDirection": {
-          "title": "Incidence direction",
-          "description": "Direction of incident radiation on sample.",
+    "incidenceDirection": {
+      "title": "Incidence direction",
+      "description": "Direction of incident radiation on sample.",
+      "oneOf": [
+        {
           "oneOf": [
             {
-              "oneOf": [
-                {
-                  "description": "Direction of incidence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
-                  "type": "object",
-                  "properties": {
-                    "polar": {
-                      "$ref": "number.json#/$defs/degree",
-                      "description": "The polar angle is the angle between the direction of incidence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of incidence is perpendicular to the sample."
-                    },
-                    "azimuth": {
-                      "$ref": "number.json#/$defs/degree",
-                      "description": "The direction of incidence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth is positive because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": ["polar", "azimuth"]
+              "description": "Direction of incidence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
+              "type": "object",
+              "properties": {
+                "polar": {
+                  "$ref": "number.json#/$defs/degree",
+                  "description": "The polar angle is the angle between the direction of incidence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of incidence is perpendicular to the sample."
                 },
-                {
-                  "description": "If the sample has rotational symmetry, then the incidence angle is sufficient to define the direction of incidence.",
-                  "type": "object",
-                  "properties": {
-                    "incidence": {
-                      "$ref": "number.json#/$defs/degree",
-                      "title": "Incidence angle"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": ["incidence"]
-                },
-                {
-                  "description": "If the sample has profile angle symmetry, then the profile angle is sufficient to define the direction. Assume a plane which is perpendicular to the surface of the sample and along the direction of the sample defined as prime. When you project the direction of incidence on that plane, then the profile angle is measured between this projection and the axis which is perpendicular to the surface. If the angle between the projection and the prime direction is smaller than 90°, then the profile angle is positive. If the projection is perpendicular to the surface, the profile angle equals 0°.",
-                  "type": "object",
-                  "properties": {
-                    "profile": {
-                      "$ref": "number.json#/$defs/degree",
-                      "title": "Profile angle"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": ["profile"]
-                },
-                {
-                  "title": "Nearnormal",
-                  "description": "Incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance). In less precise terms, the incidence angle on the sample surface is almost perpendicular.",
-
-                  "type": "string",
-                  "const": "nearnormal"
+                "azimuth": {
+                  "$ref": "number.json#/$defs/degree",
+                  "description": "The direction of incidence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth is positive because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
                 }
-              ]
-            },
-            {
-              "title": "Hemispherical",
-              "description": "Incidence arrives from all directions of the hemisphere on the sample surface.",
-              "type": "string",
-              "const": "hemispherical"
-            },
-            {
-              "$ref": "#/$defs/verbose/$defs/customDirection"
-            }
-          ]
-        },
-        "emergenceDirection": {
-          "title": "Emergence direction",
-          "description": "Direction of radiation emerging from a sample either by transmission or reflection.",
-          "oneOf": [
-            {
-              "oneOf": [
-                {
-                  "description": "Direction of emergence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
-                  "type": "object",
-                  "properties": {
-                    "polar": {
-                      "$ref": "number.json#/$defs/degree",
-                      "description": "The polar angle is the angle between the direction of emergence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of emergence is perpendicular to the sample."
-                    },
-                    "azimuth": {
-                      "$ref": "number.json#/$defs/degree",
-                      "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth is positive because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": ["polar", "azimuth"]
-                },
-                {
-                  "description": "If the sample has rotational symmetry, then the angle of reflectance is sufficient to define the direction of emergence.",
-                  "type": "object",
-                  "properties": {
-                    "reflectance": {
-                      "$ref": "number.json#/$defs/degree",
-                      "title": "Reflectance angle"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": ["reflectance"]
-                },
-                {
-                  "title": "Nearnormal",
-                  "description": "Emergence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance). In less precise terms, the emergence angle from the sample surface is almost perpendicular.",
-                  "type": "string",
-                  "const": "nearnormal"
-                }
-              ]
-            },
-            {
-              "title": "Diffuse or hemispherical",
-              "description": "(i) Diffuse means all directions with an emergence angle greater than 10°. (ii) Hemispherical means all directions to the hemisphere above the sample surface. Both are used when the emergence in many directions is treated as a sum.",
-              "type": "string",
-              "enum": ["diffuse", "hemispherical"]
-            },
-            {
-              "$ref": "#/$defs/verbose/$defs/customDirection"
-            }
-          ]
-        },
-        "customDirection": {
-          "title": "Custom direction",
-          "type": "object",
-          "properties": {
-            "format": {
-              "$ref": "common.json#/$defs/dataFormat",
-              "description": "Definition of how `list` can be interpreted as directions. For example, it may say that `list` has an even number of angles, that each angle at an even index is a polar angle, each angle at an odd index is an azimuth angle, and that each polar angle together with the azimuth angle following it form a pair."
-            },
-            "list": {
-              "description": "List of numbers that represent directions.",
-              "type": "array",
-              "items": {
-                "type": "number"
               },
-              "minItems": 1
-            }
-          },
-          "additionalProperties": false,
-          "required": ["format", "list"]
-        },
-        "uncertainWavelength": {
-          "title": "Uncertain wavelength",
-          "type": "object",
-          "properties": {
-            "wavelength": {
-              "$ref": "number.json#/$defs/nanometer",
-              "description": "One wavelength in nanometers. If necessary, its uncertainty can be specified with `uncertainty`."
-            },
-            "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
-          },
-          "additionalProperties": false,
-          "required": ["wavelength"]
-        },
-        "wavelengths": {
-          "title": "Wavelengths of radiation",
-          "description": "Either one wavelength, possibly with uncertainty, or an integral over many wavelengths.",
-          "oneOf": [
-            {
-              "$ref": "#/$defs/verbose/$defs/uncertainWavelength"
+              "additionalProperties": false,
+              "required": ["polar", "azimuth"]
             },
             {
-              "$ref": "#/$defs/wavelengthsIntegral"
+              "description": "If the sample has rotational symmetry, then the incidence angle is sufficient to define the direction of incidence.",
+              "type": "object",
+              "properties": {
+                "incidence": {
+                  "$ref": "number.json#/$defs/degree",
+                  "title": "Incidence angle"
+                }
+              },
+              "additionalProperties": false,
+              "required": ["incidence"]
+            },
+            {
+              "description": "If the sample has profile angle symmetry, then the profile angle is sufficient to define the direction. Assume a plane which is perpendicular to the surface of the sample and along the direction of the sample defined as prime. When you project the direction of incidence on that plane, then the profile angle is measured between this projection and the axis which is perpendicular to the surface. If the angle between the projection and the prime direction is smaller than 90°, then the profile angle is positive. If the projection is perpendicular to the surface, the profile angle equals 0°.",
+              "type": "object",
+              "properties": {
+                "profile": {
+                  "$ref": "number.json#/$defs/degree",
+                  "title": "Profile angle"
+                }
+              },
+              "additionalProperties": false,
+              "required": ["profile"]
+            },
+            {
+              "title": "Nearnormal",
+              "description": "Incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance). In less precise terms, the incidence angle on the sample surface is almost perpendicular.",
+
+              "type": "string",
+              "const": "nearnormal"
             }
           ]
         },
-        "shiftedWavelengths": {
-          "title": "Shifted wavelengths",
-          "description": "Wavelength of incidence, possibly with uncertainty, that is shifted for example by fluorescence to another wavelength.",
-          "$ref": "#/$defs/verbose/$defs/uncertainWavelength"
+        {
+          "title": "Hemispherical",
+          "description": "Incidence arrives from all directions of the hemisphere on the sample surface.",
+          "type": "string",
+          "const": "hemispherical"
         },
-        "incidence": {
-          "title": "Incident radiation",
-          "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelenthgs and range of wavelengths.",
-          "type": "object",
-          "properties": {
-            "direction": {
-              "$ref": "#/$defs/verbose/$defs/incidenceDirection"
-            },
-            "polarization": {
-              "$ref": "#/$defs/polarization"
-            },
-            "wavelengths": {
-              "$ref": "#/$defs/verbose/$defs/wavelengths",
-              "description": "Wavelengths of the optical data regardless of whether the incidence or the emergence was split into smaller spectra."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["direction", "wavelengths"]
-        },
-        "emergence": {
-          "title": "Emergent radiation",
-          "description": "Emergent radiation from a sample. It consists of direction of emergence, polarization, and a wavelength shifted by flourescence.",
-          "type": "object",
-          "properties": {
-            "direction": {
-              "$ref": "#/$defs/verbose/$defs/emergenceDirection"
-            },
-            "polarization": {
-              "$ref": "#/$defs/polarization"
-            },
-            "shiftedWavelengths": {
-              "$ref": "#/$defs/verbose/$defs/shiftedWavelengths"
-            }
-          },
-          "additionalProperties": false,
-          "required": ["direction"]
-        },
-        "results": {
-          "title": "Measurement or simulation results",
-          "type": "object",
-          "properties": {
-            "transmittance": {
-              "$ref": "#/$defs/transmittance"
-            },
-            "reflectance": {
-              "$ref": "#/$defs/reflectance"
-            },
-            "absorptanceEmittance": {
-              "$ref": "#/$defs/absorptanceEmittance"
-            }
-          },
-          "additionalProperties": false,
-          "required": [],
-          "minProperties": 1
+        {
+          "$ref": "#/$defs/customDirection"
         }
-      }
+      ]
     },
-    "intermediate": {
-      "$defs": {
-        "direction": {
-          "title": "Directions",
+    "emergenceDirection": {
+      "title": "Emergence direction",
+      "description": "Direction of radiation emerging from a sample either by transmission or reflection.",
+      "oneOf": [
+        {
+          "oneOf": [
+            {
+              "description": "Direction of emergence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
+              "type": "object",
+              "properties": {
+                "polar": {
+                  "$ref": "number.json#/$defs/degree",
+                  "description": "The polar angle is the angle between the direction of emergence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of emergence is perpendicular to the sample."
+                },
+                "azimuth": {
+                  "$ref": "number.json#/$defs/degree",
+                  "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth is positive because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
+                }
+              },
+              "additionalProperties": false,
+              "required": ["polar", "azimuth"]
+            },
+            {
+              "description": "If the sample has rotational symmetry, then the angle of reflectance is sufficient to define the direction of emergence.",
+              "type": "object",
+              "properties": {
+                "reflectance": {
+                  "$ref": "number.json#/$defs/degree",
+                  "title": "Reflectance angle"
+                }
+              },
+              "additionalProperties": false,
+              "required": ["reflectance"]
+            },
+            {
+              "title": "Nearnormal",
+              "description": "Emergence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance). In less precise terms, the emergence angle from the sample surface is almost perpendicular.",
+              "type": "string",
+              "const": "nearnormal"
+            }
+          ]
+        },
+        {
+          "title": "Diffuse or hemispherical",
+          "description": "(i) Diffuse means all directions with an emergence angle greater than 10°. (ii) Hemispherical means all directions to the hemisphere above the sample surface. Both are used when the emergence in many directions is treated as a sum.",
+          "type": "string",
+          "enum": ["diffuse", "hemispherical"]
+        },
+        {
+          "$ref": "#/$defs/customDirection"
+        }
+      ]
+    },
+    "customDirection": {
+      "title": "Custom direction",
+      "type": "object",
+      "properties": {
+        "format": {
+          "$ref": "common.json#/$defs/dataFormat",
+          "description": "Definition of how `list` can be interpreted as directions. For example, it may say that `list` has an even number of angles, that each angle at an even index is a polar angle, each angle at an odd index is an azimuth angle, and that each polar angle together with the azimuth angle following it form a pair."
+        },
+        "list": {
+          "description": "List of numbers that represent directions.",
           "type": "array",
           "items": {
             "type": "number"
           },
           "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": ["format", "list"]
+    },
+    "uncertainWavelength": {
+      "title": "Uncertain wavelength",
+      "type": "object",
+      "properties": {
+        "wavelength": {
+          "$ref": "number.json#/$defs/nanometer",
+          "description": "One wavelength in nanometers. If necessary, its uncertainty can be specified with `uncertainty`."
+        },
+        "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
+      },
+      "additionalProperties": false,
+      "required": ["wavelength"]
+    },
+    "wavelengths": {
+      "title": "Wavelengths of radiation",
+      "description": "Either one wavelength, possibly with uncertainty, or an integral over many wavelengths.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/uncertainWavelength"
+        },
+        {
+          "$ref": "#/$defs/wavelengthsIntegral"
+        }
+      ]
+    },
+    "shiftedWavelengths": {
+      "title": "Shifted wavelengths",
+      "description": "Wavelength of incidence, possibly with uncertainty, that is shifted for example by fluorescence to another wavelength.",
+      "$ref": "#/$defs/uncertainWavelength"
+    },
+    "incidence": {
+      "title": "Incident radiation",
+      "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelenthgs and range of wavelengths.",
+      "type": "object",
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/incidenceDirection"
+        },
+        "polarization": {
+          "$ref": "#/$defs/polarization"
         },
         "wavelengths": {
-          "description": "Either a list of wavelenghts or an integral over wavelengths.",
-          "oneOf": [
-            {
-              "title": "Wavelengths with uncertainty",
-              "type": "object",
-              "properties": {
-                "wavelength": {
-                  "title": "Wavelengths in nanometer",
-                  "type": "array",
-                  "items": {
-                    "$ref": "number.json#/$defs/nanometer"
-                  },
-                  "minItems": 1
-                },
-                "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
-              },
-              "additionalProperties": false,
-              "required": ["wavelength"]
-            },
-            {
-              "$ref": "#/$defs/wavelengthsIntegral"
-            }
-          ]
+          "$ref": "#/$defs/wavelengths",
+          "description": "Wavelengths of the optical data regardless of whether the incidence or the emergence was split into smaller spectra."
+        }
+      },
+      "additionalProperties": false,
+      "required": ["direction", "wavelengths"]
+    },
+    "emergence": {
+      "title": "Emergent radiation",
+      "description": "Emergent radiation from a sample. It consists of direction of emergence, polarization, and a wavelength shifted by flourescence.",
+      "type": "object",
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/emergenceDirection"
+        },
+        "polarization": {
+          "$ref": "#/$defs/polarization"
         },
         "shiftedWavelengths": {
-          "description": "Wavelength of incidence, possibly with uncertainty, that is shifted for example by fluorescence to another wavelength.",
-          "type": "object",
-          "properties": {
-            "wavelength": {
-              "type": "array",
-              "items": {
-                "$ref": "number.json#/$defs/nanometer",
-                "description": "Wavelength in nanometer."
-              },
-              "minItems": 1
-            },
-            "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
-          },
-          "additionalProperties": false,
-          "required": ["wavelength"]
-        },
-        "incidence": {
-          "title": "Incident radiation",
-          "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelenthgs and range of wavelengths.",
-          "type": "object",
-          "properties": {
-            "direction": {
-              "$ref": "#/$defs/intermediate/$defs/direction"
-            },
-            "polarization": {
-              "$ref": "#/$defs/polarization"
-            },
-            "wavelengths": {
-              "$ref": "#/$defs/intermediate/$defs/wavelengths",
-              "description": "Wavelengths of the optical data regardless of whether the incidence or the emergence was split into smaller spectra."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["direction", "wavelengths"]
-        },
-        "emergence": {
-          "title": "Emergent radiation",
-          "description": "Emergent radiation from a sample. It consists of direction of emergence, polarization, and a wavelength shifted by flourescence.",
-          "type": "object",
-          "properties": {
-            "direction": {
-              "$ref": "#/$defs/intermediate/$defs/direction"
-            },
-            "polarization": {
-              "$ref": "#/$defs/polarization"
-            },
-            "shiftedWavelengths": {
-              "$ref": "#/$defs/intermediate/$defs/shiftedWavelengths"
-            }
-          },
-          "additionalProperties": false,
-          "required": ["direction"]
-        },
-        "results": {
-          "title": "Measurement or simulation results",
-          "type": "object",
-          "properties": {
-            "format": {
-              "$ref": "common.json#/$defs/dataFormat"
-            },
-            "transmittance": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/transmittance"
-              },
-              "minItems": 2
-            },
-            "reflectance": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/reflectance"
-              },
-              "minItems": 2
-            },
-            "absorptanceEmittance": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/absorptanceEmittance"
-              },
-              "minItems": 2
-            },
-            "bidirectionalTransmittanceDistributionFunction": {
-              "type": "array",
-              "items": {
-                "type": "number",
-                "minimum": 0,
-                "maximum": 1
-              },
-              "minItems": 2,
-              "description": "The Bidirectional Transmittance Distribution Function (BTDF) is defined as the radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
-            },
-            "bidirectionalReflectanceDistributionFunction": {
-              "type": "array",
-              "items": {
-                "type": "number",
-                "minimum": 0,
-                "maximum": 1
-              },
-              "minItems": 2,
-              "description": "The Bidirectional Reflectance Distribution Function (BRDF) is defined as the radiation per steradian which is transmitted in a certain direction and divided by the incident radiation and the cosine of the angle of emergence."
-            }
-          },
-          "additionalProperties": false,
-          "required": [],
-          "minProperties": 1
+          "$ref": "#/$defs/shiftedWavelengths"
         }
-      }
+      },
+      "additionalProperties": false,
+      "required": ["direction"]
+    },
+    "results": {
+      "title": "Measurement or simulation results",
+      "type": "object",
+      "properties": {
+        "transmittance": {
+          "$ref": "#/$defs/transmittance"
+        },
+        "reflectance": {
+          "$ref": "#/$defs/reflectance"
+        },
+        "absorptanceEmittance": {
+          "$ref": "#/$defs/absorptanceEmittance"
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
     }
   },
   "$ref": "#/$defs/data"
