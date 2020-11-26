@@ -2,7 +2,7 @@ Which workflows should be considered to add corresponding endpoints to metabase?
 
 Kontext erste Angestellte einer Institution registriert sich
 Angestellte1 legt Benutzerkonto1 an, bestehend aus E-Mail-Adresse und Passwort.
-Falls Benuterkonto1 nicht über den Link in der Mail bestätigt wird, wird es nach 2 Monaten gelöscht. 
+Falls Benuterkonto1 nicht über den Link in der Mail bestätigt wird, wird es nach 2 Monaten gelöscht.
 Falls Angestellte1 ihr Passwort vergessen haben sollte, muss sie das Passwort zurücksetzen können über die E-Mail-Adresse.
 Gib mir alle Daten über diese Person inklusive aller Interaktionen, die diese Person verursacht hat.
 Lösche alle Daten über diese Person.
@@ -52,6 +52,7 @@ ISE entzieht Angestellter1 die Berechtigung, Infos über Standardisierungsorgani
 Kontext Rechte der Hauptverantwortlichen einer Institution
 Hauptverantwortliche1 von Institution1 erteilt Angestellter2 die Berechtigung2.
 Angestellte2 mit Berechtigung2
+
 - erstellt Komponenten, Komponentenversionen, Methoden, Normen, Benutzerkonten für Mitarbeitende von Institution1, Assoziationen wie ComponentManufacturer, MethodDeveloper
 - ändert Metadaten von Komponenten, Komponentenversionen, Methoden, Normen, Benutzerkonten für Mitarbeitende von Institution1, Assoziationen wie ComponentManufacturer, MethodDeveloper
 - markiert Komponenten, Komponentenversionen, Methoden, Normen, Benutzerkonten für Mitarbeitende von Institution1, Assoziationen wie ComponentManufacturer, MethodDeveloper als “aufgelöst”.

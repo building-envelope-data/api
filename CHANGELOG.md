@@ -37,7 +37,7 @@ and this project adheres to
 - Improve propositions used in GraphQL queries to search for data #102
 - Further align database GraphQL schema and JSON schema #103
 - Flatten data HTTP resource trees to make them queryable with one query without having to know the trees depth #108
-- Only us `additionalItems` for tuple validation and __not__ for list validation, use `uniqueItems` for lists of enumerated items, use `const` for one-valued enums, and don't have special this-property-has-no-value values for optional properties #110
+- Only us `additionalItems` for tuple validation and **not** for list validation, use `uniqueItems` for lists of enumerated items, use `const` for one-valued enums, and don't have special this-property-has-no-value values for optional properties #110
 - Improve titles and descriptions of identifiers, name `uniqueId` of decentral identifiers `value`, and make identifiers be issued by databases instead of institutions #107
 - Clean-up the stakeholder JSON schema, in particular, how stakeholders are referenced in specific roles #111
 - Associate contact information and GnuPG keys with a person's and institution's affiliations #112
