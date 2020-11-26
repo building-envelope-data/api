@@ -11,9 +11,9 @@ and this project adheres to
 
 ### Added
 
-- Document previously undocumented database GraphQL schema #101
-- Add more tooling for GraphQL schema, queries, and mutations #104
-- Add query examples for `data`, `allData`, and `hasData` #105
+- Document previously undocumented database GraphQL schema [#101](https://github.com/ise621/building-envelope-data/pull/101)
+- Add more tooling for GraphQL schema, queries, and mutations [#104](https://github.com/ise621/building-envelope-data/pull/104)
+- Add query examples for `data`, `allData`, and `hasData` [#105](https://github.com/ise621/building-envelope-data/pull/105)
 -
 -
 -
@@ -34,18 +34,18 @@ and this project adheres to
 
 ### Changed
 
-- Improve propositions used in GraphQL queries to search for data #102
-- Further align database GraphQL schema and JSON schema #103
-- Flatten data HTTP resource trees to make them queryable with one query without having to know the trees depth #108
-- Only us `additionalItems` for tuple validation and **not** for list validation, use `uniqueItems` for lists of enumerated items, use `const` for one-valued enums, and don't have special this-property-has-no-value values for optional properties #110
-- Improve titles and descriptions of identifiers, name `uniqueId` of decentral identifiers `value`, and make identifiers be issued by databases instead of institutions #107
-- Clean-up the stakeholder JSON schema, in particular, how stakeholders are referenced in specific roles #111
-- Associate contact information and GnuPG keys with a person's and institution's affiliations #112
-- Check and correct usages of `oneOf`, `anyOf`, and `allOf` #113
-- Use specific instead of general and (almost) meaningless number definitions #114
-- Improve titles and descriptions in the JSON Schema for optical data #115
-- Improve documentation of approvals in the database GraphQL schema #117
-- Clean-up Dockerfile, in particular, remove notes regarding Python #121
+- Improve propositions used in GraphQL queries to search for data [#102](https://github.com/ise621/building-envelope-data/pull/102)
+- Further align database GraphQL schema and JSON schema [#103](https://github.com/ise621/building-envelope-data/pull/103)
+- Flatten data HTTP resource trees to make them queryable with one query without having to know the trees depth [#108](https://github.com/ise621/building-envelope-data/pull/108)
+- Only us `additionalItems` for tuple validation and **not** for list validation, use `uniqueItems` for lists of enumerated items, use `const` for one-valued enums, and don't have special this-property-has-no-value values for optional properties [#110](https://github.com/ise621/building-envelope-data/pull/110)
+- Improve titles and descriptions of identifiers, name `uniqueId` of decentral identifiers `value`, and make identifiers be issued by databases instead of institutions [#107](https://github.com/ise621/building-envelope-data/pull/107)
+- Clean-up the stakeholder JSON schema, in particular, how stakeholders are referenced in specific roles [#111](https://github.com/ise621/building-envelope-data/pull/111)
+- Associate contact information and GnuPG keys with a person's and institution's affiliations [#112](https://github.com/ise621/building-envelope-data/pull/112)
+- Check and correct usages of `oneOf`, `anyOf`, and `allOf` [#113](https://github.com/ise621/building-envelope-data/pull/113)
+- Use specific instead of general and (almost) meaningless number definitions [#114](https://github.com/ise621/building-envelope-data/pull/114)
+- Improve titles and descriptions in the JSON Schema for optical data [#115](https://github.com/ise621/building-envelope-data/pull/115)
+- Improve documentation of approvals in the database GraphQL schema [#117](https://github.com/ise621/building-envelope-data/pull/117)
+- Clean-up Dockerfile, in particular, remove notes regarding Python [#121](https://github.com/ise621/building-envelope-data/pull/121)
 -
 -
 -
@@ -80,8 +80,8 @@ and this project adheres to
 
 ### Removed
 
-- Remove intermediate representation of optical data #152
-- Remove custom directions from optical data #153
+- Remove intermediate representation of optical data [#152](https://github.com/ise621/building-envelope-data/pull/152)
+- Remove custom directions from optical data [#153](https://github.com/ise621/building-envelope-data/pull/153)
 -
 -
 -
