@@ -564,7 +564,7 @@
                         "type": "object",
                         "properties": {
                           "direction": {
-                            "$ref": "opticalData.json#/$defs/verbose/$defs/incidenceDirection",
+                            "$ref": "opticalData.json#/$defs/incidenceDirection",
                             "description": "The direction of the incident radiation."
                           },
                           "modifier": {
