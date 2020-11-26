@@ -147,6 +147,8 @@
         "standardizers": {
           "type": "array",
           "items": {
+            "title": "Acronyms or abbreviations of standardization institutions",
+            "description": "Additional information about each standardization institution are stored in the metabase.",
             "type": "string",
             "enum": [
               "AERC",
@@ -177,7 +179,7 @@
             ]
           },
           "minItems": 1,
-          "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their acronym."
+          "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their acronym or abbreviation."
         },
         "numeration": {
           "type": "object",
