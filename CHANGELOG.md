@@ -80,7 +80,7 @@ and this project adheres to
 
 ### Removed
 
--
+- Remove intermediate representation of optical data #152
 -
 -
 -
