@@ -144,14 +144,40 @@
           "type": "string",
           "description": "The abstract of the standard"
         },
-        "standardizerIds": {
+        "standardizers": {
           "type": "array",
           "items": {
-            "$ref": "identifier.json#/$defs/central",
-            "description": "Each institution which has created this standard is defined here by its id."
+            "type": "string",
+            "enum": [
+              "AERC",
+              "AGI",
+              "ASHRAE",
+              "BREEAM",
+              "BS",
+              "BSI",
+              "CEN",
+              "CENELEC",
+              "CIE",
+              "DGNB",
+              "DIN",
+              "DVWG",
+              "IEC",
+              "IES",
+              "ift",
+              "ISO",
+              "JIS",
+              "LEED",
+              "NFRC",
+              "Riba",
+              "UL",
+              "UNECE",
+              "VDI",
+              "VFF",
+              "WELL"
+            ]
           },
           "minItems": 1,
-          "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their id."
+          "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their acronym."
         },
         "numeration": {
           "type": "object",
@@ -171,7 +197,7 @@
             }
           },
           "additionalProperties": false,
-          "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the abbreviations for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
+          "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the acronyms for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
           "required": ["mainNumber"]
         },
         "year": {
@@ -186,7 +212,7 @@
         }
       },
       "additionalProperties": false,
-      "required": ["standardizerIds", "numeration"],
+      "required": ["standardizers", "numeration"],
       "description": "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
     },
     "currentVoltage": {
