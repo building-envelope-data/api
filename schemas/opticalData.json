@@ -316,9 +316,6 @@
           "description": "Incidence arrives from all directions of the hemisphere on the sample surface.",
           "type": "string",
           "const": "hemispherical"
-        },
-        {
-          "$ref": "#/$defs/customDirection"
         }
       ]
     },
@@ -369,31 +366,8 @@
           "description": "(i) Diffuse means all directions with an emergence angle greater than 10°. (ii) Hemispherical means all directions to the hemisphere above the sample surface. Both are used when the emergence in many directions is treated as a sum.",
           "type": "string",
           "enum": ["diffuse", "hemispherical"]
-        },
-        {
-          "$ref": "#/$defs/customDirection"
         }
       ]
-    },
-    "customDirection": {
-      "title": "Custom direction",
-      "type": "object",
-      "properties": {
-        "format": {
-          "$ref": "common.json#/$defs/dataFormat",
-          "description": "Definition of how `list` can be interpreted as directions. For example, it may say that `list` has an even number of angles, that each angle at an even index is a polar angle, each angle at an odd index is an azimuth angle, and that each polar angle together with the azimuth angle following it form a pair."
-        },
-        "list": {
-          "description": "List of numbers that represent directions.",
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 1
-        }
-      },
-      "additionalProperties": false,
-      "required": ["format", "list"]
     },
     "uncertainWavelength": {
       "title": "Uncertain wavelength",
