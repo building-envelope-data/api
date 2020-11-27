@@ -14,7 +14,7 @@ and this project adheres to
 - Document previously undocumented database GraphQL schema [#101](https://github.com/ise621/building-envelope-data/pull/101)
 - Add more tooling for GraphQL schema, queries, and mutations [#104](https://github.com/ise621/building-envelope-data/pull/104)
 - Add query examples for `data`, `allData`, and `hasData` [#105](https://github.com/ise621/building-envelope-data/pull/105)
--
+- Add section to publication to be able to refer to just one part of a publication [#155](https://github.com/ise621/building-envelope-data/pull/155)
 -
 -
 -

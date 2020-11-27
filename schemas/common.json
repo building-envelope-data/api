@@ -123,6 +123,10 @@
             "description": "Persons who authored the publication."
           },
           "minItems": 1
+        },
+        "section": {
+          "title": "Referenced section",
+          "type": "string"
         }
       },
       "additionalProperties": false,
