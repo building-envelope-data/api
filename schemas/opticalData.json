@@ -259,7 +259,7 @@
     },
     "incidenceDirection": {
       "title": "Incidence direction",
-      "description": "Direction of incident radiation on sample.",
+      "description": "Direction of incident radiation on sample. An incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance) is called 'nearnormal' and said to be 'almost perpendicular'.",
       "oneOf": [
         {
           "oneOf": [
@@ -278,12 +278,6 @@
               },
               "additionalProperties": false,
               "required": ["polar"]
-            },
-            {
-              "title": "Nearnormal",
-              "description": "Incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance). In less precise terms, the incidence angle on the sample surface is almost perpendicular.",
-              "type": "string",
-              "const": "nearnormal"
             }
           ]
         },
