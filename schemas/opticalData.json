@@ -268,7 +268,7 @@
               "properties": {
                 "polar": {
                   "$ref": "number.json#/$defs/degree",
-                  "description": "The polar angle is the angle between the direction of incidence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of incidence is perpendicular to the sample."
+                  "description": "The polar angle is the angle between the direction of incidence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of incidence is perpendicular to the sample. If the sample has rotational symmetry, then the polar angle is sufficient to define the direction of incidence."
                 },
                 "azimuth": {
                   "$ref": "number.json#/$defs/degree",
@@ -276,19 +276,7 @@
                 }
               },
               "additionalProperties": false,
-              "required": ["polar", "azimuth"]
-            },
-            {
-              "description": "If the sample has rotational symmetry, then the incidence angle is sufficient to define the direction of incidence.",
-              "type": "object",
-              "properties": {
-                "incidence": {
-                  "$ref": "number.json#/$defs/degree",
-                  "title": "Incidence angle"
-                }
-              },
-              "additionalProperties": false,
-              "required": ["incidence"]
+              "required": ["polar"]
             },
             {
               "description": "If the sample has profile angle symmetry, then the profile angle is sufficient to define the direction. Assume a plane which is perpendicular to the surface of the sample and along the direction of the sample defined as prime. When you project the direction of incidence on that plane, then the profile angle is measured between this projection and the axis which is perpendicular to the surface. If the angle between the projection and the prime direction is smaller than 90°, then the profile angle is positive. If the projection is perpendicular to the surface, the profile angle equals 0°.",
@@ -305,7 +293,6 @@
             {
               "title": "Nearnormal",
               "description": "Incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance). In less precise terms, the incidence angle on the sample surface is almost perpendicular.",
-
               "type": "string",
               "const": "nearnormal"
             }
