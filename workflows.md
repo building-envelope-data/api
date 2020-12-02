@@ -53,9 +53,19 @@ Kontext Rechte der Hauptverantwortlichen einer Institution
 Hauptverantwortliche1 von Institution1 erteilt Angestellter2 die Berechtigung2.
 Angestellte2 mit Berechtigung2
 
-- erstellt Komponenten, Komponentenversionen, Methoden, Normen, Benutzerkonten für Mitarbeitende von Institution1, Assoziationen wie ComponentManufacturer, MethodDeveloper
-- ändert Metadaten von Komponenten, Komponentenversionen, Methoden, Normen, Benutzerkonten für Mitarbeitende von Institution1, Assoziationen wie ComponentManufacturer, MethodDeveloper
-- markiert Komponenten, Komponentenversionen, Methoden, Normen, Benutzerkonten für Mitarbeitende von Institution1, Assoziationen wie ComponentManufacturer, MethodDeveloper als “aufgelöst”.
+- erstellt Komponenten, Komponentenversionen, Methoden, dataFormats, Benutzerkonten für Mitarbeitende von Institution1, Assoziationen wie ComponentManufacturer, MethodDeveloper
+- ändert Metadaten von Komponenten, Komponentenversionen, Methoden, dataFormats, Benutzerkonten für Mitarbeitende von Institution1, Assoziationen wie ComponentManufacturer, MethodDeveloper
+- markiert Komponenten, Komponentenversionen, Methoden, dataFormats, Benutzerkonten für Mitarbeitende von Institution1, Assoziationen wie ComponentManufacturer, MethodDeveloper als “aufgelöst”.
+
+Kontext dataFormats
+Angestellte3 arbeitet fürs Fraunhofer ISE, ist dataFormat-Verantwortliche und hat damit automatisch auch eine dataFormat-Berechtigung.
+Angestellte3 kann die dataFormat-Verantwortung mit anderen Benutzern wie Angestellte4 teilen.
+Angestellte3 kann dataFormat-Verantwortung abgeben, wenn es andere dataFormat-Verantwortliche gibt.
+Angestellte3 kann dataFormats, die von keinem data set genutzt werden, löschen.
+Angestellte5 fragt nach allen dataFormat-Berechtigten und erhält die E-Mail-Adressen.
+Angestelle3 erteilt dataFormat-Berechtigung an Angestellte5.
+Angestellte5 kann durch die dataFormat-Berechtigung neue dataFormats erstellen und diese ändern.
+Angesteller3 entzieht dataFormat-Berechtigung von Angestellter5.
 
 Kontext einer bereits registrierten Institution registriert sich (Affiliation)
 Angestellte2 der bereits registrierten Institution1 registriert sich und wird informiert über die Namen der Hauptverantwortlichen und bittet diese um Aufnahme in Institution1.
@@ -80,4 +90,5 @@ Rolle von NFRC
 Institution8 schließt Vertrag mit NFRC.
 Institution8 submitted Daten an LBNL.
 LBNL bearbeitet Daten, zählt die Änderungen und stellt Rechnung an NFRC.
+
 o Wie werden Daten zwischen NFRC und LBNL hin- und hergeschickt?
