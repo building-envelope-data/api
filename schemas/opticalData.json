@@ -267,7 +267,7 @@
           "properties": {
             "polar": {
               "$ref": "number.json#/$defs/degreeWithUncertainty",
-              "description": "The polar angle is the angle between the direction of incidence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of incidence is perpendicular to the sample. If the sample has rotational symmetry, then the polar angle is sufficient to define the direction of incidence. If the sample has profile angle symmetry whose direction is equal to the prime direction, then the profile angle can be calculated from the polar and azimuth angles."
+              "description": "The polar angle is the angle between the direction of incidence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of incidence is perpendicular to the sample. If the sample has incidence-angle symmetry, then the polar angle is sufficient to define the direction of incidence. If the sample has profile angle symmetry whose direction is equal to the prime direction, then the profile angle can be calculated from the polar and azimuth angles."
             },
             "azimuth": {
               "$ref": "number.json#/$defs/degreeWithUncertainty",
