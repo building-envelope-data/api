@@ -91,7 +91,10 @@
                       "uncertainty": 50,
                       "confidenceInterval": 68.3
                     },
-                    "direction": "nearnormal"
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    }
                   }
                 }
               ],

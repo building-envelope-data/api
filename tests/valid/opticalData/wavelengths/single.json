@@ -2,13 +2,19 @@
   "dataPoints": [
     {
       "incidence": {
-        "direction": "nearnormal",
+        "direction": {
+          "polar": 8,
+          "azimuth": 0
+        },
         "wavelengths": {
           "wavelength": 1
         }
       },
       "emergence": {
-        "direction": "nearnormal"
+        "direction": {
+          "polar": 8,
+          "azimuth": 0
+        }
       },
       "results": {
         "transmittance": {
