@@ -85,10 +85,19 @@ Hauptverantwortliche1 lässt sich alle Änderungen anzeigen, die mit einer Vollm
 Hauptverantwortliche2 teilt eine Vollmacht mit Angestellter3.
 Hauptverantwortliche2 entzieht Angestellter3 eine Vollmacht.
 
-HRW:
-Rolle von NFRC
-Institution8 schließt Vertrag mit NFRC.
-Institution8 submitted Daten an LBNL.
-LBNL bearbeitet Daten, zählt die Änderungen und stellt Rechnung an NFRC.
+Kontext gemeinsame Komponenten
+Institution1 legt Komponente1 an und wird dadurch Hersteller der Komponente.
+Institution2 stellt Komponente1 ebenfalls her. Institution1 beantragt, dass Institution2 ebenfalls Hersteller der Komponente zu wird. Institution2 bestätigt dies oder lehnt es ab.
+Institution2 stellt Komponente1 ebenfalls her und beantragt, ebenfalls Hersteller der Komponente zu sein. Institution1 bestätigt dies oder lehnt es ab.
 
-o Wie werden Daten zwischen NFRC und LBNL hin- und hergeschickt?
+Kontext Reflexive Beziehungen im allgemeinen
+Institution1 bittet Institution2 um Bestätigung der reflexiven Beziehung zwischen ihren Komponenten.
+
+Kontext Rolle von Verbänden
+Institution8 schließt Mitgliedsvertrag mit NFRC.
+Institution9 beauftragt die Aufnahme neuer Komponenten bei der NFRC.
+Institution9 submitted Daten an LBNL.
+LBNL bearbeitet Daten, zählt die Änderungen und stellt Rechnung an NFRC.
+NFRC stellt Rechnung an Institution9.
+
+o clarify last section
