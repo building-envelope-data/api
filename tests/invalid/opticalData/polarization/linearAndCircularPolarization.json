@@ -1,0 +1,22 @@
+{
+  "dataPoints": [
+    {
+      "incidence": {
+        "direction": {
+          "polar": 60,
+          "azimuth": 0
+        },
+        "wavelengths": { "integral": "solar" },
+        "polarization": [{ "s": 0.2, "p": 0.8 }, "leftHanded"]
+      },
+      "emergence": {
+        "direction": "hemispherical"
+      },
+      "results": {
+        "transmittance": {
+          "uncertainValue": 0.1
+        }
+      }
+    }
+  ]
+}
