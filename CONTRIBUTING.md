@@ -4,9 +4,9 @@ To contribute to this API specification, you can ask a question, report a bug an
 
 ## Ask a question
 
-If you have a question, please read [README.md](https://github.com/ise621/building-envelope-data/blob/develop/README.md), our [wiki](https://github.com/ise621/building-envelope-data/wiki) and search the [existing issues](https://github.com/ise621/building-envelope-data/issues) for the solution.
+If you have a question, please read [README.md](https://github.com/ise621/building-envelope-data/blob/develop/README.md) and search our [wiki](https://github.com/ise621/building-envelope-data/wiki) and the [existing issues](https://github.com/ise621/building-envelope-data/issues) for the answer.
 
-If you don't find the solution there, please raise a [new issue](https://github.com/ise621/building-envelope-data/issues/new) and add the tag `question`.
+If you don't find the answer there, please raise a [new issue](https://github.com/ise621/building-envelope-data/issues/new) and add the tag `question`.
 
 ## Report a bug
 
