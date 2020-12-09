@@ -46,7 +46,7 @@ In order to browse the code conveniently, you should first [clone the repository
 
 ### On your Linux machine
 
-In order to use all functions of this code for example to format and test, please follow the instructions below.
+In order to use our development tooling, for example, to format code and to run tests, follow the instructions below.
 
 1. Open your
    [favorite shell](https://www.redhat.com/sysadmin/favorite-shell),
