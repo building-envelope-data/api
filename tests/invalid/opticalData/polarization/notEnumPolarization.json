@@ -7,7 +7,7 @@
           "azimuth": 0
         },
         "wavelengths": { "integral": "solar" },
-        "polarization": ["leftHanded", "rightHanded"]
+        "polarization": "l"
       },
       "emergence": {
         "direction": "hemispherical"
