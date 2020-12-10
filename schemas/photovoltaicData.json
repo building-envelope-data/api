@@ -533,11 +533,10 @@
                   "minItems": 1
                 },
                 "angleDependency": {
-                  "title": "The nominal power usually depends on the direction of irradiance. In general, the `incidenceDirectionModifier` can characterize this dependency on the direction. If the dependency has a rotational symmetry regarding the incidence angle, `incidenceAngelModifier` should be provided.",
-                  "type": "object",
-                  "properties": {
-                    "incidenceAngleModifier": {
-                      "title": "If the nominal power has an incidence angle symmetry regarding the direct irradiance, then this Incidence Angle Modifier (IAM) can be defined and plotted as a curve. It modifies the nominal power depending on the incidence angle.",
+                  "title": "The nominal power usually depends on the direction of irradiance. In general, the `incidenceDirectionModifier` can characterize this dependency on the direction.  ",
+                  "oneOf": [
+                    {
+                      "title": "If the nominal power of the module depends only on the polar angle of the incidence and not on the azimuth angle (`azimuthalAngleInvariance`), then the Incidence Angle Modifier (IAM) should be defined here. It modifies the nominal power depending on the incidence angle.",
                       "type": "array",
                       "items": {
                         "type": "object",
@@ -554,11 +553,10 @@
                           "minProperties": 1,
                           "required": []
                         }
-                      },
-                      "minItems": 1
+                      }
                     },
-                    "incidenceDirectionModifier": {
-                      "title": "If the nominal power depends on the direction of the irradiance, this modifier can be multiplied to the nominal power.",
+                    {
+                      "title": "If the nominal power depends on the azimuth angle of the incidence (no `azimuthalAngleInvariance`), then this section can be used to describe the dependency of the nominal power from the direction of incidence (Incidence Direction Modifier).",
                       "type": "array",
                       "items": {
                         "type": "object",
@@ -574,13 +572,9 @@
                         },
                         "additionalProperties": false,
                         "required": ["direction", "modifier"]
-                      },
-                      "minItems": 1
+                      }
                     }
-                  },
-                  "additionalProperties": false,
-                  "minProperties": 1,
-                  "required": []
+                  ]
                 }
               },
               "additionalProperties": false,
