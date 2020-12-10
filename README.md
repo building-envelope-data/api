@@ -5,6 +5,27 @@ GraphQL schemas are in the directory `./apis` and example GraphQL queries in the
 
 The following introduction explains the structure for new users and the section "On your Linux machine" explains how you can work with the API specification.
 
+## Table Of Contents
+
+[I don't want to read this whole thing, I just have a question!!!](#i-dont-want-to-read-this-whole-thing-i-just-have-a-question)
+
+[Introduction](#introduction)
+
+[How to use this repository](#how-to-use-this-repository)
+
+- [For beginners](#for-beginners)
+- [On your Linux machine](#on-your-linux-machine)
+
+[Code of Conduct](#code-of-conduct)
+
+[How to contribute](#how-to-contribute)
+
+## I don't want to read this whole thing, I just have a question!!!
+
+Please read this [README.md](https://github.com/ise621/building-envelope-data/blob/develop/README.md) and search our [wiki](https://github.com/ise621/building-envelope-data/wiki) and the [existing issues](https://github.com/ise621/building-envelope-data/issues) for the answer.
+
+If you don't find the answer there, please raise a [new issue](https://github.com/ise621/building-envelope-data/issues/new) and add the tag `question`.
+
 ## Introduction
 
 The example JSON files `./examples` present examples of data formatted according to the JSON schemas and could be part of the response of a GraphQL endpoint. For example, [nearnormalHemisphericalSolarReflectanceAccordingToStandard.json](https://github.com/ise621/building-envelope-data/blob/develop/examples/dbe/optical/nearnormalHemisphericalSolarReflectanceAccordingToStandard.json) is an example of data about a component with an [identifier](https://github.com/ise621/building-envelope-data/blob/6af9034b0964133386100d484d7bd9fdcf8e5afb/examples/dbe/optical/nearnormalHemisphericalSolarReflectanceAccordingToStandard.json#L4) and an [optical data set](https://github.com/ise621/building-envelope-data/blob/6af9034b0964133386100d484d7bd9fdcf8e5afb/examples/dbe/optical/nearnormalHemisphericalSolarReflectanceAccordingToStandard.json#L5).
@@ -15,7 +36,17 @@ An optical data set can include metadata like the [standard](https://github.com/
 
 Similarly, [calorimetric.json](https://github.com/ise621/building-envelope-data/blob/develop/schemas/calorimetric.json) defines the metadata about a calorimetric data set and refers to [calorimetricData.json](https://github.com/ise621/building-envelope-data/blob/develop/schemas/calorimetricData.json) for the pure calorimetric data which is illustrated by the example [bistMeasurement.json](https://github.com/ise621/building-envelope-data/blob/develop/examples/dbe/calorimetric/bistMeasurement.json).
 
-## On your Linux machine
+## How to use this repository
+
+### For beginners
+
+With you web browser, you can search our [wiki](https://github.com/ise621/building-envelope-data/wiki), the [issues](https://github.com/ise621/building-envelope-data/issues) and [pull requests](https://github.com/ise621/building-envelope-data/pulls) and contribute to them.
+
+In order to browse the code conveniently, you should first [clone the repository](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) and then use a text editor, for example [Visual Studio Code](https://code.visualstudio.com/).
+
+### On your Linux machine
+
+In order to use our development tooling, for example, to format code and to run tests, follow the instructions below.
 
 1. Open your
    [favorite shell](https://www.redhat.com/sysadmin/favorite-shell),
@@ -54,7 +85,7 @@ Similarly, [calorimetric.json](https://github.com/ise621/building-envelope-data/
    cd building-envelope-data
    ```
 
-### With Docker
+#### With Docker
 
 4. Install
    [Docker Desktop](https://www.docker.com/products/docker-desktop),
@@ -98,7 +129,7 @@ Similarly, [calorimetric.json](https://github.com/ise621/building-envelope-data/
    ```
    or pressing `Ctrl-D`.
 
-### Without Docker
+#### Without Docker
 
 4. Install
    [GNU Bash](https://www.gnu.org/software/bash/),
@@ -132,3 +163,11 @@ and the
 Also note that GNU Make takes the shell from the variable `SHELL` or, if not
 set, the program `/bin/sh`. See
 [Choosing the Shell](https://www.gnu.org/software/make/manual/html_node/Choosing-the-Shell.html)
+
+## Code of Conduct
+
+Our [Code of Conduct](https://github.com/ise621/building-envelope-data/blob/develop/CODE_OF_CONDUCT.md) is the guideline of our collaboration.
+
+## How to contribute
+
+If you are interested to contribute by questions, reporting bugs or suggesting enhancements, please see [CONTRIBUTING.md](https://github.com/ise621/building-envelope-data/blob/develop/CONTRIBUTING.md) for further details.
