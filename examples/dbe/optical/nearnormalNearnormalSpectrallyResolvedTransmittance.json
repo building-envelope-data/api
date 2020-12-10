@@ -14,11 +14,17 @@
               "dataPoints": [
                 {
                   "incidence": {
-                    "direction": "nearnormal",
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    },
                     "wavelengths": { "wavelength": 500 }
                   },
                   "emergence": {
-                    "direction": "nearnormal"
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    }
                   },
                   "results": {
                     "transmittance": {
@@ -28,11 +34,17 @@
                 },
                 {
                   "incidence": {
-                    "direction": "nearnormal",
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    },
                     "wavelengths": { "wavelength": 1000 }
                   },
                   "emergence": {
-                    "direction": "nearnormal"
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    }
                   },
                   "results": {
                     "transmittance": {
@@ -42,11 +54,17 @@
                 },
                 {
                   "incidence": {
-                    "direction": "nearnormal",
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    },
                     "wavelengths": { "wavelength": 1500 }
                   },
                   "emergence": {
-                    "direction": "nearnormal"
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    }
                   },
                   "results": {
                     "transmittance": {

@@ -14,7 +14,10 @@
               "dataPoints": [
                 {
                   "incidence": {
-                    "direction": "nearnormal",
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    },
                     "wavelengths": { "integral": "visible" }
                   },
                   "emergence": {

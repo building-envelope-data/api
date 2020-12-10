@@ -126,16 +126,20 @@
           "description": "Tilt angle, for example of venetian blinds."
         },
         "symmetries": {
-          "title": "Symmetries",
-          "description": "Symmetries of the optical characteristics. They reduce the necessary measurements and simulations.",
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/symmetry"
-          },
-          "minItems": 1
+          "title": "Choose between the general symmetries `mirror`, `rotationalDependingOnAzimuth` and `mirrorAndRotational` and their important special cases `azimuthalAngleInvariance` and `profileAngle`.",
+          "type": "string",
+          "enum": [
+            "azimuthalAngleInvariance",
+            "profileAngle",
+            "mirror",
+            "rotationalDependingOnAzimuth",
+            "mirrorAndRotational"
+          ],
+          "description": "(i) `azimuthalAngleInvariance` means that the optical results depend only on the polar angle and not on the azimuth angle. Many homogeneous materials like glass panes have an `azimuthalAngleInvariance`. (ii) `profileAngle` symmetry means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a `mirror` symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. However, if the optical results depend only on the profile angle, use `profileAngle` instead of `mirror`! (iv) `rotationalDependingOnAzimuth` means that for example one quarter of the hemisphere is enough to describe the whole hemisphere because the optical results for the other quarters can be obtained by rotating the results for the first quarter around the axis perpendicular to the sample. However, if the optical results depend only on the polar angle and not on the azimuth angle, use `azimuthalAngleInvariance` instead of `rotationalDependingOnAzimuth`! (v) `mirrorAndRotational` requires a mirror and a rotational symmetry. Mirror symmetry means that the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. Rotational symmetry means that for example one quarter of the hemisphere is enough to describe the whole hemisphere because the optical results for the other quarters can be obtained by rotating the results for the first quarter around the axis perpendicular to the sample. However, if the optical results depend only on the profile angle, use `profileAngle` instead of `mirrorAndRotational`! If the optical results depend only on the polar angle and not on the azimuth angle, use `azimuthalAngleInvariance` instead of `rotationalDependingOnAzimuth`!"
         },
         "definitionOfSurfacesAndPrimeDirection": {
           "title": "Definition of surfaces and prime direction",
+          "description": "The prime direction must be equal to the direction of the profile angle symmetry.",
           "type": "object",
           "properties": {
             "reference": {
@@ -162,12 +166,6 @@
       "additionalProperties": false,
       "minProperties": 1,
       "required": []
-    },
-    "symmetry": {
-      "type": "string",
-      "enum": ["incidenceAngle", "profileAngle", "mirror", "rotational"],
-      "title": "Symmetry",
-      "description": "(i) A component can have an optical symmetry regarding the angle of incidence. This means that the results are the same for all directions of incidence which have the same incidence angle. (ii) Accordingly, an optical symmetry regarding the profile angle means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a mirror symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. (iv) In the case of a rotational symmetry, the results for some directions of incidence are enough to determine the results for the other directions of incidence by rotating them around the line perpendicular to the surface of the component."
     },
     "polarization": {
       "title": "Polarization",
@@ -245,58 +243,23 @@
     },
     "incidenceDirection": {
       "title": "Incidence direction",
-      "description": "Direction of incident radiation on sample.",
+      "description": "Direction of incident radiation on sample. An incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance) is called 'nearnormal' and said to be 'almost perpendicular'.",
       "oneOf": [
         {
-          "oneOf": [
-            {
-              "description": "Direction of incidence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
-              "type": "object",
-              "properties": {
-                "polar": {
-                  "$ref": "number.json#/$defs/degree",
-                  "description": "The polar angle is the angle between the direction of incidence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of incidence is perpendicular to the sample."
-                },
-                "azimuth": {
-                  "$ref": "number.json#/$defs/degree",
-                  "description": "The direction of incidence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth is positive because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
-                }
-              },
-              "additionalProperties": false,
-              "required": ["polar", "azimuth"]
+          "description": "Direction of incidence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
+          "type": "object",
+          "properties": {
+            "polar": {
+              "$ref": "number.json#/$defs/degreeWithUncertainty",
+              "description": "The polar angle is the angle between the direction of incidence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of incidence is perpendicular to the sample. If the sample has `azimuthalAngleInvariance`, then the optical results depend only on the polar angle and not on the azimuth angle. If the sample has a `profileAngle` symmetry whose direction is equal to the prime direction, then the profile angle can be calculated from the polar and azimuth angles."
             },
-            {
-              "description": "If the sample has rotational symmetry, then the incidence angle is sufficient to define the direction of incidence.",
-              "type": "object",
-              "properties": {
-                "incidence": {
-                  "$ref": "number.json#/$defs/degree",
-                  "title": "Incidence angle"
-                }
-              },
-              "additionalProperties": false,
-              "required": ["incidence"]
-            },
-            {
-              "description": "If the sample has profile angle symmetry, then the profile angle is sufficient to define the direction. Assume a plane which is perpendicular to the surface of the sample and along the direction of the sample defined as prime. When you project the direction of incidence on that plane, then the profile angle is measured between this projection and the axis which is perpendicular to the surface. If the angle between the projection and the prime direction is smaller than 90°, then the profile angle is positive. If the projection is perpendicular to the surface, the profile angle equals 0°.",
-              "type": "object",
-              "properties": {
-                "profile": {
-                  "$ref": "number.json#/$defs/degree",
-                  "title": "Profile angle"
-                }
-              },
-              "additionalProperties": false,
-              "required": ["profile"]
-            },
-            {
-              "title": "Nearnormal",
-              "description": "Incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance). In less precise terms, the incidence angle on the sample surface is almost perpendicular.",
-
-              "type": "string",
-              "const": "nearnormal"
+            "azimuth": {
+              "$ref": "number.json#/$defs/degreeWithUncertainty",
+              "description": "The direction of incidence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth is positive because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
             }
-          ]
+          },
+          "additionalProperties": false,
+          "required": ["polar"]
         },
         {
           "title": "Hemispherical",
@@ -311,42 +274,20 @@
       "description": "Direction of radiation emerging from a sample either by transmission or reflection.",
       "oneOf": [
         {
-          "oneOf": [
-            {
-              "description": "Direction of emergence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
-              "type": "object",
-              "properties": {
-                "polar": {
-                  "$ref": "number.json#/$defs/degree",
-                  "description": "The polar angle is the angle between the direction of emergence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of emergence is perpendicular to the sample."
-                },
-                "azimuth": {
-                  "$ref": "number.json#/$defs/degree",
-                  "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth is positive because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
-                }
-              },
-              "additionalProperties": false,
-              "required": ["polar", "azimuth"]
+          "description": "Direction of emergence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
+          "type": "object",
+          "properties": {
+            "polar": {
+              "$ref": "number.json#/$defs/degree",
+              "description": "The polar angle is the angle between the direction of emergence and an axis which is perpendicular to the surface of the sample. A polar angle of 0° means that the direction of emergence is perpendicular to the sample."
             },
-            {
-              "description": "If the sample has rotational symmetry, then the angle of reflectance is sufficient to define the direction of emergence.",
-              "type": "object",
-              "properties": {
-                "reflectance": {
-                  "$ref": "number.json#/$defs/degree",
-                  "title": "Reflectance angle"
-                }
-              },
-              "additionalProperties": false,
-              "required": ["reflectance"]
-            },
-            {
-              "title": "Nearnormal",
-              "description": "Emergence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance). In less precise terms, the emergence angle from the sample surface is almost perpendicular.",
-              "type": "string",
-              "const": "nearnormal"
+            "azimuth": {
+              "$ref": "number.json#/$defs/degree",
+              "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth is positive because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
             }
-          ]
+          },
+          "additionalProperties": false,
+          "required": ["polar", "azimuth"]
         },
         {
           "title": "Diffuse or hemispherical",

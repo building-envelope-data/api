@@ -182,6 +182,30 @@
       "maximum": 360.0,
       "description": "A unit to measure angles. A full rotation equals 360°. This type is used for cases in which the option of an uncertainty is not desired."
     },
+    "degreeWithUncertainty": {
+      "title": "Degree with uncertainty",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/degree"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue"]
+        },
+        {
+          "$ref": "#/$defs/degree"
+        }
+      ]
+    },
     "radian": {
       "type": "number",
       "description": "A unit to measure angles. A full rotation equals 2*Pi. This type is used for cases in which the option of an uncertainty is not desired."

@@ -206,22 +206,20 @@
                         "percentage": 80
                       }
                     ],
-                    "angleDependency": {
-                      "incidenceAngleModifier": [
-                        {
-                          "incidence": 0,
-                          "IAM": 1
-                        },
-                        {
-                          "incidence": 60,
-                          "IAM": 0.924
-                        },
-                        {
-                          "incidence": 90,
-                          "IAM": 0
-                        }
-                      ]
-                    }
+                    "angleDependency": [
+                      {
+                        "incidence": 0,
+                        "IAM": 1
+                      },
+                      {
+                        "incidence": 60,
+                        "IAM": 0.924
+                      },
+                      {
+                        "incidence": 90,
+                        "IAM": 0
+                      }
+                    ]
                   },
                   "voltage": {
                     "nominal": {
