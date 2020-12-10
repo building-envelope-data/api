@@ -171,10 +171,9 @@
     },
     "polarization": {
       "title": "Polarization",
-      "description": "Polarization is a characteristic of radiation which can influence transmittance and reflectance. Radiation can be polarized linearly and circularly.",
-      "type": "object",
-      "properties": {
-        "linear": {
+      "description": "Polarization is a characteristic of radiation which in general influences transmittance and reflectance. Radiation can be polarized linearly and circularly.",
+      "oneOf": [
+        {
           "title": "Linear polarization",
           "type": "object",
           "properties": {
@@ -190,26 +189,14 @@
           "additionalProperties": false,
           "required": ["s", "p"]
         },
-        "circular": {
+        {
           "title": "Circular polarization",
-          "type": "object",
-          "properties": {
-            "l": {
-              "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "Fraction of radiation with electric field rotating in a left-hand sense with respect to the direction of radiation. It is usually between `0` and `1`. However, in measurement data because of uncertainty it is between `0 - uncertainty` and `1 + uncertainty` inclusive."
-            },
-            "r": {
-              "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "Fraction of radiation with electric field rotating in a right-hand sense with respect to the direction of radiation. It is usually between `0` and `1`. However, in measurement data because of uncertainty it is between `0 - uncertainty` and `1 + uncertainty` inclusive."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["l", "r"]
+          "description": "`leftHanded` means that the radiation is circularly polarized and rotates in a left-hand sense with respect to the direction of radiation. `rightHanded` means that the radiation is circularly polarized and rotates in a right-hand sense with respect to the direction of radiation.",
+
+          "type": "string",
+          "enum": ["leftHanded", "rightHanded"]
         }
-      },
-      "additionalProperties": false,
-      "minProperties": 1,
-      "required": []
+      ]
     },
     "wavelengthUncertainty": {
       "title": "Bandwidth and/or amplification factor",
@@ -394,11 +381,6 @@
         }
       ]
     },
-    "shiftedWavelengths": {
-      "title": "Shifted wavelengths",
-      "description": "Wavelength of incidence, possibly with uncertainty, that is shifted for example by fluorescence to another wavelength.",
-      "$ref": "#/$defs/uncertainWavelength"
-    },
     "incidence": {
       "title": "Incident radiation",
       "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelenthgs and range of wavelengths.",
@@ -407,12 +389,13 @@
         "direction": {
           "$ref": "#/$defs/incidenceDirection"
         },
-        "polarization": {
-          "$ref": "#/$defs/polarization"
-        },
         "wavelengths": {
           "$ref": "#/$defs/wavelengths",
           "description": "Wavelengths of the optical data regardless of whether the incidence or the emergence was split into smaller spectra."
+        },
+        "polarization": {
+          "$ref": "#/$defs/polarization",
+          "description": "The polarization of the optical data regardless of whether the incidence or the emergence polarized."
         }
       },
       "additionalProperties": false,
@@ -420,17 +403,11 @@
     },
     "emergence": {
       "title": "Emergent radiation",
-      "description": "Emergent radiation from a sample. It consists of direction of emergence, polarization, and a wavelength shifted by flourescence.",
+      "description": "Emergent radiation from a sample. It is characterized by its direction.",
       "type": "object",
       "properties": {
         "direction": {
           "$ref": "#/$defs/emergenceDirection"
-        },
-        "polarization": {
-          "$ref": "#/$defs/polarization"
-        },
-        "shiftedWavelengths": {
-          "$ref": "#/$defs/shiftedWavelengths"
         }
       },
       "additionalProperties": false,
