@@ -293,61 +293,6 @@
           "$ref": "#/$defs/connections/$defs/bidirectional",
           "description": "The connections between cells and between cells and diodes."
         },
-        "moduleLayers": {
-          "title": "Photovoltaic modules typically consist of several layers, for example a glass pane, a lamination material and the photovoltaic cells.",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "identification": {
-                "$ref": "material.json#/$defs/identification",
-                "description": "The material of the layer"
-              },
-              "characteristics": {
-                "$ref": "material.json#/$defs/characteristics",
-                "description": "All properties which depend on the material in general and not on the specific component."
-              },
-              "categories": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "backing",
-                    "cell",
-                    "cover",
-                    "embedding",
-                    "front",
-                    "rear"
-                  ],
-                  "description": "Typically, a photovoltaic module consists of a front cover layer, a front embedding layer, a cell layer, a rear embedding layer and a backing layer. The layer can therefore be defined by multiple strings."
-                },
-                "uniqueItems": true,
-                "minItems": 1,
-                "maxItems": 2
-              },
-              "thickness": {
-                "$ref": "number.json#/$defs/meterWithUncertainty",
-                "description": "The thickness of this layer as part of the module."
-              },
-              "weight": {
-                "$ref": "number.json#/$defs/kilogramWithUncertainty",
-                "description": "The weigth of the layer."
-              },
-              "geometry": {
-                "$ref": "geometry.json",
-                "description": "The geometry and location of the layer including its dimensions."
-              },
-              "colour": {
-                "$ref": "common.json#/$defs/colour",
-                "description": "The reference offers several way to define the colour of the component."
-              }
-            },
-            "additionalProperties": false,
-            "minProperties": 1,
-            "required": []
-          },
-          "minItems": 1
-        },
         "electricConfiguration": {
           "type": "object",
           "properties": {

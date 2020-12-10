@@ -5,7 +5,63 @@
         "value": "38dfed0a-2b9a-4748-8d98-e9d278cd12e4",
         "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
       },
-      "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany.",
+      "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany. (i) `characteristics/assemblyList` defines the thickness of the front cover, the front embedding, the PV cells, the rear embedding and the backing.",
+      "characteristics": {
+        "geometry": {
+          "assemblyList": [
+            {
+              "id": "01f5554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": {
+                    "smallest": 0.0038,
+                    "intermediate": {
+                      "uncertainValue": 1.08,
+                      "uncertainty": 0.01
+                    },
+                    "largest": {
+                      "uncertainValue": 1.09,
+                      "uncertainty": 0.01
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "id": "02f5554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": { "smallest": { "uncertainValue": 0.002 } }
+                }
+              }
+            },
+            {
+              "id": "03f5554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": { "smallest": { "uncertainValue": 0.0004 } }
+                }
+              }
+            },
+            {
+              "id": "04f5554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": { "smallest": { "uncertainValue": 0.002 } }
+                }
+              }
+            },
+            {
+              "id": "05f5554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": { "smallest": { "uncertainValue": 0.002 } }
+                }
+              }
+            }
+          ]
+        }
+      },
       "photovoltaic": [
         {
           "data": [
@@ -93,71 +149,6 @@
                     "id2": {
                       "value": "764ca288-0c51-11ea-8d71-362b9e155667",
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                    }
-                  }
-                ],
-                "moduleLayers": [
-                  {
-                    "identification": {
-                      "name": "Tempered white glass"
-                    },
-                    "categories": ["front", "cover"],
-                    "thickness": {
-                      "uncertainValue": 0.005
-                    },
-                    "geometry": {
-                      "dimensions": {
-                        "independent": {
-                          "smallest": {
-                            "uncertainValue": 0.005
-                          },
-                          "intermediate": {
-                            "uncertainValue": 1.08
-                          },
-                          "largest": {
-                            "uncertainValue": 1.09
-                          }
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "identification": {
-                      "name": "PVB"
-                    },
-                    "categories": ["front", "embedding"]
-                  },
-                  {
-                    "categories": ["cell"]
-                  },
-                  {
-                    "identification": {
-                      "name": "PVB"
-                    },
-                    "categories": ["rear", "embedding"]
-                  },
-                  {
-                    "identification": {
-                      "name": "Tempered white glass"
-                    },
-                    "categories": ["backing"],
-                    "thickness": {
-                      "uncertainValue": 0.004
-                    },
-                    "geometry": {
-                      "dimensions": {
-                        "independent": {
-                          "smallest": {
-                            "uncertainValue": 0.004
-                          },
-                          "intermediate": {
-                            "uncertainValue": 1.08
-                          },
-                          "largest": {
-                            "uncertainValue": 1.09
-                          }
-                        }
-                      }
                     }
                   }
                 ],
