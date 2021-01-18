@@ -1,48 +1,40 @@
 {
   "components": [
     {
-      "id": "38dfed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "id": "40dfed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany. (i) `characteristics/assemblyList` defines the thickness of the front cover, the front embedding, the PV cells, the rear embedding and the backing. ??? update",
+      "relations": {
+        "assembledOf": [
+          "39dfed0a-2b9a-4748-8d98-e9d278cd12e4",
+          "41dfed0a-2b9a-4748-8d98-e9d278cd12e4"
+        ]
+      },
       "characteristics": {
         "geometry": {
-          "assemblyList": [
+          "dimensions": {
+            "independent": {
+              "smallest": 0.415,
+              "intermediate": 1.109,
+              "largest": 2.488
+            }
+          }
+        }
+      },
+      "calorimetric": [
+        {
+          "results": [
             {
-              "id": "01f5554f-e909-405e-9b7b-2f08ca201f63",
-              "geometry": {
-                "dimensions": {
-                  "independent": {
-                    "smallest": 0.004
-                  }
-                }
-              }
-            },
-            {
-              "id": "02f5554f-e909-405e-9b7b-2f08ca201f63",
-              "geometry": {
-                "dimensions": {
-                  "independent": { "smallest": { "uncertainValue": 0.001 } }
-                }
-              }
-            },
-            {
-              "id": "03f5554f-e909-405e-9b7b-2f08ca201f63",
-              "geometry": {
-                "dimensions": {
-                  "independent": { "smallest": { "uncertainValue": 0.008 } }
-                }
-              }
+              "uValue": 1.3,
+              "gValue": { "uncertainValue": 0.5, "uncertainty": 0.1 }
             }
           ]
         }
-      },
+      ],
       "photovoltaic": [
         {
           "data": [
             {
               "module": {
-                "coordinateSystem": {
-                  "categories": ["rightHanded", "cartesian"]
-                },
                 "cellTypes": [
                   {
                     "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
@@ -108,18 +100,16 @@
                     {
                       "id": "14838e0b-e17b-4c52-8578-fb2cc9170ac4",
                       "connectorType": "411249fc-14c7-4940-805b-15dc0855b444",
-                      "cableType": "53c5cc37-d1cb-482b-ba4b-25c67a853d4f",
                       "junctionBoxType": "538a6419-aecd-45c1-8e61-8dd4d3e74988"
                     }
                   ],
-                  "groundingNecessary": true
+                  "groundingNecessary": false
                 },
                 "moduleProperties": {
                   "power": {
                     "nominal": {
-                      "uncertainValue": 195
+                      "uncertainValue": 260
                     },
-                    "tolerance": 5,
                     "temperatureCoefficient": -0.32,
                     "guarantees": [
                       {
@@ -146,50 +136,7 @@
                       }
                     ]
                   },
-                  "voltage": {
-                    "nominal": {
-                      "uncertainValue": 36.1
-                    },
-                    "openCircuit": {
-                      "uncertainValue": 43.26
-                    },
-                    "temperatureCoefficient": -0.26,
-                    "maximumSystem": 1000
-                  },
-                  "current": {
-                    "nominal": {
-                      "uncertainValue": 5.4
-                    },
-                    "shortCircuit": {
-                      "uncertainValue": 5.86
-                    },
-                    "temperatureCoefficient": 0.06
-                  },
-                  "fillFactor": 0.769,
-                  "efficiency": 0.1656,
-                  "weight": {
-                    "uncertainValue": 29.7
-                  },
-                  "geometry": {
-                    "dimensions": {
-                      "independent": {
-                        "smallest": {
-                          "uncertainValue": 0.01128
-                        },
-                        "intermediate": {
-                          "uncertainValue": 1.08
-                        },
-                        "largest": {
-                          "uncertainValue": 1.09
-                        }
-                      }
-                    }
-                  },
-                  "guarantees": [
-                    {
-                      "years": 10
-                    }
-                  ]
+                  "efficiency": 0.1656
                 }
               }
             }
