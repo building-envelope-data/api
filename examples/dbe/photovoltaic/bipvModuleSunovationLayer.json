@@ -1,8 +1,13 @@
 {
   "components": [
     {
-      "id": "38dfed0a-2b9a-4748-8d98-e9d278cd12e4",
-      "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany. (i) `characteristics/assemblyList` defines the thickness of the front cover, the front embedding, the PV cells, the rear embedding and the backing. ??? update",
+      "id": "l0aaed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "description": "This example represents a laminated glass with photovoltaic cells with its center-of-glazing properties.",
+      "relations": {
+        "generalizationOf": "u0aaed0a-2b9a-4748-8d98-e9d278cd12e4",
+        "partOf": "glaaed0a-2b9a-4748-8d98-e9d278cd12e4"
+      },
+      "categories": { "componentType": ["layer"] },
       "characteristics": {
         "geometry": {
           "assemblyList": [
