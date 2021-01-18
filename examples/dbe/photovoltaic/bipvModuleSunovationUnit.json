@@ -1,11 +1,11 @@
 {
   "components": [
     {
-      "id": "u0aaed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "id": "20aaed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "This example represents a laminated glass with photovoltaic cells with defined outer dimensions.",
       "relations": {
-        "concretizationOf": "l0aaed0a-2b9a-4748-8d98-e9d278cd12e4",
-        "partOf": "guaaed0a-2b9a-4748-8d98-e9d278cd12e4"
+        "concretizationOf": "10aaed0a-2b9a-4748-8d98-e9d278cd12e4",
+        "partOf": ["22aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
       },
       "categories": { "componentType": ["unit"] },
       "characteristics": {

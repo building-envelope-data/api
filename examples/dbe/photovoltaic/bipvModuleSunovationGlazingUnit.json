@@ -1,13 +1,13 @@
 {
   "components": [
     {
-      "id": "guaaed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "id": "22aaed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "This example represents a double glazing with photovoltaic cells in the laminated glass pane facing the exterior. It has well defined outer dimensions and the properties include the effect of the spacer between the glass panes.",
       "relations": {
-        "concretizationOf": "glaaed0a-2b9a-4748-8d98-e9d278cd12e4",
+        "concretizationOf": "11aaed0a-2b9a-4748-8d98-e9d278cd12e4",
         "assembledOf": [
-          "u0aaed0a-2b9a-4748-8d98-e9d278cd12e4",
-          "bfgped0a-2b9a-4748-8d98-e9d278cd12e4"
+          "20aaed0a-2b9a-4748-8d98-e9d278cd12e4",
+          "66abed0a-2b9a-4748-8d98-e9d278cd12e4"
         ]
       },
       "categories": { "componentType": ["unit"] },
