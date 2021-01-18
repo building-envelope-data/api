@@ -60,6 +60,9 @@
               }
             }
           ]
+        },
+        "weight": {
+          "uncertainValue": 29.7
         }
       },
       "photovoltaic": [
@@ -243,9 +246,6 @@
                   },
                   "fillFactor": 0.769,
                   "efficiency": 0.1656,
-                  "weight": {
-                    "uncertainValue": 29.7
-                  },
                   "geometry": {
                     "dimensions": {
                       "independent": {
