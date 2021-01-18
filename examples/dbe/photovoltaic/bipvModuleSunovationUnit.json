@@ -97,7 +97,6 @@
                     "nominal": {
                       "uncertainValue": 195
                     },
-                    "tolerance": 5,
                     "temperatureCoefficient": -0.32,
                     "guarantees": [
                       {

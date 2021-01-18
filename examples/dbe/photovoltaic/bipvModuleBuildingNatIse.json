@@ -192,9 +192,10 @@
                 "moduleProperties": {
                   "power": {
                     "nominal": {
-                      "uncertainValue": 195
+                      "uncertainValue": 195,
+                      "uncertainty": 9.75,
+                      "confidenceInterval": 99.7
                     },
-                    "tolerance": 5,
                     "temperatureCoefficient": -0.32,
                     "guarantees": [
                       {
