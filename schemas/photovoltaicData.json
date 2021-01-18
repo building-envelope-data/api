@@ -45,10 +45,6 @@
       "title": "A photovoltaic module consists of photovoltaic cells which are connected and turn irradiance into electric power.",
       "type": "object",
       "properties": {
-        "coordinateSystem": {
-          "$ref": "geometry.json#/$defs/coordinateSystem",
-          "description": "The coordinate system is defined by a reference to a publication or standard."
-        },
         "cellTypes": {
           "title": "Which types of cells are used in the photovoltaic module.",
           "type": "array",
@@ -200,10 +196,6 @@
               "cellType": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The id represents one type of photovoltaic cells as defined above."
-              },
-              "geometry": {
-                "$ref": "geometry.json",
-                "description": "The geometry and location of the cell."
               }
             },
             "additionalProperties": false,
@@ -245,10 +237,6 @@
               "diodeType": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The type of the diode."
-              },
-              "geometry": {
-                "$ref": "geometry.json",
-                "description": "The geometry and location of the diode."
               }
             },
             "additionalProperties": false,
@@ -422,10 +410,6 @@
               "$ref": "material.json#/$defs/characteristics",
               "description": "All properties which depend on the material in general and not on the specific component."
             },
-            "geometry": {
-              "$ref": "geometry.json",
-              "description": "The geometry and location of the cell."
-            },
             "colour": {
               "$ref": "common.json#/$defs/colour",
               "description": "The reference offers several way to define the colour of the component."
@@ -569,11 +553,6 @@
             "efficiency": {
               "$ref": "number.json#/$defs/numberBetweenZeroAndOne",
               "description": "The effiency of the module is measured at standard test conditions."
-            },
-
-            "geometry": {
-              "$ref": "geometry.json",
-              "description": "The geometry of the photovoltaic module including the dimensions width, height and depth (thickness)."
             },
             "safety": {
               "title": "Data about the safety of photovoltaic modules.",
@@ -934,10 +913,6 @@
           "minProperties": 1,
           "required": []
         },
-        "geometry": {
-          "$ref": "geometry.json",
-          "description": "The geometry of the inverter including the dimensions width, height and depth (thickness)."
-        },
         "safety": {
           "title": "Data about the safety of the inverter.",
           "type": "object",
@@ -1093,10 +1068,6 @@
       "title": "A photovoltaic (photovoltaic) system consists of photovoltaic modules which are connected and turn irradiance into electric power.",
       "type": "object",
       "properties": {
-        "coordinateSystem": {
-          "$ref": "geometry.json#/$defs/coordinateSystem",
-          "description": "The coordinate system is defined by a reference to a publication or standard."
-        },
         "modules": {
           "title": "The modules of the photovoltaic system.",
           "type": "array",
@@ -1110,10 +1081,6 @@
               "moduleType": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The id represents one type of photovoltaic modules."
-              },
-              "geometry": {
-                "$ref": "geometry.json",
-                "description": "The geometry and location of the photovoltaic module."
               }
             },
             "additionalProperties": false,
@@ -1155,10 +1122,6 @@
               "diodeType": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The type of the diode."
-              },
-              "geometry": {
-                "$ref": "geometry.json",
-                "description": "The geometry and location of the diode."
               }
             },
             "additionalProperties": false,

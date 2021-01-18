@@ -8,6 +8,23 @@
       "name": "Fronius Galvo 3.0",
       "description": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany.",
       "characteristics": {
+        "geometry": {
+          "dimensions": {
+            "installed": [
+              {
+                "height": {
+                  "uncertainValue": 0.645
+                },
+                "width": {
+                  "uncertainValue": 0.431
+                },
+                "depth": {
+                  "uncertainValue": 0.204
+                }
+              }
+            ]
+          }
+        },
         "weight": {
           "uncertainValue": 16.8
         }
@@ -58,23 +75,6 @@
                   },
                   "output": {
                     "nominal": 13
-                  }
-                },
-                "geometry": {
-                  "dimensions": {
-                    "installed": [
-                      {
-                        "height": {
-                          "uncertainValue": 0.645
-                        },
-                        "width": {
-                          "uncertainValue": 0.431
-                        },
-                        "depth": {
-                          "uncertainValue": 0.204
-                        }
-                      }
-                    ]
                   }
                 },
                 "safety": {
