@@ -20,10 +20,14 @@
       },
       "calorimetric": [
         {
-          "results": [
+          "data": [
             {
-              "uValue": 1.1,
-              "gValue": { "uncertainValue": 0.5, "uncertainty": 0.1 }
+              "results": [
+                {
+                  "uValue": 1.1,
+                  "gValue": { "uncertainValue": 0.5, "uncertainty": 0.1 }
+                }
+              ]
             }
           ]
         }
