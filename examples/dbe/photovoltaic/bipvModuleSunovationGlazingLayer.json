@@ -26,6 +26,7 @@
             {
               "results": [
                 {
+                  "area": "centre",
                   "uValue": 1.1,
                   "gValue": { "uncertainValue": 0.5, "uncertainty": 0.1 }
                 }

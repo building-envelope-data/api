@@ -28,7 +28,8 @@
             {
               "results": [
                 {
-                  "uValue": 1.3,
+                  "area": "outerDimensions",
+                  "uValue": 1.23,
                   "gValue": { "uncertainValue": 0.5, "uncertainty": 0.1 }
                 }
               ]
