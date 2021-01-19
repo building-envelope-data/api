@@ -22,10 +22,8 @@
             }
           },
           "getHttpsResource": {
-            "hashValue": [
-              "38A529341DC538879E61DEE1F95F40FD4A91D1D74C32C1206448DB95F0EBE6BE"
-            ],
-            "locator": ["oc.ise.fraunhofer.de/index.php/s/w9uW4Veh4fWyF5w"],
+            "hashValue": "38A529341DC538879E61DEE1F95F40FD4A91D1D74C32C1206448DB95F0EBE6BE",
+            "locator": "https://oc.ise.fraunhofer.de/index.php/s/w9uW4Veh4fWyF5w",
             "format": { "id": "409b7fa3-2b9a-4748-8d98-e9d278cd12e4" },
             "archivedFilesMetaInformation": []
           }
@@ -37,7 +35,7 @@
             {
               "results": [
                 {
-                  "area": "outerDimensions",
+                  "area": { "category": "outerDimensions" },
                   "uValue": 1.23,
                   "gValue": { "uncertainValue": 0.5, "uncertainty": 0.1 }
                 }
