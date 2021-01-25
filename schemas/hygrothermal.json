@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/hygrothermal.json",
   "title": "hygrothermal data",
-  "description": "Hygrothermal data which can be used for hygrothermal simulations. Humidity needs to be handled properly to create sustainable buildings with high comfort.",
+  "description": "Hygrothermal data with meta information like name, description, warnings, and more.",
   "$defs": {
     "hygrothermal": {
       "type": "object",
