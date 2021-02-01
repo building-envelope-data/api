@@ -1320,7 +1320,6 @@ or the article series
 [Getting started with GPG (GnuPG)](https://www.redhat.com/sysadmin/getting-started-gpg),
 [How to create GPG keypairs](https://www.redhat.com/sysadmin/creating-gpg-keypairs), and
 [Digital signatures with GnuPG](https://www.redhat.com/sysadmin/digital-signatures-gnupg).
-.
 """
 interface Approval {
   """
@@ -1410,7 +1409,7 @@ type DataApproval implements Approval {
   query: GraphQlQuery!
 
   """
-  JSON serialized GraphQL response that is sigend.
+  JSON serialized GraphQL response that is signed.
 
   With the response put in the file `response.json`, the GnuPG signature put in
   the file `response.json.asc`, and the GnuPG public key of the approver added
