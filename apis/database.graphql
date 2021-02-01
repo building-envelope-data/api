@@ -314,7 +314,7 @@ type Query {
     last: NonNegativeInt
     "Data cursor before which to return at most `last` data edges."
     before: Cursor
-  ): DataConnection
+  ): DataConnection!
 
   """
   See `Query#allData`.
@@ -327,7 +327,7 @@ type Query {
     after: Cursor
     last: NonNegativeInt
     before: Cursor
-  ): CalorimetricDataConnection
+  ): CalorimetricDataConnection!
 
   """
   See `Query#allData`.
@@ -340,7 +340,7 @@ type Query {
     after: Cursor
     last: NonNegativeInt
     before: Cursor
-  ): HygrothermalDataConnection
+  ): HygrothermalDataConnection!
 
   """
   See `Query#allData`.
@@ -353,7 +353,7 @@ type Query {
     after: Cursor
     last: NonNegativeInt
     before: Cursor
-  ): OpticalDataConnection
+  ): OpticalDataConnection!
 
   """
   See `Query#allData`.
@@ -366,7 +366,7 @@ type Query {
     after: Cursor
     last: NonNegativeInt
     before: Cursor
-  ): PhotovoltaicDataConnection
+  ): PhotovoltaicDataConnection!
 
   """
   Whether there is data for which the proposition is true at the given
@@ -374,7 +374,7 @@ type Query {
   """
   hasData(
     "Compound boolean expression that is true for data being searched for."
-    where: CalorimetricDataPropositionInput!
+    where: DataPropositionInput!
     "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
@@ -394,7 +394,7 @@ type Query {
   See `Query#hasData`.
   """
   hasHygrothermalData(
-    where: CalorimetricDataPropositionInput!
+    where: HygrothermalDataPropositionInput!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -403,7 +403,7 @@ type Query {
   See `Query#hasData`.
   """
   hasOpticalData(
-    where: CalorimetricDataPropositionInput!
+    where: OpticalDataPropositionInput!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -412,7 +412,7 @@ type Query {
   See `Query#hasData`.
   """
   hasPhotovoltaicData(
-    where: CalorimetricDataPropositionInput!
+    where: PhotovoltaicDataPropositionInput!
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -1320,7 +1320,6 @@ or the article series
 [Getting started with GPG (GnuPG)](https://www.redhat.com/sysadmin/getting-started-gpg),
 [How to create GPG keypairs](https://www.redhat.com/sysadmin/creating-gpg-keypairs), and
 [Digital signatures with GnuPG](https://www.redhat.com/sysadmin/digital-signatures-gnupg).
-.
 """
 interface Approval {
   """
@@ -1410,7 +1409,7 @@ type DataApproval implements Approval {
   query: GraphQlQuery!
 
   """
-  JSON serialized GraphQL response that is sigend.
+  JSON serialized GraphQL response that is signed.
 
   With the response put in the file `response.json`, the GnuPG signature put in
   the file `response.json.asc`, and the GnuPG public key of the approver added

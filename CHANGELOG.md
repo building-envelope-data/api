@@ -46,7 +46,7 @@ and this project adheres to
 - Improve titles and descriptions in the JSON Schema for optical data [#115](https://github.com/ise621/building-envelope-data/pull/115)
 - Improve documentation of approvals in the database GraphQL schema [#117](https://github.com/ise621/building-envelope-data/pull/117)
 - Clean-up Dockerfile, in particular, remove notes regarding Python [#121](https://github.com/ise621/building-envelope-data/pull/121)
--
+- Correct minor errors in database GraphQL API [#173](https://github.com/ise621/building-envelope-data/pull/173)
 -
 -
 -
