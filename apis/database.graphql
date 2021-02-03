@@ -17,8 +17,8 @@ It follows best practices for
 
 Global object identifiers as requird by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
-are exposed by the property `dataId`. In essence, `id` is the Base64-encoded
-concatenation of `dataId` and the requested locale.
+are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
+concatenation of `uuid` and the requested locale.
 
 For interoperability with the "metabase", implementations serve HTTP
 requests as elaborated on
@@ -203,7 +203,7 @@ type Query {
   """
   data(
     "Data identifier."
-    dataId: Uuid!
+    uuid: Uuid!
     "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
@@ -292,7 +292,7 @@ type Query {
     ) {
       edges {
         node {
-          dataId
+          uuid
         }
       }
     }
@@ -806,7 +806,7 @@ interface Data {
   Identifier, which together with timestamp uniquely identifies data and patch
   version (within the database).
   """
-  dataId: Uuid!
+  uuid: Uuid!
 
   """
   Timestamp that designates the patch version. For example, correction of some
@@ -906,7 +906,7 @@ interface Data {
 
 type OpticalData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -932,7 +932,7 @@ type OpticalData implements Node & Data {
 
 type CalorimetricData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -962,7 +962,7 @@ type CalorimetricData implements Node & Data {
 
 type HygrothermalData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -982,7 +982,7 @@ type HygrothermalData implements Node & Data {
 
 type PhotovoltaicData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
