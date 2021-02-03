@@ -858,11 +858,6 @@ interface Data {
   appliedMethod: AppliedMethod!
 
   """
-  Validity date and time range.
-  """
-  validity: OpenEndedDateTimeRange!
-
-  """
   Approvals by stakeholders in the form of GnuPG signatures. See the type
   `Approval` for details on how to verify data and approvals.
   """
@@ -917,7 +912,6 @@ type OpticalData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -943,7 +937,6 @@ type CalorimetricData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -973,7 +966,6 @@ type HygrothermalData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -993,7 +985,6 @@ type PhotovoltaicData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -1438,11 +1429,6 @@ type DataApproval implements Approval {
   place are not compromised).
   """
   response: JsonGraphQlResponse!
-
-  """
-  Validity date and time range.
-  """
-  validity: OpenEndedDateTimeRange!
 
   """
   Approver identifier issued by the metabase. The approver's meta data can be
