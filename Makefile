@@ -110,7 +110,7 @@ test : ## Validate test files
 			npx --no-install ajv validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${test_file_path} \
-				${schema_file_references} ; \
+				$(${schema_file_references} > sed 's/-r ${./schemas/$${schema_name}}//g') ; \
 		done ; \
 	done
 	-echo "=============================================" && \
@@ -124,7 +124,7 @@ test : ## Validate test files
 			! npx --no-install ajv validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${test_file_path} \
-				${schema_file_references} ; \
+				$(${schema_file_references} > sed 's/-r ${./schemas/$${schema_name}}//g') ; \
 		done ; \
 	done
 .PHONY : test
