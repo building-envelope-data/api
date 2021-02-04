@@ -1299,7 +1299,12 @@ or the article series
 """
 interface Approval {
   """
-  Detached ASCII-armored GnuPG signature.
+  Creation timestamp
+  """
+  timestamp: DateTime!
+
+  """
+  Detached ASCII-armored GnuPG signature of the GraphQL query response.
 
   With the query response saved in the file `response.json`, the signature can
   be computed and written to `response.json.asc` by running
@@ -1324,48 +1329,6 @@ interface Approval {
   Fingerprints can be used anywhere where an identifier is expected. For
   security reasons it is used instead of long and short identifier. Its only
   disadvantage is that it is less practical for manual human use.
-  """
-  keyFingerprint: String!
-}
-
-"""
-Approval of data by third party with GnuPG signature that is created at some
-point in time. It becomes invalid when the approved data changes, even if the
-change is but a spelling-error correction in meta data like the description.
-In that case, the third party needs to re-create its approval.
-
-Steps to approve data:
-1. An institution adds data to a database.
-2. Some institution (may be the same) queries the data with a GraphQL query.
-3. The latter institution reviews the data and, if correct, signs it with one
-   of its GnuPG signing keys.
-4. The institution adds its approval of the data to the database.
-
-Storing the GraphQL query with the signature is necessary because it needs to be
-known exactly which JSON data was signed.
-
-Note that the query to be signed only includes paths that are part of the data
-and not part of some associates, which are actually all paths in the present
-GraphQL schema. However, the actual GraphQL schema of the database is in
-general an extension of the present GraphQL schema and may have paths to some
-associates like data format specifics of HTTP resources that it may fetch from
-the "metabase" and provides for convenience. These specifics should not be
-sigend as a change of, for example, the data format description would
-invalidate the signature although the data itself did not change.
-"""
-type DataApproval implements Approval {
-  """
-  Creation timestamp
-  """
-  timestamp: DateTime!
-
-  """
-  Detached ASCII-armored GnuPG signature of the GraphQL query response.
-  """
-  signature: String!
-
-  """
-  Fingerprint of the GnuPG signing key used to compute the signature.
   """
   keyFingerprint: String!
 
@@ -1414,6 +1377,39 @@ type DataApproval implements Approval {
   place are not compromised).
   """
   response: JsonGraphQlResponse!
+}
+
+"""
+Approval of data by third party with GnuPG signature that is created at some
+point in time. It becomes invalid when the approved data changes, even if the
+change is but a spelling-error correction in meta data like the description.
+In that case, the third party needs to re-create its approval.
+
+Steps to approve data:
+1. An institution adds data to a database.
+2. Some institution (may be the same) queries the data with a GraphQL query.
+3. The latter institution reviews the data and, if correct, signs it with one
+   of its GnuPG signing keys.
+4. The institution adds its approval of the data to the database.
+
+Storing the GraphQL query with the signature is necessary because it needs to be
+known exactly which JSON data was signed.
+
+Note that the query to be signed only includes paths that are part of the data
+and not part of some associates, which are actually all paths in the present
+GraphQL schema. However, the actual GraphQL schema of the database is in
+general an extension of the present GraphQL schema and may have paths to some
+associates like data format specifics of HTTP resources that it may fetch from
+the "metabase" and provides for convenience. These specifics should not be
+sigend as a change of, for example, the data format description would
+invalidate the signature although the data itself did not change.
+"""
+type DataApproval implements Approval {
+  timestamp: DateTime!
+  signature: String!
+  keyFingerprint: String!
+  query: GraphQlQuery!
+  response: JsonGraphQlResponse!
 
   """
   Approver identifier issued by the metabase. The approver's meta data can be
@@ -1427,15 +1423,14 @@ type DataApproval implements Approval {
 """
 Approval of response by database with
 [GnuPG](https://www.gnupg.org)
-signature created on the fly.
+signature.
 """
 type ResponseApproval implements Approval {
-  """
-  Detached ASCII-armored GnuPG signature of the GraphQL query response.
-  """
+  timestamp: DateTime!
   signature: String!
-
   keyFingerprint: String!
+  query: GraphQlQuery!
+  response: JsonGraphQlResponse!
 }
 
 """
