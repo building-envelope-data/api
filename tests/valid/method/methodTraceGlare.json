@@ -1,104 +1,102 @@
 {
-    "method": {
-        "id": "473a2f69-2e18-4745-809d-519882b25e8b",
-        "name": "Dynamic glare risk assessment",
-        "description": "Script to run dynamic glare simulations (DGP) using Radiance raytracing",
-        "categories": "calculation",
-        "calculation": "https://github.com/bbuenoun/trace-glare",
-        "reference": {
-            "publication": {
-                "identifiers": {
-                    "doi": "10.26868/25222708.2019.910222"
-                },
-                "title": "Easy-to-Implement Simulation Strategies for Dynamic Glare Risk Assessments based on the European Daylighting Standard EN 17037",
-                "abstract": "This study presents a workflow that can be easily implemented in building simulation programs in order to perform dynamic glare risk assessments based on the Daylight Glare Probability (DGP) method. The DGP method has been used in the preparation of the European Daylighting Standard EN 17037 to recommend glare protection classes of shading devices for different situations (climate, façade orientation, window size, view position and direction). By implementing the DGP method, building simulation programs can be used to make design decisions on conflicting functions of fenestration systems, including glare protection. The DGP method requires detailed information about the optical behaviour of fenestration systems. Measurement procedures that are required to obtain the necessary optical information for glare protection fabrics are described here. The study also points to a new network of databases that offers accessibility and reliability for optical information in simulation software. A case study is presented to illustrate the proposed workflow.",
-                "authors": [
-                    {
-                        "fullName": "Bruno Bueno",
-                        "affiliations": [
-                            {
-                                "kind": "Research",
-                                "institution": {
-                                    "id": "473a2f69-2e18-4745-809d-afasdb25e8b",
-                                    "name": "Fraunhofer ISE"
-                                }
-                            }
-                        ]
-                    }
-                    {
-                        "fullName": "Abel Sepulveda",
-                        "affiliations": [
-                            {
-                                "kind": "Research",
-                                "institution": {
-                                    "id": "473a2f69-2e18-4745-809d-afasdb25e9c",
-                                    "name": "Tallinn University of Technology"
-                                }
-                            }
-                        ]
-                    }
-                    {
-                        "fullName": "Christoph Maurer",
-                        "affiliations": [
-                            {
-                                "kind": "Research",
-                                "institution": {
-                                    "id": "473a2f69-2e18-4745-809d-afasdb25e8b",
-                                    "name": "Fraunhofer ISE"
-                                }
-                            }
-                        ]
-                    }
-                    {
-                        "fullName": "Simon Wacker",
-                        "affiliations": [
-                            {
-                                "kind": "Research",
-                                "institution": {
-                                    "id": "473a2f69-2e18-4745-809d-afasdb25e8b",
-                                    "name": "Fraunhofer ISE"
-                                }
-                            }
-                        ]
-                    }
-                    {
-                        "fullName": "Taoning Wang",
-                        "affiliations": [
-                            {
-                                "kind": "Research",
-                                "institution": {
-                                    "id": "473a2f69-2e18-4745-809d-afasdb2510d",
-                                    "name": "Lawrence Berkeley National Laboratory"
-                                }
-                            }
-                        ]
-                    }
-                    {
-                        "fullName": "Helen Rose Wilson",
-                        "affiliations": [
-                            {
-                                "kind": "Research",
-                                "institution": {
-                                    "id": "473a2f69-2e18-4745-809d-afasdb25e8b",
-                                    "name": "Fraunhofer ISE"
-                                }
-                            }
-                        ]
-                    }
-                    {
-                        "fullName": "Tilmann E. Kuhn",
-                        "affiliations": [
-                            {
-                                "kind": "Research",
-                                "institution": {
-                                    "id": "473a2f69-2e18-4745-809d-afasdb25e8b",
-                                    "name": "Fraunhofer ISE"
-                                }
-                            }
-                        ]
-                    }
-                ]
+  "id": "473a2f69-2e18-4745-809d-519882b25e8b",
+  "name": "Dynamic glare risk assessment",
+  "description": "Script to run dynamic glare simulations (DGP) using Radiance raytracing",
+  "categories": ["calculation"],
+  "calculation": "https://github.com/bbuenoun/trace-glare",
+  "reference": {
+    "publication": {
+      "identifiers": {
+        "doi": "10.26868/25222708.2019.910222"
+      },
+      "title": "Easy-to-Implement Simulation Strategies for Dynamic Glare Risk Assessments based on the European Daylighting Standard EN 17037",
+      "abstract": "This study presents a workflow that can be easily implemented in building simulation programs in order to perform dynamic glare risk assessments based on the Daylight Glare Probability (DGP) method. The DGP method has been used in the preparation of the European Daylighting Standard EN 17037 to recommend glare protection classes of shading devices for different situations (climate, façade orientation, window size, view position and direction). By implementing the DGP method, building simulation programs can be used to make design decisions on conflicting functions of fenestration systems, including glare protection. The DGP method requires detailed information about the optical behaviour of fenestration systems. Measurement procedures that are required to obtain the necessary optical information for glare protection fabrics are described here. The study also points to a new network of databases that offers accessibility and reliability for optical information in simulation software. A case study is presented to illustrate the proposed workflow.",
+      "authors": [
+        {
+          "fullName": "Bruno Bueno",
+          "affiliations": [
+            {
+              "kind": "Research",
+              "institution": {
+                "id": "473a2f69-2e18-4745-809d-5a5aafa2ffaf",
+                "name": "Fraunhofer ISE"
+              }
             }
+          ]
+        },
+        {
+          "fullName": "Abel Sepulveda",
+          "affiliations": [
+            {
+              "kind": "Research",
+              "institution": {
+                "id": "123a2f69-2e18-4745-809d-7a5aafa2ffaf",
+                "name": "Tallinn University of Technology"
+              }
+            }
+          ]
+        },
+        {
+          "fullName": "Christoph Maurer",
+          "affiliations": [
+            {
+              "kind": "Research",
+              "institution": {
+                "id": "473a2f69-2e18-4745-809d-5a5aafa2ffaf",
+                "name": "Fraunhofer ISE"
+              }
+            }
+          ]
+        },
+        {
+          "fullName": "Simon Wacker",
+          "affiliations": [
+            {
+              "kind": "Research",
+              "institution": {
+                "id": "473a2f69-2e18-4745-809d-5a5aafa2ffaf",
+                "name": "Fraunhofer ISE"
+              }
+            }
+          ]
+        },
+        {
+          "fullName": "Taoning Wang",
+          "affiliations": [
+            {
+              "kind": "Research",
+              "institution": {
+                "id": "12345678-2e18-4745-809d-5a5aafa2ffaf",
+                "name": "Lawrence Berkeley National Laboratory"
+              }
+            }
+          ]
+        },
+        {
+          "fullName": "Helen Rose Wilson",
+          "affiliations": [
+            {
+              "kind": "Research",
+              "institution": {
+                "id": "123a2f69-2e18-4745-809d-7a5aafa2ffaf",
+                "name": "Fraunhofer ISE"
+              }
+            }
+          ]
+        },
+        {
+          "fullName": "Tilmann E. Kuhn",
+          "affiliations": [
+            {
+              "kind": "Research",
+              "institution": {
+                "id": "473a2f69-2e18-4745-809d-5a5aafa2ffaf",
+                "name": "Fraunhofer ISE"
+              }
+            }
+          ]
         }
+      ]
     }
+  }
 }

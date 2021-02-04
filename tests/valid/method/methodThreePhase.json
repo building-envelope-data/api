@@ -1,30 +1,30 @@
 {
-    "method": {
-        "id": "473a2f69-2e18-4745-809d-519882b25e8b",
-        "name": "Three-phase method",
-        "description": "Simulates the daylight performance of complex fenestration systems using a matrix formalism and Bidirectional Scattering Distribution Functions",
-        "categories": "calculation",
-        "calculation": "https://www.radiance-online.org/learning/tutorials/matrix-based-methods",
-        "reference": {
-            "publication": {
-                "identifiers": {
-                    "doi": "10.1080/15502724.2011.10732150"
-                },
-                "title": "Simulating the Daylight Performance of Complex Fenestration Systems Using Bidirectional Scattering Distribution Functions within Radiance",
-                "abstract": "We describe two methods which rely on bidirectional scattering distribution functions (BSDFs) to model the daylighting performance of complex fenestration systems (CFS), enabling greater flexibility and accuracy in evaluating arbitrary assemblies of glazing, shading, and other optically-complex coplanar window systems. Two tools within Radiance enable a) efficient annual performance evaluations of CFS, and b) accurate renderings of CFS despite the loss of spatial resolution associated with low-resolution BSDF datasets for inhomogeneous systems. Validation, accuracy, and limitations of the methods are discussed."
-            }
-        },
-        "additionalReferences": {
-            "standard": {
-                "id": "473a2f69-2e18-4745-809d-5x5asfa2vvas",
-                "title": "Calculation of the impact of daylight utilization on the net and final energy demand for lighting",
-                "standardizerIds": "473a2f69-2e18-4745-809d-yvxcdfa2vvas",
-                "numeration": {
-                    "prefix": "ISO",
-                    "mainNumber": 10916
-                },
-                "year": 2021
-            }
-        }
+  "id": "473a2f69-2e18-4745-809d-519882b25e8b",
+  "name": "Three-phase method",
+  "description": "Simulates the daylight performance of complex fenestration systems using a matrix formalism and Bidirectional Scattering Distribution Functions",
+  "categories": ["calculation"],
+  "calculation": "https://www.radiance-online.org/learning/tutorials/matrix-based-methods",
+  "reference": {
+    "publication": {
+      "identifiers": {
+        "doi": "10.1080/15502724.2011.10732150"
+      },
+      "title": "Simulating the Daylight Performance of Complex Fenestration Systems Using Bidirectional Scattering Distribution Functions within Radiance",
+      "abstract": "We describe two methods which rely on bidirectional scattering distribution functions (BSDFs) to model the daylighting performance of complex fenestration systems (CFS), enabling greater flexibility and accuracy in evaluating arbitrary assemblies of glazing, shading, and other optically-complex coplanar window systems. Two tools within Radiance enable a) efficient annual performance evaluations of CFS, and b) accurate renderings of CFS despite the loss of spatial resolution associated with low-resolution BSDF datasets for inhomogeneous systems. Validation, accuracy, and limitations of the methods are discussed."
     }
+  },
+  "additionalReferences": [
+    {
+      "standard": {
+        "id": "473a2f69-2e18-4745-809d-5a5aafa2ffaf",
+        "title": "Calculation of the impact of daylight utilization on the net and final energy demand for lighting",
+        "standardizerIds": ["473a2f69-2e18-4745-809d-aaaadfa2ffab"],
+        "numeration": {
+          "prefix": "ISO",
+          "mainNumber": 10916
+        },
+        "year": 2021
+      }
+    }
+  ]
 }
