@@ -51,7 +51,7 @@ and this project adheres to
 -
 -
 -
--
+- Use acronyms to identify standardizers [#154](https://github.com/ise621/building-envelope-data/pull/154)
 -
 -
 

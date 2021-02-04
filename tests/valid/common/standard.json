@@ -6,9 +6,9 @@
       "id": "bcba3ff9-8cb7-4524-943a-786d301d39e1",
       "title": "dummy",
       "abstract": "dummy",
-      "standardizerIds": [
-        "bcba3ff9-8cb7-4524-943a-786d301d39e2",
-        "bcba3ff9-8cb7-4524-943a-786d301d39e3"
+      "standardizers": [
+        "ISO",
+        "DIN"
       ],
       "numeration": {
         "prefix": "prefix",
