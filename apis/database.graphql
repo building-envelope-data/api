@@ -203,7 +203,7 @@ type Query {
   """
   data(
     "Data identifier."
-    uuid: Uuid!
+    id: Uuid!
     "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
