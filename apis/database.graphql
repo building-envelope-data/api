@@ -17,8 +17,8 @@ It follows best practices for
 
 Global object identifiers as requird by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
-are exposed by the property `dataId`. In essence, `id` is the Base64-encoded
-concatenation of `dataId` and the requested locale.
+are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
+concatenation of `uuid` and the requested locale.
 
 For interoperability with the "metabase", implementations serve HTTP
 requests as elaborated on
@@ -203,7 +203,7 @@ type Query {
   """
   data(
     "Data identifier."
-    dataId: Uuid!
+    id: Uuid!
     "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
@@ -292,7 +292,7 @@ type Query {
     ) {
       edges {
         node {
-          dataId
+          uuid
         }
       }
     }
@@ -806,7 +806,7 @@ interface Data {
   Identifier, which together with timestamp uniquely identifies data and patch
   version (within the database).
   """
-  dataId: Uuid!
+  uuid: Uuid!
 
   """
   Timestamp that designates the patch version. For example, correction of some
@@ -858,11 +858,6 @@ interface Data {
   appliedMethod: AppliedMethod!
 
   """
-  Validity date and time range.
-  """
-  validity: OpenEndedDateTimeRange!
-
-  """
   Approvals by stakeholders in the form of GnuPG signatures. See the type
   `Approval` for details on how to verify data and approvals.
   """
@@ -906,7 +901,7 @@ interface Data {
 
 type OpticalData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -917,7 +912,6 @@ type OpticalData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -932,7 +926,7 @@ type OpticalData implements Node & Data {
 
 type CalorimetricData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -943,7 +937,6 @@ type CalorimetricData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -962,7 +955,7 @@ type CalorimetricData implements Node & Data {
 
 type HygrothermalData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -973,7 +966,6 @@ type HygrothermalData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -982,7 +974,7 @@ type HygrothermalData implements Node & Data {
 
 type PhotovoltaicData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -993,7 +985,6 @@ type PhotovoltaicData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -1035,8 +1026,8 @@ type AppliedMethod {
 }
 
 """
-Applied conversion method to exactly one named source identified by tree-vertex
-identifier.
+Applied conversion method to exactly one named source, namely the tree-vertex's
+parent resource.
 """
 type ToTreeVertexAppliedConversionMethod {
   """
@@ -1059,11 +1050,11 @@ type ToTreeVertexAppliedConversionMethod {
   arguments: [NamedMethodArgument!]!
 
   """
-  Named data source identified by tree-vertex identifier to which the
-  conversion method was applied. The conversion method requires exactly one
-  named source and a value for this source is given.
+  Name of the named data source of the conversion method whose value is the
+  tree-vertex's parent resource. The conversion method requires at least one
+  named source and a value for one of these sources is given.
   """
-  source: NamedTreeVertexMethodSource!
+  sourceName: String!
 }
 
 """
@@ -1094,21 +1085,6 @@ type NamedMethodSource {
   Method source as cross-database data reference.
   """
   value: CrossDatabaseDataReference!
-}
-
-"""
-Named local data source of a method.
-"""
-type NamedTreeVertexMethodSource {
-  """
-  Name
-  """
-  name: String!
-
-  """
-  Method source as tree-vertex identifier.
-  """
-  value: ID!
 }
 
 """
@@ -1323,7 +1299,12 @@ or the article series
 """
 interface Approval {
   """
-  Detached ASCII-armored GnuPG signature.
+  Creation timestamp
+  """
+  timestamp: DateTime!
+
+  """
+  Detached ASCII-armored GnuPG signature of the GraphQL query response.
 
   With the query response saved in the file `response.json`, the signature can
   be computed and written to `response.json.asc` by running
@@ -1348,48 +1329,6 @@ interface Approval {
   Fingerprints can be used anywhere where an identifier is expected. For
   security reasons it is used instead of long and short identifier. Its only
   disadvantage is that it is less practical for manual human use.
-  """
-  keyFingerprint: String!
-}
-
-"""
-Approval of data by third party with GnuPG signature that is created at some
-point in time. It becomes invalid when the approved data changes, even if the
-change is but a spelling-error correction in meta data like the description.
-In that case, the third party needs to re-create its approval.
-
-Steps to approve data:
-1. An institution adds data to a database.
-2. Some institution (may be the same) queries the data with a GraphQL query.
-3. The latter institution reviews the data and, if correct, signs it with one
-   of its GnuPG signing keys.
-4. The institution adds its approval of the data to the database.
-
-Storing the GraphQL query with the signature is necessary because it needs to be
-known exactly which JSON data was signed.
-
-Note that the query to be signed only includes paths that are part of the data
-and not part of some associates, which are actually all paths in the present
-GraphQL schema. However, the actual GraphQL schema of the database is in
-general an extension of the present GraphQL schema and may have paths to some
-associates like data format specifics of HTTP resources that it may fetch from
-the "metabase" and provides for convenience. These specifics should not be
-sigend as a change of, for example, the data format description would
-invalidate the signature although the data itself did not change.
-"""
-type DataApproval implements Approval {
-  """
-  Creation timestamp
-  """
-  timestamp: DateTime!
-
-  """
-  Detached ASCII-armored GnuPG signature of the GraphQL query response.
-  """
-  signature: String!
-
-  """
-  Fingerprint of the GnuPG signing key used to compute the signature.
   """
   keyFingerprint: String!
 
@@ -1438,11 +1377,39 @@ type DataApproval implements Approval {
   place are not compromised).
   """
   response: JsonGraphQlResponse!
+}
 
-  """
-  Validity date and time range.
-  """
-  validity: OpenEndedDateTimeRange!
+"""
+Approval of data by third party with GnuPG signature that is created at some
+point in time. It becomes invalid when the approved data changes, even if the
+change is but a spelling-error correction in meta data like the description.
+In that case, the third party needs to re-create its approval.
+
+Steps to approve data:
+1. An institution adds data to a database.
+2. Some institution (may be the same) queries the data with a GraphQL query.
+3. The latter institution reviews the data and, if correct, signs it with one
+   of its GnuPG signing keys.
+4. The institution adds its approval of the data to the database.
+
+Storing the GraphQL query with the signature is necessary because it needs to be
+known exactly which JSON data was signed.
+
+Note that the query to be signed only includes paths that are part of the data
+and not part of some associates, which are actually all paths in the present
+GraphQL schema. However, the actual GraphQL schema of the database is in
+general an extension of the present GraphQL schema and may have paths to some
+associates like data format specifics of HTTP resources that it may fetch from
+the "metabase" and provides for convenience. These specifics should not be
+sigend as a change of, for example, the data format description would
+invalidate the signature although the data itself did not change.
+"""
+type DataApproval implements Approval {
+  timestamp: DateTime!
+  signature: String!
+  keyFingerprint: String!
+  query: GraphQlQuery!
+  response: JsonGraphQlResponse!
 
   """
   Approver identifier issued by the metabase. The approver's meta data can be
@@ -1456,15 +1423,14 @@ type DataApproval implements Approval {
 """
 Approval of response by database with
 [GnuPG](https://www.gnupg.org)
-signature created on the fly.
+signature.
 """
 type ResponseApproval implements Approval {
-  """
-  Detached ASCII-armored GnuPG signature of the GraphQL query response.
-  """
+  timestamp: DateTime!
   signature: String!
-
   keyFingerprint: String!
+  query: GraphQlQuery!
+  response: JsonGraphQlResponse!
 }
 
 """
@@ -1613,16 +1579,16 @@ type GetHttpsResource {
 Multiple HTTP resources organized as tree with meta information of the actual
 data requestable through the protocol HTTP over TLS, in short, HTTPS, with
 `GET` requests. Each vertex specifies
-* a vertex identifier (unique among the tree vertices),
-* child vertex identifiers, and
-* an HTTP resource.
-Each non-root vertex also specifies an applied conversion method with its
-parent vertex's identifier as source, where indeed the non-root-resource's data
-is the result of applying the conversion method to its parent resource's data.
+* its vertex identifier (unique among the tree vertices), and
+* its HTTP resource.
+Each non-root vertex also specifies
+* its parent vertex's identifier, and
+* an applied conversion method with its parent vertex's identifier as source,
+where indeed the non-root-resource's data is the result of applying the
+conversion method to its parent resource's data.
 
 The root vertex is in the field `root` and non-root resource vertices are in
-the field `nonRootVertices`. The order of a vertex's child identifiers is
-identical to the order in which they occur in the list of non-root vertices.
+the field `nonRootVertices`.
 
 Note that all resources describe the same data only in different formats.
 """
@@ -1650,7 +1616,7 @@ of applying some conversion method to its parent resource. Its child resources
 are the results of applying conversion methods to it, the child resources of
 its child resources are the results of applying conversion methods to the child
 resources, and so forth. The applied conversion methods are specified in the
-child resources.
+child resource vertices.
 """
 interface GetHttpsResourceTreeVertex {
   """
@@ -1658,14 +1624,6 @@ interface GetHttpsResourceTreeVertex {
   that is, parent/child relationships, in the flattened tree structure.
   """
   vertexId: ID!
-
-  """
-  Identifiers of child resource vertices whose resource data is obtained by
-  applying conversion methods to this vertex's resource data. Note that each
-  child vertex's conversion method has the present vertex's identifier as
-  source value.
-  """
-  childIds: [ID!]!
 
   """
   Resource
@@ -1678,7 +1636,6 @@ A root resource is the direct result of some measurement or simulation.
 """
 type GetHttpsResourceTreeRoot implements GetHttpsResourceTreeVertex {
   vertexId: ID!
-  childIds: [ID!]!
   value: GetHttpsResource!
 }
 
@@ -1688,8 +1645,13 @@ parent resource.
 """
 type GetHttpsResourceTreeNonRootVertex implements GetHttpsResourceTreeVertex {
   vertexId: ID!
-  childIds: [ID!]!
   value: GetHttpsResource!
+
+  """
+  Identifier of parent resource vertex. This vertex's resource data it obtained by
+  applying the conversion method to its parent resource data.
+  """
+  parentId: ID!
 
   """
   Conversion method applied to the parent resource to obtain the present

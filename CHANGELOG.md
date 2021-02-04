@@ -47,7 +47,7 @@ and this project adheres to
 - Improve documentation of approvals in the database GraphQL schema [#117](https://github.com/ise621/building-envelope-data/pull/117)
 - Clean-up Dockerfile, in particular, remove notes regarding Python [#121](https://github.com/ise621/building-envelope-data/pull/121)
 - Correct minor errors in database GraphQL API [#173](https://github.com/ise621/building-envelope-data/pull/173)
--
+- Name `dataId` `uuid`, remove `validity` from `*Data` and `DataApproval`, use parent identifier instead of child identifiers to describe tree structure, do not require response approvals to be created on the fly [#180](https://github.com/ise621/building-envelope-data/pull/180)
 -
 -
 -
