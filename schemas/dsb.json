@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/dsb.json",
   "title": "dsb - data schema for buildings",
   "description": "Detailed data about buildings. It is meant to be used for the whole life cycle of a building, from the early planning of a building project to construction to facility management to recycling. The aim is to restrict the possible representations of one data set as much as possible to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next update of this schema.",
