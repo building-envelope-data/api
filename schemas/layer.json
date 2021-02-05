@@ -62,9 +62,7 @@
         "window",
         "woven"
       ],
-      "description": "Components of the category layer can have the subcategories of this enumeration which further specifies the layer.",
-      "uniqueItems": true,
-      "minItems": 1
+      "description": "Components of the category layer can have the subcategories of this enumeration which further specifies the layer."
     },
     "characteristics": {
       "title": "The characteristics of components of the category 'layer'.",
