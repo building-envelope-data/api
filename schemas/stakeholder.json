@@ -175,7 +175,7 @@
         }
       },
       "additionalProperties": false,
-      "required": ["id"]
+      "required": []
     },
     "stakeholder": {
       "anyOf": [
