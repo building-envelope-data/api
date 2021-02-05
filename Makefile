@@ -86,15 +86,18 @@ serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` 
 
 schema_file_paths = $(shell find ./schemas/ -name "*.json")
 schema_file_references = $(addprefix -r ,${schema_file_paths})
+ajv = npx --no-install ajv \
+				--spec=draft2019 \
+				-c ajv-formats
 
 compile : ## Compile schemas
 	-for schema_file_path in ./apis/*.graphql ; do \
 		npx --no-install graphql-schema-linter $${schema_file_path} ; \
 	done
 	-for schema_file_path in ${schema_file_paths} ; do \
-		npx --no-install ajv compile \
+		${ajv} compile \
 			-s $${schema_file_path} \
-			${schema_file_references} ; \
+			$$(echo "${schema_file_references}" | sed "s#-r $${schema_file_path}##g") ; \
 	done
 .PHONY : compile
 
@@ -107,10 +110,10 @@ test : ## Validate test files
 		echo "Testing schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for test_file_path in $$(find ./tests/valid/$${schema_name} -name "*.json") ; do \
-			npx --no-install ajv validate \
+			${ajv} validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${test_file_path} \
-				${schema_file_references} ; \
+				$$(echo "${schema_file_references}" | sed "s#-r \./schemas/$${schema_name}\.json##g") ; \
 		done ; \
 	done
 	-echo "=============================================" && \
@@ -121,10 +124,10 @@ test : ## Validate test files
 		echo "Testing schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for test_file_path in $$(find ./tests/invalid/$${schema_name} -name "*.json") ; do \
-			! npx --no-install ajv validate \
+			! ${ajv} validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${test_file_path} \
-				${schema_file_references} ; \
+				$$(echo "${schema_file_references}" | sed "s#-r \./schemas/$${schema_name}\.json##g") ; \
 		done ; \
 	done
 .PHONY : test
@@ -181,10 +184,10 @@ example : ## Validate example files
 		echo "Examples for schema ./schemas/$${schema_name}.json" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
 		for example_file in $$(find ./examples/$${schema_name} -name "*.json") ; do \
-			npx --no-install ajv validate \
+			${ajv} validate \
 				-s ./schemas/$${schema_name}.json \
 				-d $${example_file} \
-				${schema_file_references} ; \
+				$$(echo "${schema_file_references}" | sed "s#-r \./schemas/$${schema_name}\.json##g") ; \
 		done ; \
 	done
 .PHONY : example

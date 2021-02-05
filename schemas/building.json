@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/building.json",
   "title": "building data",
   "description": "Data about a building.",
@@ -78,9 +78,9 @@
           "description": "Characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches."
         },
         "roles": {
+          "title": "Roles which are specific for buildings to the existing roles for building envelopes.",
           "type": "object",
           "properties": {
-            "title": "Roles which are specific for buildings to the existing roles for building envelopes.",
             "owners": {
               "type": "array",
               "items": {

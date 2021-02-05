@@ -52,7 +52,7 @@ and this project adheres to
 -
 -
 - Use acronyms to identify standardizers [#154](https://github.com/ise621/building-envelope-data/pull/154)
--
+- Use JSON Schema Draft 2019-09 and upgrade tooling [#181](https://github.com/ise621/building-envelope-data/pull/181)
 -
 
 ### Deprecated
