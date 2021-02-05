@@ -70,7 +70,7 @@
           "items": {
             "title": "GnuPG keys of currently or once affiliated persons",
             "description": "Used for digital signatures in approvals. When checking such signatures, make sure that at the time the approval was created, the person who created it was associated with the institution, had the right to create approvals for the institution, owned the used GnuPG key, and that the key was not revoked at the time.",
-            "type": "string.json#/$defs/gnuPgKey"
+            "$ref": "string.json#/$defs/gnuPgKey"
           },
           "minItems": 1
         },
@@ -109,7 +109,7 @@
                 "items": {
                   "title": "GnuPG keys of person within institution",
                   "description": "Used for digital signatures in approvals by person for institution.",
-                  "type": "string.json#/$defs/gnuPgKey"
+                  "$ref": "string.json#/$defs/gnuPgKey"
                 },
                 "minItems": 1
               }
@@ -159,7 +159,7 @@
                 "items": {
                   "title": "GnuPG keys of person within institution",
                   "description": "Used for digital signatures in approvals by person for institution.",
-                  "type": "string.json#/$defs/gnuPgKey"
+                  "$ref": "string.json#/$defs/gnuPgKey"
                 },
                 "minItems": 1
               }
