@@ -214,7 +214,7 @@ type Query {
   See `Query#data`.
   """
   calorimetricData(
-    calorimetricDataId: Uuid!
+    id: Uuid!
     timestamp: DateTime
     locale: Locale
   ): CalorimetricData!
@@ -223,7 +223,7 @@ type Query {
   See `Query#data`.
   """
   hygrothermalData(
-    hygrothermalDataId: Uuid!
+    id: Uuid!
     timestamp: DateTime
     locale: Locale
   ): HygrothermalData!
@@ -232,7 +232,7 @@ type Query {
   See `Query#data`.
   """
   opticalData(
-    opticalDataId: Uuid!
+    id: Uuid!
     timestamp: DateTime
     locale: Locale
   ): OpticalData!
@@ -241,7 +241,7 @@ type Query {
   See `Query#data`.
   """
   photovoltaicData(
-    photovoltaicDataId: Uuid!
+    id: Uuid!
     timestamp: DateTime
     locale: Locale
   ): PhotovoltaicData!
