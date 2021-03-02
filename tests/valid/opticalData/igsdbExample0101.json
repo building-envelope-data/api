@@ -1,0 +1,138 @@
+{
+  "data": [
+    {
+      "componentCharacteristics": {
+        "surface": "prime"
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8,
+              "azimuth": 0
+            },
+            "wavelengths": { "wavelength": 300 }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.002
+            },
+            "reflectance": {
+              "uncertainValue": 0.047
+            }
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8,
+              "azimuth": 0
+            },
+            "wavelengths": { "wavelength": 1000 }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.003
+            },
+            "reflectance": {
+              "uncertainValue": 0.047
+            }
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8,
+              "azimuth": 0
+            },
+            "wavelengths": { "wavelength": 2500 }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.009
+            },
+            "reflectance": {
+              "uncertainValue": 0.047
+            }
+          }
+        }
+      ]
+    },
+    {
+      "componentCharacteristics": {
+        "surface": "nonPrime"
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8,
+              "azimuth": 0
+            },
+            "wavelengths": { "wavelength": 300 }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.002
+            },
+            "reflectance": {
+              "uncertainValue": 0.047
+            }
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8,
+              "azimuth": 0
+            },
+            "wavelengths": { "wavelength": 1000 }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.003
+            },
+            "reflectance": {
+              "uncertainValue": 0.047
+            }
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8,
+              "azimuth": 0
+            },
+            "wavelengths": { "wavelength": 2500 }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.009
+            },
+            "reflectance": {
+              "uncertainValue": 0.047
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
