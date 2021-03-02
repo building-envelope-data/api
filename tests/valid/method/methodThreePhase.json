@@ -18,9 +18,8 @@
       "standard": {
         "id": "473a2f69-2e18-4745-809d-5a5aafa2ffaf",
         "title": "Calculation of the impact of daylight utilization on the net and final energy demand for lighting",
-        "standardizerIds": ["473a2f69-2e18-4745-809d-aaaadfa2ffab"],
+        "standardizers": ["ISO"],
         "numeration": {
-          "prefix": "ISO",
           "mainNumber": 10916
         },
         "year": 2021

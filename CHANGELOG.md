@@ -103,7 +103,7 @@ and this project adheres to
 
 ### Fixed
 
--
+- Fix the three phase method test by using enumerated standardizers instead of identifiers [#192](https://github.com/ise621/building-envelope-data/pull/192)
 -
 -
 -
