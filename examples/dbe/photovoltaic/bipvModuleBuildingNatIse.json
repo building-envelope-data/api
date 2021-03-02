@@ -60,6 +60,9 @@
               }
             }
           ]
+        },
+        "weight": {
+          "uncertainValue": 29.7
         }
       },
       "photovoltaic": [
@@ -67,9 +70,6 @@
           "data": [
             {
               "module": {
-                "coordinateSystem": {
-                  "categories": ["rightHanded", "cartesian"]
-                },
                 "cellTypes": [
                   {
                     "id": {
@@ -192,9 +192,10 @@
                 "moduleProperties": {
                   "power": {
                     "nominal": {
-                      "uncertainValue": 195
+                      "uncertainValue": 195,
+                      "uncertainty": 9.75,
+                      "confidenceInterval": 99.7
                     },
-                    "tolerance": 5,
                     "temperatureCoefficient": -0.32,
                     "guarantees": [
                       {
@@ -242,24 +243,6 @@
                   },
                   "fillFactor": 0.769,
                   "efficiency": 0.1656,
-                  "weight": {
-                    "uncertainValue": 29.7
-                  },
-                  "geometry": {
-                    "dimensions": {
-                      "independent": {
-                        "smallest": {
-                          "uncertainValue": 0.01128
-                        },
-                        "intermediate": {
-                          "uncertainValue": 1.08
-                        },
-                        "largest": {
-                          "uncertainValue": 1.09
-                        }
-                      }
-                    }
-                  },
                   "guarantees": [
                     {
                       "years": 10

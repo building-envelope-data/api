@@ -1,0 +1,92 @@
+{
+  "components": [
+    {
+      "id": "20aaed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "description": "This example represents a laminated glass with photovoltaic cells with its center-of-glazing properties.",
+      "relations": {
+        "generalizationOf": ["10aaed0a-2b9a-4748-8d98-e9d278cd12e4"],
+        "partOf": ["11aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
+      },
+      "categories": { "componentType": ["layer"] },
+      "characteristics": {
+        "geometry": {
+          "assemblyList": [
+            {
+              "id": "01f5554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": {
+                    "smallest": 0.004
+                  }
+                }
+              }
+            },
+            {
+              "id": "02f5554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": { "smallest": { "uncertainValue": 0.001 } }
+                }
+              }
+            },
+            {
+              "id": "03f5554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": { "smallest": { "uncertainValue": 0.008 } }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "photovoltaic": [
+        {
+          "data": [
+            {
+              "module": {
+                "cellTypes": [
+                  {
+                    "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+
+                    "width": {
+                      "uncertainValue": 0.156
+                    },
+                    "categories": ["monocrystalline", "silicon"]
+                  }
+                ],
+
+                "connectionPattern": "series",
+
+                "electricConfiguration": {
+                  "groundingNecessary": false
+                },
+                "moduleProperties": {
+                  "power": {
+                    "temperatureCoefficient": -0.32,
+
+                    "angleDependency": [
+                      {
+                        "incidence": 0,
+                        "IAM": 1
+                      },
+                      {
+                        "incidence": 60,
+                        "IAM": 0.924
+                      },
+                      {
+                        "incidence": 90,
+                        "IAM": 0
+                      }
+                    ]
+                  },
+                  "efficiency": 0.1656
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

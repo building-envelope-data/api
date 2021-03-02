@@ -1,0 +1,135 @@
+{
+  "components": [
+    {
+      "id": "39dfed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany. (i) `characteristics/assemblyList` defines the thickness of the front cover, the front embedding, the PV cells, the rear embedding and the backing. ??? update",
+      "relations": {
+        "concretizationOf": "38dfed0a-2b9a-4748-8d98-e9d278cd12e4"
+      },
+      "characteristics": {
+        "geometry": {
+          "dimensions": {
+            "independent": {
+              "smallest": 0.014,
+              "intermediate": 1.109,
+              "largest": 2.488
+            }
+          }
+        }
+      },
+      "photovoltaic": [
+        {
+          "data": [
+            {
+              "module": {
+                "cellTypes": [
+                  {
+                    "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+
+                    "width": {
+                      "uncertainValue": 0.156
+                    },
+                    "categories": ["monocrystalline", "silicon"]
+                  }
+                ],
+                "cellPattern": {
+                  "rectangular": {
+                    "longitudinal": {
+                      "cellNumber": {
+                        "uncertainValue": 10
+                      }
+                    },
+                    "transversal": {
+                      "cellNumber": {
+                        "uncertainValue": 6
+                      }
+                    }
+                  }
+                },
+                "cells": [
+                  {
+                    "id": {
+                      "value": "764ca288-0c51-11ea-8d71-362b9e155667",
+                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    },
+                    "cellType": {
+                      "value": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    }
+                  },
+                  {
+                    "id": {
+                      "value": "764ca508-0c51-11ea-8d71-362b9e155667",
+                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    },
+                    "cellType": {
+                      "value": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    }
+                  }
+                ],
+
+                "connectionPattern": "series",
+
+                "electricConfiguration": {
+                  "junctionBoxTypes": [
+                    {
+                      "id": "6a5083af-7bee-491c-b3fd-d6229f6a56ec"
+                    }
+                  ],
+
+                  "connectorTypes": [
+                    {
+                      "id": "7c43b619-402f-4309-b66f-5672b8ca071d"
+                    }
+                  ],
+                  "connectors": [
+                    {
+                      "id": "14838e0b-e17b-4c52-8578-fb2cc9170ac4",
+                      "connectorType": "411249fc-14c7-4940-805b-15dc0855b444",
+                      "junctionBoxType": "538a6419-aecd-45c1-8e61-8dd4d3e74988"
+                    }
+                  ],
+                  "groundingNecessary": false
+                },
+                "moduleProperties": {
+                  "power": {
+                    "nominal": {
+                      "uncertainValue": 260
+                    },
+                    "temperatureCoefficient": -0.32,
+                    "guarantees": [
+                      {
+                        "years": 10,
+                        "percentage": 90
+                      },
+                      {
+                        "years": 15,
+                        "percentage": 80
+                      }
+                    ],
+                    "angleDependency": [
+                      {
+                        "incidence": 0,
+                        "IAM": 1
+                      },
+                      {
+                        "incidence": 60,
+                        "IAM": 0.924
+                      },
+                      {
+                        "incidence": 90,
+                        "IAM": 0
+                      }
+                    ]
+                  },
+                  "efficiency": 0.1656
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

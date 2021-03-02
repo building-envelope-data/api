@@ -238,6 +238,10 @@
             }
           ]
         },
+        "weight": {
+          "$ref": "number.json#/$defs/kilogramWithUncertainty",
+          "description": "The weight of the component in kilogram."
+        },
         "airPermeability": {
           "title": "Air permeability quantifies how easy air can flow through the component.",
           "type": "object",
