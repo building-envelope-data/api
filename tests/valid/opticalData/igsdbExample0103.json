@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "componentCharacteristics": {
+        "surface": "prime"
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": "hemispherical",
+            "wavelengths": {
+              "integral": "infrared"
+            }
+          },
+          "emergence": { "direction": "hemispherical" },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0
+            },
+            "reflectance": {
+              "uncertainValue": 0.16
+            }
+          }
+        }
+      ]
+    },
+    {
+      "componentCharacteristics": {
+        "surface": "nonPrime"
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": "hemispherical",
+            "wavelengths": {
+              "integral": "infrared"
+            }
+          },
+          "emergence": { "direction": "hemispherical" },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0
+            },
+            "reflectance": {
+              "uncertainValue": 0.16
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

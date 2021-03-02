@@ -24,6 +24,26 @@
               "uncertainValue": 0.075
             }
           }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8,
+              "azimuth": 0
+            },
+            "wavelengths": {
+              "integral": "visible"
+            }
+          },
+          "emergence": { "direction": "hemispherical" },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.834
+            },
+            "reflectance": {
+              "uncertainValue": 0.075
+            }
+          }
         }
       ]
     },
@@ -40,6 +60,26 @@
             },
             "wavelengths": {
               "integral": "solar"
+            }
+          },
+          "emergence": { "direction": "hemispherical" },
+          "results": {
+            "transmittance": {
+              "uncertainValue": 0.834
+            },
+            "reflectance": {
+              "uncertainValue": 0.075
+            }
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8,
+              "azimuth": 0
+            },
+            "wavelengths": {
+              "integral": "visible"
             }
           },
           "emergence": { "direction": "hemispherical" },
