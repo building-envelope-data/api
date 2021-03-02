@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/material.json",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/material.json",
   "title": "material data",
   "description": "How a material can be identified, which categories can be attributed to the material and which characteristics or properties the material has.",
   "$defs": {

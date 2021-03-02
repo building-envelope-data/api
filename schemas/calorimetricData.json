@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/calorimetricData.json",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/calorimetricData.json",
   "title": "calorimetric data",
   "description": "Data about calorimetric measurements or simulations. In particular, energy fluxes are important.",
   "$defs": {

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/component.json",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/component.json",
   "title": "component data",
   "description": "Data about components of building envelopes. It contains metadata about the components as well as keys for special data domains such as 'optical' for optical data and 'calorimetric' for calorimetric data about a certain component.",
   "$defs": {
