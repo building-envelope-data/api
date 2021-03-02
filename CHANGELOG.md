@@ -16,7 +16,7 @@ and this project adheres to
 - Add query examples for `data`, `allData`, and `hasData` [#105](https://github.com/ise621/building-envelope-data/pull/105)
 - Add section to publication to be able to refer to just one part of a publication [#155](https://github.com/ise621/building-envelope-data/pull/155)
 - Add two examples of methods for daylighting and glare simulations [#179](https://github.com/ise621/building-envelope-data/pull/179)
--
+- Add version to JSON Schema `$id`s [#188](https://github.com/ise621/building-envelope-data/pull/188)
 -
 -
 -

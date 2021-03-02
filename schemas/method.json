@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/method.json",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/method.json",
   "title": "method data",
   "description": "Definition of a method that can be applied by a creator to some source data to create a data set. By defining the method and the source data, the origin of the data set can be traced back.",
   "$defs": {

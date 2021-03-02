@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/photovoltaicData.json",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/photovoltaicData.json",
   "title": "photovoltaic data",
   "description": "Data about components of building envelopes which contribute to convert irradiance into electricity. A photovoltaic system is usually assembled of many components, for example photovoltaic modules.",
   "$defs": {

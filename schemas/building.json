@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/building.json",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/building.json",
   "title": "building data",
   "description": "Data about a building.",
   "$defs": {
