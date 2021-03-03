@@ -6,22 +6,26 @@
   "$defs": {
     "uncertaintyNumber": {
       "type": "number",
-      "exclusiveMinimum": 0,
+      "minimum": 0,
       "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
     },
     "uncertaintyInteger": {
       "type": "integer",
-      "exclusiveMinimum": 0,
+      "minimum": 0,
       "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
     },
     "confidenceInterval": {
       "type": "number",
-      "enum": [68.3, 95.4, 99.7],
-      "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma)."
+      "enum": [68.3, 95.4, 99.7, 100],
+      "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If it is 100% certain that the true value cannot be beyond the uncertainty, 100% is used."
     },
     "numberWithUncertainty": {
-      "title": "If a value may have an uncertainty and no further restrictions on the numbers are possible, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "title": "If a number may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
+        {
+          "type": "number",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
         {
           "type": "object",
           "properties": {
@@ -36,11 +40,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue"]
-        },
-        {
-          "type": "number",
-          "description": "If the value is 100% certain, then this this option is used."
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
@@ -55,8 +55,12 @@
       "description": "If the integer is in all cases 100% certain and when only non-negative integers are valid, then this type is used."
     },
     "nonNegativeNumberWithUncertainty": {
-      "title": "If a value may have an uncertainty and only non-negative numbers are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "title": "If a number may have an uncertainty and only non-negative numbers are valid, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
+        {
+          "$ref": "#/$defs/nonNegativeNumber",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
         {
           "type": "object",
           "properties": {
@@ -71,17 +75,17 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue"]
-        },
-        {
-          "$ref": "#/$defs/nonNegativeNumber",
-          "description": "If the value is 100% certain, then this this option is used."
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
     "nonNegativeIntegerWithUncertainty": {
-      "title": "If an integer may have an uncertainty and only non-negative integers are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "title": "If a number may have an uncertainty and only non-negative integers are valid, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
+        {
+          "$ref": "#/$defs/nonNegativeInteger",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
         {
           "type": "object",
           "properties": {
@@ -96,11 +100,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue"]
-        },
-        {
-          "$ref": "#/$defs/nonNegativeInteger",
-          "description": "If the value is 100% certain, then this this option is used."
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
@@ -111,8 +111,12 @@
       "maximum": 1
     },
     "numberBetweenZeroAndOneWithUncertainty": {
-      "title": "If a value may have an uncertainty and only numbers between 0 and 1 are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "title": "If a number may have an uncertainty and only numbers between 0 an 1 are valid, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndOne",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
         {
           "type": "object",
           "properties": {
@@ -127,11 +131,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue"]
-        },
-        {
-          "$ref": "#/$defs/numberBetweenZeroAndOne",
-          "description": "If the value is 100% certain, then this this option is used."
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
@@ -203,6 +203,31 @@
         },
         {
           "$ref": "#/$defs/degree"
+        }
+      ]
+    },
+    "degreeWithUncertainty": {
+      "title": "If a number is in degree and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/degree",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/degree"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
