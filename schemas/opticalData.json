@@ -137,29 +137,8 @@
           ],
           "description": "(i) `azimuthalAngleInvariance` means that the optical results depend only on the polar angle and not on the azimuth angle. Many homogeneous materials like glass panes have an `azimuthalAngleInvariance`. (ii) `profileAngle` symmetry means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a `mirror` symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. However, if the optical results depend only on the profile angle, use `profileAngle` instead of `mirror`! (iv) `rotationalDependingOnAzimuth` means that for example one quarter of the hemisphere is enough to describe the whole hemisphere because the optical results for the other quarters can be obtained by rotating the results for the first quarter around the axis perpendicular to the sample. However, if the optical results depend only on the polar angle and not on the azimuth angle, use `azimuthalAngleInvariance` instead of `rotationalDependingOnAzimuth`! (v) `mirrorAndRotational` requires a mirror and a rotational symmetry. Mirror symmetry means that the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. Rotational symmetry means that for example one quarter of the hemisphere is enough to describe the whole hemisphere because the optical results for the other quarters can be obtained by rotating the results for the first quarter around the axis perpendicular to the sample. However, if the optical results depend only on the profile angle, use `profileAngle` instead of `mirrorAndRotational`! If the optical results depend only on the polar angle and not on the azimuth angle, use `azimuthalAngleInvariance` instead of `rotationalDependingOnAzimuth`!"
         },
-        "definitionOfSurfacesAndPrimeDirection": {
-          "title": "Definition of surfaces and prime direction",
-          "description": "The prime direction must be equal to the direction of the profile angle symmetry.",
-          "type": "object",
-          "properties": {
-            "reference": {
-              "$ref": "common.json#/$defs/reference",
-              "title": "Reference",
-              "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define a prime direction which is used to calculate the azimuth of the direction of incidence. Ideally, the manufacturer defines the surfaces and prime direction of a component in one document and refers to this document in optical data."
-            },
-            "description": {
-              "type": "string",
-              "title": "Description",
-              "description": "Description of which side of the component is defined as non-prime and which as prime, and which side is top and which side is bottom. Often, the non-prime side faces the exterior and the prime side the interior."
-            }
-          },
-          "minProperties": 1,
-          "required": []
-        },
         "surface": {
-          "type": "string",
-          "enum": ["nonPrime", "prime", "symmetric"],
-          "title": "Surface",
+          "$ref": "component.json#/$defs/surface",
           "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' can be used."
         }
       },

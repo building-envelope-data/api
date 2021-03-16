@@ -393,6 +393,46 @@
           "uniqueItems": true,
           "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
         },
+        "definitionOfSurfacesAndPrimeDirection": {
+          "title": "Definition of surfaces and prime direction",
+          "description": "The prime direction must be equal to the direction of the profile angle symmetry.",
+          "type": "object",
+          "properties": {
+            "reference": {
+              "$ref": "common.json#/$defs/reference",
+              "title": "Reference",
+              "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define a prime direction which is used to calculate the azimuth of the direction of incidence. Ideally, the manufacturer defines the surfaces and prime direction of a component in one document and refers to this document in optical data."
+            },
+            "description": {
+              "type": "string",
+              "title": "Description",
+              "description": "Description of which side of the component is defined as non-prime and which as prime, and which side is top and which side is bottom. Often, the non-prime side faces the exterior and the prime side the interior."
+            }
+          },
+          "minProperties": 1,
+          "required": []
+        },
+        "roughness": {
+          "title": "Definition of the roughness of the prime surfaces and the non-prime surface.Both are defined by `definitionOfSurfacesAndPrimeDirection`.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "surface": {
+                "$ref": "#/$defs/surface",
+                "description": "Definition of the surface for which the roughness is defined in this item."
+              },
+              "root-mean-square": {
+                "$ref": "number.json#/$defs/numberWithUncertainty",
+                "description": "The root-mean-square roughness is calculated according to ISO 4287:2010, Section 4.2.2 as the root-mean-square of the roughness profile."
+              }
+            },
+            "minProperties": 1,
+            "required": ["surface", "root-mean-square"]
+          },
+          "minItems": 1,
+          "description": "Each item of the array defines a surface of the component together with the roughness of this surface."
+        },
         "material": {
           "$ref": "material.json#/$defs/characteristics",
           "description": "If the component is a material, the material-specific characteristics can be named here."
@@ -469,6 +509,12 @@
       "additionalProperties": false,
       "minProperties": 1,
       "required": ["assemblyList"]
+    },
+    "surface": {
+      "type": "string",
+      "enum": ["nonPrime", "prime", "symmetric"],
+      "title": "Surface",
+      "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' can be used."
     }
   },
   "$ref": "#/$defs/component"
