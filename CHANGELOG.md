@@ -17,6 +17,8 @@ and this project adheres to
 - Add section to publication to be able to refer to just one part of a publication [#155](https://github.com/ise621/building-envelope-data/pull/155)
 - Add two examples of methods for daylighting and glare simulations [#179](https://github.com/ise621/building-envelope-data/pull/179)
 - Add version to JSON Schema `$id`s [#188](https://github.com/ise621/building-envelope-data/pull/188)
+- Add examples [#207](https://github.com/ise621/building-envelope-data/pull/207), [#209](https://github.com/ise621/building-envelope-data/pull/209)
+- Add the key `roughness` [205](https://github.com/ise621/building-envelope-data/pull/205)
 -
 -
 -
@@ -37,7 +39,7 @@ and this project adheres to
 - Improve propositions used in GraphQL queries to search for data [#102](https://github.com/ise621/building-envelope-data/pull/102)
 - Further align database GraphQL schema and JSON schema [#103](https://github.com/ise621/building-envelope-data/pull/103)
 - Flatten data HTTP resource trees to make them queryable with one query without having to know the trees depth [#108](https://github.com/ise621/building-envelope-data/pull/108)
-- Only us `additionalItems` for tuple validation and **not** for list validation, use `uniqueItems` for lists of enumerated items, use `const` for one-valued enums, and don't have special this-property-has-no-value values for optional properties [#110](https://github.com/ise621/building-envelope-data/pull/110)
+- Only use `additionalItems` for tuple validation and **not** for list validation, use `uniqueItems` for lists of enumerated items, use `const` for one-valued enums, and don't have special this-property-has-no-value values for optional properties [#110](https://github.com/ise621/building-envelope-data/pull/110)
 - Improve titles and descriptions of identifiers, name `uniqueId` of decentral identifiers `value`, and make identifiers be issued by databases instead of institutions [#107](https://github.com/ise621/building-envelope-data/pull/107)
 - Clean-up the stakeholder JSON schema, in particular, how stakeholders are referenced in specific roles [#111](https://github.com/ise621/building-envelope-data/pull/111)
 - Associate contact information and GnuPG keys with a person's and institution's affiliations [#112](https://github.com/ise621/building-envelope-data/pull/112)
@@ -53,6 +55,8 @@ and this project adheres to
 -
 - Use acronyms to identify standardizers [#154](https://github.com/ise621/building-envelope-data/pull/154)
 - Use JSON Schema Draft 2019-09 and upgrade tooling [#181](https://github.com/ise621/building-envelope-data/pull/181)
+- Improve the structure of geometry.json [#205](https://github.com/ise621/building-envelope-data/pull/205)
+- Improve the structure of calorimetricData.json [#209](https://github.com/ise621/building-envelope-data/pull/209)]
 -
 
 ### Deprecated

@@ -42,10 +42,10 @@
           },
           "data": [
             {
-              "fluxes": [
-                {
-                  "name": ["interior"],
-                  "convection": {
+              "fluxes": {
+                "convection": [
+                  {
+                    "side": "interior",
                     "flux": {
                       "uncertainValue": 15.0,
                       "uncertainty": 4,
@@ -60,10 +60,23 @@
                       "uncertainValue": 8.0
                     }
                   }
-                },
-                {
-                  "name": ["lateral"],
-                  "fluid": {
+                ],
+                "irradiance": [
+                  {
+                    "side": "exterior",
+                    "flux": {
+                      "uncertainValue": 1000,
+                      "uncertainty": 50,
+                      "confidenceInterval": 68.3
+                    },
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    }
+                  }
+                ],
+                "fluid": [
+                  {
                     "flux": {
                       "uncertainValue": 100.0
                     },
@@ -82,22 +95,8 @@
                       "uncertainValue": 4179.6
                     }
                   }
-                },
-                {
-                  "name": ["exterior"],
-                  "irradiance": {
-                    "flux": {
-                      "uncertainValue": 1000,
-                      "uncertainty": 50,
-                      "confidenceInterval": 68.3
-                    },
-                    "direction": {
-                      "polar": 8,
-                      "azimuth": 0
-                    }
-                  }
-                }
-              ],
+                ]
+              },
               "results": [
                 {
                   "area": {
