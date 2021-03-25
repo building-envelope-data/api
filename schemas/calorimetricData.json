@@ -91,7 +91,6 @@
             "minProperties": 1,
             "required": []
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "irradiance": {
@@ -116,7 +115,6 @@
             "minProperties": 1,
             "required": []
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "fluid": {
@@ -127,7 +125,7 @@
             "properties": {
               "flux": {
                 "$ref": "number.json#/$defs/wattWithUncertainty",
-                "description": "This heat flux is caused by the temperature difference between the fluid inlet of the sample and the fluid outlet. It is measured in watts."
+                "description": "This heat flux is caused by the temperature difference between the fluid inlet of the sample and the fluid outlet. It is measured in watts. Positive values mean that heat is delivered to the sample."
               },
               "temperatures": {
                 "type": "object",
@@ -158,7 +156,6 @@
             "minProperties": 1,
             "required": []
           },
-          "additionalItems": false,
           "minItems": 1
         },
         "electricity": {
@@ -183,7 +180,6 @@
             "minProperties": 1,
             "required": []
           },
-          "additionalItems": false,
           "minItems": 1
         }
       },

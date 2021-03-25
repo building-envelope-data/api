@@ -42,67 +42,61 @@
           },
           "data": [
             {
-              "fluxes": [
-                {
-                  "convection": [
-                    {
-                      "name": ["interior"],
-                      "flux": {
-                        "uncertainValue": 15.0,
-                        "uncertainty": 4,
-                        "confidenceInterval": 95.4
-                      },
-                      "temperatures": {
-                        "surrounding": {
-                          "uncertainValue": 298.0
-                        }
-                      },
-                      "coefficient": {
-                        "uncertainValue": 8.0
+              "fluxes": {
+                "convection": [
+                  {
+                    "side": "interior",
+                    "flux": {
+                      "uncertainValue": 15.0,
+                      "uncertainty": 4,
+                      "confidenceInterval": 95.4
+                    },
+                    "temperatures": {
+                      "surrounding": {
+                        "uncertainValue": 298.0
                       }
+                    },
+                    "coefficient": {
+                      "uncertainValue": 8.0
                     }
-                  ]
-                },
-                {
-                  "irradiance": [
-                    {
-                      "name": ["exterior"],
-                      "flux": {
-                        "uncertainValue": 1000,
-                        "uncertainty": 50,
-                        "confidenceInterval": 68.3
+                  }
+                ],
+                "irradiance": [
+                  {
+                    "side": "exterior",
+                    "flux": {
+                      "uncertainValue": 1000,
+                      "uncertainty": 50,
+                      "confidenceInterval": 68.3
+                    },
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    }
+                  }
+                ],
+                "fluid": [
+                  {
+                    "flux": {
+                      "uncertainValue": 100.0
+                    },
+                    "temperatures": {
+                      "inlet": {
+                        "uncertainValue": 300
                       },
-                      "direction": {
-                        "polar": 8,
-                        "azimuth": 0
+                      "outlet": {
+                        "uncertainValue": 320
                       }
+                    },
+                    "massFlow": {
+                      "uncertainValue": 0.02
+                    },
+                    "specificHeatCapacity": {
+                      "uncertainValue": 4179.6
                     }
-                  ]
-                },
-                {
-                  "fluid": [
-                    {
-                      "flux": {
-                        "uncertainValue": 100.0
-                      },
-                      "temperatures": {
-                        "inlet": {
-                          "uncertainValue": 300
-                        },
-                        "outlet": {
-                          "uncertainValue": 320
-                        }
-                      },
-                      "massFlow": {
-                        "uncertainValue": 0.02
-                      },
-                      "specificHeatCapacity": {
-                        "uncertainValue": 4179.6
-                      }
-                    }
-                  ]
-                }
-              ],
+                  }
+                ]
+              },
               "results": [
                 {
                   "area": {
