@@ -17,7 +17,7 @@ and this project adheres to
 - Add section to publication to be able to refer to just one part of a publication [#155](https://github.com/ise621/building-envelope-data/pull/155)
 - Add two examples of methods for daylighting and glare simulations [#179](https://github.com/ise621/building-envelope-data/pull/179)
 - Add version to JSON Schema `$id`s [#188](https://github.com/ise621/building-envelope-data/pull/188)
-- Add examples [#207](https://github.com/ise621/building-envelope-data/pull/207), [#209](https://github.com/ise621/building-envelope-data/pull/209)
+- Add examples [#207](https://github.com/ise621/building-envelope-data/pull/207), [#209](https://github.com/ise621/building-envelope-data/pull/209), [#213](https://github.com/ise621/building-envelope-data/pull/213)
 - Add the key `roughness` [205](https://github.com/ise621/building-envelope-data/pull/205)
 -
 -
@@ -57,6 +57,7 @@ and this project adheres to
 - Use JSON Schema Draft 2019-09 and upgrade tooling [#181](https://github.com/ise621/building-envelope-data/pull/181)
 - Improve the structure of geometry.json [#205](https://github.com/ise621/building-envelope-data/pull/205)
 - Improve the structure of calorimetricData.json [#209](https://github.com/ise621/building-envelope-data/pull/209)]
+- Correct the requirements of `emergenceDirection`[#213](https://github.com/ise621/building-envelope-data/pull/213)
 -
 
 ### Deprecated
