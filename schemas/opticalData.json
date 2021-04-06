@@ -266,7 +266,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["polar", "azimuth"]
+          "required": ["polar"]
         },
         {
           "title": "Diffuse or hemispherical",
