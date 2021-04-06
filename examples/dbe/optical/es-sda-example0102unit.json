@@ -1,0 +1,170 @@
+{
+  "components": [
+    {
+      "id": "2c10b6f9-d30c-4896-b0c1-78bcf3b4895c",
+      "name": "ISO 52022-1 E + Screen Nature 0319 Linen",
+      "description": "This is an example of a unit from the European Solar Shading Database ES-SDA with an internal roller blind and a triple low-e glazing according to ISO 52022-1 E; Product Identification: Screen Nature; Product Classification: NA; Parallel: Parallel; Clarity: Light; URL Product Instructions: http://www.sunscreen-mermet.com/range/screen-nature.html; URL Image: http://www.sunscreen-mermet.com/range/screen-nature/0319-Linen-579b2351ef558.html?iframe=true; Product Colour Code: 0319; Material Description: Glass fabric with fire-proof PVC-free and halogen-free coating; Product Position: Internal; Material: Fibreglass fabric with fire-proof PVC free coating; Colour: Linen 0319; Class for Glare Control: 1; Class for the Use of Light: 3; Class for Visual Contact with the Outside: 0; Class for Night Privacy: 2; NF Certification: NA; Various Certificates: NFP 92 503: M0-M1 / DIN 4102: A2 / BS 476 Pt 6&7 / EN 13501-1: A2;",
+      "roles": {
+        "manufacturer": {
+          "id": "75263c05-d81a-41f0-825b-fc8446532fe9",
+          "name": "Mermet"
+        }
+      },
+      "relations": {
+        "assembledOf": [
+          "1c10b6f9-d30c-4896-b0c1-78bcf3b4895c",
+          "e01e3431-8b04-410e-b98b-d7afc3123f46"
+        ]
+      },
+      "categories": { "componentType": ["unit"], "unit": ["screen"] },
+      "characteristics": {
+        "definitionOfSurfacesAndPrimeDirection": {
+          "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior."
+        }
+      },
+      "optical": [
+        {
+          "id": {
+            "value": "a8435146-5270-46f5-b925-4b00de265823",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "description": "This optical data set contains integral values of the unit with incidence on the exterior `nonPrime` surface.",
+          "data": [
+            {
+              "componentCharacteristics": {
+                "surface": "nonPrime"
+              },
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    },
+                    "wavelengths": { "integral": "solar" }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": {
+                      "uncertainValue": 0.3007
+                    },
+                    "reflectance": {
+                      "uncertainValue": 0.5575
+                    }
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    },
+                    "wavelengths": { "integral": "solar" }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    }
+                  },
+                  "results": {
+                    "transmittance": {
+                      "uncertainValue": 0.3007
+                    }
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    },
+                    "wavelengths": { "integral": "visible" }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": {
+                      "uncertainValue": 0.2991
+                    },
+                    "reflectance": {
+                      "uncertainValue": 0.5935
+                    }
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    },
+                    "wavelengths": { "integral": "visible" }
+                  },
+                  "emergence": {
+                    "direction": "diffuse"
+                  },
+                  "results": {
+                    "transmittance": {
+                      "uncertainValue": 0.2667
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": {
+            "value": "b8435146-5270-46f5-b925-4b00de265823",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "description": "This optical data set contains integral values of the unit with incidence on the interior `prime` surface.",
+          "data": [
+            {
+              "componentCharacteristics": {
+                "surface": "prime"
+              },
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8,
+                      "azimuth": 0
+                    },
+                    "wavelengths": { "integral": "solar" }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "reflectance": {
+                      "uncertainValue": 0.5575
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "calorimetric": [
+        {
+          "data": [
+            {
+              "results": [
+                {
+                  "area": { "category": "centre" },
+                  "uValue": { "uncertainValue": 0.8 },
+                  "gValue": { "uncertainValue": 0.3793 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
