@@ -2,6 +2,14 @@
   "components": [
     {
       "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+      "characteristics": {
+        "geometry": {
+          "dimensions": { "installed": [{ "depth": 0.00023 }] }
+        },
+        "definitionOfSurfacesAndPrimeDirection": {
+          "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior. The prime direction is indicated by a label on the sample. Facing the installed component from the exterior, the prime direction directs to the right-hand side."
+        }
+      },
       "calorimetric": [
         {
           "id": {
@@ -39,14 +47,6 @@
           "createdAt": "2018-09-01T12:00:00+01:00",
           "validity": {
             "from": "2018-08-01T00:00:00+01:00"
-          },
-          "characteristics": {
-            "geometry": {
-              "dimensions": { "installed": [{ "depth": 0.00023 }] }
-            },
-            "definitionOfSurfacesAndPrimeDirection": {
-              "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior. The prime direction is indicated by a label on the sample. Facing the installed component from the exterior, the prime direction directs to the right-hand side."
-            }
           },
           "data": [
             {
