@@ -260,7 +260,7 @@
           "description": "The reference offers several way to define the colour of the component."
         },
         "cutOff": {
-          "$ref": "number.json#/$defs/degree",
+          "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."
         },
         "chemicalElements": {
