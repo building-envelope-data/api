@@ -11,15 +11,13 @@
         {
           "incidence": {
             "direction": {
-              "polar": 8,
-              "azimuth": 0
+              "polar": 8
             },
             "wavelengths": { "integral": "solar" }
           },
           "emergence": {
             "direction": {
-              "polar": 8,
-              "azimuth": 0
+              "polar": 8
             }
           },
           "results": {
@@ -41,15 +39,13 @@
             {
               "incidence": {
                 "direction": {
-                  "polar": 8,
-                  "azimuth": 0
+                  "polar": 8
                 },
                 "wavelengths": { "integral": "solar" }
               },
               "emergence": {
                 "direction": {
-                  "polar": 8,
-                  "azimuth": 0
+                  "polar": 8
                 }
               },
               "results": {
@@ -66,15 +62,13 @@
             {
               "incidence": {
                 "direction": {
-                  "polar": 8,
-                  "azimuth": 0
+                  "polar": 8
                 },
                 "wavelengths": { "integral": "solar" }
               },
               "emergence": {
                 "direction": {
-                  "polar": 8,
-                  "azimuth": 0
+                  "polar": 8
                 }
               },
               "results": {

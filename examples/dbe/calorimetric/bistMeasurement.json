@@ -2,6 +2,14 @@
   "components": [
     {
       "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+      "characteristics": {
+        "geometry": {
+          "dimensions": { "installed": [{ "depth": 0.00023 }] }
+        },
+        "definitionOfSurfacesAndPrimeDirection": {
+          "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior. The prime direction is indicated by a label on the sample. Facing the installed component from the exterior, the prime direction directs to the right-hand side."
+        }
+      },
       "calorimetric": [
         {
           "id": {
@@ -42,10 +50,10 @@
           },
           "data": [
             {
-              "fluxes": [
-                {
-                  "name": ["interior"],
-                  "convection": {
+              "fluxes": {
+                "convection": [
+                  {
+                    "side": "interior",
                     "flux": {
                       "uncertainValue": 15.0,
                       "uncertainty": 4,
@@ -56,10 +64,23 @@
                     },
                     "coefficient": 8.0
                   }
-                },
-                {
-                  "name": ["lateral"],
-                  "fluid": {
+                ],
+                "irradiance": [
+                  {
+                    "side": "exterior",
+                    "flux": {
+                      "uncertainValue": 1000,
+                      "uncertainty": 50,
+                      "confidenceInterval": 68.3
+                    },
+                    "direction": {
+                      "polar": 60,
+                      "azimuth": 90
+                    }
+                  }
+                ],
+                "fluid": [
+                  {
                     "flux": 100,
                     "temperatures": {
                       "inlet": 300,
@@ -68,22 +89,8 @@
                     "massFlow": 0.02,
                     "specificHeatCapacity": 4179.6
                   }
-                },
-                {
-                  "name": ["exterior"],
-                  "irradiance": {
-                    "flux": {
-                      "uncertainValue": 1000,
-                      "uncertainty": 50,
-                      "confidenceInterval": 68.3
-                    },
-                    "direction": {
-                      "polar": 8,
-                      "azimuth": 0
-                    }
-                  }
-                }
-              ],
+                ]
+              },
               "results": [
                 {
                   "area": {

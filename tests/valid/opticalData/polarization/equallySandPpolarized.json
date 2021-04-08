@@ -6,13 +6,18 @@
           "polar": 60
         },
         "wavelengths": { "integral": "solar" },
-        "polarization": "rightHanded"
+        "polarization": {
+          "s": 0.5,
+          "p": 0.5
+        }
       },
       "emergence": {
         "direction": "hemispherical"
       },
       "results": {
-        "transmittance": 0.1
+        "transmittance": {
+          "uncertainValue": 0.1
+        }
       }
     }
   ]

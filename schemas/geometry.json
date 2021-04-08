@@ -5,13 +5,9 @@
   "description": "Describe geoemtry data. There are many highly developed geometry kernels which are well suited to handle complex geometry in their file format. For some cases like the shape of a venetian blind, it may be helpful to be able to exchange the geometry independent of a geometry kernel.",
   "$defs": {
     "geometry": {
-      "title": "Describe the geometry of a component.",
+      "title": "Describe the geometry of a component either by its outer dimensions or as a resource for a Computer Aided Drawing (CAD) software.",
       "type": "object",
       "properties": {
-        "centerOfGravity": {
-          "$ref": "#/$defs/point",
-          "description": "Definition of the center of gravity of the component"
-        },
         "dimensions": {
           "$ref": "#/$defs/dimensions",
           "description": "Height, width and depth of the component."
@@ -19,14 +15,6 @@
         "coordinateSystem": {
           "$ref": "#/$defs/coordinateSystem",
           "description": "Definition of the coordinate systems to which the other coordinates refer to."
-        },
-        "bodies": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/body"
-          },
-          "minItems": 1,
-          "description": "This array lists all the bodies of which the component consists."
         },
         "getHttpsResource": {
           "$ref": "common.json#/$defs/getHttpsResource",

@@ -5,14 +5,15 @@
         "direction": {
           "polar": 60
         },
-        "wavelengths": { "integral": "solar" },
-        "polarization": "rightHanded"
+        "wavelengths": { "integral": "solar" }
       },
       "emergence": {
         "direction": "hemispherical"
       },
       "results": {
-        "transmittance": 0.1
+        "transmittance": {
+          "uncertainValue": 0.1
+        }
       }
     }
   ]

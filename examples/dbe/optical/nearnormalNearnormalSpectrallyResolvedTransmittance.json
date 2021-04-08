@@ -15,15 +15,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 500 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
@@ -33,15 +31,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 1000 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
@@ -51,15 +47,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 1500 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
