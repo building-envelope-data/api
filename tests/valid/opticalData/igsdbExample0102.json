@@ -8,8 +8,7 @@
         {
           "incidence": {
             "direction": {
-              "polar": 8,
-              "azimuth": 0
+              "polar": 8
             },
             "wavelengths": {
               "integral": "solar"
@@ -28,8 +27,7 @@
         {
           "incidence": {
             "direction": {
-              "polar": 8,
-              "azimuth": 0
+              "polar": 8
             },
             "wavelengths": {
               "integral": "visible"
@@ -55,8 +53,7 @@
         {
           "incidence": {
             "direction": {
-              "polar": 8,
-              "azimuth": 0
+              "polar": 8
             },
             "wavelengths": {
               "integral": "solar"
@@ -75,8 +72,7 @@
         {
           "incidence": {
             "direction": {
-              "polar": 8,
-              "azimuth": 0
+              "polar": 8
             },
             "wavelengths": {
               "integral": "visible"
