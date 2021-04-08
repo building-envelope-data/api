@@ -54,9 +54,7 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "reflectance": {
-                      "uncertainValue": 0.1
-                    }
+                    "reflectance": 0.1
                   }
                 }
               ]

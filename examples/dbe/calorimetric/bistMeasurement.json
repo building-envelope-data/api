@@ -52,35 +52,21 @@
                       "confidenceInterval": 95.4
                     },
                     "temperatures": {
-                      "surrounding": {
-                        "uncertainValue": 298.0
-                      }
+                      "surrounding": 298.0
                     },
-                    "coefficient": {
-                      "uncertainValue": 8.0
-                    }
+                    "coefficient": 8.0
                   }
                 },
                 {
                   "name": ["lateral"],
                   "fluid": {
-                    "flux": {
-                      "uncertainValue": 100.0
-                    },
+                    "flux": 100,
                     "temperatures": {
-                      "inlet": {
-                        "uncertainValue": 300
-                      },
-                      "outlet": {
-                        "uncertainValue": 320
-                      }
+                      "inlet": 300,
+                      "outlet": 320
                     },
-                    "massFlow": {
-                      "uncertainValue": 0.02
-                    },
-                    "specificHeatCapacity": {
-                      "uncertainValue": 4179.6
-                    }
+                    "massFlow": 0.02,
+                    "specificHeatCapacity": 4179.6
                   }
                 },
                 {
@@ -105,16 +91,16 @@
                   },
                   "uValue": {
                     "uncertainValue": 1.0,
-                    "uncertainty": 0.1
+                    "uncertainty": 0.1,
+                    "confidenceInterval": 68.3
                   },
                   "gValue": {
                     "uncertainValue": 0.07,
-                    "uncertainty": 0.01
+                    "uncertainty": 0.01,
+                    "confidenceInterval": 68.3
                   },
                   "efficiencies": {
-                    "solarThermal": {
-                      "uncertainValue": 0.5
-                    }
+                    "solarThermal": 0.5
                   }
                 }
               ]

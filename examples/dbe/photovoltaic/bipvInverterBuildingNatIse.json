@@ -12,22 +12,14 @@
           "dimensions": {
             "installed": [
               {
-                "height": {
-                  "uncertainValue": 0.645
-                },
-                "width": {
-                  "uncertainValue": 0.431
-                },
-                "depth": {
-                  "uncertainValue": 0.204
-                }
+                "height": 0.645,
+                "width": 0.431,
+                "depth": 0.204
               }
             ]
           }
         },
-        "weight": {
-          "uncertainValue": 16.8
-        }
+        "weight": 16.8
       },
       "photovoltaic": [
         {
@@ -43,16 +35,12 @@
                     "maximum": 6000
                   },
                   "output": {
-                    "nominal": {
-                      "uncertainValue": 3000
-                    },
+                    "nominal": 3000,
                     "maximum": 3000,
                     "normalized": 0.5
                   },
                   "demand": {
-                    "night": {
-                      "uncertainValue": 1
-                    }
+                    "night": 1
                   }
                 },
                 "voltage": {
@@ -99,12 +87,8 @@
                   "maximum": 323.15
                 },
                 "efficiencies": {
-                  "maximum": {
-                    "uncertainValue": 0.961
-                  },
-                  "European": {
-                    "uncertainValue": 0.954
-                  }
+                  "maximum": 0.961,
+                  "European": 0.954
                 }
               }
             }

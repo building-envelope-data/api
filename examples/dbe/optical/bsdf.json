@@ -27,9 +27,7 @@
                     }
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.1
-                    }
+                    "transmittance": 0.1
                   }
                 },
                 {
@@ -47,9 +45,7 @@
                     }
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.05
-                    }
+                    "transmittance": 0.05
                   }
                 }
               ]

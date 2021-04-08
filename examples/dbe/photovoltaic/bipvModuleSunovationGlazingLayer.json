@@ -29,7 +29,11 @@
                 {
                   "area": { "category": "centre" },
                   "uValue": 1.1,
-                  "gValue": { "uncertainValue": 0.5, "uncertainty": 0.1 }
+                  "gValue": {
+                    "uncertainValue": 0.5,
+                    "uncertainty": 0.1,
+                    "confidenceInterval": 68.3
+                  }
                 }
               ]
             }
@@ -45,9 +49,7 @@
                   {
                     "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
 
-                    "width": {
-                      "uncertainValue": 0.156
-                    },
+                    "width": 0.156,
                     "categories": ["monocrystalline", "silicon"]
                   }
                 ],

@@ -27,9 +27,7 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.63
-                    }
+                    "transmittance": 0.63
                   }
                 }
               ]
@@ -50,9 +48,7 @@
                   "area": {
                     "category": "centre"
                   },
-                  "gValue": {
-                    "uncertainValue": 0.32
-                  }
+                  "gValue": 0.32
                 }
               ]
             }
@@ -77,12 +73,8 @@
                   "area": {
                     "category": "centre"
                   },
-                  "uValue": {
-                    "uncertainValue": 1.1
-                  },
-                  "gValue": {
-                    "uncertainValue": 0.52
-                  }
+                  "uValue": 1.1,
+                  "gValue": 0.52
                 }
               ]
             }

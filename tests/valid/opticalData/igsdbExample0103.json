@@ -14,12 +14,8 @@
           },
           "emergence": { "direction": "hemispherical" },
           "results": {
-            "transmittance": {
-              "uncertainValue": 0
-            },
-            "reflectance": {
-              "uncertainValue": 0.16
-            }
+            "transmittance": 0,
+            "reflectance": 0.16
           }
         }
       ]
@@ -38,12 +34,8 @@
           },
           "emergence": { "direction": "hemispherical" },
           "results": {
-            "transmittance": {
-              "uncertainValue": 0
-            },
-            "reflectance": {
-              "uncertainValue": 0.16
-            }
+            "transmittance": 0,
+            "reflectance": 0.16
           }
         }
       ]
