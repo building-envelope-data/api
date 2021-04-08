@@ -15,8 +15,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "integral": "solar" }
                   },
@@ -64,8 +63,7 @@
                       "uncertainValue": 1000
                     },
                     "direction": {
-                      "polar": 0,
-                      "azimuth": 0
+                      "polar": 0
                     }
                   },
                   {
@@ -74,8 +72,7 @@
                       "uncertainValue": -500
                     },
                     "direction": {
-                      "polar": 0,
-                      "azimuth": 0
+                      "polar": 0
                     }
                   }
                 ],

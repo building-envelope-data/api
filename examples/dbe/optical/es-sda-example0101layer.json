@@ -36,8 +36,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "integral": "infrared" }
                   },
@@ -56,15 +55,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 280 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
@@ -79,8 +76,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 280 }
                   },
@@ -99,15 +95,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 285 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
@@ -122,8 +116,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 285 }
                   },
@@ -158,8 +151,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "integral": "infrared" }
                   },
@@ -178,15 +170,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 280 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
@@ -201,8 +191,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 280 }
                   },
@@ -221,15 +210,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 285 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
@@ -244,8 +231,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 285 }
                   },

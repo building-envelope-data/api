@@ -40,6 +40,14 @@
           "validity": {
             "from": "2018-08-01T00:00:00+01:00"
           },
+          "characteristics": {
+            "geometry": {
+              "dimensions": { "installed": [{ "depth": 0.00023 }] }
+            },
+            "definitionOfSurfacesAndPrimeDirection": {
+              "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior. The prime direction is indicated by a label on the sample. Facing the installed component from the exterior, the prime direction directs to the right-hand side."
+            }
+          },
           "data": [
             {
               "fluxes": {
@@ -70,8 +78,8 @@
                       "confidenceInterval": 68.3
                     },
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 60,
+                      "azimuth": 90
                     }
                   }
                 ],

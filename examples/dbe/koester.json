@@ -16,8 +16,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": {
                       "integral": "visible"

@@ -3,8 +3,7 @@
     {
       "incidence": {
         "direction": {
-          "polar": 60,
-          "azimuth": 0
+          "polar": 60
         },
         "wavelengths": { "integral": "solar" }
       },

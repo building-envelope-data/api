@@ -51,15 +51,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 430 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
@@ -71,15 +69,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 540 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
@@ -91,15 +87,13 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 570 }
                   },
                   "emergence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     }
                   },
                   "results": {
@@ -111,8 +105,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 430 }
                   },
@@ -128,8 +121,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 540 }
                   },
@@ -145,8 +137,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8,
-                      "azimuth": 0
+                      "polar": 8
                     },
                     "wavelengths": { "wavelength": 570 }
                   },

@@ -3,8 +3,7 @@
     {
       "incidence": {
         "direction": {
-          "polar": 8,
-          "azimuth": 0
+          "polar": 8
         },
         "wavelengths": {
           "wavelength": 500,
@@ -16,8 +15,7 @@
       },
       "emergence": {
         "direction": {
-          "polar": 8,
-          "azimuth": 0
+          "polar": 8
         }
       },
       "results": {
