@@ -17,11 +17,13 @@
                     "smallest": 0.0038,
                     "intermediate": {
                       "uncertainValue": 1.08,
-                      "uncertainty": 0.01
+                      "uncertainty": 0.01,
+                      "confidenceInterval": 68.3
                     },
                     "largest": {
                       "uncertainValue": 1.09,
-                      "uncertainty": 0.01
+                      "uncertainty": 0.01,
+                      "confidenceInterval": 68.3
                     }
                   }
                 }
@@ -31,7 +33,7 @@
               "id": "02f5554f-e909-405e-9b7b-2f08ca201f63",
               "geometry": {
                 "dimensions": {
-                  "independent": { "smallest": { "uncertainValue": 0.002 } }
+                  "independent": { "smallest": 0.002 }
                 }
               }
             },
@@ -39,7 +41,7 @@
               "id": "03f5554f-e909-405e-9b7b-2f08ca201f63",
               "geometry": {
                 "dimensions": {
-                  "independent": { "smallest": { "uncertainValue": 0.0004 } }
+                  "independent": { "smallest": 0.0004 }
                 }
               }
             },
@@ -47,7 +49,7 @@
               "id": "04f5554f-e909-405e-9b7b-2f08ca201f63",
               "geometry": {
                 "dimensions": {
-                  "independent": { "smallest": { "uncertainValue": 0.002 } }
+                  "independent": { "smallest": 0.002 }
                 }
               }
             },
@@ -55,15 +57,13 @@
               "id": "05f5554f-e909-405e-9b7b-2f08ca201f63",
               "geometry": {
                 "dimensions": {
-                  "independent": { "smallest": { "uncertainValue": 0.002 } }
+                  "independent": { "smallest": 0.002 }
                 }
               }
             }
           ]
         },
-        "weight": {
-          "uncertainValue": 29.7
-        }
+        "weight": 29.7
       },
       "photovoltaic": [
         {
@@ -77,30 +77,20 @@
                       "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
                     },
                     "power": {
-                      "nominal": {
-                        "uncertainValue": 3.19
-                      },
-                      "effective": {
-                        "uncertainValue": 3.047
-                      }
+                      "nominal": 3.19,
+                      "effective": 3.047
                     },
-                    "width": {
-                      "uncertainValue": 0.125
-                    },
+                    "width": 0.125,
                     "categories": ["monocrystalline", "silicon"]
                   }
                 ],
                 "cellPattern": {
                   "rectangular": {
                     "longitudinal": {
-                      "cellNumber": {
-                        "uncertainValue": 8
-                      }
+                      "cellNumber": 8
                     },
                     "transversal": {
-                      "cellNumber": {
-                        "uncertainValue": 8
-                      }
+                      "cellNumber": 8
                     }
                   }
                 },
@@ -161,16 +151,10 @@
                   "cableTypes": [
                     {
                       "id": "055f2dc8-2ab0-48c3-8870-faffa1f1edd2",
-                      "crossSection": {
-                        "uncertainValue": 4
-                      },
+                      "crossSection": 4,
                       "length": {
-                        "positive": {
-                          "uncertainValue": 1
-                        },
-                        "negative": {
-                          "uncertainValue": 1
-                        }
+                        "positive": 1,
+                        "negative": 1
                       }
                     }
                   ],
@@ -223,22 +207,14 @@
                     ]
                   },
                   "voltage": {
-                    "nominal": {
-                      "uncertainValue": 36.1
-                    },
-                    "openCircuit": {
-                      "uncertainValue": 43.26
-                    },
+                    "nominal": 36.1,
+                    "openCircuit": 43.26,
                     "temperatureCoefficient": -0.26,
                     "maximumSystem": 1000
                   },
                   "current": {
-                    "nominal": {
-                      "uncertainValue": 5.4
-                    },
-                    "shortCircuit": {
-                      "uncertainValue": 5.86
-                    },
+                    "nominal": 5.4,
+                    "shortCircuit": 5.86,
                     "temperatureCoefficient": 0.06
                   },
                   "fillFactor": 0.769,

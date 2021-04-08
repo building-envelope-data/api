@@ -296,11 +296,11 @@
       "title": "Angles which are helpful to characterize building envelopes.",
       "$defs": {
         "tilt": {
-          "$ref": "number.json#/$defs/degree",
+          "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
         },
         "maximumClosing": {
-          "$ref": "number.json#/$defs/degree",
+          "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
         }
       }

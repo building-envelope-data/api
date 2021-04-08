@@ -26,23 +26,17 @@
                   {
                     "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
 
-                    "width": {
-                      "uncertainValue": 0.156
-                    },
+                    "width": 0.156,
                     "categories": ["monocrystalline", "silicon"]
                   }
                 ],
                 "cellPattern": {
                   "rectangular": {
                     "longitudinal": {
-                      "cellNumber": {
-                        "uncertainValue": 10
-                      }
+                      "cellNumber": 10
                     },
                     "transversal": {
-                      "cellNumber": {
-                        "uncertainValue": 6
-                      }
+                      "cellNumber": 6
                     }
                   }
                 },
@@ -94,9 +88,7 @@
                 },
                 "moduleProperties": {
                   "power": {
-                    "nominal": {
-                      "uncertainValue": 260
-                    },
+                    "nominal": 260,
                     "temperatureCoefficient": -0.32,
                     "guarantees": [
                       {
