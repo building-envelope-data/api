@@ -23,9 +23,7 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "reflectance": {
-                      "uncertainValue": 0.5
-                    }
+                    "reflectance": 0.5
                   }
                 }
               ]
@@ -45,32 +43,24 @@
                 "convection": [
                   {
                     "side": "exterior",
-                    "flux": {
-                      "uncertainValue": 0
-                    }
+                    "flux": 0
                   },
                   {
                     "side": "interior",
-                    "flux": {
-                      "uncertainValue": 0
-                    }
+                    "flux": 0
                   }
                 ],
                 "irradiance": [
                   {
                     "side": "exterior",
-                    "flux": {
-                      "uncertainValue": 1000
-                    },
+                    "flux": 1000,
                     "direction": {
                       "polar": 0
                     }
                   },
                   {
                     "side": "interior",
-                    "flux": {
-                      "uncertainValue": -500
-                    },
+                    "flux": -500,
                     "direction": {
                       "polar": 0
                     }
@@ -78,14 +68,12 @@
                 ],
                 "fluid": [
                   {
-                    "flux": {
-                      "uncertainValue": 100
-                    }
+                    "flux": 100
                   }
                 ],
                 "electricity": [
                   {
-                    "flux": { "uncertainValue": 100 }
+                    "flux": 100
                   }
                 ]
               },
@@ -94,19 +82,11 @@
                   "area": {
                     "category": "centre"
                   },
-                  "uValue": {
-                    "uncertainValue": 1.0
-                  },
-                  "gValue": {
-                    "uncertainValue": 0.5
-                  },
+                  "uValue": 1.0,
+                  "gValue": 0.5,
                   "efficiencies": {
-                    "photovoltaic": {
-                      "uncertainValue": 0.1
-                    },
-                    "solarThermal": {
-                      "uncertainValue": 0.1
-                    }
+                    "photovoltaic": 0.1,
+                    "solarThermal": 0.1
                   }
                 }
               ]
@@ -123,23 +103,17 @@
                   {
                     "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
 
-                    "width": {
-                      "uncertainValue": 0.156
-                    },
+                    "width": 0.156,
                     "categories": ["monocrystalline", "silicon"]
                   }
                 ],
                 "cellPattern": {
                   "rectangular": {
                     "longitudinal": {
-                      "cellNumber": {
-                        "uncertainValue": 5
-                      }
+                      "cellNumber": 5
                     },
                     "transversal": {
-                      "cellNumber": {
-                        "uncertainValue": 3
-                      }
+                      "cellNumber": 3
                     }
                   }
                 },
@@ -188,9 +162,7 @@
                 },
                 "moduleProperties": {
                   "power": {
-                    "nominal": {
-                      "uncertainValue": 100
-                    },
+                    "nominal": 100,
                     "temperatureCoefficient": -0.32,
                     "guarantees": [
                       {

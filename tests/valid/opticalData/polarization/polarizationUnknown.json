@@ -11,9 +11,7 @@
         "direction": "hemispherical"
       },
       "results": {
-        "transmittance": {
-          "uncertainValue": 0.1
-        }
+        "transmittance": 0.1
       }
     }
   ]

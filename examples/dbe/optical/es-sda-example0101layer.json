@@ -44,12 +44,8 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.04
-                    },
-                    "absorptanceEmittance": {
-                      "uncertainValue": 0.89
-                    }
+                    "transmittance": 0.04,
+                    "absorptanceEmittance": 0.89
                   }
                 },
                 {
@@ -65,12 +61,8 @@
                     }
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.032
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.0
-                    }
+                    "transmittance": 0.032,
+                    "reflectance": 0.0
                   }
                 },
                 {
@@ -84,12 +76,8 @@
                     "direction": "diffuse"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.008
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.074
-                    }
+                    "transmittance": 0.008,
+                    "reflectance": 0.074
                   }
                 },
                 {
@@ -105,12 +93,8 @@
                     }
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.032
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.0
-                    }
+                    "transmittance": 0.032,
+                    "reflectance": 0.0
                   }
                 },
                 {
@@ -124,12 +108,8 @@
                     "direction": "diffuse"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.009
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.078
-                    }
+                    "transmittance": 0.009,
+                    "reflectance": 0.078
                   }
                 }
               ]
@@ -159,12 +139,8 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.04
-                    },
-                    "absorptanceEmittance": {
-                      "uncertainValue": 0.89
-                    }
+                    "transmittance": 0.04,
+                    "absorptanceEmittance": 0.89
                   }
                 },
                 {
@@ -180,12 +156,8 @@
                     }
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.032
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.0
-                    }
+                    "transmittance": 0.032,
+                    "reflectance": 0.0
                   }
                 },
                 {
@@ -199,12 +171,8 @@
                     "direction": "diffuse"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.008
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.074
-                    }
+                    "transmittance": 0.008,
+                    "reflectance": 0.074
                   }
                 },
                 {
@@ -220,12 +188,8 @@
                     }
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.032
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.0
-                    }
+                    "transmittance": 0.032,
+                    "reflectance": 0.0
                   }
                 },
                 {
@@ -239,12 +203,8 @@
                     "direction": "diffuse"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.009
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.078
-                    }
+                    "transmittance": 0.009,
+                    "reflectance": 0.078
                   }
                 }
               ]
