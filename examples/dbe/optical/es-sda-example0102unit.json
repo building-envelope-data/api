@@ -46,12 +46,8 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.3007
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.5575
-                    }
+                    "transmittance": 0.3007,
+                    "reflectance": 0.5575
                   }
                 },
                 {
@@ -67,9 +63,7 @@
                     }
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.3007
-                    }
+                    "transmittance": 0.3007
                   }
                 },
                 {
@@ -83,12 +77,8 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.2991
-                    },
-                    "reflectance": {
-                      "uncertainValue": 0.5935
-                    }
+                    "transmittance": 0.2991,
+                    "reflectance": 0.5935
                   }
                 },
                 {
@@ -102,9 +92,7 @@
                     "direction": "diffuse"
                   },
                   "results": {
-                    "transmittance": {
-                      "uncertainValue": 0.2667
-                    }
+                    "transmittance": 0.2667
                   }
                 }
               ]
@@ -134,9 +122,7 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "reflectance": {
-                      "uncertainValue": 0.5575
-                    }
+                    "reflectance": 0.5575
                   }
                 }
               ]
@@ -151,8 +137,8 @@
               "results": [
                 {
                   "area": { "category": "centre" },
-                  "uValue": { "uncertainValue": 0.8 },
-                  "gValue": { "uncertainValue": 0.3793 }
+                  "uValue": 0.8,
+                  "gValue": 0.3793
                 }
               ]
             }
