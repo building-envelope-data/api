@@ -55,6 +55,7 @@ and this project adheres to
 -
 - Use acronyms to identify standardizers [#154](https://github.com/ise621/building-envelope-data/pull/154)
 - Use JSON Schema Draft 2019-09 and upgrade tooling [#181](https://github.com/ise621/building-envelope-data/pull/181)
+- Restructure `numbersWithUncertainty` to make the data less verbose[#195](https://github.com/ise621/building-envelope-data/pull/195),[#216](https://github.com/ise621/building-envelope-data/pull/216)
 - Improve the structure of geometry.json [#205](https://github.com/ise621/building-envelope-data/pull/205)
 - Improve the structure of calorimetricData.json [#209](https://github.com/ise621/building-envelope-data/pull/209)]
 - Correct the requirements of `emergenceDirection`[#213](https://github.com/ise621/building-envelope-data/pull/213)
@@ -87,6 +88,7 @@ and this project adheres to
 
 - Remove intermediate representation of optical data [#152](https://github.com/ise621/building-envelope-data/pull/152)
 - Remove custom directions from optical data [#153](https://github.com/ise621/building-envelope-data/pull/153)
+- Remove `validity` everywhere except of `method` which can depend for example on a standard [#219](https://github.com/ise621/building-envelope-data/pull/219)
 -
 -
 -
