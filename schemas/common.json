@@ -267,10 +267,6 @@
         "createdAt": {
           "$ref": "common.json#/$defs/timestamp",
           "description": "When the approval was created"
-        },
-        "validity": {
-          "$ref": "common.json#/$defs/openEndedDateTimeRange",
-          "description": "For which timespan the approval is valid"
         }
       },
       "additionalProperties": false,

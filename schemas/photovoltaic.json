@@ -47,10 +47,6 @@
           "$ref": "method.json#/$defs/appliedMethod",
           "description": "Method that was applied to create this data set."
         },
-        "validity": {
-          "title": "Validity date and time range",
-          "$ref": "common.json#/$defs/openEndedDateTimeRange"
-        },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",
           "description": "Approvals by stakeholders in the form of GnuPG signatures."
