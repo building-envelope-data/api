@@ -52,7 +52,7 @@
         },
         "validity": {
           "$ref": "common.json#/$defs/openEndedDateTimeRange",
-          "description": "Here you can define since when the method is valid and until when. This can be helpful for example when a regulation or standard changes."
+          "description": "Here you can define since when the method is valid and until when. This can be helpful for example when the method depends on a regulation or standard which changes."
         },
         "available": {
           "$ref": "common.json#/$defs/available",
@@ -195,10 +195,6 @@
         "createdAt": {
           "$ref": "common.json#/$defs/timestamp",
           "description": "When the database was created"
-        },
-        "validity": {
-          "$ref": "common.json#/$defs/openEndedDateTimeRange",
-          "description": "For which timespan the data of the database is valid"
         },
         "available": {
           "$ref": "common.json#/$defs/available",
