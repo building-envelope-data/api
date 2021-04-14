@@ -47,22 +47,22 @@
           "createdAt": "2018-09-01T12:00:00+01:00",
           "data": [
             {
+              "characteristics": {
+                "conditions": "stationary",
+                "primeSurface": "interior"
+              },
               "fluxes": {
-                "convection": [
+                "mixed": [
                   {
                     "side": "interior",
                     "flux": {
                       "uncertainValue": 15.0,
                       "uncertainty": 4,
                       "confidenceInterval": 95.4
-                    },
-                    "temperatures": {
-                      "surrounding": 298.0
-                    },
-                    "coefficient": 8.0
+                    }
                   }
                 ],
-                "irradiance": [
+                "shortwaveRadiation": [
                   {
                     "side": "exterior",
                     "flux": {

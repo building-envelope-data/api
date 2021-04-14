@@ -59,6 +59,7 @@ and this project adheres to
 - Improve the structure of geometry.json [#205](https://github.com/ise621/building-envelope-data/pull/205)
 - Improve the structure of calorimetricData.json [#209](https://github.com/ise621/building-envelope-data/pull/209)]
 - Correct the requirements of `emergenceDirection`[#213](https://github.com/ise621/building-envelope-data/pull/213)
+- Offer detailed definition of calorimetric fluxes [#222](https://github.com/ise621/building-envelope-data/pull/222)
 -
 
 ### Deprecated

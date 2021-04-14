@@ -1,0 +1,84 @@
+{
+  "fluxes": {
+    "conduction": [
+      {
+        "side": "lateral",
+        "flux": 1,
+        "temperatures": {
+          "surrounding": 301,
+          "sample": 300
+        },
+        "coefficient": 1
+      }
+    ],
+    "convection": [
+      {
+        "side": "exterior",
+        "flux": 10,
+        "temperatures": {
+          "surrounding": 301,
+          "sample": 300
+        },
+        "coefficient": 10
+      }
+    ],
+    "longwaveRadiation": [
+      {
+        "side": "exterior",
+        "flux": 1,
+        "temperatures": {
+          "surrounding": 301,
+          "sample": 300
+        }
+      }
+    ],
+    "conductionConvectionLongwaveRadiation": [
+      {
+        "side": "exterior",
+        "flux": 10,
+        "temperatures": {
+          "surrounding": 301,
+          "sample": 300
+        },
+        "coefficient": 10
+      }
+    ],
+    "mixed": [
+      {
+        "side": "interior",
+        "flux": 10
+      }
+    ],
+    "shortwaveRadiation": [
+      {
+        "side": "exterior",
+        "flux": 1000,
+        "direction": {
+          "polar": 60,
+          "azimuth": 90
+        }
+      }
+    ],
+    "fluid": [
+      {
+        "flux": 100,
+        "temperatures": {
+          "inlet": 300,
+          "outlet": 320
+        },
+        "massFlow": 0.02,
+        "specificHeatCapacity": 4179.6
+      }
+    ],
+    "electricity": [
+      {
+        "flux": 10,
+        "currentVoltage": [
+          { "I": 0, "V": 1 },
+          { "I": 0.5, "V": 0.5 },
+          { "I": 1, "V": 0 }
+        ]
+      }
+    ]
+  }
+}
