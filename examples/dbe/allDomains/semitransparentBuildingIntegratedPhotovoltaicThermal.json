@@ -40,7 +40,7 @@
           "data": [
             {
               "fluxes": {
-                "convection": [
+                "mixed": [
                   {
                     "side": "exterior",
                     "flux": 0
@@ -50,7 +50,7 @@
                     "flux": 0
                   }
                 ],
-                "irradiance": [
+                "shortwaveRadiation": [
                   {
                     "side": "exterior",
                     "flux": 1000,
