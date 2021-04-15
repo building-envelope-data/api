@@ -18,7 +18,8 @@ and this project adheres to
 - Add two examples of methods for daylighting and glare simulations [#179](https://github.com/ise621/building-envelope-data/pull/179)
 - Add version to JSON Schema `$id`s [#188](https://github.com/ise621/building-envelope-data/pull/188)
 - Add examples [#207](https://github.com/ise621/building-envelope-data/pull/207), [#209](https://github.com/ise621/building-envelope-data/pull/209), [#213](https://github.com/ise621/building-envelope-data/pull/213)
-- Add the key `roughness` [205](https://github.com/ise621/building-envelope-data/pull/205)
+- Add the key `roughness` [#205](https://github.com/ise621/building-envelope-data/pull/205)
+- Add the position of coatings to components [#223](https://github.com/ise621/building-envelope-data/pull/223)
 -
 -
 -
@@ -60,6 +61,7 @@ and this project adheres to
 - Improve the structure of calorimetricData.json [#209](https://github.com/ise621/building-envelope-data/pull/209)]
 - Correct the requirements of `emergenceDirection`[#213](https://github.com/ise621/building-envelope-data/pull/213)
 - Offer detailed definition of calorimetric fluxes [#222](https://github.com/ise621/building-envelope-data/pull/222)
+- Add categories from EN 12216 to the categories of `layer` and `unit` [#223](https://github.com/ise621/building-envelope-data/pull/223)
 -
 
 ### Deprecated

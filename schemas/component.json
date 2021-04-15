@@ -412,6 +412,24 @@
           "minProperties": 1,
           "required": []
         },
+        "positionOfCoatings": {
+          "title": "The positions are counted from the nonPrime surface to the prime surface of the layer or unit. Each interface between solid and gas is counted as position. `0` represents a position withouth coating and `1` represents a position with coating. For example, a double glazing with one low emissivity coating can be represented by [ 0, 0, 1, 0].",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "number",
+                "const": 0,
+                "description": "`0` represents a position without coating."
+              },
+              {
+                "type": "number",
+                "const": 1,
+                "description": "`1` represents a position with coating."
+              }
+            ]
+          }
+        },
         "roughness": {
           "title": "Definition of the roughness of the prime surfaces and the non-prime surface.Both are defined by `definitionOfSurfacesAndPrimeDirection`.",
           "type": "array",
