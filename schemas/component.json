@@ -418,12 +418,12 @@
           "items": {
             "oneOf": [
               {
-                "type": "number",
+                "type": "integer",
                 "const": 0,
                 "description": "`0` represents a position without coating."
               },
               {
-                "type": "number",
+                "type": "integer",
                 "const": 1,
                 "description": "`1` represents a position with coating."
               }
