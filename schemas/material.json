@@ -166,16 +166,28 @@
     "category": {
       "type": "string",
       "enum": [
+        "acrylic",
         "baseMaterial",
         "coating",
         "fabric",
         "film",
+        "float",
         "frit",
+        "glass",
+        "heatSoaked",
+        "heatStrengthened",
+        "laminated",
         "lath",
+        "lowIron",
         "monolithic",
         "nonWoven",
         "PVB",
+        "safety",
+        "sheet",
         "slat",
+        "thermallyToughened",
+        "tinted",
+        "walkOn",
         "weave"
       ],
       "description": "Components of the category material can have the subcategories of this enumeration which further specifies the material."
