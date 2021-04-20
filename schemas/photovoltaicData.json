@@ -546,6 +546,14 @@
               "minProperties": 1,
               "required": []
             },
+            "currentVoltage": {
+              "type": "array",
+              "items": {
+                "$ref": "common.json#/$defs/currentVoltage",
+                "description": "The current-voltage characteristic is important to calculate the photovoltaic performance for conditions other than the standard test conditions."
+              },
+              "minItems": 1
+            },
             "fillFactor": {
               "$ref": "number.json#/$defs/numberBetweenZeroAndOne",
               "description": "The fill factor is a measure of quality of a solar cell. It is the power at the maximum powerpoint divided by the open circuit voltage and the short circuit current."
