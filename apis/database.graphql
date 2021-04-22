@@ -1592,7 +1592,7 @@ the field `nonRootVertices`.
 
 Note that all resources describe the same data only in different formats.
 """
-interface GetHttpsResourceTree {
+type GetHttpsResourceTree {
   """
   Root resource vertex.
   """
