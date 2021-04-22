@@ -17,10 +17,10 @@ and this project adheres to
 - Add section to publication to be able to refer to just one part of a publication [#155](https://github.com/ise621/building-envelope-data/pull/155)
 - Add two examples of methods for daylighting and glare simulations [#179](https://github.com/ise621/building-envelope-data/pull/179)
 - Add version to JSON Schema `$id`s [#188](https://github.com/ise621/building-envelope-data/pull/188)
-- Add examples [#207](https://github.com/ise621/building-envelope-data/pull/207), [#209](https://github.com/ise621/building-envelope-data/pull/209), [#213](https://github.com/ise621/building-envelope-data/pull/213)
+- Add examples photovoltaicWithOptical [#207](https://github.com/ise621/building-envelope-data/pull/207), semitransparentBuildingIntegratedPhotovoltaicThermal [#209](https://github.com/ise621/building-envelope-data/pull/209), from ES-SDA [#213](https://github.com/ise621/building-envelope-data/pull/213) and dataFormatPdf [#226](https://github.com/ise621/building-envelope-data/pull/226)
 - Add the key `roughness` [#205](https://github.com/ise621/building-envelope-data/pull/205)
 - Add the position of coatings to components [#223](https://github.com/ise621/building-envelope-data/pull/223)
--
+- Add `currentVoltage` characteristics for modules [#224](https://github.com/ise621/building-envelope-data/pull/224)
 -
 -
 -
@@ -61,7 +61,7 @@ and this project adheres to
 - Improve the structure of calorimetricData.json [#209](https://github.com/ise621/building-envelope-data/pull/209)]
 - Correct the requirements of `emergenceDirection`[#213](https://github.com/ise621/building-envelope-data/pull/213)
 - Offer detailed definition of calorimetric fluxes [#222](https://github.com/ise621/building-envelope-data/pull/222)
-- Add categories from EN 12216 to the categories of `layer` and `unit` [#223](https://github.com/ise621/building-envelope-data/pull/223)
+- Add categories to `material`, `layer` and `unit` from EN 12216 [#223](https://github.com/ise621/building-envelope-data/pull/223) and from EN 13024-1, EN 14179, EN 1863, DIN 18008-5 [#224](https://github.com/ise621/building-envelope-data/pull/224)
 -
 
 ### Deprecated
