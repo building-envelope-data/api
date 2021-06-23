@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "engines": {
-    "node": "10.21.x"
+    "node": "14.17.x"
   },
   "directories": {
     "example": "examples",
@@ -23,15 +23,15 @@
   },
   "homepage": "https://github.com/ise621/building-envelope-data#readme",
   "devDependencies": {
-    "@graphql-inspector/cli": "^2.3.0",
-    "@graphql-inspector/config": "^2.3.0",
-    "ajv-cli": "^4.0.1",
-    "ajv-formats": "^1.5.1",
+    "@graphql-inspector/cli": "^2.6.0",
+    "@graphql-inspector/config": "^2.6.0",
+    "ajv-cli": "^5.0.0",
+    "ajv-formats": "^2.1.0",
     "format-graphql": "^1.4.0",
     "graphql": "^15.5.0",
-    "graphql-schema-linter": "^2.0.1",
-    "prettier": "^2.2.1",
-    "yargs": "^16.1.0"
+    "graphql-schema-linter": "^2.0.0",
+    "prettier": "^2.3.0",
+    "yargs": "^17.0.0"
   },
   "dependencies": {}
 }

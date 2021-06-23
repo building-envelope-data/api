@@ -1,5 +1,6 @@
-# Use Debian as base image, see https://www.debian.org
-FROM debian:10.5-slim
+# Use Node on Debian as base image, see
+# https://hub.docker.com/_/node
+FROM node:14.17.1-buster-slim
 
 ##################
 # As user `root` #
@@ -19,6 +20,7 @@ ARG GID=1000
 # which are used to run commands in later for security reasons,
 # see https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
 RUN \
+  userdel --remove node && \
   addgroup --system --gid ${GID} us && \
   adduser --system --uid ${UID} --ingroup us me
 
@@ -62,8 +64,8 @@ RUN \
     jq \
     make \
     npm && \
-  # Upgrade Node package manager to version 6.14.7
-  npm install --global npm@6.14.7 && \
+  # Upgrade Node package manager to version 7.18.1
+  npm install --global npm@7.18.1 && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
