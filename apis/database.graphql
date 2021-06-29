@@ -605,7 +605,7 @@ input DataPropositionInput {
 See `DataPropositionInput`.
 """
 input OpticalDataPropositionInput {
-  componentId: Uuid
+  componentId: UuidPropositionInput
   and: [OpticalDataPropositionInput!]
   nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
   not: OpticalDataPropositionInput
@@ -616,7 +616,7 @@ input OpticalDataPropositionInput {
 See `DataPropositionInput`.
 """
 input CalorimetricDataPropositionInput {
-  componentId: Uuid
+  componentId: UuidPropositionInput
   and: [CalorimetricDataPropositionInput!]
   gValue: FloatPropositionInput
   not: CalorimetricDataPropositionInput
@@ -628,7 +628,7 @@ input CalorimetricDataPropositionInput {
 See `DataPropositionInput`.
 """
 input HygrothermalDataPropositionInput {
-  componentId: Uuid
+  componentId: UuidPropositionInput
   and: [HygrothermalDataPropositionInput!]
   not: HygrothermalDataPropositionInput
   or: [HygrothermalDataPropositionInput!]
@@ -638,7 +638,7 @@ input HygrothermalDataPropositionInput {
 See `DataPropositionInput`.
 """
 input PhotovoltaicDataPropositionInput {
-  componentId: Uuid
+  componentId: UuidPropositionInput
   and: [PhotovoltaicDataPropositionInput!]
   not: PhotovoltaicDataPropositionInput
   or: [PhotovoltaicDataPropositionInput!]
