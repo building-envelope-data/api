@@ -257,7 +257,7 @@
         },
         "colour": {
           "$ref": "common.json#/$defs/colour",
-          "description": "The reference offers several way to define the colour of the component."
+          "description": "The reference offers several ways to define the colour of the component."
         },
         "cutOff": {
           "$ref": "number.json#/$defs/degreeWithUncertainty",

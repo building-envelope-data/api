@@ -264,7 +264,7 @@
               },
               "colour": {
                 "$ref": "common.json#/$defs/colour",
-                "description": "The reference offers several way to define the colour of the connection."
+                "description": "The reference offers several ways to define the colour of the connection."
               }
             },
             "additionalProperties": false,
@@ -412,7 +412,7 @@
             },
             "colour": {
               "$ref": "common.json#/$defs/colour",
-              "description": "The reference offers several way to define the colour of the component."
+              "description": "The reference offers several ways to define the colour of the component."
             }
           },
           "additionalProperties": false,
@@ -749,7 +749,7 @@
             },
             "colour": {
               "$ref": "common.json#/$defs/colour",
-              "description": "The reference offers several way to define the colour of the component."
+              "description": "The reference offers several ways to define the colour of the component."
             },
             "uValue": {
               "$ref": "calorimetricData.json#/$defs/uValue",
@@ -1161,7 +1161,7 @@
               },
               "colour": {
                 "$ref": "common.json#/$defs/colour",
-                "description": "The reference offers several way to define the colour of the connection."
+                "description": "The reference offers several ways to define the colour of the connection."
               }
             },
             "additionalProperties": false,
