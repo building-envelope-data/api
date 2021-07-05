@@ -1,4 +1,4 @@
-# Building Envelopes Data
+# Building Envelope Data
 
 This specification of an Application Programming Interface (API) is designed to facilitate the exchange of data about building envelopes. Several [databases](https://github.com/ise621/database) use the same API specification to offer data about components. A [metadatabase](https://github.com/ise621/metabase) manages for example the identifiers of components and institutions which must be the same for all databases.
 
