@@ -440,7 +440,7 @@
               "$ref": "number.json#/$defs/numberWithUncertainty"
             }
           },
-          "description": "The three parameters L*, a* and b* from CIE define the colour as well as the brightness."
+          "description": "The three parameters L*, a* and b* defined by the International Commission on Illumination (CIE) can be used to define the colour which is reflected by a component. L* defines the lightness, a* the colour between green and red and b* the colour between blue and yellow."
         }
       },
       "additionalProperties": false,
