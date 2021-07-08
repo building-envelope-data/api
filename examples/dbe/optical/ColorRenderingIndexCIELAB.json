@@ -4,7 +4,10 @@
       "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
       "description": "Example of a Colour Rendering Index (CRI) for the transmitted radiation and the colour of the reflected radiation defined by CIELAB parameters.",
       "characteristics": {
-        "colour": { "CRI": 90, "CIELAB": { "L*": 20, "a*": 3, "b*": -2 } }
+        "colour": {
+          "ColorRenderingIndex": 90,
+          "CIELAB": { "L*": 20, "a*": 3, "b*": -2 }
+        }
       }
     }
   ]
