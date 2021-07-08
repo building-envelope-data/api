@@ -423,7 +423,7 @@
           "type": "string",
           "description": "The name of the colour in common language"
         },
-        "CRI": {
+        "ColorRenderingIndex": {
           "$ref": "number.json#/$defs/numberWithUncertainty",
           "description": "The Colour Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
         },
