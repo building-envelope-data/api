@@ -231,11 +231,7 @@ type Query {
   """
   See `Query#data`.
   """
-  opticalData(
-    id: Uuid!
-    timestamp: DateTime
-    locale: Locale
-  ): OpticalData!
+  opticalData(id: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
 
   """
   See `Query#data`.
@@ -584,6 +580,32 @@ input DataPropositionInput {
   nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
 
   """
+  True for data that has a nearnormal hemispherical visible reflectance value
+  for which the proposition `nearnormalHemisphericalVisibleReflectance` is
+  true, otherwise false.
+  """
+  nearnormalHemisphericalVisibleReflectance: FloatPropositionInput
+
+  """
+  True for data that has a nearnormal hemispherical solar transmittance value
+  for which the proposition `nearnormalHemisphericalSolarTransmittance` is
+  true, otherwise false.
+  """
+  nearnormalHemisphericalSolarTransmittances: [Float!]!
+
+  """
+  True for data that has a nearnormal hemispherical solar reflectance value
+  for which the proposition `nearnormalHemisphericalSolarReflectance` is
+  true, otherwise false.
+  """
+  nearnormalHemisphericalSolarReflectances: [Float!]!
+
+  """
+  True for data that has an infrared emittance value for which the proposition `infraredEmittance` is true, otherwise false.
+  """
+  infraredEmittances: [Float!]!
+
+  """
   True for data for which the proposition `not` is false, otherwise false.
   """
   not: DataPropositionInput
@@ -608,6 +630,10 @@ input OpticalDataPropositionInput {
   componentId: UuidPropositionInput
   and: [OpticalDataPropositionInput!]
   nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
+  nearnormalHemisphericalVisibleReflectance: FloatPropositionInput
+  nearnormalHemisphericalSolarTransmittance: FloatPropositionInput
+  nearnormalHemisphericalSolarReflectance: FloatPropositionInput
+  infraredEmittance: FloatPropositionInput
   not: OpticalDataPropositionInput
   or: [OpticalDataPropositionInput!]
 }
@@ -918,10 +944,28 @@ type OpticalData implements Node & Data {
   approval: ResponseApproval!
 
   """
-  Mirrored nearnormal hemispherical visible transmittance values that occur in
-  the data
+  Mirrored nearnormal hemispherical visible transmittance values which can be found in the data set. If it can only be calculated with the data set, then nearnormalHemisphericalVisibleTransmittances must not be returned.
   """
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
+  """
+  Mirrored nearnormal hemispherical visible reflectance values which can be found in the data set. If it can only be calculated with the data set, then nearnormalHemisphericalVisibleReflectances must not be returned.
+  """
+  nearnormalHemisphericalVisibleReflectances: [Float!]!
+
+  """
+  Mirrored nearnormal hemispherical solar transmittance values which can be found in the data set. If it can only be calculated with the data set, then nearnormalHemisphericalSolarTransmittances must not be returned.
+  """
+  nearnormalHemisphericalSolarTransmittances: [Float!]!
+
+  """
+  Mirrored nearnormal hemispherical solar reflectance values which can be found in the data set. If it can only be calculated with the data set, then nearnormalHemisphericalSolarReflectances must not be returned.
+  """
+  nearnormalHemisphericalSolarReflectances: [Float!]!
+
+  """
+  Mirrored infrared emittance values which can be found in the data set. If it can only be calculated with the data set, then infraredEmittances must not be returned.
+  """
+  infraredEmittances: [Float!]!
 }
 
 type CalorimetricData implements Node & Data {
