@@ -15,7 +15,7 @@ It follows best practices for
   as exemplified in
   [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections).
 
-Global object identifiers as requird by the best practice are exposed by the
+Global object identifiers as required by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
 are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
 concatenation of `uuid` and the requested locale.
@@ -231,11 +231,7 @@ type Query {
   """
   See `Query#data`.
   """
-  opticalData(
-    id: Uuid!
-    timestamp: DateTime
-    locale: Locale
-  ): OpticalData!
+  opticalData(id: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
 
   """
   See `Query#data`.
@@ -816,7 +812,7 @@ interface Data {
   timestamp: DateTime!
 
   """
-  Component identifier issued by the metabase. The components's meta data can
+  Component identifier issued by the metabase. The component's meta data can
   be obtained by sending the GraphQL query
   `component(componentId: ..., timestamp: ...) { ... }`
   to the metabase.
@@ -864,7 +860,7 @@ interface Data {
   approvals: [DataApproval!]!
 
   """
-  Multiple HTTP resources with meta information of the actual data requestable
+  Multiple HTTP resources with meta information of the actual data which can be requested
   through the protocol HTTP over TLS, in short, HTTPS, with `GET` requests. The
   first resource's data is the result of applying the method `appliedMethod`.
   The other resources' data is the result of applying some conversion method or
@@ -879,7 +875,7 @@ interface Data {
 
   """
   Multiple HTTP resources organized as tree with meta information of the actual
-  data requestable through the protocol HTTP over TLS, in short, HTTPS, with
+  data which can be requested through the protocol HTTP over TLS, in short, HTTPS, with
   `GET` requests. The root-resource's data is the result of applying the method
   `appliedMethod`. Each non-root-resource's data is the result of applying
   a specified conversion method to its parent resource's data.
@@ -1097,7 +1093,7 @@ type CrossDatabaseDataReference {
   dataId: Uuid!
 
   """
-  Timestamp of referenced data to designate the data's version.
+  Timestamp of referenced data to designate the version of the data.
   """
   dataTimestamp: DateTime!
 
@@ -1146,8 +1142,8 @@ To verify an approval,
 1. install [GnuPG](https://www.gnupg.org),
 2. save the approved response in a file `response.json`,
 3. save the ASCII-armored signature in a file `response.json.asc`,
-4. * retrieve the public key for the given fingerprint from the metabase's
-     keyserver by running
+4. * retrieve the public key for the given fingerprint from the
+     keyserver of the metabase by running
      `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --recv-keys <FINGERPRINT>`
      (or
      `gpg --fetch-keys https://buildingenvelopedata.org/gnuPgKey/<FINGERPRINT>.asc`)
@@ -1166,7 +1162,7 @@ To verify an approval,
      }
      ```
    * or retrieve the allowed-for-signing and valid-at-the-given-time key from
-     the metabase's GraphQL endpoint by sending a request of the form
+     the GraphQL endpoint of the metabase by sending a request of the form
      ```
      database(databaseId: ..., timestamp: <TIMESTAMP>) {
        gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
@@ -1342,7 +1338,7 @@ interface Approval {
   approvals by third parties nor the response approval by the database.  All
   other fields and sub-fields of this GraphQL schema at the time given by
   `timestamp` are included. Despite these restrictions specifying the query
-  explicitely is necessary because approvals shall not become invalid when the
+  explicitly is necessary because approvals shall not become invalid when the
   GraphQL schema changes.
   """
   query: GraphQlQuery!
@@ -1401,7 +1397,7 @@ GraphQL schema. However, the actual GraphQL schema of the database is in
 general an extension of the present GraphQL schema and may have paths to some
 associates like data format specifics of HTTP resources that it may fetch from
 the "metabase" and provides for convenience. These specifics should not be
-sigend as a change of, for example, the data format description would
+signed as a change of, for example, the data format description would
 invalidate the signature although the data itself did not change.
 """
 type DataApproval implements Approval {
@@ -1412,7 +1408,7 @@ type DataApproval implements Approval {
   response: JsonGraphQlResponse!
 
   """
-  Approver identifier issued by the metabase. The approver's meta data can be
+  Approver identifier issued by the metabase. The meta data of the approver can be
   obtained by sending the GraphQL query
   `stakeholder(stakeholderId: ..., timestamp: ...) { ... }`
   to the metabase.
@@ -1434,7 +1430,7 @@ type ResponseApproval implements Approval {
 }
 
 """
-HTTP resource with meta information requestable through the protocol
+HTTP resource with meta information which can be requested through the protocol
 [HTTP over TLS](https://tools.ietf.org/html/rfc2818)
 with `GET` requests. The protocol is colloquially called Hypertext Transfer
 Protocol Secure (HTTPS) and uses
@@ -1466,13 +1462,13 @@ type GetHttpsResource {
   description: String
 
   """
-  Hash value of sucessful HTTP response message body with
+  Hash value of successful HTTP response message body with
   [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6)
   [200](https://tools.ietf.org/html/rfc7231#section-6.3.1)
   computed with
   Secure Hash Algorithm 256 (SHA-256)
   as described in the
-  [United States's Federal Information Processing Standard 180-4 (FIPS 180-4)](https://csrc.nist.gov/publications/detail/fips/180/4/final)
+  [United States' Federal Information Processing Standard 180-4 (FIPS 180-4)](https://csrc.nist.gov/publications/detail/fips/180/4/final)
   by the
   [National Institute of Standards and Technology (NIST)](https://www.nist.gov).
   See also
@@ -1577,7 +1573,7 @@ type GetHttpsResource {
 
 """
 Multiple HTTP resources organized as tree with meta information of the actual
-data requestable through the protocol HTTP over TLS, in short, HTTPS, with
+data which can be requested through the protocol HTTP over TLS, in short, HTTPS, with
 `GET` requests. Each vertex specifies
 * its vertex identifier (unique among the tree vertices), and
 * its HTTP resource.
