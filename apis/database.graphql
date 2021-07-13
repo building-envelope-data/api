@@ -578,10 +578,9 @@ input DataPropositionInput {
   or: [DataPropositionInput!]
 
   """
-  True for data for the component with identifier `formatId`, otherwise
-  false.
+  True for data with at least one resource for whose format identifier the proposition `dataFormatId` is true, otherwise false. See `GetHttpsResource#formatId` and `FileMetaInformation#formatId`.
   """
-  formatId: UuidPropositionInput
+  dataFormatId: UuidPropositionInput
 
   """
   True for data that has a `g` value for which the proposition `gValue` is
@@ -637,7 +636,7 @@ input OpticalDataPropositionInput {
   and: [OpticalDataPropositionInput!]
   not: OpticalDataPropositionInput
   or: [OpticalDataPropositionInput!]
-  formatId: UuidPropositionInput
+  dataFormatId: UuidPropositionInput
   nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
   nearnormalHemisphericalVisibleReflectance: FloatPropositionInput
   nearnormalHemisphericalSolarTransmittance: FloatPropositionInput
@@ -653,7 +652,7 @@ input CalorimetricDataPropositionInput {
   and: [CalorimetricDataPropositionInput!]
   not: CalorimetricDataPropositionInput
   or: [CalorimetricDataPropositionInput!]
-  formatId: UuidPropositionInput
+  dataFormatId: UuidPropositionInput
   gValue: FloatPropositionInput
   uValue: FloatPropositionInput
 }
@@ -666,7 +665,7 @@ input HygrothermalDataPropositionInput {
   and: [HygrothermalDataPropositionInput!]
   not: HygrothermalDataPropositionInput
   or: [HygrothermalDataPropositionInput!]
-  formatId: UuidPropositionInput
+  dataFormatId: UuidPropositionInput
 }
 
 """
@@ -677,7 +676,7 @@ input PhotovoltaicDataPropositionInput {
   and: [PhotovoltaicDataPropositionInput!]
   not: PhotovoltaicDataPropositionInput
   or: [PhotovoltaicDataPropositionInput!]
-  formatId: UuidPropositionInput
+  dataFormatId: UuidPropositionInput
 }
 
 """
@@ -1607,7 +1606,7 @@ type GetHttpsResource {
   also
   [List of archive formats](https://en.wikipedia.org/wiki/List_of_archive_formats).
   """
-  formatId: Uuid!
+  dataFormatId: Uuid!
 
   """
   Archived files meta information with relative paths from the archive root and
@@ -1759,5 +1758,5 @@ type FileMetaInformation {
   and additional information to unambiguously identify the specific format and
   to locate the format specification.
   """
-  formatId: Uuid!
+  dataFormatId: Uuid!
 }
