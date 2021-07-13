@@ -198,7 +198,7 @@
         },
         "available": {
           "$ref": "common.json#/$defs/available",
-          "description": "For which timespan the database is or was available"
+          "description": "For which time span the database is or was available"
         },
         "internalComment": {
           "type": "string",

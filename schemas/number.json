@@ -261,7 +261,7 @@
     },
     "kilogramWithUncertainty": {
       "$ref": "#/$defs/numberWithUncertainty",
-      "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. With this type, the uncertainty can be defined."
+      "description": "Kilogram (also kg) is the SI unit for mass. With this type, the uncertainty can be defined."
     },
     "pascal": {
       "type": "number",

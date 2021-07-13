@@ -135,7 +135,7 @@
           "minItems": 1
         },
         "longwaveRadiation": {
-          "title": "Due to their temperature, bodies emit thermal radiation. Therefore, bodies with different temperatures can exchange heat by this infrared radiation. The wavelength of this radiation is longer than the wavelengths of the solar spectrum. It is therfore called long-wave radiation.",
+          "title": "Due to their temperature, bodies emit thermal radiation. Therefore, bodies with different temperatures can exchange heat by this infrared radiation. The wavelength of this radiation is longer than the wavelengths of the solar spectrum. It is therefore called long-wave radiation.",
           "type": "array",
           "items": {
             "type": "object",
@@ -166,7 +166,7 @@
               },
               "emittanceSurroundings": {
                 "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
-                "description": "The emittance of the surroundings influences the radiative heat transfer. The emittance of the surface of the sample can be defined within `opticalData`. Emittances have no units."
+                "description": "The emittance of the surroundings influences the radiative heat transfer. The emittance of the surface of the sample can be defined within `opticalData`. Emittance has no units."
               }
             },
             "additionalProperties": false,
@@ -263,7 +263,7 @@
           "minItems": 1
         },
         "fluid": {
-          "title": "If heat is transfered to the sample by one or more fluid circuits, this heat flux can be defined by the following properties.",
+          "title": "If heat is transferred to the sample by one or more fluid circuits, this heat flux can be defined by the following properties.",
           "type": "array",
           "items": {
             "type": "object",
@@ -348,7 +348,7 @@
                 "projectedIrradiatedAbsorber",
                 "other"
               ],
-              "description": "(i) `centre` means that the results are valid for the centre of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absober, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance. (v) If none of the other categories apply, `explanation` below must be used to describe the category."
+              "description": "(i) `centre` means that the results are valid for the centre of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absorber, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance. (v) If none of the other categories apply, `explanation` below must be used to describe the category."
             },
             "description": {
               "type": "string",

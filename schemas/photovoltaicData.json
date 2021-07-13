@@ -61,7 +61,7 @@
               },
               "efficiency": {
                 "$ref": "number.json#/$defs/numberBetweenZeroAndOne",
-                "description": "The effiency of the cell is measured at standard test conditions."
+                "description": "The efficiency of the cell is measured at standard test conditions."
               },
               "power": {
                 "type": "object",
@@ -556,11 +556,11 @@
             },
             "fillFactor": {
               "$ref": "number.json#/$defs/numberBetweenZeroAndOne",
-              "description": "The fill factor is a measure of quality of a solar cell. It is the power at the maximum powerpoint divided by the open circuit voltage and the short circuit current."
+              "description": "The fill factor is a measure of quality of a solar cell. It is the power at the maximum power point divided by the open circuit voltage and the short circuit current."
             },
             "efficiency": {
               "$ref": "number.json#/$defs/numberBetweenZeroAndOne",
-              "description": "The effiency of the module is measured at standard test conditions."
+              "description": "The efficiency of the module is measured at standard test conditions."
             },
             "safety": {
               "title": "Data about the safety of photovoltaic modules.",
@@ -929,7 +929,7 @@
               "title": "The electric safety of the inverter.",
               "type": "object",
               "properties": {
-                "IPcode": {
+                "ipCode": {
                   "title": "The electric safety according to the International Protection Marking, also called Ingress Protection Marking. Codes between IPXX and IP69K are defined. `standard` defines which standard defines the details of the of the IP code. `firstDigit` defines the protection against solid particles and the `secondDigit` against liquid ingress. `thirdDigit` is optional and defines the access to dangerous active parts. `fourthDigit` is optional, too, and can define additional information.",
                   "type": "array",
                   "items": {

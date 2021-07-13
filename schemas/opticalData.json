@@ -52,7 +52,7 @@
     },
     "dataPoint": {
       "title": "Optical data point",
-      "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation, and the optical results.",
+      "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent radiation, and the optical results.",
       "type": "object",
       "properties": {
         "incidence": {
@@ -177,13 +177,13 @@
     },
     "wavelengthUncertainty": {
       "title": "Bandwidth and/or amplification factor",
-      "description": "Bandwidth and/or amplification factor of measuring a single wavelength or of measuring an entire spectrum of wavenlengths at the same time.",
+      "description": "Bandwidth and/or amplification factor of measuring a single wavelength or of measuring an entire spectrum of wavelengths at the same time.",
       "type": "object",
       "properties": {
         "bandwidth": {
           "$ref": "number.json#/$defs/nanometer",
           "title": "Bandwidth",
-          "description": "Range of wavelengths around a center wavelength. This range can be interpreted as the uncertainty of the center wavelength. It is often easier to determine the aplification factor instead."
+          "description": "Range of wavelengths around a center wavelength. This range can be interpreted as the uncertainty of the center wavelength. It is often easier to determine the amplification factor instead."
         },
         "amplificationFactor": {
           "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
@@ -303,7 +303,7 @@
     },
     "incidence": {
       "title": "Incident radiation",
-      "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelenthgs and range of wavelengths.",
+      "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelengths and range of wavelengths.",
       "type": "object",
       "properties": {
         "direction": {

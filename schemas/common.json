@@ -58,7 +58,7 @@
           "properties": {
             "standard": {
               "$ref": "#/$defs/standard",
-              "description": "The standard refered to."
+              "description": "The standard referred to."
             }
           },
           "additionalProperties": false,
@@ -69,7 +69,7 @@
           "properties": {
             "publication": {
               "$ref": "#/$defs/publication",
-              "description": "The publication refered to."
+              "description": "The publication referred to."
             }
           },
           "additionalProperties": false,
@@ -101,7 +101,7 @@
             },
             "webAddress": {
               "$ref": "#/$defs/webAddress",
-              "description": "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
+              "description": "If a persistent identifier like DOI is defined above, this webAddress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
             }
           },
           "additionalProperties": false,
@@ -302,7 +302,7 @@
       }
     },
     "efficiencies": {
-      "title": "Definitions of effiencies for the conversion of energy.",
+      "title": "Definitions of efficiencies for the conversion of energy.",
       "$defs": {
         "photovoltaic": {
           "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
@@ -320,7 +320,7 @@
     },
     "getHttpsResource": {
       "title": "GET HTTP(S) resource",
-      "description": "HTTP resource with meta information requestable through the protocol [HTTP over TLS](https://tools.ietf.org/html/rfc2818) with `GET` requests. The protocol is colloquially called Hypertext Transfer Protocol Secure (HTTPS) and uses [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc8446) to secure [Hypertext Transfer Protocol (HTTP)](https://tools.ietf.org/html/rfc7231) connections over the internet.\n\nIf an HTTP `GET` request of the resource is [successful](https://tools.ietf.org/html/rfc7231#section-6.3) with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1), the response message body is the resource's content. Otherwise, there is some issue that can be identified and hopefully resolved by examining the status code.\n\nNote that the [Internet Assigned Numbers Authority (IANA)](https://www.iana.org) maintains the [HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml). See also [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).",
+      "description": "HTTP resource with meta information which can be requested through the protocol [HTTP over TLS](https://tools.ietf.org/html/rfc2818) with `GET` requests. The protocol is colloquially called Hypertext Transfer Protocol Secure (HTTPS) and uses [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc8446) to secure [Hypertext Transfer Protocol (HTTP)](https://tools.ietf.org/html/rfc7231) connections over the internet.\n\nIf an HTTP `GET` request of the resource is [successful](https://tools.ietf.org/html/rfc7231#section-6.3) with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1), the response message body is the resource's content. Otherwise, there is some issue that can be identified and hopefully resolved by examining the status code.\n\nNote that the [Internet Assigned Numbers Authority (IANA)](https://www.iana.org) maintains the [HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml). See also [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).",
       "type": "object",
       "properties": {
         "description": {
@@ -329,7 +329,7 @@
         },
         "hashValue": {
           "$ref": "string.json#/$defs/sha256Hash",
-          "description": "Hash value of sucessful HTTP response message body with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1) computed with Secure Hash Algorithm 256 (SHA-256) as described in the [United States's Federal Information Processing Standard 180-4 (FIPS 180-4)](https://csrc.nist.gov/publications/detail/fips/180/4/final) by the [National Institute of Standards and Technology (NIST)](https://www.nist.gov). See also [RFC 6234](https://tools.ietf.org/html/rfc6234)."
+          "description": "Hash value of successful HTTP response message body with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1) computed with Secure Hash Algorithm 256 (SHA-256) as described in the [United States' Federal Information Processing Standard 180-4 (FIPS 180-4)](https://csrc.nist.gov/publications/detail/fips/180/4/final) by the [National Institute of Standards and Technology (NIST)](https://www.nist.gov). See also [RFC 6234](https://tools.ietf.org/html/rfc6234)."
         },
         "locator": {
           "$ref": "common.json#/$defs/webAddress",

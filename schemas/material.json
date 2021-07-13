@@ -5,7 +5,7 @@
   "description": "How a material can be identified, which categories can be attributed to the material and which characteristics or properties the material has.",
   "$defs": {
     "identification": {
-      "title": "Identify a certain material. It is recommended to use central identifiers, but it also possible to definde materials without identifier.",
+      "title": "Identify a certain material. It is recommended to use central identifiers, but it also possible to define materials without identifier.",
       "type": "object",
       "properties": {
         "id": {
@@ -202,7 +202,7 @@
         },
         "density": {
           "$ref": "number.json#/$defs/kilogramPerCubicMeterWithUncertainty",
-          "description": "The density is needed to calculate the weigth of the layer."
+          "description": "The density is needed to calculate the weight of the layer."
         },
         "possiblePositions": {
           "$ref": "common.json#/$defs/possiblePositions",

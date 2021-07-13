@@ -63,7 +63,7 @@
               },
               {
                 "$ref": "common.json#/$defs/getHttpsResource",
-                "description": "The measured or simulated data in some data format as HTTP resource fetchable with GET requests."
+                "description": "The measured or simulated data in some data format as HTTP resource which can be fetched with GET requests."
               }
             ]
           },

@@ -29,7 +29,7 @@
           "description": "The id represents the version of the building."
         },
         "relations": {
-          "title": "Relations of the current building to other buildings. These relations can range in the dimension between a very general building in early planning phases and and a very concretized building in later phases of the life cycle. A second dimension of relation ranges from being part of an assembly of buildings to being an assembly of other buildings. A third dimension are variants of buildings for example during the desing phase. The variants share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly.",
+          "title": "Relations of the current building to other buildings. These relations can range in the dimension between a very general building in early planning phases and and a very concretized building in later phases of the life cycle. A second dimension of relation ranges from being part of an assembly of buildings to being an assembly of other buildings. A third dimension are variants of buildings for example during the design phase. The variants share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly.",
           "type": "object",
           "properties": {
             "concretizationOf": {
@@ -97,7 +97,7 @@
               },
               "minItems": 1
             },
-            "BIMmanager": {
+            "bimManager": {
               "$ref": "stakeholder.json",
               "description": "The BIM manager MUST guarantee the uniqueness of the decentral identifiers. She is responsible for the database of the building at the moment indicated by the timestamp of this data."
             },
@@ -149,11 +149,11 @@
               },
               "minItems": 1
             },
-            "assesors": {
+            "assessors": {
               "type": "array",
               "items": {
                 "$ref": "stakeholder.json",
-                "description": "Assesors offer to rate a building for example regarding its sustainability."
+                "description": "Assessors offer to rate a building for example regarding its sustainability."
               },
               "minItems": 1
             },
@@ -168,7 +168,7 @@
           },
           "additionalProperties": false,
           "minProperties": 1,
-          "required": ["owner", "BIMmanager"]
+          "required": ["owner", "bimManager"]
         },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",

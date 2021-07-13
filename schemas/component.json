@@ -29,7 +29,7 @@
           "description": "The id represents the version of the component."
         },
         "relations": {
-          "title": "Relations of the current component to other components. These relations can range in the dimension between a very general component such as a general product and and a very concretized component such as a specific component in a specific buildling. A second dimension of relation ranges from being part of another assembled component to being an assembly of other components. A third dimension are variants of components. They share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly.",
+          "title": "Relations of the current component to other components. These relations can range in the dimension between a very general component such as a general product and and a very concretized component such as a specific component in a specific building. A second dimension of relation ranges from being part of another assembled component to being an assembly of other components. A third dimension are variants of components. They share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly.",
           "type": "object",
           "properties": {
             "concretizationOf": {
@@ -413,7 +413,7 @@
           "required": []
         },
         "positionOfCoatings": {
-          "title": "The positions are counted from the nonPrime surface to the prime surface of the layer or unit. Each interface between solid and gas is counted as position. `0` represents a position withouth coating and `1` represents a position with coating. For example, a double glazing with one low emissivity coating can be represented by [ 0, 0, 1, 0].",
+          "title": "The positions are counted from the nonPrime surface to the prime surface of the layer or unit. Each interface between solid and gas is counted as position. `0` represents a position without coating and `1` represents a position with coating. For example, a double glazing with one low emissivity coating can be represented by [ 0, 0, 1, 0].",
           "type": "array",
           "items": {
             "oneOf": [

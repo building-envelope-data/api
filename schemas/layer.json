@@ -104,11 +104,11 @@
             },
             "pitch": {
               "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
+              "description": "Pitch is the distance between the rotation axis' of two neighboring slats."
             },
             "crownHeight": {
               "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
+              "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the highest points of the slats."
             },
             "shape": {
               "oneOf": [

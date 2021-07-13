@@ -9,7 +9,7 @@
       "type": "object",
       "properties": {
         "WUFI": {
-          "title": "Hgrothermal data from the database of WUFI.de.",
+          "title": "Hygrothermal data from the database of WUFI.de.",
           "type": "object",
           "properties": {
             "id": {

@@ -6,14 +6,13 @@
   "$defs": {
     "central": {
       "title": "Central identifier",
-      "description": "Identifier issued by the metabase `buildingenvelopedata.org`. The metabase guarantees the identifier's uniqueness within its scope and maintains at least meta information about whatever the identifier identifies. The metabase issues for example identifiers for components, institutions, and methods.",
-      "title": " issues the central identifiers and guarantees their uniqueness.",
+      "description": "Identifier issued by the metabase `buildingenvelopedata.org`. The metabase guarantees the uniqueness of the identifier within its scope and maintains at least meta information about whatever the identifier identifies. The metabase issues for example identifiers for components, institutions, and methods.",
       "type": "string",
       "format": "uuid"
     },
     "decentral": {
       "title": "Decentral identifier",
-      "description": "Identifier issued by some database registered at the metabase `buildingenvelopedata.org`. The database guarantees the identifier's uniqueness within its scope and maintains whatever the identifier identifies. Databases issue for example identifiers for measurement, simulation, and conversion data of components.",
+      "description": "Identifier issued by some database registered at the metabase `buildingenvelopedata.org`. The database guarantees the uniqueness of the identifier within its scope and maintains whatever the identifier identifies. Databases issue for example identifiers for measurement, simulation, and conversion data of components.",
       "type": "object",
       "properties": {
         "value": {
