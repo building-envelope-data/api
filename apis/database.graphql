@@ -591,19 +591,19 @@ input DataPropositionInput {
   for which the proposition `nearnormalHemisphericalSolarTransmittance` is
   true, otherwise false.
   """
-  nearnormalHemisphericalSolarTransmittances: [Float!]!
+  nearnormalHemisphericalSolarTransmittance: FloatPropositionInput
 
   """
   True for data that has a nearnormal hemispherical solar reflectance value
   for which the proposition `nearnormalHemisphericalSolarReflectance` is
   true, otherwise false.
   """
-  nearnormalHemisphericalSolarReflectances: [Float!]!
+  nearnormalHemisphericalSolarReflectance: FloatPropositionInput
 
   """
   True for data that has an infrared emittance value for which the proposition `infraredEmittance` is true, otherwise false.
   """
-  infraredEmittances: [Float!]!
+  infraredEmittance: FloatPropositionInput
 
   """
   True for data for which the proposition `not` is false, otherwise false.
