@@ -567,10 +567,33 @@ input DataPropositionInput {
   and: [DataPropositionInput!]
 
   """
+  True for data for which the proposition `not` is false, otherwise false.
+  """
+  not: DataPropositionInput
+
+  """
+  True for data for which at least one proposition in `or` is true, otherwise
+  false. In particular, it is false if there is no proposition in `or`.
+  """
+  or: [DataPropositionInput!]
+
+  """
+  True for data for the component with identifier `formatId`, otherwise
+  false.
+  """
+  formatId: UuidPropositionInput
+
+  """
   True for data that has a `g` value for which the proposition `gValue` is
   true, otherwise false.
   """
   gValue: FloatPropositionInput
+
+  """
+  True for data that has a `u` value for which the proposition `uValue` is
+  true, otherwise false.
+  """
+  uValue: FloatPropositionInput
 
   """
   True for data that has a nearnormal hemispherical visible transmittance value
@@ -604,23 +627,6 @@ input DataPropositionInput {
   True for data that has an infrared emittance value for which the proposition `infraredEmittance` is true, otherwise false.
   """
   infraredEmittance: FloatPropositionInput
-
-  """
-  True for data for which the proposition `not` is false, otherwise false.
-  """
-  not: DataPropositionInput
-
-  """
-  True for data for which at least one proposition in `or` is true, otherwise
-  false. In particular, it is false if there is no proposition in `or`.
-  """
-  or: [DataPropositionInput!]
-
-  """
-  True for data that has a `u` value for which the proposition `uValue` is
-  true, otherwise false.
-  """
-  uValue: FloatPropositionInput
 }
 
 """
@@ -629,13 +635,14 @@ See `DataPropositionInput`.
 input OpticalDataPropositionInput {
   componentId: UuidPropositionInput
   and: [OpticalDataPropositionInput!]
+  not: OpticalDataPropositionInput
+  or: [OpticalDataPropositionInput!]
+  formatId: UuidPropositionInput
   nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
   nearnormalHemisphericalVisibleReflectance: FloatPropositionInput
   nearnormalHemisphericalSolarTransmittance: FloatPropositionInput
   nearnormalHemisphericalSolarReflectance: FloatPropositionInput
   infraredEmittance: FloatPropositionInput
-  not: OpticalDataPropositionInput
-  or: [OpticalDataPropositionInput!]
 }
 
 """
@@ -644,9 +651,10 @@ See `DataPropositionInput`.
 input CalorimetricDataPropositionInput {
   componentId: UuidPropositionInput
   and: [CalorimetricDataPropositionInput!]
-  gValue: FloatPropositionInput
   not: CalorimetricDataPropositionInput
   or: [CalorimetricDataPropositionInput!]
+  formatId: UuidPropositionInput
+  gValue: FloatPropositionInput
   uValue: FloatPropositionInput
 }
 
@@ -658,6 +666,7 @@ input HygrothermalDataPropositionInput {
   and: [HygrothermalDataPropositionInput!]
   not: HygrothermalDataPropositionInput
   or: [HygrothermalDataPropositionInput!]
+  formatId: UuidPropositionInput
 }
 
 """
@@ -668,6 +677,7 @@ input PhotovoltaicDataPropositionInput {
   and: [PhotovoltaicDataPropositionInput!]
   not: PhotovoltaicDataPropositionInput
   or: [PhotovoltaicDataPropositionInput!]
+  formatId: UuidPropositionInput
 }
 
 """
