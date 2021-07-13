@@ -17,7 +17,7 @@
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
           "name": "Example BIST collector",
-          "description": "Example: a calorimetric data set of a buildling-integrated solar thermal element.",
+          "description": "Example: a calorimetric data set of a building-integrated solar thermal element.",
           "warnings": ["One warning"],
           "appliedMethod": {
             "method": {

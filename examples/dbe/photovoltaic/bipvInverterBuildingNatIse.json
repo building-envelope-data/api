@@ -67,7 +67,7 @@
                 },
                 "safety": {
                   "electric": {
-                    "IPcode": [
+                    "ipCode": [
                       {
                         "standard": ["EN IEC 60529"],
                         "firstDigit": "6",
