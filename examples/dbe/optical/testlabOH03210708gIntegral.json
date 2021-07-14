@@ -1,0 +1,65 @@
+{
+  "components": [
+    {
+      "id": "031c9043-db85-4c8f-a706-236ad530da12",
+      "optical": [
+        {
+          "id": {
+            "value": "86a8aa74-84c7-4fe1-b85c-eedb3d7886c1",
+            "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
+          },
+          "appliedMethod": {
+            "method": {
+              "id": "0cbc343a-b065-47fb-b4a5-6000cfe4ff18",
+              "reference": {
+                "standard": {
+                  "standardizers": ["ISO"],
+                  "numeration": {
+                    "mainNumber": 9050
+                  },
+                  "year": 2003
+                }
+              }
+            },
+            "arguments": [],
+            "sources": [
+              {
+                "name": "spectrum",
+                "value": {
+                  "dataId": {
+                    "value": "8ce76b85-5d35-4061-8c4f-7472d03bd1bd",
+                    "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
+                  },
+                  "dataTimestamp": "2021-07-12T12:00:00+01:00",
+                  "dataKind": "opticalData"
+                }
+              }
+            ]
+          },
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 0
+                    },
+                    "wavelengths": {
+                      "integral": "solar"
+                    }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.41911024007009556
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

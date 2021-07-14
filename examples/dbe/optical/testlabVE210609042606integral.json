@@ -1,0 +1,171 @@
+{
+  "components": [
+    {
+      "id": "031c9043-db85-4c8f-a706-236ad530da12",
+      "optical": [
+        {
+          "appliedMethod": {
+            "method": {
+              "id": "f07499ab-f119-471f-8aad-d3c016676bce",
+              "reference": {
+                "standard": {
+                  "standardizers": ["DIN", "EN"],
+                  "numeration": {
+                    "mainNumber": 410
+                  },
+                  "year": 2011
+                }
+              }
+            },
+            "arguments": [],
+            "sources": [
+              {
+                "name": "spectrum",
+                "value": {
+                  "dataId": {
+                    "value": "d0937e80-a268-4cde-b878-60a967351bf3",
+                    "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
+                  },
+                  "dataTimestamp": "2021-07-14T10:13:19.8901014+02:00",
+                  "dataKind": "opticalData"
+                }
+              }
+            ]
+          },
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 0
+                    },
+                    "wavelengths": {
+                      "integral": "solar"
+                    }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 0
+                    }
+                  },
+                  "results": {
+                    "transmittance": 1.0004209694906112
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "appliedMethod": {
+            "method": {
+              "id": "f07499ab-f119-471f-8aad-d3c016676bce",
+              "reference": {
+                "standard": {
+                  "standardizers": ["DIN", "EN"],
+                  "numeration": {
+                    "mainNumber": 410
+                  },
+                  "year": 2011
+                }
+              }
+            },
+            "arguments": [],
+            "sources": [
+              {
+                "name": "spectrum",
+                "value": {
+                  "dataId": {
+                    "value": "d59741f2-6806-4eee-88ba-feccf5c5f508",
+                    "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
+                  },
+                  "dataTimestamp": "2021-07-14T10:13:19.8910991+02:00",
+                  "dataKind": "opticalData"
+                }
+              }
+            ]
+          },
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 0
+                    },
+                    "wavelengths": {
+                      "integral": "solar"
+                    }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 0
+                    }
+                  },
+                  "results": {
+                    "transmittance": 1.0007198723863384
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "appliedMethod": {
+            "method": {
+              "id": "0cbc343a-b065-47fb-b4a5-6000cfe4ff18",
+              "reference": {
+                "standard": {
+                  "standardizers": ["ISO"],
+                  "numeration": {
+                    "mainNumber": 9050
+                  },
+                  "year": 2003
+                }
+              }
+            },
+            "arguments": [],
+            "sources": [
+              {
+                "name": "spectrum",
+                "value": {
+                  "dataId": {
+                    "value": "5acd0ddf-efca-43f8-b87b-ee245d09b480",
+                    "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
+                  },
+                  "dataTimestamp": "2021-07-14T10:13:19.8910991+02:00",
+                  "dataKind": "opticalData"
+                }
+              }
+            ]
+          },
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 0
+                    },
+                    "wavelengths": {
+                      "integral": "solar"
+                    }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 0
+                    }
+                  },
+                  "results": {
+                    "transmittance": 1.0007333469309041
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

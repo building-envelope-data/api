@@ -98,7 +98,7 @@ Institution8 becomes a member of Association1.
 Institution9 submits data to Regional-Data-Aggregator1 (RDA1) of Association1.
 RDA1 informs Association1 that with Institution9, a new institution is registered.
 Currently, no direct access between Association1 and RDA1 to the data about institutions. The cases in which it is needed are rare.
-RDA1 processes the submission and informs Association1 about which work has been done. 
+RDA1 processes the submission and informs Association1 about which work has been done.
 Association1 sends an invoice to Institution9.
 If Institution9 does not pay the invoice, its data is deleted.
 Association1 reviews the peer review of RDA1.
