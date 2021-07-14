@@ -231,11 +231,7 @@ type Query {
   """
   See `Query#data`.
   """
-  opticalData(
-    id: Uuid!
-    timestamp: DateTime
-    locale: Locale
-  ): OpticalData!
+  opticalData(id: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
 
   """
   See `Query#data`.
