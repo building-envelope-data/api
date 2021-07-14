@@ -167,6 +167,8 @@
               "DGNB",
               "DIN",
               "DVWG",
+              "EN",
+              "ETSI",
               "IEC",
               "IES",
               "ift",
@@ -183,7 +185,7 @@
             ]
           },
           "minItems": 1,
-          "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their acronym or abbreviation."
+          "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their acronym or abbreviation. For example, `EN` represents a European Standard which has been ratified by one of the three European Standardization Organizations: CEN, CENELEC or ETSI."
         },
         "numeration": {
           "type": "object",
