@@ -953,26 +953,26 @@ type OpticalData implements Node & Data {
   approval: ResponseApproval!
 
   """
-  Mirrored nearnormal hemispherical visible transmittance values that occur in the data. If it can only be calculated with the data set, then nearnormalHemisphericalVisibleTransmittances must not be returned.
+  Mirrored nearnormal hemispherical visible transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
   """
-  Mirrored nearnormal hemispherical visible reflectance values that occur in the data. If it can only be calculated with the data set, then nearnormalHemisphericalVisibleReflectances must not be returned.
+  Mirrored nearnormal hemispherical visible reflectance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
   nearnormalHemisphericalVisibleReflectances: [Float!]!
 
   """
-  Mirrored nearnormal hemispherical solar transmittance values that occur in the data. If it can only be calculated with the data set, then nearnormalHemisphericalSolarTransmittances must not be returned.
+  Mirrored nearnormal hemispherical solar transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
   nearnormalHemisphericalSolarTransmittances: [Float!]!
 
   """
-  Mirrored nearnormal hemispherical solar reflectance values that occur in the data. If it can only be calculated with the data set, then nearnormalHemisphericalSolarReflectances must not be returned.
+  Mirrored nearnormal hemispherical solar reflectance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
   nearnormalHemisphericalSolarReflectances: [Float!]!
 
   """
-  Mirrored infrared emittance values that occur in the data. If it can only be calculated with the data set, then infraredEmittances must not be returned.
+  Mirrored infrared emittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
   infraredEmittances: [Float!]!
 }
