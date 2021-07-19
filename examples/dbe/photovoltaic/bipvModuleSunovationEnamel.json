@@ -8,7 +8,7 @@
       },
       "categories": { "componentType": ["layer"] },
       "characteristics": {
-        "colour": { "CIELAB": { "L*": 5, "a*": 0, "b*": -2 } }
+        "color": { "cielabColorSpace": { "L*": 5, "a*": 0, "b*": -2 } }
       }
     }
   ]

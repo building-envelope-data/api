@@ -415,32 +415,51 @@
       "additionalProperties": false,
       "required": ["path", "format"]
     },
-    "colour": {
-      "description": "Colour of a component",
+    "color": {
+      "description": "Color of a component",
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "The name of the colour in common language"
+          "description": "The name of the color in common language"
         },
-        "ColorRenderingIndex": {
+        "colorRenderingIndex": {
           "$ref": "number.json#/$defs/numberWithUncertainty",
-          "description": "The Colour Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
+          "description": "The Color Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
         },
-        "CIELAB": {
-          "type": "object",
-          "properties": {
-            "L*": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
+        "cielabColorSpace": {
+          "type": "array",
+          "items": {
+            "title": "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) can be used to define the color which is reflected by a component.",
+            "type": "object",
+            "properties": {
+              "lStar": {
+                "$ref": "number.json#/$defs/numberWithUncertainty",
+                "description": "In the CIELAB Color Space, L* (lStar) defines the lightness."
+              },
+              "aStar": {
+                "$ref": "number.json#/$defs/numberWithUncertainty",
+                "description": "In the CIELAB Color Space, a* (aStar) defines the color between green and red."
+              },
+              "bStar": {
+                "$ref": "number.json#/$defs/numberWithUncertainty",
+                "description": "In the CIELAB Color Space, b* (bStar) defines the color between blue and yellow."
+              },
+              "direction": {
+                "type": "string",
+                "enum": ["reflection", "transmission"],
+                "description": "`reflection` indicates that that the color is defined which is reflected by the component. `transmission` indicates that the color is defined which is transmitted through the component."
+              },
+              "surface": {
+                "$ref": "component.json#/$defs/surface",
+                "description": "If the results are identical for all surfaces, 'symmetric' should be used. If the prime surface is defined in `definitionOfSurfacesAndPrimeDirection`, then `prime` and `nonPrime` can be used to define for which surface the color is valid."
+              }
             },
-            "a*": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
-            },
-            "b*": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
-            }
+            "additionalProperties": false,
+            "required": ["lStar", "aStar", "bStar"]
           },
-          "description": "The three parameters L*, a* and b* defined by the International Commission on Illumination (CIE) can be used to define the colour which is reflected by a component. L* defines the lightness, a* the colour between green and red and b* the colour between blue and yellow."
+          "uniqueItems": true,
+          "minItems": 1
         }
       },
       "additionalProperties": false,

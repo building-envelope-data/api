@@ -262,9 +262,9 @@
                 "$ref": "number.json#/$defs/ohmPerMeterWithUncertainty",
                 "description": "The electric resistance of the connection per length of the connection in ohms per meter."
               },
-              "colour": {
-                "$ref": "common.json#/$defs/colour",
-                "description": "The reference offers several ways to define the colour of the connection."
+              "color": {
+                "$ref": "common.json#/$defs/color",
+                "description": "The reference offers several ways to define the color of the connection."
               }
             },
             "additionalProperties": false,
@@ -410,9 +410,9 @@
               "$ref": "material.json#/$defs/characteristics",
               "description": "All properties which depend on the material in general and not on the specific component."
             },
-            "colour": {
-              "$ref": "common.json#/$defs/colour",
-              "description": "The reference offers several ways to define the colour of the component."
+            "color": {
+              "$ref": "common.json#/$defs/color",
+              "description": "The reference offers several ways to define the color of the component."
             }
           },
           "additionalProperties": false,
@@ -747,9 +747,9 @@
               },
               "minItems": 1
             },
-            "colour": {
-              "$ref": "common.json#/$defs/colour",
-              "description": "The reference offers several ways to define the colour of the component."
+            "color": {
+              "$ref": "common.json#/$defs/color",
+              "description": "The reference offers several ways to define the color of the component."
             },
             "uValue": {
               "$ref": "calorimetricData.json#/$defs/uValue",
@@ -1159,9 +1159,9 @@
                 "$ref": "number.json#/$defs/ohmPerMeterWithUncertainty",
                 "description": "The electric resistance of the connection per length of the connection in ohms per meter."
               },
-              "colour": {
-                "$ref": "common.json#/$defs/colour",
-                "description": "The reference offers several ways to define the colour of the connection."
+              "color": {
+                "$ref": "common.json#/$defs/color",
+                "description": "The reference offers several ways to define the color of the connection."
               }
             },
             "additionalProperties": false,
