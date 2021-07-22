@@ -2,13 +2,41 @@
   "components": [
     {
       "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
-      "description": "Example of a Colour Rendering Index (CRI) for the transmitted radiation and the color of the reflected radiation defined by CIELAB parameters.",
-      "characteristics": {
-        "color": {
-          "colorRenderingIndex": 90,
-          "cielabColorSpace": { "L*": 20, "a*": 3, "b*": -2 }
+      "optical": [
+        {
+          "id": {
+            "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "description": "Example of a Colour Rendering Index (CRI) for the transmitted radiation and the color of the reflected radiation defined by CIELAB parameters.",
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "colorRenderingIndex": [
+                    {
+                      "value": 0.5,
+                      "direction": "transmission",
+                      "surface": "prime"
+                    }
+                  ],
+                  "cielabColorSpace": [
+                    {
+                      "lStar": 20,
+                      "aStar": 3,
+                      "bStar": -2,
+                      "direction": "reflection",
+                      "surface": "symmetric",
+                      "observer": "tenDegrees",
+                      "illuminant": "D65"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     }
   ]
 }

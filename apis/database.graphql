@@ -626,6 +626,37 @@ input DataPropositionInput {
   True for data that has an infrared emittance value for which the proposition `infraredEmittance` is true, otherwise false.
   """
   infraredEmittance: FloatPropositionInput
+
+  """
+  True for data that has a Color Rendering Index for which the proposition `colorRenderingIndex` is true, otherwise false.
+  """
+  colorRenderingIndex: FloatPropositionInput
+
+  """
+  True for data that has an CIELAB Color Space coordinates for which the proposition `cielabColor` is true, otherwise false.
+  """
+  cielabColor: CielabColorPropositionInput
+}
+
+"""
+Proposition for values of type `CielabColor`. Multiple sub-propositions are combined
+conjunctively, where the conjunction of an empty set of sub-propositions is true.
+"""
+input CielabColorPropositionInput {
+  """
+  True for data that has a CIELAB Color Space coordinate L* (lStar) for which the proposition `lStar` is true, otherwise false.
+  """
+  lStar: FloatPropositionInput
+
+  """
+  True for data that has a CIELAB Color Space coordinate a* (aStar) for which the proposition `aStar` is true, otherwise false.
+  """
+  aStar: FloatPropositionInput
+
+  """
+  True for data that has a CIELAB Color Space coordinate b* (bStar) for which the proposition `bStar` is true, otherwise false.
+  """
+  bStar: FloatPropositionInput
 }
 
 """
@@ -642,6 +673,8 @@ input OpticalDataPropositionInput {
   nearnormalHemisphericalSolarTransmittance: FloatPropositionInput
   nearnormalHemisphericalSolarReflectance: FloatPropositionInput
   infraredEmittance: FloatPropositionInput
+  colorRenderingIndex: FloatPropositionInput
+  cielabColor: CielabColorPropositionInput
 }
 
 """
@@ -934,6 +967,26 @@ interface Data {
   locale: Locale!
 }
 
+"""
+The CIELAB Color Space is used to define a color. It has three rectangular color coordinates, L* (lStar), a* (aStar) and b* (bStar).
+"""
+type CielabColor {
+  """
+  In the CIELAB Color Space, L* (lStar) defines the lightness.
+  """
+  lStar: Float!
+
+  """
+  In the CIELAB Color Space, a* (aStar) defines the color between green and red.
+  """
+  aStar: Float!
+
+  """
+  In the CIELAB Color Space, b* (bStar) defines the color between blue and yellow.
+  """
+  bStar: Float!
+}
+
 type OpticalData implements Node & Data {
   id: ID!
   uuid: Uuid!
@@ -975,6 +1028,16 @@ type OpticalData implements Node & Data {
   Mirrored infrared emittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
   infraredEmittances: [Float!]!
+
+  """
+  Mirrored values for the Color Rendering Index that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  colorRenderingIndexes: [Float!]!
+
+  """
+  Mirrored values for the coordinates in the CIELAB Color Space that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  cielabColors: [CielabColor!]!
 }
 
 type CalorimetricData implements Node & Data {

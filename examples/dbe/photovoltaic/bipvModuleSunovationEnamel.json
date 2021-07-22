@@ -8,7 +8,19 @@
       },
       "categories": { "componentType": ["layer"] },
       "characteristics": {
-        "color": { "cielabColorSpace": { "L*": 5, "a*": 0, "b*": -2 } }
+        "color": {
+          "cielabColorSpace": [
+            {
+              "lStar": 20,
+              "aStar": 3,
+              "bStar": -2,
+              "direction": "reflection",
+              "surface": "symmetric",
+              "observer": "tenDegrees",
+              "illuminant": "D65"
+            }
+          ]
+        }
       }
     }
   ]
