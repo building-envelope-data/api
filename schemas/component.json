@@ -255,10 +255,6 @@
           "minProperties": 1,
           "required": []
         },
-        "color": {
-          "$ref": "common.json#/$defs/color",
-          "description": "The reference offers several ways to define the color of the component."
-        },
         "cutOff": {
           "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."

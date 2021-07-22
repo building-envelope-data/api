@@ -51,33 +51,42 @@
       ]
     },
     "dataPoint": {
-      "title": "Optical data point",
-      "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation, and the optical results.",
-      "type": "object",
-      "properties": {
-        "incidence": {
-          "$ref": "#/$defs/incidence",
-          "title": "Incident radiation",
-          "description": "Incident radiation on the component."
+      "oneOf": [
+        {
+          "title": "General schema for measured and calculated optical data",
+          "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent radiation, and the optical results.",
+          "type": "object",
+          "properties": {
+            "incidence": {
+              "$ref": "#/$defs/incidence",
+              "title": "Incident radiation",
+              "description": "Incident radiation on the component."
+            },
+            "componentCharacteristics": {
+              "$ref": "#/$defs/componentCharacteristics",
+              "title": "Component characteristics",
+              "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
+            },
+            "emergence": {
+              "$ref": "#/$defs/emergence",
+              "title": "Emergent radiation",
+              "description": "Radiation that emerges from the component."
+            },
+            "results": {
+              "$ref": "#/$defs/results",
+              "title": "Results",
+              "description": "For example transmittance and reflectance."
+            }
+          },
+          "additionalProperties": false,
+          "required": ["incidence", "emergence", "results"]
         },
-        "componentCharacteristics": {
-          "$ref": "#/$defs/componentCharacteristics",
-          "title": "Component characteristics",
-          "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
-        },
-        "emergence": {
-          "$ref": "#/$defs/emergence",
-          "title": "Emergent radiation",
-          "description": "Radiation that emerges from the component."
-        },
-        "results": {
-          "$ref": "#/$defs/results",
-          "title": "Results",
-          "description": "For example transmittance and reflectance."
+        {
+          "title": "Schema to characterize colors",
+          "$ref": "common.json#/$defs/color",
+          "description": "The color of the component can be defined with the `cielabColorSpace`, by a `colorRenderingIndex` and as a string. For angle-dependent characterization of colors, the general schema for measured and calculated optical data should be used because it allows the precise definition of incidence, emergence and results."
         }
-      },
-      "additionalProperties": false,
-      "required": ["incidence", "emergence", "results"]
+      ]
     },
     "componentCharacteristics": {
       "title": "Component characteristics",

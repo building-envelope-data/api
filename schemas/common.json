@@ -495,7 +495,8 @@
         }
       },
       "additionalProperties": false,
-      "required": []
+      "required": [],
+      "minProperties": 1
     },
     "possiblePositions": {
       "title": "The locations where a component can be used",
