@@ -9,7 +9,7 @@
       "categories": { "componentType": ["layer"] },
       "characteristics": {
         "color": {
-          "cielabColorSpace": [
+          "cielabColors": [
             {
               "lStar": 20,
               "aStar": 3,

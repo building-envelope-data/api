@@ -264,7 +264,7 @@
               },
               "color": {
                 "$ref": "opticalData.json#/$defs/color",
-                "description": "The reference offers several ways to define the color of the connection."
+                "description": "Definition of the color of the connection."
               }
             },
             "additionalProperties": false,
@@ -412,7 +412,7 @@
             },
             "color": {
               "$ref": "opticalData.json#/$defs/color",
-              "description": "The reference offers several ways to define the color of the component."
+              "description": "Definition of the color of the frame."
             }
           },
           "additionalProperties": false,
@@ -746,10 +746,6 @@
                 "required": ["years"]
               },
               "minItems": 1
-            },
-            "color": {
-              "$ref": "opticalData.json#/$defs/color",
-              "description": "The reference offers several ways to define the color of the component."
             },
             "uValue": {
               "$ref": "calorimetricData.json#/$defs/uValue",
@@ -1161,7 +1157,7 @@
               },
               "color": {
                 "$ref": "opticalData.json#/$defs/color",
-                "description": "The reference offers several ways to define the color of the connection."
+                "description": "Definition of the color of the connection."
               }
             },
             "additionalProperties": false,
