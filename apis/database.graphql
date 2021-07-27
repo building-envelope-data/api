@@ -1032,7 +1032,7 @@ type OpticalData implements Node & Data {
   """
   Mirrored values for the Color Rendering Index that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
-  colorRenderingIndexes: [Float!]!
+  colorRenderingIndices: [Float!]!
 
   """
   Mirrored values for the coordinates in the CIELAB Color Space that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.

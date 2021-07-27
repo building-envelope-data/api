@@ -376,7 +376,7 @@
           "uniqueItems": true,
           "minItems": 1
         },
-        "colorRenderingIndexes": {
+        "colorRenderingIndices": {
           "type": "array",
           "items": {
             "$ref": "#/$defs/colorRenderingIndex"

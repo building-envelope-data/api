@@ -13,7 +13,7 @@
             {
               "dataPoints": [
                 {
-                  "colorRenderingIndexes": [
+                  "colorRenderingIndices": [
                     {
                       "value": 0.5,
                       "direction": "transmission",
