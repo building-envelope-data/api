@@ -62,6 +62,7 @@ and this project adheres to
 - Correct the requirements of `emergenceDirection`[#213](https://github.com/ise621/building-envelope-data/pull/213)
 - Offer detailed definition of calorimetric fluxes [#222](https://github.com/ise621/building-envelope-data/pull/222)
 - Add categories to `material`, `layer` and `unit` from EN 12216 [#223](https://github.com/ise621/building-envelope-data/pull/223) and from EN 13024-1, EN 14179, EN 1863, DIN 18008-5 [#224](https://github.com/ise621/building-envelope-data/pull/224)
+- Add more mirrored values to `apis` [#238](https://github.com/ise621/building-envelope-data/pull/238)
 -
 
 ### Deprecated

@@ -40,10 +40,10 @@ query {
       description
       hashValue
       locator
-      formatId
+      dataFormatId
       archivedFilesMetaInformation {
         path
-        formatId
+        dataFormatId
       }
     }
     resourceTree {
@@ -53,10 +53,10 @@ query {
           description
           hashValue
           locator
-          formatId
+          dataFormatId
           archivedFilesMetaInformation {
             path
-            formatId
+            dataFormatId
           }
         }
       }
@@ -67,10 +67,10 @@ query {
           description
           hashValue
           locator
-          formatId
+          dataFormatId
           archivedFilesMetaInformation {
             path
-            formatId
+            dataFormatId
           }
         }
         appliedConversionMethod {

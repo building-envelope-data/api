@@ -51,33 +51,42 @@
       ]
     },
     "dataPoint": {
-      "title": "Optical data point",
-      "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent rediation, and the optical results.",
-      "type": "object",
-      "properties": {
-        "incidence": {
-          "$ref": "#/$defs/incidence",
-          "title": "Incident radiation",
-          "description": "Incident radiation on the component."
+      "oneOf": [
+        {
+          "title": "General schema for measured and calculated optical data",
+          "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent radiation, and the optical results.",
+          "type": "object",
+          "properties": {
+            "incidence": {
+              "$ref": "#/$defs/incidence",
+              "title": "Incident radiation",
+              "description": "Incident radiation on the component."
+            },
+            "componentCharacteristics": {
+              "$ref": "#/$defs/componentCharacteristics",
+              "title": "Component characteristics",
+              "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
+            },
+            "emergence": {
+              "$ref": "#/$defs/emergence",
+              "title": "Emergent radiation",
+              "description": "Radiation that emerges from the component."
+            },
+            "results": {
+              "$ref": "#/$defs/results",
+              "title": "Results",
+              "description": "For example transmittance and reflectance."
+            }
+          },
+          "additionalProperties": false,
+          "required": ["incidence", "emergence", "results"]
         },
-        "componentCharacteristics": {
-          "$ref": "#/$defs/componentCharacteristics",
-          "title": "Component characteristics",
-          "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
-        },
-        "emergence": {
-          "$ref": "#/$defs/emergence",
-          "title": "Emergent radiation",
-          "description": "Radiation that emerges from the component."
-        },
-        "results": {
-          "$ref": "#/$defs/results",
-          "title": "Results",
-          "description": "For example transmittance and reflectance."
+        {
+          "title": "Color characterization",
+          "$ref": "#/$defs/color",
+          "description": "The color of the component can be characterized in different ways, for example with the CIELAB Color Space and the Color Rendering Index. For angle-dependent characterization of colors, the general schema for measured and calculated optical data is better suited because incident and emergent radiation can be characterized in detail."
         }
-      },
-      "additionalProperties": false,
-      "required": ["incidence", "emergence", "results"]
+      ]
     },
     "componentCharacteristics": {
       "title": "Component characteristics",
@@ -139,7 +148,7 @@
         },
         "surface": {
           "$ref": "component.json#/$defs/surface",
-          "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' can be used."
+          "description": "Defines which surface is irradiated"
         }
       },
       "additionalProperties": false,
@@ -350,6 +359,95 @@
       "additionalProperties": false,
       "required": [],
       "minProperties": 1
+    },
+    "color": {
+      "title": "Color characterization",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the color in common language"
+        },
+        "cielabColors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cielabColor"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "colorRenderingIndices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/colorRenderingIndex"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
+    },
+    "cielabColor": {
+      "title": "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) define the color which is reflected by a component or transmitted through a component.",
+      "type": "object",
+      "properties": {
+        "lStar": {
+          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "description": "L* (lStar) defines the lightness of the color."
+        },
+        "aStar": {
+          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "description": "a* (aStar) defines the color between green and red."
+        },
+        "bStar": {
+          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "description": "b* (bStar) defines the color between blue and yellow."
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["reflection", "transmission"],
+          "description": "`reflection` indicates that that the color is defined which is reflected by the component. `transmission` indicates that the color is defined which is transmitted through the component."
+        },
+        "surface": {
+          "$ref": "component.json#/$defs/surface",
+          "description": "Defines which surface is irradiated"
+        },
+        "observer": {
+          "type": "string",
+          "enum": ["twoDegrees", "tenDegrees"],
+          "description": "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
+        },
+        "illuminant": {
+          "type": "string",
+          "enum": ["A", "D65"],
+          "description": "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+        }
+      },
+      "additionalProperties": false,
+      "required": ["lStar", "aStar", "bStar", "direction"]
+    },
+    "colorRenderingIndex": {
+      "title": "The Color Rendering Index (CRI) indicates how well the transmitted or reflected radiation matches daylight regarding the rendering of colors.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "description": "The value of the Color Rendering Index indicates how well for example the transmitted or reflected radiation matches daylight."
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["reflection", "transmission"],
+          "description": "`reflection` indicates that that the Color Rendering Index is defined for radiation which is reflected by the component. `transmission` indicates that the Color Rendering Index is defined for radiation which is transmitted through the component."
+        },
+        "surface": {
+          "$ref": "component.json#/$defs/surface",
+          "description": "Defines which surface is irradiated"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["value", "direction"]
     }
   },
   "$ref": "#/$defs/data"

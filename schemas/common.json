@@ -417,37 +417,6 @@
       "additionalProperties": false,
       "required": ["path", "format"]
     },
-    "colour": {
-      "description": "Colour of a component",
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "The name of the colour in common language"
-        },
-        "ColorRenderingIndex": {
-          "$ref": "number.json#/$defs/numberWithUncertainty",
-          "description": "The Colour Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
-        },
-        "CIELAB": {
-          "type": "object",
-          "properties": {
-            "L*": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
-            },
-            "a*": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
-            },
-            "b*": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
-            }
-          },
-          "description": "The three parameters L*, a* and b* defined by the International Commission on Illumination (CIE) can be used to define the colour which is reflected by a component. L* defines the lightness, a* the colour between green and red and b* the colour between blue and yellow."
-        }
-      },
-      "additionalProperties": false,
-      "required": []
-    },
     "possiblePositions": {
       "title": "The locations where a component can be used",
       "type": "array",

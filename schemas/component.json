@@ -255,10 +255,6 @@
           "minProperties": 1,
           "required": []
         },
-        "colour": {
-          "$ref": "common.json#/$defs/colour",
-          "description": "The reference offers several ways to define the colour of the component."
-        },
         "cutOff": {
           "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."
@@ -532,7 +528,7 @@
       "type": "string",
       "enum": ["nonPrime", "prime", "symmetric"],
       "title": "Surface",
-      "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' can be used."
+      "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' is used."
     }
   },
   "$ref": "#/$defs/component"

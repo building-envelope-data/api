@@ -567,19 +567,6 @@ input DataPropositionInput {
   and: [DataPropositionInput!]
 
   """
-  True for data that has a `g` value for which the proposition `gValue` is
-  true, otherwise false.
-  """
-  gValue: FloatPropositionInput
-
-  """
-  True for data that has a nearnormal hemispherical visible transmittance value
-  for which the proposition `nearnormalHemisphericalVisibleTransmittance` is
-  true, otherwise false.
-  """
-  nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
-
-  """
   True for data for which the proposition `not` is false, otherwise false.
   """
   not: DataPropositionInput
@@ -591,10 +578,85 @@ input DataPropositionInput {
   or: [DataPropositionInput!]
 
   """
+  True for data with at least one resource for whose format identifier the proposition `dataFormatId` is true, otherwise false. See `GetHttpsResource#dataFormatId` and `FileMetaInformation#dataFormatId`.
+  """
+  dataFormatId: UuidPropositionInput
+
+  """
+  True for data that has a `g` value for which the proposition `gValue` is
+  true, otherwise false.
+  """
+  gValue: FloatPropositionInput
+
+  """
   True for data that has a `u` value for which the proposition `uValue` is
   true, otherwise false.
   """
   uValue: FloatPropositionInput
+
+  """
+  True for data that has a nearnormal hemispherical visible transmittance value
+  for which the proposition `nearnormalHemisphericalVisibleTransmittance` is
+  true, otherwise false.
+  """
+  nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
+
+  """
+  True for data that has a nearnormal hemispherical visible reflectance value
+  for which the proposition `nearnormalHemisphericalVisibleReflectance` is
+  true, otherwise false.
+  """
+  nearnormalHemisphericalVisibleReflectance: FloatPropositionInput
+
+  """
+  True for data that has a nearnormal hemispherical solar transmittance value
+  for which the proposition `nearnormalHemisphericalSolarTransmittance` is
+  true, otherwise false.
+  """
+  nearnormalHemisphericalSolarTransmittance: FloatPropositionInput
+
+  """
+  True for data that has a nearnormal hemispherical solar reflectance value
+  for which the proposition `nearnormalHemisphericalSolarReflectance` is
+  true, otherwise false.
+  """
+  nearnormalHemisphericalSolarReflectance: FloatPropositionInput
+
+  """
+  True for data that has an infrared emittance value for which the proposition `infraredEmittance` is true, otherwise false.
+  """
+  infraredEmittance: FloatPropositionInput
+
+  """
+  True for data that has a Color Rendering Index for which the proposition `colorRenderingIndex` is true, otherwise false.
+  """
+  colorRenderingIndex: FloatPropositionInput
+
+  """
+  True for data that has an CIELAB Color Space coordinates for which the proposition `cielabColor` is true, otherwise false.
+  """
+  cielabColor: CielabColorPropositionInput
+}
+
+"""
+Proposition for values of type `CielabColor`. Multiple sub-propositions are combined
+conjunctively, where the conjunction of an empty set of sub-propositions is true.
+"""
+input CielabColorPropositionInput {
+  """
+  True for data that has a CIELAB Color Space coordinate L* (lStar) for which the proposition `lStar` is true, otherwise false.
+  """
+  lStar: FloatPropositionInput
+
+  """
+  True for data that has a CIELAB Color Space coordinate a* (aStar) for which the proposition `aStar` is true, otherwise false.
+  """
+  aStar: FloatPropositionInput
+
+  """
+  True for data that has a CIELAB Color Space coordinate b* (bStar) for which the proposition `bStar` is true, otherwise false.
+  """
+  bStar: FloatPropositionInput
 }
 
 """
@@ -603,9 +665,16 @@ See `DataPropositionInput`.
 input OpticalDataPropositionInput {
   componentId: UuidPropositionInput
   and: [OpticalDataPropositionInput!]
-  nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
   not: OpticalDataPropositionInput
   or: [OpticalDataPropositionInput!]
+  dataFormatId: UuidPropositionInput
+  nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
+  nearnormalHemisphericalVisibleReflectance: FloatPropositionInput
+  nearnormalHemisphericalSolarTransmittance: FloatPropositionInput
+  nearnormalHemisphericalSolarReflectance: FloatPropositionInput
+  infraredEmittance: FloatPropositionInput
+  colorRenderingIndex: FloatPropositionInput
+  cielabColor: CielabColorPropositionInput
 }
 
 """
@@ -614,9 +683,10 @@ See `DataPropositionInput`.
 input CalorimetricDataPropositionInput {
   componentId: UuidPropositionInput
   and: [CalorimetricDataPropositionInput!]
-  gValue: FloatPropositionInput
   not: CalorimetricDataPropositionInput
   or: [CalorimetricDataPropositionInput!]
+  dataFormatId: UuidPropositionInput
+  gValue: FloatPropositionInput
   uValue: FloatPropositionInput
 }
 
@@ -628,6 +698,7 @@ input HygrothermalDataPropositionInput {
   and: [HygrothermalDataPropositionInput!]
   not: HygrothermalDataPropositionInput
   or: [HygrothermalDataPropositionInput!]
+  dataFormatId: UuidPropositionInput
 }
 
 """
@@ -638,6 +709,7 @@ input PhotovoltaicDataPropositionInput {
   and: [PhotovoltaicDataPropositionInput!]
   not: PhotovoltaicDataPropositionInput
   or: [PhotovoltaicDataPropositionInput!]
+  dataFormatId: UuidPropositionInput
 }
 
 """
@@ -895,6 +967,26 @@ interface Data {
   locale: Locale!
 }
 
+"""
+The CIELAB Color Space is used to define a color. It has three rectangular color coordinates, L* (lStar), a* (aStar) and b* (bStar).
+"""
+type CielabColor {
+  """
+  The coordinate L* (lStar) defines the lightness of the color.
+  """
+  lStar: Float!
+
+  """
+  The coordinate a* (aStar) defines the color between green and red.
+  """
+  aStar: Float!
+
+  """
+  The coordinate b* (bStar) defines the color between blue and yellow.
+  """
+  bStar: Float!
+}
+
 type OpticalData implements Node & Data {
   id: ID!
   uuid: Uuid!
@@ -914,10 +1006,38 @@ type OpticalData implements Node & Data {
   approval: ResponseApproval!
 
   """
-  Mirrored nearnormal hemispherical visible transmittance values that occur in
-  the data
+  Mirrored nearnormal hemispherical visible transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
+  """
+  Mirrored nearnormal hemispherical visible reflectance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  nearnormalHemisphericalVisibleReflectances: [Float!]!
+
+  """
+  Mirrored nearnormal hemispherical solar transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  nearnormalHemisphericalSolarTransmittances: [Float!]!
+
+  """
+  Mirrored nearnormal hemispherical solar reflectance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  nearnormalHemisphericalSolarReflectances: [Float!]!
+
+  """
+  Mirrored infrared emittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  infraredEmittances: [Float!]!
+
+  """
+  Mirrored values for the Color Rendering Index that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  colorRenderingIndices: [Float!]!
+
+  """
+  Mirrored values for the coordinates in the CIELAB Color Space that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  cielabColors: [CielabColor!]!
 }
 
 type CalorimetricData implements Node & Data {
@@ -1549,7 +1669,7 @@ type GetHttpsResource {
   also
   [List of archive formats](https://en.wikipedia.org/wiki/List_of_archive_formats).
   """
-  formatId: Uuid!
+  dataFormatId: Uuid!
 
   """
   Archived files meta information with relative paths from the archive root and
@@ -1701,5 +1821,5 @@ type FileMetaInformation {
   and additional information to unambiguously identify the specific format and
   to locate the format specification.
   """
-  formatId: Uuid!
+  dataFormatId: Uuid!
 }
