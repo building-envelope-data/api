@@ -263,7 +263,7 @@
                 "description": "The electric resistance of the connection per length of the connection in ohms per meter."
               },
               "color": {
-                "$ref": "common.json#/$defs/color",
+                "$ref": "opticalData.json#/$defs/color",
                 "description": "The reference offers several ways to define the color of the connection."
               }
             },
@@ -411,7 +411,7 @@
               "description": "All properties which depend on the material in general and not on the specific component."
             },
             "color": {
-              "$ref": "common.json#/$defs/color",
+              "$ref": "opticalData.json#/$defs/color",
               "description": "The reference offers several ways to define the color of the component."
             }
           },
@@ -748,7 +748,7 @@
               "minItems": 1
             },
             "color": {
-              "$ref": "common.json#/$defs/color",
+              "$ref": "opticalData.json#/$defs/color",
               "description": "The reference offers several ways to define the color of the component."
             },
             "uValue": {
@@ -1160,7 +1160,7 @@
                 "description": "The electric resistance of the connection per length of the connection in ohms per meter."
               },
               "color": {
-                "$ref": "common.json#/$defs/color",
+                "$ref": "opticalData.json#/$defs/color",
                 "description": "The reference offers several ways to define the color of the connection."
               }
             },

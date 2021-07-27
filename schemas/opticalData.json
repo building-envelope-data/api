@@ -83,7 +83,7 @@
         },
         {
           "title": "Schema to characterize colors",
-          "$ref": "common.json#/$defs/color",
+          "$ref": "#/$defs/color",
           "description": "The color of the component can be defined with the `cielabColorSpace`, by a `colorRenderingIndex` and as a string. For angle-dependent characterization of colors, the general schema for measured and calculated optical data should be used because it allows the precise definition of incidence, emergence and results."
         }
       ]
@@ -354,6 +354,89 @@
         },
         "absorptanceEmittance": {
           "$ref": "#/$defs/absorptanceEmittance"
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
+    },
+    "color": {
+      "description": "Color of a component",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the color in common language"
+        },
+        "colorRenderingIndex": {
+          "type": "array",
+          "items": {
+            "title": "The Color Rendering Index (CRI) indicates how well the transmitted or reflected radiation matches daylight regarding the rendering of colors.",
+            "type": "object",
+            "properties": {
+              "value": {
+                "$ref": "number.json#/$defs/numberWithUncertainty",
+                "description": "The value of the Color Rendering Index indicates how well for example the transmitted or reflected radiation matches daylight."
+              },
+              "direction": {
+                "type": "string",
+                "enum": ["reflection", "transmission"],
+                "description": "`reflection` indicates that that the Color Rendering Index is defined for radiation which is reflected by the component. `transmission` indicates that the Color Rendering Index is defined for radiation which is transmitted through the component."
+              },
+              "surface": {
+                "$ref": "component.json#/$defs/surface",
+                "description": "If the results are identical for all surfaces, 'symmetric' should be used. If the prime surface is defined in `definitionOfSurfacesAndPrimeDirection`, then `prime` and `nonPrime` can be used to define for which surface the color is valid."
+              }
+            },
+            "additionalProperties": false,
+            "required": ["value", "direction"]
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "cielabColorSpace": {
+          "type": "array",
+          "items": {
+            "title": "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) can be used to define the color which is reflected by a component.",
+            "type": "object",
+            "properties": {
+              "lStar": {
+                "$ref": "number.json#/$defs/numberWithUncertainty",
+                "description": "In the CIELAB Color Space, L* (lStar) defines the lightness."
+              },
+              "aStar": {
+                "$ref": "number.json#/$defs/numberWithUncertainty",
+                "description": "In the CIELAB Color Space, a* (aStar) defines the color between green and red."
+              },
+              "bStar": {
+                "$ref": "number.json#/$defs/numberWithUncertainty",
+                "description": "In the CIELAB Color Space, b* (bStar) defines the color between blue and yellow."
+              },
+              "direction": {
+                "type": "string",
+                "enum": ["reflection", "transmission"],
+                "description": "`reflection` indicates that that the color is defined which is reflected by the component. `transmission` indicates that the color is defined which is transmitted through the component."
+              },
+              "surface": {
+                "$ref": "component.json#/$defs/surface",
+                "description": "If the results are identical for all surfaces, 'symmetric' should be used. If the prime surface is defined in `definitionOfSurfacesAndPrimeDirection`, then `prime` and `nonPrime` can be used to define for which surface the color is valid."
+              },
+              "observer": {
+                "type": "string",
+                "enum": ["twoDegrees", "tenDegrees"],
+                "description": "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
+              },
+              "illuminant": {
+                "type": "string",
+                "enum": ["A", "D65"],
+                "description": "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+              }
+            },
+            "additionalProperties": false,
+            "required": ["lStar", "aStar", "bStar", "direction"]
+          },
+          "uniqueItems": true,
+          "minItems": 1
         }
       },
       "additionalProperties": false,
