@@ -528,7 +528,7 @@
       "type": "string",
       "enum": ["nonPrime", "prime", "symmetric"],
       "title": "Surface",
-      "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' can be used."
+      "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' is used."
     }
   },
   "$ref": "#/$defs/component"

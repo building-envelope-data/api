@@ -972,17 +972,17 @@ The CIELAB Color Space is used to define a color. It has three rectangular color
 """
 type CielabColor {
   """
-  L* (lStar) defines the lightness of the color.
+  The coordinate L* (lStar) defines the lightness of the color.
   """
   lStar: Float!
 
   """
-  a* (aStar) defines the color between green and red.
+  The coordinate a* (aStar) defines the color between green and red.
   """
   aStar: Float!
 
   """
-  b* (bStar) defines the color between blue and yellow.
+  The coordinate b* (bStar) defines the color between blue and yellow.
   """
   bStar: Float!
 }

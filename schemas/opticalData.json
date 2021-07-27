@@ -148,7 +148,7 @@
         },
         "surface": {
           "$ref": "component.json#/$defs/surface",
-          "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' can be used."
+          "description": "Defines which surface is irradiated"
         }
       },
       "additionalProperties": false,
@@ -390,7 +390,7 @@
       "minProperties": 1
     },
     "cielabColor": {
-      "title": "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) can define the color which is reflected by a component or transmitted through a component.",
+      "title": "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) define the color which is reflected by a component or transmitted through a component.",
       "type": "object",
       "properties": {
         "lStar": {
@@ -412,7 +412,7 @@
         },
         "surface": {
           "$ref": "component.json#/$defs/surface",
-          "description": "If the results are identical for all surfaces, 'symmetric' should be used. If the prime surface is defined in `definitionOfSurfacesAndPrimeDirection`, then `prime` and `nonPrime` can be used to define for which surface the color is valid."
+          "description": "Defines which surface is irradiated"
         },
         "observer": {
           "type": "string",
@@ -443,7 +443,7 @@
         },
         "surface": {
           "$ref": "component.json#/$defs/surface",
-          "description": "If the results are identical for all surfaces, 'symmetric' should be used. If the prime surface is defined in `definitionOfSurfacesAndPrimeDirection`, then `prime` and `nonPrime` can be used to define for which surface the color is valid."
+          "description": "Defines which surface is irradiated"
         }
       },
       "additionalProperties": false,
