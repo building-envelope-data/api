@@ -264,7 +264,7 @@
               },
               "color": {
                 "$ref": "opticalData.json#/$defs/color",
-                "description": "Definition of the color of the connection."
+                "description": "Color of the connection"
               }
             },
             "additionalProperties": false,
@@ -412,7 +412,7 @@
             },
             "color": {
               "$ref": "opticalData.json#/$defs/color",
-              "description": "Definition of the color of the frame."
+              "description": "Color of the frame."
             }
           },
           "additionalProperties": false,
@@ -1157,7 +1157,7 @@
               },
               "color": {
                 "$ref": "opticalData.json#/$defs/color",
-                "description": "Definition of the color of the connection."
+                "description": "Color of the connection."
               }
             },
             "additionalProperties": false,
