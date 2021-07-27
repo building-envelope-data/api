@@ -11,7 +11,7 @@
           "properties": {
             "module": {
               "$ref": "#/$defs/module",
-              "description": "If the component can turn irradiance into direct current, it can be named building-integrated photovoltaic module and defined here."
+              "description": "Components which turn irradiance into direct current."
             }
           },
           "additionalProperties": false,
@@ -22,7 +22,7 @@
           "properties": {
             "inverter": {
               "$ref": "#/$defs/inverter",
-              "description": "If the component can convert direct current to alternating current, it can be named inverter and be defined here."
+              "description": "Components which can convert direct current to alternating current."
             }
           },
           "additionalProperties": false,
@@ -33,7 +33,7 @@
           "properties": {
             "system": {
               "$ref": "#/$defs/system",
-              "description": "If the building component consists of several photovoltaic modules and an inverter, it can be named building-integrated photovoltaic system and defined here."
+              "description": "A photovoltaic system which can consist of photovoltaic modules and inverters."
             }
           },
           "additionalProperties": false,
@@ -46,7 +46,7 @@
       "type": "object",
       "properties": {
         "cellTypes": {
-          "title": "Which types of cells are used in the photovoltaic module.",
+          "title": "The type of cells used in the module",
           "type": "array",
           "items": {
             "type": "object",
@@ -184,18 +184,18 @@
           "required": []
         },
         "cells": {
-          "title": "This subschema can be used to define the cells with a higher level of detail than 'rectangular'. It lists each cell of the photovoltaic module.",
+          "title": "The cells of the module.",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "id": {
                 "$ref": "identifier.json#/$defs/decentral",
-                "description": "The id represents one specific cell in the photovoltaic module. It is used to define connections to other parts of the photovoltaic module."
+                "description": "The id is used to connect this specific cell to other parts of the module."
               },
               "cellType": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The id represents one type of photovoltaic cells as defined above."
+                "description": "The id represents one of the `cellTypes`."
               }
             },
             "additionalProperties": false,
@@ -211,11 +211,11 @@
             "properties": {
               "id": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The id represents one type of diodes which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
+                "description": "The id represents a type of diodes which is used in the the photovoltaic module."
               },
               "description": {
                 "type": "string",
-                "description": "This string can explain the cell to humans."
+                "description": "This string can explain the diode type to humans."
               }
             },
             "additionalProperties": false,
@@ -232,7 +232,7 @@
             "properties": {
               "id": {
                 "$ref": "identifier.json#/$defs/decentral",
-                "description": "The id represents one specific diode of the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
+                "description": "The id is used to connect this specific diode to other parts of the module."
               },
               "diodeType": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
@@ -245,14 +245,14 @@
           "minItems": 0
         },
         "connectionTypes": {
-          "title": "This array defines the type of electric connections which are used in the the photovoltaic module.",
+          "title": "The types of connections between subcomponents of the module",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "id": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The id represents one type of connections which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
+                "description": "The id represents a type of connections which is used in the the module."
               },
               "description": {
                 "type": "string",
@@ -275,7 +275,7 @@
         },
         "connectionPattern": {
           "$ref": "#/$defs/connections/$defs/category",
-          "description": "If the connections are in series or parallel, this can be defined here."
+          "description": "Whether the connections are in series or parallel"
         },
         "connections": {
           "$ref": "#/$defs/connections/$defs/bidirectional",
@@ -369,7 +369,7 @@
                 "properties": {
                   "id": {
                     "$ref": "identifier.json#/$defs/centralOrDecentral",
-                    "description": "The id represents one specific junction box of the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
+                    "description": "The id represents a specific junction box of the photovoltaic module."
                   },
                   "connectorType": {
                     "$ref": "identifier.json#/$defs/centralOrDecentral",
@@ -391,7 +391,7 @@
             },
             "groundingNecessary": {
               "type": "boolean",
-              "description": "This value defines whether one side of the module needs to be connected to the ground."
+              "description": "Whether one side of the module needs to be connected to the ground."
             }
           },
           "additionalProperties": false,
@@ -441,11 +441,11 @@
                     "properties": {
                       "years": {
                         "$ref": "number.json#/$defs/nonNegativeNumber",
-                        "description": "This number defines the amount of years until which a certain minimum percentage of the nominal power is guaranteed."
+                        "description": "The amount of years until which a certain minimum percentage of the nominal power is guaranteed"
                       },
                       "percentage": {
                         "$ref": "number.json#/$defs/nonNegativeNumber",
-                        "description": "This number defines which fraction of the nominal power in percent is guaranteed as minimum after the amount of years which are defined above."
+                        "description": "The fraction of the nominal power in percent which is guaranteed as minimum after the amount of `years`."
                       }
                     },
                     "additionalProperties": false,
@@ -457,7 +457,7 @@
                   "title": "The nominal power usually depends on the direction of irradiance. In general, the `incidenceDirectionModifier` can characterize this dependency on the direction.  ",
                   "oneOf": [
                     {
-                      "title": "If the nominal power of the module depends only on the polar angle of the incidence and not on the azimuth angle (`azimuthalAngleInvariance`), then the Incidence Angle Modifier (IAM) should be defined here. It modifies the nominal power depending on the incidence angle.",
+                      "title": "The Incidence Angle Modifier (IAM) is used if the nominal power of the module depends only on the polar angle of the incidence and not on the azimuth angle (`azimuthalAngleInvariance`).",
                       "type": "array",
                       "items": {
                         "type": "object",
@@ -468,7 +468,7 @@
                           },
                           "IAM": {
                             "$ref": "number.json#/$defs/nonNegativeNumber",
-                            "description": "`IAM` defines the value of the incidence angle modifier at the angle defined by `incidence`."
+                            "description": "The value of the incidence angle modifier at the angle defined by `incidence`."
                           }
                         },
                         "additionalProperties": false,
@@ -597,7 +597,7 @@
                             "E_fl",
                             "F"
                           ],
-                          "description": "The abbreviation define the fire safety class according to EN 13501-1."
+                          "description": "The fire safety class according to EN 13501-1"
                         },
                         "smoke": {
                           "type": "string",
@@ -661,7 +661,7 @@
                           },
                           "reference": {
                             "$ref": "common.json#/$defs/reference",
-                            "description": "The reference defines for example the standard according to which the mechanical test was performed."
+                            "description": "Reference for examplt to the standard according to which the mechanical test was performed"
                           }
                         },
                         "additionalProperties": false,
@@ -673,7 +673,7 @@
                     {
                       "type": "string",
                       "const": "noPerformanceDetermined",
-                      "description": "noPerformanceDetermined defines that no tests of the mechanical loads are available."
+                      "description": "`noPerformanceDetermined` means that no tests of the mechanical loads are available."
                     }
                   ]
                 },
@@ -697,7 +697,7 @@
                     {
                       "type": "string",
                       "const": "noPerformanceDetermined",
-                      "description": "noPerformanceDetermined defines that no hail test results are available."
+                      "description": "`noPerformanceDetermined` means that no hail test results are available."
                     }
                   ]
                 }
@@ -728,18 +728,18 @@
               "required": []
             },
             "guarantees": {
-              "title": "Whether a a general guarantee for the product. It is defined by the number of years and can refer to a publication or standard for details. `years`=0 means that no guarantee is provided. It is an array so that references for different number of years can be defined.",
+              "title": "General guarantee. It is defined by the number of years and can refer to a publication or standard for details. `years`=0 means that no guarantee is provided. It is an array so that references for different number of years can be defined.",
               "type": "array",
               "items": {
                 "type": "object",
                 "properties": {
                   "years": {
                     "$ref": "number.json#/$defs/nonNegativeNumber",
-                    "description": "This number defines the number of years for which the manufacturer offers a guarantee for this module."
+                    "description": "The years for which the manufacturer offers a guarantee for this module."
                   },
                   "reference": {
                     "$ref": "common.json#/$defs/reference",
-                    "description": "The reference can define a publication or standard with details of the guarantee."
+                    "description": "Details of the guarantee."
                   }
                 },
                 "additionalProperties": false,
@@ -926,7 +926,7 @@
               "type": "object",
               "properties": {
                 "IPcode": {
-                  "title": "The electric safety according to the International Protection Marking, also called Ingress Protection Marking. Codes between IPXX and IP69K are defined. `standard` defines which standard defines the details of the of the IP code. `firstDigit` defines the protection against solid particles and the `secondDigit` against liquid ingress. `thirdDigit` is optional and defines the access to dangerous active parts. `fourthDigit` is optional, too, and can define additional information.",
+                  "title": "The electric safety according to the International Protection Marking, also called Ingress Protection Marking, with codes between IPXX and IP69K.",
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -936,7 +936,7 @@
                         "items": {
                           "type": "string",
                           "enum": ["EN IEC 60529", "ISO 20653"],
-                          "description": "The item defines according to which standard the IP code is defined below."
+                          "description": "`EN IEC 60529` and `ISO 20653` indicate the standard according to which the IP code is defined."
                         },
                         "uniqueItems": true,
                         "minItems": 1,
@@ -956,7 +956,7 @@
                           "6",
                           "6K"
                         ],
-                        "description": "The first digit of the IP code."
+                        "description": "The first digit of the IP code represents the the protection against solid particles."
                       },
                       "secondDigit": {
                         "type": "string",
@@ -976,17 +976,17 @@
                           "9",
                           "9K"
                         ],
-                        "description": "The second digit of the IP code."
+                        "description": "The second digit of the IP code represents the protection against liquid ingress."
                       },
                       "thirdDigit": {
                         "type": "string",
                         "enum": ["A", "B", "C", "D"],
-                        "description": "The item defines the optional third digit of the IP code."
+                        "description": "The third digit is optional and represents the access to dangerous active parts."
                       },
                       "fourthDigit": {
                         "type": "string",
                         "enum": ["f", "H", "M", "S", "W"],
-                        "description": "The item defines the optional fourth digit of the IP code."
+                        "description": "The fourth digit can include additional information."
                       }
                     },
                     "additionalProperties": false,
@@ -995,7 +995,7 @@
                   "minItems": 1
                 },
                 "applianceClass": {
-                  "title": "The appliance protection classes define which protective-earth connection requirements are fulfilled.",
+                  "title": "The appliance protection classes states which protective-earth connection requirements are fulfilled.",
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -1003,7 +1003,7 @@
                       "standard": {
                         "type": "string",
                         "const": "IEC 61140",
-                        "description": "The item defines according to which standard the appliance class is defined below."
+                        "description": "`IEC 61140` indicates the standard according to which the appliance class is defined."
                       },
                       "class": {
                         "type": "string",
@@ -1073,14 +1073,14 @@
       "type": "object",
       "properties": {
         "modules": {
-          "title": "The modules of the photovoltaic system.",
+          "title": "The modules of the photovoltaic system",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "id": {
                 "$ref": "identifier.json#/$defs/decentral",
-                "description": "The id represents one specific photovoltaic module in the photovoltaic system. It is used to define connections to other parts of the photovoltaic system."
+                "description": "The id is used to connect this module to other parts of the system."
               },
               "moduleType": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
@@ -1093,18 +1093,18 @@
           "minItems": 1
         },
         "diodeTypes": {
-          "title": "The type of diodes which are used in the the photovoltaic module.",
+          "title": "The type of diodes which are used in the system",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "id": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The id represents one type of diodes which is used in the the photovoltaic module. The id is used to define connections to other parts of the photovoltaic module"
+                "description": "The id represents a type of diodes which is used in the system."
               },
               "description": {
                 "type": "string",
-                "description": "This string can explain the cell to humans."
+                "description": "This string can explain the diode type to humans."
               }
             },
             "additionalProperties": false,
@@ -1114,14 +1114,14 @@
           "minItems": 1
         },
         "diodes": {
-          "title": "This array defines the diodes between the modules of this photovoltaic system. The diodes are used to bypass shaded modules which would otherwise dissipate energy.",
+          "title": "The diodes between the modules of this photovoltaic system. The diodes are used to bypass shaded modules which would otherwise dissipate energy.",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "id": {
                 "$ref": "identifier.json#/$defs/decentral",
-                "description": "The id represents one specific diode of the photovoltaic system. The id is used to define connections to other parts of the photovoltaic system"
+                "description": "The id is used to connect this specific diode to other parts of the system."
               },
               "diodeType": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
@@ -1134,14 +1134,14 @@
           "minItems": 1
         },
         "connectionTypes": {
-          "title": "This array defines the type of electric connections between the modules, diodes and inverters of this photovoltaic system.",
+          "title": "The type of electric connections between the modules, diodes and inverters of this photovoltaic system.",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "id": {
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The id represents one type of connections which is used in the the photovoltaic system. The id is used to define connections to other parts of the photovoltaic system"
+                "description": "The id represents a type of diodes which is used in the system."
               },
               "description": {
                 "type": "string",
@@ -1168,7 +1168,7 @@
         },
         "connections": {
           "$ref": "#/$defs/connections/$defs/bidirectional",
-          "description": "This subschema defines the connections between the modules, diodes and inverters of this photovoltaic system."
+          "description": "The connections between the modules, diodes and inverters of this photovoltaic system."
         },
         "grounding": {
           "$ref": "#/$defs/connections/$defs/grounding",
@@ -1262,7 +1262,7 @@
               "grounding": {
                 "type": "string",
                 "enum": ["plus", "minus", "neither"],
-                "description": "This string defines whether the electric plus or minus of the component is connected to the ground."
+                "description": "Whether the electric plus or minus of the component is connected to the ground."
               }
             },
             "additionalProperties": false,
