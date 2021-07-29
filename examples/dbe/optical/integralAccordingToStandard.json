@@ -8,21 +8,34 @@
             "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
-          "description": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050.",
+          "description": "Example: nearnormal-hemispherical integral values calculated according to a standard and based on a spectrally-resolved optical data set",
           "appliedMethod": {
             "method": {
-              "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
+              "id": "0cbc343a-b065-47fb-b4a5-6000cfe4ff18",
               "reference": {
                 "standard": {
                   "standardizers": ["ISO"],
                   "numeration": {
                     "mainNumber": 9050
-                  }
+                  },
+                  "year": 2003
                 }
               }
             },
             "arguments": [],
-            "sources": []
+            "sources": [
+              {
+                "name": "Measured spectrum used to calculate the integral value",
+                "value": {
+                  "id": {
+                    "value": "b8435146-5270-46f5-b925-4b00de265823",
+                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                  },
+                  "dataTimestamp": "2021-07-01T12:00:00+01:00",
+                  "dataKind": "opticalData"
+                }
+              }
+            ]
           },
           "data": [
             {
@@ -38,7 +51,8 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "reflectance": 0.1
+                    "transmittance": 0.85,
+                    "reflectance": 0.08
                   }
                 }
               ]
