@@ -11,7 +11,7 @@
             "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
-          "description": "Example for a nearnormal-hemispherical visible transmittance of a component.",
+          "description": "Example for a nearnormal-hemispherical visible reflectance of a component.",
           "data": [
             {
               "dataPoints": [
