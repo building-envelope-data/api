@@ -210,8 +210,8 @@
       "properties": {
         "integral": {
           "type": "string",
-          "enum": ["infrared", "solar", "visible", "other"],
-          "description": "Spectrum over which the integral result was measured or calculated. If the spectrum is infrared, solar, or visible, then use the respective value. Otherwise, use the value `'other'` and make sure that its meaning is given in the description of the method used to generate this data set, for example, in the method's reference."
+          "enum": ["infrared", "solar", "ultraviolet", "visible", "other"],
+          "description": "Spectrum over which the integral result was measured or calculated. `ultraviolet`, `visible`, `solar` and `infrared` indicate the range of the wavelengths used for the integral values. Details about the spectrum are provided by the method which has been applied to generate the data set. If neither `ultraviolet`, `visible`, `solar` and `infrared` describe the spectrum correctly, `other` indicates that all information about the spectrum is provided by the applied method."
         }
       },
       "additionalProperties": false,
