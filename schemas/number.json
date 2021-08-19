@@ -135,6 +135,18 @@
         }
       ]
     },
+    "numberBetweenZeroAndNinety": {
+      "description": "This type is used when only numbers between 0 and 90 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 90
+    },
+    "numberBetweenZeroAndThreeHundredSixty": {
+      "description": "This type is used when only numbers between 0 and 90 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 360
+    },
     "latitude": {
       "description": "Latitude geographic coordinate that specifies the north–south position of a point on the Earth's surface.",
       "type": "number",
@@ -194,6 +206,56 @@
           "properties": {
             "uncertainValue": {
               "$ref": "#/$defs/degree"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
+    "degreeBetweenZeroAndNinetyWithUncertainty": {
+      "title": "If a number can have values between 0° and 90° and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndNinety",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenZeroAndNinety"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
+    "degreeBetweenZeroAndThreeHundredSixty": {
+      "title": "If a number can have values between 0° and 360° and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndThreeHundredSixty",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenZeroAndThreeHundredSixty"
             },
             "uncertainty": {
               "$ref": "#/$defs/uncertaintyNumber"
