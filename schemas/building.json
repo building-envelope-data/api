@@ -290,15 +290,15 @@
           "properties": {
             "latitude": {
               "$ref": "number.json#/$defs/latitude",
-              "description": "The latitude of the location of the building as a decimal number according to WGS 84."
+              "description": "The latitude of the location of the building."
             },
             "longitude": {
               "$ref": "number.json#/$defs/longitude",
-              "description": "The longitude of the location of the building as a decimal number according to WGS 84."
+              "description": "The longitude of the location of the building."
             },
             "elevation": {
-              "$ref": "number.json#/$defs/meter",
-              "description": "The elevation of the location of the building. It has the SI unit meter."
+              "$ref": "number.json#/$defs/elevation",
+              "description": "The elevation of the location of the building. "
             },
             "address": {
               "$ref": "#/$defs/address",
