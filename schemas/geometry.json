@@ -58,11 +58,11 @@
           "properties": {
             "azimuth": {
               "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
-              "description": "When the normal of the prime surface is projected on a horizontal plane, then the azimuth angle of the component is the angle between this projection and the north direction. If the prime surface faces west, the azimuth angle equals 90°."
+              "description": "When the normal of the prime surface is projected on a horizontal plane, then the azimuth angle of the component is the angle between this projection and the north direction. If the prime surface faces west, then the azimuth angle equals 90°."
             },
             "tilt": {
               "$ref": "number.json#/$defs/degreeBetweenZeroAndOneHundredEightyWithUncertainty",
-              "description": "The tilt angle of the component is the angle between the normal of the prime surface and a horizontal plane. If the prime surface is vertical, the tilt angle equals 90°."
+              "description": "The tilt angle of the component is the angle between the prime surface and a horizontal plane. If the prime surface is horizontal and faces the sky, then the tilt angle equals 0°. If the prime surface is vertical, then the tilt angle equals 90°."
             }
           },
           "additionalProperties": false,
