@@ -1,0 +1,32 @@
+{
+  "components": [
+    {
+      "id": "cd7aed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "description": "This example represents the solar thermal collectors of a building.",
+      "characteristics": {
+        "geometry": {
+          "assemblyList": [
+            {
+              "id": "cd85554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": {
+                    "smallest": 0.004
+                  }
+                }
+              }
+            },
+            {
+              "id": "cd95554f-e909-405e-9b7b-2f08ca201f63",
+              "geometry": {
+                "dimensions": {
+                  "independent": { "smallest": 0.001 }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
