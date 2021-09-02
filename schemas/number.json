@@ -141,20 +141,20 @@
       "minimum": 0,
       "maximum": 90
     },
+    "numberBetweenZeroAndOneHundredEighty": {
+      "description": "This type is used when only numbers between 0 and 90 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 180
+    },
     "numberBetweenZeroAndThreeHundredSixty": {
       "description": "This type is used when only numbers between 0 and 90 are valid and no uncertainty can occur.",
       "type": "number",
       "minimum": 0,
       "maximum": 360
     },
-    "latitude": {
-      "description": "Latitude geographic coordinate that specifies the north–south position of a point on the Earth's surface.",
-      "type": "number",
-      "minimum": -90,
-      "maximum": 90
-    },
-    "longitude": {
-      "description": "Longitude geographic coordinate that specifies the east-west position of a point on the Earth's surface.",
+    "numberBetweenMinusOneHundredEightyAndPlusOneHundredEighty": {
+      "description": "This type is used when only numbers between -180 and 180 are valid and no uncertainty can occur.",
       "type": "number",
       "minimum": -180,
       "maximum": 180
@@ -244,7 +244,32 @@
         }
       ]
     },
-    "degreeBetweenZeroAndThreeHundredSixty": {
+    "degreeBetweenZeroAndOneHundredEightyWithUncertainty": {
+      "title": "If a number can have values between 0° and 180° and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndOneHundredEighty",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenZeroAndOneHundredEighty"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
+    "degreeBetweenZeroAndThreeHundredSixtyWithUncertainty": {
       "title": "If a number can have values between 0° and 360° and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
         {
@@ -256,6 +281,31 @@
           "properties": {
             "uncertainValue": {
               "$ref": "#/$defs/numberBetweenZeroAndThreeHundredSixty"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
+    "degreeBetweenMinusOneHundredEightyAndPlusOneHundredEightyWithUncertainty": {
+      "title": "If a number can have values between -180° and 180° and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenMinusOneHundredEightyAndPlusOneHundredEighty",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenMinusOneHundredEightyAndPlusOneHundredEighty"
             },
             "uncertainty": {
               "$ref": "#/$defs/uncertaintyNumber"
@@ -372,6 +422,18 @@
       "type": "number",
       "minimum": 0,
       "maximum": 100
+    },
+    "latitude": {
+      "$ref": "#/$defs/degreeBetweenZeroAndNinetyWithUncertainty",
+      "description": "The angle between the equatorial plane and the straight line between the location and the center of the earth. North is positive. For example, Berlin has a latitude of 52.52 ."
+    },
+    "longitude": {
+      "$ref": "#/$defs/degreeBetweenMinusOneHundredEightyAndPlusOneHundredEightyWithUncertainty",
+      "description": "The angle between the Greenwich meridian and the straight line between the location and the center of the earth. West is positive. For example, Berlin has a longitude of 13.405 ."
+    },
+    "elevation": {
+      "$ref": "number.json#/$defs/meter",
+      "description": "The elevation above sea level. It has the SI unit meter."
     }
   }
 }
