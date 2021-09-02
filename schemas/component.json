@@ -391,7 +391,7 @@
         },
         "definitionOfSurfacesAndPrimeDirection": {
           "title": "Definition of surfaces and prime direction",
-          "description": "The prime direction must be equal to the direction of the profile angle symmetry.",
+          "description": "The prime surface and the prime direction are used to define the orientation of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry.",
           "type": "object",
           "properties": {
             "reference": {
@@ -402,7 +402,7 @@
             "description": {
               "type": "string",
               "title": "Description",
-              "description": "Description of which side of the component is defined as non-prime and which as prime, and which side is top and which side is bottom. Often, the non-prime side faces the exterior and the prime side the interior."
+              "description": "Description of which sides of the components are defined as non-prime and which as prime and which direction is defined as the prime direction. Often, the non-prime side faces the exterior and the prime side the interior."
             }
           },
           "minProperties": 1,

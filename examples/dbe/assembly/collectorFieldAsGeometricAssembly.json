@@ -5,23 +5,53 @@
       "description": "This example represents the solar thermal collectors of a building.",
       "characteristics": {
         "geometry": {
+          "origin": {
+            "latitude": 48.00883171395494,
+            "longitude": 7.834452327404689,
+            "elevation": 278
+          },
+          "definitionOfSurfacesAndPrimeDirections": {
+            "description": "On each collector, the product number is at the bottom right corner facing the interior. The direction from the bottom to the top in parallel to the largest dimension of the collector is the prime direction. The collector surface facing the exterior is the non-prime surface."
+          },
           "assemblyList": [
             {
               "id": "cd85554f-e909-405e-9b7b-2f08ca201f63",
-              "geometry": {
-                "dimensions": {
-                  "independent": {
-                    "smallest": 0.004
-                  }
+              "dimensions": {
+                "independent": {
+                  "smallest": 0.1,
+                  "intermediate": 0.9,
+                  "largest": 1.4
                 }
+              },
+              "location": {
+                "south": 0,
+                "east": 5,
+                "elevation": 5
+              },
+              "orientation": {
+                "azimuth": 180,
+                "tilt": 90,
+                "rotation": 0
               }
             },
             {
               "id": "cd95554f-e909-405e-9b7b-2f08ca201f63",
-              "geometry": {
-                "dimensions": {
-                  "independent": { "smallest": 0.001 }
+              "dimensions": {
+                "independent": {
+                  "smallest": 0.1,
+                  "intermediate": 0.9,
+                  "largest": 1.4
                 }
+              },
+              "location": {
+                "south": -5,
+                "east": 0,
+                "elevation": 5
+              },
+              "orientation": {
+                "azimuth": 270,
+                "tilt": 90,
+                "rotation": 0
               }
             }
           ]

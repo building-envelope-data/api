@@ -64,9 +64,9 @@
           "$ref": "number.json#/$defs/meter",
           "description": "This distance is measured horizontally in the direction from the `origin` to the south. It has the SI unit of meter."
         },
-        "west": {
+        "east": {
           "$ref": "number.json#/$defs/meter",
-          "description": "This distance is measured horizontally in the direction from the `origin` to the west. It has the SI unit of meter."
+          "description": "This distance is measured horizontally in the direction from the `origin` to the east. It has the SI unit of meter."
         },
         "elevation": {
           "$ref": "number.json#/$defs/meter",
@@ -74,7 +74,7 @@
         }
       },
       "additionalProperties": false,
-      "required": ["south", "west"]
+      "required": ["south", "east"]
     },
     "orientation": {
       "title": "The orientation of the prime surface of the component.",
@@ -82,11 +82,15 @@
       "properties": {
         "azimuth": {
           "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
-          "description": "When the normal of the prime surface is projected on a horizontal plane, then the azimuth angle of the component is the angle between this projection and the north direction. If the prime surface faces west, then the azimuth angle equals 90°."
+          "description": "When the normal of the non-prime surface is projected on a horizontal plane, then the azimuth angle of the component is the angle between this projection and the north direction. If the prime surface faces west, then the azimuth angle equals 90°."
         },
         "tilt": {
           "$ref": "number.json#/$defs/degreeBetweenZeroAndOneHundredEightyWithUncertainty",
-          "description": "The tilt angle of the component is the angle between the prime surface and a horizontal plane. If the prime surface is horizontal and faces the sky, then the tilt angle equals 0°. If the prime surface is vertical, then the tilt angle equals 90°."
+          "description": "The tilt angle of the component is the angle between the non-prime surface and a horizontal plane. If the prime surface is horizontal and faces the sky, then the tilt angle equals 0°. If the prime surface is vertical, then the tilt angle equals 90°."
+        },
+        "rotation": {
+          "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
+          "description": "The angle of rotation around the normal of the non-prime surface. First, imagine a plane which is rectangular to the non-prime surface and parallel to the direction of the azimuth angle. The cross-section from the bottom to the top is the first important direction. The rotation angle is the angle between this direction and the prime direction. If the prime direction leads from the bottom to the top, then the rotation angle equals 0°. If the prime direction leads from the left-hand side to the right-hand side as seen from the exterior, then the rotation angle equals 90°."
         }
       },
       "additionalProperties": false,
@@ -122,6 +126,25 @@
         "origin": {
           "$ref": "#/$defs/origin",
           "description": "The origin of the coordinate system which is used by `assemblyList/location`."
+        },
+        "definitionOfSurfacesAndPrimeDirections": {
+          "title": "Definition of surfaces and prime directions",
+          "description": "The prime surface and the prime direction are used to define the `orientation` of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry.",
+          "type": "object",
+          "properties": {
+            "reference": {
+              "$ref": "common.json#/$defs/reference",
+              "title": "Reference",
+              "description": "Reference that defines which surfaces of the components are defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define the prime directions of the components."
+            },
+            "description": {
+              "type": "string",
+              "title": "Description",
+              "description": "Description of which sides of the components are defined as non-prime and which as prime and which direction is defined as the prime direction. Often, the non-prime side faces the exterior and the prime side the interior."
+            }
+          },
+          "minProperties": 1,
+          "required": []
         },
         "assemblyList": {
           "title": "The subcomponents which are used for this assembly.",

@@ -1,3 +1,90 @@
+"""
+Read-only GraphQL schema for the [metabase](https://www.buildingenvelopedata.org/graphql/) of the network of databases for [building envelope data](https://www.buildingenvelopedata.org). While the metabase stores meta information for example about components and institutions, the (child) databases store the data about building envelope components.
+
+It follows best practices for
+* [Global Object Identification](https://graphql.org/learn/global-object-identification/)
+  as exemplified in
+  [GraphQL Server Specification: Object Identification](https://relay.dev/docs/en/graphql-server-specification.html#object-identification)
+  (see also [GraphQL Global Object Identification Specification](https://relay.dev/graphql/objectidentification.htm)),
+  and
+* [Pagination](https://graphql.org/learn/pagination/),
+  by adhering to the
+  [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+  as exemplified in
+  [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections).
+
+Global object identifiers as requird by the best practice are exposed by the
+property `id` and universally unique identifiers as issued by the "metabase"
+are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
+concatenation of `uuid` and the requested locale.
+
+For interoperability with the (child) databases, implementations serve HTTP
+requests as elaborated on
+[Serving over HTTP](https://graphql.org/learn/serving-over-http/).
+
+The
+[Internet Engineering Task Force (IETF)](https://www.ietf.org)
+is an Internet standards organization. It publishes standards in
+[Request for Comments (RFC)](https://ietf.org/standards/rfcs/)
+documents. They are
+[searchable](https://www.rfc-editor.org/search/rfc_search.php)
+and
+[indexed](https://www.rfc-editor.org/rfc-index.html).
+Examples are
+[Hypertext Transfer Protocol (HTTP)](https://tools.ietf.org/html/rfc7231)
+and
+[Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc8446).
+
+The
+[Internet Assigned Numbers Authority (IANA)](https://www.iana.org)
+allocates and maintains unique codes and numbering systems that are used in
+technical standards that drive the Internet like
+[domain names](https://www.iana.org/domains),
+[Internet Protocol addresses](https://www.iana.org/numbers), and
+[registries](https://www.iana.org/protocols).
+Examples of the last are
+[HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+and
+[media type registry](https://www.iana.org/assignments/media-types/media-types.xhtml).
+
+The
+[International Organization for Standardization (ISO)](https://www.iso.org)
+develops and publishes
+[International Standards](https://www.iso.org/standards-catalogue/browse-by-ics.html).
+Examples are
+[ISO 8601 Date And Time Format](https://www.iso.org/iso-8601-date-and-time-format.html)
+and
+[ISO 3166 Country Codes](https://www.iso.org/iso-3166-country-codes.html).
+
+The library
+[graphql-scalars](https://github.com/Urigo/graphql-scalars)
+introduces custom scalar types for creating precise type-safe GraphQL schemas.
+We took some inspiration from
+[GitHub GraphQL API](https://docs.github.com/en/graphql).
+"""
+scalar Schema
+
+"""
+[RFC 4122](https://tools.ietf.org/html/rfc4122)
+compliant
+[non-nil](https://tools.ietf.org/html/rfc4122#section-4.1.7)
+[Universally Unique Identifier (UUID)](https://tools.ietf.org/html/rfc4122#section-4.1)
+string represented as 32 hexadecimal digits in five groups separated by hyphens
+in the form `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`, like
+`"936da01f-9abd-4d9d-80c7-02af85c822a8"`. Such identifiers are not equal to
+`"00000000-0000-0000-0000-000000000000"` and match the regular expression
+`^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$`.
+"""
+scalar Uuid
+
+"""
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
+compliant
+[Cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
+string.
+"""
+scalar Cursor
+
 schema {
   query: Query
   mutation: Mutation
@@ -70,6 +157,7 @@ type CalorimetricData implements Data {
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
   nodes: [CalorimetricData!]!
+  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
@@ -145,6 +233,7 @@ type ComponentEdge {
 
 type ComponentManufacturerConnection {
   edges: [ComponentManufacturerEdge!]!
+  pageInfo: PageInfo!
 }
 
 type ComponentManufacturerEdge {
@@ -288,6 +377,7 @@ type DataApproval {
 type DataConnection {
   edges: [DataEdge!]!
   nodes: [Data!]!
+  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
@@ -333,26 +423,98 @@ type DataFormatManagerEdge {
 }
 
 type Database implements Node {
-  allCalorimetricData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: CalorimetricDataPropositionInput!): CalorimetricDataConnection
-  allData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: DataPropositionInput!): DataConnection
-  allHygrothermalData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: HygrothermalDataPropositionInput!): HygrothermalDataConnection
-  allOpticalData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: OpticalDataPropositionInput!): OpticalDataConnection
-  allPhotovoltaicData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: PhotovoltaicDataPropositionInput!): PhotovoltaicDataConnection
-  calorimetricData(id: Uuid! locale: String timestamp: DateTime): CalorimetricData
-  data(id: Uuid! locale: String timestamp: DateTime): Data
+  allCalorimetricData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: CalorimetricDataPropositionInput!
+  ): CalorimetricDataConnection
+  allData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: DataPropositionInput!
+  ): DataConnection
+  allHygrothermalData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: HygrothermalDataPropositionInput!
+  ): HygrothermalDataConnection
+  allOpticalData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: OpticalDataPropositionInput!
+  ): OpticalDataConnection
+  allPhotovoltaicData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: PhotovoltaicDataPropositionInput!
+  ): PhotovoltaicDataConnection
+  calorimetricData(
+    id: Uuid!
+    locale: String
+    timestamp: DateTime
+  ): CalorimetricData
+  data(id: Uuid!, locale: String, timestamp: DateTime): Data
   description: String!
-  hasCalorimetricData(locale: String timestamp: DateTime where: CalorimetricDataPropositionInput!): Boolean
-  hasData(locale: String timestamp: DateTime where: DataPropositionInput!): Boolean
-  hasHygrothermalData(locale: String timestamp: DateTime where: HygrothermalDataPropositionInput!): Boolean
-  hasOpticalData(locale: String timestamp: DateTime where: OpticalDataPropositionInput!): Boolean
-  hasPhotovoltaicData(locale: String timestamp: DateTime where: PhotovoltaicDataPropositionInput!): Boolean
-  hygrothermalData(id: Uuid! locale: String timestamp: DateTime): HygrothermalData
+  hasCalorimetricData(
+    locale: String
+    timestamp: DateTime
+    where: CalorimetricDataPropositionInput!
+  ): Boolean
+  hasData(
+    locale: String
+    timestamp: DateTime
+    where: DataPropositionInput!
+  ): Boolean
+  hasHygrothermalData(
+    locale: String
+    timestamp: DateTime
+    where: HygrothermalDataPropositionInput!
+  ): Boolean
+  hasOpticalData(
+    locale: String
+    timestamp: DateTime
+    where: OpticalDataPropositionInput!
+  ): Boolean
+  hasPhotovoltaicData(
+    locale: String
+    timestamp: DateTime
+    where: PhotovoltaicDataPropositionInput!
+  ): Boolean
+  hygrothermalData(
+    id: Uuid!
+    locale: String
+    timestamp: DateTime
+  ): HygrothermalData
   id: ID!
   locator: Url!
   name: String!
   operator: DatabaseOperatorEdge!
-  opticalData(id: Uuid! locale: String timestamp: DateTime): OpticalData
-  photovoltaicData(id: Uuid! locale: String timestamp: DateTime): PhotovoltaicData
+  opticalData(id: Uuid!, locale: String, timestamp: DateTime): OpticalData
+  photovoltaicData(
+    id: Uuid!
+    locale: String
+    timestamp: DateTime
+  ): PhotovoltaicData
   uuid: Uuid!
 }
 
@@ -507,6 +669,7 @@ type HygrothermalData implements Data {
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
   nodes: [HygrothermalData!]!
+  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
@@ -519,17 +682,23 @@ type HygrothermalDataEdge {
 type Institution implements Node & Stakeholder {
   abbreviation: String
   description: String!
-  developedMethods(pending: Boolean! = false): InstitutionDevelopedMethodConnection!
+  developedMethods(
+    pending: Boolean! = false
+  ): InstitutionDevelopedMethodConnection!
   id: ID!
   managedDataFormats: InstitutionManagedDataFormatConnection!
   managedInstitutions: InstitutionManagedInstitutionConnection!
   managedMethods: InstitutionManagedMethodConnection!
   manager: InstitutionManagerEdge
-  manufacturedComponents(pending: Boolean! = false): InstitutionManufacturedComponentConnection!
+  manufacturedComponents(
+    pending: Boolean! = false
+  ): InstitutionManufacturedComponentConnection!
   name: String!
   operatedDatabases: InstitutionOperatedDatabaseConnection!
   publicKey: String
-  representatives(pending: Boolean! = false): InstitutionRepresentativeConnection!
+  representatives(
+    pending: Boolean! = false
+  ): InstitutionRepresentativeConnection!
   state: InstitutionState!
   uuid: Uuid!
   websiteLocator: Url
@@ -549,6 +718,7 @@ type InstitutionConnection {
 type InstitutionDevelopedMethodConnection {
   canCurrentUserConfirmEdge: Boolean!
   edges: [InstitutionDevelopedMethodEdge!]!
+  pageInfo: PageInfo!
 }
 
 type InstitutionDevelopedMethodEdge {
@@ -566,6 +736,7 @@ type InstitutionEdge {
 type InstitutionManagedDataFormatConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionManagedDataFormatEdge!]!
+  pageInfo: PageInfo!
 }
 
 type InstitutionManagedDataFormatEdge {
@@ -575,6 +746,7 @@ type InstitutionManagedDataFormatEdge {
 type InstitutionManagedInstitutionConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionManagedInstitutionEdge!]!
+  pageInfo: PageInfo!
 }
 
 type InstitutionManagedInstitutionEdge {
@@ -584,6 +756,7 @@ type InstitutionManagedInstitutionEdge {
 type InstitutionManagedMethodConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionManagedMethodEdge!]!
+  pageInfo: PageInfo!
 }
 
 type InstitutionManagedMethodEdge {
@@ -598,6 +771,7 @@ type InstitutionManufacturedComponentConnection {
   canCurrentUserAddEdge: Boolean!
   canCurrentUserConfirmEdge: Boolean!
   edges: [InstitutionManufacturedComponentEdge!]!
+  pageInfo: PageInfo!
 }
 
 type InstitutionManufacturedComponentEdge {
@@ -611,6 +785,7 @@ type InstitutionMethodDeveloperEdge {
 type InstitutionOperatedDatabaseConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionOperatedDatabaseEdge!]!
+  pageInfo: PageInfo!
 }
 
 type InstitutionOperatedDatabaseEdge {
@@ -620,6 +795,7 @@ type InstitutionOperatedDatabaseEdge {
 type InstitutionRepresentativeConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionRepresentativeEdge!]!
+  pageInfo: PageInfo!
 }
 
 type InstitutionRepresentativeEdge {
@@ -699,6 +875,7 @@ type MethodConnection {
 
 type MethodDeveloperConnection {
   edges: [MethodDeveloperEdge!]!
+  pageInfo: PageInfo!
 }
 
 type MethodDeveloperEdge {
@@ -718,46 +895,107 @@ type MethodManagerEdge {
 }
 
 type Mutation {
-  addInstitutionRepresentative(input: AddInstitutionRepresentativeInput!): AddInstitutionRepresentativePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  addInstitutionRepresentative(
+    input: AddInstitutionRepresentativeInput!
+  ): AddInstitutionRepresentativePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
   addUserRole(input: AddUserRoleInput!): AddUserRolePayload!
-  changeInstitutionRepresentativeRole(input: ChangeInstitutionRepresentativeRoleInput!): ChangeInstitutionRepresentativeRolePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  changeUserEmail(input: ChangeUserEmailInput!): ChangeUserEmailPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  changeUserPassword(input: ChangeUserPasswordInput!): ChangeUserPasswordPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  confirmComponentManufacturer(input: ConfirmComponentManufacturerInput!): ConfirmComponentManufacturerPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  confirmInstitutionMethodDeveloper(input: ConfirmInstitutionMethodDeveloperInput!): ConfirmInstitutionMethodDeveloperPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  confirmInstitutionRepresentative(input: ConfirmInstitutionRepresentativeInput!): ConfirmInstitutionRepresentativePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  changeInstitutionRepresentativeRole(
+    input: ChangeInstitutionRepresentativeRoleInput!
+  ): ChangeInstitutionRepresentativeRolePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  changeUserEmail(input: ChangeUserEmailInput!): ChangeUserEmailPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  changeUserPassword(
+    input: ChangeUserPasswordInput!
+  ): ChangeUserPasswordPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  confirmComponentManufacturer(
+    input: ConfirmComponentManufacturerInput!
+  ): ConfirmComponentManufacturerPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  confirmInstitutionMethodDeveloper(
+    input: ConfirmInstitutionMethodDeveloperInput!
+  ): ConfirmInstitutionMethodDeveloperPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  confirmInstitutionRepresentative(
+    input: ConfirmInstitutionRepresentativeInput!
+  ): ConfirmInstitutionRepresentativePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
   confirmUserEmail(input: ConfirmUserEmailInput!): ConfirmUserEmailPayload!
-  confirmUserEmailChange(input: ConfirmUserEmailChangeInput!): ConfirmUserEmailChangePayload!
-  confirmUserMethodDeveloper(input: ConfirmUserMethodDeveloperInput!): ConfirmUserMethodDeveloperPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createComponent(input: CreateComponentInput!): CreateComponentPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createMethod(input: CreateMethodInput!): CreateMethodPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  deleteInstitution(input: DeleteInstitutionInput!): DeleteInstitutionPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  deletePersonalUserData(input: DeletePersonalUserDataInput!): DeletePersonalUserDataPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  deleteUser(input: DeleteUserInput!): DeleteUserPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  disableUserTwoFactorAuthentication: DisableUserTwoFactorAuthenticationPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  enableUserTwoFactorAuthenticator(input: EnableUserTwoFactorAuthenticatorInput!): EnableUserTwoFactorAuthenticatorPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  forgetUserTwoFactorAuthenticationClient: ForgetUserTwoFactorAuthenticationClientPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  generateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUri: GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  generateUserTwoFactorRecoveryCodes: GenerateUserTwoFactorRecoveryCodesPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  confirmUserEmailChange(
+    input: ConfirmUserEmailChangeInput!
+  ): ConfirmUserEmailChangePayload!
+  confirmUserMethodDeveloper(
+    input: ConfirmUserMethodDeveloperInput!
+  ): ConfirmUserMethodDeveloperPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createComponent(input: CreateComponentInput!): CreateComponentPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createMethod(input: CreateMethodInput!): CreateMethodPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  deleteInstitution(input: DeleteInstitutionInput!): DeleteInstitutionPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  deletePersonalUserData(
+    input: DeletePersonalUserDataInput!
+  ): DeletePersonalUserDataPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  disableUserTwoFactorAuthentication: DisableUserTwoFactorAuthenticationPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  enableUserTwoFactorAuthenticator(
+    input: EnableUserTwoFactorAuthenticatorInput!
+  ): EnableUserTwoFactorAuthenticatorPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  forgetUserTwoFactorAuthenticationClient: ForgetUserTwoFactorAuthenticationClientPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  generateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUri: GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  generateUserTwoFactorRecoveryCodes: GenerateUserTwoFactorRecoveryCodesPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
   loginUser(input: LoginUserInput!): LoginUserPayload!
-  loginUserWithRecoveryCode(input: LoginUserWithRecoveryCodeInput!): LoginUserWithRecoveryCodePayload!
-  loginUserWithTwoFactorCode(input: LoginUserWithTwoFactorCodeInput!): LoginUserWithTwoFactorCodePayload!
-  logoutUser: LogoutUserPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  loginUserWithRecoveryCode(
+    input: LoginUserWithRecoveryCodeInput!
+  ): LoginUserWithRecoveryCodePayload!
+  loginUserWithTwoFactorCode(
+    input: LoginUserWithTwoFactorCodeInput!
+  ): LoginUserWithTwoFactorCodePayload!
+  logoutUser: LogoutUserPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
   registerUser(input: RegisterUserInput!): RegisterUserPayload!
-  removeInstitutionRepresentative(input: RemoveInstitutionRepresentativeInput!): RemoveInstitutionRepresentativePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  removeInstitutionRepresentative(
+    input: RemoveInstitutionRepresentativeInput!
+  ): RemoveInstitutionRepresentativePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
   removeUserRole(input: RemoveUserRoleInput!): RemoveUserRolePayload!
-  requestUserPasswordReset(input: RequestUserPasswordResetInput!): RequestUserPasswordResetPayload!
-  resendUserEmailConfirmation(input: ResendUserEmailConfirmationInput!): ResendUserEmailConfirmationPayload!
-  resendUserEmailVerification: ResendUserEmailVerificationPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  requestUserPasswordReset(
+    input: RequestUserPasswordResetInput!
+  ): RequestUserPasswordResetPayload!
+  resendUserEmailConfirmation(
+    input: ResendUserEmailConfirmationInput!
+  ): ResendUserEmailConfirmationPayload!
+  resendUserEmailVerification: ResendUserEmailVerificationPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
   resetUserPassword(input: ResetUserPasswordInput!): ResetUserPasswordPayload!
-  resetUserTwoFactorAuthenticator: ResetUserTwoFactorAuthenticatorPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  setUserPassword(input: SetUserPasswordInput!): SetUserPasswordPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  setUserPhoneNumber(input: SetUserPhoneNumberInput!): SetUserPhoneNumberPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  updateInstitution(input: UpdateInstitutionInput!): UpdateInstitutionPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  verifyInstitution(input: VerifyInstitutionInput!): VerifyInstitutionPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  resetUserTwoFactorAuthenticator: ResetUserTwoFactorAuthenticatorPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  setUserPassword(input: SetUserPasswordInput!): SetUserPasswordPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  setUserPhoneNumber(
+    input: SetUserPhoneNumberInput!
+  ): SetUserPhoneNumberPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  updateInstitution(input: UpdateInstitutionInput!): UpdateInstitutionPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  verifyInstitution(input: VerifyInstitutionInput!): VerifyInstitutionPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
 }
 
 type NamedMethodArgument {
@@ -848,6 +1086,7 @@ type OpticalData implements Data {
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
   nodes: [OpticalData!]!
+  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
@@ -882,6 +1121,7 @@ type PhotovoltaicData implements Data {
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
   nodes: [PhotovoltaicData!]!
+  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
@@ -893,7 +1133,7 @@ type PhotovoltaicDataEdge {
 
 type Publication implements Reference {
   abstract: String
-  "arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
+  "A free and open-access archive for publications is offered by arXiv.org. The arXiv identifier can be used to define a publication."
   arXiv: String
   authors: [String!]
   "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
@@ -909,23 +1149,64 @@ type Publication implements Reference {
 
 type Query {
   component(uuid: Uuid!): Component
-  components(after: String before: String first: Int last: Int order: [ComponentSortInput!] where: ComponentFilterInput): ComponentConnection
+  components(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    order: [ComponentSortInput!]
+    where: ComponentFilterInput
+  ): ComponentConnection
   currentUser: User
   database(uuid: Uuid!): Database
-  databases(after: String before: String first: Int last: Int order: [DatabaseSortInput!] where: DatabaseFilterInput): DatabaseConnection
+  databases(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    order: [DatabaseSortInput!]
+    where: DatabaseFilterInput
+  ): DatabaseConnection
   dataFormat(uuid: Uuid!): DataFormat
-  dataFormats(after: String before: String first: Int last: Int order: [DataFormatSortInput!] where: DataFormatFilterInput): DataFormatConnection
+  dataFormats(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    order: [DataFormatSortInput!]
+    where: DataFormatFilterInput
+  ): DataFormatConnection
   institution(uuid: Uuid!): Institution
-  institutions(after: String before: String first: Int last: Int order: [InstitutionSortInput!] where: InstitutionFilterInput): InstitutionConnection
+  institutions(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    order: [InstitutionSortInput!]
+    where: InstitutionFilterInput
+  ): InstitutionConnection
   method(uuid: Uuid!): Method
-  methods(after: String before: String first: Int last: Int order: [MethodSortInput!] where: MethodFilterInput): MethodConnection
+  methods(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    order: [MethodSortInput!]
+    where: MethodFilterInput
+  ): MethodConnection
   node(id: ID!): Node
   openIdConnectApplications: [OpenIdConnectApplication!]!
   openIdConnectAuthorizations: [OpenIdConnectAuthorization!]!
   openIdConnectScopes: [OpenIdConnectScope!]!
   openIdConnectTokens: [OpenIdConnectToken!]!
   user(uuid: Uuid!): User
-  users(after: String before: String first: Int last: Int order: [UserSortInput!]): UserConnection
+  users(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    order: [UserSortInput!]
+  ): UserConnection
 }
 
 type RegisterUserError {
@@ -1092,7 +1373,9 @@ type User implements Node & Stakeholder {
   "Full name"
   name: String!
   phoneNumber: String
-  representedInstitutions(pending: Boolean! = false): UserRepresentedInstitutionConnection!
+  representedInstitutions(
+    pending: Boolean! = false
+  ): UserRepresentedInstitutionConnection!
   roles: [UserRole!]
   rolesCurrentUserCanAdd: [UserRole!]
   rolesCurrentUserCanRemove: [UserRole!]
@@ -1115,6 +1398,7 @@ type UserConnection {
 type UserDevelopedMethodConnection {
   canCurrentUserConfirmEdge: Boolean!
   edges: [UserDevelopedMethodEdge!]!
+  pageInfo: PageInfo!
 }
 
 type UserDevelopedMethodEdge {
@@ -1136,6 +1420,7 @@ type UserMethodDeveloperEdge {
 type UserRepresentedInstitutionConnection {
   canCurrentUserConfirmEdge: Boolean!
   edges: [UserRepresentedInstitutionEdge!]!
+  pageInfo: PageInfo!
 }
 
 type UserRepresentedInstitutionEdge {
@@ -1581,7 +1866,7 @@ input PhotovoltaicDataPropositionInput {
 
 input PublicationSortInput {
   abstract: SortEnumType
-  "arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
+  "A free and open-access archive for publications is offered by arXiv.org. The arXiv identifier can be used to define a publication."
   arXiv: SortEnumType
   "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
   doi: SortEnumType
@@ -2117,19 +2402,41 @@ enum VerifyInstitutionErrorCode {
   UNAUTHORIZED
 }
 
-directive @authorize("Defines when when the resolver shall be executed.By default the resolver is executed after the policy has determined that the current user is allowed to access the field." apply: ApplyPolicy! = BEFORE_RESOLVER "The name of the authorization policy that determines access to the annotated resource." policy: String "Roles that are allowed to access the annotated resource." roles: [String!]) repeatable on SCHEMA | OBJECT | FIELD_DEFINITION
+directive @authorize(
+  "Defines when when the resolver shall be executed.By default the resolver is executed after the policy has determined that the current user is allowed to access the field."
+  apply: ApplyPolicy! = BEFORE_RESOLVER
+  "The name of the authorization policy that determines access to the annotated resource."
+  policy: String
+  "Roles that are allowed to access the annotated resource."
+  roles: [String!]
+) repeatable on SCHEMA | OBJECT | FIELD_DEFINITION
 
 "The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`."
-directive @defer("Deferred when true." if: Boolean "If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to." label: String) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+directive @defer(
+  "Deferred when true."
+  if: Boolean
+  "If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to."
+  label: String
+) on FRAGMENT_SPREAD | INLINE_FRAGMENT
 
 "The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
-directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
+directive @specifiedBy(
+  "The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types."
+  url: String!
+) on SCALAR
 
 "The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`."
-directive @stream("Streamed when true." if: Boolean! "The initial elements that shall be send down to the consumer." initialCount: Int! "If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to." label: String) on FIELD
+directive @stream(
+  "Streamed when true."
+  if: Boolean!
+  "The initial elements that shall be send down to the consumer."
+  initialCount: Int!
+  "If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to."
+  label: String
+) on FIELD
 
 "The `DateTime` scalar represents an ISO-8601 compliant date time type."
-scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
+scalar DateTime @specifiedBy(url: "https://www.graphql-scalars.com/date-time")
 
 "The NonNegativeInt scalar type represents a unsigned 32-bit numeric non-fractional value equal to or greater than 0."
 scalar NonNegativeInt
