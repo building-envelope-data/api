@@ -60,13 +60,13 @@
       "title": "The location of the center of mass of the component.",
       "type": "object",
       "properties": {
-        "south": {
-          "$ref": "number.json#/$defs/meter",
-          "description": "This distance is measured horizontally in the direction from the `origin` to the south. It has the SI unit of meter."
-        },
         "east": {
           "$ref": "number.json#/$defs/meter",
           "description": "This distance is measured horizontally in the direction from the `origin` to the east. It has the SI unit of meter."
+        },
+        "north": {
+          "$ref": "number.json#/$defs/meter",
+          "description": "This distance is measured horizontally in the direction from the `origin` to the north. It has the SI unit of meter."
         },
         "elevation": {
           "$ref": "number.json#/$defs/meter",
@@ -74,7 +74,7 @@
         }
       },
       "additionalProperties": false,
-      "required": ["south", "east"]
+      "required": ["east", "north"]
     },
     "orientation": {
       "title": "The orientation of the prime surface of the component.",
