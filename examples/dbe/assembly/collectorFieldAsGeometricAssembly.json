@@ -24,8 +24,8 @@
                 }
               },
               "location": {
-                "south": 0,
                 "east": 5,
+                "north": 0,
                 "elevation": 5
               },
               "orientation": {
@@ -44,8 +44,8 @@
                 }
               },
               "location": {
-                "south": -5,
                 "east": 0,
+                "north": 5,
                 "elevation": 5
               },
               "orientation": {
