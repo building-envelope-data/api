@@ -2,8 +2,8 @@
   "components": [
     {
       "id": "d0d2f01f-04f2-4d68-bf93-aa7148eb1150",
-      "name": "Solar Control Glazing",
-      "description": "Koester uses this solar control glazing in combination with Retrolux blinds as example.",
+      "name": "RETROLux O with solar control glazing",
+      "description": "An example with product data from Koester RETROLux O blinds in combination with a solar control glazing.",
       "optical": [
         {
           "id": {
@@ -17,7 +17,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8
+                      "polar": 0
                     },
                     "wavelengths": {
                       "integral": "visible"
@@ -44,6 +44,16 @@
           "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
           "data": [
             {
+              "fluxes": {
+                "shortwaveRadiation": [
+                  {
+                    "side": "exterior",
+                    "direction": {
+                      "polar": 0
+                    }
+                  }
+                ]
+              },
               "results": [
                 {
                   "area": {
@@ -59,8 +69,8 @@
     },
     {
       "id": "15988a2c-0d0c-11ea-8d71-362b9e155667",
-      "name": "Heat Control Glazing",
-      "description": "Koester uses this heat control glazing in combination with Retrolux blinds as example.",
+      "name": "RETROLux O with heat control glazing",
+      "description": "An example with product data from Koester RETROLux O blinds in combination with a heat control glazing.",
       "calorimetric": [
         {
           "id": {
@@ -70,6 +80,16 @@
           "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
           "data": [
             {
+              "fluxes": {
+                "shortwaveRadiation": [
+                  {
+                    "side": "exterior",
+                    "direction": {
+                      "polar": 0
+                    }
+                  }
+                ]
+              },
               "results": [
                 {
                   "area": {
