@@ -3,14 +3,6 @@
     {
       "id": "22aaed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "This example represents a double glazing with photovoltaic cells in the laminated glass pane facing the exterior. It includes optical properties which are needed for raytracing simulations.",
-      "relations": {
-        "concretizationOf": "11aaed0a-2b9a-4748-8d98-e9d278cd12e4",
-        "assembledOf": [
-          "20aaed0a-2b9a-4748-8d98-e9d278cd12e4",
-          "18A16000-2b9a-4748-8d98-e9d278cd12e4",
-          "66abed0a-2b9a-4748-8d98-e9d278cd12e4"
-        ]
-      },
       "categories": { "componentType": ["unit"] },
       "characteristics": {
         "geometry": {

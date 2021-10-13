@@ -4,10 +4,10 @@
       "id": "11aaed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "This example represents a double glazing with photovoltaic cells in the laminated glass pane facing the exterior and its center-of-glazing properties.",
       "relations": {
-        "generalizationOf": ["22aaed0a-2b9a-4748-8d98-e9d278cd12e4"],
+        "partOf": ["22aaed0a-2b9a-4748-8d98-e9d278cd12e4"],
         "assembledOf": [
-          "10aaed0a-2b9a-4748-8d98-e9d278cd12e4",
-          "18A16000-2b9a-4748-8d98-e9d278cd12e4",
+          "101aed0a-2b9a-4748-8d98-e9d278cd12e4",
+          "18a16000-2b9a-4748-8d98-e9d278cd12e4",
           "66abed0a-2b9a-4748-8d98-e9d278cd12e4"
         ]
       },
