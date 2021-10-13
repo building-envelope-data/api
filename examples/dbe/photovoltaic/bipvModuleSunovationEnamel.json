@@ -1,10 +1,10 @@
 {
   "components": [
     {
-      "id": "30aaed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "id": "102aed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "Enamel at the edges of a PV module",
       "relations": {
-        "partOf": ["22aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
+        "partOf": ["20aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
       },
       "categories": { "componentType": ["layer"] },
       "optical": [
@@ -19,9 +19,9 @@
                 {
                   "cielabColors": [
                     {
-                      "lStar": 20,
-                      "aStar": 3,
-                      "bStar": -2,
+                      "lStar": 5,
+                      "aStar": 1,
+                      "bStar": -1,
                       "direction": "reflection",
                       "surface": "symmetric",
                       "observer": "tenDegrees",

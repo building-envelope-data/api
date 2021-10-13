@@ -1,11 +1,10 @@
 {
   "components": [
     {
-      "id": "20aaed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "id": "101aed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "This example represents a laminated glass with photovoltaic cells with its center-of-glazing properties.",
       "relations": {
-        "generalizationOf": ["10aaed0a-2b9a-4748-8d98-e9d278cd12e4"],
-        "partOf": ["11aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
+        "partOf": ["20aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
       },
       "categories": { "componentType": ["layer"] },
       "characteristics": {
@@ -55,27 +54,6 @@
 
                 "electricConfiguration": {
                   "groundingNecessary": false
-                },
-                "moduleProperties": {
-                  "power": {
-                    "temperatureCoefficient": -0.32,
-
-                    "angleDependency": [
-                      {
-                        "incidence": 0,
-                        "IAM": 1
-                      },
-                      {
-                        "incidence": 60,
-                        "IAM": 0.924
-                      },
-                      {
-                        "incidence": 90,
-                        "IAM": 0
-                      }
-                    ]
-                  },
-                  "efficiency": 0.1656
                 }
               }
             }

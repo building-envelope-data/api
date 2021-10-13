@@ -4,10 +4,10 @@
       "id": "11aaed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "This example represents a double glazing with photovoltaic cells in the laminated glass pane facing the exterior and its center-of-glazing properties.",
       "relations": {
-        "generalizationOf": ["22aaed0a-2b9a-4748-8d98-e9d278cd12e4"],
+        "partOf": ["22aaed0a-2b9a-4748-8d98-e9d278cd12e4"],
         "assembledOf": [
-          "10aaed0a-2b9a-4748-8d98-e9d278cd12e4",
-          "18A16000-2b9a-4748-8d98-e9d278cd12e4",
+          "101aed0a-2b9a-4748-8d98-e9d278cd12e4",
+          "18a16000-2b9a-4748-8d98-e9d278cd12e4",
           "66abed0a-2b9a-4748-8d98-e9d278cd12e4"
         ]
       },
@@ -19,7 +19,13 @@
               "smallest": 0.415
             }
           }
-        }
+        },
+        "roughness": [
+          {
+            "surface": "nonPrime",
+            "rootMeanSquare": 0.2
+          }
+        ]
       },
       "calorimetric": [
         {
@@ -53,33 +59,122 @@
                     "categories": ["monocrystalline", "silicon"]
                   }
                 ],
-
                 "connectionPattern": "series",
-
                 "electricConfiguration": {
                   "groundingNecessary": false
-                },
-                "moduleProperties": {
-                  "power": {
-                    "temperatureCoefficient": -0.32,
-                    "angleDependency": [
-                      {
-                        "incidence": 0,
-                        "IAM": 1
-                      },
-                      {
-                        "incidence": 60,
-                        "IAM": 0.924
-                      },
-                      {
-                        "incidence": 90,
-                        "IAM": 0
-                      }
-                    ]
-                  },
-                  "efficiency": 0.1656
                 }
               }
+            }
+          ]
+        }
+      ],
+      "optical": [
+        {
+          "id": {
+            "value": "a8435146-5270-46f5-b925-4b00de265823",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "description": "Example: Nearnormal-nearnormal and nearnormal-hemispherical transmittance and reflectance for red, green and blue.",
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 430 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.32,
+                    "reflectance": 0.015
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 540 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.32,
+                    "reflectance": 0.015
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 570 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.32,
+                    "reflectance": 0.015
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 430 }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.32,
+                    "reflectance": 0.14
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 540 }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.32,
+                    "reflectance": 0.14
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 570 }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.32,
+                    "reflectance": 0.14
+                  }
+                }
+              ]
             }
           ]
         }

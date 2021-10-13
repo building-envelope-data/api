@@ -1,9 +1,58 @@
 {
   "components": [
     {
+      "id": "15988a2c-0d0c-11ea-8d71-362b9e155667",
+      "name": "RETROLux O with heat control glazing",
+      "description": "An example with product data from Koester RETROLux O blinds in combination with a heat control glazing.",
+      "relations": {
+        "assembledOf": [
+          "a411af56-891e-4828-a2d1-a4454112e8f8",
+          "86089938-f045-4039-b41a-76c70db22369"
+        ]
+      },
+      "calorimetric": [
+        {
+          "id": {
+            "value": "15988df6-0d0c-11ea-8d71-362b9e155667",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
+          "data": [
+            {
+              "fluxes": {
+                "shortwaveRadiation": [
+                  {
+                    "side": "exterior",
+                    "direction": {
+                      "polar": 0
+                    }
+                  }
+                ]
+              },
+              "results": [
+                {
+                  "area": {
+                    "category": "centre"
+                  },
+                  "uValue": 1.1,
+                  "gValue": 0.52
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "d0d2f01f-04f2-4d68-bf93-aa7148eb1150",
-      "name": "Solar Control Glazing",
-      "description": "Koester uses this solar control glazing in combination with Retrolux blinds as example.",
+      "name": "RETROLux O with solar control glazing",
+      "description": "An example with product data from Koester RETROLux O blinds in combination with a solar control glazing.",
+      "relations": {
+        "assembledOf": [
+          "b511af56-891e-4828-a2d1-a4454112e8f8",
+          "86089938-f045-4039-b41a-76c70db22369"
+        ]
+      },
       "optical": [
         {
           "id": {
@@ -17,7 +66,7 @@
                 {
                   "incidence": {
                     "direction": {
-                      "polar": 8
+                      "polar": 0
                     },
                     "wavelengths": {
                       "integral": "visible"
@@ -44,39 +93,22 @@
           "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
           "data": [
             {
+              "fluxes": {
+                "shortwaveRadiation": [
+                  {
+                    "side": "exterior",
+                    "direction": {
+                      "polar": 0
+                    }
+                  }
+                ]
+              },
               "results": [
                 {
                   "area": {
                     "category": "centre"
                   },
                   "gValue": 0.32
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "15988a2c-0d0c-11ea-8d71-362b9e155667",
-      "name": "Heat Control Glazing",
-      "description": "Koester uses this heat control glazing in combination with Retrolux blinds as example.",
-      "calorimetric": [
-        {
-          "id": {
-            "value": "15988df6-0d0c-11ea-8d71-362b9e155667",
-            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-          },
-          "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
-          "data": [
-            {
-              "results": [
-                {
-                  "area": {
-                    "category": "centre"
-                  },
-                  "uValue": 1.1,
-                  "gValue": 0.52
                 }
               ]
             }

@@ -1,16 +1,8 @@
 {
   "components": [
     {
-      "id": "22aaed0a-2b9a-4748-8d98-e9d278cd12e4",
+      "id": "d530ed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "This example represents a double glazing with photovoltaic cells in the laminated glass pane facing the exterior. It includes optical properties which are needed for raytracing simulations.",
-      "relations": {
-        "concretizationOf": "11aaed0a-2b9a-4748-8d98-e9d278cd12e4",
-        "assembledOf": [
-          "20aaed0a-2b9a-4748-8d98-e9d278cd12e4",
-          "18A16000-2b9a-4748-8d98-e9d278cd12e4",
-          "66abed0a-2b9a-4748-8d98-e9d278cd12e4"
-        ]
-      },
       "categories": { "componentType": ["unit"] },
       "characteristics": {
         "geometry": {
@@ -44,7 +36,7 @@
             "value": "a8435146-5270-46f5-b925-4b00de265823",
             "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
           },
-          "description": "Example: Nearnormal-nearnormal reflectance for red, green and blue and nearnormal-hemispherical transmittance for red, green and blue.",
+          "description": "Example: Nearnormal-nearnormal and nearnormal-hemispherical reflectance for red, green and blue.",
           "data": [
             {
               "dataPoints": [
@@ -260,7 +252,7 @@
                       }
                     ]
                   },
-                  "efficiency": 0.1656
+                  "efficiency": 0.16
                 }
               }
             }
