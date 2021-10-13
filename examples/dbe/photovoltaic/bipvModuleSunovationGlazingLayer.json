@@ -59,31 +59,9 @@
                     "categories": ["monocrystalline", "silicon"]
                   }
                 ],
-
                 "connectionPattern": "series",
-
                 "electricConfiguration": {
                   "groundingNecessary": false
-                },
-                "moduleProperties": {
-                  "power": {
-                    "temperatureCoefficient": -0.32,
-                    "angleDependency": [
-                      {
-                        "incidence": 0,
-                        "IAM": 1
-                      },
-                      {
-                        "incidence": 60,
-                        "IAM": 0.924
-                      },
-                      {
-                        "incidence": 90,
-                        "IAM": 0
-                      }
-                    ]
-                  },
-                  "efficiency": 0.1656
                 }
               }
             }
