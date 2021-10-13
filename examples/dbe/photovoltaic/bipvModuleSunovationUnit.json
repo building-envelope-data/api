@@ -66,9 +66,7 @@
                     }
                   }
                 ],
-
                 "connectionPattern": "series",
-
                 "electricConfiguration": {
                   "junctionBoxTypes": [
                     {
