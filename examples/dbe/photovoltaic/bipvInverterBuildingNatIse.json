@@ -3,7 +3,7 @@
     {
       "id": {
         "value": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
-        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       },
       "name": "Fronius Galvo 3.0",
       "description": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany.",
@@ -28,7 +28,7 @@
               "inverter": {
                 "id": {
                   "value": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
-                  "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                  "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                 },
                 "power": {
                   "input": {
