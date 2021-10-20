@@ -1,0 +1,21 @@
+{
+  "fluxes": {
+    "shortwaveRadiation": [
+      {
+        "side": "exterior",
+        "direction": {
+          "polar": 0
+        }
+      }
+    ]
+  },
+  "results": [
+    {
+      "area": {
+        "category": "centre"
+      },
+      "uValue": 1.1,
+      "gValue": 0.52
+    }
+  ]
+}

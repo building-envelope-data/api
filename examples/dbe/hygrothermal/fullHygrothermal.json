@@ -15,7 +15,7 @@
               "WUFI": {
                 "id": {
                   "value": "8ca1102b-264a-4023-8351-5897ec38e388",
-                  "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                  "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                 },
                 "description": "This hygrothermal data has been provided by WUFI.de.",
                 "dataFormat": "https://wufi.de/de/wp-content/uploads/sites/9/How-to-import-an-xml-file.pdf",
