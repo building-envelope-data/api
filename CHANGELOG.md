@@ -64,7 +64,7 @@ and this project adheres to
 - Add categories to `material`, `layer` and `unit` from EN 12216 [#223](https://github.com/ise621/building-envelope-data/pull/223) and from EN 13024-1, EN 14179, EN 1863, DIN 18008-5 [#224](https://github.com/ise621/building-envelope-data/pull/224)
 - Add more mirrored values to `apis` [#238](https://github.com/ise621/building-envelope-data/pull/238)
 - Add spectrum `ultraviolet` for integral values and improve the optical examples [#247](https://github.com/ise621/building-envelope-data/pull/247)
--
+- Change propositions for lists and make parameter `where` optional [#260](https://github.com/ise621/building-envelope-data/pull/260)
 
 ### Deprecated
 
