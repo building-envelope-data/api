@@ -296,8 +296,8 @@ type Query {
   ```
   """
   allData(
-    "Compound boolean expression that is true for data being searched for."
-    where: DataPropositionInput!
+    "Compound boolean expression that is true for all data being returned. If not given, a proposition that is always true is used."
+    where: DataPropositionInput
     "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
@@ -316,7 +316,7 @@ type Query {
   See `Query#allData`.
   """
   allCalorimetricData(
-    where: CalorimetricDataPropositionInput!
+    where: CalorimetricDataPropositionInput
     timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
@@ -329,7 +329,7 @@ type Query {
   See `Query#allData`.
   """
   allHygrothermalData(
-    where: HygrothermalDataPropositionInput!
+    where: HygrothermalDataPropositionInput
     timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
@@ -342,7 +342,7 @@ type Query {
   See `Query#allData`.
   """
   allOpticalData(
-    where: OpticalDataPropositionInput!
+    where: OpticalDataPropositionInput
     timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
@@ -355,7 +355,7 @@ type Query {
   See `Query#allData`.
   """
   allPhotovoltaicData(
-    where: PhotovoltaicDataPropositionInput!
+    where: PhotovoltaicDataPropositionInput
     timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
@@ -381,7 +381,7 @@ type Query {
   See `Query#hasData`.
   """
   hasCalorimetricData(
-    where: CalorimetricDataPropositionInput!
+    where: CalorimetricDataPropositionInput
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -390,7 +390,7 @@ type Query {
   See `Query#hasData`.
   """
   hasHygrothermalData(
-    where: HygrothermalDataPropositionInput!
+    where: HygrothermalDataPropositionInput
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -399,7 +399,7 @@ type Query {
   See `Query#hasData`.
   """
   hasOpticalData(
-    where: OpticalDataPropositionInput!
+    where: OpticalDataPropositionInput
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -408,7 +408,7 @@ type Query {
   See `Query#hasData`.
   """
   hasPhotovoltaicData(
-    where: PhotovoltaicDataPropositionInput!
+    where: PhotovoltaicDataPropositionInput
     timestamp: DateTime
     locale: Locale
   ): Boolean!
