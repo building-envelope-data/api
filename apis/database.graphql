@@ -588,7 +588,7 @@ input GetHttpsResourcePropositionInput {
   True for GET HTTPS resources whose archived files meta information satisfies
   the proposition `archivedFilesMetaInformation`, otherwise false.
   """
-  archivedFilesMetaInformation: FileMetaInformationsPropositionInput
+  archivedFilesMetaInformation: FilesMetaInformationPropositionInput
 }
 
 """
@@ -632,7 +632,7 @@ Proposition for lists of values of type `FileMetaInformation`. Multiple
 sub-propositions are combined conjunctively, where the conjunction of an empty
 set of sub-propositions is true.
 """
-input FileMetaInformationsPropositionInput {
+input FilesMetaInformationPropositionInput {
   """
   True if each list value satisfies the proposition `all`, otherwise false.
   """

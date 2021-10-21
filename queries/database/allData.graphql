@@ -70,4 +70,24 @@ query {
       }
     }
   }
+
+  byDataFormatId: allData(
+    where: { resources: { some: { dataFormatId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } } } }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
+
+  byDataFormatIdInsideArchive: allData(
+    where: { resources: { some: { archivedFilesMetaInformation: { some: { dataFormatId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } } } } } }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
 }
