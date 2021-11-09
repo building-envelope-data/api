@@ -58,4 +58,32 @@ query {
       }
     }
   }
+
+  componentByOpticalProperties: databases {
+    nodes {
+      uuid
+      name
+      locator
+      allOpticalData(
+        where: {
+          and: [
+            {
+              nearnormalHemisphericalVisibleTransmittance: {
+                greaterThanOrEqualTo: 0.6
+              }
+            }
+            {
+              nearnormalHemisphericalSolarTransmittance: {
+                lessThanOrEqualTo: 0.228
+              }
+            }
+          ]
+        }
+      ) {
+        nodes {
+          componentId
+        }
+      }
+    }
+  }
 }
