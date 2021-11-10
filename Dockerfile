@@ -1,6 +1,6 @@
 # Use Node on Debian as base image, see
 # https://hub.docker.com/_/node
-FROM node:14.17.1-buster-slim
+FROM node:16.13.0-bullseye-slim
 
 ##################
 # As user `root` #
@@ -65,7 +65,7 @@ RUN \
     make \
     npm && \
   # Upgrade Node package manager to version 7.18.1
-  npm install --global npm@7.18.1 && \
+  npm install --global npm@8.1.3 && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
