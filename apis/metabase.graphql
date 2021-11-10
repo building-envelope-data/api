@@ -418,26 +418,98 @@ type DataFormatsEdge {
 }
 
 type Database implements Node {
-  allCalorimetricData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: CalorimetricDataPropositionInput): CalorimetricDataConnection
-  allData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: DataPropositionInput): DataConnection
-  allHygrothermalData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: HygrothermalDataPropositionInput): HygrothermalDataConnection
-  allOpticalData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: OpticalDataPropositionInput): OpticalDataConnection
-  allPhotovoltaicData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String timestamp: DateTime where: PhotovoltaicDataPropositionInput): PhotovoltaicDataConnection
-  calorimetricData(id: UUID! locale: String timestamp: DateTime): CalorimetricData
-  data(id: UUID! locale: String timestamp: DateTime): Data
+  allCalorimetricData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: CalorimetricDataPropositionInput
+  ): CalorimetricDataConnection
+  allData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: DataPropositionInput
+  ): DataConnection
+  allHygrothermalData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: HygrothermalDataPropositionInput
+  ): HygrothermalDataConnection
+  allOpticalData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: OpticalDataPropositionInput
+  ): OpticalDataConnection
+  allPhotovoltaicData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: PhotovoltaicDataPropositionInput
+  ): PhotovoltaicDataConnection
+  calorimetricData(
+    id: UUID!
+    locale: String
+    timestamp: DateTime
+  ): CalorimetricData
+  data(id: UUID!, locale: String, timestamp: DateTime): Data
   description: String!
-  hasCalorimetricData(locale: String timestamp: DateTime where: CalorimetricDataPropositionInput): Boolean
-  hasData(locale: String timestamp: DateTime where: DataPropositionInput): Boolean
-  hasHygrothermalData(locale: String timestamp: DateTime where: HygrothermalDataPropositionInput): Boolean
-  hasOpticalData(locale: String timestamp: DateTime where: OpticalDataPropositionInput): Boolean
-  hasPhotovoltaicData(locale: String timestamp: DateTime where: PhotovoltaicDataPropositionInput): Boolean
-  hygrothermalData(id: UUID! locale: String timestamp: DateTime): HygrothermalData
+  hasCalorimetricData(
+    locale: String
+    timestamp: DateTime
+    where: CalorimetricDataPropositionInput
+  ): Boolean
+  hasData(
+    locale: String
+    timestamp: DateTime
+    where: DataPropositionInput
+  ): Boolean
+  hasHygrothermalData(
+    locale: String
+    timestamp: DateTime
+    where: HygrothermalDataPropositionInput
+  ): Boolean
+  hasOpticalData(
+    locale: String
+    timestamp: DateTime
+    where: OpticalDataPropositionInput
+  ): Boolean
+  hasPhotovoltaicData(
+    locale: String
+    timestamp: DateTime
+    where: PhotovoltaicDataPropositionInput
+  ): Boolean
+  hygrothermalData(
+    id: UUID!
+    locale: String
+    timestamp: DateTime
+  ): HygrothermalData
   id: ID!
   locator: URL!
   name: String!
   operator: DatabaseOperatorEdge!
-  opticalData(id: UUID! locale: String timestamp: DateTime): OpticalData
-  photovoltaicData(id: UUID! locale: String timestamp: DateTime): PhotovoltaicData
+  opticalData(id: UUID!, locale: String, timestamp: DateTime): OpticalData
+  photovoltaicData(
+    id: UUID!
+    locale: String
+    timestamp: DateTime
+  ): PhotovoltaicData
   uuid: UUID!
 }
 
@@ -614,17 +686,23 @@ type HygrothermalDataEdge {
 type Institution implements Node & Stakeholder {
   abbreviation: String
   description: String!
-  developedMethods(pending: Boolean! = false): InstitutionDevelopedMethodConnection!
+  developedMethods(
+    pending: Boolean! = false
+  ): InstitutionDevelopedMethodConnection!
   id: ID!
   managedDataFormats: InstitutionManagedDataFormatConnection!
   managedInstitutions: InstitutionManagedInstitutionConnection!
   managedMethods: InstitutionManagedMethodConnection!
   manager: InstitutionManagerEdge
-  manufacturedComponents(pending: Boolean! = false): InstitutionManufacturedComponentConnection!
+  manufacturedComponents(
+    pending: Boolean! = false
+  ): InstitutionManufacturedComponentConnection!
   name: String!
   operatedDatabases: InstitutionOperatedDatabaseConnection!
   publicKey: String
-  representatives(pending: Boolean! = false): InstitutionRepresentativeConnection!
+  representatives(
+    pending: Boolean! = false
+  ): InstitutionRepresentativeConnection!
   state: InstitutionState!
   uuid: UUID!
   websiteLocator: URL
@@ -817,46 +895,107 @@ type MethodsEdge {
 }
 
 type Mutation {
-  addInstitutionRepresentative(input: AddInstitutionRepresentativeInput!): AddInstitutionRepresentativePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  addInstitutionRepresentative(
+    input: AddInstitutionRepresentativeInput!
+  ): AddInstitutionRepresentativePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
   addUserRole(input: AddUserRoleInput!): AddUserRolePayload!
-  changeInstitutionRepresentativeRole(input: ChangeInstitutionRepresentativeRoleInput!): ChangeInstitutionRepresentativeRolePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  changeUserEmail(input: ChangeUserEmailInput!): ChangeUserEmailPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  changeUserPassword(input: ChangeUserPasswordInput!): ChangeUserPasswordPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  confirmComponentManufacturer(input: ConfirmComponentManufacturerInput!): ConfirmComponentManufacturerPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  confirmInstitutionMethodDeveloper(input: ConfirmInstitutionMethodDeveloperInput!): ConfirmInstitutionMethodDeveloperPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  confirmInstitutionRepresentative(input: ConfirmInstitutionRepresentativeInput!): ConfirmInstitutionRepresentativePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  changeInstitutionRepresentativeRole(
+    input: ChangeInstitutionRepresentativeRoleInput!
+  ): ChangeInstitutionRepresentativeRolePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  changeUserEmail(input: ChangeUserEmailInput!): ChangeUserEmailPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  changeUserPassword(
+    input: ChangeUserPasswordInput!
+  ): ChangeUserPasswordPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  confirmComponentManufacturer(
+    input: ConfirmComponentManufacturerInput!
+  ): ConfirmComponentManufacturerPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  confirmInstitutionMethodDeveloper(
+    input: ConfirmInstitutionMethodDeveloperInput!
+  ): ConfirmInstitutionMethodDeveloperPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  confirmInstitutionRepresentative(
+    input: ConfirmInstitutionRepresentativeInput!
+  ): ConfirmInstitutionRepresentativePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
   confirmUserEmail(input: ConfirmUserEmailInput!): ConfirmUserEmailPayload!
-  confirmUserEmailChange(input: ConfirmUserEmailChangeInput!): ConfirmUserEmailChangePayload!
-  confirmUserMethodDeveloper(input: ConfirmUserMethodDeveloperInput!): ConfirmUserMethodDeveloperPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createComponent(input: CreateComponentInput!): CreateComponentPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createMethod(input: CreateMethodInput!): CreateMethodPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  deleteInstitution(input: DeleteInstitutionInput!): DeleteInstitutionPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  deletePersonalUserData(input: DeletePersonalUserDataInput!): DeletePersonalUserDataPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  deleteUser(input: DeleteUserInput!): DeleteUserPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  disableUserTwoFactorAuthentication: DisableUserTwoFactorAuthenticationPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  enableUserTwoFactorAuthenticator(input: EnableUserTwoFactorAuthenticatorInput!): EnableUserTwoFactorAuthenticatorPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  forgetUserTwoFactorAuthenticationClient: ForgetUserTwoFactorAuthenticationClientPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  generateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUri: GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  generateUserTwoFactorRecoveryCodes: GenerateUserTwoFactorRecoveryCodesPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  confirmUserEmailChange(
+    input: ConfirmUserEmailChangeInput!
+  ): ConfirmUserEmailChangePayload!
+  confirmUserMethodDeveloper(
+    input: ConfirmUserMethodDeveloperInput!
+  ): ConfirmUserMethodDeveloperPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createComponent(input: CreateComponentInput!): CreateComponentPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createMethod(input: CreateMethodInput!): CreateMethodPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  deleteInstitution(input: DeleteInstitutionInput!): DeleteInstitutionPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  deletePersonalUserData(
+    input: DeletePersonalUserDataInput!
+  ): DeletePersonalUserDataPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  disableUserTwoFactorAuthentication: DisableUserTwoFactorAuthenticationPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  enableUserTwoFactorAuthenticator(
+    input: EnableUserTwoFactorAuthenticatorInput!
+  ): EnableUserTwoFactorAuthenticatorPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  forgetUserTwoFactorAuthenticationClient: ForgetUserTwoFactorAuthenticationClientPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  generateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUri: GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  generateUserTwoFactorRecoveryCodes: GenerateUserTwoFactorRecoveryCodesPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
   loginUser(input: LoginUserInput!): LoginUserPayload!
-  loginUserWithRecoveryCode(input: LoginUserWithRecoveryCodeInput!): LoginUserWithRecoveryCodePayload!
-  loginUserWithTwoFactorCode(input: LoginUserWithTwoFactorCodeInput!): LoginUserWithTwoFactorCodePayload!
-  logoutUser: LogoutUserPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  loginUserWithRecoveryCode(
+    input: LoginUserWithRecoveryCodeInput!
+  ): LoginUserWithRecoveryCodePayload!
+  loginUserWithTwoFactorCode(
+    input: LoginUserWithTwoFactorCodeInput!
+  ): LoginUserWithTwoFactorCodePayload!
+  logoutUser: LogoutUserPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
   registerUser(input: RegisterUserInput!): RegisterUserPayload!
-  removeInstitutionRepresentative(input: RemoveInstitutionRepresentativeInput!): RemoveInstitutionRepresentativePayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  removeInstitutionRepresentative(
+    input: RemoveInstitutionRepresentativeInput!
+  ): RemoveInstitutionRepresentativePayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
   removeUserRole(input: RemoveUserRoleInput!): RemoveUserRolePayload!
-  requestUserPasswordReset(input: RequestUserPasswordResetInput!): RequestUserPasswordResetPayload!
-  resendUserEmailConfirmation(input: ResendUserEmailConfirmationInput!): ResendUserEmailConfirmationPayload!
-  resendUserEmailVerification: ResendUserEmailVerificationPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  requestUserPasswordReset(
+    input: RequestUserPasswordResetInput!
+  ): RequestUserPasswordResetPayload!
+  resendUserEmailConfirmation(
+    input: ResendUserEmailConfirmationInput!
+  ): ResendUserEmailConfirmationPayload!
+  resendUserEmailVerification: ResendUserEmailVerificationPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
   resetUserPassword(input: ResetUserPasswordInput!): ResetUserPasswordPayload!
-  resetUserTwoFactorAuthenticator: ResetUserTwoFactorAuthenticatorPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  setUserPassword(input: SetUserPasswordInput!): SetUserPasswordPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  setUserPhoneNumber(input: SetUserPhoneNumberInput!): SetUserPhoneNumberPayload! @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  updateInstitution(input: UpdateInstitutionInput!): UpdateInstitutionPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  verifyInstitution(input: VerifyInstitutionInput!): VerifyInstitutionPayload! @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  resetUserTwoFactorAuthenticator: ResetUserTwoFactorAuthenticatorPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  setUserPassword(input: SetUserPasswordInput!): SetUserPasswordPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  setUserPhoneNumber(
+    input: SetUserPhoneNumberInput!
+  ): SetUserPhoneNumberPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+  updateInstitution(input: UpdateInstitutionInput!): UpdateInstitutionPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  verifyInstitution(input: VerifyInstitutionInput!): VerifyInstitutionPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
 }
 
 type NamedMethodArgument {
@@ -1009,16 +1148,71 @@ type Publication implements Reference {
 }
 type Query {
   component(uuid: UUID!): Component
-  components("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [ComponentSortInput!] where: ComponentFilterInput): ComponentsConnection
+  components(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [ComponentSortInput!]
+    where: ComponentFilterInput
+  ): ComponentsConnection
   currentUser: User
   dataFormat(uuid: UUID!): DataFormat
-  dataFormats("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [DataFormatSortInput!] where: DataFormatFilterInput): DataFormatsConnection
+  dataFormats(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [DataFormatSortInput!]
+    where: DataFormatFilterInput
+  ): DataFormatsConnection
   database(uuid: UUID!): Database
-  databases("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [DatabaseSortInput!] where: DatabaseFilterInput): DatabasesConnection
+  databases(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [DatabaseSortInput!]
+    where: DatabaseFilterInput
+  ): DatabasesConnection
   institution(uuid: UUID!): Institution
-  institutions("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [InstitutionSortInput!] where: InstitutionFilterInput): InstitutionsConnection
+  institutions(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [InstitutionSortInput!]
+    where: InstitutionFilterInput
+  ): InstitutionsConnection
   method(uuid: UUID!): Method
-  methods("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [MethodSortInput!] where: MethodFilterInput): MethodsConnection
+  methods(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [MethodSortInput!]
+    where: MethodFilterInput
+  ): MethodsConnection
   "Fetches an object given its ID."
   node("ID of the object." id: ID!): Node
   "Lookup nodes by a list of IDs."
@@ -1028,7 +1222,17 @@ type Query {
   openIdConnectScopes: [OpenIdConnectScope!]!
   openIdConnectTokens: [OpenIdConnectToken!]!
   user(uuid: UUID!): User
-  users("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [UserSortInput!]): UsersConnection
+  users(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [UserSortInput!]
+  ): UsersConnection
 }
 type RegisterUserError {
   code: RegisterUserErrorCode!
@@ -1180,7 +1384,9 @@ type User implements Node & Stakeholder {
   "Full name"
   name: String!
   phoneNumber: String
-  representedInstitutions(pending: Boolean! = false): UserRepresentedInstitutionConnection!
+  representedInstitutions(
+    pending: Boolean! = false
+  ): UserRepresentedInstitutionConnection!
   roles: [UserRole!]!
   rolesCurrentUserCanAdd: [UserRole!]!
   rolesCurrentUserCanRemove: [UserRole!]!
@@ -2125,20 +2331,42 @@ enum VerifyInstitutionErrorCode {
   UNKNOWN_INSTITUTION
   UNAUTHORIZED
 }
-directive @authorize("Defines when when the resolver shall be executed.By default the resolver is executed after the policy has determined that the current user is allowed to access the field." apply: ApplyPolicy! = BEFORE_RESOLVER "The name of the authorization policy that determines access to the annotated resource." policy: String "Roles that are allowed to access the annotated resource." roles: [String!]) repeatable on SCHEMA | OBJECT | FIELD_DEFINITION
+directive @authorize(
+  "Defines when when the resolver shall be executed.By default the resolver is executed after the policy has determined that the current user is allowed to access the field."
+  apply: ApplyPolicy! = BEFORE_RESOLVER
+  "The name of the authorization policy that determines access to the annotated resource."
+  policy: String
+  "Roles that are allowed to access the annotated resource."
+  roles: [String!]
+) repeatable on SCHEMA | OBJECT | FIELD_DEFINITION
 "The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`."
-directive @defer("Deferred when true." if: Boolean "If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to." label: String) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+directive @defer(
+  "Deferred when true."
+  if: Boolean
+  "If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to."
+  label: String
+) on FRAGMENT_SPREAD | INLINE_FRAGMENT
 "The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
-directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
+directive @specifiedBy(
+  "The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types."
+  url: String!
+) on SCALAR
 "The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`."
-directive @stream("Streamed when true." if: Boolean "The initial elements that shall be send down to the consumer." initialCount: Int! "If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to." label: String) on FIELD
+directive @stream(
+  "Streamed when true."
+  if: Boolean
+  "The initial elements that shall be send down to the consumer."
+  initialCount: Int!
+  "If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to."
+  label: String
+) on FIELD
 "The `DateTime` scalar represents an ISO-8601 compliant date time type."
-scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
+scalar DateTime @specifiedBy(url: "https://www.graphql-scalars.com/date-time")
 
 "The NonNegativeInt scalar type represents a unsigned 32-bit numeric non-fractional value equal to or greater than 0."
 scalar NonNegativeInt
 
-scalar URL @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc3986")
+scalar URL @specifiedBy(url: "https://tools.ietf.org/html/rfc3986")
 
 """
 [RFC 4122](https://tools.ietf.org/html/rfc4122)
@@ -2151,5 +2379,4 @@ in the form `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`, like
 `"00000000-0000-0000-0000-000000000000"` and match the regular expression
 `^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$`.
 """
-scalar UUID @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc4122")
-
+scalar UUID @specifiedBy(url: "https://tools.ietf.org/html/rfc4122")
