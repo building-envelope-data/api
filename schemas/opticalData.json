@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/v1/opticalData.json",
   "title": "Optical data",
-  "description": "Optical data sets of building envelope components. The results of all important optical measurements and simulations shall be possible to exchange. At the same time, this general format wants to limit the number of the possible representations of one data set to make it easy to develop software which interprets the data correctly.",
+  "description": "Optical data sets of building envelope components. It shall be possible to exchange the results of all important optical measurements and simulations. At the same time, this general format is intended to limit the number of possible representations of one data set to make it easy to develop software which interprets the data correctly.",
   "$defs": {
     "data": {
       "oneOf": [
@@ -54,7 +54,7 @@
       "oneOf": [
         {
           "title": "General schema for measured and calculated optical data",
-          "description": "An optical data point consists of a definition of the incident radiation, the variables of the component, the emergent radiation, and the optical results.",
+          "description": "An optical data point consists of a definition of the incident radiation, the component characteristics, the emergent radiation, and the optical results.",
           "type": "object",
           "properties": {
             "incidence": {
@@ -227,7 +227,7 @@
     },
     "absorptanceEmittance": {
       "$ref": "number.json#/$defs/numberWithUncertainty",
-      "description": "Absorptance is the ratio between the irradiance absorbed by the sample and the irradiance on the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelenghts', absorptance is equal to emittance. For the same 'incidence', 'variables', and 'emergence', the absorptance-emittance value is equal to `1 - transmittance - reflectance`."
+      "description": "Absorptance is the ratio between the irradiance absorbed by the sample and the irradiance on the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelengths', absorptance is equal to emittance. For the same 'incidence', 'variables', and 'emergence', the absorptance-emittance value is equal to `1 - transmittance - reflectance`."
     },
     "incidenceDirection": {
       "title": "Incidence direction",
@@ -312,7 +312,7 @@
     },
     "incidence": {
       "title": "Incident radiation",
-      "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelenthgs and range of wavelengths.",
+      "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelengths and range of wavelengths.",
       "type": "object",
       "properties": {
         "direction": {
