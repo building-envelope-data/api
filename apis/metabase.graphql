@@ -64,27 +64,6 @@ We took some inspiration from
 """
 scalar Schema
 
-"""
-[RFC 4122](https://tools.ietf.org/html/rfc4122)
-compliant
-[non-nil](https://tools.ietf.org/html/rfc4122#section-4.1.7)
-[Universally Unique Identifier (UUID)](https://tools.ietf.org/html/rfc4122#section-4.1)
-string represented as 32 hexadecimal digits in five groups separated by hyphens
-in the form `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`, like
-`"936da01f-9abd-4d9d-80c7-02af85c822a8"`. Such identifiers are not equal to
-`"00000000-0000-0000-0000-000000000000"` and match the regular expression
-`^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$`.
-"""
-scalar Uuid
-
-"""
-[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
-compliant
-[Cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
-string.
-"""
-scalar Cursor
-
 schema {
   query: Query
   mutation: Mutation
@@ -92,12 +71,12 @@ schema {
 
 interface Data {
   appliedMethod: AppliedMethod!
-  componentId: Uuid!
+  componentId: UUID!
   description: String
   name: String
   resourceTree: GetHttpsResourceTree!
   timestamp: DateTime!
-  uuid: Uuid!
+  uuid: UUID!
 }
 
 "The node interface is implemented by entities that have a global unique identifier."
@@ -124,6 +103,7 @@ type AddInstitutionRepresentativeError {
 type AddInstitutionRepresentativePayload {
   errors: [AddInstitutionRepresentativeError!]
   institutionRepresentativeEdge: InstitutionRepresentativeEdge
+  query: Query!
   representedInstitutionEdge: UserRepresentedInstitutionEdge
 }
 
@@ -135,29 +115,31 @@ type AddUserRoleError {
 
 type AddUserRolePayload {
   errors: [AddUserRoleError!]
+  query: Query!
   user: User
 }
 
 type AppliedMethod {
-  methodId: Uuid!
+  method: Method
+  methodId: UUID!
 }
 
 type CalorimetricData implements Data {
   appliedMethod: AppliedMethod!
-  componentId: Uuid!
+  component: Component
+  componentId: UUID!
   description: String
   gValues: [Float!]!
   name: String
   resourceTree: GetHttpsResourceTree!
   timestamp: DateTime!
-  uuid: Uuid!
   uValues: [Float!]!
+  uuid: UUID!
 }
 
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
   nodes: [CalorimetricData!]!
-  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
@@ -176,6 +158,7 @@ type ChangeInstitutionRepresentativeRoleError {
 type ChangeInstitutionRepresentativeRolePayload {
   errors: [ChangeInstitutionRepresentativeRoleError!]
   institutionRepresentativeEdge: InstitutionRepresentativeEdge
+  query: Query!
   representedInstitutionEdge: UserRepresentedInstitutionEdge
 }
 
@@ -187,6 +170,7 @@ type ChangeUserEmailError {
 
 type ChangeUserEmailPayload {
   errors: [ChangeUserEmailError!]
+  query: Query!
   user: User
 }
 
@@ -198,6 +182,7 @@ type ChangeUserPasswordError {
 
 type ChangeUserPasswordPayload {
   errors: [ChangeUserPasswordError!]
+  query: Query!
   user: User
 }
 
@@ -209,13 +194,21 @@ type Component implements Node {
   id: ID!
   manufacturers(pending: Boolean! = false): ComponentManufacturerConnection!
   name: String!
-  uuid: Uuid!
+  uuid: UUID!
+}
+
+type ComponentManufacturerConnection {
+  edges: [ComponentManufacturerEdge!]!
+}
+
+type ComponentManufacturerEdge {
+  node: Institution!
 }
 
 "A connection to a list of items."
-type ComponentConnection {
+type ComponentsConnection {
   "A list of edges."
-  edges: [ComponentEdge!]
+  edges: [ComponentsEdge!]
   "A flattened list of the nodes."
   nodes: [Component!]
   "Information to aid in pagination."
@@ -224,20 +217,11 @@ type ComponentConnection {
 }
 
 "An edge in a connection."
-type ComponentEdge {
+type ComponentsEdge {
   "A cursor for use in pagination."
   cursor: String!
   "The item at the end of the edge."
   node: Component!
-}
-
-type ComponentManufacturerConnection {
-  edges: [ComponentManufacturerEdge!]!
-  pageInfo: PageInfo!
-}
-
-type ComponentManufacturerEdge {
-  node: Institution!
 }
 
 type ConfirmComponentManufacturerError {
@@ -250,6 +234,7 @@ type ConfirmComponentManufacturerPayload {
   componentManufacturerEdge: ComponentManufacturerEdge
   errors: [ConfirmComponentManufacturerError!]
   manufacturedComponentEdge: InstitutionManufacturedComponentEdge
+  query: Query!
 }
 
 type ConfirmInstitutionMethodDeveloperError {
@@ -262,6 +247,7 @@ type ConfirmInstitutionMethodDeveloperPayload {
   developedMethodEdge: InstitutionDevelopedMethodEdge
   errors: [ConfirmInstitutionMethodDeveloperError!]
   methodDeveloperEdge: InstitutionMethodDeveloperEdge
+  query: Query!
 }
 
 type ConfirmInstitutionRepresentativeError {
@@ -273,6 +259,7 @@ type ConfirmInstitutionRepresentativeError {
 type ConfirmInstitutionRepresentativePayload {
   errors: [ConfirmInstitutionRepresentativeError!]
   institutionRepresentativeEdge: InstitutionRepresentativeEdge
+  query: Query!
   representedInstitutionEdge: UserRepresentedInstitutionEdge
 }
 
@@ -284,6 +271,7 @@ type ConfirmUserEmailChangeError {
 
 type ConfirmUserEmailChangePayload {
   errors: [ConfirmUserEmailChangeError!]
+  query: Query!
   user: User
 }
 
@@ -295,6 +283,7 @@ type ConfirmUserEmailError {
 
 type ConfirmUserEmailPayload {
   errors: [ConfirmUserEmailError!]
+  query: Query!
   user: User
 }
 
@@ -308,6 +297,7 @@ type ConfirmUserMethodDeveloperPayload {
   developedMethodEdge: UserDevelopedMethodEdge
   errors: [ConfirmUserMethodDeveloperError!]
   methodDeveloperEdge: UserMethodDeveloperEdge
+  query: Query!
 }
 
 type CreateComponentError {
@@ -319,6 +309,7 @@ type CreateComponentError {
 type CreateComponentPayload {
   component: Component
   errors: [CreateComponentError!]
+  query: Query!
 }
 
 type CreateDataFormatError {
@@ -330,6 +321,7 @@ type CreateDataFormatError {
 type CreateDataFormatPayload {
   dataFormat: DataFormat
   errors: [CreateDataFormatError!]
+  query: Query!
 }
 
 type CreateDatabaseError {
@@ -341,6 +333,7 @@ type CreateDatabaseError {
 type CreateDatabasePayload {
   database: Database
   errors: [CreateDatabaseError!]
+  query: Query!
 }
 
 type CreateInstitutionError {
@@ -352,6 +345,7 @@ type CreateInstitutionError {
 type CreateInstitutionPayload {
   errors: [CreateInstitutionError!]
   institution: Institution
+  query: Query!
 }
 
 type CreateMethodError {
@@ -363,10 +357,12 @@ type CreateMethodError {
 type CreateMethodPayload {
   errors: [CreateMethodError!]
   method: Method
+  query: Query!
 }
 
 type DataApproval {
-  approverId: Uuid!
+  approver: Institution
+  approverId: UUID!
   keyFingerprint: String!
   query: String!
   response: String!
@@ -377,7 +373,6 @@ type DataApproval {
 type DataConnection {
   edges: [DataEdge!]!
   nodes: [Data!]!
-  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
@@ -395,14 +390,18 @@ type DataFormat implements Node {
   mediaType: String!
   name: String!
   reference: Reference
-  schemaLocator: Url
-  uuid: Uuid!
+  schemaLocator: URL
+  uuid: UUID!
+}
+
+type DataFormatManagerEdge {
+  node: Institution!
 }
 
 "A connection to a list of items."
-type DataFormatConnection {
+type DataFormatsConnection {
   "A list of edges."
-  edges: [DataFormatEdge!]
+  edges: [DataFormatsEdge!]
   "A flattened list of the nodes."
   nodes: [DataFormat!]
   "Information to aid in pagination."
@@ -411,15 +410,11 @@ type DataFormatConnection {
 }
 
 "An edge in a connection."
-type DataFormatEdge {
+type DataFormatsEdge {
   "A cursor for use in pagination."
   cursor: String!
   "The item at the end of the edge."
   node: DataFormat!
-}
-
-type DataFormatManagerEdge {
-  node: Institution!
 }
 
 type Database implements Node {
@@ -469,11 +464,11 @@ type Database implements Node {
     where: PhotovoltaicDataPropositionInput
   ): PhotovoltaicDataConnection
   calorimetricData(
-    id: Uuid!
+    id: UUID!
     locale: String
     timestamp: DateTime
   ): CalorimetricData
-  data(id: Uuid!, locale: String, timestamp: DateTime): Data
+  data(id: UUID!, locale: String, timestamp: DateTime): Data
   description: String!
   hasCalorimetricData(
     locale: String
@@ -501,27 +496,31 @@ type Database implements Node {
     where: PhotovoltaicDataPropositionInput
   ): Boolean
   hygrothermalData(
-    id: Uuid!
+    id: UUID!
     locale: String
     timestamp: DateTime
   ): HygrothermalData
   id: ID!
-  locator: Url!
+  locator: URL!
   name: String!
   operator: DatabaseOperatorEdge!
-  opticalData(id: Uuid!, locale: String, timestamp: DateTime): OpticalData
+  opticalData(id: UUID!, locale: String, timestamp: DateTime): OpticalData
   photovoltaicData(
-    id: Uuid!
+    id: UUID!
     locale: String
     timestamp: DateTime
   ): PhotovoltaicData
-  uuid: Uuid!
+  uuid: UUID!
+}
+
+type DatabaseOperatorEdge {
+  node: Institution!
 }
 
 "A connection to a list of items."
-type DatabaseConnection {
+type DatabasesConnection {
   "A list of edges."
-  edges: [DatabaseEdge!]
+  edges: [DatabasesEdge!]
   "A flattened list of the nodes."
   nodes: [Database!]
   "Information to aid in pagination."
@@ -530,15 +529,11 @@ type DatabaseConnection {
 }
 
 "An edge in a connection."
-type DatabaseEdge {
+type DatabasesEdge {
   "A cursor for use in pagination."
   cursor: String!
   "The item at the end of the edge."
   node: Database!
-}
-
-type DatabaseOperatorEdge {
-  node: Institution!
 }
 
 type DeleteInstitutionError {
@@ -549,6 +544,7 @@ type DeleteInstitutionError {
 
 type DeleteInstitutionPayload {
   errors: [DeleteInstitutionError!]
+  query: Query!
 }
 
 type DeletePersonalUserDataError {
@@ -559,6 +555,7 @@ type DeletePersonalUserDataError {
 
 type DeletePersonalUserDataPayload {
   errors: [DeletePersonalUserDataError!]
+  query: Query!
   user: User
 }
 
@@ -570,6 +567,7 @@ type DeleteUserError {
 
 type DeleteUserPayload {
   errors: [DeleteUserError!]
+  query: Query!
   user: User
 }
 
@@ -581,6 +579,7 @@ type DisableUserTwoFactorAuthenticationError {
 
 type DisableUserTwoFactorAuthenticationPayload {
   errors: [DisableUserTwoFactorAuthenticationError!]
+  query: Query!
   user: User
 }
 
@@ -593,6 +592,7 @@ type EnableUserTwoFactorAuthenticatorError {
 type EnableUserTwoFactorAuthenticatorPayload {
   authenticatorUri: String
   errors: [EnableUserTwoFactorAuthenticatorError!]
+  query: Query!
   sharedKey: String
   twoFactorRecoveryCodes: [String!]
   user: User
@@ -606,6 +606,7 @@ type ForgetUserTwoFactorAuthenticationClientError {
 
 type ForgetUserTwoFactorAuthenticationClientPayload {
   errors: [ForgetUserTwoFactorAuthenticationClientError!]
+  query: Query!
   user: User
 }
 
@@ -618,6 +619,7 @@ type GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriError {
 type GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload {
   authenticatorUri: String
   errors: [GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriError!]
+  query: Query!
   sharedKey: String
   user: User
 }
@@ -630,15 +632,17 @@ type GenerateUserTwoFactorRecoveryCodesError {
 
 type GenerateUserTwoFactorRecoveryCodesPayload {
   errors: [GenerateUserTwoFactorRecoveryCodesError!]
+  query: Query!
   twoFactorRecoveryCodes: [String!]
   user: User
 }
 
 type GetHttpsResource {
+  dataFormat: DataFormat
   description: String!
-  formatId: Uuid!
+  formatId: UUID!
   hashValue: String!
-  locator: Url!
+  locator: URL!
 }
 
 type GetHttpsResourceTree {
@@ -658,18 +662,18 @@ type GetHttpsResourceTreeRoot {
 
 type HygrothermalData implements Data {
   appliedMethod: AppliedMethod!
-  componentId: Uuid!
+  component: Component
+  componentId: UUID!
   description: String
   name: String
   resourceTree: GetHttpsResourceTree!
   timestamp: DateTime!
-  uuid: Uuid!
+  uuid: UUID!
 }
 
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
   nodes: [HygrothermalData!]!
-  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
@@ -700,43 +704,22 @@ type Institution implements Node & Stakeholder {
     pending: Boolean! = false
   ): InstitutionRepresentativeConnection!
   state: InstitutionState!
-  uuid: Uuid!
-  websiteLocator: Url
-}
-
-"A connection to a list of items."
-type InstitutionConnection {
-  "A list of edges."
-  edges: [InstitutionEdge!]
-  "A flattened list of the nodes."
-  nodes: [Institution]
-  "Information to aid in pagination."
-  pageInfo: PageInfo!
-  totalCount: Int!
+  uuid: UUID!
+  websiteLocator: URL
 }
 
 type InstitutionDevelopedMethodConnection {
   canCurrentUserConfirmEdge: Boolean!
   edges: [InstitutionDevelopedMethodEdge!]!
-  pageInfo: PageInfo!
 }
 
 type InstitutionDevelopedMethodEdge {
   node: Method!
 }
 
-"An edge in a connection."
-type InstitutionEdge {
-  "A cursor for use in pagination."
-  cursor: String!
-  "The item at the end of the edge."
-  node: Institution
-}
-
 type InstitutionManagedDataFormatConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionManagedDataFormatEdge!]!
-  pageInfo: PageInfo!
 }
 
 type InstitutionManagedDataFormatEdge {
@@ -746,7 +729,6 @@ type InstitutionManagedDataFormatEdge {
 type InstitutionManagedInstitutionConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionManagedInstitutionEdge!]!
-  pageInfo: PageInfo!
 }
 
 type InstitutionManagedInstitutionEdge {
@@ -756,7 +738,6 @@ type InstitutionManagedInstitutionEdge {
 type InstitutionManagedMethodConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionManagedMethodEdge!]!
-  pageInfo: PageInfo!
 }
 
 type InstitutionManagedMethodEdge {
@@ -771,7 +752,6 @@ type InstitutionManufacturedComponentConnection {
   canCurrentUserAddEdge: Boolean!
   canCurrentUserConfirmEdge: Boolean!
   edges: [InstitutionManufacturedComponentEdge!]!
-  pageInfo: PageInfo!
 }
 
 type InstitutionManufacturedComponentEdge {
@@ -785,7 +765,6 @@ type InstitutionMethodDeveloperEdge {
 type InstitutionOperatedDatabaseConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionOperatedDatabaseEdge!]!
-  pageInfo: PageInfo!
 }
 
 type InstitutionOperatedDatabaseEdge {
@@ -795,12 +774,30 @@ type InstitutionOperatedDatabaseEdge {
 type InstitutionRepresentativeConnection {
   canCurrentUserAddEdge: Boolean!
   edges: [InstitutionRepresentativeEdge!]!
-  pageInfo: PageInfo!
 }
 
 type InstitutionRepresentativeEdge {
   node: User!
   role: InstitutionRepresentativeRole!
+}
+
+"A connection to a list of items."
+type InstitutionsConnection {
+  "A list of edges."
+  edges: [InstitutionsEdge!]
+  "A flattened list of the nodes."
+  nodes: [Institution]
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"An edge in a connection."
+type InstitutionsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Institution
 }
 
 type LoginUserError {
@@ -811,6 +808,7 @@ type LoginUserError {
 
 type LoginUserPayload {
   errors: [LoginUserError!]
+  query: Query!
   requiresTwoFactor: Boolean
   user: User
 }
@@ -823,6 +821,7 @@ type LoginUserWithRecoveryCodeError {
 
 type LoginUserWithRecoveryCodePayload {
   errors: [LoginUserWithRecoveryCodeError!]
+  query: Query!
   user: User
 }
 
@@ -834,6 +833,7 @@ type LoginUserWithTwoFactorCodeError {
 
 type LoginUserWithTwoFactorCodePayload {
   errors: [LoginUserWithTwoFactorCodeError!]
+  query: Query!
   user: User
 }
 
@@ -845,12 +845,13 @@ type LogoutUserError {
 
 type LogoutUserPayload {
   errors: [LogoutUserError!]
+  query: Query!
   user: User
 }
 
 type Method implements Node {
   availability: OpenEndedDateTimeRange
-  calculationLocator: Url
+  calculationLocator: URL
   categories: [MethodCategory!]!
   description: String!
   developers(pending: Boolean! = false): MethodDeveloperConnection!
@@ -858,14 +859,26 @@ type Method implements Node {
   manager: MethodManagerEdge!
   name: String!
   reference: Reference
-  uuid: Uuid!
+  uuid: UUID!
   validity: OpenEndedDateTimeRange
 }
 
+type MethodDeveloperConnection {
+  edges: [MethodDeveloperEdge!]!
+}
+
+type MethodDeveloperEdge {
+  node: Stakeholder!
+}
+
+type MethodManagerEdge {
+  node: Institution!
+}
+
 "A connection to a list of items."
-type MethodConnection {
+type MethodsConnection {
   "A list of edges."
-  edges: [MethodEdge!]
+  edges: [MethodsEdge!]
   "A flattened list of the nodes."
   nodes: [Method!]
   "Information to aid in pagination."
@@ -873,25 +886,12 @@ type MethodConnection {
   totalCount: Int!
 }
 
-type MethodDeveloperConnection {
-  edges: [MethodDeveloperEdge!]!
-  pageInfo: PageInfo!
-}
-
-type MethodDeveloperEdge {
-  node: Stakeholder!
-}
-
 "An edge in a connection."
-type MethodEdge {
+type MethodsEdge {
   "A cursor for use in pagination."
   cursor: String!
   "The item at the end of the edge."
   node: Method!
-}
-
-type MethodManagerEdge {
-  node: Institution!
 }
 
 type Mutation {
@@ -932,9 +932,9 @@ type Mutation {
     @authorize(apply: BEFORE_RESOLVER, policy: "Write")
   createComponent(input: CreateComponentInput!): CreateComponentPayload!
     @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
   createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload!
+    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload!
     @authorize(apply: BEFORE_RESOLVER, policy: "Write")
   createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload!
     @authorize(apply: BEFORE_RESOLVER, policy: "Write")
@@ -1074,19 +1074,23 @@ type OpenIdConnectToken {
 
 type OpticalData implements Data {
   appliedMethod: AppliedMethod!
-  componentId: Uuid!
+  component: Component
+  componentId: UUID!
   description: String
+  infraredEmittances: [Float!]!
   name: String
+  nearnormalHemisphericalSolarReflectances: [Float!]!
+  nearnormalHemisphericalSolarTransmittances: [Float!]!
+  nearnormalHemisphericalVisibleReflectances: [Float!]!
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
   resourceTree: GetHttpsResourceTree!
   timestamp: DateTime!
-  uuid: Uuid!
+  uuid: UUID!
 }
 
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
   nodes: [OpticalData!]!
-  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
@@ -1107,33 +1111,29 @@ type PageInfo {
   "When paginating backwards, the cursor to continue."
   startCursor: String
 }
-
 type PhotovoltaicData implements Data {
   appliedMethod: AppliedMethod!
-  componentId: Uuid!
+  component: Component
+  componentId: UUID!
   description: String
   name: String
   resourceTree: GetHttpsResourceTree!
   timestamp: DateTime!
-  uuid: Uuid!
+  uuid: UUID!
 }
-
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
   nodes: [PhotovoltaicData!]!
-  pageInfo: PageInfo!
   timestamp: DateTime!
   totalCount: NonNegativeInt
 }
-
 type PhotovoltaicDataEdge {
   cursor: String!
   node: PhotovoltaicData!
 }
-
 type Publication implements Reference {
   abstract: String
-  "A free and open-access archive for publications is offered by arXiv.org. The arXiv identifier can be used to define a publication."
+  "The website arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
   arXiv: String
   authors: [String!]
   "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
@@ -1144,157 +1144,174 @@ type Publication implements Reference {
   "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
   urn: String
   "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
-  webAddress: Url
+  webAddress: URL
 }
-
 type Query {
-  component(uuid: Uuid!): Component
+  component(uuid: UUID!): Component
   components(
+    "Returns the elements in the list that come after the specified cursor."
     after: String
+    "Returns the elements in the list that come before the specified cursor."
     before: String
+    "Returns the first _n_ elements from the list."
     first: Int
+    "Returns the last _n_ elements from the list."
     last: Int
     order: [ComponentSortInput!]
     where: ComponentFilterInput
-  ): ComponentConnection
+  ): ComponentsConnection
   currentUser: User
-  database(uuid: Uuid!): Database
-  databases(
-    after: String
-    before: String
-    first: Int
-    last: Int
-    order: [DatabaseSortInput!]
-    where: DatabaseFilterInput
-  ): DatabaseConnection
-  dataFormat(uuid: Uuid!): DataFormat
+  dataFormat(uuid: UUID!): DataFormat
   dataFormats(
+    "Returns the elements in the list that come after the specified cursor."
     after: String
+    "Returns the elements in the list that come before the specified cursor."
     before: String
+    "Returns the first _n_ elements from the list."
     first: Int
+    "Returns the last _n_ elements from the list."
     last: Int
     order: [DataFormatSortInput!]
     where: DataFormatFilterInput
-  ): DataFormatConnection
-  institution(uuid: Uuid!): Institution
-  institutions(
+  ): DataFormatsConnection
+  database(uuid: UUID!): Database
+  databases(
+    "Returns the elements in the list that come after the specified cursor."
     after: String
+    "Returns the elements in the list that come before the specified cursor."
     before: String
+    "Returns the first _n_ elements from the list."
     first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [DatabaseSortInput!]
+    where: DatabaseFilterInput
+  ): DatabasesConnection
+  institution(uuid: UUID!): Institution
+  institutions(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
     last: Int
     order: [InstitutionSortInput!]
     where: InstitutionFilterInput
-  ): InstitutionConnection
-  method(uuid: Uuid!): Method
+  ): InstitutionsConnection
+  method(uuid: UUID!): Method
   methods(
+    "Returns the elements in the list that come after the specified cursor."
     after: String
+    "Returns the elements in the list that come before the specified cursor."
     before: String
+    "Returns the first _n_ elements from the list."
     first: Int
+    "Returns the last _n_ elements from the list."
     last: Int
     order: [MethodSortInput!]
     where: MethodFilterInput
-  ): MethodConnection
-  node(id: ID!): Node
+  ): MethodsConnection
+  "Fetches an object given its ID."
+  node("ID of the object." id: ID!): Node
+  "Lookup nodes by a list of IDs."
+  nodes("The list of node IDs." ids: [ID!]!): [Node]!
   openIdConnectApplications: [OpenIdConnectApplication!]!
   openIdConnectAuthorizations: [OpenIdConnectAuthorization!]!
   openIdConnectScopes: [OpenIdConnectScope!]!
   openIdConnectTokens: [OpenIdConnectToken!]!
-  user(uuid: Uuid!): User
+  user(uuid: UUID!): User
   users(
+    "Returns the elements in the list that come after the specified cursor."
     after: String
+    "Returns the elements in the list that come before the specified cursor."
     before: String
+    "Returns the first _n_ elements from the list."
     first: Int
+    "Returns the last _n_ elements from the list."
     last: Int
     order: [UserSortInput!]
-  ): UserConnection
+  ): UsersConnection
 }
-
 type RegisterUserError {
   code: RegisterUserErrorCode!
   message: String!
   path: [String!]!
 }
-
 type RegisterUserPayload {
   errors: [RegisterUserError!]
+  query: Query!
   user: User
 }
-
 type RemoveInstitutionRepresentativeError {
   code: RemoveInstitutionRepresentativeErrorCode!
   message: String!
   path: [String!]!
 }
-
 type RemoveInstitutionRepresentativePayload {
   errors: [RemoveInstitutionRepresentativeError!]
   institution: Institution!
+  query: Query!
   user: User!
 }
-
 type RemoveUserRoleError {
   code: RemoveUserRoleErrorCode!
   message: String!
   path: [String!]!
 }
-
 type RemoveUserRolePayload {
   errors: [RemoveUserRoleError!]
+  query: Query!
   user: User
 }
-
 type RequestUserPasswordResetError {
   code: RequestUserPasswordResetErrorCode!
   message: String!
   path: [String!]!
 }
-
 type RequestUserPasswordResetPayload {
   errors: [RequestUserPasswordResetError!]
+  query: Query!
 }
-
 type ResendUserEmailConfirmationError {
   code: ResendUserEmailConfirmationErrorCode!
   message: String!
   path: [String!]!
 }
-
 type ResendUserEmailConfirmationPayload {
   errors: [ResendUserEmailConfirmationError!]
+  query: Query!
 }
-
 type ResendUserEmailVerificationError {
   code: ResendUserEmailVerificationErrorCode!
   message: String!
   path: [String!]!
 }
-
 type ResendUserEmailVerificationPayload {
   errors: [ResendUserEmailVerificationError!]
+  query: Query!
   user: User
 }
-
 type ResetUserPasswordError {
   code: ResetUserPasswordErrorCode!
   message: String!
   path: [String!]!
 }
-
 type ResetUserPasswordPayload {
   errors: [ResetUserPasswordError!]
+  query: Query!
 }
-
 type ResetUserTwoFactorAuthenticatorError {
   code: ResetUserTwoFactorAuthenticatorErrorCode!
   message: String!
   path: [String!]!
 }
-
 type ResetUserTwoFactorAuthenticatorPayload {
   errors: [ResetUserTwoFactorAuthenticatorError!]
+  query: Query!
   user: User
 }
-
 type ResponseApproval {
   keyFingerprint: String!
   query: String!
@@ -1302,66 +1319,60 @@ type ResponseApproval {
   signature: String!
   timestamp: DateTime!
 }
-
 type SetUserPasswordError {
   code: SetUserPasswordErrorCode!
   message: String!
   path: [String!]!
 }
-
 type SetUserPasswordPayload {
   errors: [SetUserPasswordError!]
+  query: Query!
   user: User
 }
-
 type SetUserPhoneNumberError {
   code: SetUserPhoneNumberErrorCode!
   message: String!
   path: [String!]!
 }
-
 type SetUserPhoneNumberPayload {
   errors: [SetUserPhoneNumberError!]
+  query: Query!
   user: User
 }
-
 "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
 type Standard implements Reference {
   abstract: String
-  locator: Url
+  locator: URL
   numeration: Numeration!
   "The section of the standard to which the reference refers to."
   section: String
   standardizers: [Standardizer!]!
-  title: String!
+  title: String
   "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
   year: Int
 }
-
 type ToTreeVertexAppliedConversionMethod {
   arguments: [NamedMethodArgument!]!
-  methodId: Uuid!
+  method: Method
+  methodId: UUID!
   sourceName: String!
 }
-
 type TwoFactorAuthentication {
   hasAuthenticator: Boolean!
   isEnabled: Boolean!
   isMachineRemembered: Boolean!
   recoveryCodesLeftCount: Int!
 }
-
 type UpdateInstitutionError {
   code: UpdateInstitutionErrorCode!
   message: String!
   path: [String!]!
 }
-
 type UpdateInstitutionPayload {
   errors: [UpdateInstitutionError!]
   institution: Institution
+  query: Query!
 }
-
 type User implements Node & Stakeholder {
   canCurrentUserDeleteUser: Boolean!
   developedMethods(pending: Boolean! = false): UserDevelopedMethodConnection!
@@ -1376,259 +1387,237 @@ type User implements Node & Stakeholder {
   representedInstitutions(
     pending: Boolean! = false
   ): UserRepresentedInstitutionConnection!
-  roles: [UserRole!]
-  rolesCurrentUserCanAdd: [UserRole!]
-  rolesCurrentUserCanRemove: [UserRole!]
+  roles: [UserRole!]!
+  rolesCurrentUserCanAdd: [UserRole!]!
+  rolesCurrentUserCanRemove: [UserRole!]!
   twoFactorAuthentication: TwoFactorAuthentication
-  uuid: Uuid!
-  websiteLocator: Url
+  uuid: UUID!
+  websiteLocator: URL
 }
-
+type UserDevelopedMethodConnection {
+  canCurrentUserConfirmEdge: Boolean!
+  edges: [UserDevelopedMethodEdge!]!
+}
+type UserDevelopedMethodEdge {
+  node: Method!
+}
+type UserMethodDeveloperEdge {
+  node: User!
+}
+type UserRepresentedInstitutionConnection {
+  canCurrentUserConfirmEdge: Boolean!
+  edges: [UserRepresentedInstitutionEdge!]!
+}
+type UserRepresentedInstitutionEdge {
+  node: Institution!
+  role: InstitutionRepresentativeRole!
+}
 "A connection to a list of items."
-type UserConnection {
+type UsersConnection {
   "A list of edges."
-  edges: [UserEdge!]
+  edges: [UsersEdge!]
   "A flattened list of the nodes."
   nodes: [User!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
   totalCount: Int!
 }
-
-type UserDevelopedMethodConnection {
-  canCurrentUserConfirmEdge: Boolean!
-  edges: [UserDevelopedMethodEdge!]!
-  pageInfo: PageInfo!
-}
-
-type UserDevelopedMethodEdge {
-  node: Method!
-}
-
 "An edge in a connection."
-type UserEdge {
+type UsersEdge {
   "A cursor for use in pagination."
   cursor: String!
   "The item at the end of the edge."
   node: User!
 }
-
-type UserMethodDeveloperEdge {
-  node: User!
-}
-
-type UserRepresentedInstitutionConnection {
-  canCurrentUserConfirmEdge: Boolean!
-  edges: [UserRepresentedInstitutionEdge!]!
-  pageInfo: PageInfo!
-}
-
-type UserRepresentedInstitutionEdge {
-  node: Institution!
-  role: InstitutionRepresentativeRole!
-}
-
 type VerifyInstitutionError {
   code: VerifyInstitutionErrorCode!
   message: String!
   path: [String!]!
 }
-
 type VerifyInstitutionPayload {
   errors: [VerifyInstitutionError!]
   institution: Institution
+  query: Query!
 }
-
 input AddInstitutionRepresentativeInput {
-  institutionId: Uuid!
+  institutionId: UUID!
   role: InstitutionRepresentativeRole!
-  userId: Uuid!
+  userId: UUID!
 }
-
 input AddUserRoleInput {
   role: UserRole!
-  userId: Uuid!
+  userId: UUID!
 }
-
 input BooleanOperationFilterInput {
   eq: Boolean
   neq: Boolean
 }
-
 input CalorimetricDataPropositionInput {
   and: [CalorimetricDataPropositionInput!]
   componentId: UuidPropositionInput
+  dataFormatId: UuidPropositionInput
   gValue: FloatPropositionInput
+  gValues: FloatsPropositionInput
   not: CalorimetricDataPropositionInput
   or: [CalorimetricDataPropositionInput!]
   uValue: FloatPropositionInput
+  uValues: FloatsPropositionInput
 }
-
 input ChangeInstitutionRepresentativeRoleInput {
-  institutionId: Uuid!
+  institutionId: UUID!
   newRole: InstitutionRepresentativeRole!
-  userId: Uuid!
+  userId: UUID!
 }
-
 input ChangeUserEmailInput {
   newEmail: String!
 }
-
 input ChangeUserPasswordInput {
   currentPassword: String!
   newPassword: String!
   newPasswordConfirmation: String!
 }
-
+input CielabColorPropositionInput {
+  aStar: FloatPropositionInput
+  bStar: FloatPropositionInput
+  lStar: FloatPropositionInput
+}
+input CielabColorsPropositionInput {
+  all: CielabColorPropositionInput
+  none: CielabColorPropositionInput
+  some: CielabColorPropositionInput
+}
 input ClosedIntervalInput {
   lowerBound: Float!
   upperBound: Float!
 }
-
 input ComparableGuidOperationFilterInput {
-  eq: Uuid
-  gt: Uuid
-  gte: Uuid
-  in: [Uuid!]
-  lt: Uuid
-  lte: Uuid
-  neq: Uuid
-  ngt: Uuid
-  ngte: Uuid
-  nin: [Uuid!]
-  nlt: Uuid
-  nlte: Uuid
+  eq: UUID
+  neq: UUID
+  in: [UUID!]
+  nin: [UUID!]
+  gt: UUID
+  ngt: UUID
+  gte: UUID
+  ngte: UUID
+  lt: UUID
+  nlt: UUID
+  lte: UUID
+  nlte: UUID
 }
-
 input ComparableInt32OperationFilterInput {
   eq: Int
-  gt: Int
-  gte: Int
-  in: [Int!]
-  lt: Int
-  lte: Int
   neq: Int
-  ngt: Int
-  ngte: Int
+  in: [Int!]
   nin: [Int!]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
   nlt: Int
+  lte: Int
   nlte: Int
 }
-
 input ComponentCategoryOperationFilterInput {
   eq: ComponentCategory
-  in: [ComponentCategory!]
   neq: ComponentCategory
+  in: [ComponentCategory!]
   nin: [ComponentCategory!]
 }
-
 input ComponentFilterInput {
-  abbreviation: StringOperationFilterInput
   and: [ComponentFilterInput!]
-  categories: ListComponentCategoryOperationFilterInput
-  description: StringOperationFilterInput
+  or: [ComponentFilterInput!]
   id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
-  or: [ComponentFilterInput!]
+  abbreviation: StringOperationFilterInput
+  description: StringOperationFilterInput
+  categories: ListComponentCategoryOperationFilterInput
 }
-
 input ComponentSortInput {
-  abbreviation: SortEnumType
-  availability: SortEnumType
-  description: SortEnumType
-  id: SortEnumType
   name: SortEnumType
+  abbreviation: SortEnumType
+  description: SortEnumType
+  availability: SortEnumType
+  id: SortEnumType
   xmin: SortEnumType
 }
-
 input ConfirmComponentManufacturerInput {
-  componentId: Uuid!
-  institutionId: Uuid!
+  componentId: UUID!
+  institutionId: UUID!
 }
-
 input ConfirmInstitutionMethodDeveloperInput {
-  institutionId: Uuid!
-  methodId: Uuid!
+  institutionId: UUID!
+  methodId: UUID!
 }
-
 input ConfirmInstitutionRepresentativeInput {
-  institutionId: Uuid!
-  userId: Uuid!
+  institutionId: UUID!
+  userId: UUID!
 }
-
 input ConfirmUserEmailChangeInput {
   confirmationCode: String!
   currentEmail: String!
   newEmail: String!
 }
-
 input ConfirmUserEmailInput {
   confirmationCode: String!
   email: String!
 }
-
 input ConfirmUserMethodDeveloperInput {
-  methodId: Uuid!
-  userId: Uuid!
+  methodId: UUID!
+  userId: UUID!
 }
-
 input CreateComponentInput {
   abbreviation: String
   availability: OpenEndedDateTimeRangeInput
   categories: [ComponentCategory!]!
   description: String!
-  manufacturerId: Uuid!
+  furtherManufacturerIds: [UUID!]!
+  manufacturerId: UUID!
   name: String!
 }
-
 input CreateDataFormatInput {
   description: String!
   extension: String
-  managerId: Uuid!
+  managerId: UUID!
   mediaType: String!
   name: String!
   publication: CreatePublicationInput
-  schemaLocator: Url
+  schemaLocator: URL
   standard: CreateStandardInput
 }
-
 input CreateDatabaseInput {
   description: String!
-  locator: Url!
+  locator: URL!
   name: String!
-  operatorId: Uuid!
+  operatorId: UUID!
 }
-
 input CreateInstitutionInput {
   abbreviation: String
   description: String!
-  managerId: Uuid
+  managerId: UUID
   name: String!
-  ownerIds: [Uuid!]!
+  ownerIds: [UUID!]!
   publicKey: String
-  websiteLocator: Url
+  websiteLocator: URL
 }
-
 input CreateMethodInput {
   availability: OpenEndedDateTimeRangeInput
-  calculationLocator: Url
+  calculationLocator: URL
   categories: [MethodCategory!]!
   description: String!
-  institutionDeveloperIds: [Uuid!]!
-  managerId: Uuid!
+  institutionDeveloperIds: [UUID!]!
+  managerId: UUID!
   name: String!
   publication: CreatePublicationInput
   standard: CreateStandardInput
-  userDeveloperIds: [Uuid!]!
+  userDeveloperIds: [UUID!]!
   validity: OpenEndedDateTimeRangeInput
 }
-
 input CreateNumerationInput {
   mainNumber: String!
   prefix: String
   suffix: String
 }
-
 input CreatePublicationInput {
   abstract: String
   arXiv: String
@@ -1637,414 +1626,402 @@ input CreatePublicationInput {
   section: String
   title: String
   urn: String
-  webAddress: Url
+  webAddress: URL
 }
-
 input CreateStandardInput {
   abstract: String
-  locator: Url
+  locator: URL
   numeration: CreateNumerationInput!
   section: String
   standardizers: [Standardizer!]!
   title: String
   year: Int
 }
-
 input DataFormatFilterInput {
   and: [DataFormatFilterInput!]
-  description: StringOperationFilterInput
-  id: ComparableGuidOperationFilterInput
-  mediaType: StringOperationFilterInput
-  name: StringOperationFilterInput
   or: [DataFormatFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  name: StringOperationFilterInput
+  description: StringOperationFilterInput
+  mediaType: StringOperationFilterInput
 }
-
 input DataFormatSortInput {
-  description: SortEnumType
-  extension: SortEnumType
-  id: SortEnumType
-  manager: InstitutionSortInput
-  managerId: SortEnumType
-  mediaType: SortEnumType
   name: SortEnumType
-  publication: PublicationSortInput
-  reference: IReferenceSortInput
+  extension: SortEnumType
+  description: SortEnumType
+  mediaType: SortEnumType
   schemaLocator: UriSortInput
   standard: StandardSortInput
+  publication: PublicationSortInput
+  reference: IReferenceSortInput
+  managerId: SortEnumType
+  manager: InstitutionSortInput
+  id: SortEnumType
   xmin: SortEnumType
 }
-
 input DataPropositionInput {
   and: [DataPropositionInput!]
+  cielabColor: CielabColorPropositionInput
+  cielabColors: CielabColorsPropositionInput
+  colorRenderingIndex: FloatPropositionInput
+  colorRenderingIndices: FloatsPropositionInput
   componentId: UuidPropositionInput
+  dataFormatId: UuidPropositionInput
   gValue: FloatPropositionInput
+  gValues: FloatsPropositionInput
+  infraredEmittance: FloatPropositionInput
+  infraredEmittances: FloatsPropositionInput
+  nearnormalHemisphericalSolarReflectance: FloatPropositionInput
+  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
+  nearnormalHemisphericalSolarTransmittance: FloatPropositionInput
+  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
+  nearnormalHemisphericalVisibleReflectance: FloatPropositionInput
+  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
   nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
+  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
   not: DataPropositionInput
   or: [DataPropositionInput!]
   uValue: FloatPropositionInput
+  uValues: FloatsPropositionInput
 }
-
 input DatabaseFilterInput {
   and: [DatabaseFilterInput!]
-  description: StringOperationFilterInput
-  id: ComparableGuidOperationFilterInput
-  locator: UriFilterInput
-  name: StringOperationFilterInput
   or: [DatabaseFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  name: StringOperationFilterInput
+  description: StringOperationFilterInput
+  locator: UriFilterInput
 }
-
 input DatabaseSortInput {
-  description: SortEnumType
-  id: SortEnumType
-  locator: UriSortInput
   name: SortEnumType
-  operator: InstitutionSortInput
+  description: SortEnumType
+  locator: UriSortInput
   operatorId: SortEnumType
+  operator: InstitutionSortInput
+  id: SortEnumType
   xmin: SortEnumType
 }
-
 input DeleteInstitutionInput {
-  institutionId: Uuid!
+  institutionId: UUID!
 }
-
 input DeletePersonalUserDataInput {
   password: String
 }
-
 input DeleteUserInput {
-  userId: Uuid!
+  userId: UUID!
 }
-
 input EnableUserTwoFactorAuthenticatorInput {
   verificationCode: String!
 }
-
 input FloatPropositionInput {
   equalTo: Float
   greaterThanOrEqualTo: Float
   inClosedInterval: ClosedIntervalInput
   lessThanOrEqualTo: Float
 }
-
+input FloatsPropositionInput {
+  all: FloatPropositionInput
+  none: FloatPropositionInput
+  some: FloatPropositionInput
+}
 input HygrothermalDataPropositionInput {
   and: [HygrothermalDataPropositionInput!]
   componentId: UuidPropositionInput
+  dataFormatId: UuidPropositionInput
   not: HygrothermalDataPropositionInput
   or: [HygrothermalDataPropositionInput!]
 }
-
 input IReferenceSortInput {
+  title: SortEnumType
   abstract: SortEnumType
   section: SortEnumType
-  title: SortEnumType
 }
-
 input InstitutionFilterInput {
-  abbreviation: StringOperationFilterInput
   and: [InstitutionFilterInput!]
-  description: StringOperationFilterInput
+  or: [InstitutionFilterInput!]
   id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
-  or: [InstitutionFilterInput!]
-  state: InstitutionStateOperationFilterInput
+  abbreviation: StringOperationFilterInput
+  description: StringOperationFilterInput
   websiteLocator: UriFilterInput
+  state: InstitutionStateOperationFilterInput
 }
-
 input InstitutionSortInput {
+  name: SortEnumType
   abbreviation: SortEnumType
   description: SortEnumType
-  id: SortEnumType
-  manager: InstitutionSortInput
-  managerId: SortEnumType
-  name: SortEnumType
+  websiteLocator: UriSortInput
   publicKey: SortEnumType
   state: SortEnumType
-  websiteLocator: UriSortInput
+  managerId: SortEnumType
+  manager: InstitutionSortInput
+  id: SortEnumType
   xmin: SortEnumType
 }
-
 input InstitutionStateOperationFilterInput {
   eq: InstitutionState
-  in: [InstitutionState!]
   neq: InstitutionState
+  in: [InstitutionState!]
   nin: [InstitutionState!]
 }
-
 input ListComponentCategoryOperationFilterInput {
   all: ComponentCategoryOperationFilterInput
-  any: Boolean
   none: ComponentCategoryOperationFilterInput
   some: ComponentCategoryOperationFilterInput
+  any: Boolean
 }
-
 input ListMethodCategoryOperationFilterInput {
   all: MethodCategoryOperationFilterInput
-  any: Boolean
   none: MethodCategoryOperationFilterInput
   some: MethodCategoryOperationFilterInput
+  any: Boolean
 }
-
 input ListStringOperationFilterInput {
   all: StringOperationFilterInput
-  any: Boolean
   none: StringOperationFilterInput
   some: StringOperationFilterInput
+  any: Boolean
 }
-
 input LoginUserInput {
   email: String!
   password: String!
   rememberMe: Boolean!
 }
-
 input LoginUserWithRecoveryCodeInput {
   recoveryCode: String!
 }
-
 input LoginUserWithTwoFactorCodeInput {
   authenticatorCode: String!
   rememberMachine: Boolean!
   rememberMe: Boolean!
 }
-
 input MethodCategoryOperationFilterInput {
   eq: MethodCategory
-  in: [MethodCategory!]
   neq: MethodCategory
+  in: [MethodCategory!]
   nin: [MethodCategory!]
 }
-
 input MethodFilterInput {
   and: [MethodFilterInput!]
-  categories: ListMethodCategoryOperationFilterInput
-  description: StringOperationFilterInput
+  or: [MethodFilterInput!]
   id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
-  or: [MethodFilterInput!]
+  description: StringOperationFilterInput
+  categories: ListMethodCategoryOperationFilterInput
 }
-
 input MethodSortInput {
-  availability: SortEnumType
-  calculationLocator: UriSortInput
-  description: SortEnumType
-  id: SortEnumType
-  manager: InstitutionSortInput
-  managerId: SortEnumType
   name: SortEnumType
+  description: SortEnumType
+  standard: StandardSortInput
   publication: PublicationSortInput
   reference: IReferenceSortInput
-  standard: StandardSortInput
   validity: SortEnumType
+  availability: SortEnumType
+  calculationLocator: UriSortInput
+  managerId: SortEnumType
+  manager: InstitutionSortInput
+  id: SortEnumType
   xmin: SortEnumType
 }
-
 input NumerationSortInput {
-  mainNumber: SortEnumType
   prefix: SortEnumType
+  mainNumber: SortEnumType
   suffix: SortEnumType
 }
-
 input OpenEndedDateTimeRangeInput {
   from: DateTime
   to: DateTime
 }
-
 input OpticalDataPropositionInput {
   and: [OpticalDataPropositionInput!]
+  cielabColor: CielabColorPropositionInput
+  cielabColors: CielabColorsPropositionInput
+  colorRenderingIndex: FloatPropositionInput
+  colorRenderingIndices: FloatsPropositionInput
   componentId: UuidPropositionInput
+  infraredEmittance: FloatPropositionInput
+  infraredEmittances: FloatsPropositionInput
+  nearnormalHemisphericalSolarReflectance: FloatPropositionInput
+  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
+  nearnormalHemisphericalSolarTransmittance: FloatPropositionInput
+  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
+  nearnormalHemisphericalVisibleReflectance: FloatPropositionInput
+  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
   nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
+  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
   not: OpticalDataPropositionInput
   or: [OpticalDataPropositionInput!]
 }
-
 input PhotovoltaicDataPropositionInput {
   and: [PhotovoltaicDataPropositionInput!]
   componentId: UuidPropositionInput
+  dataFormatId: UuidPropositionInput
   not: PhotovoltaicDataPropositionInput
   or: [PhotovoltaicDataPropositionInput!]
 }
-
 input PublicationSortInput {
+  title: SortEnumType
   abstract: SortEnumType
-  "A free and open-access archive for publications is offered by arXiv.org. The arXiv identifier can be used to define a publication."
-  arXiv: SortEnumType
-  "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
-  doi: SortEnumType
   "Referenced section"
   section: SortEnumType
-  title: SortEnumType
+  "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
+  doi: SortEnumType
+  "arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
+  arXiv: SortEnumType
   "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
   urn: SortEnumType
   "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
   webAddress: UriSortInput
 }
-
 input RegisterUserInput {
   email: String!
   name: String!
   password: String!
   passwordConfirmation: String!
 }
-
 input RemoveInstitutionRepresentativeInput {
-  institutionId: Uuid!
-  userId: Uuid!
+  institutionId: UUID!
+  userId: UUID!
 }
-
 input RemoveUserRoleInput {
   role: UserRole!
-  userId: Uuid!
+  userId: UUID!
 }
-
 input RequestUserPasswordResetInput {
   email: String!
 }
-
 input ResendUserEmailConfirmationInput {
   email: String!
 }
-
 input ResetUserPasswordInput {
   email: String!
   password: String!
   passwordConfirmation: String!
   resetCode: String!
 }
-
 input SetUserPasswordInput {
   password: String!
   passwordConfirmation: String!
 }
-
 input SetUserPhoneNumberInput {
   phoneNumber: String!
 }
-
 "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
 input StandardSortInput {
+  title: SortEnumType
   abstract: SortEnumType
-  locator: UriSortInput
-  numeration: NumerationSortInput
   "The section of the standard to which the reference refers to."
   section: SortEnumType
-  title: SortEnumType
   "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
   year: SortEnumType
+  numeration: NumerationSortInput
+  locator: UriSortInput
 }
-
 input StringOperationFilterInput {
   and: [StringOperationFilterInput!]
-  contains: String
-  endsWith: String
-  eq: String
-  in: [String]
-  ncontains: String
-  nendsWith: String
-  neq: String
-  nin: [String]
-  nstartsWith: String
   or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
   startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
 }
-
 input UpdateInstitutionInput {
   abbreviation: String
   description: String!
-  institutionId: Uuid!
+  institutionId: UUID!
   name: String!
   publicKey: String
-  websiteLocator: Url
+  websiteLocator: URL
 }
-
 input UriFilterInput {
+  and: [UriFilterInput!]
+  or: [UriFilterInput!]
   absolutePath: StringOperationFilterInput
   absoluteUri: StringOperationFilterInput
-  and: [UriFilterInput!]
+  localPath: StringOperationFilterInput
   authority: StringOperationFilterInput
-  dnsSafeHost: StringOperationFilterInput
-  fragment: StringOperationFilterInput
-  host: StringOperationFilterInput
   hostNameType: UriHostNameTypeOperationFilterInput
-  idnHost: StringOperationFilterInput
-  isAbsoluteUri: BooleanOperationFilterInput
   isDefaultPort: BooleanOperationFilterInput
   isFile: BooleanOperationFilterInput
   isLoopback: BooleanOperationFilterInput
-  isUnc: BooleanOperationFilterInput
-  localPath: StringOperationFilterInput
-  or: [UriFilterInput!]
-  originalString: StringOperationFilterInput
   pathAndQuery: StringOperationFilterInput
+  segments: ListStringOperationFilterInput
+  isUnc: BooleanOperationFilterInput
+  host: StringOperationFilterInput
   port: ComparableInt32OperationFilterInput
   query: StringOperationFilterInput
+  fragment: StringOperationFilterInput
   scheme: StringOperationFilterInput
-  segments: ListStringOperationFilterInput
+  originalString: StringOperationFilterInput
+  dnsSafeHost: StringOperationFilterInput
+  idnHost: StringOperationFilterInput
+  isAbsoluteUri: BooleanOperationFilterInput
   userEscaped: BooleanOperationFilterInput
   userInfo: StringOperationFilterInput
 }
-
 input UriHostNameTypeOperationFilterInput {
   eq: UriHostNameType
-  in: [UriHostNameType!]
   neq: UriHostNameType
+  in: [UriHostNameType!]
   nin: [UriHostNameType!]
 }
-
 input UriSortInput {
   absolutePath: SortEnumType
   absoluteUri: SortEnumType
+  localPath: SortEnumType
   authority: SortEnumType
-  dnsSafeHost: SortEnumType
-  fragment: SortEnumType
-  host: SortEnumType
   hostNameType: SortEnumType
-  idnHost: SortEnumType
-  isAbsoluteUri: SortEnumType
   isDefaultPort: SortEnumType
   isFile: SortEnumType
   isLoopback: SortEnumType
-  isUnc: SortEnumType
-  localPath: SortEnumType
-  originalString: SortEnumType
   pathAndQuery: SortEnumType
+  isUnc: SortEnumType
+  host: SortEnumType
   port: SortEnumType
   query: SortEnumType
+  fragment: SortEnumType
   scheme: SortEnumType
+  originalString: SortEnumType
+  dnsSafeHost: SortEnumType
+  idnHost: SortEnumType
+  isAbsoluteUri: SortEnumType
   userEscaped: SortEnumType
   userInfo: SortEnumType
 }
-
 input UserSortInput {
-  accessFailedCount: SortEnumType
-  concurrencyStamp: SortEnumType
-  email: SortEnumType
-  emailConfirmed: SortEnumType
-  id: SortEnumType
-  lockoutEnabled: SortEnumType
-  lockoutEnd: SortEnumType
   "Full name"
   name: SortEnumType
-  normalizedEmail: SortEnumType
-  normalizedUserName: SortEnumType
-  passwordHash: SortEnumType
-  phoneNumber: SortEnumType
-  phoneNumberConfirmed: SortEnumType
   postalAddress: SortEnumType
-  securityStamp: SortEnumType
-  twoFactorEnabled: SortEnumType
-  userName: SortEnumType
   websiteLocator: UriSortInput
   xmin: SortEnumType
+  id: SortEnumType
+  userName: SortEnumType
+  normalizedUserName: SortEnumType
+  email: SortEnumType
+  normalizedEmail: SortEnumType
+  emailConfirmed: SortEnumType
+  passwordHash: SortEnumType
+  securityStamp: SortEnumType
+  concurrencyStamp: SortEnumType
+  phoneNumber: SortEnumType
+  phoneNumberConfirmed: SortEnumType
+  twoFactorEnabled: SortEnumType
+  lockoutEnd: SortEnumType
+  lockoutEnabled: SortEnumType
+  accessFailedCount: SortEnumType
 }
-
 input UuidPropositionInput {
-  equalTo: Uuid
+  equalTo: UUID
 }
-
 input VerifyInstitutionInput {
-  institutionId: Uuid!
+  institutionId: UUID!
 }
-
 enum AddInstitutionRepresentativeErrorCode {
   UNKNOWN
   UNKNOWN_INSTITUTION
@@ -2052,18 +2029,15 @@ enum AddInstitutionRepresentativeErrorCode {
   DUPLICATE
   UNAUTHORIZED
 }
-
 enum AddUserRoleErrorCode {
   UNKNOWN
   UNKNOWN_USER
   UNAUTHORIZED
 }
-
 enum ApplyPolicy {
   BEFORE_RESOLVER
   AFTER_RESOLVER
 }
-
 enum ChangeInstitutionRepresentativeRoleErrorCode {
   UNKNOWN
   UNKNOWN_INSTITUTION
@@ -2072,14 +2046,12 @@ enum ChangeInstitutionRepresentativeRoleErrorCode {
   UNKNOWN_REPRESENTATIVE
   LAST_OWNER
 }
-
 enum ChangeUserEmailErrorCode {
   UNKNOWN
   UNKNOWN_USER
   UNCHANGED_EMAIL
   INVALID_EMAIL
 }
-
 enum ChangeUserPasswordErrorCode {
   UNKNOWN
   UNKNOWN_USER
@@ -2091,13 +2063,11 @@ enum ChangeUserPasswordErrorCode {
   PASSWORD_REQUIRES_UPPER
   PASSWORD_TOO_SHORT
 }
-
 enum ComponentCategory {
   MATERIAL
   LAYER
   UNIT
 }
-
 enum ConfirmComponentManufacturerErrorCode {
   UNKNOWN
   UNKNOWN_COMPONENT
@@ -2105,7 +2075,6 @@ enum ConfirmComponentManufacturerErrorCode {
   UNAUTHORIZED
   UNKNOWN_MANUFACTURER
 }
-
 enum ConfirmInstitutionMethodDeveloperErrorCode {
   UNKNOWN
   UNKNOWN_METHOD
@@ -2113,7 +2082,6 @@ enum ConfirmInstitutionMethodDeveloperErrorCode {
   UNAUTHORIZED
   UNKNOWN_DEVELOPER
 }
-
 enum ConfirmInstitutionRepresentativeErrorCode {
   UNKNOWN
   UNKNOWN_INSTITUTION
@@ -2121,20 +2089,17 @@ enum ConfirmInstitutionRepresentativeErrorCode {
   UNAUTHORIZED
   UNKNOWN_REPRESENTATIVE
 }
-
 enum ConfirmUserEmailChangeErrorCode {
   UNKNOWN
   DUPLICATE_EMAIL
   INVALID_CONFIRMATION_CODE
   UNKNOWN_USER
 }
-
 enum ConfirmUserEmailErrorCode {
   UNKNOWN
   UNKNOWN_USER
   INVALID_CONFIRMATION_CODE
 }
-
 enum ConfirmUserMethodDeveloperErrorCode {
   UNKNOWN
   UNKNOWN_METHOD
@@ -2142,26 +2107,23 @@ enum ConfirmUserMethodDeveloperErrorCode {
   UNAUTHORIZED
   UNKNOWN_DEVELOPER
 }
-
 enum CreateComponentErrorCode {
   UNKNOWN
   UNKNOWN_MANUFACTURER
+  UNKNOWN_FURTHER_MANUFACTURERS
   UNAUTHORIZED
 }
-
 enum CreateDataFormatErrorCode {
   UNKNOWN
   TWO_REFERENCES
   UNKNOWN_MANAGER
   UNAUTHORIZED
 }
-
 enum CreateDatabaseErrorCode {
   UNKNOWN
   UNAUTHORIZED
   UNKNOWN_OPERATOR
 }
-
 enum CreateInstitutionErrorCode {
   UNKNOWN
   NEITHER_OWNER_NOR_MANAGER
@@ -2169,7 +2131,6 @@ enum CreateInstitutionErrorCode {
   UNKNOWN_MANAGER
   UNAUTHORIZED
 }
-
 enum CreateMethodErrorCode {
   UNKNOWN
   TWO_REFERENCES
@@ -2178,71 +2139,59 @@ enum CreateMethodErrorCode {
   UNKNOWN_USER_DEVELOPERS
   UNAUTHORIZED
 }
-
 enum DeleteInstitutionErrorCode {
   UNKNOWN
   UNKNOWN_INSTITUTION
   UNAUTHORIZED
 }
-
 enum DeletePersonalUserDataErrorCode {
   UNKNOWN
   UNKNOWN_USER
   MISSING_PASSWORD
   INCORRECT_PASSWORD
 }
-
 enum DeleteUserErrorCode {
   UNKNOWN
   UNKNOWN_USER
   UNAUTHORIZED
 }
-
 enum DisableUserTwoFactorAuthenticationErrorCode {
   UNKNOWN
   UNKNOWN_USER
 }
-
 enum EnableUserTwoFactorAuthenticatorErrorCode {
   UNKNOWN
   UNKNOWN_USER
   ENABLING_FAILED
   INVALID_VERIFICATION_CODE
 }
-
 enum ForgetUserTwoFactorAuthenticationClientErrorCode {
   UNKNOWN
   UNKNOWN_USER
 }
-
 enum GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriErrorCode {
   UNKNOWN
   UNKNOWN_USER
 }
-
 enum GenerateUserTwoFactorRecoveryCodesErrorCode {
   UNKNOWN
   UNKNOWN_USER
   TWO_FACTOR_AUTHENTICATION_DISABLED
 }
-
 enum InstitutionRepresentativeRole {
   OWNER
   ASSISTANT
 }
-
 enum InstitutionState {
   PENDING
   VERIFIED
 }
-
 enum LoginUserErrorCode {
   INVALID
   LOCKED_OUT
   NOT_ALLOWED
   UNKNOWN
 }
-
 enum LoginUserWithRecoveryCodeErrorCode {
   UNKNOWN
   UNKNOWN_USER
@@ -2250,7 +2199,6 @@ enum LoginUserWithRecoveryCodeErrorCode {
   LOCKED_OUT
   INVALID_RECOVERY_CODE
 }
-
 enum LoginUserWithTwoFactorCodeErrorCode {
   UNKNOWN
   UNKNOWN_USER
@@ -2258,16 +2206,13 @@ enum LoginUserWithTwoFactorCodeErrorCode {
   LOCKED_OUT
   INVALID_AUTHENTICATOR_CODE
 }
-
 enum LogoutUserErrorCode {
   UNKNOWN
 }
-
 enum MethodCategory {
   MEASUREMENT
   CALCULATION
 }
-
 enum RegisterUserErrorCode {
   UNKNOWN
   PASSWORD_CONFIRMATION_MISMATCH
@@ -2280,7 +2225,6 @@ enum RegisterUserErrorCode {
   PASSWORD_TOO_SHORT
   NULL_OR_EMPTY_EMAIL
 }
-
 enum RemoveInstitutionRepresentativeErrorCode {
   UNKNOWN
   LAST_OWNER
@@ -2289,26 +2233,21 @@ enum RemoveInstitutionRepresentativeErrorCode {
   UNKNOWN_REPRESENTATIVE
   UNKNOWN_USER
 }
-
 enum RemoveUserRoleErrorCode {
   UNKNOWN
   UNKNOWN_USER
   UNAUTHORIZED
 }
-
 enum RequestUserPasswordResetErrorCode {
   UNKNOWN
 }
-
 enum ResendUserEmailConfirmationErrorCode {
   UNKNOWN
 }
-
 enum ResendUserEmailVerificationErrorCode {
   UNKNOWN
   UNKNOWN_USER
 }
-
 enum ResetUserPasswordErrorCode {
   UNKNOWN
   INVALID_RESET_CODE
@@ -2319,14 +2258,12 @@ enum ResetUserPasswordErrorCode {
   PASSWORD_REQUIRES_UPPER
   PASSWORD_TOO_SHORT
 }
-
 enum ResetUserTwoFactorAuthenticatorErrorCode {
   UNKNOWN
   UNKNOWN_USER
   DISABLING_FAILED
   RESETTING_FAILED
 }
-
 enum SetUserPasswordErrorCode {
   UNKNOWN
   UNKNOWN_USER
@@ -2338,18 +2275,15 @@ enum SetUserPasswordErrorCode {
   PASSWORD_REQUIRES_UPPER
   PASSWORD_TOO_SHORT
 }
-
 enum SetUserPhoneNumberErrorCode {
   UNKNOWN
   UNKNOWN_USER
   UNCHANGED_PHONE_NUMBER
 }
-
 enum SortEnumType {
   ASC
   DESC
 }
-
 enum Standardizer {
   AERC
   AGI
@@ -2376,13 +2310,11 @@ enum Standardizer {
   VFF
   WELL
 }
-
 enum UpdateInstitutionErrorCode {
   UNKNOWN
   UNAUTHORIZED
   UNKNOWN_INSTITUTION
 }
-
 enum UriHostNameType {
   UNKNOWN
   BASIC
@@ -2390,18 +2322,15 @@ enum UriHostNameType {
   I_PV4
   I_PV6
 }
-
 enum UserRole {
   ADMINISTRATOR
   VERIFIER
 }
-
 enum VerifyInstitutionErrorCode {
   UNKNOWN
   UNKNOWN_INSTITUTION
   UNAUTHORIZED
 }
-
 directive @authorize(
   "Defines when when the resolver shall be executed.By default the resolver is executed after the policy has determined that the current user is allowed to access the field."
   apply: ApplyPolicy! = BEFORE_RESOLVER
@@ -2410,7 +2339,6 @@ directive @authorize(
   "Roles that are allowed to access the annotated resource."
   roles: [String!]
 ) repeatable on SCHEMA | OBJECT | FIELD_DEFINITION
-
 "The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`."
 directive @defer(
   "Deferred when true."
@@ -2418,27 +2346,37 @@ directive @defer(
   "If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to."
   label: String
 ) on FRAGMENT_SPREAD | INLINE_FRAGMENT
-
 "The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
 directive @specifiedBy(
   "The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types."
   url: String!
 ) on SCALAR
-
 "The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`."
 directive @stream(
   "Streamed when true."
-  if: Boolean!
+  if: Boolean
   "The initial elements that shall be send down to the consumer."
   initialCount: Int!
   "If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to."
   label: String
 ) on FIELD
-
 "The `DateTime` scalar represents an ISO-8601 compliant date time type."
 scalar DateTime @specifiedBy(url: "https://www.graphql-scalars.com/date-time")
 
 "The NonNegativeInt scalar type represents a unsigned 32-bit numeric non-fractional value equal to or greater than 0."
 scalar NonNegativeInt
 
-scalar Url
+scalar URL @specifiedBy(url: "https://tools.ietf.org/html/rfc3986")
+
+"""
+[RFC 4122](https://tools.ietf.org/html/rfc4122)
+compliant
+[non-nil](https://tools.ietf.org/html/rfc4122#section-4.1.7)
+[Universally Unique Identifier (UUID)](https://tools.ietf.org/html/rfc4122#section-4.1)
+string represented as 32 hexadecimal digits in five groups separated by hyphens
+in the form `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`, like
+`"936da01f-9abd-4d9d-80c7-02af85c822a8"`. Such identifiers are not equal to
+`"00000000-0000-0000-0000-000000000000"` and match the regular expression
+`^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$`.
+"""
+scalar UUID @specifiedBy(url: "https://tools.ietf.org/html/rfc4122")
