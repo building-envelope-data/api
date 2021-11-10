@@ -994,7 +994,7 @@ type PhotovoltaicDataEdge {
 }
 type Publication implements Reference {
   abstract: String
-  "arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
+  "The website arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
   arXiv: String
   authors: [String!]
   "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
