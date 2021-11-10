@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/ise621/building-envelope-data#readme",
   "devDependencies": {
-    "@graphql-inspector/cli": "^2.6.0",
-    "@graphql-inspector/config": "^2.6.0",
+    "@graphql-inspector/cli": "^3.0.0",
+    "@graphql-inspector/config": "^3.0.0",
     "ajv-cli": "^5.0.0",
     "ajv-formats": "^2.1.0",
     "format-graphql": "^1.4.0",
