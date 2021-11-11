@@ -1,0 +1,16 @@
+{
+  "id": "473a2f69-2e18-4745-809d-519882b25e8b",
+  "name": "Three-phase method",
+  "description": "The three-phase method separates the solar radiation from the outdoor to the indoor environments into three phases: exterior transport, transmission through the fenestration system and interior transport. Each phase of energy transport is simulated independently and stored in matrix form. The resultant irradiance (orradiance, illuminance or luminance) at interior sensor points (I) is obtained by the matrix multiplication I = VTDs, where V is a viewmatrix that relates the interior sensor points with the inner BSDF patches, T is a transmission matrix that relates the inner with the outer BSDF patches, and D is a daylight matrix that relates the outer BSDF patches with the sky patches. The final part of the equationis a vector (s) that contains the average radiance of the sky patches for a given time and sky condition. The combined VTD matrix can therefore be understood as a daylight coefficient matrix that relates outdoor radiance with indoor irradiance.",
+  "categories": ["calculation"],
+  "reference": {
+    "publication": {
+      "identifiers": {
+        "webAddress": "https://www.radiance-online.org/learning/tutorials/matrix-based-methods"
+      },
+      "title": "Daylighting Simulations with Radiance using Matrix-based Methods",
+      "abstract": "This document is a tutorial for climate-based parametric daylighting simulations with Radiance (a suite of freely available programs for lighting analysis and visualization). The parameter(s) in such simulations can be weather-based luminosity of the sun and sky, geometry and surfaces properties of a space, and settings of the devices used for shading and glare control. ",
+      "authors": [{ "fullName": "Sarith Subramaniam" }]
+    }
+  }
+}
