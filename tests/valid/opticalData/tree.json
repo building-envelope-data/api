@@ -56,29 +56,7 @@
         },
         {
           "componentCharacteristics": {
-            "surface": "prime"
-          },
-          "dataPoints": [
-            {
-              "incidence": {
-                "direction": "nearnormal",
-                "wavelengths": {
-                  "integral": "solar"
-                }
-              },
-              "emergence": {
-                "direction": "nearnormal"
-              },
-              "results": {
-                "transmittance": {
-                  "uncertainValue": 0.85
-                }
-              }
-            }
-          ]
-        },
-        {
-          "componentCharacteristics": {
+            "surface": "prime",
             "definitionOfSurfacesAndPrimeDirection": {
               "properties": {
                 "reference": {
@@ -87,9 +65,7 @@
                       "webAddress": "https://www.baufachinformation.de/energiewendebauen-forschungserkenntnisse-von-der-komponente-bis-zum-quartier/bu/20069015283"
                     },
                     "title": "Energiewendebauen. Forschungserkenntnisse von der Komponente bis zum Quartier",
-                    "authors": [
-                      "Müller, Dirk"
-                    ]
+                    "authors": ["Müller, Dirk"]
                   }
                 },
                 "description": {
@@ -97,7 +73,25 @@
                 }
               }
             }
-          }
+          },
+          "dataPoints": [
+            {
+              "incidence": {
+                "direction": { "polar": 45, "azimuth": 90 },
+                "wavelengths": {
+                  "integral": "solar"
+                }
+              },
+              "emergence": {
+                "direction": { "polar": 60, "azimuth": 90 }
+              },
+              "results": {
+                "transmittance": {
+                  "uncertainValue": 0.85
+                }
+              }
+            }
+          ]
         }
       ]
     }
