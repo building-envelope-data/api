@@ -3,10 +3,24 @@
     {
       "id": {
         "value": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
-        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       },
       "name": "Fronius Galvo 3.0",
       "description": "This inverter was used in building N at Fraunhofer ISE, Freiburg, Germany.",
+      "characteristics": {
+        "geometry": {
+          "dimensions": {
+            "installed": [
+              {
+                "height": 0.645,
+                "width": 0.431,
+                "depth": 0.204
+              }
+            ]
+          }
+        },
+        "weight": 16.8
+      },
       "photovoltaic": [
         {
           "data": [
@@ -14,23 +28,19 @@
               "inverter": {
                 "id": {
                   "value": "2cc946a3-127f-47fd-b09f-26cc0972fb7a",
-                  "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                  "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                 },
                 "power": {
                   "input": {
                     "maximum": 6000
                   },
                   "output": {
-                    "nominal": {
-                      "uncertainValue": 3000
-                    },
+                    "nominal": 3000,
                     "maximum": 3000,
                     "normalized": 0.5
                   },
                   "demand": {
-                    "night": {
-                      "uncertainValue": 1
-                    }
+                    "night": 1
                   }
                 },
                 "voltage": {
@@ -55,26 +65,6 @@
                     "nominal": 13
                   }
                 },
-                "weight": {
-                  "uncertainValue": 16.8
-                },
-                "geometry": {
-                  "dimensions": {
-                    "installed": [
-                      {
-                        "height": {
-                          "uncertainValue": 0.645
-                        },
-                        "width": {
-                          "uncertainValue": 0.431
-                        },
-                        "depth": {
-                          "uncertainValue": 0.204
-                        }
-                      }
-                    ]
-                  }
-                },
                 "safety": {
                   "electric": {
                     "IPcode": [
@@ -97,12 +87,8 @@
                   "maximum": 323.15
                 },
                 "efficiencies": {
-                  "maximum": {
-                    "uncertainValue": 0.961
-                  },
-                  "European": {
-                    "uncertainValue": 0.954
-                  }
+                  "maximum": 0.961,
+                  "European": 0.954
                 }
               }
             }

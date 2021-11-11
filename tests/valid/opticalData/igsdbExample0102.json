@@ -1,0 +1,78 @@
+{
+  "data": [
+    {
+      "componentCharacteristics": {
+        "surface": "prime"
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "integral": "solar"
+            }
+          },
+          "emergence": { "direction": "hemispherical" },
+          "results": {
+            "transmittance": 0.834,
+            "reflectance": 0.075
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "integral": "visible"
+            }
+          },
+          "emergence": { "direction": "hemispherical" },
+          "results": {
+            "transmittance": 0.834,
+            "reflectance": 0.075
+          }
+        }
+      ]
+    },
+    {
+      "componentCharacteristics": {
+        "surface": "nonPrime"
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "integral": "solar"
+            }
+          },
+          "emergence": { "direction": "hemispherical" },
+          "results": {
+            "transmittance": 0.834,
+            "reflectance": 0.075
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "integral": "visible"
+            }
+          },
+          "emergence": { "direction": "hemispherical" },
+          "results": {
+            "transmittance": 0.834,
+            "reflectance": 0.075
+          }
+        }
+      ]
+    }
+  ]
+}

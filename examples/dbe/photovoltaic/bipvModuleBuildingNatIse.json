@@ -3,48 +3,86 @@
     {
       "id": {
         "value": "38dfed0a-2b9a-4748-8d98-e9d278cd12e4",
-        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       },
-      "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany.",
+      "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany. (i) `characteristics/assemblyList` defines the thickness of the front cover, the front embedding, the PV cells, the rear embedding and the backing.",
+      "characteristics": {
+        "geometry": {
+          "assemblyList": [
+            {
+              "id": "01f5554f-e909-405e-9b7b-2f08ca201f63",
+              "dimensions": {
+                "independent": {
+                  "smallest": 0.0038,
+                  "intermediate": {
+                    "uncertainValue": 1.08,
+                    "uncertainty": 0.01,
+                    "confidenceInterval": 68.3
+                  },
+                  "largest": {
+                    "uncertainValue": 1.09,
+                    "uncertainty": 0.01,
+                    "confidenceInterval": 68.3
+                  }
+                }
+              }
+            },
+            {
+              "id": "02f5554f-e909-405e-9b7b-2f08ca201f63",
+              "dimensions": {
+                "independent": { "smallest": 0.002 }
+              }
+            },
+            {
+              "id": "03f5554f-e909-405e-9b7b-2f08ca201f63",
+
+              "dimensions": {
+                "independent": { "smallest": 0.0004 }
+              }
+            },
+            {
+              "id": "04f5554f-e909-405e-9b7b-2f08ca201f63",
+              "dimensions": {
+                "independent": { "smallest": 0.002 }
+              }
+            },
+            {
+              "id": "05f5554f-e909-405e-9b7b-2f08ca201f63",
+
+              "dimensions": {
+                "independent": { "smallest": 0.002 }
+              }
+            }
+          ]
+        },
+        "weight": 29.7
+      },
       "photovoltaic": [
         {
           "data": [
             {
               "module": {
-                "coordinateSystem": {
-                  "categories": ["rightHanded", "cartesian"]
-                },
                 "cellTypes": [
                   {
                     "id": {
                       "value": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                     },
                     "power": {
-                      "nominal": {
-                        "uncertainValue": 3.19
-                      },
-                      "effective": {
-                        "uncertainValue": 3.047
-                      }
+                      "nominal": 3.19,
+                      "effective": 3.047
                     },
-                    "width": {
-                      "uncertainValue": 0.125
-                    },
+                    "width": 0.125,
                     "categories": ["monocrystalline", "silicon"]
                   }
                 ],
                 "cellPattern": {
                   "rectangular": {
                     "longitudinal": {
-                      "cellNumber": {
-                        "uncertainValue": 8
-                      }
+                      "cellNumber": 8
                     },
                     "transversal": {
-                      "cellNumber": {
-                        "uncertainValue": 8
-                      }
+                      "cellNumber": 8
                     }
                   }
                 },
@@ -52,21 +90,21 @@
                   {
                     "id": {
                       "value": "764ca288-0c51-11ea-8d71-362b9e155667",
-                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                     },
                     "cellType": {
                       "value": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                     }
                   },
                   {
                     "id": {
                       "value": "764ca508-0c51-11ea-8d71-362b9e155667",
-                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                     },
                     "cellType": {
                       "value": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                     }
                   }
                 ],
@@ -74,7 +112,7 @@
                   {
                     "id": {
                       "value": "4af78493-46fd-48aa-9124-85924f658c62",
-                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                     },
                     "description": "Connection type is unknown."
                   }
@@ -84,80 +122,15 @@
                   {
                     "connectionType": {
                       "value": "4af78493-46fd-48aa-9124-85924f658c62",
-                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                     },
                     "id1": {
                       "value": "764ca508-0c51-11ea-8d71-362b9e155667",
-                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                      "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                     },
                     "id2": {
                       "value": "764ca288-0c51-11ea-8d71-362b9e155667",
-                      "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
-                    }
-                  }
-                ],
-                "moduleLayers": [
-                  {
-                    "identification": {
-                      "name": "Tempered white glass"
-                    },
-                    "categories": ["front", "cover"],
-                    "thickness": {
-                      "uncertainValue": 0.005
-                    },
-                    "geometry": {
-                      "dimensions": {
-                        "independent": {
-                          "smallest": {
-                            "uncertainValue": 0.005
-                          },
-                          "intermediate": {
-                            "uncertainValue": 1.08
-                          },
-                          "largest": {
-                            "uncertainValue": 1.09
-                          }
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "identification": {
-                      "name": "PVB"
-                    },
-                    "categories": ["front", "embedding"]
-                  },
-                  {
-                    "categories": ["cell"]
-                  },
-                  {
-                    "identification": {
-                      "name": "PVB"
-                    },
-                    "categories": ["rear", "embedding"]
-                  },
-                  {
-                    "identification": {
-                      "name": "Tempered white glass"
-                    },
-                    "categories": ["backing"],
-                    "thickness": {
-                      "uncertainValue": 0.004
-                    },
-                    "geometry": {
-                      "dimensions": {
-                        "independent": {
-                          "smallest": {
-                            "uncertainValue": 0.004
-                          },
-                          "intermediate": {
-                            "uncertainValue": 1.08
-                          },
-                          "largest": {
-                            "uncertainValue": 1.09
-                          }
-                        }
-                      }
+                      "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                     }
                   }
                 ],
@@ -170,16 +143,10 @@
                   "cableTypes": [
                     {
                       "id": "055f2dc8-2ab0-48c3-8870-faffa1f1edd2",
-                      "crossSection": {
-                        "uncertainValue": 4
-                      },
+                      "crossSection": 4,
                       "length": {
-                        "positive": {
-                          "uncertainValue": 1
-                        },
-                        "negative": {
-                          "uncertainValue": 1
-                        }
+                        "positive": 1,
+                        "negative": 1
                       }
                     }
                   ],
@@ -201,9 +168,10 @@
                 "moduleProperties": {
                   "power": {
                     "nominal": {
-                      "uncertainValue": 195
+                      "uncertainValue": 195,
+                      "uncertainty": 9.75,
+                      "confidenceInterval": 99.7
                     },
-                    "tolerance": 5,
                     "temperatureCoefficient": -0.32,
                     "guarantees": [
                       {
@@ -215,62 +183,34 @@
                         "percentage": 80
                       }
                     ],
-                    "angleDependency": {
-                      "incidenceAngleModifier": [
-                        {
-                          "incidence": 0,
-                          "IAM": 1
-                        },
-                        {
-                          "incidence": 60,
-                          "IAM": 0.924
-                        },
-                        {
-                          "incidence": 90,
-                          "IAM": 0
-                        }
-                      ]
-                    }
+                    "angleDependency": [
+                      {
+                        "incidence": 0,
+                        "IAM": 1
+                      },
+                      {
+                        "incidence": 60,
+                        "IAM": 0.924
+                      },
+                      {
+                        "incidence": 90,
+                        "IAM": 0
+                      }
+                    ]
                   },
                   "voltage": {
-                    "nominal": {
-                      "uncertainValue": 36.1
-                    },
-                    "openCircuit": {
-                      "uncertainValue": 43.26
-                    },
+                    "nominal": 36.1,
+                    "openCircuit": 43.26,
                     "temperatureCoefficient": -0.26,
                     "maximumSystem": 1000
                   },
                   "current": {
-                    "nominal": {
-                      "uncertainValue": 5.4
-                    },
-                    "shortCircuit": {
-                      "uncertainValue": 5.86
-                    },
+                    "nominal": 5.4,
+                    "shortCircuit": 5.86,
                     "temperatureCoefficient": 0.06
                   },
                   "fillFactor": 0.769,
                   "efficiency": 0.1656,
-                  "weight": {
-                    "uncertainValue": 29.7
-                  },
-                  "geometry": {
-                    "dimensions": {
-                      "independent": {
-                        "smallest": {
-                          "uncertainValue": 0.01128
-                        },
-                        "intermediate": {
-                          "uncertainValue": 1.08
-                        },
-                        "largest": {
-                          "uncertainValue": 1.09
-                        }
-                      }
-                    }
-                  },
                   "guarantees": [
                     {
                       "years": 10

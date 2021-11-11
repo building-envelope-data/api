@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/method.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/method.json",
   "title": "method data",
   "description": "Definition of a method that can be applied by a creator to some source data to create a data set. By defining the method and the source data, the origin of the data set can be traced back.",
   "$defs": {
@@ -37,13 +37,22 @@
           "$ref": "common.json#/$defs/reference",
           "description": "If the method is an implementation of a standard or of a procedure described in a publication, this reference can be defined here."
         },
+        "additionalReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "common.json#/$defs/reference",
+            "description": "Additional references that supplement the one given in the property `reference`, like tutorials or manuals as supplements to a formal specification."
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
         "createdAt": {
           "$ref": "common.json#/$defs/timestamp",
           "description": "When the method was created."
         },
         "validity": {
           "$ref": "common.json#/$defs/openEndedDateTimeRange",
-          "description": "Here you can define since when the method is valid and until when. This can be helpful for example when a regulation or standard changes."
+          "description": "Here you can define since when the method is valid and until when. This can be helpful for example when the method depends on a regulation or standard which changes."
         },
         "available": {
           "$ref": "common.json#/$defs/available",
@@ -186,10 +195,6 @@
         "createdAt": {
           "$ref": "common.json#/$defs/timestamp",
           "description": "When the database was created"
-        },
-        "validity": {
-          "$ref": "common.json#/$defs/openEndedDateTimeRange",
-          "description": "For which timespan the data of the database is valid"
         },
         "available": {
           "$ref": "common.json#/$defs/available",

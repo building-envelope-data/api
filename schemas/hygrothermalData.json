@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/hygrothermalData.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/hygrothermalData.json",
   "title": "hygrothermal data",
   "description": "Hygrothermal data which can be used for hygrothermal simulations. Humidity needs to be handled properly to create sustainable buildings with high comfort.",
   "$defs": {

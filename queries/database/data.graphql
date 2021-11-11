@@ -1,10 +1,10 @@
 query {
   data(
-    dataId: "810e84b4-9ebf-416c-88ea-aade848f1fdf"
+    id: "810e84b4-9ebf-416c-88ea-aade848f1fdf"
     timestamp: "2019-09-01T12:00:00+01:00"
     locale: "en-GB"
   ) {
-    dataId
+    uuid
     timestamp
     componentId
     name
@@ -28,58 +28,49 @@ query {
         }
       }
     }
-    validity {
-      from
-      until
-    }
     approvals {
       timestamp
       signature
       keyFingerprint
       query
       response
-      validity {
-        from
-        until
-      }
       approverId
     }
     resources {
       description
       hashValue
       locator
-      formatId
+      dataFormatId
       archivedFilesMetaInformation {
         path
-        formatId
+        dataFormatId
       }
     }
     resourceTree {
       root {
         vertexId
-        childIds
         value {
           description
           hashValue
           locator
-          formatId
+          dataFormatId
           archivedFilesMetaInformation {
             path
-            formatId
+            dataFormatId
           }
         }
       }
       nonRootVertices {
         vertexId
-        childIds
+        parentId
         value {
           description
           hashValue
           locator
-          formatId
+          dataFormatId
           archivedFilesMetaInformation {
             path
-            formatId
+            dataFormatId
           }
         }
         appliedConversionMethod {
@@ -88,10 +79,7 @@ query {
             name
             value
           }
-          source {
-            name
-            value
-          }
+          sourceName
         }
       }
     }

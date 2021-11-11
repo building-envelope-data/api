@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/gaps.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/gaps.json",
   "title": "gap data",
   "description": "Gaps in building envelope components. Building envelopes can be assembled by several parts. The dimensions of the gaps between those parts can be important for example regarding the heat transfer.",
   "$defs": {

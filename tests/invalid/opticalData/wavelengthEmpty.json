@@ -2,16 +2,18 @@
   "dataPoints": [
     {
       "incidence": {
-        "direction": "nearnormal",
+        "direction": {
+          "polar": 8
+        },
         "wavelengths": { "wavelength": {} }
       },
       "emergence": {
-        "direction": "nearnormal"
+        "direction": {
+          "polar": 8
+        }
       },
       "results": {
-        "transmittance": {
-          "uncertainValue": 0.85
-        }
+        "transmittance": 0.85
       }
     }
   ]

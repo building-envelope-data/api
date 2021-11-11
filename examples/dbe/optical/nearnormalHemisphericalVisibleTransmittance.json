@@ -2,28 +2,31 @@
   "components": [
     {
       "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+      "characteristics": {
+        "positionOfCoatings": [0, 0, 1, 0]
+      },
       "optical": [
         {
           "id": {
             "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
-            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+            "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
           },
-          "description": "Example for a nearnormal-hemispherical visible transmittance of a component.",
+          "description": "Example for a nearnormal-hemispherical visible reflectance of a component.",
           "data": [
             {
               "dataPoints": [
                 {
                   "incidence": {
-                    "direction": "nearnormal",
+                    "direction": {
+                      "polar": 8
+                    },
                     "wavelengths": { "integral": "visible" }
                   },
                   "emergence": {
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "reflectance": {
-                      "uncertainValue": 0.1
-                    }
+                    "reflectance": 0.1
                   }
                 }
               ]

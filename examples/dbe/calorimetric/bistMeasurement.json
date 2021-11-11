@@ -2,11 +2,19 @@
   "components": [
     {
       "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+      "characteristics": {
+        "geometry": {
+          "dimensions": { "installed": [{ "depth": 0.00023 }] }
+        },
+        "definitionOfSurfacesAndPrimeDirection": {
+          "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior. The prime direction is indicated by a label on the sample. Facing the installed component from the exterior, the prime direction directs to the right-hand side."
+        }
+      },
       "calorimetric": [
         {
           "id": {
             "value": "da951012-29b7-4b9a-890c-4f4514f676b3",
-            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+            "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
           },
           "name": "Example BIST collector",
           "description": "Example: a calorimetric data set of a buildling-integrated solar thermal element.",
@@ -22,7 +30,7 @@
                 "value": {
                   "dataId": {
                     "value": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
-                    "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+                    "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
                   },
                   "dataTimestamp": "2018-09-01T12:00:00+01:00",
                   "dataKind": "calorimetricData"
@@ -37,64 +45,49 @@
             }
           ],
           "createdAt": "2018-09-01T12:00:00+01:00",
-          "validity": {
-            "from": "2018-08-01T00:00:00+01:00"
-          },
           "data": [
             {
-              "fluxes": [
-                {
-                  "name": ["interior"],
-                  "convection": {
+              "characteristics": {
+                "conditions": "stationary",
+                "primeSurface": "interior"
+              },
+              "fluxes": {
+                "mixed": [
+                  {
+                    "side": "interior",
                     "flux": {
                       "uncertainValue": 15.0,
                       "uncertainty": 4,
                       "confidenceInterval": 95.4
-                    },
-                    "temperatures": {
-                      "surrounding": {
-                        "uncertainValue": 298.0
-                      }
-                    },
-                    "coefficient": {
-                      "uncertainValue": 8.0
                     }
                   }
-                },
-                {
-                  "name": ["lateral"],
-                  "fluid": {
-                    "flux": {
-                      "uncertainValue": 100.0
-                    },
-                    "temperatures": {
-                      "inlet": {
-                        "uncertainValue": 300
-                      },
-                      "outlet": {
-                        "uncertainValue": 320
-                      }
-                    },
-                    "massFlow": {
-                      "uncertainValue": 0.02
-                    },
-                    "specificHeatCapacity": {
-                      "uncertainValue": 4179.6
-                    }
-                  }
-                },
-                {
-                  "name": ["exterior"],
-                  "irradiance": {
+                ],
+                "shortwaveRadiation": [
+                  {
+                    "side": "exterior",
                     "flux": {
                       "uncertainValue": 1000,
                       "uncertainty": 50,
                       "confidenceInterval": 68.3
                     },
-                    "direction": "nearnormal"
+                    "direction": {
+                      "polar": 60,
+                      "azimuth": 90
+                    }
                   }
-                }
-              ],
+                ],
+                "fluid": [
+                  {
+                    "flux": 100,
+                    "temperatures": {
+                      "inlet": 300,
+                      "outlet": 320
+                    },
+                    "massFlow": 0.02,
+                    "specificHeatCapacity": 4179.6
+                  }
+                ]
+              },
               "results": [
                 {
                   "area": {
@@ -102,16 +95,16 @@
                   },
                   "uValue": {
                     "uncertainValue": 1.0,
-                    "uncertainty": 0.1
+                    "uncertainty": 0.1,
+                    "confidenceInterval": 68.3
                   },
                   "gValue": {
                     "uncertainValue": 0.07,
-                    "uncertainty": 0.01
+                    "uncertainty": 0.01,
+                    "confidenceInterval": 68.3
                   },
                   "efficiencies": {
-                    "solarThermal": {
-                      "uncertainValue": 0.5
-                    }
+                    "solarThermal": 0.5
                   }
                 }
               ]

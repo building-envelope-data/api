@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/optical.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/optical.json",
   "title": "optical data",
-  "description": "Optical data sets of building envelope components. The results of all important optical measurements and simulations shall be possible to exchange. At the same time, this general format wants to limit the number of the possible representations of one data set to make it easy to develop software which interprets the data correctly.",
+  "description": "Optical data sets of building envelope components with meta information like name, description, warnings, and more.",
   "$defs": {
     "optical": {
       "type": "object",
@@ -46,10 +46,6 @@
         "appliedMethod": {
           "$ref": "method.json#/$defs/appliedMethod",
           "description": "Method that was applied to create this data set."
-        },
-        "validity": {
-          "title": "Validity date and time range",
-          "$ref": "common.json#/$defs/openEndedDateTimeRange"
         },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",

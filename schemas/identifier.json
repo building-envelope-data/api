@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/identifier.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/identifier.json",
   "title": "Identifiers",
   "description": "Identifiers are used to identify different entities such as buildings, components, data sets, institutions, methods, and many others. They are either centrally managed by `buildingenvelopedata.org` or decentrally for example by a building owner. Components may either have a central identifier for example as a general product or a decentral identifier for example for specific instances of a product in a specific building.",
   "$defs": {
@@ -26,7 +26,9 @@
           "type": "string",
           "format": "uuid"
         }
-      }
+      },
+      "additionalProperties": false,
+      "required": ["value", "issuedBy"]
     },
     "centralOrDecentral": {
       "title": "Either a central or decentral identifier",

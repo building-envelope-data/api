@@ -4,11 +4,7 @@
       "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
       "description": "This is an example of a general component which is assembled of two subcomponents and which is part of a larger assembly.",
       "relations": {
-        "partOf": [
-          {
-            "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6"
-          }
-        ],
+        "partOf": ["a99941df-5bb8-4080-89a4-4f3d230afeb6"],
         "assembledOf": [
           "b511af56-891e-4828-a2d1-a4454112e8f8",
           "86089938-f045-4039-b41a-76c70db22369",

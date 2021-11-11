@@ -17,8 +17,8 @@ It follows best practices for
 
 Global object identifiers as requird by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
-are exposed by the property `dataId`. In essence, `id` is the Base64-encoded
-concatenation of `dataId` and the requested locale.
+are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
+concatenation of `uuid` and the requested locale.
 
 For interoperability with the "metabase", implementations serve HTTP
 requests as elaborated on
@@ -203,7 +203,7 @@ type Query {
   """
   data(
     "Data identifier."
-    dataId: Uuid!
+    id: Uuid!
     "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
@@ -214,7 +214,7 @@ type Query {
   See `Query#data`.
   """
   calorimetricData(
-    calorimetricDataId: Uuid!
+    id: Uuid!
     timestamp: DateTime
     locale: Locale
   ): CalorimetricData!
@@ -223,7 +223,7 @@ type Query {
   See `Query#data`.
   """
   hygrothermalData(
-    hygrothermalDataId: Uuid!
+    id: Uuid!
     timestamp: DateTime
     locale: Locale
   ): HygrothermalData!
@@ -231,17 +231,13 @@ type Query {
   """
   See `Query#data`.
   """
-  opticalData(
-    opticalDataId: Uuid!
-    timestamp: DateTime
-    locale: Locale
-  ): OpticalData!
+  opticalData(id: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
 
   """
   See `Query#data`.
   """
   photovoltaicData(
-    photovoltaicDataId: Uuid!
+    id: Uuid!
     timestamp: DateTime
     locale: Locale
   ): PhotovoltaicData!
@@ -292,7 +288,7 @@ type Query {
     ) {
       edges {
         node {
-          dataId
+          uuid
         }
       }
     }
@@ -300,8 +296,8 @@ type Query {
   ```
   """
   allData(
-    "Compound boolean expression that is true for data being searched for."
-    where: DataPropositionInput!
+    "Compound boolean expression that is true for all data being returned. If not given, a proposition that is always true is used."
+    where: DataPropositionInput
     "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
@@ -314,59 +310,59 @@ type Query {
     last: NonNegativeInt
     "Data cursor before which to return at most `last` data edges."
     before: Cursor
-  ): DataConnection
+  ): DataConnection!
 
   """
   See `Query#allData`.
   """
   allCalorimetricData(
-    where: CalorimetricDataPropositionInput!
+    where: CalorimetricDataPropositionInput
     timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
     last: NonNegativeInt
     before: Cursor
-  ): CalorimetricDataConnection
+  ): CalorimetricDataConnection!
 
   """
   See `Query#allData`.
   """
   allHygrothermalData(
-    where: HygrothermalDataPropositionInput!
+    where: HygrothermalDataPropositionInput
     timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
     last: NonNegativeInt
     before: Cursor
-  ): HygrothermalDataConnection
+  ): HygrothermalDataConnection!
 
   """
   See `Query#allData`.
   """
   allOpticalData(
-    where: OpticalDataPropositionInput!
+    where: OpticalDataPropositionInput
     timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
     last: NonNegativeInt
     before: Cursor
-  ): OpticalDataConnection
+  ): OpticalDataConnection!
 
   """
   See `Query#allData`.
   """
   allPhotovoltaicData(
-    where: PhotovoltaicDataPropositionInput!
+    where: PhotovoltaicDataPropositionInput
     timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
     last: NonNegativeInt
     before: Cursor
-  ): PhotovoltaicDataConnection
+  ): PhotovoltaicDataConnection!
 
   """
   Whether there is data for which the proposition is true at the given
@@ -374,7 +370,7 @@ type Query {
   """
   hasData(
     "Compound boolean expression that is true for data being searched for."
-    where: CalorimetricDataPropositionInput!
+    where: DataPropositionInput!
     "Timestamp. If not given, the moment the query is received is used."
     timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
@@ -385,7 +381,7 @@ type Query {
   See `Query#hasData`.
   """
   hasCalorimetricData(
-    where: CalorimetricDataPropositionInput!
+    where: CalorimetricDataPropositionInput
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -394,7 +390,7 @@ type Query {
   See `Query#hasData`.
   """
   hasHygrothermalData(
-    where: CalorimetricDataPropositionInput!
+    where: HygrothermalDataPropositionInput
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -403,7 +399,7 @@ type Query {
   See `Query#hasData`.
   """
   hasOpticalData(
-    where: CalorimetricDataPropositionInput!
+    where: OpticalDataPropositionInput
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -412,7 +408,7 @@ type Query {
   See `Query#hasData`.
   """
   hasPhotovoltaicData(
-    where: CalorimetricDataPropositionInput!
+    where: PhotovoltaicDataPropositionInput
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -543,6 +539,29 @@ input FloatPropositionInput {
 }
 
 """
+Proposition for lists of values of type `Float`. Multiple sub-propositions are
+combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input FloatsPropositionInput {
+  """
+  True if each list value satisfies the proposition `all`, otherwise false.
+  """
+  all: FloatPropositionInput
+
+  """
+  True if no list value satisfies the proposition `none`, otherwise false.
+  """
+  none: FloatPropositionInput
+
+  """
+  True if at least one list value satisfies the proposition `some`, otherwise
+  false.
+  """
+  some: FloatPropositionInput
+}
+
+"""
 Proposition for values of type `Uuid`. Multiple sub-propositions are combined
 conjunctively, where the conjunction of an empty set of sub-propositions is true.
 """
@@ -551,6 +570,84 @@ input UuidPropositionInput {
   True for values that are equal to `equalTo`, otherwise false.
   """
   equalTo: Uuid
+}
+
+"""
+Proposition for values of type `GetHttpsResource`. Multiple sub-propositions
+are combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input GetHttpsResourcePropositionInput {
+  """
+  True for GET HTTPS resources whose data format identifier satisfies the
+  proposition `dataFormatId`, otherwise false.
+  """
+  dataFormatId: UuidPropositionInput
+
+  """
+  True for GET HTTPS resources whose archived files meta information satisfies
+  the proposition `archivedFilesMetaInformation`, otherwise false.
+  """
+  archivedFilesMetaInformation: FilesMetaInformationPropositionInput
+}
+
+"""
+Proposition for lists of values of type `GetHttpsResource`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+set of sub-propositions is true.
+"""
+input GetHttpsResourcesPropositionInput {
+  """
+  True if each list value satisfies the proposition `all`, otherwise false.
+  """
+  all: GetHttpsResourcePropositionInput
+
+  """
+  True if no list value satisfies the proposition `none`, otherwise false.
+  """
+  none: GetHttpsResourcePropositionInput
+
+  """
+  True if at least one list value satisfies the proposition `some`, otherwise
+  false.
+  """
+  some: GetHttpsResourcePropositionInput
+}
+
+"""
+Proposition for values of type `FileMetaInformation`. Multiple sub-propositions
+are combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input FileMetaInformationPropositionInput {
+  """
+  True for file meta information whose data format identifier satisfies the
+  proposition `dataFormatId`, otherwise false.
+  """
+  dataFormatId: UuidPropositionInput
+}
+
+"""
+Proposition for lists of values of type `FileMetaInformation`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+set of sub-propositions is true.
+"""
+input FilesMetaInformationPropositionInput {
+  """
+  True if each list value satisfies the proposition `all`, otherwise false.
+  """
+  all: FileMetaInformationPropositionInput
+
+  """
+  True if no list value satisfies the proposition `none`, otherwise false.
+  """
+  none: FileMetaInformationPropositionInput
+
+  """
+  True if at least one list value satisfies the proposition `some`, otherwise
+  false.
+  """
+  some: FileMetaInformationPropositionInput
 }
 
 """
@@ -571,19 +668,6 @@ input DataPropositionInput {
   and: [DataPropositionInput!]
 
   """
-  True for data that has a `g` value for which the proposition `gValue` is
-  true, otherwise false.
-  """
-  gValue: FloatPropositionInput
-
-  """
-  True for data that has a nearnormal hemispherical visible transmittance value
-  for which the proposition `nearnormalHemisphericalVisibleTransmittance` is
-  true, otherwise false.
-  """
-  nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
-
-  """
   True for data for which the proposition `not` is false, otherwise false.
   """
   not: DataPropositionInput
@@ -595,53 +679,169 @@ input DataPropositionInput {
   or: [DataPropositionInput!]
 
   """
-  True for data that has a `u` value for which the proposition `uValue` is
-  true, otherwise false.
+  True for data whose list of resources satisfies the proposition `resources`,
+  otherwise false.
   """
-  uValue: FloatPropositionInput
+  resources: GetHttpsResourcesPropositionInput
+
+  """
+  True for data whose list of `g` values satisfies the proposition `gValues`,
+  otherwise false.
+  """
+  gValues: FloatsPropositionInput
+
+  """
+  True for data whose list of `u` values satisfies the proposition `uValues`,
+  otherwise false.
+  """
+  uValues: FloatsPropositionInput
+
+  """
+  True for data whose list of nearnormal hemispherical visible transmittance
+  values satisfies the proposition
+  `nearnormalHemisphericalVisibleTransmittances`, otherwise false.
+  """
+  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
+
+  """
+  True for data whose list of nearnormal hemispherical visible reflectance
+  values satisfies the proposition
+  `nearnormalHemisphericalVisibleReflectances`, otherwise false.
+  """
+  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
+
+  """
+  True for data whose list of nearnormal hemispherical solar transmittance
+  values satisfies the proposition
+  `nearnormalHemisphericalSolarTransmittances`, otherwise false.
+  """
+  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
+
+  """
+  True for data whose list of nearnormal hemispherical solar reflectance
+  values satisfies the proposition
+  `nearnormalHemisphericalSolarReflectances`, otherwise false.
+  """
+  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
+
+  """
+  True for data whose list of infrared emittance values satisfies the
+  proposition `infraredEmittances`, otherwise false.
+  """
+  infraredEmittances: FloatsPropositionInput
+
+  """
+  True for data whose list of Color Rendering Indices satisfies the proposition
+  `colorRenderingIndices`, otherwise false.
+  """
+  colorRenderingIndices: FloatsPropositionInput
+
+  """
+  True for data whose list of CIELAB Color Space coordinates satisfies the
+  proposition `cielabColors`, otherwise false.
+  """
+  cielabColors: CielabColorsPropositionInput
+}
+
+"""
+Proposition for values of type `CielabColor`. Multiple sub-propositions are
+combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input CielabColorPropositionInput {
+  """
+  True for CIELAB Colors with a coordinate L* that satisfies the proposition
+  `lStar`, otherwise false.
+  """
+  lStar: FloatPropositionInput
+
+  """
+  True CIELAB Colors with a coordinate a* that satisfies the proposition
+  `aStar`, otherwise false.
+  """
+  aStar: FloatPropositionInput
+
+  """
+  True CIELAB Colors with a coordinate b* that satisfies the proposition
+  `bStar`, otherwise false.
+  """
+  bStar: FloatPropositionInput
+}
+
+"""
+Proposition for lists of values of type `CielabColor`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+set of sub-propositions is true.
+"""
+input CielabColorsPropositionInput {
+  """
+  True if each list value satisfies the proposition `all`, otherwise false.
+  """
+  all: CielabColorPropositionInput
+
+  """
+  True if no list value satisfies the proposition `none`, otherwise false.
+  """
+  none: CielabColorPropositionInput
+
+  """
+  True if at least one list value satisfies the proposition `some`, otherwise
+  false.
+  """
+  some: CielabColorPropositionInput
 }
 
 """
 See `DataPropositionInput`.
 """
 input OpticalDataPropositionInput {
-  componentId: Uuid
+  componentId: UuidPropositionInput
   and: [OpticalDataPropositionInput!]
-  nearnormalHemisphericalVisibleTransmittance: FloatPropositionInput
   not: OpticalDataPropositionInput
   or: [OpticalDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
+  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
+  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
+  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
+  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
+  infraredEmittances: FloatsPropositionInput
+  colorRenderingIndices: FloatsPropositionInput
+  cielabColors: CielabColorsPropositionInput
 }
 
 """
 See `DataPropositionInput`.
 """
 input CalorimetricDataPropositionInput {
-  componentId: Uuid
+  componentId: UuidPropositionInput
   and: [CalorimetricDataPropositionInput!]
-  gValue: FloatPropositionInput
   not: CalorimetricDataPropositionInput
   or: [CalorimetricDataPropositionInput!]
-  uValue: FloatPropositionInput
+  resources: GetHttpsResourcesPropositionInput
+  gValues: FloatsPropositionInput
+  uValues: FloatsPropositionInput
 }
 
 """
 See `DataPropositionInput`.
 """
 input HygrothermalDataPropositionInput {
-  componentId: Uuid
+  componentId: UuidPropositionInput
   and: [HygrothermalDataPropositionInput!]
   not: HygrothermalDataPropositionInput
   or: [HygrothermalDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
 }
 
 """
 See `DataPropositionInput`.
 """
 input PhotovoltaicDataPropositionInput {
-  componentId: Uuid
+  componentId: UuidPropositionInput
   and: [PhotovoltaicDataPropositionInput!]
   not: PhotovoltaicDataPropositionInput
   or: [PhotovoltaicDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
 }
 
 """
@@ -806,7 +1006,7 @@ interface Data {
   Identifier, which together with timestamp uniquely identifies data and patch
   version (within the database).
   """
-  dataId: Uuid!
+  uuid: Uuid!
 
   """
   Timestamp that designates the patch version. For example, correction of some
@@ -858,11 +1058,6 @@ interface Data {
   appliedMethod: AppliedMethod!
 
   """
-  Validity date and time range.
-  """
-  validity: OpenEndedDateTimeRange!
-
-  """
   Approvals by stakeholders in the form of GnuPG signatures. See the type
   `Approval` for details on how to verify data and approvals.
   """
@@ -904,9 +1099,29 @@ interface Data {
   locale: Locale!
 }
 
+"""
+The CIELAB Color Space is used to define a color. It has three rectangular color coordinates, L* (lStar), a* (aStar) and b* (bStar).
+"""
+type CielabColor {
+  """
+  The coordinate L* (lStar) defines the lightness of the color.
+  """
+  lStar: Float!
+
+  """
+  The coordinate a* (aStar) defines the color between green and red.
+  """
+  aStar: Float!
+
+  """
+  The coordinate b* (bStar) defines the color between blue and yellow.
+  """
+  bStar: Float!
+}
+
 type OpticalData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -917,22 +1132,49 @@ type OpticalData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
 
   """
-  Mirrored nearnormal hemispherical visible transmittance values that occur in
-  the data
+  Mirrored nearnormal hemispherical visible transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
+  """
+  Mirrored nearnormal hemispherical visible reflectance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  nearnormalHemisphericalVisibleReflectances: [Float!]!
+
+  """
+  Mirrored nearnormal hemispherical solar transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  nearnormalHemisphericalSolarTransmittances: [Float!]!
+
+  """
+  Mirrored nearnormal hemispherical solar reflectance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  nearnormalHemisphericalSolarReflectances: [Float!]!
+
+  """
+  Mirrored infrared emittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  infraredEmittances: [Float!]!
+
+  """
+  Mirrored values for the Color Rendering Index that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  colorRenderingIndices: [Float!]!
+
+  """
+  Mirrored values for the coordinates in the CIELAB Color Space that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  """
+  cielabColors: [CielabColor!]!
 }
 
 type CalorimetricData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -943,7 +1185,6 @@ type CalorimetricData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -962,7 +1203,7 @@ type CalorimetricData implements Node & Data {
 
 type HygrothermalData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -973,7 +1214,6 @@ type HygrothermalData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -982,7 +1222,7 @@ type HygrothermalData implements Node & Data {
 
 type PhotovoltaicData implements Node & Data {
   id: ID!
-  dataId: Uuid!
+  uuid: Uuid!
   timestamp: DateTime!
   locale: Locale!
   databaseId: Uuid!
@@ -993,7 +1233,6 @@ type PhotovoltaicData implements Node & Data {
   creatorId: Uuid!
   createdAt: DateTime!
   appliedMethod: AppliedMethod!
-  validity: OpenEndedDateTimeRange!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
@@ -1035,8 +1274,8 @@ type AppliedMethod {
 }
 
 """
-Applied conversion method to exactly one named source identified by tree-vertex
-identifier.
+Applied conversion method to exactly one named source, namely the tree-vertex's
+parent resource.
 """
 type ToTreeVertexAppliedConversionMethod {
   """
@@ -1059,11 +1298,11 @@ type ToTreeVertexAppliedConversionMethod {
   arguments: [NamedMethodArgument!]!
 
   """
-  Named data source identified by tree-vertex identifier to which the
-  conversion method was applied. The conversion method requires exactly one
-  named source and a value for this source is given.
+  Name of the named data source of the conversion method whose value is the
+  tree-vertex's parent resource. The conversion method requires at least one
+  named source and a value for one of these sources is given.
   """
-  source: NamedTreeVertexMethodSource!
+  sourceName: String!
 }
 
 """
@@ -1094,21 +1333,6 @@ type NamedMethodSource {
   Method source as cross-database data reference.
   """
   value: CrossDatabaseDataReference!
-}
-
-"""
-Named local data source of a method.
-"""
-type NamedTreeVertexMethodSource {
-  """
-  Name
-  """
-  name: String!
-
-  """
-  Method source as tree-vertex identifier.
-  """
-  value: ID!
 }
 
 """
@@ -1320,11 +1544,15 @@ or the article series
 [Getting started with GPG (GnuPG)](https://www.redhat.com/sysadmin/getting-started-gpg),
 [How to create GPG keypairs](https://www.redhat.com/sysadmin/creating-gpg-keypairs), and
 [Digital signatures with GnuPG](https://www.redhat.com/sysadmin/digital-signatures-gnupg).
-.
 """
 interface Approval {
   """
-  Detached ASCII-armored GnuPG signature.
+  Creation timestamp
+  """
+  timestamp: DateTime!
+
+  """
+  Detached ASCII-armored GnuPG signature of the GraphQL query response.
 
   With the query response saved in the file `response.json`, the signature can
   be computed and written to `response.json.asc` by running
@@ -1351,48 +1579,6 @@ interface Approval {
   disadvantage is that it is less practical for manual human use.
   """
   keyFingerprint: String!
-}
-
-"""
-Approval of data by third party with GnuPG signature that is created at some
-point in time. It becomes invalid when the approved data changes, even if the
-change is but a spelling-error correction in meta data like the description.
-In that case, the third party needs to re-create its approval.
-
-Steps to approve data:
-1. An institution adds data to a database.
-2. Some institution (may be the same) queries the data with a GraphQL query.
-3. The latter institution reviews the data and, if correct, signs it with one
-   of its GnuPG signing keys.
-4. The institution adds its approval of the data to the database.
-
-Storing the GraphQL query with the signature is necessary because it needs to be
-known exactly which JSON data was signed.
-
-Note that the query to be signed only includes paths that are part of the data
-and not part of some associates, which are actually all paths in the present
-GraphQL schema. However, the actual GraphQL schema of the database is in
-general an extension of the present GraphQL schema and may have paths to some
-associates like data format specifics of HTTP resources that it may fetch from
-the "metabase" and provides for convenience. These specifics should not be
-sigend as a change of, for example, the data format description would
-invalidate the signature although the data itself did not change.
-"""
-type DataApproval implements Approval {
-  """
-  Creation timestamp
-  """
-  timestamp: DateTime!
-
-  """
-  Detached ASCII-armored GnuPG signature of the GraphQL query response.
-  """
-  signature: String!
-
-  """
-  Fingerprint of the GnuPG signing key used to compute the signature.
-  """
-  keyFingerprint: String!
 
   """
   GraphQL query whose response is signed. The query includes the argument
@@ -1410,7 +1596,7 @@ type DataApproval implements Approval {
   query: GraphQlQuery!
 
   """
-  JSON serialized GraphQL response that is sigend.
+  JSON serialized GraphQL response that is signed.
 
   With the response put in the file `response.json`, the GnuPG signature put in
   the file `response.json.asc`, and the GnuPG public key of the approver added
@@ -1439,11 +1625,39 @@ type DataApproval implements Approval {
   place are not compromised).
   """
   response: JsonGraphQlResponse!
+}
 
-  """
-  Validity date and time range.
-  """
-  validity: OpenEndedDateTimeRange!
+"""
+Approval of data by third party with GnuPG signature that is created at some
+point in time. It becomes invalid when the approved data changes, even if the
+change is but a spelling-error correction in meta data like the description.
+In that case, the third party needs to re-create its approval.
+
+Steps to approve data:
+1. An institution adds data to a database.
+2. Some institution (may be the same) queries the data with a GraphQL query.
+3. The latter institution reviews the data and, if correct, signs it with one
+   of its GnuPG signing keys.
+4. The institution adds its approval of the data to the database.
+
+Storing the GraphQL query with the signature is necessary because it needs to be
+known exactly which JSON data was signed.
+
+Note that the query to be signed only includes paths that are part of the data
+and not part of some associates, which are actually all paths in the present
+GraphQL schema. However, the actual GraphQL schema of the database is in
+general an extension of the present GraphQL schema and may have paths to some
+associates like data format specifics of HTTP resources that it may fetch from
+the "metabase" and provides for convenience. These specifics should not be
+sigend as a change of, for example, the data format description would
+invalidate the signature although the data itself did not change.
+"""
+type DataApproval implements Approval {
+  timestamp: DateTime!
+  signature: String!
+  keyFingerprint: String!
+  query: GraphQlQuery!
+  response: JsonGraphQlResponse!
 
   """
   Approver identifier issued by the metabase. The approver's meta data can be
@@ -1457,15 +1671,14 @@ type DataApproval implements Approval {
 """
 Approval of response by database with
 [GnuPG](https://www.gnupg.org)
-signature created on the fly.
+signature.
 """
 type ResponseApproval implements Approval {
-  """
-  Detached ASCII-armored GnuPG signature of the GraphQL query response.
-  """
+  timestamp: DateTime!
   signature: String!
-
   keyFingerprint: String!
+  query: GraphQlQuery!
+  response: JsonGraphQlResponse!
 }
 
 """
@@ -1588,7 +1801,7 @@ type GetHttpsResource {
   also
   [List of archive formats](https://en.wikipedia.org/wiki/List_of_archive_formats).
   """
-  formatId: Uuid!
+  dataFormatId: Uuid!
 
   """
   Archived files meta information with relative paths from the archive root and
@@ -1614,20 +1827,20 @@ type GetHttpsResource {
 Multiple HTTP resources organized as tree with meta information of the actual
 data requestable through the protocol HTTP over TLS, in short, HTTPS, with
 `GET` requests. Each vertex specifies
-* a vertex identifier (unique among the tree vertices),
-* child vertex identifiers, and
-* an HTTP resource.
-Each non-root vertex also specifies an applied conversion method with its
-parent vertex's identifier as source, where indeed the non-root-resource's data
-is the result of applying the conversion method to its parent resource's data.
+* its vertex identifier (unique among the tree vertices), and
+* its HTTP resource.
+Each non-root vertex also specifies
+* its parent vertex's identifier, and
+* an applied conversion method with its parent vertex's identifier as source,
+where indeed the non-root-resource's data is the result of applying the
+conversion method to its parent resource's data.
 
 The root vertex is in the field `root` and non-root resource vertices are in
-the field `nonRootVertices`. The order of a vertex's child identifiers is
-identical to the order in which they occur in the list of non-root vertices.
+the field `nonRootVertices`.
 
 Note that all resources describe the same data only in different formats.
 """
-interface GetHttpsResourceTree {
+type GetHttpsResourceTree {
   """
   Root resource vertex.
   """
@@ -1651,7 +1864,7 @@ of applying some conversion method to its parent resource. Its child resources
 are the results of applying conversion methods to it, the child resources of
 its child resources are the results of applying conversion methods to the child
 resources, and so forth. The applied conversion methods are specified in the
-child resources.
+child resource vertices.
 """
 interface GetHttpsResourceTreeVertex {
   """
@@ -1659,14 +1872,6 @@ interface GetHttpsResourceTreeVertex {
   that is, parent/child relationships, in the flattened tree structure.
   """
   vertexId: ID!
-
-  """
-  Identifiers of child resource vertices whose resource data is obtained by
-  applying conversion methods to this vertex's resource data. Note that each
-  child vertex's conversion method has the present vertex's identifier as
-  source value.
-  """
-  childIds: [ID!]!
 
   """
   Resource
@@ -1679,7 +1884,6 @@ A root resource is the direct result of some measurement or simulation.
 """
 type GetHttpsResourceTreeRoot implements GetHttpsResourceTreeVertex {
   vertexId: ID!
-  childIds: [ID!]!
   value: GetHttpsResource!
 }
 
@@ -1689,8 +1893,13 @@ parent resource.
 """
 type GetHttpsResourceTreeNonRootVertex implements GetHttpsResourceTreeVertex {
   vertexId: ID!
-  childIds: [ID!]!
   value: GetHttpsResource!
+
+  """
+  Identifier of parent resource vertex. This vertex's resource data it obtained by
+  applying the conversion method to its parent resource data.
+  """
+  parentId: ID!
 
   """
   Conversion method applied to the parent resource to obtain the present
@@ -1744,5 +1953,5 @@ type FileMetaInformation {
   and additional information to unambiguously identify the specific format and
   to locate the format specification.
   """
-  formatId: Uuid!
+  dataFormatId: Uuid!
 }

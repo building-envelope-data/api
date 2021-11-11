@@ -1,0 +1,19 @@
+{
+  "components": [
+    {
+      "id": "18a16000-2b9a-4748-8d98-e9d278cd12e4",
+      "description": "Argon as gas for insulating glazing unit",
+      "categories": { "componentType": ["layer"] },
+      "characteristics": {
+        "chemicalElements": ["Ar"],
+        "geometry": {
+          "dimensions": {
+            "independent": {
+              "smallest": 0.016
+            }
+          }
+        }
+      }
+    }
+  ]
+}
