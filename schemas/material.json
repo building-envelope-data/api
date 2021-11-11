@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/material.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/material.json",
   "title": "material data",
   "description": "How a material can be identified, which categories can be attributed to the material and which characteristics or properties the material has.",
   "$defs": {
@@ -166,16 +166,28 @@
     "category": {
       "type": "string",
       "enum": [
+        "acrylic",
         "baseMaterial",
         "coating",
         "fabric",
         "film",
+        "float",
         "frit",
+        "glass",
+        "heatSoaked",
+        "heatStrengthened",
+        "laminated",
         "lath",
+        "lowIron",
         "monolithic",
         "nonWoven",
         "PVB",
+        "safety",
+        "sheet",
         "slat",
+        "thermallyToughened",
+        "tinted",
+        "walkOn",
         "weave"
       ],
       "description": "Components of the category material can have the subcategories of this enumeration which further specifies the material."

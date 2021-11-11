@@ -3,46 +3,46 @@ query {
     where: { componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } }
   ) {
     nodes {
-      dataId
+      uuid
     }
   }
 
   byNegation: allData(
-    where: { not: { gValue: { greaterThanOrEqualTo: 0.5 } } }
+    where: { not: { gValues: { some: { greaterThanOrEqualTo: 0.5 } } } }
   ) {
     nodes {
-      dataId
+      uuid
     }
   }
 
   byConjunction: allData(
     where: {
       and: [
-        { gValue: { equalTo: 0.5 } }
-        { uValue: { greaterThanOrEqualTo: 0.5 } }
+        { gValues: { some: { equalTo: 0.5 } } }
+        { uValues: { all: { greaterThanOrEqualTo: 0.5 } } }
       ]
     }
   ) {
     nodes {
-      dataId
+      uuid
     }
   }
 
   byDisjunction: allData(
     where: {
       or: [
-        { gValue: { greaterThanOrEqualTo: 0.5 } }
-        { uValue: { lessThanOrEqualTo: 0.5 } }
+        { gValues: { all: { greaterThanOrEqualTo: 0.5 } } }
+        { uValues: { all: { lessThanOrEqualTo: 0.5 } } }
         {
-          nearnormalHemisphericalVisibleTransmittance: {
-            inClosedInterval: { lowerBound: 0.2, upperBound: 0.8 }
+          nearnormalHemisphericalVisibleTransmittances: {
+            none: { inClosedInterval: { lowerBound: 0.2, upperBound: 0.8 } }
           }
         }
       ]
     }
   ) {
     nodes {
-      dataId
+      uuid
     }
   }
 
@@ -52,13 +52,13 @@ query {
         {
           and: [
             { componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } }
-            { gValue: { greaterThanOrEqualTo: 0.5 } }
-            { not: { uValue: { lessThanOrEqualTo: 0.5 } } }
+            { gValues: { all: { greaterThanOrEqualTo: 0.5 } } }
+            { not: { uValues: { some: { lessThanOrEqualTo: 0.5 } } } }
           ]
         }
         {
-          nearnormalHemisphericalVisibleTransmittance: {
-            inClosedInterval: { lowerBound: 0.2, upperBound: 0.8 }
+          nearnormalHemisphericalVisibleTransmittances: {
+            all: { inClosedInterval: { lowerBound: 0.2, upperBound: 0.8 } }
           }
         }
       ]
@@ -66,7 +66,43 @@ query {
   ) {
     edges {
       node {
-        dataId
+        uuid
+      }
+    }
+  }
+
+  byDataFormatId: allData(
+    where: {
+      resources: {
+        some: {
+          dataFormatId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" }
+        }
+      }
+    }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
+
+  byDataFormatIdInsideArchive: allData(
+    where: {
+      resources: {
+        some: {
+          archivedFilesMetaInformation: {
+            some: {
+              dataFormatId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" }
+            }
+          }
+        }
+      }
+    }
+  ) {
+    edges {
+      node {
+        uuid
       }
     }
   }

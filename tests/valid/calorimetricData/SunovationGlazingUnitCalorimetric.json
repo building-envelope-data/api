@@ -1,0 +1,13 @@
+{
+  "results": [
+    {
+      "area": { "category": "outerDimensions" },
+      "uValue": 1.23,
+      "gValue": {
+        "uncertainValue": 0.5,
+        "uncertainty": 0.1,
+        "confidenceInterval": 68.3
+      }
+    }
+  ]
+}

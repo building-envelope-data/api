@@ -1,0 +1,29 @@
+{
+  "id": {
+    "value": "f6028bd1-1a9a-4661-a52e-f6ea6c436693",
+    "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+  },
+  "description": "This data is provided at page 2 of ttp://www.koester-lichtplanung.de/downloads/01bms_lux_kl.pdf.",
+  "data": [
+    {
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": {
+              "polar": 0
+            },
+            "wavelengths": {
+              "integral": "visible"
+            }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": 0.63
+          }
+        }
+      ]
+    }
+  ]
+}

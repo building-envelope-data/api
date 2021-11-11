@@ -6,7 +6,7 @@
         {
           "id": {
             "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
-            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+            "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
           },
           "description": "Example: optical data about a nearnormal-hemispherical measurement of the reflectance according to ISO 9050.",
           "appliedMethod": {
@@ -14,7 +14,7 @@
               "id": "c49011a1-4f56-438b-a7bc-871eb085d8f5",
               "reference": {
                 "standard": {
-                  "standardizerIds": ["2ed5024f-3b9a-4210-a65f-ecc3bf4a8f04"],
+                  "standardizers": ["AERC"],
                   "numeration": {
                     "mainNumber": 9050
                   }
@@ -29,16 +29,16 @@
               "dataPoints": [
                 {
                   "incidence": {
-                    "direction": "nearnormal",
+                    "direction": {
+                      "polar": 8
+                    },
                     "wavelengths": { "integral": "solar" }
                   },
                   "emergence": {
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "reflectance": {
-                      "uncertainValue": 0.1
-                    }
+                    "reflectance": 0.1
                   }
                 }
               ]

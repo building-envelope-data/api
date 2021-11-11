@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/common.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/common.json",
   "title": "common definitions",
   "description": "Definitions which are used in several other schemas.",
   "$defs": {
@@ -123,6 +123,10 @@
             "description": "Persons who authored the publication."
           },
           "minItems": 1
+        },
+        "section": {
+          "title": "Referenced section",
+          "type": "string"
         }
       },
       "additionalProperties": false,
@@ -144,14 +148,44 @@
           "type": "string",
           "description": "The abstract of the standard"
         },
-        "standardizerIds": {
+        "standardizers": {
           "type": "array",
           "items": {
-            "$ref": "identifier.json#/$defs/central",
-            "description": "Each institution which has created this standard is defined here by its id."
+            "title": "Acronyms or abbreviations of standardization institutions",
+            "description": "Additional information about each standardization institution are stored in the metabase.",
+            "type": "string",
+            "enum": [
+              "AERC",
+              "AGI",
+              "ASHRAE",
+              "BREEAM",
+              "BS",
+              "BSI",
+              "CEN",
+              "CENELEC",
+              "CIE",
+              "DGNB",
+              "DIN",
+              "DVWG",
+              "EN",
+              "ETSI",
+              "IEC",
+              "IES",
+              "ift",
+              "ISO",
+              "JIS",
+              "LEED",
+              "NFRC",
+              "Riba",
+              "UL",
+              "UNECE",
+              "VDI",
+              "VFF",
+              "WELL"
+            ]
           },
           "minItems": 1,
-          "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their id."
+          "description": "Standards typically do not name authors, but an institution or several institutions which created the standard. The institutions are identified by their acronym or abbreviation. For example, `EN` represents a European Standard which has been ratified by one of the three European Standardization Organizations: CEN, CENELEC or ETSI."
         },
         "numeration": {
           "type": "object",
@@ -171,7 +205,7 @@
             }
           },
           "additionalProperties": false,
-          "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the abbreviations for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
+          "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the acronyms for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
           "required": ["mainNumber"]
         },
         "year": {
@@ -186,7 +220,7 @@
         }
       },
       "additionalProperties": false,
-      "required": ["standardizerIds", "numeration"],
+      "required": ["standardizers", "numeration"],
       "description": "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
     },
     "currentVoltage": {
@@ -235,10 +269,6 @@
         "createdAt": {
           "$ref": "common.json#/$defs/timestamp",
           "description": "When the approval was created"
-        },
-        "validity": {
-          "$ref": "common.json#/$defs/openEndedDateTimeRange",
-          "description": "For which timespan the approval is valid"
         }
       },
       "additionalProperties": false,
@@ -264,11 +294,11 @@
       "title": "Angles which are helpful to characterize building envelopes.",
       "$defs": {
         "tilt": {
-          "$ref": "number.json#/$defs/degree",
+          "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
         },
         "maximumClosing": {
-          "$ref": "number.json#/$defs/degree",
+          "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
         }
       }
@@ -386,37 +416,6 @@
       },
       "additionalProperties": false,
       "required": ["path", "format"]
-    },
-    "colour": {
-      "description": "Colour of a component",
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "The name of the colour in common language"
-        },
-        "CRI": {
-          "$ref": "number.json#/$defs/numberWithUncertainty",
-          "description": "The Colour Rendering Index (CRI) indicates how well for example the transmitted radiation matches daylight."
-        },
-        "CIELAB": {
-          "type": "object",
-          "properties": {
-            "L*": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
-            },
-            "a*": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
-            },
-            "b*": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
-            }
-          },
-          "description": "The three parameters L*, a* and b* from CIE define the colour as well as the brightness."
-        }
-      },
-      "additionalProperties": false,
-      "required": []
     },
     "possiblePositions": {
       "title": "The locations where a component can be used",

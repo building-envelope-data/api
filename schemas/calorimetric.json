@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/calorimetric.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/calorimetric.json",
   "title": "calorimetric data",
-  "description": "Data about calorimetric measurements or simulations, in particular, about energy fluxes.",
+  "description": "Data about calorimetric measurements or simulations with meta information like name, description, warnings, and more.",
   "$defs": {
     "calorimetric": {
       "type": "object",
@@ -47,10 +47,6 @@
         "appliedMethod": {
           "$ref": "method.json#/$defs/appliedMethod",
           "description": "Method that was applied to create this data set."
-        },
-        "validity": {
-          "title": "Validity date and time range",
-          "$ref": "common.json#/$defs/openEndedDateTimeRange"
         },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",

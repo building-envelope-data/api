@@ -1,0 +1,24 @@
+{
+  "dataPoints": [
+    {
+      "incidence": {
+        "direction": {
+          "polar": 100,
+          "azimuth": 30
+        },
+        "wavelengths": {
+          "wavelength": 1
+        }
+      },
+      "emergence": {
+        "direction": {
+          "polar": 8,
+          "azimuth": 60
+        }
+      },
+      "results": {
+        "transmittance": 0.85
+      }
+    }
+  ]
+}
