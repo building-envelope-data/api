@@ -1,6 +1,6 @@
 # buildingenvelopedata.org API specification
 
-This specification of an Application Programming Interface (API) is designed to facilitate the exchange of data about building envelopes. Several [databases](https://github.com/ise621/database) use the same API specification to offer data about components. A [metadatabase](https://github.com/ise621/metabase) manages for example the identifiers of components and institutions which must be the same for all databases.
+This specification of an Application Programming Interface (API) is designed to facilitate the exchange of data about building envelopes. Several [databases](https://github.com/ise621/database) use the same API specification to offer data about components. A [metabase](https://github.com/ise621/metabase) manages for example the identifiers of components and institutions which must be the same for all databases.
 
 This API specification consists of [GraphQL](https://graphql.org) schemas to specify a GraphQL endpoint and [JSON Schemas](https://json-schema.org) to specify the format of the responses.
 GraphQL schemas are in the directory `./apis` and example GraphQL queries in the directory `./queries`. JSON schemas are in the directory `./schemas` and example JSON files in the directory `./examples`. The directory `./tests/valid` provides test JSON files that are supposed to be valid and the directory `./tests/invalid` JSON files that are supposed to be invalid.
