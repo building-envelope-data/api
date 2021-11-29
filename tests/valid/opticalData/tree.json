@@ -57,20 +57,13 @@
         {
           "componentCharacteristics": {
             "surface": "prime",
-            "definitionOfSurfacesAndPrimeDirection": {
-              "properties": {
-                "reference": {
-                  "publication": {
-                    "identifiers": {
-                      "webAddress": "https://www.baufachinformation.de/energiewendebauen-forschungserkenntnisse-von-der-komponente-bis-zum-quartier/bu/20069015283"
-                    },
-                    "title": "Energiewendebauen. Forschungserkenntnisse von der Komponente bis zum Quartier",
-                    "authors": ["Müller, Dirk"]
-                  }
+            "referenceSample": {
+              "publication": {
+                "identifiers": {
+                  "webAddress": "https://oc.ise.fraunhofer.de/index.php/s/w9uW4Veh4fWyD2q"
                 },
-                "description": {
-                  "description": "Angular convention for optical measurements of EasyLeno(R) Textiles."
-                }
+                "title": "Description of the reference sample",
+                "authors": [{ "fullName": "Dirk Müller" }]
               }
             }
           },
