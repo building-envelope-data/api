@@ -53,7 +53,7 @@ and this project adheres to
 - Name `dataId` `uuid`, remove `validity` from `*Data` and `DataApproval`, use parent identifier instead of child identifiers to describe tree structure, do not require response approvals to be created on the fly [#180](https://github.com/building-envelope-data/api/pull/180)
 -
 -
--
+- Rename organization to `building-envelope-data` and API repository to `api` [#277](https://github.com/building-envelope-data/api/pull/277)
 - Use acronyms to identify standardizers [#154](https://github.com/building-envelope-data/api/pull/154)
 - Use JSON Schema Draft 2019-09 and upgrade tooling [#181](https://github.com/building-envelope-data/api/pull/181)
 - Restructure `numbersWithUncertainty` to make the data less verbose[#195](https://github.com/building-envelope-data/api/pull/195),[#216](https://github.com/building-envelope-data/api/pull/216)
