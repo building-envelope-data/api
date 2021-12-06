@@ -13,15 +13,15 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ise621/building-envelope-data.git"
+    "url": "git+https://github.com/building-envelope-data/api.git"
   },
   "keywords": [],
   "author": "",
   "license": "",
   "bugs": {
-    "url": "https://github.com/ise621/building-envelope-data/issues"
+    "url": "https://github.com/building-envelope-data/api/issues"
   },
-  "homepage": "https://github.com/ise621/building-envelope-data#readme",
+  "homepage": "https://github.com/building-envelope-data/api#readme",
   "devDependencies": {
     "@graphql-inspector/cli": "^3.0.0",
     "@graphql-inspector/config": "^3.0.0",
