@@ -403,7 +403,7 @@
     },
     "gValue": {
       "$ref": "number.json#/$defs/numberWithUncertainty",
-      "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
+      "description": "The g value is also known as Solar Heat Gain Coefficient (SHGC), Solar Factor or Total Solar Energy Transmittance. It has typically values between 0 and 1 and is a measure for the fraction of solar energy which enters the building."
     },
     "side": {
       "type": "string",
