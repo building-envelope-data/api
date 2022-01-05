@@ -4,7 +4,8 @@
       {
         "side": "exterior",
         "direction": {
-          "polar": 0
+          "polar": 0,
+          "azimuth": 0
         }
       }
     ]
