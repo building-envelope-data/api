@@ -68,13 +68,13 @@ query {
         where: {
           and: [
             {
-              nearnormalHemisphericalVisibleTransmittance: {
-                greaterThanOrEqualTo: 0.6
+              nearnormalHemisphericalVisibleTransmittances: {
+                some: { greaterThanOrEqualTo: 0.6 }
               }
             }
             {
-              nearnormalHemisphericalSolarTransmittance: {
-                lessThanOrEqualTo: 0.228
+              nearnormalHemisphericalSolarTransmittances: {
+                some: { lessThanOrEqualTo: 0.228 }
               }
             }
           ]
