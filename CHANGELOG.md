@@ -21,7 +21,7 @@ and this project adheres to
 - Add the key `roughness` [#205](https://github.com/building-envelope-data/api/pull/205)
 - Add the position of coatings to components [#223](https://github.com/building-envelope-data/api/pull/223)
 - Add `currentVoltage` characteristics for modules [#224](https://github.com/building-envelope-data/api/pull/224)
--
+- Add release actions [#281](https://github.com/building-envelope-data/api/pull/281)
 -
 -
 -
