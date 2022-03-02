@@ -1,52 +1,36 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/number.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/number.json",
   "title": "number types",
   "description": "Types for numbers with and without uncertainty and units. The number types are used to restrict the range of allowed values to a reasonable range.",
   "$defs": {
-    "number": {
-      "type": "number",
-      "description": "If the number is in all cases 100% certain and if no restrictions on the numbers are possible, then this type is used."
-    },
-    "integer": {
-      "type": "integer",
-      "description": "If the integer is in all cases 100% certain and if no restrictions on the numbers are possible, then this type is used."
-    },
     "uncertaintyNumber": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "exclusiveMinimum": 0
-        }
-      ],
+      "type": "number",
+      "minimum": 0,
       "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
     },
     "uncertaintyInteger": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/integer"
-        },
-        {
-          "exclusiveMinimum": 0
-        }
-      ],
+      "type": "integer",
+      "minimum": 0,
       "description": "`uncertainty` defines the uncertainty of the `uncertainValue`."
     },
     "confidenceInterval": {
       "type": "number",
-      "enum": [68.3, 95.4, 99.7],
-      "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma)."
+      "enum": [68.3, 95.4, 99.7, 100],
+      "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If it is 100% certain that the true value cannot be beyond the uncertainty, 100% is used."
     },
     "numberWithUncertainty": {
-      "title": "If a value may have an uncertainty and no further restrictions on the numbers are possible, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "title": "If a number may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
+        {
+          "type": "number",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
         {
           "type": "object",
           "properties": {
             "uncertainValue": {
-              "$ref": "#/$defs/number"
+              "type": "number"
             },
             "uncertainty": {
               "$ref": "#/$defs/uncertaintyNumber"
@@ -56,39 +40,27 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue"]
-        },
-        {
-          "$ref": "#/$defs/number",
-          "description": "If the value is 100% certain, then this this option is used."
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
     "nonNegativeNumber": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": 0
-        }
-      ],
+      "type": "number",
+      "minimum": 0,
       "description": "If the number is in all cases 100% certain and when only non-negative numbers are valid, then this type is used."
     },
     "nonNegativeInteger": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/integer"
-        },
-        {
-          "minimum": 0
-        }
-      ],
+      "type": "integer",
+      "minimum": 0,
       "description": "If the integer is in all cases 100% certain and when only non-negative integers are valid, then this type is used."
     },
     "nonNegativeNumberWithUncertainty": {
-      "title": "If a value may have an uncertainty and only non-negative numbers are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "title": "If a number may have an uncertainty and only non-negative numbers are valid, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
+        {
+          "$ref": "#/$defs/nonNegativeNumber",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
         {
           "type": "object",
           "properties": {
@@ -103,17 +75,17 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue"]
-        },
-        {
-          "$ref": "#/$defs/nonNegativeNumber",
-          "description": "If the value is 100% certain, then this this option is used."
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
     "nonNegativeIntegerWithUncertainty": {
-      "title": "If an integer may have an uncertainty and only non-negative integers are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "title": "If a number may have an uncertainty and only non-negative integers are valid, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
+        {
+          "$ref": "#/$defs/nonNegativeInteger",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
         {
           "type": "object",
           "properties": {
@@ -128,31 +100,23 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue"]
-        },
-        {
-          "$ref": "#/$defs/nonNegativeInteger",
-          "description": "If the value is 100% certain, then this this option is used."
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
     "numberBetweenZeroAndOne": {
-      "title": "This type is used when only numbers between 0 and 1 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": 0
-        },
-        {
-          "maximum": 1
-        }
-      ]
+      "description": "This type is used when only numbers between 0 and 1 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     },
     "numberBetweenZeroAndOneWithUncertainty": {
-      "title": "If a value may have an uncertainty and only numbers between 0 and 1 are valid, then this type is used. The mean value is defined by `uncertainValue`, the uncertainty by `uncertainty` and the confidence interval by `confidenceInterval`.",
+      "title": "If a number may have an uncertainty and only numbers between 0 an 1 are valid, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndOne",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
         {
           "type": "object",
           "properties": {
@@ -167,69 +131,33 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue"]
-        },
-        {
-          "$ref": "#/$defs/numberBetweenZeroAndOne",
-          "description": "If the value is 100% certain, then this this option is used."
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
-    "numberBetweenZeroAndHundred": {
-      "title": "This type is used when only numbers between 0 and 100 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": 0
-        },
-        {
-          "maximum": 100
-        }
-      ]
+    "numberBetweenZeroAndNinety": {
+      "description": "This type is used when only numbers between 0 and 90 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 90
     },
-    "numberBetweenMinusAndPlusHundred": {
-      "title": "This type is used when only numbers between -100 and 100 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": -100
-        },
-        {
-          "maximum": 100
-        }
-      ]
+    "numberBetweenZeroAndOneHundredEighty": {
+      "description": "This type is used when only numbers between 0 and 90 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 180
     },
-    "numberBetweenMinusAndPlusNinety": {
-      "title": "This type is used when only numbers between -90 and 90 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": -90
-        },
-        {
-          "maximum": 90
-        }
-      ]
+    "numberBetweenZeroAndThreeHundredSixty": {
+      "description": "This type is used when only numbers between 0 and 90 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 360
     },
-    "numberBetweenMinusAndPlusHundredAndEighty": {
-      "title": "This type is used when only numbers between -180 and 180 are valid and no uncertainty can occur.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/number"
-        },
-        {
-          "minimum": -180
-        },
-        {
-          "maximum": 180
-        }
-      ]
+    "numberBetweenMinusOneHundredEightyAndPlusOneHundredEighty": {
+      "description": "This type is used when only numbers between -180 and 180 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180
     },
     "meterWithUncertainty": {
       "$ref": "#/$defs/numberWithUncertainty",
@@ -266,6 +194,131 @@
       "maximum": 360.0,
       "description": "A unit to measure angles. A full rotation equals 360°. This type is used for cases in which the option of an uncertainty is not desired."
     },
+    "degreeWithUncertainty": {
+      "title": "If a number is in degree and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/degree",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/degree"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
+    "degreeBetweenZeroAndNinetyWithUncertainty": {
+      "title": "If a number can have values between 0° and 90° and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndNinety",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenZeroAndNinety"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
+    "degreeBetweenZeroAndOneHundredEightyWithUncertainty": {
+      "title": "If a number can have values between 0° and 180° and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndOneHundredEighty",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenZeroAndOneHundredEighty"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
+    "degreeBetweenZeroAndThreeHundredSixtyWithUncertainty": {
+      "title": "If a number can have values between 0° and 360° and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndThreeHundredSixty",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenZeroAndThreeHundredSixty"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
+    "degreeBetweenMinusOneHundredEightyAndPlusOneHundredEightyWithUncertainty": {
+      "title": "If a number can have values between -180° and 180° and may have an uncertainty, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenMinusOneHundredEightyAndPlusOneHundredEighty",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenMinusOneHundredEightyAndPlusOneHundredEighty"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
     "radian": {
       "type": "number",
       "description": "A unit to measure angles. A full rotation equals 2*Pi. This type is used for cases in which the option of an uncertainty is not desired."
@@ -275,7 +328,7 @@
       "description": "Watt (W) is the SI unit for power. With this type, the uncertainty can be defined."
     },
     "watt": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Watt (W) is the SI unit for power. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "kelvinWithUncertainty": {
@@ -283,7 +336,7 @@
       "description": "Kelvin (K) is the SI unit for temperature. With this type, the uncertainty can be defined."
     },
     "kelvin": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Kelvin (K) is the SI unit for temperature. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "voltWithUncertainty": {
@@ -291,7 +344,7 @@
       "description": "Volt (V) is the SI unit for electric potential. With this type, the uncertainty can be defined."
     },
     "volt": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Volt (V) is the SI unit for electric potential. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "ampereWithUncertainty": {
@@ -299,7 +352,7 @@
       "description": "Ampere (A) is the SI unit for electric current. With this type, the uncertainty can be defined."
     },
     "ampere": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Ampere (A) is the SI unit for electric current. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "ohmWithUncertainty": {
@@ -307,7 +360,7 @@
       "description": "Ohm is the derived SI unit for electric resistance. With this type, the uncertainty can be defined."
     },
     "ohm": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Ohm is the derived SI unit for electric resistance. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "ohmPerMeterWithUncertainty": {
@@ -315,7 +368,7 @@
       "description": "Ohm per meter is a unit for the electric resistance depending on the length. With this type, the uncertainty can be defined."
     },
     "ohmPerMeter": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Ohm per meter is a unit for the electric resistance depending on the length. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "kilogramWithUncertainty": {
@@ -323,7 +376,7 @@
       "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. With this type, the uncertainty can be defined."
     },
     "pascal": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Pascal (Pa) is the SI unit for pressure. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "hertzWithUncertainty": {
@@ -331,18 +384,18 @@
       "description": "Hertz (Hz) is a derived SI unit of frequency. With this type, the uncertainty can be defined."
     },
     "hertz": {
-      "$ref": "#/$defs/number",
+      "type": "number",
       "description": "Hertz (Hz) is a derived SI unit of frequency. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
-    "kgPerCubicMeterWithUncertainty": {
+    "kilogramPerCubicMeterWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "The density of a material has the SI units kg/m^3. With this type, the uncertainty can be defined."
     },
-    "JPerKgKwithUncertainty": {
+    "joulePerKgKwithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Joule per kilogram and per Kelvin (J/(kg*K)) are the SI units of the specific heat capacity. With this type, the uncertainty can be defined."
     },
-    "kgPerSecondWithUncertainty": {
+    "kilogramPerSecondWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Kilogram per second (kg/s) are the SI units of the mass flow. With this type, the uncertainty can be defined."
     },
@@ -353,6 +406,34 @@
     "wattPerMeterKelvinWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Watt per meter and per kelvin (W/(m*K)) are the SI units of the thermal conductivity. With this type, the uncertainty can be defined."
+    },
+    "percentPerKelvin": {
+      "description": "Percent per Kelvin (%/K), for example used for temperature coefficients without uncertainty.",
+      "type": "number",
+      "minimum": -100,
+      "maximum": 100
+    },
+    "percent": {
+      "description": "Percent, for example, the number 5 of this type means 5 %.",
+      "type": "number"
+    },
+    "percentBetweenZeroAndOneHundred": {
+      "description": "Percent, for example, the number 5 of this type means 5 %.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "latitude": {
+      "$ref": "#/$defs/degreeBetweenZeroAndNinetyWithUncertainty",
+      "description": "The angle between the equatorial plane and the straight line between the location and the center of the earth. North is positive. For example, Berlin has a latitude of 52.52 ."
+    },
+    "longitude": {
+      "$ref": "#/$defs/degreeBetweenMinusOneHundredEightyAndPlusOneHundredEightyWithUncertainty",
+      "description": "The angle between the Greenwich meridian and the straight line between the location and the center of the earth. West is positive. For example, Berlin has a longitude of 13.405 ."
+    },
+    "elevation": {
+      "$ref": "number.json#/$defs/meter",
+      "description": "The elevation above sea level. It has the SI unit meter."
     }
   }
 }

@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/method.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/method.json",
   "title": "method data",
   "description": "Definition of a method that can be applied by a creator to some source data to create a data set. By defining the method and the source data, the origin of the data set can be traced back.",
   "$defs": {
@@ -15,7 +15,7 @@
           "type": "string",
           "description": "The name of the method."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "Here the method can be described in free text."
         },
@@ -26,24 +26,33 @@
             "type": "string",
             "enum": ["calculation", "measurement"]
           },
-          "additionalItems": false,
+          "uniqueItems": true,
           "minItems": 1
         },
         "developer": {
-          "$ref": "stakeholder.json#/$defs/developer",
+          "$ref": "stakeholder.json",
           "description": "Who developed the method."
         },
         "reference": {
           "$ref": "common.json#/$defs/reference",
           "description": "If the method is an implementation of a standard or of a procedure described in a publication, this reference can be defined here."
         },
-        "created": {
-          "$ref": "common.json#/$defs/created",
+        "additionalReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "common.json#/$defs/reference",
+            "description": "Additional references that supplement the one given in the property `reference`, like tutorials or manuals as supplements to a formal specification."
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "createdAt": {
+          "$ref": "common.json#/$defs/timestamp",
           "description": "When the method was created."
         },
-        "valid": {
-          "$ref": "common.json#/$defs/valid",
-          "description": "Here you can define since when the method is valid and until when. This can be helpful for example when a regulation or standard changes."
+        "validity": {
+          "$ref": "common.json#/$defs/openEndedDateTimeRange",
+          "description": "Here you can define since when the method is valid and until when. This can be helpful for example when the method depends on a regulation or standard which changes."
         },
         "available": {
           "$ref": "common.json#/$defs/available",
@@ -79,55 +88,85 @@
       "$ref": "common.json#/$defs/webAddress",
       "description": "If the calculation procedure is open, the web address should refer to the repository for example at github.com. If the calculation procedure is closed, the web address should provide an explanation of procedure and may describe options to download executables."
     },
-    "origin": {
-      "title": "Origin can be used to define how the data was created.",
+    "appliedMethod": {
+      "title": "Applied method, that is the application of a method with fixed arguments to specific source data.",
       "type": "object",
       "properties": {
-        "creator": {
-          "$ref": "stakeholder.json#/$defs/creator",
-          "description": "The creator of the new dataset is identified here."
-        },
         "method": {
           "$ref": "#/$defs/method",
-          "description": "The method which has been applied by the creator on the source data is identified here. This method may be a combination of submethods."
+          "description": "Method that was applied by the creator on the source data."
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/namedArgument",
+            "description": "Named arguments to configure the method."
+          }
         },
         "sources": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/source",
-            "description": "The data sources are the starting point for the creator who applies a method on a the data sources to create a new data set."
-          },
-          "additionalItems": false,
-          "minItems": 1
+            "$ref": "#/$defs/namedSource",
+            "description": "Named data sources to which the method was applied."
+          }
         }
       },
       "additionalProperties": false,
-      "required": [],
-      "minProperties": 1
+      "required": ["method", "arguments", "sources"]
     },
-    "source": {
+    "namedArgument": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value of any type"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["name", "value"]
+    },
+    "namedSource": {
       "title": "Source data which is an input for a method. A creator uses a method and source data to create a new data set.",
       "type": "object",
       "properties": {
-        "id": {
-          "$ref": "identifier.json#/$defs/decentral",
-          "description": "The id represents the data source."
-        },
         "name": {
-          "type": "string",
-          "description": "A data set can have a name."
+          "title": "Name",
+          "type": "string"
         },
-        "explanation": {
-          "type": "string",
-          "description": "This string can explain the source data for humans."
-        },
-        "database": {
-          "$ref": "#/$defs/database",
-          "description": "The database, where the source data can be found, is identified here."
+        "value": {
+          "title": "Value",
+          "$ref": "#/$defs/dataReference"
         }
       },
       "additionalProperties": false,
-      "required": ["id"]
+      "required": ["name", "value"]
+    },
+    "dataReference": {
+      "title": "Data reference",
+      "type": "object",
+      "properties": {
+        "dataId": {
+          "$ref": "identifier.json#/$defs/decentral"
+        },
+        "dataTimestamp": {
+          "$ref": "common.json#/$defs/timestamp"
+        },
+        "dataKind": {
+          "description": "Data kind, either calorimetric, hygrothermal, optical, or photovoltaic.",
+          "type": "string",
+          "enum": [
+            "calorimetricData",
+            "hygrothermalData",
+            "opticalData",
+            "photovoltaicData"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": ["dataId", "dataTimestamp", "dataKind"]
     },
     "database": {
       "description": "Information about a database which has implemented the same API specification.",
@@ -141,25 +180,21 @@
           "type": "string",
           "description": "The name of the database"
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "A description of the database"
         },
         "owner": {
-          "$ref": "stakeholder.json#/$defs/basicStakeholder",
+          "$ref": "stakeholder.json#/$defs/institution",
           "description": "The institution which owns the database"
         },
         "admin": {
-          "$ref": "stakeholder.json#/$defs/basicStakeholder",
+          "$ref": "stakeholder.json#/$defs/institution",
           "description": "The institution which administrates the database"
         },
-        "created": {
-          "$ref": "common.json#/$defs/created",
+        "createdAt": {
+          "$ref": "common.json#/$defs/timestamp",
           "description": "When the database was created"
-        },
-        "valid": {
-          "$ref": "common.json#/$defs/valid",
-          "description": "For which timespan the data of the database is valid"
         },
         "available": {
           "$ref": "common.json#/$defs/available",

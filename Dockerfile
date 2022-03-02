@@ -1,7 +1,6 @@
-# We use Debian as base image for the reasons given on
-# https://pythonspeed.com/articles/base-image-python-docker-images/
-# see https://www.debian.org
-FROM debian:10.5-slim
+# Use Node on Debian as base image, see
+# https://hub.docker.com/_/node
+FROM node:16.13.0-bullseye-slim
 
 ##################
 # As user `root` #
@@ -21,16 +20,13 @@ ARG GID=1000
 # which are used to run commands in later for security reasons,
 # see https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
 RUN \
+  userdel --remove node && \
   addgroup --system --gid ${GID} us && \
   adduser --system --uid ${UID} --ingroup us me
 
 #-------------------------------#
 # Make `bash` the default shell #
 #-------------------------------#
-# In particular, `ln ... bash /bin/sh` makes Python's `subprocess` module use
-# `bash` by default. If we want to make sure that `bash` is always used
-# regardless of the default shell, we can pass `executable="/bin/bash"` to
-# Python's `subprocess#run` function.
 RUN \
   ln --symbolic --force \
     bash /bin/sh && \
@@ -48,36 +44,30 @@ RUN \
   # Install `dumb-init`
   apt-get install --assume-yes --no-install-recommends \
     dumb-init && \
-  # Remove unused packages, erase archive files, and remove lists of packages
-  apt-get autoremove --assume-yes && \
+  # Remove unused packages and configuration files, erase archive files, and remove lists of packages
+  apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
   rm --recursive --force /var/lib/apt/lists/*
 
-#---------------------------#
-# Install development tools #
-#---------------------------#
+#----------------------------------#
+# Install system development tools #
+#----------------------------------#
 # * GNU Make to run often needed commands, see
 #   https://www.gnu.org/software/make
 # * Node package manager to install Node development tools, see
 #   https://www.npmjs.com
-# * Another JSON Schema Validator (AJV) command-line interface to validate
-#   schemas and files, see https://github.com/ajv-validator/ajv-cli
 RUN \
   # Retrieve new lists of packages
   apt-get update && \
   # Install system development tools
   apt-get install --assume-yes --no-install-recommends \
+    jq \
     make \
     npm && \
-  # Upgrade Node package manager to version 6.14.7
-  npm install npm@6.14.7 --global && \
-  # Install Node development tools
-  npm install --global ajv-cli@3.2.1 && \
-  npm install --global format-graphql@1.4.0 && \
-  npm install --global graphql-schema-linter@0.5.0 && \
-  npm install --global prettier@2.0.5 && \
-  # Remove unused packages, erase archive files, and remove lists of packages
-  apt-get autoremove --assume-yes && \
+  # Upgrade Node package manager to version 7.18.1
+  npm install --global npm@8.1.3 && \
+  # Remove unused packages and configuration files, erase archive files, and remove lists of packages
+  apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
   rm --recursive --force /var/lib/apt/lists/*
 
@@ -101,14 +91,39 @@ ENV USER=me
 # Make `/app` the default directory
 WORKDIR /app
 
+#---------------------------#
+# Install development tools #
+#---------------------------#
+# * GraphQL Inspector to serve, diff, introspect, coverage-check GraphQL
+#   schemas, and to validate GraphQL fragments and operations against schemas,
+#   see https://graphql-inspector.com
+# * Another JSON Schema Validator (AJV) command-line interface to validate
+#   schemas and files, see https://github.com/ajv-validator/ajv-cli
+# * format-graphql to sort definitions and fields in GraphQL schemas, see
+#   https://github.com/gajus/format-graphql
+# * graphql-schema-linter to validate GraphQL schemas, see
+#   https://github.com/cjoudrey/graphql-schema-linter
+# * Prettier to format JSON and GraphQL code, see https://prettier.io
+COPY --chown=me:us \
+  package.json ./
+COPY --chown=me:us \
+  package-lock.json ./
+RUN \
+  # Install Node development tools specified in ./package.json with the exact
+  # version from ./package-lock.json, see https://docs.npmjs.com/cli/ci.html
+  npm ci --no-optional && \
+  npm cache clean --force
+
 #-------------------------------------------#
 # Set-up for containers based on this image #
 #-------------------------------------------#
-# Create mount points to mount the project and the installed Python
-# dependencies.
+# Create mount points to mount the project and the installed Node development
+# tools.
 VOLUME /app/
+VOLUME /app/node_modules/
 
 # Run commands within the process supervisor and init system `dumb-init`
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-# Make `bash` the default command
-CMD ["bash"]
+# Make `bash` the default command (and update Node development tools), see
+# https://github.com/Yelp/dumb-init#using-a-shell-for-pre-start-hooks
+CMD ["bash", "-c", "make install-tools && exec bash"]

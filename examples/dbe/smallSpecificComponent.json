@@ -2,10 +2,10 @@
   "components": [
     {
       "id": {
-        "uniqueId": "8ca1102b-264a-4023-8351-5897ec38e388",
-        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+        "value": "8ca1102b-264a-4023-8351-5897ec38e388",
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       },
-      "explanation": "This is the smallest example of a specific component. For example, 'ce588e6a-1d3c-4909-afdd-bcde4c33864e' can represent a construction company and '8ca1102b-264a-4023-8351-5897ec38e388' a specific window in a specific building project.",
+      "description": "This is the smallest example of a specific component. For example, '5320d6fb-b96d-4aeb-a24c-eb7036d3437a' can represent a construction company and '8ca1102b-264a-4023-8351-5897ec38e388' a specific window in a specific building project.",
       "relations": {
         "concretizationOf": "a99941df-5bb8-4080-89a4-4f3d230afeb6"
       }

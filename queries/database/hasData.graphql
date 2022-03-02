@@ -1,0 +1,17 @@
+query {
+  byComponentId: hasData(
+    where: { componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } }
+    timestamp: "2019-09-01T12:00:00+01:00"
+    locale: "en-US"
+  )
+
+  byGValue: hasData(
+    where: {
+      gValues: {
+        all: { inClosedInterval: { lowerBound: 0.4, upperBound: 0.6 } }
+      }
+    }
+    timestamp: "2020-09-01T12:00:00+01:00"
+    locale: "de-AT"
+  )
+}

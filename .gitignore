@@ -1,1 +1,4 @@
+/apis/*.schema.json
+/npm-debug.log
+/node_modules
 /tags

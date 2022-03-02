@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/hygrothermalData.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/hygrothermalData.json",
   "title": "hygrothermal data",
   "description": "Hygrothermal data which can be used for hygrothermal simulations. Humidity needs to be handled properly to create sustainable buildings with high comfort.",
   "$defs": {
@@ -16,11 +16,11 @@
               "$ref": "identifier.json#/$defs/decentral",
               "description": "The id represents the hygrothermal data set."
             },
-            "explanation": {
+            "description": {
               "type": "string",
               "description": "An explanation with more details about the hygrothermal data in natural language."
             },
-            "formatting": {
+            "dataFormat": {
               "$ref": "common.json#/$defs/webAddress",
               "description": "The web address provides a definition of the format of the 'xmlData'."
             },

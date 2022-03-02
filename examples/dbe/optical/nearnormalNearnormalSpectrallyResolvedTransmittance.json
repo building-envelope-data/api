@@ -5,56 +5,64 @@
       "optical": [
         {
           "id": {
-            "uniqueId": "a8435146-5270-46f5-b925-4b00de265823",
-            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+            "value": "a8435146-5270-46f5-b925-4b00de265823",
+            "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
           },
-          "explanation": "Example: optical data about a nearnormal-nearnormal measurement of the transmittance, spectrally resolved.",
-          "data": {
-            "dataPoints": [
-              {
-                "incidence": {
-                  "direction": "nearnormal",
-                  "wavelengths": { "wavelength": 500 }
+          "description": "Example: optical data about a nearnormal-nearnormal measurement of the transmittance, spectrally resolved.",
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 500 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.85
+                  }
                 },
-                "emergence": {
-                  "direction": "nearnormal"
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 1000 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.9
+                  }
                 },
-                "results": {
-                  "transmittance": {
-                    "uncertainValue": 0.85
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 1500 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.8
                   }
                 }
-              },
-              {
-                "incidence": {
-                  "direction": "nearnormal",
-                  "wavelengths": { "wavelength": 1000 }
-                },
-                "emergence": {
-                  "direction": "nearnormal"
-                },
-                "results": {
-                  "transmittance": {
-                    "uncertainValue": 0.9
-                  }
-                }
-              },
-              {
-                "incidence": {
-                  "direction": "nearnormal",
-                  "wavelengths": { "wavelength": 1500 }
-                },
-                "emergence": {
-                  "direction": "nearnormal"
-                },
-                "results": {
-                  "transmittance": {
-                    "uncertainValue": 0.8
-                  }
-                }
-              }
-            ]
-          }
+              ]
+            }
+          ]
         }
       ]
     }

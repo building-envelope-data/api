@@ -1,39 +1,44 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/identifier.json",
-  "title": "identifiers",
-  "description": "Identifiers are used to identify a large range of entities such as buildings, components, data sets, institutions and methods. They are either centrally managed by buildingenvelopedata.org or decentral for example by a building owner. Components may either have a central identifier for example as a general product or a decentral identifier for example for specific instances of a product in a specific building.",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/identifier.json",
+  "title": "Identifiers",
+  "description": "Identifiers are used to identify different entities such as buildings, components, data sets, institutions, methods, and many others. They are either centrally managed by `buildingenvelopedata.org` or decentrally for example by a building owner. Components may either have a central identifier for example as a general product or a decentral identifier for example for specific instances of a product in a specific building.",
   "$defs": {
     "central": {
-      "title": "Buildingenvelopedata.org issues the central identifiers and guarantees their uniqueness.",
+      "title": "Central identifier",
+      "description": "Identifier issued by the metabase `buildingenvelopedata.org`. The metabase guarantees the identifier's uniqueness within its scope and maintains at least meta information about whatever the identifier identifies. The metabase issues for example identifiers for components, institutions, and methods.",
+      "title": " issues the central identifiers and guarantees their uniqueness.",
       "type": "string",
-      "format": "uuid",
-      "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify entities like components, institutions, methods and many more."
+      "format": "uuid"
     },
     "decentral": {
-      "title": "Any institution registered at buildingenvelopedata.org can issue decentral identifiers. The institution MUST guarantees their uniqueness.",
+      "title": "Decentral identifier",
+      "description": "Identifier issued by some database registered at the metabase `buildingenvelopedata.org`. The database guarantees the identifier's uniqueness within its scope and maintains whatever the identifier identifies. Databases issue for example identifiers for measurement, simulation, and conversion data of components.",
       "type": "object",
       "properties": {
-        "uniqueId": {
+        "value": {
+          "description": "Identifier issued by the database identified by `issuedBy` within the metabase `buildingenvelopedata.org`.",
           "type": "string",
-          "format": "uuid",
-          "description": "A Universally Unique Identifier (UUID) or Globally Unique Identifier (GUID) is a 128-bit number. It is used to identify entities like components, institutions, methods and many more."
+          "format": "uuid"
         },
         "issuedBy": {
+          "description": "Identifier of the database that issued the identifier `value`. The database guarantees the uniqueness of `value` within the database's scope and maintains whatever `value` identifies.",
           "type": "string",
-          "format": "uuid",
-          "description": "This UUID defines the institution which issues the UUID. This institution MUST guarantee the uniqueness of the UUID."
+          "format": "uuid"
         }
-      }
+      },
+      "additionalProperties": false,
+      "required": ["value", "issuedBy"]
     },
     "centralOrDecentral": {
-      "title": "This definition is used when either a central identifier or a decentral identifier can be used. For example, a component can be a general product. In this case, it usually has a central identifier from buildingenvelopedata.org. But a component can also be a specific instance of a product in a specific building. In this case, it usually has a decentral identifier from the owner of the building.",
+      "title": "Either a central or decentral identifier",
+      "description": "For example, a component can be a general product, in which case it has a central identifier issued by the metabase `buildingenvelopedata.org`. However, a component can also be a specific instance of a product in a specific building, in which case it has a decentral identifier from the owner of the building.",
       "oneOf": [
         {
-          "$ref": "identifier.json#/$defs/central"
+          "$ref": "#/$defs/central"
         },
         {
-          "$ref": "identifier.json#/$defs/decentral"
+          "$ref": "#/$defs/decentral"
         }
       ]
     }

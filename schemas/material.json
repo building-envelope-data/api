@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/material.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/material.json",
   "title": "material data",
   "description": "How a material can be identified, which categories can be attributed to the material and which characteristics or properties the material has.",
   "$defs": {
@@ -24,7 +24,7 @@
           "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the material in Latin alphabet."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "An explanation with more details about the component"
         },
@@ -153,9 +153,9 @@
               "Og"
             ]
           },
-          "additionalItems": false,
           "minItems": 1,
           "maxItems": 10,
+          "uniqueItems": true,
           "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
         }
       },
@@ -166,22 +166,31 @@
     "category": {
       "type": "string",
       "enum": [
+        "acrylic",
         "baseMaterial",
         "coating",
         "fabric",
         "film",
+        "float",
         "frit",
+        "glass",
+        "heatSoaked",
+        "heatStrengthened",
+        "laminated",
         "lath",
+        "lowIron",
         "monolithic",
         "nonWoven",
         "PVB",
+        "safety",
+        "sheet",
         "slat",
+        "thermallyToughened",
+        "tinted",
+        "walkOn",
         "weave"
       ],
-      "description": "Components of the category material can have the subcategories of this enumeration which further specifies the material.",
-      "additionalItems": false,
-      "minItems": 1,
-      "maxItems": 2
+      "description": "Components of the category material can have the subcategories of this enumeration which further specifies the material."
     },
     "characteristics": {
       "title": "The characteristics of a material.",
@@ -192,7 +201,7 @@
           "description": "The refractive index is needed to calculate to calculate the path of irradiance through different materials."
         },
         "density": {
-          "$ref": "number.json#/$defs/kgPerCubicMeterWithUncertainty",
+          "$ref": "number.json#/$defs/kilogramPerCubicMeterWithUncertainty",
           "description": "The density is needed to calculate the weigth of the layer."
         },
         "possiblePositions": {
@@ -207,11 +216,11 @@
           "$ref": "number.json#/$defs/wattPerMeterKelvinWithUncertainty",
           "description": "The thermal conductivity of a material quantifies its ability to conduct heat. It has the SI units W/(m*K)."
         },
-        "PoissonsRatio": {
-          "$ref": "number.json#/$defs/number",
+        "poissonsRatio": {
+          "type": "number",
           "description": "The Poisson's ratio is a measure of the expansion of a material in the direction perpendicular to the load. It's a dimensionless quantity."
         },
-        "YoungsModulus": {
+        "youngsModulus": {
           "$ref": "number.json#/$defs/pascal",
           "description": "The Young's Modulus is a measure for the stiffness of a solid material. It has the SI unit Pascal."
         }

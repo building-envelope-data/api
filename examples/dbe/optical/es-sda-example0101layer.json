@@ -1,0 +1,217 @@
+{
+  "components": [
+    {
+      "id": "1c10b6f9-d30c-4896-b0c1-78bcf3b4895c",
+      "name": "Screen Nature 0319 Linen",
+      "description": "This is an example of a roller blind from the European Solar Shading Database ES-SDA; Product Identification: Screen Nature; Product Classification: NA; Parallel: Parallel; Clarity: Light; URL Product Instructions: http://www.sunscreen-mermet.com/range/screen-nature.html; URL Image: http://www.sunscreen-mermet.com/range/screen-nature/0319-Linen-579b2351ef558.html?iframe=true; Product Colour Code: 0319; Material Description: Glass fabric with fire-proof PVC-free and halogen-free coating; Product Position: Internal; Material: Fibreglass fabric with fire-proof PVC free coating; Colour: Linen 0319; Class for Glare Control: 1; Class for the Use of Light: 3; Class for Visual Contact with the Outside: 0; Class for Night Privacy: 2; NF Certification: NA; Various Certificates: NFP 92 503: M0-M1 / DIN 4102: A2 / BS 476 Pt 6&7 / EN 13501-1: A2;",
+      "roles": {
+        "manufacturer": {
+          "id": "75263c05-d81a-41f0-825b-fc8446532fe9",
+          "name": "Mermet"
+        }
+      },
+      "relations": {
+        "partOf": ["2c10b6f9-d30c-4896-b0c1-78bcf3b4895c"]
+      },
+      "categories": { "componentType": ["layer"], "unit": ["screen"] },
+      "characteristics": {
+        "geometry": { "dimensions": { "installed": [{ "depth": 0.00023 }] } },
+        "definitionOfSurfacesAndPrimeDirection": {
+          "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior."
+        }
+      },
+      "optical": [
+        {
+          "id": {
+            "value": "a8535146-5270-46f5-b925-4b00de265823",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "description": "This optical data set contains infrared integral values and spectrally-resolved values of the layer with incidence on the exterior `nonPrime` surface.",
+          "data": [
+            {
+              "componentCharacteristics": {
+                "surface": "nonPrime"
+              },
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "integral": "infrared" }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.04,
+                    "absorptanceEmittance": 0.89
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 280 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.032,
+                    "reflectance": 0.0
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 280 }
+                  },
+                  "emergence": {
+                    "direction": "diffuse"
+                  },
+                  "results": {
+                    "transmittance": 0.008,
+                    "reflectance": 0.074
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 285 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.032,
+                    "reflectance": 0.0
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 285 }
+                  },
+                  "emergence": {
+                    "direction": "diffuse"
+                  },
+                  "results": {
+                    "transmittance": 0.009,
+                    "reflectance": 0.078
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": {
+            "value": "a7535146-5270-46f5-b925-4b00de265823",
+            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          },
+          "description": "This optical data set contains infrared integral values and spectrally-resolved values of the layer with incidence on the interior `prime` surface.",
+          "data": [
+            {
+              "componentCharacteristics": {
+                "surface": "prime"
+              },
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "integral": "infrared" }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.04,
+                    "absorptanceEmittance": 0.89
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 280 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.032,
+                    "reflectance": 0.0
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 280 }
+                  },
+                  "emergence": {
+                    "direction": "diffuse"
+                  },
+                  "results": {
+                    "transmittance": 0.008,
+                    "reflectance": 0.074
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 285 }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.032,
+                    "reflectance": 0.0
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": { "wavelength": 285 }
+                  },
+                  "emergence": {
+                    "direction": "diffuse"
+                  },
+                  "results": {
+                    "transmittance": 0.009,
+                    "reflectance": 0.078
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -10,16 +10,18 @@
       "dataPoints": [
         {
           "incidence": {
-            "direction": "nearnormal",
+            "direction": {
+              "polar": 8
+            },
             "wavelengths": { "integral": "solar" }
           },
           "emergence": {
-            "direction": "nearnormal"
+            "direction": {
+              "polar": 8
+            }
           },
           "results": {
-            "transmittance": {
-              "uncertainValue": 0.85
-            }
+            "transmittance": 0.85
           }
         }
       ]
@@ -36,37 +38,48 @@
           "dataPoints": [
             {
               "incidence": {
-                "direction": "nearnormal",
+                "direction": {
+                  "polar": 8
+                },
                 "wavelengths": { "integral": "solar" }
               },
               "emergence": {
-                "direction": "nearnormal"
+                "direction": {
+                  "polar": 8
+                }
               },
               "results": {
-                "transmittance": {
-                  "uncertainValue": 0.85
-                }
+                "transmittance": 0.85
               }
             }
           ]
         },
         {
           "componentCharacteristics": {
-            "surface": "prime"
+            "surface": "prime",
+            "referenceSample": {
+              "publication": {
+                "identifiers": {
+                  "webAddress": "https://oc.ise.fraunhofer.de/index.php/s/w9uW4Veh4fWyD2q"
+                },
+                "title": "Description of the reference sample",
+                "authors": [{ "fullName": "Dirk Müller" }]
+              }
+            }
           },
           "dataPoints": [
             {
               "incidence": {
-                "direction": "nearnormal",
-                "wavelengths": { "integral": "solar" }
+                "direction": { "polar": 45, "azimuth": 90 },
+                "wavelengths": {
+                  "integral": "solar"
+                }
               },
               "emergence": {
-                "direction": "nearnormal"
+                "direction": { "polar": 60, "azimuth": 90 }
               },
               "results": {
-                "transmittance": {
-                  "uncertainValue": 0.85
-                }
+                "transmittance": 0.85
               }
             }
           ]

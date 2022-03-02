@@ -1,0 +1,89 @@
+query {
+  institutionByString: institutions(where: { name: { contains: "Suno" } }) {
+    nodes {
+      name
+      uuid
+    }
+  }
+
+  componentsByInstitution: institution(
+    uuid: "24cd615f-ccc3-4da0-811b-0e0ce18f354c"
+  ) {
+    manufacturedComponents {
+      edges {
+        node {
+          uuid
+          name
+        }
+      }
+    }
+  }
+
+  resourcesByComponent: databases {
+    nodes {
+      uuid
+      name
+      locator
+      allOpticalData(
+        where: {
+          componentId: { equalTo: "9386f355-2069-4490-bdd1-e1acdb233e12" }
+        }
+      ) {
+        nodes {
+          resourceTree {
+            root {
+              value {
+                locator
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  allData: databases {
+    nodes {
+      allData {
+        nodes {
+          name
+          resourceTree {
+            root {
+              value {
+                locator
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  componentByOpticalProperties: databases {
+    nodes {
+      uuid
+      name
+      locator
+      allOpticalData(
+        where: {
+          and: [
+            {
+              nearnormalHemisphericalVisibleTransmittances: {
+                some: { greaterThanOrEqualTo: 0.6 }
+              }
+            }
+            {
+              nearnormalHemisphericalSolarTransmittances: {
+                some: { lessThanOrEqualTo: 0.228 }
+              }
+            }
+          ]
+        }
+      ) {
+        nodes {
+          componentId
+        }
+      }
+    }
+  }
+}

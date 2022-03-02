@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/building.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/building.json",
   "title": "building data",
   "description": "Data about a building.",
   "$defs": {
@@ -20,7 +20,7 @@
           "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the building"
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "An explanation with more details about the building"
         },
@@ -42,7 +42,6 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The current building is a generalization of a more concretized building. The more concretized building is identified by this id."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "variantOf": {
@@ -51,7 +50,6 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The current building is neither a concretization nor a generalization nor an assembly or a part of a second building. But it is a variant of a second building. This means that the current building and the second building share a large part of their characteristics. The second building is identified by this id."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "partOf": {
@@ -60,7 +58,6 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The current building is a part of an assembly of other buildings. Each of the other buildings is defined by its id."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "assembledOf": {
@@ -69,7 +66,6 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The current building is an assembly of other buildings. Each of the other buildings is defined by its id."
               },
-              "additionalItems": false,
               "minItems": 1
             }
           },
@@ -82,101 +78,91 @@
           "description": "Characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches."
         },
         "roles": {
+          "title": "Roles which are specific for buildings to the existing roles for building envelopes.",
           "type": "object",
           "properties": {
-            "title": "Roles which are specific for buildings to the existing roles for building envelopes.",
             "owners": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "The owners own the building at the moment indicated by the timestamp of this data. Each owner is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "The owners own the building at the moment indicated by the timestamp of this data."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "architects": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "Architects offer to design the building. Each architect is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "Architects offer to design the building."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "BIMmanager": {
-              "$ref": "stakeholder.json#/$defs/basicStakeholder",
-              "description": "The BIM manager MUST guarantee the uniqueness of the decentral identifiers. She is responsible for the database of the building at the moment indicated by the timestamp of this data. The BIM manager is identified by an id."
+              "$ref": "stakeholder.json",
+              "description": "The BIM manager MUST guarantee the uniqueness of the decentral identifiers. She is responsible for the database of the building at the moment indicated by the timestamp of this data."
             },
             "planners": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "The planners provide assistance to the stakeholders, for example for the detailed planning in a domain like structural analysis or the technical building plant. Each planner is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "The planners provide assistance to the stakeholders, for example for the detailed planning in a domain like structural analysis or the technical building plant."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "contractors": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "Contractors offer to construct the whole building or parts of it. Each contractor is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "Contractors offer to construct the whole building or parts of it."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "suppliers": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "Suppliers offer to supply components for the building. Each supplier is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "Suppliers offer to supply components for the building."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "investors": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "Investors offer financial credits to the stakeholders or offer to buy the building from the owners. Each investor is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "Investors offer financial credits to the stakeholders or offer to buy the building from the owners."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "tenants": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "Tenants rent space in the building. Each tenant is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "Tenants rent space in the building."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "publicAuthorities": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "Public authorities grant permissions according to the current regulations. Each public authority is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "Public authorities grant permissions according to the current regulations."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "assesors": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "Assesors offer to rate a building for example regarding its sustainability. Each assesor is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "Assesors offer to rate a building for example regarding its sustainability."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "facilityManagers": {
               "type": "array",
               "items": {
-                "$ref": "stakeholder.json#/$defs/basicStakeholder",
-                "description": "Facility managers are responsible for a good operation of the building. Each facility manager is identified by an id."
+                "$ref": "stakeholder.json",
+                "description": "Facility managers are responsible for a good operation of the building."
               },
-              "additionalItems": false,
               "minItems": 1
             }
           },
@@ -204,22 +190,22 @@
                   "$ref": "common.json#/$defs/webAddress",
                   "description": "The IFC file with full data about the building can be downloaded for some time from this URL."
                 },
-                "explanation": {
+                "description": {
                   "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 },
-                "formatting": {
+                "dataFormat": {
                   "type": "string",
                   "pattern": "^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$",
                   "description": "The definition of IFC version which is used to format the IFC file. For example '4.1.0.0'."
                 },
-                "created": {
-                  "$ref": "common.json#/$defs/created",
+                "createdAt": {
+                  "$ref": "common.json#/$defs/timestamp",
                   "description": "The date when the file was created"
                 }
               },
               "additionalProperties": false,
-              "required": ["id", "webAddress", "formatting", "created"]
+              "required": ["id", "webAddress", "dataFormat", "createdAt"]
             }
           },
           "additionalProperties": false,
@@ -242,22 +228,22 @@
                   "$ref": "common.json#/$defs/webAddress",
                   "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
                 },
-                "explanation": {
+                "description": {
                   "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 },
-                "formatting": {
+                "dataFormat": {
                   "type": "string",
                   "pattern": "^(20..)$",
                   "description": "The definition of Revit version which is used to format the Revit file. For example '2020'."
                 },
-                "created": {
-                  "$ref": "common.json#/$defs/created",
+                "createdAt": {
+                  "$ref": "common.json#/$defs/timestamp",
                   "description": "The date when the file was created"
                 }
               },
               "additionalProperties": false,
-              "required": ["id", "webAddress", "formatting", "created"]
+              "required": ["id", "webAddress", "dataFormat", "createdAt"]
             }
           },
           "additionalProperties": false,
@@ -276,7 +262,7 @@
                   "$ref": "common.json#/$defs/webAddress",
                   "description": "The Revit file with full data about the building can be downloaded for some time from this URL."
                 },
-                "explanation": {
+                "description": {
                   "type": "string",
                   "description": "An explanation of the status of the full data set in natural language."
                 }
@@ -303,16 +289,16 @@
           "type": "object",
           "properties": {
             "latitude": {
-              "$ref": "number.json#/$defs/numberBetweenMinusAndPlusNinety",
-              "description": "The latitude of the location of the building as a decimal number according to WGS 84."
+              "$ref": "number.json#/$defs/latitude",
+              "description": "The latitude of the location of the building."
             },
             "longitude": {
-              "$ref": "number.json#/$defs/numberBetweenMinusAndPlusHundredAndEighty",
-              "description": "The longitude of the location of the building as a decimal number according to WGS 84."
+              "$ref": "number.json#/$defs/longitude",
+              "description": "The longitude of the location of the building."
             },
             "elevation": {
-              "$ref": "number.json#/$defs/meter",
-              "description": "The elevation of the location of the building. It has the SI unit meter."
+              "$ref": "number.json#/$defs/elevation",
+              "description": "The elevation of the location of the building. "
             },
             "address": {
               "$ref": "#/$defs/address",

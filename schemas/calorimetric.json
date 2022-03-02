@@ -1,48 +1,74 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/calorimetric.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/calorimetric.json",
   "title": "calorimetric data",
-  "description": "Data about calorimetric measurements or simulations, in particular, about energy fluxes.",
+  "description": "Data about calorimetric measurements or simulations with meta information like name, description, warnings, and more.",
   "$defs": {
     "calorimetric": {
       "type": "object",
       "title": "The object is used to define calorimetric data.",
       "properties": {
         "id": {
-          "$ref": "identifier.json#/$defs/decentral",
-          "description": "The id represents a specific calorimetric data set."
+          "title": "Decentral identifier",
+          "description": "Together with timestamp uniquely identifies data and version.",
+          "$ref": "identifier.json#/$defs/decentral"
+        },
+        "timestamp": {
+          "title": "Timestamp that designates the version",
+          "description": "Together with decentral identifier uniquely identifies data and version. For example, correction of some grammatical error in the description results in a new version designated by a new timestamp, or adding an approval by some stakeholder.",
+          "$ref": "common.json#/$defs/timestamp"
         },
         "name": {
-          "type": "string",
-          "description": "If the calorimetric data set has a name, it can be indicated here."
+          "title": "Name",
+          "type": "string"
         },
-        "explanation": {
-          "type": "string",
-          "description": "This string can explain humans the calorimetric data set."
+        "description": {
+          "title": "Description for humans",
+          "type": "string"
         },
         "warnings": {
-          "type": "string",
-          "description": "Some calorimetric data may easily be misinterpreted. The warnings contain critical information for users to avoid typical mistakes."
+          "title": "Warnings",
+          "description": "Critical information to avoid mistakes due to data misinterpretation.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
         },
-        "origin": {
-          "$ref": "method.json#/$defs/origin",
-          "description": "For traceability, the origin of the data can be defined."
+        "creator": {
+          "title": "Creator",
+          "$ref": "stakeholder.json"
+        },
+        "createdAt": {
+          "title": "Creation timestamp",
+          "description": "When the present data set was created, for example, after completion of a measurement, simulation, or calculation.",
+          "$ref": "common.json#/$defs/timestamp"
+        },
+        "appliedMethod": {
+          "$ref": "method.json#/$defs/appliedMethod",
+          "description": "Method that was applied to create this data set."
         },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",
-          "description": "If the calorimetric data is approved by stakeholders, a signature can be provided."
-        },
-        "created": {
-          "$ref": "common.json#/$defs/created",
-          "description": "When the calorimetric data was created."
-        },
-        "valid": {
-          "$ref": "common.json#/$defs/valid",
-          "description": "From when and until when the data is valid."
+          "description": "Approvals by stakeholders in the form of GnuPG signatures."
         },
         "data": {
-          "$ref": "calorimetricData.json",
-          "description": "The measured or simulated data"
+          "title": "Data in various formats",
+          "description": "The first data item is the result of applying the method `appliedMethod`. The other data items are the result of applying some conversion method or a chain of such methods to the first data item.",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "calorimetricData.json",
+                "description": "The measured or simulated data in JSON."
+              },
+              {
+                "$ref": "common.json#/$defs/getHttpsResource",
+                "description": "The measured or simulated data in some data format as HTTP resource fetchable with GET requests."
+              }
+            ]
+          },
+          "minItems": 1
         }
       },
       "additionalProperties": false,

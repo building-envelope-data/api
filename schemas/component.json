@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/component.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/component.json",
   "title": "component data",
   "description": "Data about components of building envelopes. It contains metadata about the components as well as keys for special data domains such as 'optical' for optical data and 'calorimetric' for calorimetric data about a certain component.",
   "$defs": {
@@ -20,7 +20,7 @@
           "$ref": "string.json#/$defs/abbreviation",
           "description": "The abbreviation of the component in Latin alphabet"
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "An explanation with more details about the component"
         },
@@ -42,7 +42,6 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The current component is a generalization of a more concretized component. The more concretized component is identified by this id. Whenever the current component is a 'generalizationOf' another component, the other component is a 'concretizationOf' the current component."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "variantOf": {
@@ -51,7 +50,6 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The current component is neither a concretization nor a generalization nor an assembly or a part of a second component. But it is a variant of a second component. This means that the current component and the second component share a large part of their characteristics. The second component is identified by this id. Whenever the current component is a 'variantOf' another component, the other component is a 'variantOf' the current component."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "partOf": {
@@ -60,7 +58,6 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The current component is a part of an assembly of other components. Each of the other components is defined by its id. Whenever the current component is a 'partOf' another component, the other component is 'assembledOf' the current component."
               },
-              "additionalItems": false,
               "minItems": 1
             },
             "assembledOf": {
@@ -69,7 +66,6 @@
                 "$ref": "identifier.json#/$defs/centralOrDecentral",
                 "description": "The current component is an assembly of other components. Each of the other components is defined by its id. Whenever the current component is 'assembledOf' another component, the other component is a 'partOf' the current component."
               },
-              "additionalItems": false,
               "minItems": 1
             }
           },
@@ -89,16 +85,16 @@
           "type": "object",
           "properties": {
             "owner": {
-              "$ref": "stakeholder.json#/$defs/basicStakeholder",
-              "description": "The id and description of the owner of the component"
+              "$ref": "stakeholder.json",
+              "description": "Owner of the component"
             },
             "manufacturer": {
-              "$ref": "stakeholder.json#/$defs/basicStakeholder",
-              "description": "The id and description of the manufacturer of the component"
+              "$ref": "stakeholder.json",
+              "description": "Manufacturer of the component"
             },
             "developer": {
-              "$ref": "stakeholder.json#/$defs/developer",
-              "description": "The id and description of the institution or person which developed the component"
+              "$ref": "stakeholder.json",
+              "description": "Institution or person which developed the component"
             }
           }
         },
@@ -111,7 +107,6 @@
           "items": {
             "$ref": "optical.json"
           },
-          "additionalItems": false,
           "minItems": 1,
           "description": "Optical data sets of one component. For example the transmittance and reflectance with specific boundary conditions."
         },
@@ -120,7 +115,6 @@
           "items": {
             "$ref": "calorimetric.json"
           },
-          "additionalItems": false,
           "minItems": 1,
           "description": "Calorimetric data sets of one component. For example the U value, the g value (or Solar Heat Gain Coefficient)."
         },
@@ -129,7 +123,6 @@
           "items": {
             "$ref": "photovoltaic.json"
           },
-          "additionalItems": false,
           "minItems": 1,
           "description": "Photovoltaic data sets. This means building envelopes which can convert irradiance into electric power."
         },
@@ -138,7 +131,6 @@
           "items": {
             "$ref": "hygrothermal.json"
           },
-          "additionalItems": false,
           "minItems": 1,
           "description": "Hygrothermal data of one component. For example, the water vapour diffusion resistance factor and the moisture-dependent thermal conductivity."
         }
@@ -158,16 +150,15 @@
             "enum": ["material", "layer", "unit"],
             "description": "A building envelope component can have one or more of the following categories. (i) If the component is a plain material, for example a sheet which could be used to build a blind, the category 'material' should be used. (ii) If the component can be treated as a layer for optical simulations of a stack of layers, then the category 'layer' should be used. Venetian blinds are one example of a layer. The center-of-glazing values are important for the simulation of a stack of layers. (iii) If the width, the height and the edges of the component are well defined, then the category 'unit' should be used. For example a window with frame and shading system."
           },
-          "additionalItems": false,
-          "minItems": 0
+          "uniqueItems": true,
+          "minItems": 1
         },
         "material": {
           "type": "array",
           "items": {
             "$ref": "material.json#/$defs/category"
           },
-          "additionalItems": false,
-          "minItems": 0,
+          "minItems": 1,
           "description": "If the component has the 'componentType':'material', then the material categories can defined here."
         },
         "layer": {
@@ -175,8 +166,7 @@
           "items": {
             "$ref": "layer.json#/$defs/category"
           },
-          "additionalItems": false,
-          "minItems": 0,
+          "minItems": 1,
           "description": "If the component has the 'componentType':'layer', then the layer categories can defined here."
         },
         "unit": {
@@ -184,8 +174,7 @@
           "items": {
             "$ref": "unit.json#/$defs/category"
           },
-          "additionalItems": false,
-          "minItems": 0,
+          "minItems": 1,
           "description": "If the component has the 'componentType':'unit', then the unit categories can be defined here."
         }
       },
@@ -205,7 +194,7 @@
           "type": "string",
           "description": "If the version of the component has a specific name or version number, it can be entered here."
         },
-        "explanation": {
+        "description": {
           "type": "string",
           "description": "Here the version can be described in free text."
         },
@@ -213,16 +202,16 @@
           "type": "object",
           "properties": {
             "owner": {
-              "$ref": "stakeholder.json#/$defs/basicStakeholder",
-              "description": "The id and description of the owner of the component"
+              "$ref": "stakeholder.json",
+              "description": "Owner of the component"
             },
             "manufacturer": {
-              "$ref": "stakeholder.json#/$defs/basicStakeholder",
-              "description": "The id and description of the manufacturer of the component"
+              "$ref": "stakeholder.json",
+              "description": "Manufacturer of the component"
             },
             "developer": {
-              "$ref": "stakeholder.json#/$defs/developer",
-              "description": "The id and description of the institution or person which developed the component"
+              "$ref": "stakeholder.json",
+              "description": "Institution or person which developed the component"
             }
           }
         },
@@ -245,9 +234,13 @@
               "$ref": "geometry.json"
             },
             {
-              "$ref": "#/$defs/assembly"
+              "$ref": "geometry.json#/$defs/assembly"
             }
           ]
+        },
+        "weight": {
+          "$ref": "number.json#/$defs/kilogramWithUncertainty",
+          "description": "The weight of the component in kilogram."
         },
         "airPermeability": {
           "title": "Air permeability quantifies how easy air can flow through the component.",
@@ -262,12 +255,8 @@
           "minProperties": 1,
           "required": []
         },
-        "colour": {
-          "$ref": "common.json#/$defs/colour",
-          "description": "The reference offers several way to define the colour of the component."
-        },
         "cutOff": {
-          "$ref": "number.json#/$defs/degree",
+          "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."
         },
         "chemicalElements": {
@@ -395,10 +384,68 @@
               "Og"
             ]
           },
-          "additionalItems": false,
           "minItems": 1,
           "maxItems": 10,
+          "uniqueItems": true,
           "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
+        },
+        "definitionOfSurfacesAndPrimeDirection": {
+          "title": "Definition of surfaces and prime direction",
+          "description": "The prime surface and the prime direction are used to define the orientation of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry.",
+          "type": "object",
+          "properties": {
+            "reference": {
+              "$ref": "common.json#/$defs/reference",
+              "title": "Reference",
+              "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define a prime direction which is used to calculate the azimuth of the direction of incidence. Ideally, the manufacturer defines the surfaces and prime direction of a component in one document and refers to this document in optical data."
+            },
+            "description": {
+              "type": "string",
+              "title": "Description",
+              "description": "Description of which sides of the components are defined as non-prime and which as prime and which direction is defined as the prime direction. Often, the non-prime side faces the exterior and the prime side the interior."
+            }
+          },
+          "minProperties": 1,
+          "required": []
+        },
+        "positionOfCoatings": {
+          "title": "The positions are counted from the nonPrime surface to the prime surface of the layer or unit. Each interface between solid and gas is counted as position. `0` represents a position withouth coating and `1` represents a position with coating. For example, a double glazing with one low emissivity coating can be represented by [ 0, 0, 1, 0].",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "const": 0,
+                "description": "`0` represents a position without coating."
+              },
+              {
+                "type": "integer",
+                "const": 1,
+                "description": "`1` represents a position with coating."
+              }
+            ]
+          }
+        },
+        "roughness": {
+          "title": "Definition of the roughness of the prime surfaces and the non-prime surface.Both are defined by `definitionOfSurfacesAndPrimeDirection`.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "surface": {
+                "$ref": "#/$defs/surface",
+                "description": "Definition of the surface for which the roughness is defined in this item."
+              },
+              "rootMeanSquare": {
+                "$ref": "number.json#/$defs/numberWithUncertainty",
+                "description": "The root-mean-square roughness is calculated according to ISO 4287:2010, Section 4.2.2 as the root-mean-square of the roughness profile."
+              }
+            },
+            "minProperties": 2,
+            "required": ["surface", "rootMeanSquare"]
+          },
+          "minItems": 1,
+          "description": "Each item of the array defines a surface of the component together with the roughness of this surface."
         },
         "material": {
           "$ref": "material.json#/$defs/characteristics",
@@ -417,66 +464,11 @@
       "minProperties": 1,
       "required": []
     },
-    "assembly": {
-      "title": "An assembly of components where each item of the array defines one component of the assembly. Note that one component can either consist of a single component or of an assembly of components.",
-      "type": "object",
-      "properties": {
-        "coordinateSystemAssembly": {
-          "$ref": "geometry.json#/$defs/coordinateSystem",
-          "description": "Definition of the coordinate system of the assembly."
-        },
-        "assemblyList": {
-          "title": "The subcomponents which are used for this assembly.",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "$ref": "identifier.json#/$defs/centralOrDecentral",
-                "description": "The id represents a specific component of the assembly."
-              },
-              "geometry": {
-                "$ref": "geometry.json",
-                "description": "The reference defines the geometry of the component."
-              },
-              "coordinateSystemComponent": {
-                "title": "Coordinates of the origin and axis of the component within the coordinate system of the assembly. Often, it is easier to define this relation than to convert all geometries into the coordinate system of the assembly. Note that the assembly has a coordinate system and each component has its own coordinate system.",
-                "type": "object",
-                "properties": {
-                  "origin": {
-                    "$ref": "geometry.json#/$defs/point",
-                    "description": "This point defines the coordinates of the origin of the component within the coordinate system of the assembly."
-                  },
-                  "firstAxis": {
-                    "$ref": "geometry.json#/$defs/vector",
-                    "description": "The coordinate system of the component has three axis. This vector defines the direction of the first axis within the coordinate system of the assembly."
-                  },
-                  "secondAxis": {
-                    "$ref": "geometry.json#/$defs/vector",
-                    "description": "The coordinate system of the component has three axis. This vector defines the direction of the second axis within the coordinate system of the assembly."
-                  },
-                  "thirdAxis": {
-                    "$ref": "geometry.json#/$defs/vector",
-                    "description": "The coordinate system of the component has three axis. This vector defines the direction of the third axis within the coordinate system of the assembly."
-                  }
-                },
-                "additionalProperties": false,
-                "minProperties": 4,
-                "maxProperties": 4,
-                "required": ["origin", "firstAxis", "secondAxis", "thirdAxis"]
-              }
-            },
-            "additionalProperties": false,
-            "minProperties": 1,
-            "required": ["id"]
-          },
-          "additionalItems": false,
-          "minItems": 2
-        }
-      },
-      "additionalProperties": false,
-      "minProperties": 1,
-      "required": ["assemblyList"]
+    "surface": {
+      "type": "string",
+      "enum": ["nonPrime", "prime", "symmetric"],
+      "title": "Surface",
+      "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' is used."
     }
   },
   "$ref": "#/$defs/component"
