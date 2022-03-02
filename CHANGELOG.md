@@ -51,7 +51,7 @@ and this project adheres to
 - Clean-up Dockerfile, in particular, remove notes regarding Python [#121](https://github.com/building-envelope-data/api/pull/121)
 - Correct minor errors in database GraphQL API [#173](https://github.com/building-envelope-data/api/pull/173)
 - Name `dataId` `uuid`, remove `validity` from `*Data` and `DataApproval`, use parent identifier instead of child identifiers to describe tree structure, do not require response approvals to be created on the fly [#180](https://github.com/building-envelope-data/api/pull/180)
--
+- Update GraphqL schema of metabase to match the current deployed version [#280](https://github.com/building-envelope-data/api/pull/280)
 -
 - Rename organization to `building-envelope-data` and API repository to `api` [#277](https://github.com/building-envelope-data/api/pull/277)
 - Use acronyms to identify standardizers [#154](https://github.com/building-envelope-data/api/pull/154)
