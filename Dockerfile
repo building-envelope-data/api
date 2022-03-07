@@ -64,8 +64,8 @@ RUN \
     jq \
     make \
     npm && \
-  # Upgrade Node package manager to version 7.18.1
-  npm install --global npm@8.1.3 && \
+  # Upgrade Node package manager
+  npm install --global npm@8.5.3 && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
