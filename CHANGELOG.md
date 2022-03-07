@@ -34,7 +34,7 @@ and this project adheres to
 
 ### Changed
 
--
+- Upgrade development packages to latest versions [#285](https://github.com/building-envelope-data/api/pull/285)
 -
 -
 -
