@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "engines": {
-    "node": "16.13.x"
+    "node": "16.14.x"
   },
   "directories": {
     "example": "examples",

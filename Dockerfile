@@ -1,6 +1,6 @@
 # Use Node on Debian as base image, see
 # https://hub.docker.com/_/node
-FROM node:16.13.0-bullseye-slim
+FROM node:16.14.0-bullseye-slim
 
 ##################
 # As user `root` #
