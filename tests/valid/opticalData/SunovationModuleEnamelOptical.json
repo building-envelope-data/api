@@ -1,19 +1,15 @@
 {
-  "data": [
+  "dataPoints": [
     {
-      "dataPoints": [
+      "cielabColors": [
         {
-          "cielabColors": [
-            {
-              "lStar": 5,
-              "aStar": 1,
-              "bStar": -1,
-              "direction": "reflection",
-              "surface": "symmetric",
-              "observer": "tenDegrees",
-              "illuminant": "D65"
-            }
-          ]
+          "lStar": 5,
+          "aStar": 1,
+          "bStar": -1,
+          "direction": "reflection",
+          "surface": "symmetric",
+          "observer": "tenDegrees",
+          "illuminant": "D65"
         }
       ]
     }
