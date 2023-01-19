@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'The version you want to release following semantic versioning (for example, `v1.4.3`, see https://semver.org).'
+        description: "The version you want to release following semantic versioning (for example, `v1.4.3`, see https://semver.org)."
         required: true
 
 jobs:
