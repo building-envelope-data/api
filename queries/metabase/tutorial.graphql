@@ -86,4 +86,46 @@ query {
       }
     }
   }
+
+  dataSetsByOpticalPropertiesAndDataFormat: databases {
+    nodes {
+      name
+      allOpticalData(
+        where: {
+          and: [
+            {
+              nearnormalHemisphericalVisibleTransmittances: {
+                some: { greaterThanOrEqualTo: 0.605 }
+              }
+            }
+            {
+              nearnormalHemisphericalSolarTransmittances: {
+                some: { lessThanOrEqualTo: 0.228 }
+              }
+            }
+            {
+              resources: {
+                some: {
+                  dataFormatId: {
+                    equalTo: "9ca9e8f5-94bf-4fdd-81e3-31a58d7ca708"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ) {
+        nodes {
+          componentId
+          resourceTree {
+            root {
+              value {
+                locator
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
