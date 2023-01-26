@@ -28,11 +28,12 @@ tag : ## Print value of variable `tag`
 .PHONY : tag
 
 build : ## Build image with name `${name}` and tag '${tag}', for example, `make build`
-	docker build \
-		--tag ${name}:${tag} \
-		--build-arg UID=$(shell id --user) \
-		--build-arg GID=$(shell id --group) \
-		.
+	DOCKER_BUILDKIT=1 \
+		docker build \
+			--tag ${name}:${tag} \
+			--build-arg UID=$(shell id --user) \
+			--build-arg GID=$(shell id --group) \
+			.
 .PHONY : build
 
 remove : ## Remove image with name `${name}` and tag '${tag}'
