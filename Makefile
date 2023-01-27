@@ -1,11 +1,7 @@
 # Concise introduction to GNU Make:
 # https://swcarpentry.github.io/make-novice/reference.html
 
-name = building_envelopes_data
-tag = latest
-
-DATABASE_PORT = 4000
-METABASE_PORT = 4001
+include .env
 
 # Taken from https://www.client9.com/self-documenting-makefiles/
 help : ## Print this help
@@ -19,47 +15,43 @@ help : ## Print this help
 # Interface with Docker #
 # --------------------- #
 
-name : ## Print value of variable `name`
-	@echo ${name}
+name : ## Print value of variable `NAME`
+	@echo ${NAME}
 .PHONY : name
 
-tag : ## Print value of variable `tag`
-	@echo ${tag}
-.PHONY : tag
-
-build : ## Build image with name `${name}` and tag '${tag}', for example, `make build`
+build : ## Build image with name `${NAME}`, for example, `make build`
 	DOCKER_BUILDKIT=1 \
 		docker build \
-			--tag ${name}:${tag} \
+			--tag ${NAME} \
 			--build-arg UID=$(shell id --user) \
 			--build-arg GID=$(shell id --group) \
 			.
 .PHONY : build
 
-remove : ## Remove image with name `${name}` and tag '${tag}'
-	docker rmi ${name}:${tag}
+remove : ## Remove image with name `${NAME}`
+	docker rmi ${NAME}
 .PHONY : remove
 
-run : build ## Run command `${COMMAND}` in fresh container for image with name `${name}` and tag '${tag}', for example, `make COMMAND="ls -al"` run (note that Node development tools are installed to or updated in the Docker volume `${name}_node_modules` when necessary --- stop and remove containers using the volume and remove the volume by running `make remove-containers remove-volumes`)
+run : build ## Run command `${COMMAND}` in fresh container for image with name `${NAME}`, for example, `make COMMAND="ls -al"` run (note that Node development tools are installed to or updated in the Docker volume `${NAME}_node_modules` when necessary --- stop and remove containers using the volume and remove the volume by running `make remove-containers remove-volumes`)
 	docker run \
 		--interactive \
 		--tty \
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
-		--mount type=volume,source=${name}_node_modules,destination=/app/node_modules \
+		--mount type=volume,source=${NAME}_node_modules,destination=/app/node_modules \
 		${OPTIONS} \
-		${name}:${tag} \
+		${NAME} \
 		bash -c "make install-tools && (exec ${COMMAND})"
 .PHONY : run
 
 shell : COMMAND = bash
-shell : run ## Enter `bash` shell in fresh container for image with name `${name}` and tag '${tag}'
+shell : run ## Enter `bash` shell in fresh container for image with name `${NAME}`
 .PHONY : shell
 
 remove-containers : containers = $(shell docker ps --all --quiet --filter ancestor=building_envelopes_data)
-remove-containers : ## Stop and remove containers for image with name `${name}`
+remove-containers : ## Stop and remove containers for image with name `${NAME}`
 	if [ "$(strip ${containers})" = '' ] ; then \
-		echo 'There are no containers for image with name `${name}`' ; \
+		echo 'There are no containers for image with name `${NAME}`' ; \
 	else \
 		echo 'About to stop and remove containers with identifier(s) `${containers}`' && \
 		docker container stop ${containers} && \
@@ -68,7 +60,7 @@ remove-containers : ## Stop and remove containers for image with name `${name}`
 .PHONY : remove-containers
 
 remove-volumes : ## Remove volumes created on the fly and used by running `make run` and `make shell` (note that all containers using the volume must be removed first, for example by running `make remove-containers`)
-	docker volume rm ${name}_node_modules
+	docker volume rm ${NAME}_node_modules
 .PHONY : remove-volumes
 
 serve : COMMAND = \
