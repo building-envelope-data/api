@@ -34,6 +34,7 @@ remove : ## Remove image with name `${NAME}`
 
 run : build ## Run command `${COMMAND}` in fresh container for image with name `${NAME}`, for example, `make COMMAND="ls -al"` run (note that Node development tools are installed to or updated in the Docker volume `${NAME}_node_modules` when necessary --- stop and remove containers using the volume and remove the volume by running `make remove-containers remove-volumes`)
 	docker run \
+		--rm \
 		--interactive \
 		--tty \
 		--user $(shell id --user):$(shell id --group) \
