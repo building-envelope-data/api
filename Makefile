@@ -71,7 +71,7 @@ serve : COMMAND = \
 serve : OPTIONS = \
 					--publish ${DATABASE_PORT}:4000 \
 					--publish ${METABASE_PORT}:4001
-serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` and `${METABASE_PORT}` with defaults 4000 and 4001, for example, `make serve` or `make DATABASE_PORT=8000 METABASE_PORT=8001 serve` (afterwards, open the GraphiQL IDE, a graphical interactive in-browser GraphQL IDE, in your web browser on localhost with the respective port)
+serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` and `${METABASE_PORT}` with values from the .env file, for example, `make serve` or `make DATABASE_PORT=8000 METABASE_PORT=8001 serve` (afterwards, open the GraphiQL IDE, a graphical interactive in-browser GraphQL IDE, in your web browser on localhost with the respective port)
 .PHONY : serve
 
 # ------------------------------------------------ #
