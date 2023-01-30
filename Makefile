@@ -210,13 +210,13 @@ dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage
 # does not support dry runs.
 install-tools : ## Install development tools if necessary
 	if [ \
-			"$$(npm install --no-optional --dry-run --json | jq "(.added + .removed + .updated + .moved + .failed) | length")" \
+			"$$(npm install --omit optional --dry-run --json | jq "(.added + .removed + .updated + .moved + .failed) | length")" \
 			-ne 0 \
 		 ]; then \
-		npm ci --no-optional ; \
+		npm ci --omit optional ; \
 	fi
 .PHONY : install-tools
 
 update-tools : ## Update development tools to the latest compatible minor versions
-	npm install --no-optional
+	npm install --omit optional
 .PHONY : update-tools
