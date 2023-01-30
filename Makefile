@@ -32,17 +32,17 @@ remove : ## Remove image with name `${NAME}`
 	docker rmi ${NAME}
 .PHONY : remove
 
-run : build ## Run command `${COMMAND}` in fresh container for image with name `${NAME}`, for example, `make COMMAND="ls -al"` run (note that Node development tools are installed to or updated in the Docker volume `${NAME}_node_modules` when necessary --- stop and remove containers using the volume and remove the volume by running `make remove-containers remove-volumes`)
+run : build ## Run command `${COMMAND}` in fresh container for image with name `${NAME}`, for example, `make COMMAND="ls -al"` run
 	docker run \
 		--rm \
 		--interactive \
 		--tty \
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
-		--mount type=volume,source=${NAME}_node_modules,destination=/app/node_modules \
+		--mount type=volume,destination=/app/node_modules \
 		${OPTIONS} \
 		${NAME} \
-		bash -c "make install-tools && (exec ${COMMAND})"
+		bash
 .PHONY : run
 
 shell : COMMAND = bash
@@ -206,17 +206,12 @@ dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage
 		-exec sed -i -e "$(shell printf '1s/^\357\273\277//')" -e "s/\r//" {} +
 .PHONY : dos2unix
 
-# For the dry run in the condition we should use `npm ci` However, that command
-# does not support dry runs.
-install-tools : ## Install development tools if necessary
-	if [ \
-			"$$(npm install --omit optional --dry-run --json | jq "(.added + .removed + .updated + .moved + .failed) | length")" \
-			-ne 0 \
-		 ]; then \
-		npm ci --omit optional ; \
-	fi
+install-tools : ## Install development tools from the lock file
+	npm ci \
+		--omit optional
 .PHONY : install-tools
 
 update-tools : ## Update development tools to the latest compatible minor versions
-	npm install --omit optional
+	npm install \
+		--omit optional
 .PHONY : update-tools

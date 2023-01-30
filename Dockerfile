@@ -125,10 +125,9 @@ RUN \
 # Create mount points to mount the project and the installed Node development
 # tools.
 VOLUME /app/
-VOLUME /app/node_modules/
 
 # Run commands within the process supervisor and init system `dumb-init`
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-# Make `bash` the default command (and update Node development tools), see
+# Make `bash` the default command, see
 # https://github.com/Yelp/dumb-init#using-a-shell-for-pre-start-hooks
-CMD ["bash", "-c", "make install-tools && exec bash"]
+CMD ["bash"]
