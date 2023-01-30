@@ -70,7 +70,7 @@ RUN \
     make \
     npm && \
   # Upgrade Node package manager
-  npm install --global npm@8.5.3 && \
+  npm install --global npm@9.4.0 && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
