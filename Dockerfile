@@ -1,6 +1,11 @@
+# syntax=docker/dockerfile:1.4
+# The above line fixes the Dockerfile frontend used by BuildKit. For details
+# see https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/reference.md
+# Available versions are listed on https://hub.docker.com/r/docker/dockerfile
+
 # Use Node on Debian as base image, see
 # https://hub.docker.com/_/node
-FROM node:16.14.0-bullseye-slim
+FROM node:18.13-bullseye-slim
 
 ##################
 # As user `root` #
@@ -65,7 +70,7 @@ RUN \
     make \
     npm && \
   # Upgrade Node package manager
-  npm install --global npm@8.5.3 && \
+  npm install --global npm@9.4.0 && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
@@ -120,10 +125,9 @@ RUN \
 # Create mount points to mount the project and the installed Node development
 # tools.
 VOLUME /app/
-VOLUME /app/node_modules/
 
 # Run commands within the process supervisor and init system `dumb-init`
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-# Make `bash` the default command (and update Node development tools), see
+# Make `bash` the default command, see
 # https://github.com/Yelp/dumb-init#using-a-shell-for-pre-start-hooks
-CMD ["bash", "-c", "make install-tools && exec bash"]
+CMD ["bash"]

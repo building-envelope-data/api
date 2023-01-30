@@ -9,7 +9,7 @@ The following introduction explains the structure for new users and the section 
 
 ## Table Of Contents
 
-[I don't want to read this whole thing, I just have a question!!!](#i-dont-want-to-read-this-whole-thing-i-just-have-a-question)
+[I don't want to read this whole thing, I just have a question!](#i-dont-want-to-read-this-whole-thing-i-just-have-a-question)
 
 [Introduction](#introduction)
 
@@ -24,7 +24,7 @@ The following introduction explains the structure for new users and the section 
 
 [How to contribute](#how-to-contribute)
 
-## I don't want to read this whole thing, I just have a question!!!
+## I don't want to read this whole thing, I just have a question!
 
 If you have a question, please read this [README.md](https://github.com/building-envelope-data/api/blob/develop/README.md) and search this repository with its [wiki](https://github.com/building-envelope-data/api/wiki), [discussions](https://github.com/building-envelope-data/api/discussions), [Questions and Answers](https://github.com/building-envelope-data/api/discussions/categories/q-a) and [existing issues](https://github.com/building-envelope-data/api/issues) for the answer.
 
@@ -60,7 +60,7 @@ In order to use our development tooling, for example, to format code and to run 
    [Z shell, aka, `zsh`](https://www.zsh.org/),
    or shiny new
    [`fish`](https://fishshell.com/).
-2. Install [Git](https://git-scm.com/) by running
+1. Install [Git](https://git-scm.com/) by running
    ```shell
    sudo apt install git-all
    ```
@@ -80,7 +80,7 @@ In order to use our development tooling, for example, to format code and to run 
    [CentOS](https://www.centos.org/).
    For further information see
    [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-3. Clone the source code by running
+1. Clone the source code by running
    ```shell
    git clone git@github.com:building-envelope-data/api.git
    ```
@@ -88,14 +88,19 @@ In order to use our development tooling, for example, to format code and to run 
    ```shell
    cd building-envelope-data
    ```
+1. Prepare your environment by running
+   ```shell
+   cp /.env.sample /.env
+   ```
+   and adjusting the copied environment to your needs.
 
 #### With Docker
 
-4. Install
+5. Install
    [Docker Desktop](https://www.docker.com/products/docker-desktop),
    and
    [GNU Make](https://www.gnu.org/software/make/).
-5. List all GNU Make targets by running
+1. List all GNU Make targets by running
    ```shell
    make help
    ```
@@ -112,10 +117,10 @@ In order to use our development tooling, for example, to format code and to run 
    - `format` formats source files,
    - `introspect` introspects the GraphQL schemas,
    - `dos2unix` converts Windows-style to UNIX-style line endings,
-   - `install-tools` installs development tools, and
+   - `install-tools` installs development tools from the lock file, and
    - `update-tools` updates development tools to the latest compatible minor
      versions.
-6. Drop into `bash` with the working directory `/app`, which
+1. Drop into `bash` with the working directory `/app`, which
    is mounted to the host's working directory, inside a fresh Docker container
    based on Debian Linux everything installed by running
    ```shell
@@ -123,11 +128,11 @@ In order to use our development tooling, for example, to format code and to run 
    ```
    If necessary, the Docker image is (re)built automatically, which takes
    a while the first time.
-7. Do something with the project like validating the schemas by running
+1. Do something with the project like validating the schemas by running
    ```shell
    make compile
    ```
-8. Drop out of the container by running
+1. Drop out of the container by running
    ```shell
    exit
    ```
@@ -135,12 +140,12 @@ In order to use our development tooling, for example, to format code and to run 
 
 #### Without Docker
 
-4. Install
+5. Install
    [GNU Bash](https://www.gnu.org/software/bash/),
    [GNU Make](https://www.gnu.org/software/make/),
    and
    [npm](https://www.npmjs.com).
-5. Install the development tools in `package.json` by running
+1. Install the development tools in `package.json` by running
    ```
    make install-tools
    ```
@@ -154,8 +159,8 @@ In order to use our development tooling, for example, to format code and to run 
    ```
    npx ajv --help
    ```
-6. Drop into `bash`.
-7. Do something with the project as elaborated above.
+1. Drop into `bash`.
+1. Do something with the project as elaborated above.
 
 Note that another
 [POSIX-compatible shell](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18)

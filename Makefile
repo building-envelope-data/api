@@ -1,11 +1,7 @@
 # Concise introduction to GNU Make:
 # https://swcarpentry.github.io/make-novice/reference.html
 
-name = building_envelopes_data
-tag = latest
-
-DATABASE_PORT = 4000
-METABASE_PORT = 4001
+include .env
 
 # Taken from https://www.client9.com/self-documenting-makefiles/
 help : ## Print this help
@@ -19,46 +15,44 @@ help : ## Print this help
 # Interface with Docker #
 # --------------------- #
 
-name : ## Print value of variable `name`
-	@echo ${name}
+name : ## Print value of variable `NAME`
+	@echo ${NAME}
 .PHONY : name
 
-tag : ## Print value of variable `tag`
-	@echo ${tag}
-.PHONY : tag
-
-build : ## Build image with name `${name}` and tag '${tag}', for example, `make build`
-	docker build \
-		--tag ${name}:${tag} \
-		--build-arg UID=$(shell id --user) \
-		--build-arg GID=$(shell id --group) \
-		.
+build : ## Build image with name `${NAME}`, for example, `make build`
+	DOCKER_BUILDKIT=1 \
+		docker build \
+			--tag ${NAME} \
+			--build-arg UID=$(shell id --user) \
+			--build-arg GID=$(shell id --group) \
+			.
 .PHONY : build
 
-remove : ## Remove image with name `${name}` and tag '${tag}'
-	docker rmi ${name}:${tag}
+remove : ## Remove image with name `${NAME}`
+	docker rmi ${NAME}
 .PHONY : remove
 
-run : build ## Run command `${COMMAND}` in fresh container for image with name `${name}` and tag '${tag}', for example, `make COMMAND="ls -al"` run (note that Node development tools are installed to or updated in the Docker volume `${name}_node_modules` when necessary --- stop and remove containers using the volume and remove the volume by running `make remove-containers remove-volumes`)
+run : build ## Run command `${COMMAND}` in fresh container for image with name `${NAME}`, for example, `make COMMAND="ls -al"` run
 	docker run \
+		--rm \
 		--interactive \
 		--tty \
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
-		--mount type=volume,source=${name}_node_modules,destination=/app/node_modules \
+		--mount type=volume,destination=/app/node_modules \
 		${OPTIONS} \
-		${name}:${tag} \
-		bash -c "make install-tools && (exec ${COMMAND})"
+		${NAME} \
+		bash
 .PHONY : run
 
 shell : COMMAND = bash
-shell : run ## Enter `bash` shell in fresh container for image with name `${name}` and tag '${tag}'
+shell : run ## Enter `bash` shell in fresh container for image with name `${NAME}`
 .PHONY : shell
 
 remove-containers : containers = $(shell docker ps --all --quiet --filter ancestor=building_envelopes_data)
-remove-containers : ## Stop and remove containers for image with name `${name}`
+remove-containers : ## Stop and remove containers for image with name `${NAME}`
 	if [ "$(strip ${containers})" = '' ] ; then \
-		echo 'There are no containers for image with name `${name}`' ; \
+		echo 'There are no containers for image with name `${NAME}`' ; \
 	else \
 		echo 'About to stop and remove containers with identifier(s) `${containers}`' && \
 		docker container stop ${containers} && \
@@ -67,7 +61,7 @@ remove-containers : ## Stop and remove containers for image with name `${name}`
 .PHONY : remove-containers
 
 remove-volumes : ## Remove volumes created on the fly and used by running `make run` and `make shell` (note that all containers using the volume must be removed first, for example by running `make remove-containers`)
-	docker volume rm ${name}_node_modules
+	docker volume rm ${NAME}_node_modules
 .PHONY : remove-volumes
 
 serve : COMMAND = \
@@ -77,7 +71,7 @@ serve : COMMAND = \
 serve : OPTIONS = \
 					--publish ${DATABASE_PORT}:4000 \
 					--publish ${METABASE_PORT}:4001
-serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` and `${METABASE_PORT}` with defaults 4000 and 4001, for example, `make serve` or `make DATABASE_PORT=8000 METABASE_PORT=8001 serve` (afterwards, open the GraphiQL IDE, a graphical interactive in-browser GraphQL IDE, in your web browser on localhost with the respective port)
+serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` and `${METABASE_PORT}` with values from the .env file, for example, `make serve` or `make DATABASE_PORT=8000 METABASE_PORT=8001 serve` (afterwards, open the GraphiQL IDE, a graphical interactive in-browser GraphQL IDE, in your web browser on localhost with the respective port)
 .PHONY : serve
 
 # ------------------------------------------------ #
@@ -212,17 +206,12 @@ dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage
 		-exec sed -i -e "$(shell printf '1s/^\357\273\277//')" -e "s/\r//" {} +
 .PHONY : dos2unix
 
-# For the dry run in the condition we should use `npm ci` However, that command
-# does not support dry runs.
-install-tools : ## Install development tools if necessary
-	if [ \
-			"$$(npm install --no-optional --dry-run --json | jq "(.added + .removed + .updated + .moved + .failed) | length")" \
-			-ne 0 \
-		 ]; then \
-		npm ci --no-optional ; \
-	fi
+install-tools : ## Install development tools from the lock file
+	npm ci \
+		--omit optional
 .PHONY : install-tools
 
 update-tools : ## Update development tools to the latest compatible minor versions
-	npm install --no-optional
+	npm install \
+		--omit optional
 .PHONY : update-tools
