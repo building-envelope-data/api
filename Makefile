@@ -215,3 +215,12 @@ update-tools : ## Update development tools to the latest compatible minor versio
 	npm install \
 		--omit optional
 .PHONY : update-tools
+
+licenses : ## Print licenses
+	yarn run \
+		license-checker \
+			--unknown \
+			--direct \
+			--summary
+			# --failOn
+			# --onlyAllow
