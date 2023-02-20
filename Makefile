@@ -81,7 +81,7 @@ serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` 
 schema_file_paths = $(shell find ./schemas/ -name "*.json")
 schema_file_references = $(addprefix -r ,${schema_file_paths})
 ajv = npx --no-install ajv \
-				--spec=draft2019 \
+				--spec=draft2020 \
 				-c ajv-formats
 
 compile : ## Compile schemas

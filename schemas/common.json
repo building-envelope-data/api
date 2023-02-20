@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/v1/common.json",
   "title": "common definitions",
   "description": "Definitions which are used in several other schemas.",
