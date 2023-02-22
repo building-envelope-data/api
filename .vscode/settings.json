@@ -124,5 +124,5 @@
   "explorer.confirmDragAndDrop": false,
   "editor.trimAutoWhitespace": false,
   "editor.minimap.enabled": false,
-  "window.zoomLevel": 2
+  "window.zoomLevel": 1
 }
