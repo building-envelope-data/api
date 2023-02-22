@@ -1,0 +1,57 @@
+@startjson spectrallyResolvedDataPoints
+{
+  "dataPoints": [
+    {
+      "incidence": {
+        "direction": {
+          "polar": 8
+        },
+        "wavelengths": { "wavelength": 280 }
+      },
+      "emergence": {
+        "direction": {
+          "polar": 8
+        }
+      },
+      "results": {
+        "transmittance": 0.65,
+        "reflectance": 0.071
+      }
+    },
+    {
+      "incidence": {
+        "direction": {
+          "polar": 8
+        },
+        "wavelengths": { "wavelength": 285 }
+      },
+      "emergence": {
+        "direction": {
+          "polar": 8
+        }
+      },
+      "results": {
+        "transmittance": 0.66,
+        "reflectance": 0.070
+      }
+    },
+    {
+      "incidence": {
+        "direction": {
+          "polar": 8
+        },
+        "wavelengths": { "wavelength": 290 }
+      },
+      "emergence": {
+        "direction": {
+          "polar": 8
+        }
+      },
+      "results": {
+        "transmittance": 0.64,
+        "reflectance": 0.072
+      }
+    }
+  ]
+}
+@endjson
