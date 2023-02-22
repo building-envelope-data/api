@@ -128,4 +128,14 @@ query {
       }
     }
   }
+
+  allOpticalDataSets: databases {
+    nodes {
+      allOpticalData {
+        nodes {
+          name
+        }
+      }
+    }
+  }
 }
