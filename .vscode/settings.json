@@ -12,7 +12,7 @@
     "comments": true,
     "strings": true
   },
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "json.schemas": [
     {
       "fileMatch": ["./examples/dbe/*.json"],
@@ -124,5 +124,8 @@
   "explorer.confirmDragAndDrop": false,
   "editor.trimAutoWhitespace": false,
   "editor.minimap.enabled": false,
-  "window.zoomLevel": 2
+  "window.zoomLevel": 1,
+  "[plantuml]": {
+    "editor.defaultFormatter": "jebbs.plantuml"
+  }
 }
