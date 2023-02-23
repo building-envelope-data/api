@@ -398,7 +398,7 @@
       "required": []
     },
     "uValue": {
-      "$ref": "number.json#/$defs/numberWithUncertainty",
+      "$ref": "number.json#/$defs/wattPerSquareMeterKelvinWithUncertainty",
       "description": "The U value, also known as thermal transmittance, can be calculated by dividing the heat flux through the sample by the temperature difference between the exterior and the interior."
     },
     "gValue": {
