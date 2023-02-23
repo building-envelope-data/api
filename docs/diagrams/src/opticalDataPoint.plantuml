@@ -1,6 +1,5 @@
 @startjson opticalDataPoint
 {
-
   "dataPoint": {
     "oneOf": [
     {
@@ -68,502 +67,146 @@
       ,
       "componentCharacteristics": {
         "treatmentBefore": {
-        "$ref": "common.json#/$defs/reference"
-      }
-      ,
-      "locationOnSample": {
-        "$ref": "common.json#/$defs/reference"
-      }
-      ,
-      "polarizationSensitivity": {
-        "$ref": "common.json#/$defs/reference"
-      }
-      ,
-      "instrumentSignature": {
-        "$ref": "number.json#/$defs/nonNegativeNumber"
-      }
-      ,
-      "normalization": {
-        "type": "string",
-        "enum": ["absolute", "relative", "specular", "diffuseReflectance"]
-      }
-      ,
-      "referenceSample": {
-        "$ref": "common.json#/$defs/reference"
-      }
-      ,
-      "spot": {
-        "$ref": "common.json#/$defs/reference"
-      }
-      ,
-      "tilt": {
-        "$ref": "common.json#/$defs/angles/$defs/tilt"
-      }
-      ,
-      "symmetries": {
-        "type": "string",
-        "enum": [
-        "azimuthalAngleInvariance",
-        "profileAngle",
-        "mirror",
-        "rotationalDependingOnAzimuth",
-        "mirrorAndRotational"
-        ]
-      }
-      ,
-      "surface": {
-        "$ref": "component.json#/$defs/surface"
-      }
-      }
-        ,
-        "emergence": {
-          "$ref": "#/$defs/emergence",
-          "title": "Emergent radiation",
-          "description": "Radiation that emerges from the component."
+          "$ref": "common.json#/$defs/reference"
         }
         ,
-        "results": {
-          "$ref": "#/$defs/results",
-          "title": "Results",
-          "description": "For example transmittance and reflectance."
-        }
-      }
-      ,
-      "additionalProperties": false,
-      "required": ["incidence", "emergence", "results"]
-    }
-    ,
-    {
-      "title": "Color characterization",
-      "$ref": "#/$defs/color",
-      "description": "The color of the component can be characterized in different ways, for example with the CIELAB Color Space and the Color Rendering Index. For angle-dependent characterization of colors, the general schema for measured and calculated optical data is better suited because incident and emergent radiation can be characterized in detail."
-    }
-    ]
-  }
-  ,
-  "componentCharacteristics": {
-    "title": "Component characteristics",
-    "description": "Parameters for optical measurements and simulations.",
-    "type": "object",
-    "properties": {
-      "treatmentBefore": {
-        "$ref": "common.json#/$defs/reference",
-        "title": "Treatment before",
-        "description": "Treatment performed on the sample before measurement."
-      }
-      ,
-      "locationOnSample": {
-        "$ref": "common.json#/$defs/reference",
-        "title": "Location on sample",
-        "description": "Location of measurement on the sample."
-      }
-      ,
-      "polarizationSensitivity": {
-        "$ref": "common.json#/$defs/reference",
-        "title": "Polarization sensitivity",
-        "description": "Polarization sensitivity of the receiver of the optical measurement."
-      }
-      ,
-      "instrumentSignature": {
-        "$ref": "number.json#/$defs/nonNegativeNumber",
-        "title": "Instrument signature",
-        "description": "Mean scatter level detected when there is no sample scatter present."
-      }
-      ,
-      "normalization": {
-        "type": "string",
-        "enum": ["absolute", "relative", "specular", "diffuseReflectance"],
-        "title": "Normalization",
-        "description": "Normalization methods absolute, relative, specular, and diffuse reflectance as standardized in [ASTM E2387-05(2011), Standard Practice for Goniometric Optical Scatter Measurements, ASTM International, West Conshohocken, PA, 2011, www.astm.org](https://www.astm.org/DATABASE.CART/HISTORICAL/E2387-05R11.htm)."
-      }
-      ,
-      "referenceSample": {
-        "$ref": "common.json#/$defs/reference",
-        "title": "Reference sample",
-        "description": "Reference sample on which the optical measurement depends."
-      }
-      ,
-      "spot": {
-        "$ref": "common.json#/$defs/reference",
-        "title": "Spot",
-        "description": "Size and profile of the irradiance on the sample."
-      }
-      ,
-      "tilt": {
-        "$ref": "common.json#/$defs/angles/$defs/tilt",
-        "title": "Tilt angle",
-        "description": "Tilt angle, for example of venetian blinds."
-      }
-      ,
-      "symmetries": {
-        "title": "Choose between the general symmetries `mirror`, `rotationalDependingOnAzimuth` and `mirrorAndRotational` and their important special cases `azimuthalAngleInvariance` and `profileAngle`.",
-        "type": "string",
-        "enum": [
-        "azimuthalAngleInvariance",
-        "profileAngle",
-        "mirror",
-        "rotationalDependingOnAzimuth",
-        "mirrorAndRotational"
-        ],
-        "description": "(i) `azimuthalAngleInvariance` means that the optical results depend only on the polar angle and not on the azimuth angle. Many homogeneous materials like glass panes have an `azimuthalAngleInvariance`. (ii) `profileAngle` symmetry means the results are the same for all directions of incidence which have the same profile angle. The profile angle is the projection of the altitude angle of the incidence on a vertical plane which is perpendicular to the surface of the sample. (iii) In the case of a `mirror` symmetry, the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. However, if the optical results depend only on the profile angle, use `profileAngle` instead of `mirror`! (iv) `rotationalDependingOnAzimuth` means that for example one quarter of the hemisphere is enough to describe the whole hemisphere because the optical results for the other quarters can be obtained by rotating the results for the first quarter around the axis perpendicular to the sample. However, if the optical results depend only on the polar angle and not on the azimuth angle, use `azimuthalAngleInvariance` instead of `rotationalDependingOnAzimuth`! (v) `mirrorAndRotational` requires a mirror and a rotational symmetry. Mirror symmetry means that the results for one half of the possible directions of incidence are enough to determine also the results for the other half of the possible directions of incidence because the second half is a mirror image of the first half. Rotational symmetry means that for example one quarter of the hemisphere is enough to describe the whole hemisphere because the optical results for the other quarters can be obtained by rotating the results for the first quarter around the axis perpendicular to the sample. However, if the optical results depend only on the profile angle, use `profileAngle` instead of `mirrorAndRotational`! If the optical results depend only on the polar angle and not on the azimuth angle, use `azimuthalAngleInvariance` instead of `rotationalDependingOnAzimuth`!"
-      }
-      ,
-      "surface": {
-        "$ref": "component.json#/$defs/surface",
-        "description": "Defines which surface is irradiated"
-      }
-    }
-    ,
-    "additionalProperties": false,
-    "minProperties": 1,
-    "required": []
-  }
-  ,
-  "polarization": {
-    "title": "Polarization",
-    "description": "Polarization is a characteristic of radiation which in general influences transmittance and reflectance. Radiation can be polarized linearly and circularly.",
-    "oneOf": [
-    {
-      "title": "Linear polarization",
-      "type": "object",
-      "properties": {
-        "s": {
-          "$ref": "number.json#/$defs/numberWithUncertainty",
-          "description": "Fraction of radiation with electric field perpendicular to the plane of incidence of the radiation on the sample. It is in theory between `0` and `1` inclusive. However, in measurement data because of uncertainty it is between `0 - uncertainty` and `1 + uncertainty` inclusive."
+        "locationOnSample": {
+          "$ref": "common.json#/$defs/reference"
         }
         ,
-        "p": {
-          "$ref": "number.json#/$defs/numberWithUncertainty",
-          "description": "Fraction of radiation with electric field parallel to the plane of incidence of the radiation on the sample. It is in theory between `0` and `1` inclusive. However, in measurement data because of uncertainty it is between `0 - uncertainty` and `1 + uncertainty` inclusive."
-        }
-      }
-      ,
-      "additionalProperties": false,
-      "required": ["s", "p"]
-    }
-    ,
-    {
-      "title": "Circular polarization",
-      "description": "`leftHanded` means that the radiation is circularly polarized and rotates in a left-hand sense with respect to the direction of radiation. `rightHanded` means that the radiation is circularly polarized and rotates in a right-hand sense with respect to the direction of radiation.",
-
-      "type": "string",
-      "enum": ["leftHanded", "rightHanded"]
-    }
-    ]
-  }
-  ,
-  "wavelengthUncertainty": {
-    "title": "Bandwidth and/or amplification factor",
-    "description": "Bandwidth and/or amplification factor of measuring a single wavelength or of measuring an entire spectrum of wavenlengths at the same time.",
-    "type": "object",
-    "properties": {
-      "bandwidth": {
-        "$ref": "number.json#/$defs/nanometer",
-        "title": "Bandwidth",
-        "description": "Range of wavelengths around a center wavelength. This range can be interpreted as the uncertainty of the center wavelength. It is often easier to determine the aplification factor instead."
-      }
-      ,
-      "amplificationFactor": {
-        "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
-        "title": "Amplification factor",
-        "description": "Measure of the uncertainty of the center wavelength. It is often easier to determine than the bandwidth."
-      }
-    }
-    ,
-    "additionalProperties": false,
-    "minProperties": 1
-  }
-  ,
-  "wavelengthsIntegral": {
-    "title": "Integral over wavelengths",
-    "description": "Tells that the corresponding result is an integral with a certain spectrum over wavelengths.",
-    "type": "object",
-    "properties": {
-      "integral": {
-        "type": "string",
-        "enum": ["infrared", "solar", "ultraviolet", "visible", "other"],
-        "description": "Spectrum over which the integral result was measured or calculated. `ultraviolet`, `visible`, `solar` and `infrared` indicate the range of the wavelengths used for the integral values. Details about the spectrum are provided by the method which has been applied to generate the data set. If neither `ultraviolet`, `visible`, `solar` and `infrared` describe the spectrum correctly, `other` indicates that all information about the spectrum is provided by the applied method."
-      }
-    }
-    ,
-    "additionalProperties": false,
-    "required": ["integral"]
-  }
-  ,
-  "transmittance": {
-    "$ref": "number.json#/$defs/numberWithUncertainty",
-    "description": "Transmittance is the ratio between the irradiance transmitted through the sample and the irradiance on the sample. In theory it is between `0` and `1` inclusive. However, in practice, it may be less than `0` or greater than `1` for example due to measurement uncertainty."
-  }
-  ,
-  "reflectance": {
-    "$ref": "number.json#/$defs/numberWithUncertainty",
-    "description": "Reflectance is the ratio between the irradiance reflected by the sample and the irradiance on the sample. In theory it is between `0` and `1` inclusive. However, in practice, it may be less than `0` or greater than `1` for example due to measurement uncertainty."
-  }
-  ,
-  "absorptanceEmittance": {
-    "$ref": "number.json#/$defs/numberWithUncertainty",
-    "description": "Absorptance is the ratio between the irradiance absorbed by the sample and the irradiance on the sample. Emittance is the ratio of the radiant emittance of heat of the component to that of a standard black body. For the same 'wavelengths', absorptance is equal to emittance. For the same 'incidence', 'variables', and 'emergence', the absorptance-emittance value is equal to `1 - transmittance - reflectance`."
-  }
-  ,
-  "incidenceDirection": {
-    "title": "Incidence direction",
-    "description": "Direction of incident radiation on sample. An incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance) is called 'nearnormal' and said to be 'almost perpendicular'.",
-    "oneOf": [
-    {
-      "description": "Direction of incidence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
-      "type": "object",
-      "properties": {
-        "polar": {
-          "$ref": "number.json#/$defs/degreeBetweenZeroAndNinetyWithUncertainty",
-          "description": "The polar angle is the angle between the direction of incidence and an axis which is perpendicular to the surface of the sample. It can have values between 0° and 90°. A polar angle of 0° means that the direction of incidence is perpendicular to the sample. A polar angle of 90° means that the direction of incidence is parallel to the sample. If the sample has `azimuthalAngleInvariance`, then the optical results depend only on the polar angle and not on the azimuth angle. If the sample has a `profileAngle` symmetry whose direction is equal to the prime direction, then the profile angle can be calculated from the polar and azimuth angles."
+        "polarizationSensitivity": {
+          "$ref": "common.json#/$defs/reference"
         }
         ,
-        "azimuth": {
-          "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
-          "description": "The direction of incidence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. It can have values between 0° and 360°. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals 30° because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
-        }
-      }
-      ,
-      "additionalProperties": false,
-      "required": ["polar"]
-    }
-    ,
-    {
-      "title": "Hemispherical",
-      "description": "Incidence arrives from all directions of the hemisphere on the sample surface.",
-      "type": "string",
-      "const": "hemispherical"
-    }
-    ]
-  }
-  ,
-  "emergenceDirection": {
-    "title": "Emergence direction",
-    "description": "Direction of emergent radiation from a sample. An polar angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance) is called 'nearnormal' and said to be 'almost perpendicular'.",
-    "oneOf": [
-    {
-      "description": "Direction of emergence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
-      "type": "object",
-      "properties": {
-        "polar": {
-          "$ref": "number.json#/$defs/degreeWithUncertainty",
-          "description": "The polar angle is the angle between the direction of emergence and an axis which is perpendicular to the surface of the sample. It can have values between 0° and 90°. A polar angle of 0° means that the direction of emergence is perpendicular to the sample. A polar angle of 90° means that the direction of emergence is parallel to the sample. If the sample has `azimuthalAngleInvariance`, then the optical results depend only on the polar angle and not on the azimuth angle. If the sample has a `profileAngle` symmetry whose direction is equal to the prime direction, then the profile angle can be calculated from the polar and azimuth angles."
+        "instrumentSignature": {
+          "$ref": "number.json#/$defs/nonNegativeNumber"
         }
         ,
-        "azimuth": {
-          "$ref": "number.json#/$defs/degreeWithUncertainty",
-          "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. It can have values between 0° and 360°. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals 30° because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
+        "normalization": {
+          "type": "string",
+          "enum": ["absolute", "relative", "specular", "diffuseReflectance"]
+        }
+        ,
+        "referenceSample": {
+          "$ref": "common.json#/$defs/reference"
+        }
+        ,
+        "spot": {
+          "$ref": "common.json#/$defs/reference"
+        }
+        ,
+        "tilt": {
+          "$ref": "common.json#/$defs/angles/$defs/tilt"
+        }
+        ,
+        "symmetries": {
+          "type": "string",
+          "enum": [
+          "azimuthalAngleInvariance",
+          "profileAngle",
+          "mirror",
+          "rotationalDependingOnAzimuth",
+          "mirrorAndRotational"
+          ]
+        }
+        ,
+        "surface": {
+          "$ref": "component.json#/$defs/surface"
         }
       }
       ,
-      "additionalProperties": false,
-      "required": ["polar"]
+      "emergence": {
+        "direction": {
+          "oneOf": [
+          {
+            "polar": {
+              "$ref": "number.json#/$defs/degreeWithUncertainty"
+            }
+            ,
+            "azimuth": {
+              "$ref": "number.json#/$defs/degreeWithUncertainty"
+            }
+          }
+          ,
+          {
+            "type": "string",
+            "enum": ["diffuse", "hemispherical"]
+          }
+          ]
+        }
+      }
+      ,
+      "results": {
+        "transmittance": {
+          "$ref": "#/$defs/transmittance"
+        }
+        ,
+        "reflectance": {
+          "$ref": "#/$defs/reflectance"
+        }
+        ,
+        "absorptanceEmittance": {
+          "$ref": "#/$defs/absorptanceEmittance"
+        }
+      }
     }
     ,
     {
-      "title": "Diffuse or hemispherical",
-      "description": "(i) Diffuse means all directions with an emergence angle greater than 10°. (ii) Hemispherical means all directions to the hemisphere above the sample surface. Both are used when the emergence in many directions is treated as a sum.",
-      "type": "string",
-      "enum": ["diffuse", "hemispherical"]
-    }
-    ]
-  }
-  ,
-  "uncertainWavelength": {
-    "title": "Uncertain wavelength",
-    "type": "object",
-    "properties": {
-      "wavelength": {
-        "$ref": "number.json#/$defs/nanometer",
-        "description": "One wavelength in nanometers. If necessary, its uncertainty can be specified with `uncertainty`."
-      }
-      ,
-      "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
-    }
-    ,
-    "additionalProperties": false,
-    "required": ["wavelength"]
-  }
-  ,
-  "wavelengths": {
-    "title": "Wavelengths of radiation",
-    "description": "Either one wavelength, possibly with uncertainty, or an integral over many wavelengths.",
-    "oneOf": [
-    {
-      "$ref": "#/$defs/uncertainWavelength"
-    }
-    ,
-    {
-      "$ref": "#/$defs/wavelengthsIntegral"
-    }
-    ]
-  }
-  ,
-  "incidence": {
-    "title": "Incident radiation",
-    "description": "Incident radiation on a sample. It consists of the direction of irradiance, polarization, wavelengths and range of wavelengths.",
-    "type": "object",
-    "properties": {
-      "direction": {
-        "$ref": "#/$defs/incidenceDirection"
-      }
-      ,
-      "wavelengths": {
-        "$ref": "#/$defs/wavelengths",
-        "description": "Wavelengths of the optical data regardless of whether the incidence or the emergence was split into smaller spectra."
-      }
-      ,
-      "polarization": {
-        "$ref": "#/$defs/polarization",
-        "description": "The polarization of the optical data regardless of whether the incidence or the emergence polarized."
-      }
-    }
-    ,
-    "additionalProperties": false,
-    "required": ["direction", "wavelengths"]
-  }
-  ,
-  "emergence": {
-    "title": "Emergent radiation",
-    "description": "Emergent radiation from a sample. It is characterized by its direction.",
-    "type": "object",
-    "properties": {
-      "direction": {
-        "$ref": "#/$defs/emergenceDirection"
-      }
-    }
-    ,
-    "additionalProperties": false,
-    "required": ["direction"]
-  }
-  ,
-  "results": {
-    "title": "Measurement or simulation results",
-    "type": "object",
-    "properties": {
-      "transmittance": {
-        "$ref": "#/$defs/transmittance"
-      }
-      ,
-      "reflectance": {
-        "$ref": "#/$defs/reflectance"
-      }
-      ,
-      "absorptanceEmittance": {
-        "$ref": "#/$defs/absorptanceEmittance"
-      }
-    }
-    ,
-    "additionalProperties": false,
-    "required": [],
-    "minProperties": 1
-  }
-  ,
-  "color": {
-    "title": "Color characterization",
-    "type": "object",
-    "properties": {
       "name": {
-        "type": "string",
-        "description": "The name of the color in common language"
+        "type": "string"
       }
       ,
-      "cielabColors": {
-        "type": "array",
-        "items": {
-          "$ref": "#/$defs/cielabColor"
+      "cielabColors": [
+      {
+        "lStar": {
+          "$ref": "number.json#/$defs/numberWithUncertainty"
         }
         ,
-        "uniqueItems": true,
-        "minItems": 1
+        "aStar": {
+          "$ref": "number.json#/$defs/numberWithUncertainty"
+        }
+        ,
+        "bStar": {
+          "$ref": "number.json#/$defs/numberWithUncertainty"
+        }
+        ,
+        "direction": {
+          "type": "string",
+          "enum": ["reflection", "transmission"]
+        }
+        ,
+        "surface": {
+          "$ref": "component.json#/$defs/surface"
+        }
+        ,
+        "observer": {
+          "type": "string",
+          "enum": ["twoDegrees", "tenDegrees"]
+        }
+        ,
+        "illuminant": {
+          "type": "string",
+          "enum": ["A", "D65"]
+        }
       }
+      ]
       ,
       "colorRenderingIndices": {
-        "type": "array",
-        "items": {
-          "$ref": "#/$defs/colorRenderingIndex"
+        "value": {
+          "$ref": "number.json#/$defs/numberWithUncertainty"
         }
         ,
-        "uniqueItems": true,
-        "minItems": 1
+        "direction": {
+          "type": "string",
+          "enum": ["reflection", "transmission"]
+        }
+        ,
+        "surface": {
+          "$ref": "component.json#/$defs/surface"
+        }
       }
     }
-    ,
-    "additionalProperties": false,
-    "required": [],
-    "minProperties": 1
-  }
-  ,
-  "cielabColor": {
-    "title": "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) define the color which is reflected by a component or transmitted through a component.",
-    "type": "object",
-    "properties": {
-      "lStar": {
-        "$ref": "number.json#/$defs/numberWithUncertainty",
-        "description": "L* (lStar) defines the lightness of the color."
-      }
-      ,
-      "aStar": {
-        "$ref": "number.json#/$defs/numberWithUncertainty",
-        "description": "a* (aStar) defines the color between green and red."
-      }
-      ,
-      "bStar": {
-        "$ref": "number.json#/$defs/numberWithUncertainty",
-        "description": "b* (bStar) defines the color between blue and yellow."
-      }
-      ,
-      "direction": {
-        "type": "string",
-        "enum": ["reflection", "transmission"],
-        "description": "`reflection` indicates that that the color is defined which is reflected by the component. `transmission` indicates that the color is defined which is transmitted through the component."
-      }
-      ,
-      "surface": {
-        "$ref": "component.json#/$defs/surface",
-        "description": "Defines which surface is irradiated"
-      }
-      ,
-      "observer": {
-        "type": "string",
-        "enum": ["twoDegrees", "tenDegrees"],
-        "description": "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
-      }
-      ,
-      "illuminant": {
-        "type": "string",
-        "enum": ["A", "D65"],
-        "description": "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
-      }
-    }
-    ,
-    "additionalProperties": false,
-    "required": ["lStar", "aStar", "bStar", "direction"]
-  }
-  ,
-  "colorRenderingIndex": {
-    "title": "The Color Rendering Index (CRI) indicates how well the transmitted or reflected radiation matches daylight regarding the rendering of colors.",
-    "type": "object",
-    "properties": {
-      "value": {
-        "$ref": "number.json#/$defs/numberWithUncertainty",
-        "description": "The value of the Color Rendering Index indicates how well for example the transmitted or reflected radiation matches daylight."
-      }
-      ,
-      "direction": {
-        "type": "string",
-        "enum": ["reflection", "transmission"],
-        "description": "`reflection` indicates that that the Color Rendering Index is defined for radiation which is reflected by the component. `transmission` indicates that the Color Rendering Index is defined for radiation which is transmitted through the component."
-      }
-      ,
-      "surface": {
-        "$ref": "component.json#/$defs/surface",
-        "description": "Defines which surface is irradiated"
-      }
-    }
-    ,
-    "additionalProperties": false,
-    "required": ["value", "direction"]
+    ]
   }
 }
 @endjson
