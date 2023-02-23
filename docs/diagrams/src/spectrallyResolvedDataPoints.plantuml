@@ -8,64 +8,67 @@
       }
       ,
       "wavelengths": {
-        "wavelength": 280 }
-      }
-      ,
-      "emergence": {
-        "direction": {
-          "polar": 8
-        }
-      }
-      ,
-      "results": {
-        "transmittance": 0.65,
-        "reflectance": 0.071
+        "wavelength": 480
       }
     }
     ,
-    {
-      "incidence": {
-        "direction": {
-          "polar": 8
-        }
-        ,
-        "wavelengths": {
-          "wavelength": 285 }
-        }
-        ,
-        "emergence": {
-          "direction": {
-            "polar": 8
-          }
-        }
-        ,
-        "results": {
-          "transmittance": 0.66,
-          "reflectance": 0.070
-        }
+    "emergence": {
+      "direction": {
+        "polar": 8
+      }
+    }
+    ,
+    "results": {
+      "transmittance": 0.65,
+      "reflectance": 0.07
+    }
+  }
+  ,
+  {
+    "incidence": {
+      "direction": {
+        "polar": 8
       }
       ,
-      {
-        "incidence": {
-          "direction": {
-            "polar": 8
-          }
-          ,
-          "wavelengths": {
-            "wavelength": 290 }
-          }
-          ,
-          "emergence": {
-            "direction": {
-              "polar": 8
-            }
-          }
-          ,
-          "results": {
-            "transmittance": 0.64,
-            "reflectance": 0.072
-          }
-        }
-        ]
+      "wavelengths": {
+        "wavelength": 485
       }
-      @endjson
+    }
+    ,
+    "emergence": {
+      "direction": {
+        "polar": 8
+      }
+    }
+    ,
+    "results": {
+      "transmittance": 0.66,
+      "reflectance": 0.07
+    }
+  }
+  ,
+  {
+    "incidence": {
+      "direction": {
+        "polar": 8
+      }
+      ,
+      "wavelengths": {
+        "wavelength": 490
+      }
+    }
+    ,
+    "emergence": {
+      "direction": {
+        "polar": 8
+      }
+    }
+    ,
+    "results": {
+      "transmittance": 0.67,
+      "reflectance": 0.07
+    }
+  }
+  ]
+}
+@endjson
