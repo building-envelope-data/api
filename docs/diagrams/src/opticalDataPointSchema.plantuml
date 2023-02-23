@@ -8,17 +8,16 @@
           "oneOf": [
           {
             "polar": {
-              "$ref": "number.json#/$defs/degreeBetweenZeroAndNinetyWithUncertainty"
+              "number": "degreeBetweenZeroAndNinetyWithUncertainty"
             }
             ,
             "azimuth": {
-              "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty"
+              "number": "degreeBetweenZeroAndThreeHundredSixtyWithUncertainty"
 
             }
           }
           ,
           {
-            "title": "Hemispherical",
             "type": "string",
             "const": "hemispherical"
           }
@@ -29,17 +28,22 @@
           "oneOf": [
           {
             "wavelength": {
-              "$ref": "number.json#/$defs/nanometer"
+              "number": "nanometer"
             }
             ,
-            "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
+            "uncertainty": {
+              "bandwidth": {
+                "number": "nanometer"
+              }
+              ,
+              "amplificationFactor": {
+                "number": "nonNegativeNumberWithUncertainty"
+              }
+            }
           }
           ,
           {
-            "integral": {
-              "type": "string",
-              "enum": ["infrared", "solar", "ultraviolet", "visible", "other"]
-            }
+            "integral": ["infrared", "solar", "ultraviolet", "visible", "other"]
           }
           ]
         }
@@ -48,18 +52,16 @@
           "oneOf": [
           {
             "s": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
+              "number": "numberWithUncertainty"
             }
             ,
             "p": {
-              "$ref": "number.json#/$defs/numberWithUncertainty"
+              "number": "numberWithUncertainty"
             }
           }
           ,
           {
-            "title": "Circular polarization",
-            "type": "string",
-            "enum": ["leftHanded", "rightHanded"]
+            "Circular polarization": ["leftHanded", "rightHanded"]
           }
           ]
         }
@@ -67,51 +69,45 @@
       ,
       "componentCharacteristics": {
         "treatmentBefore": {
-          "$ref": "common.json#/$defs/reference"
+          "common": "reference"
         }
         ,
         "locationOnSample": {
-          "$ref": "common.json#/$defs/reference"
+          "common": "reference"
         }
         ,
         "polarizationSensitivity": {
-          "$ref": "common.json#/$defs/reference"
+          "common": "reference"
         }
         ,
         "instrumentSignature": {
-          "$ref": "number.json#/$defs/nonNegativeNumber"
+          "number": "nonNegativeNumber"
         }
         ,
-        "normalization": {
-          "type": "string",
-          "enum": ["absolute", "relative", "specular", "diffuseReflectance"]
-        }
+        "normalization":  ["absolute", "relative", "specular", "diffuseReflectance"]
         ,
         "referenceSample": {
-          "$ref": "common.json#/$defs/reference"
+          "common": "reference"
         }
         ,
         "spot": {
-          "$ref": "common.json#/$defs/reference"
+          "common": "reference"
         }
         ,
         "tilt": {
-          "$ref": "common.json#/$defs/angles/$defs/tilt"
+          "common": "angles/tilt"
         }
         ,
-        "symmetries": {
-          "type": "string",
-          "enum": [
-          "azimuthalAngleInvariance",
-          "profileAngle",
-          "mirror",
-          "rotationalDependingOnAzimuth",
-          "mirrorAndRotational"
-          ]
-        }
+        "symmetries": [
+        "azimuthalAngleInvariance",
+        "profileAngle",
+        "mirror",
+        "rotationalDependingOnAzimuth",
+        "mirrorAndRotational"
+        ]
         ,
         "surface": {
-          "$ref": "component.json#/$defs/surface"
+          "component": "surface"
         }
       }
       ,
@@ -120,17 +116,16 @@
           "oneOf": [
           {
             "polar": {
-              "$ref": "number.json#/$defs/degreeWithUncertainty"
+              "number": "degreeWithUncertainty"
             }
             ,
             "azimuth": {
-              "$ref": "number.json#/$defs/degreeWithUncertainty"
+              "number": "degreeWithUncertainty"
             }
           }
           ,
           {
-            "type": "string",
-            "enum": ["diffuse", "hemispherical"]
+            "string": ["diffuse", "hemispherical"]
           }
           ]
         }
@@ -138,15 +133,15 @@
       ,
       "results": {
         "transmittance": {
-          "$ref": "#/$defs/transmittance"
+          "number": "numberWithUncertainty"
         }
         ,
         "reflectance": {
-          "$ref": "#/$defs/reflectance"
+          "number": "numberWithUncertainty"
         }
         ,
         "absorptanceEmittance": {
-          "$ref": "#/$defs/absorptanceEmittance"
+          "number": "numberWithUncertainty"
         }
       }
     }
@@ -156,53 +151,40 @@
         "type": "string"
       }
       ,
-      "cielabColors": [
+      "cielabColors":
       {
         "lStar": {
-          "$ref": "number.json#/$defs/numberWithUncertainty"
+          "number": "numberWithUncertainty"
         }
         ,
         "aStar": {
-          "$ref": "number.json#/$defs/numberWithUncertainty"
+          "number": "numberWithUncertainty"
         }
         ,
         "bStar": {
-          "$ref": "number.json#/$defs/numberWithUncertainty"
+          "number": "numberWithUncertainty"
         }
         ,
-        "direction": {
-          "type": "string",
-          "enum": ["reflection", "transmission"]
-        }
+        "direction":  ["reflection", "transmission"]
         ,
         "surface": {
-          "$ref": "component.json#/$defs/surface"
+          "component": "surface"
         }
         ,
-        "observer": {
-          "type": "string",
-          "enum": ["twoDegrees", "tenDegrees"]
-        }
+        "observer":  ["twoDegrees", "tenDegrees"]
         ,
-        "illuminant": {
-          "type": "string",
-          "enum": ["A", "D65"]
-        }
+        "illuminant":  ["A", "D65"]
       }
-      ]
       ,
       "colorRenderingIndices": {
         "value": {
-          "$ref": "number.json#/$defs/numberWithUncertainty"
+          "number": "numberWithUncertainty"
         }
         ,
-        "direction": {
-          "type": "string",
-          "enum": ["reflection", "transmission"]
-        }
+        "direction":  ["reflection", "transmission"]
         ,
         "surface": {
-          "$ref": "component.json#/$defs/surface"
+          "component": "surface"
         }
       }
     }
