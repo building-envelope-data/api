@@ -1,4 +1,4 @@
-@startjson incidence02
+@startjson incidenceSchema
 {
   "incidence": {
     "direction": {

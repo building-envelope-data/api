@@ -1,4 +1,4 @@
-@startjson opticalDataPoint
+@startjson opticalDataPointSchema
 {
   "dataPoint": {
     "oneOf": [
