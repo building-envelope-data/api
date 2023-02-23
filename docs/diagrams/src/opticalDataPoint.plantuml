@@ -4,21 +4,117 @@
   "dataPoint": {
     "oneOf": [
     {
-      "title": "General schema for measured and calculated optical data",
-      "description": "An optical data point consists of a definition of the incident radiation, the component characteristics, the emergent radiation, and the optical results.",
-      "type": "object",
-      "properties": {
-        "incidence": {
-          "$ref": "#/$defs/incidence",
-          "title": "Incident radiation",
-          "description": "Incident radiation on the component."
+      "incidence": {
+        "direction": {
+          "oneOf": [
+          {
+            "polar": {
+              "$ref": "number.json#/$defs/degreeBetweenZeroAndNinetyWithUncertainty"
+            }
+            ,
+            "azimuth": {
+              "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty"
+
+            }
+          }
+          ,
+          {
+            "title": "Hemispherical",
+            "type": "string",
+            "const": "hemispherical"
+          }
+          ]
         }
         ,
-        "componentCharacteristics": {
-          "$ref": "#/$defs/componentCharacteristics",
-          "title": "Component characteristics",
-          "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
+        "wavelengths": {
+          "oneOf": [
+          {
+            "wavelength": {
+              "$ref": "number.json#/$defs/nanometer"
+            }
+            ,
+            "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
+          }
+          ,
+          {
+            "integral": {
+              "type": "string",
+              "enum": ["infrared", "solar", "ultraviolet", "visible", "other"]
+            }
+          }
+          ]
         }
+        ,
+        "polarization": {
+          "oneOf": [
+          {
+            "s": {
+              "$ref": "number.json#/$defs/numberWithUncertainty"
+            }
+            ,
+            "p": {
+              "$ref": "number.json#/$defs/numberWithUncertainty"
+            }
+          }
+          ,
+          {
+            "title": "Circular polarization",
+            "type": "string",
+            "enum": ["leftHanded", "rightHanded"]
+          }
+          ]
+        }
+      }
+      ,
+      "componentCharacteristics": {
+        "treatmentBefore": {
+        "$ref": "common.json#/$defs/reference"
+      }
+      ,
+      "locationOnSample": {
+        "$ref": "common.json#/$defs/reference"
+      }
+      ,
+      "polarizationSensitivity": {
+        "$ref": "common.json#/$defs/reference"
+      }
+      ,
+      "instrumentSignature": {
+        "$ref": "number.json#/$defs/nonNegativeNumber"
+      }
+      ,
+      "normalization": {
+        "type": "string",
+        "enum": ["absolute", "relative", "specular", "diffuseReflectance"]
+      }
+      ,
+      "referenceSample": {
+        "$ref": "common.json#/$defs/reference"
+      }
+      ,
+      "spot": {
+        "$ref": "common.json#/$defs/reference"
+      }
+      ,
+      "tilt": {
+        "$ref": "common.json#/$defs/angles/$defs/tilt"
+      }
+      ,
+      "symmetries": {
+        "type": "string",
+        "enum": [
+        "azimuthalAngleInvariance",
+        "profileAngle",
+        "mirror",
+        "rotationalDependingOnAzimuth",
+        "mirrorAndRotational"
+        ]
+      }
+      ,
+      "surface": {
+        "$ref": "component.json#/$defs/surface"
+      }
+      }
         ,
         "emergence": {
           "$ref": "#/$defs/emergence",
