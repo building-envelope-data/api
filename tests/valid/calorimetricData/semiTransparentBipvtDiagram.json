@@ -5,21 +5,21 @@
   },
   "fluxes": {
     "convection": [
-        {
-          "side": "exterior",
-          "temperatures": {
-            "surrounding": 293
-          },
-          "coefficient": 18
-        }
-      ],
+      {
+        "side": "exterior",
+        "temperatures": {
+          "surrounding": 293
+        },
+        "coefficient": 18
+      }
+    ],
     "longwaveRadiation": [
       {
         "side": "exterior",
         "temperatures": {
           "surrounding": 293
         },
-        "coefficient": 5
+        "emittanceSurroundings": 0.9
       }
     ],
     "mixed": [
@@ -68,15 +68,15 @@
         "category": "centre"
       },
       "uValue": {
-          "uncertainValue": 1.0,
-          "uncertainty": 0.1,
-          "confidenceInterval": 68.3
-        },
-        "gValue": {
-          "uncertainValue": 0.06,
-          "uncertainty": 0.01,
-          "confidenceInterval": 68.3
-        },
+        "uncertainValue": 1.0,
+        "uncertainty": 0.1,
+        "confidenceInterval": 68.3
+      },
+      "gValue": {
+        "uncertainValue": 0.06,
+        "uncertainty": 0.01,
+        "confidenceInterval": 68.3
+      },
       "efficiencies": {
         "solarThermal": 0.5,
         "photovoltaic": 0.2
