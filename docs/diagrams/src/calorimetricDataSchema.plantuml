@@ -1,0 +1,201 @@
+@startjson calorimetricDataSchema
+{
+  "description": {
+    "type": "string"
+  }
+  ,
+  "characteristics": {
+    "conditions":  ["dynamic", "stationary"]
+    ,
+    "primeSurface": ["exterior", "interior", "lateral"]
+  }
+  ,
+  "fluxes": {
+    "conduction":
+    {
+      "side":  ["exterior", "interior", "lateral"]
+      ,
+      "flux": {
+        "number": "wattWithUncertainty"
+      }
+      ,
+      "temperatures": {
+        "surrounding": {
+          "number": "kelvinWithUncertainty"
+        }
+        ,
+        "sample": {
+          "number": "kelvinWithUncertainty"
+        }
+      }
+      ,
+      "coefficient": {
+        "number": "wattPerSquareMeterKelvinWithUncertainty"
+      }
+    }
+    ,
+    "convection":
+    {
+      "side":  ["exterior", "interior", "lateral"]
+      ,
+      "flux": {
+        "number": "wattWithUncertainty"
+      }
+      ,
+      "temperatures": {
+        "surrounding": {
+          "number": "wattWithUncertainty"
+        }
+        ,
+        "sample": {
+          "number": "wattWithUncertainty"
+        }
+      }
+      ,
+      "coefficient": {
+        "number": "wattPerSquareMeterKelvinWithUncertainty"
+      }
+    }
+    ,
+    "longwaveRadiation":
+    {
+      "side":  ["exterior", "interior", "lateral"]
+      ,
+      "flux": {
+        "number": "wattWithUncertainty"
+      }
+      ,
+      "temperatures": {
+        "surrounding": {
+          "number": "wattWithUncertainty"
+        }
+        ,
+        "sample": {
+          "number": "wattWithUncertainty"
+        }
+      }
+      ,
+      "emittanceSurroundings": {
+        "number": "numberBetweenZeroAndOneWithUncertainty"
+      }
+    }
+    ,
+    "conductionConvectionLongwaveRadiation":
+    {
+      "side":  ["exterior", "interior", "lateral"]
+      ,
+      "flux": {
+        "number": "wattWithUncertainty"
+      }
+      ,
+      "temperatures": {
+        "surrounding": {
+          "number": "wattWithUncertainty"
+        }
+        ,
+        "sample": {
+          "number": "wattWithUncertainty"
+        }
+      }
+      ,
+      "coefficient": {
+        "number": "wattPerSquareMeterKelvinWithUncertainty"
+      }
+    }
+    ,
+    "shortwaveRadiation":
+    {
+      "side":  ["exterior", "interior", "lateral"]
+      ,
+      "flux": {
+        "number": "wattWithUncertainty"
+      }
+      ,
+      "direction": {
+        "opticalData": "incidenceDirection"
+      }
+    }
+    ,
+    "mixed":
+    {
+      "side":  ["exterior", "interior", "lateral"]
+      ,
+      "flux": {
+        "number": "wattWithUncertainty"
+      }
+    }
+    ,
+    "fluid":
+    {
+      "flux": {
+        "number": "wattWithUncertainty"
+      }
+      ,
+      "temperatures": {
+        "inlet": {
+          "number": "wattWithUncertainty"
+        }
+        ,
+        "outlet": {
+          "number": "wattWithUncertainty"
+        }
+      }
+      ,
+      "massFlow": {
+        "number": "kilogramPerSecondWithUncertainty"
+      }
+      ,
+      "specificHeatCapacity": {
+        "number": "joulePerKgKwithUncertainty"
+      }
+    }
+    ,
+    "electricity":
+    {
+      "flux": {
+        "number": "wattWithUncertainty"
+      }
+      ,
+      "currentVoltage": {
+        "common": "currentVoltage"
+      }
+
+    }
+  }
+  ,
+  "results":
+  {
+    "area": {
+      "category":  [
+      "centre",
+      "irradiatedAbsorber",
+      "outerDimensions",
+      "projectedIrradiatedAbsorber",
+      "other"
+      ]
+      ,
+      "description": {
+        "type": "string"
+      }
+    }
+    ,
+    "uValue": {
+      "number": "wattPerSquareMeterKelvinWithUncertainty"
+    }
+    ,
+    "gValue": {
+      "number": "numberWithUncertainty"
+    }
+    ,
+    "efficiencies": {
+      "photovoltaic": {
+        "common": "efficiencies/photovoltaic"
+      }
+      ,
+      "solarThermal": {
+        "common": "efficiencies/solarThermal"
+      }
+    }
+  }
+}
+@endjson
