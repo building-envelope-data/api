@@ -44,6 +44,10 @@
         "primeSurface": {
           "$ref": "#/$defs/side",
           "description": "This subschema defines the orientation of the prime surface. The prime surface is defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`."
+        },
+        "componentTilt": {
+          "$ref": "common.json#/$defs/angles/$defs/componentTilt",
+          "description": "The tilt angle of the component."
         }
       },
       "additionalProperties": false,

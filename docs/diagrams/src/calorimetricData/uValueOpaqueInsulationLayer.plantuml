@@ -2,7 +2,8 @@
 {
   "characteristics": {
     "conditions": "stationary",
-    "primeSurface": "interior"
+    "primeSurface": "interior",
+    "componentTilt": 90
   },
   "fluxes": {
     "conductionConvectionLongwaveRadiation": [
