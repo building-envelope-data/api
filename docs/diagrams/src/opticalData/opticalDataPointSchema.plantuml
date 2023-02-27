@@ -1,11 +1,11 @@
 @startjson opticalDataPointSchema
 {
   "dataPoint": {
-    "oneOf": [
+    "oneOf": 
     {
       "incidence": {
         "direction": {
-          "oneOf": [
+          "oneOf": 
           {
             "polar": {
               "number": "degreeBetweenZeroAndNinetyWithUncertainty"
@@ -17,15 +17,16 @@
             }
           }
           ,
+          "":
           {
             "type": "string",
             "const": "hemispherical"
           }
-          ]
+          
         }
         ,
         "wavelengths": {
-          "oneOf": [
+          "oneOf": 
           {
             "wavelength": {
               "number": "nanometer"
@@ -42,14 +43,15 @@
             }
           }
           ,
+          "":
           {
             "integral": ["infrared", "solar", "ultraviolet", "visible", "other"]
           }
-          ]
+          
         }
         ,
         "polarization": {
-          "oneOf": [
+          "oneOf": 
           {
             "s": {
               "number": "numberWithUncertainty"
@@ -60,10 +62,11 @@
             }
           }
           ,
+          "":
           {
             "Circular polarization": ["leftHanded", "rightHanded"]
           }
-          ]
+          
         }
       }
       ,
@@ -113,7 +116,7 @@
       ,
       "emergence": {
         "direction": {
-          "oneOf": [
+          "oneOf": 
           {
             "polar": {
               "number": "degreeWithUncertainty"
@@ -124,10 +127,11 @@
             }
           }
           ,
+          "":
           {
             "string": ["diffuse", "hemispherical"]
           }
-          ]
+          
         }
       }
       ,
@@ -146,6 +150,7 @@
       }
     }
     ,
+    "":
     {
       "name": {
         "type": "string"
@@ -188,7 +193,7 @@
         }
       }
     }
-    ]
+    
   }
 }
 @endjson
