@@ -1,3 +1,4 @@
+@startjson uValueOpaqueInsulation
 {
   "characteristics": {
     "conditions": "stationary",
@@ -17,16 +18,15 @@
       }
     ]
   },
-  "results": [
-    {
-      "area": {
-        "category": "centre"
-      },
-      "uValue": {
-        "uncertainValue": 0.15,
-        "uncertainty": 0.015,
-        "confidenceInterval": 68.3
-      }
+  "results": {
+    "area": {
+      "category": "centre"
+    },
+    "uValue": {
+      "uncertainValue": 0.15,
+      "uncertainty": 0.015,
+      "confidenceInterval": 68.3
     }
-  ]
+  }
 }
+@endjson
