@@ -129,8 +129,8 @@
           "title": "Spot",
           "description": "Size and profile of the irradiance on the sample."
         },
-        "tilt": {
-          "$ref": "common.json#/$defs/angles/$defs/tilt",
+        "slatTilt": {
+          "$ref": "common.json#/$defs/angles/$defs/slatTilt",
           "title": "Tilt angle",
           "description": "Tilt angle, for example of venetian blinds."
         },

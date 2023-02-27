@@ -89,8 +89,8 @@
           "common": "reference"
         }
         ,
-        "tilt": {
-          "common": "angles/tilt"
+        "slatTilt": {
+          "common": "angles/slatTilt"
         }
         ,
         "symmetries": [

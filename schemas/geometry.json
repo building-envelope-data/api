@@ -84,9 +84,9 @@
           "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
           "description": "When the normal of the non-prime surface is projected on a horizontal plane, then the azimuth angle of the component is the angle between this projection and the north direction. If the prime surface faces west, then the azimuth angle equals 90°."
         },
-        "tilt": {
-          "$ref": "number.json#/$defs/degreeBetweenZeroAndOneHundredEightyWithUncertainty",
-          "description": "The tilt angle of the component is the angle between the non-prime surface and a horizontal plane. If the prime surface is horizontal and faces the sky, then the tilt angle equals 0°. If the prime surface is vertical, then the tilt angle equals 90°."
+        "componentTilt": {
+          "$ref": "common.json#/$defs/angles/$defs/componentTilt",
+          "description": "The tilt angle of the component."
         },
         "rotation": {
           "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
@@ -94,7 +94,7 @@
         }
       },
       "additionalProperties": false,
-      "required": ["azimuth", "tilt"]
+      "required": ["azimuth", "componentTilt"]
     },
     "levelOfDevelopment": {
       "title": "The Level of Development or Level of Detail (LOD) is used to describe how accurate the reality is modelled. As geometry/LOD refers to geometry, it is sometimes also called Level of Geometry.",

@@ -30,7 +30,7 @@
               },
               "orientation": {
                 "azimuth": 180,
-                "tilt": 90,
+                "componentTilt": 90,
                 "rotation": 0
               }
             },
@@ -50,7 +50,7 @@
               },
               "orientation": {
                 "azimuth": 270,
-                "tilt": 90,
+                "componentTilt": 90,
                 "rotation": 0
               }
             }

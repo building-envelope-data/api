@@ -125,12 +125,12 @@
             "angles": {
               "type": "object",
               "properties": {
-                "tilt": {
-                  "$ref": "common.json#/$defs/angles/$defs/tilt",
+                "slatTilt": {
+                  "$ref": "common.json#/$defs/angles/$defs/slatTilt",
                   "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
                 },
-                "maximumClosing": {
-                  "$ref": "common.json#/$defs/angles/$defs/maximumClosing",
+                "slatMaximumClosing": {
+                  "$ref": "common.json#/$defs/angles/$defs/slatMaximumClosing",
                   "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
                 }
               },

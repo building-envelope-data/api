@@ -293,11 +293,15 @@
     "angles": {
       "title": "Angles which are helpful to characterize building envelopes.",
       "$defs": {
-        "tilt": {
+        "componentTilt": {
+          "$ref": "number.json#/$defs/degreeBetweenZeroAndOneHundredEightyWithUncertainty",
+          "description": "The tilt angle of the component is the angle between the non-prime surface and a horizontal plane. If the prime surface is horizontal and faces the sky, then the tilt angle equals 0°. If the prime surface is vertical, then the tilt angle equals 90°."
+        },
+        "slatTilt": {
           "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
         },
-        "maximumClosing": {
+        "slatMaximumClosing": {
           "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
         }

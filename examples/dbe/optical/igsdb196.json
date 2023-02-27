@@ -21,7 +21,7 @@
                     "identifiers": { "webAddress": "https://www.999999.com" }
                   }
                 },
-                "tilt": 9.9999,
+                "slatTilt": 9.9999,
                 "symmetries": "azimuthalAngleInvariance"
               },
               "dataPoints": [
@@ -52,7 +52,7 @@
                     "identifiers": { "webAddress": "https://www.999999.com" }
                   }
                 },
-                "tilt": 9.9999,
+                "slatTilt": 9.9999,
                 "symmetries": "azimuthalAngleInvariance"
               },
               "dataPoints": [
