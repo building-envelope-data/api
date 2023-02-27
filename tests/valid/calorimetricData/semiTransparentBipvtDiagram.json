@@ -67,11 +67,6 @@
       "area": {
         "category": "centre"
       },
-      "uValue": {
-        "uncertainValue": 1.0,
-        "uncertainty": 0.1,
-        "confidenceInterval": 68.3
-      },
       "gValue": {
         "uncertainValue": 0.06,
         "uncertainty": 0.01,
