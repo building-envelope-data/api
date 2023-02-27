@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/v1/calorimetricData.json",
   "title": "calorimetric data",
-  "description": "Data about calorimetric measurements or simulations. In particular, energy fluxes are important.",
+  "description": "Data sets about calorimetric measurements or simulations. In particular, energy fluxes are important.",
   "$defs": {
     "data": {
       "type": "object",
@@ -50,6 +50,7 @@
       "required": ["conditions"]
     },
     "fluxes": {
+      "title": "Characterize several kinds of energy fluxes towards the sample. Energy flux from the sample has negative values.",
       "type": "object",
       "properties": {
         "conduction": {
@@ -135,7 +136,7 @@
           "minItems": 1
         },
         "longwaveRadiation": {
-          "title": "Due to their temperature, bodies emit thermal radiation. Therefore, bodies with different temperatures can exchange heat by this infrared radiation. The wavelength of this radiation is longer than the wavelengths of the solar spectrum. It is therfore called long-wave radiation.",
+          "title": "Due to their temperature, bodies emit thermal radiation. Therefore, bodies with different temperatures can exchange heat by this infrared radiation. The wavelength of this radiation is longer than the wavelengths of the solar spectrum. It is therefore called long-wave radiation.",
           "type": "array",
           "items": {
             "type": "object",
@@ -242,18 +243,18 @@
           "minItems": 1
         },
         "mixed": {
-          "title": "Heat transfer can be a mixture of other forms of heat transfer. It can be characterized by the energy flux towards the sample.",
+          "title": "Energy flux can be a mixture of the other kinds of energy fluxes. For example, a heat flux sensor may measure the energy flux of solar transmission in addition to the energy flux of convection and longwave radiation.",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "side": {
                 "$ref": "#/$defs/side",
-                "description": "The side which is considered for the mixed heat transfer."
+                "description": "The side which is considered for the mixed energy flux."
               },
               "flux": {
                 "$ref": "number.json#/$defs/wattWithUncertainty",
-                "description": "The heat flux is driven by the temperature differences. Positive heat flux means heat flux towards the sample. It is measured in watts."
+                "description": "The energy flux is driven by the temperature differences. Positive energy flux means energy flux towards the sample. It is measured in watts."
               }
             },
             "additionalProperties": false,
