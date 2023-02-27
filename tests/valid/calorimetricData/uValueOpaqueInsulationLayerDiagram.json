@@ -1,0 +1,32 @@
+{
+  "characteristics": {
+    "conditions": "stationary",
+    "primeSurface": "interior"
+  },
+  "fluxes": {
+    "conductionConvectionLongwaveRadiation": [
+      {
+        "side": "exterior",
+        "flux": 100,
+        "temperatures":{"sample": 308}
+      },
+      {
+        "side": "interior",
+        "flux": -100,
+        "temperatures":{"sample": 288}
+      }
+    ]
+  },
+  "results": [
+    {
+      "area": {
+        "category": "centre"
+      },
+      "uValue": {
+        "uncertainValue": 0.15,
+        "uncertainty": 0.015,
+        "confidenceInterval": 68.3
+      }
+    }
+  ]
+}
