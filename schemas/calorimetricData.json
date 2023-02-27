@@ -136,18 +136,18 @@
           "minItems": 1
         },
         "longwaveRadiation": {
-          "title": "Due to their temperature, bodies emit thermal radiation. Therefore, bodies with different temperatures can exchange heat by this infrared radiation. The wavelength of this radiation is longer than the wavelengths of the solar spectrum. It is therefore called long-wave radiation.",
+          "title": "Due to their temperature, bodies emit thermal radiation. Therefore, bodies with different temperatures can exchange energy by this infrared radiation. The wavelength of this radiation is longer than the wavelengths of the solar spectrum. It is therefore called long-wave radiation.",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "side": {
                 "$ref": "#/$defs/side",
-                "description": "The side which is considered for this radiative heat transfer."
+                "description": "The side which is considered for this radiative transfer of energy."
               },
               "flux": {
                 "$ref": "number.json#/$defs/wattWithUncertainty",
-                "description": "The heat flux is driven by the temperature differences. Positive heat flux means heat flux towards the sample. It is measured in watts."
+                "description": "The energy flux is driven by the temperature differences. Positive energy flux means energy flux towards the sample. It is measured in watts."
               },
               "temperatures": {
                 "type": "object",
@@ -167,7 +167,7 @@
               },
               "emittanceSurroundings": {
                 "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
-                "description": "The emittance of the surroundings influences the radiative heat transfer. The emittance of the surface of the sample can be defined within `opticalData`. Emittances have no units."
+                "description": "The emittance of the surroundings influences the radiative transfer of energy. The emittance of the surface of the sample can be defined within `opticalData`. Emittances have no units."
               }
             },
             "additionalProperties": false,
@@ -177,18 +177,18 @@
           "minItems": 1
         },
         "conductionConvectionLongwaveRadiation": {
-          "title": "Heat transfer by conduction, convection and long-wave radiation can be treated together.",
+          "title": "Energy transfer by conduction, convection and long-wave radiation can be treated together.",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "side": {
                 "$ref": "#/$defs/side",
-                "description": "The side which is considered for this combined heat transfer."
+                "description": "The side which is considered for this combined energy transfer."
               },
               "flux": {
                 "$ref": "number.json#/$defs/wattWithUncertainty",
-                "description": "The heat flux is driven by the temperature differences. Positive heat flux means heat flux towards the sample. It is measured in watts."
+                "description": "The energy flux is driven by the temperature differences. Positive energy flux means energy flux towards the sample. It is measured in watts."
               },
               "temperatures": {
                 "type": "object",
@@ -208,7 +208,7 @@
               },
               "coefficient": {
                 "$ref": "number.json#/$defs/wattPerSquareMeterKelvinWithUncertainty",
-                "description": "The heat transfer coefficient equals the heat flux divided by the temperature difference. It has the unit watt per square meter per kelvin."
+                "description": "The energy transfer coefficient equals the energy flux divided by the temperature difference. It has the unit watt per square meter per kelvin."
               }
             },
             "additionalProperties": false,
