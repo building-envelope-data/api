@@ -30,7 +30,7 @@
     {
       "side": "interior",
       "flux": {
-        "uncertainValue": 60,
+        "uncertainValue": -60,
         "uncertainty": 3,
         "confidenceInterval": 95.4
       }
@@ -64,7 +64,7 @@
     ,
     "electricity":
     {
-      "flux": 200
+      "flux": -200
     }
   }
   ,

@@ -1,7 +1,6 @@
 {
   "characteristics": {
-    "conditions": "stationary",
-    "primeSurface": "interior"
+    "conditions": "stationary"
   },
   "fluxes": {
     "convection": [
