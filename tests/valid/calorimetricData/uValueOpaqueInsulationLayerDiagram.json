@@ -8,12 +8,12 @@
       {
         "side": "exterior",
         "flux": 100,
-        "temperatures":{"sample": 308}
+        "temperatures": { "sample": 308 }
       },
       {
         "side": "interior",
         "flux": -100,
-        "temperatures":{"sample": 288}
+        "temperatures": { "sample": 288 }
       }
     ]
   },
