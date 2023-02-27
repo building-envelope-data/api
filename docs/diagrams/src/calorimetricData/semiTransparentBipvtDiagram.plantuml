@@ -5,7 +5,7 @@
     "primeSurface": "interior"
   },
   "fluxes": {
-    "convection": [
+    "convection": 
       {
         "side": "exterior",
         "temperatures": {
@@ -13,8 +13,8 @@
         },
         "coefficient": 18
       }
-    ],
-    "longwaveRadiation": [
+    ,
+    "longwaveRadiation": 
       {
         "side": "exterior",
         "temperatures": {
@@ -22,8 +22,8 @@
         },
         "emittanceSurroundings": 0.9
       }
-    ],
-    "mixed": [
+    ,
+    "mixed": 
       {
         "side": "interior",
         "flux": {
@@ -32,8 +32,8 @@
           "confidenceInterval": 95.4
         }
       }
-    ],
-    "shortwaveRadiation": [
+    ,
+    "shortwaveRadiation": 
       {
         "side": "exterior",
         "flux": {
@@ -46,8 +46,8 @@
           "azimuth": 0
         }
       }
-    ],
-    "fluid": [
+    ,
+    "fluid": 
       {
         "temperatures": {
           "inlet": 293,
@@ -56,14 +56,14 @@
         "massFlow": 0.02,
         "specificHeatCapacity": 4179.6
       }
-    ],
-    "electricity": [
+    ,
+    "electricity": 
       {
         "flux": 200
       }
-    ]
+    
   },
-  "results": [
+  "results": 
     {
       "area": {
         "category": "centre"
@@ -83,6 +83,6 @@
         "photovoltaic": 0.2
       }
     }
-  ]
+  
 }
 @endjson

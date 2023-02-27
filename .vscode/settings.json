@@ -124,7 +124,6 @@
   "explorer.confirmDragAndDrop": false,
   "editor.trimAutoWhitespace": false,
   "editor.minimap.enabled": false,
-  "window.zoomLevel": 2,
   "plantuml.diagramsRoot": "docs/diagrams/src",
   "plantuml.exportOutDir": "docs/diagrams/out",
   "plantuml.commandArgs": [],
