@@ -8,7 +8,13 @@
         "layer": ["venetian", "blind"]
       },
       "characteristics": {
-        "chemicalElements": ["Al"],
+        "materialComposition": {
+          "fractionType": "weight",
+          "fractions": [
+            { "material": "aluminum alloy", "fraction": 90 },
+            { "material": "other", "fraction": 10 }
+          ]
+        },
         "layer": {
           "gaps": {
             "dTop": 0.02

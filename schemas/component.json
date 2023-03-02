@@ -259,15 +259,9 @@
           "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."
         },
-        "chemicalElements": {
-          "type": "array",
-          "items": {
-            "$ref": "common.json#/$defs/chemicalElement"
-          },
-          "minItems": 1,
-          "maxItems": 10,
-          "uniqueItems": true,
-          "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
+        "materialComposition": {
+          "$ref": "common.json#/$defs/materialComposition",
+          "description": "The chemical elements and basic materials which are part of the component."
         },
         "definitionOfSurfacesAndPrimeDirection": {
           "title": "Definition of surfaces and prime direction",
