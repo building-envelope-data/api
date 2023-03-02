@@ -12,7 +12,7 @@
     "comments": true,
     "strings": true
   },
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "json.schemas": [
     {
       "fileMatch": ["./examples/dbe/*.json"],
