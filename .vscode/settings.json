@@ -12,7 +12,6 @@
     "comments": true,
     "strings": true
   },
-  "editor.formatOnSave": false,
   "json.schemas": [
     {
       "fileMatch": ["./examples/dbe/*.json"],
