@@ -11,6 +11,9 @@
             { "material": "Ar", "fraction": 90 },
             { "material": "air", "fraction": 10 }
           ]
+        },
+        "material": {
+          "thermalConductivity": 0.017
         }
       }
     }

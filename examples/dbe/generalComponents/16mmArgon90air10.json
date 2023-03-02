@@ -12,6 +12,9 @@
             { "material": "air", "fraction": 10 }
           ]
         },
+        "material": {
+          "thermalConductivity": 0.017
+        },
         "geometry": {
           "dimensions": {
             "independent": {
