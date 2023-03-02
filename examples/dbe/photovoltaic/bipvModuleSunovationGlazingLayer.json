@@ -33,7 +33,7 @@
             {
               "results": [
                 {
-                  "area": { "category": "centre" },
+                  "area": { "category": "center" },
                   "uValue": 1.1,
                   "gValue": {
                     "uncertainValue": 0.5,

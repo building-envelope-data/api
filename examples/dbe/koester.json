@@ -32,7 +32,7 @@
               "results": [
                 {
                   "area": {
-                    "category": "centre"
+                    "category": "center"
                   },
                   "uValue": 1.1,
                   "gValue": 0.52
@@ -106,7 +106,7 @@
               "results": [
                 {
                   "area": {
-                    "category": "centre"
+                    "category": "center"
                   },
                   "gValue": 0.32
                 }

@@ -347,13 +347,13 @@
             "category": {
               "type": "string",
               "enum": [
-                "centre",
+                "center",
                 "irradiatedAbsorber",
                 "outerDimensions",
                 "projectedIrradiatedAbsorber",
                 "other"
               ],
-              "description": "(i) `centre` means that the results are valid for the centre of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absober, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance. (v) If none of the other categories apply, `explanation` below must be used to describe the category."
+              "description": "(i) `center` means that the results are valid for the center of the component without influence by the frame. This is important for example for glazings. (ii) `outerDimensions` means that the whole area of the outer dimensions of the component is considered for the results. (iii) `irradiatedAbsorber` means that the area of the photovoltaic or solar thermal absober, which is irradiated by direct irradiance, is used to calculate the results. (iv) For the case of direct irradiance, `projectedIrradiatedAbsorber` projects the directly irradiated absorber area to a plane which is perpendicular to the direct irradiance. (v) If none of the other categories apply, `explanation` below must be used to describe the category."
             },
             "description": {
               "type": "string",
