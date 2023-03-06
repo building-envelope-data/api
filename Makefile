@@ -161,7 +161,7 @@ test : ## Validate test files
 # 	done
 # .PHONY : test
 
-example : ## Validate example files
+examples : ## Validate example files
 	-for schema_name in $(shell ls --indicator-style=none ./queries/) ; do \
 		echo "---------------------------------------------" && \
 		echo "Queries against schema ./apis/$${schema_name}.graphql" && \
@@ -183,6 +183,15 @@ example : ## Validate example files
 				-d $${example_file} \
 				$$(echo "${schema_file_references}" | sed "s#-r \./schemas/$${schema_name}\.json##g") ; \
 		done ; \
+	done
+.PHONY : examples
+
+example : ## Validate explicit examples, for example, `make SCHEMA_NAME=dbe EXAMPLES="optical/spectrum.json optical/bsdf.json" example`
+	for example_name in ${EXAMPLES} ; do \
+		${ajv} validate \
+			-s ./schemas/${SCHEMA_NAME}.json \
+			-d ./examples/${SCHEMA_NAME}/$${example_name} \
+			$$(echo "${schema_file_references}" | sed "s#-r \./schemas/${SCHEMA_NAME}\.json##g") ; \
 	done
 .PHONY : example
 
