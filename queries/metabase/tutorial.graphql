@@ -138,4 +138,33 @@ query {
       }
     }
   }
+
+  integralOpticalValuesOfComponent: databases {
+    nodes {
+      uuid
+      name
+      locator
+      allOpticalData(
+        where: {
+          componentId: { 
+equalTo: "ccd459b5-ddd0-4fbf-8206-7c39d1b7a34e" }
+        }
+      ) {
+        nodes {
+          nearnormalHemisphericalSolarReflectances
+          nearnormalHemisphericalSolarTransmittances
+          nearnormalHemisphericalVisibleReflectances
+          nearnormalHemisphericalVisibleTransmittances
+          infraredEmittances
+          resourceTree {
+            root {
+              value {
+                locator
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
