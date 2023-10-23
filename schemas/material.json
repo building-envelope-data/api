@@ -84,7 +84,7 @@
         },
         "thickness": {
           "$ref": "number.json#/$defs/meterWithUncertainty",
-          "description": "If the material has to flat parallel surfaces, then the thickness is the distance between both surfaces. It has the SI unit meter."
+          "description": "If the material has two flat parallel surfaces, then the thickness is the distance between both surfaces. It has the SI unit meter."
         },
         "thermalConductivity": {
           "$ref": "number.json#/$defs/wattPerMeterKelvinWithUncertainty",
