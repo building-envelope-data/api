@@ -8,6 +8,8 @@ JSON schemas are in the directory `./schemas` and example JSON files in the dire
 
 The following introduction explains the structure for new users and the section "On your Linux machine" explains how you can work with the API specification.
 
+[![Watch the video introduction](https://img.youtube.com/vi/QsulJnpvuh0/maxresdefault.jpg)](https://www.youtube.com/watch?v=QsulJnpvuh0)
+
 ## Table Of Contents
 
 [I don't want to read this whole thing, I just have a question!](#i-dont-want-to-read-this-whole-thing-i-just-have-a-question)
