@@ -65,7 +65,6 @@ query {
     }
   }
 
-
   allOpticalDataSets: allOpticalData {
     nodes {
       name
