@@ -28,81 +28,62 @@ query {
     }
   }
 
-  dataSetsByOpticalPropertiesAndDataFormat: databases {
-    nodes {
-      name
-      allOpticalData(
-        where: {
-          and: [
-            {
-              nearnormalHemisphericalVisibleTransmittances: {
-                some: { greaterThanOrEqualTo: 0.605 }
-              }
-            }
-            {
-              nearnormalHemisphericalSolarTransmittances: {
-                some: { lessThanOrEqualTo: 0.228 }
-              }
-            }
-            {
-              resources: {
-                some: {
-                  dataFormatId: {
-                    equalTo: "9ca9e8f5-94bf-4fdd-81e3-31a58d7ca708"
-                  }
-                }
-              }
-            }
-          ]
+  dataSetsByOpticalPropertiesAndDataFormat: allOpticalData(
+    where: {
+      and: [
+        {
+          nearnormalHemisphericalVisibleTransmittances: {
+            some: { greaterThanOrEqualTo: 0.3 }
+          }
         }
-      ) {
-        nodes {
-          componentId
-          resourceTree {
-            root {
-              value {
-                locator
+        {
+          nearnormalHemisphericalVisibleReflectances: {
+            some: { lessThanOrEqualTo: 0.2 }
+          }
+        }
+        {
+          resources: {
+            some: {
+              dataFormatId: {
+                equalTo: "9ca9e8f5-94bf-4fdd-81e3-31a58d7ca708"
               }
             }
+          }
+        }
+      ]
+    }
+  ) {
+    nodes {
+      componentId
+      resourceTree {
+        root {
+          value {
+            locator
           }
         }
       }
     }
   }
 
-  allOpticalDataSets: databases {
+
+  allOpticalDataSets: allOpticalData {
     nodes {
-      allOpticalData {
-        nodes {
-          name
-        }
-      }
+      name
     }
   }
 
-  integralOpticalValuesOfComponent: databases {
+  integralOpticalValuesOfComponent: allOpticalData(
+    where: {
+      componentId: { equalTo: "3ffc64af-d1f3-4a2e-a646-b007b7137245" }
+    }
+  ) {
     nodes {
-      uuid
-      name
-      locator
-      allOpticalData(
-        where: {
-          componentId: { 
-equalTo: "ccd459b5-ddd0-4fbf-8206-7c39d1b7a34e" }
-        }
-      ) {
-        nodes {
-          nearnormalHemisphericalSolarReflectances
-          nearnormalHemisphericalSolarTransmittances
-          nearnormalHemisphericalVisibleReflectances
-          nearnormalHemisphericalVisibleTransmittances
-          infraredEmittances
-          resourceTree {
-            root {
-              value {
-                locator
-              }
-            }
+      nearnormalHemisphericalVisibleReflectances
+      nearnormalHemisphericalVisibleTransmittances
+      resourceTree {
+        root {
+          value {
+            locator
           }
         }
       }
