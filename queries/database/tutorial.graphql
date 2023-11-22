@@ -1,8 +1,6 @@
 query {
-  resourcesByComponent: allOpticalData (
-    where: {
-      componentId: { equalTo: "3ffc64af-d1f3-4a2e-a646-b007b7137245" }
-    }
+  resourcesByComponent: allOpticalData(
+    where: { componentId: { equalTo: "3ffc64af-d1f3-4a2e-a646-b007b7137245" } }
   ) {
     nodes {
       resourceTree {
@@ -44,9 +42,7 @@ query {
         {
           resources: {
             some: {
-              dataFormatId: {
-                equalTo: "9ca9e8f5-94bf-4fdd-81e3-31a58d7ca708"
-              }
+              dataFormatId: { equalTo: "9ca9e8f5-94bf-4fdd-81e3-31a58d7ca708" }
             }
           }
         }
@@ -72,9 +68,7 @@ query {
   }
 
   integralOpticalValuesOfComponent: allOpticalData(
-    where: {
-      componentId: { equalTo: "3ffc64af-d1f3-4a2e-a646-b007b7137245" }
-    }
+    where: { componentId: { equalTo: "3ffc64af-d1f3-4a2e-a646-b007b7137245" } }
   ) {
     nodes {
       nearnormalHemisphericalVisibleReflectances
