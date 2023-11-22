@@ -59,35 +59,67 @@ query {
     }
   }
 
-  dataSetsByOpticalPropertiesAndDataFormat: allOpticalData(
-    where: {
-      and: [
-        {
-          nearnormalHemisphericalVisibleTransmittances: {
-            some: { greaterThanOrEqualTo: 0.3 }
-          }
-        }
-        {
-          nearnormalHemisphericalVisibleReflectances: {
-            some: { lessThanOrEqualTo: 0.2 }
-          }
-        }
-        {
+  dataFormat: databases {
+    nodes {
+      name
+      allOpticalData(
+        where: {
           resources: {
             some: {
-              dataFormatId: { equalTo: "9ca9e8f5-94bf-4fdd-81e3-31a58d7ca708" }
+              dataFormatId: { equalTo: "e021cf20-e887-4dce-ad27-35da70cec472" }
             }
           }
         }
-      ]
+      ) {
+        nodes {
+          resourceTree {
+            root {
+              value {
+                locator
+              }
+            }
+          }
+        }
+      }
     }
-  ) {
+  }
+
+  dataSetsByOpticalPropertiesAndDataFormat: databases {
     nodes {
-      componentId
-      resourceTree {
-        root {
-          value {
-            locator
+      name
+      allOpticalData(
+        where: {
+          and: [
+            {
+              nearnormalHemisphericalVisibleTransmittances: {
+                some: { greaterThanOrEqualTo: 0.605 }
+              }
+            }
+            {
+              nearnormalHemisphericalSolarTransmittances: {
+                some: { lessThanOrEqualTo: 0.228 }
+              }
+            }
+            {
+              resources: {
+                some: {
+                  dataFormatId: {
+                    equalTo: "9ca9e8f5-94bf-4fdd-81e3-31a58d7ca708"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ) {
+        nodes {
+          componentId
+          resourceTree {
+            root {
+              value {
+                locator
+              }
+            }
           }
         }
       }
