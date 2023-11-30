@@ -2,16 +2,20 @@ query {
   byComponentId: allData(
     where: { componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } }
   ) {
-    nodes {
-      uuid
+    edges {
+      node {
+        uuid
+      }
     }
   }
 
   byNegation: allData(
     where: { not: { gValues: { some: { greaterThanOrEqualTo: 0.5 } } } }
   ) {
-    nodes {
-      uuid
+    edges {
+      node {
+        uuid
+      }
     }
   }
 
@@ -23,8 +27,10 @@ query {
       ]
     }
   ) {
-    nodes {
-      uuid
+    edges {
+      node {
+        uuid
+      }
     }
   }
 
@@ -41,8 +47,10 @@ query {
       ]
     }
   ) {
-    nodes {
-      uuid
+    edges {
+      node {
+        uuid
+      }
     }
   }
 
