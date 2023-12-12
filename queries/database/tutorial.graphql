@@ -2,11 +2,13 @@ query {
   resourcesByComponent: allOpticalData(
     where: { componentId: { equalTo: "3ffc64af-d1f3-4a2e-a646-b007b7137245" } }
   ) {
-    nodes {
-      resourceTree {
-        root {
-          value {
-            locator
+    edges {
+      node {
+        resourceTree {
+          root {
+            value {
+              locator
+            }
           }
         }
       }
@@ -14,12 +16,14 @@ query {
   }
 
   allData: allData {
-    nodes {
-      name
-      resourceTree {
-        root {
-          value {
-            locator
+    edges {
+      node {
+        name
+        resourceTree {
+          root {
+            value {
+              locator
+            }
           }
         }
       }
@@ -49,12 +53,14 @@ query {
       ]
     }
   ) {
-    nodes {
-      componentId
-      resourceTree {
-        root {
-          value {
-            locator
+    edges {
+      node {
+        componentId
+        resourceTree {
+          root {
+            value {
+              locator
+            }
           }
         }
       }
@@ -62,21 +68,25 @@ query {
   }
 
   allOpticalDataSets: allOpticalData {
-    nodes {
-      name
+    edges {
+      node {
+        name
+      }
     }
   }
 
   integralOpticalValuesOfComponent: allOpticalData(
     where: { componentId: { equalTo: "3ffc64af-d1f3-4a2e-a646-b007b7137245" } }
   ) {
-    nodes {
-      nearnormalHemisphericalVisibleReflectances
-      nearnormalHemisphericalVisibleTransmittances
-      resourceTree {
-        root {
-          value {
-            locator
+    edges {
+      node {
+        nearnormalHemisphericalVisibleReflectances
+        nearnormalHemisphericalVisibleTransmittances
+        resourceTree {
+          root {
+            value {
+              locator
+            }
           }
         }
       }
