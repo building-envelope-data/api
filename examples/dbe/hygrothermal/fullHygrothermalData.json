@@ -1,0 +1,269 @@
+{
+  "components": [
+    {
+      "name": "esb-Platte elka strong board P5",
+      "id": "0f5942c1-33ce-4d31-b694-079eaf1fb630",
+      "description": "This is an example of all values the hygrothermal data about a component.",
+      "roles": {
+        "manufacturer": {
+          "id": "75263c05-d81a-41f0-825b-fc8446532fe9"
+        }
+      },
+      "hygrothermal": [
+        {
+          "id": {
+            "value": "8ca1102b-264a-4023-8351-5897ec38e388",
+            "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+          },
+          "description": "This hygrothermal data has been provided by WUFI.de.",
+          "data": [
+            {
+              "thermalConductivityDry": 0.102,
+              "bulkDensity": 621,
+              "porosity": 0.57,
+              "specificHeatCapacity": 2000,
+              "waterVaporDiffusionResistanceFactor": 91.58,
+              "referenceWaterContent": 79,
+              "freeWaterSaturation": 554,
+              "waterAbsorptionCoefficient": 0.002,
+              "moistureDependentConductivitySupplement": 1.5,
+              "temperatureDependentConductivitySupplement": 2E-4,
+              "typicalBuildInMoisture": 0,
+              "moistureStorageFunction": [
+                {
+                  "relativeHumidityAbsolut": 0,
+                  "waterContent": 0
+                },
+                {
+                  "relativeHumidityAbsolut": 0.1,
+                  "waterContent": 2.55
+                },
+                {
+                  "relativeHumidityAbsolut": 0.2,
+                  "waterContent": 5.7
+                },
+                {
+                  "relativeHumidityAbsolut": 0.3,
+                  "waterContent": 9.7
+                },
+                {
+                  "relativeHumidityAbsolut": 0.4,
+                  "waterContent": 14.94
+                },
+                {
+                  "relativeHumidityAbsolut": 0.5,
+                  "waterContent": 14.94
+                },
+                {
+                  "relativeHumidityAbsolut": 0.55,
+                  "waterContent": 26.79
+                },
+                {
+                  "relativeHumidityAbsolut": 0.6,
+                  "waterContent": 32.52
+                },
+                {
+                  "relativeHumidityAbsolut": 0.65,
+                  "waterContent": 39.71
+                },
+                {
+                  "relativeHumidityAbsolut": 0.7,
+                  "waterContent": 48.99
+                },
+                {
+                  "relativeHumidityAbsolut": 0.75,
+                  "waterContent": 61.44
+                },
+                {
+                  "relativeHumidityAbsolut": 0.8,
+                  "waterContent": 79
+                },
+                {
+                  "relativeHumidityAbsolut": 0.85,
+                  "waterContent": 105.64
+                },
+                {
+                  "relativeHumidityAbsolut": 0.9,
+                  "waterContent": 150.86
+                },
+                {
+                  "relativeHumidityAbsolut": 0.91,
+                  "waterContent": 163.97
+                },
+                {
+                  "relativeHumidityAbsolut": 0.92,
+                  "waterContent": 179.21
+                },
+                {
+                  "relativeHumidityAbsolut": 0.93,
+                  "waterContent": 197.13
+                },
+                {
+                  "relativeHumidityAbsolut": 0.94,
+                  "waterContent": 218.53
+                },
+                {
+                  "relativeHumidityAbsolut": 0.95,
+                  "waterContent": 244.5
+                },
+                {
+                  "relativeHumidityAbsolut": 0.96,
+                  "waterContent": 276.71
+                },
+                {
+                  "relativeHumidityAbsolut": 0.97,
+                  "waterContent": 317.69
+                },
+                {
+                  "relativeHumidityAbsolut": 0.98,
+                  "waterContent": 371.61
+                },
+                {
+                  "relativeHumidityAbsolut": 0.99,
+                  "waterContent": 445.72
+                },
+                {
+                  "relativeHumidityAbsolut": 1,
+                  "waterContent": 554
+                }
+              ],
+              "moistureStorageFunctionGenerated": true,
+              "liquidTransportCoefficientSuction": [
+                {
+                  "waterContent": 0,
+                  "liquidTransportCoefficient": 0
+                },
+                {
+                  "waterContent": 79,
+                  "liquidTransportCoefficient": 1.36239E-13
+                },
+                {
+                  "waterContent": 554,
+                  "liquidTransportCoefficient": 4.952495E-11
+                }
+              ],
+              "liquidTransportCoefficientSuctionGenerated": true,
+              "liquidTransportCoefficientRedistribution": [
+                {
+                  "waterContent": 0,
+                  "liquidTransportCoefficient": 0
+                },
+                {
+                  "waterContent": 79,
+                  "liquidTransportCoefficient": 1.8E-13
+                },
+                {
+                  "waterContent": 554,
+                  "liquidTransportCoefficient": 8E-9
+                }
+              ],
+              "liquidTransportCoefficientRedistributionGenerated": false,
+              "thermalConductivityMoistureDependent": [
+                {
+                  "waterContent": 0,
+                  "thermalConductivity": 0.102
+                },
+                {
+                  "waterContent": 570,
+                  "thermalConductivity": 0.24
+                }
+              ],
+              "thermalConductivityMoistureDependentGenerated": true,
+              "thermalConductivityTemperatureDependent": [
+                {
+                  "temperature": -20,
+                  "thermalConductivity": 0.096
+                },
+                {
+                  "temperature": 80,
+                  "thermalConductivity": 0.116
+                }
+              ],
+              "thermalConductivityTemperatureDependentGenerated": true,
+              "waterVaporDiffusionResistanceFactorMoistureDependent": [
+                {
+                  "relativeHumidityAbsolut": 0,
+                  "diffusionResistanceFactor": 91.58
+                },
+                {
+                  "relativeHumidityAbsolut": 0.25,
+                  "diffusionResistanceFactor": 91.58
+                },
+                {
+                  "relativeHumidityAbsolut": 0.725,
+                  "diffusionResistanceFactor": 36.18
+                },
+                {
+                  "relativeHumidityAbsolut": 1,
+                  "diffusionResistanceFactor": 36.18
+                }
+              ],
+              "enthalpyTemperatureDependent": [
+                {
+                  "temperature": 0,
+                  "enthalpy": 0
+                },
+                {
+                  "temperature": 5,
+                  "enthalpy": 6000
+                },
+                {
+                  "temperature": 11.25,
+                  "enthalpy": 13983
+                },
+                {
+                  "temperature": 14.5,
+                  "enthalpy": 18838
+                },
+                {
+                  "temperature": 17,
+                  "enthalpy": 23083
+                },
+                {
+                  "temperature": 18,
+                  "enthalpy": 24943
+                },
+                {
+                  "temperature": 19,
+                  "enthalpy": 27075
+                },
+                {
+                  "temperature": 20,
+                  "enthalpy": 29721
+                },
+                {
+                  "temperature": 21,
+                  "enthalpy": 33537
+                },
+                {
+                  "temperature": 22,
+                  "enthalpy": 40586
+                },
+                {
+                  "temperature": 23,
+                  "enthalpy": 49226
+                },
+                {
+                  "temperature": 24,
+                  "enthalpy": 53772
+                },
+                {
+                  "temperature": 25,
+                  "enthalpy": 55000
+                },
+                {
+                  "temperature": 26,
+                  "enthalpy": 56200
+                },
+                {
+                  "temperature": 30,
+                  "enthalpy": 61000
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

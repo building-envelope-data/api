@@ -5,11 +5,46 @@
   "description": "Hygrothermal data which can be used for hygrothermal simulations. Humidity needs to be handled properly to create sustainable buildings with high comfort.",
   "$defs": {
     "data": {
-      "title": "The hygrothermal data of a component.",
-      "type": "object",
-      "properties": {
-        "WUFI": {
-          "title": "Hygrothermal data from the database of WUFI.de.",
+      "oneOf": [
+        {
+          "title": "The hygrothermal data of a component.",
+          "type": "object",
+          "properties": {
+            "WUFI": {
+              "title": "Hgrothermal data from the database of WUFI.de.",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "identifier.json#/$defs/decentral",
+                  "description": "The id represents the hygrothermal data set."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "An explanation with more details about the hygrothermal data in natural language."
+                },
+                "dataFormat": {
+                  "$ref": "common.json#/$defs/webAddress",
+                  "description": "The web address provides a definition of the format of the 'xmlData'."
+                },
+                "xmlData": {
+                  "$ref": "string.json#/$defs/extensibleMarkupLanguageDocument",
+                  "description": "Hygrothermal data in Extensible Markup Language (XML) format in the exact data format specified by the property 'formatting'."
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1,
+              "required": [
+                "xmlData"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        {
+          "title": "The hygrothermal data of a component.",
+          "description": "short description",
           "type": "object",
           "properties": {
             "id": {
@@ -20,23 +55,188 @@
               "type": "string",
               "description": "An explanation with more details about the hygrothermal data in natural language."
             },
-            "dataFormat": {
-              "$ref": "common.json#/$defs/webAddress",
-              "description": "The web address provides a definition of the format of the 'xmlData'."
-            },
-            "xmlData": {
-              "$ref": "string.json#/$defs/extensibleMarkupLanguageDocument",
-              "description": "Hygrothermal data in Extensible Markup Language (XML) format in the exact data format specified by the property 'formatting'."
+            "data": {
+              "type": "object",
+              "title": "The object is used to store hygrothermal data.",
+              "properties": {
+                "thermalConductivityDry": {
+                  "$ref": "number.json#/$defs/wattPerMeterKelvin"
+                },
+                "bulkDensity": {
+                  "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                  "description": "short description"
+                },
+                "porosity": {
+                  "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                  "description": "short description"
+                },
+                "specificHeatCapacity": {
+                  "$ref": "number.json#/$defs/joulePerKgK",
+                  "description": "short description"
+                },
+                "waterVaporDiffusionResistanceFactor": {
+                  "$ref": "number.json#/$defs/nonNegativeNumber",
+                  "description": "short description"
+                },
+                "referenceWaterContent": {
+                  "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                  "description": "short description"
+                },
+                "freeWaterSaturation": {
+                  "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                  "description": "short description"
+                },
+                "waterAbsorptionCoefficient": {
+                  "$ref": "number.json#/$defs/kilogramPerSquareMeterAndSquareRootSeconds",
+                  "description": "short description"
+                },
+                "moistureDependentConductivitySupplement": {
+                  "$ref": "number.json#/$defs/percentPerMassPercent",
+                  "description": "short description"
+                },
+                "temperatureDependentConductivitySupplement": {
+                  "$ref": "number.json#/$defs/wattPerMeterSquareKelvin",
+                  "description": "short description"
+                },
+                "typicalBuildInMoisture": {
+                  "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                  "description": "short description"
+                },
+                "moistureStorageFunction": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "relativeHumidityAbsolut": {
+                        "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                        "description": "short description"
+                      },
+                      "waterContent": {
+                        "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                        "description": "short description"
+                      }
+                    }
+                  }
+                },
+                "moistureStorageFunctionGenerated": {
+                  "type": "boolean"
+                },
+                "liquidTransportCoefficientSuction": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "waterContent": {
+                        "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                        "description": "short description"
+                      },
+                      "liquidTransportCoefficient": {
+                        "$ref": "number.json#/$defs/squareMeterPerSecond",
+                        "description": "short description"
+                      }
+                    }
+                  }
+                },
+                "liquidTransportCoefficientSuctionGenerated": {
+                  "type": "boolean"
+                },
+                "liquidTransportCoefficientRedistribution": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "waterContent": {
+                        "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                        "description": "short description"
+                      },
+                      "liquidTransportCoefficient": {
+                        "$ref": "number.json#/$defs/squareMeterPerSecond",
+                        "description": "short description"
+                      }
+                    }
+                  }
+                },
+                "liquidTransportCoefficientRedistributionGenerated": {
+                  "type": "boolean"
+                },
+                "thermalConductivityMoistureDependent": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "waterContent": {
+                        "$ref": "number.json#/$defs/squareMeterPerSecond",
+                        "description": "short description"
+                      },
+                      "thermalConductivity": {
+                        "$ref": "number.json#/$defs/wattPerMeterKelvin",
+                        "description": "short description"
+                      }
+                    }
+                  }
+                },
+                "thermalConductivityMoistureDependentGenerated": {
+                  "type": "boolean"
+                },
+                "thermalConductivityTemperatureDependent": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "temperature": {
+                        "$ref": "number.json#/$defs/degreeCelcius",
+                        "description": "short description"
+                      },
+                      "thermalConductivity": {
+                        "$ref": "number.json#/$defs/wattPerMeterKelvin",
+                        "description": "short description"
+                      }
+                    }
+                  }
+                },
+                "thermalConductivityTemperatureDependentGenerated": {
+                  "type": "boolean"
+                },
+                "waterVaporDiffusionResistanceFactorMoistureDependent": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "relativeHumidityAbsolut": {
+                        "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                        "description": "short description"
+                      },
+                      "diffusionResistanceFactor": {
+                        "$ref": "number.json#/$defs/nonNegativeNumber",
+                        "description": "short description"
+                      }
+                    }
+                  }
+                },
+                "enthalpyTemperatureDependent": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "temperature": {
+                        "$ref": "number.json#/$defs/degreeCelcius",
+                        "description": "short description"
+                      },
+                      "enthalpy": {
+                        "$ref": "number.json#/$defs/joulePerKg",
+                        "description": "short description"
+                      }
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1,
+              "required": []
             }
-          },
-          "additionalProperties": false,
-          "minProperties": 1,
-          "required": ["xmlData"]
+          }
         }
-      },
-      "additionalProperties": false,
-      "minProperties": 1,
-      "required": []
+      ]
     }
   },
   "$ref": "#/$defs/data"

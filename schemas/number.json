@@ -16,7 +16,7 @@
     },
     "confidenceInterval": {
       "type": "number",
-      "enum": [68.3, 95.4, 99.7, 100],
+      "enum": [ 68.3, 95.4, 99.7, 100 ],
       "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If it is 100% certain that the true value cannot be beyond the uncertainty, 100% is used."
     },
     "numberWithUncertainty": {
@@ -40,7 +40,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [ "uncertainValue", "uncertainty", "confidenceInterval" ]
         }
       ]
     },
@@ -75,7 +75,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [ "uncertainValue", "uncertainty", "confidenceInterval" ]
         }
       ]
     },
@@ -100,7 +100,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [ "uncertainValue", "uncertainty", "confidenceInterval" ]
         }
       ]
     },
@@ -131,7 +131,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [ "uncertainValue", "uncertainty", "confidenceInterval" ]
         }
       ]
     },
@@ -207,6 +207,10 @@
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "A square meter (m^2) is a unit for an area. With this type, the uncertainty can be defined."
     },
+    "squareMeterPerSecond": {
+      "$ref": "number",
+      "description": "Square meter per second (m^2/s) is is a unit in the category of kinematic viscosity."
+    },
     "squareMillimeterWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "A square millimeter (mm^2) is a unit for an area. With this type, the uncertainty can be defined."
@@ -246,7 +250,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [ "uncertainValue", "uncertainty", "confidenceInterval" ]
         }
       ]
     },
@@ -271,7 +275,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [ "uncertainValue", "uncertainty", "confidenceInterval" ]
         }
       ]
     },
@@ -296,7 +300,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [ "uncertainValue", "uncertainty", "confidenceInterval" ]
         }
       ]
     },
@@ -321,7 +325,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [ "uncertainValue", "uncertainty", "confidenceInterval" ]
         }
       ]
     },
@@ -346,7 +350,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [ "uncertainValue", "uncertainty", "confidenceInterval" ]
         }
       ]
     },
@@ -363,12 +367,17 @@
       "description": "Watt (W) is the SI unit for power. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "kelvinWithUncertainty": {
-      "$ref": "#/$defs/numberWithUncertainty",
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Kelvin (K) is the SI unit for temperature. With this type, the uncertainty can be defined."
     },
     "kelvin": {
-      "type": "number",
+      "type": "#/$defs/numberWithUncertainty",
       "description": "Kelvin (K) is the SI unit for temperature. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "degreeCelcius": {
+      "type": "number",
+      "minimum": -273.15,
+      "description": "degree Celcius (°C) is the unit of temperature on the Celsius temperature scale."
     },
     "voltWithUncertainty": {
       "$ref": "#/$defs/numberWithUncertainty",
@@ -418,9 +427,25 @@
       "type": "number",
       "description": "Hertz (Hz) is a derived SI unit of frequency. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
+    "kilogramPerCubicMeter": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "The density of a material has the SI units kg/m^3."
+    },
     "kilogramPerCubicMeterWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "The density of a material has the SI units kg/m^3. With this type, the uncertainty can be defined."
+    },
+    "kilogramPerSquareMeterAndSquareRootSeconds": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Kilogramm per square meter and per square root seconds (kg/(m^2*s^0.5)) are the SI uniut for the water absorption coefficient"
+    },
+    "joulePerKg": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Joule per kilogram (J/kg) are the SI units of the enthalpy."
+    },
+    "joulePerKgK": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Joule per kilogram and per Kelvin (J/(kg*K)) are the SI units of the specific heat capacity."
     },
     "joulePerKgKwithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
@@ -434,6 +459,14 @@
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Watt per square meter and per kelvin (W/(m^2*K) are the SI units of a heat transfer coefficient. With this type, the uncertainty can be defined."
     },
+    "wattPerMeterKelvin": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Watt per meter and per kelvin (W/(m*K)) are the SI units of the thermal conductivity."
+    },
+    "wattPerMeterSquareKelvin": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Watt per meter and per kelvin (W/(m*K²)) are the SI units of the thermal conductivity supplement per kelvin."
+    },
     "wattPerMeterKelvinWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Watt per meter and per kelvin (W/(m*K)) are the SI units of the thermal conductivity. With this type, the uncertainty can be defined."
@@ -443,6 +476,12 @@
       "type": "number",
       "minimum": -100,
       "maximum": 100
+    },
+    "percentPerMassPercent": {
+      "description": "Percent per mass percent (%/M-%), for example used for moisture dependent conductivity supplement without uncertainty.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
     },
     "percent": {
       "description": "Percent, for example, the number 5 of this type means 5 %.",
@@ -455,6 +494,16 @@
     "percentBetweenZeroAndOneHundredWithUncertainty": {
       "$ref": "#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
       "description": "Percent. For example, the number 5 of this type means 5 %. With this type, the uncertainty can be defined."
+    },
+    "percentDecimal": {
+      "description": "Equivalent decimal value to percent, for example, the number 0.05 of this type means 5 %.",
+      "type": "number"
+    },
+    "percentDecimalBetweenZeroAndOne": {
+      "description": "Equivalent decimal value to percent, for example, the number 0.05 of this type means 5 %.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     },
     "latitude": {
       "$ref": "#/$defs/degreeBetweenZeroAndNinetyWithUncertainty",
