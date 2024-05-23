@@ -12,15 +12,17 @@
         {
           "data": [
             {
-              "WUFI": {
-                "id": {
-                  "value": "8ca1102b-264a-4023-8351-5897ec38e388",
-                  "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-                },
-                "description": "This hygrothermal data has been provided by WUFI.de.",
-                "dataFormat": "https://wufi.de/de/wp-content/uploads/sites/9/How-to-import-an-xml-file.pdf",
-                "xmlData": "<placeholder><for><xmlData>"
-              }
+              "hashValue": "B5C529341DC538879E61DEE1F95F40FD4A91D1D74C32C1206448DB95F0EBE6BE",
+              "locator": "https://oc.ise.fraunhofer.de/index.php/s/z2uW4Veh4fWyF1c",
+              "format": {
+                "id": "c3306b72-2c4f-4c91-af89-aaeefdba1730",
+                "timestamp": "2019-09-01T12:00:00+01:00",
+                "name": "WUFI-XML-Format",
+                "abbreviation": "xml",
+                "description": "An XML format for hygrothermal data",
+                "mediaType": "application/xml"
+              },
+              "archivedFilesMetaInformation": []
             }
           ]
         }
