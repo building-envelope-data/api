@@ -16,7 +16,12 @@
     },
     "confidenceInterval": {
       "type": "number",
-      "enum": [68.3, 95.4, 99.7, 100],
+      "enum": [
+        68.3,
+        95.4,
+        99.7,
+        100
+      ],
       "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If it is 100% certain that the true value cannot be beyond the uncertainty, 100% is used."
     },
     "numberWithUncertainty": {
@@ -40,7 +45,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -75,7 +84,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -100,7 +113,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -131,7 +148,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -250,7 +271,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -275,7 +300,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -300,7 +329,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -325,7 +358,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -350,7 +387,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -371,7 +412,7 @@
       "description": "Kelvin (K) is the SI unit for temperature. With this type, the uncertainty can be defined."
     },
     "kelvin": {
-      "type": "#/$defs/numberWithUncertainty",
+      "type": "number",
       "description": "Kelvin (K) is the SI unit for temperature. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "degreeCelcius": {
