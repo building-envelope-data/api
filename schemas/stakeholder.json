@@ -43,10 +43,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "standard",
-        "approvals"
-      ]
+      "required": ["standard", "approvals"]
     },
     "institution": {
       "title": "Institution",
@@ -118,18 +115,13 @@
               }
             },
             "additionalProperties": false,
-            "required": [
-              "kind",
-              "person"
-            ]
+            "required": ["kind", "person"]
           },
           "minItems": 1
         }
       },
       "additionalProperties": false,
-      "required": [
-        "id"
-      ]
+      "required": ["id"]
     },
     "person": {
       "title": "Person",
@@ -173,10 +165,7 @@
               }
             },
             "additionalProperties": false,
-            "required": [
-              "kind",
-              "institution"
-            ]
+            "required": ["kind", "institution"]
           },
           "minItems": 1
         },
