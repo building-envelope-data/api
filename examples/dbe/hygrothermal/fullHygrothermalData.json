@@ -27,7 +27,7 @@
               "freeWaterSaturation": 554,
               "waterAbsorptionCoefficient": 0.002,
               "moistureDependentConductivitySupplement": 1.5,
-              "temperatureDependentConductivitySupplement": 2E-4,
+              "temperatureDependentConductivitySupplement": 2e-4,
               "typicalBuildInMoisture": 0,
               "moistureStorageFunction": [
                 {
@@ -135,11 +135,11 @@
                 },
                 {
                   "waterContent": 79,
-                  "liquidTransportCoefficient": 1.36239E-13
+                  "liquidTransportCoefficient": 1.36239e-13
                 },
                 {
                   "waterContent": 554,
-                  "liquidTransportCoefficient": 4.952495E-11
+                  "liquidTransportCoefficient": 4.952495e-11
                 }
               ],
               "liquidTransportCoefficientSuctionGenerated": true,
@@ -150,11 +150,11 @@
                 },
                 {
                   "waterContent": 79,
-                  "liquidTransportCoefficient": 1.8E-13
+                  "liquidTransportCoefficient": 1.8e-13
                 },
                 {
                   "waterContent": 554,
-                  "liquidTransportCoefficient": 8E-9
+                  "liquidTransportCoefficient": 8e-9
                 }
               ],
               "liquidTransportCoefficientRedistributionGenerated": false,
