@@ -87,7 +87,11 @@
         },
         "orientationAxis": {
           "type": "string",
-          "enum": ["horizontal", "vertical", "neither"],
+          "enum": [
+            "horizontal",
+            "vertical",
+            "neither"
+          ],
           "description": "The orientation axis is important for example for venetian blinds."
         },
         "slat": {

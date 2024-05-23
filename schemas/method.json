@@ -24,7 +24,10 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["calculation", "measurement"]
+            "enum": [
+              "calculation",
+              "measurement"
+            ]
           },
           "uniqueItems": true,
           "minItems": 1
@@ -76,12 +79,16 @@
             }
           },
           "additionalProperties": false,
-          "required": ["endpoint"],
+          "required": [
+            "endpoint"
+          ],
           "minProperties": 1
         }
       },
       "additionalProperties": false,
-      "required": ["id"]
+      "required": [
+        "id"
+      ]
     },
     "calculation": {
       "title": "A web address which defines the calculation procedure in detail.",
@@ -112,7 +119,11 @@
         }
       },
       "additionalProperties": false,
-      "required": ["method", "arguments", "sources"]
+      "required": [
+        "method",
+        "arguments",
+        "sources"
+      ]
     },
     "namedArgument": {
       "type": "object",
@@ -126,7 +137,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["name", "value"]
+      "required": [
+        "name",
+        "value"
+      ]
     },
     "namedSource": {
       "title": "Source data which is an input for a method. A creator uses a method and source data to create a new data set.",
@@ -142,7 +156,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["name", "value"]
+      "required": [
+        "name",
+        "value"
+      ]
     },
     "dataReference": {
       "title": "Data reference",
@@ -166,7 +183,11 @@
         }
       },
       "additionalProperties": false,
-      "required": ["dataId", "dataTimestamp", "dataKind"]
+      "required": [
+        "dataId",
+        "dataTimestamp",
+        "dataKind"
+      ]
     },
     "database": {
       "description": "Information about a database which has implemented the same API specification.",
@@ -206,7 +227,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["webAddress"]
+      "required": [
+        "webAddress"
+      ]
     }
   },
   "$ref": "#/$defs/method"

@@ -15,5 +15,7 @@
     }
   },
   "additionalProperties": false,
-  "required": ["components"]
+  "required": [
+    "components"
+  ]
 }
