@@ -233,8 +233,12 @@
       "description": "A square meter (m^2) is a unit for an area. With this type, the uncertainty can be defined."
     },
     "squareMeterPerSecond": {
-      "$ref": "number",
+      "$ref": "#/$defs/nonNegativeNumber",
       "description": "Square meter per second (m^2/s) is is a unit in the category of kinematic viscosity."
+    },
+    "squareMeterPerSecondWithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "Square meter per second (m^2/s) is is a unit in the category of kinematic viscosity. With this type, the uncertainty can be defined."
     },
     "squareMillimeterWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
@@ -416,7 +420,7 @@
       "description": "Kelvin (K) is the SI unit for temperature. With this type, the uncertainty can be defined."
     },
     "kelvin": {
-      "type": "number",
+      "$ref": "#/$defs/nonNegativeNumber",
       "description": "Kelvin (K) is the SI unit for temperature. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "degreeCelcius": {
