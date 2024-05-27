@@ -220,6 +220,10 @@ install-tools : ## Install development tools from the lock file
 		--omit optional
 .PHONY : install-tools
 
+outdated-tools : ## List outdated tools
+	npm outdated
+.PHONY : outdated-tools
+
 update-tools : ## Update development tools to the latest compatible minor versions
 	npm install \
 		--omit optional
