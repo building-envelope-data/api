@@ -226,7 +226,7 @@ update-tools : ## Update development tools to the latest compatible minor versio
 .PHONY : update-tools
 
 licenses : ## Print licenses
-	yarn run \
+	npx --no-install \
 		license-checker \
 			--unknown \
 			--direct \
