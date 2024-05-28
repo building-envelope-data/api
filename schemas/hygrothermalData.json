@@ -197,6 +197,9 @@
           "required": []
         }
       }
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
     }
   },
   "$ref": "#/$defs/data"
