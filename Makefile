@@ -237,3 +237,4 @@ licenses : ## Print licenses
 			--summary
 			# --failOn
 			# --onlyAllow
+.PHONY : licenses
