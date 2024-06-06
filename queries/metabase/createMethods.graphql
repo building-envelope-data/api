@@ -135,6 +135,40 @@ mutation {
       name
     }
   }
+  TAUWINRawDataMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the raw data for transmittance with TAUWIN."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "TAUWIN raw data measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  TAUWINRHODIFFMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the diffuse reflectance with RHODIFF."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "TAUWIN measure diffuse reflectance"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
   RHOWINInput: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
