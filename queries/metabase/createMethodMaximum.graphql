@@ -41,9 +41,7 @@ mutation {
     }
   ) {
     method {
-      availability {
-        from
-      }
+      name
     }
   }
 }

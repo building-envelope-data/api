@@ -1,0 +1,104 @@
+mutation {
+  Lambda900Input: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Collect the required input for Lambda900 measurements."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "Lambda900 input"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  TAUWINInput: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Collect the required input for TAUWIN measurements."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "TAUWIN input"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  RHOWINInput: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Collect the required input for RHOWIN measurements."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "RHOWIN input"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  PhotogoniometerInput: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Collect the required input for Photogoniometer measurements."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "Photogoniometer input"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  gValueInput: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Collect the required input for gValue measurements."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "g value input"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  uValueInput: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Collect the required input for U value measurements."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "U value input"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+}
