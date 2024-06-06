@@ -16,6 +16,108 @@ mutation {
       name
     }
   }
+  Lambda900BaselineMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the baselines with 0% and 100% irradiance."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "Lambda900 measure baselines"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  Lambda900RawDataMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the raw data for transmittance and reflectance with Lambda900."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "Lambda900 raw data measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  Lambda900ReferenceMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the references like a mirror and a white standard."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "Lambda900 reference measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  Lambda900Calculation: createMethod(
+    input: {
+      categories: CALCULATION
+      description: "Calculate the transmittances and reflectances based on the measurement raw data."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "calculate transmittance and reflectance"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  opticalDataEN410: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Determine the optical data according to EN410:2011."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "optical values EN410:2011"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  opticalDataISO9050: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Determine the optical data according to ISO9050:2003."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "optical values EN410:2011"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
   TAUWINInput: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
