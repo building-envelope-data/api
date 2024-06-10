@@ -423,13 +423,20 @@ mutation {
       name
     }
   }
-  gValueMeasurementWithFrame: createMethod(
+  gValueNearnormalWithFrame: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
-      description: "Measure the nearnormal g value according to ISO 19467-1 including frame."
+      description: "Measure the nearnormal g value according to ISO 19467 including frame."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "g value including frame ISO 19467-1"
+      name: "g value nearnormal including frame ISO 19467"
+      standard: {
+        locator: "https://www.iso.org/standard/64989.html"
+        numeration: { mainNumber: "19467", prefix: "", suffix: "" }
+        standardizers: ISO
+        title: "Thermal performance of windows and doors — Determination of solar heat gain coefficient using solar simulator"
+        year: 2017
+      }
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -440,13 +447,20 @@ mutation {
       name
     }
   }
-  gValueMeasurementCenterOfGlazing: createMethod(
+  gValueCenterOfGlazing: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
-      description: "Measure the nearnormal center-of-glazing g value according to ISO 19467-2."
+      description: "Measure the center-of-glazing g value according to ISO 19467-2."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "center-of-glazing g value ISO 19467-2"
+      standard: {
+        locator: "https://www.iso.org/standard/73824.html"
+        numeration: { mainNumber: "19467", prefix: "", suffix: "2" }
+        standardizers: ISO
+        title: "Thermal Performance of windows and doors — Determination of solar heat gain coefficient using solar simulator Part 2: Centre of glazing"
+        year: 2021
+      }
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -457,13 +471,13 @@ mutation {
       name
     }
   }
-  gValueMeasurementBeyondNearnormal: createMethod(
+  gValueMeasurementBeyondStandard: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
-      description: "Measure the g value for irradiance which is not nearnormal."
+      description: "Measure the g value for irradiance beyond the definition of existing standards."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "g value beyond nearnormal"
+      name: "g value beyond standards"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
