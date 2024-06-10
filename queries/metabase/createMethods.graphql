@@ -261,6 +261,14 @@ mutation {
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "EN 410 integral"
+      standard: {
+        locator: "https://www.dinmedia.de/en/standard/din-en-410/138424295"
+        numeration: { mainNumber: "410", prefix: "", suffix: "" }
+        section: "5"
+        standardizers: [CEN, DIN]
+        title: "Glass in building - Determination of luminous and solar characteristics of glazing"
+        year: 2011
+      }
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -278,6 +286,14 @@ mutation {
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "ISO 9050 integral"
+      standard: {
+        locator: "https://www.iso.org/standard/35062.html"
+        numeration: { mainNumber: "9050", prefix: "", suffix: "" }
+        section: "3"
+        standardizers: ISO
+        title: "Glass in building — Determination of light transmittance, solar direct transmittance, total solar energy transmittance, ultraviolet transmittance and related glazing factors"
+        year: 2003
+      }
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
