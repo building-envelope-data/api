@@ -532,6 +532,13 @@ mutation {
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "U value EN 674"
+      standard: {
+        locator: "https://www.dinmedia.de/en/standard/din-en-674/142706443"
+        numeration: { mainNumber: "674", prefix: "", suffix: "" }
+        standardizers: [CEN, DIN]
+        title: "Glass in building - Determination of thermal transmittance (U value) - Guarded hot plate method"
+        year: 2011
+      }
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
