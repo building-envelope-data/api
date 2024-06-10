@@ -84,40 +84,6 @@ mutation {
       name
     }
   }
-  opticalDataEN410: createMethod(
-    input: {
-      categories: [MEASUREMENT, CALCULATION]
-      description: "Determine the optical data according to EN410:2011."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "optical values EN410:2011"
-      userDeveloperIds: [
-        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
-        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
-      ]
-    }
-  ) {
-    method {
-      name
-    }
-  }
-  opticalDataISO9050: createMethod(
-    input: {
-      categories: [MEASUREMENT, CALCULATION]
-      description: "Determine the optical data according to ISO9050:2003."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "optical values EN410:2011"
-      userDeveloperIds: [
-        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
-        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
-      ]
-    }
-  ) {
-    method {
-      name
-    }
-  }
   TAUWINInput: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
@@ -125,6 +91,23 @@ mutation {
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "TAUWIN input"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  TAUWINBaselineMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the baselines with 0% and 100% irradiance."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "TAUWIN measure baselines"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -203,6 +186,23 @@ mutation {
       name
     }
   }
+  RHOWINBaselineMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the baselines with 0% and 100% irradiance."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "RHOWIN measure baselines"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
   RHOWINRawDataMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
@@ -220,13 +220,13 @@ mutation {
       name
     }
   }
-  RHOWINRHODIFFMeasurement: createMethod(
+  RHOWINReferenceMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
-      description: "Measure the diffuse reflectance with RHODIFF."
+      description: "Measure a white standard as reference."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "RHOWIN measure diffuse reflectance"
+      name: "RHOWIN reference measurement"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -244,6 +244,40 @@ mutation {
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "RHOWIN calculate transmittance"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  EN410Integral: createMethod(
+    input: {
+      categories: CALCULATION
+      description: "Calculate integral values according to EN410:2011 based on spectral data."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "EN 410 integral"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  ISO9050Integral: createMethod(
+    input: {
+      categories: CALCULATION
+      description: "Calculate integral values according to ISO9050:2003 based on spectral data."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "ISO 9050 integral"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
