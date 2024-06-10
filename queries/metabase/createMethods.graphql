@@ -73,7 +73,7 @@ mutation {
       description: "Calculate the transmittances and reflectances based on the measurement raw data."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "calculate transmittance and reflectance"
+      name: "Lambda900 calculate transmittance and reflectance"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -203,13 +203,115 @@ mutation {
       name
     }
   }
+  RHOWINRawDataMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the raw data for transmittance with RHOWIN."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "RHOWIN raw data measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  RHOWINRHODIFFMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the diffuse reflectance with RHODIFF."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "RHOWIN measure diffuse reflectance"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  RHOWINCalculation: createMethod(
+    input: {
+      categories: CALCULATION
+      description: "Calculate the transmittances based on the measurement raw data."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "RHOWIN calculate transmittance"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
   PhotogoniometerInput: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for Photogoniometer measurements."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "Photogoniometer input"
+      name: "photogoniometer input"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  PhotogoniometerRawDataMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Measure the raw data for transmittance and reflectance with photogoniometer."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "photogoniometer raw data measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  PhotogoniometerKlemsCalculation: createMethod(
+    input: {
+      categories: CALCULATION
+      description: "Calculate a Klems matrix based on bidirectional raw data."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "calculate Klems matrix"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  PhotogoniometerTensorTreeCalculation: createMethod(
+    input: {
+      categories: CALCULATION
+      description: "Calculate a tensor-tree based on bidirectional raw data."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "calculate tensor-tree matrix"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
