@@ -373,23 +373,6 @@ mutation {
       name
     }
   }
-  uValueInput: createMethod(
-    input: {
-      categories: [MEASUREMENT, CALCULATION]
-      description: "Collect the required input for U value measurements."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "U value input"
-      userDeveloperIds: [
-        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
-        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
-      ]
-    }
-  ) {
-    method {
-      name
-    }
-  }
   gValueRawDataMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
@@ -397,23 +380,6 @@ mutation {
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "g value raw data measurement"
-      userDeveloperIds: [
-        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
-        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
-      ]
-    }
-  ) {
-    method {
-      name
-    }
-  }
-  uValueRawDataMeasurement: createMethod(
-    input: {
-      categories: MEASUREMENT
-      description: "Run the U value measurement."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "U value raw data measurement"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -441,30 +407,13 @@ mutation {
       name
     }
   }
-  gValueCalculation: createMethod(
-    input: {
-      categories: CALCULATION
-      description: "Calculate the g value based on the measurement raw data."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "calculate g value"
-      userDeveloperIds: [
-        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
-        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
-      ]
-    }
-  ) {
-    method {
-      name
-    }
-  }
   gValueMeasurementWithFrame: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the nearnormal g value according to ISO 19467-1 including frame."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "g value ISO 19467-1"
+      name: "g value including frame ISO 19467-1"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -481,7 +430,7 @@ mutation {
       description: "Measure the nearnormal center-of-glazing g value according to ISO 19467-2."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "g value ISO 19467-2"
+      name: "center-of-glazing g value ISO 19467-2"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -499,6 +448,74 @@ mutation {
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "g value beyond nearnormal"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  uValueInput: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Collect the required input for U value measurements."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "U value input"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  uValueRawDataMeasurement: createMethod(
+    input: {
+      categories: MEASUREMENT
+      description: "Run the U value measurement."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "U value raw data measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  uValueCalculation: createMethod(
+    input: {
+      categories: CALCULATION
+      description: "Calculate the U value based on the measurement raw data."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "calculate U value"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  uValueEN674: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Measure the U value according to EN 674."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "U value EN 674"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
