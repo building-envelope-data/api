@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/v1/hygrothermal.json",
-  "title": "hygrothermal data",
+  "title": "metadata about hygrothermal data sets",
   "description": "Hygrothermal data with meta information like name, description, warnings, and more.",
   "$defs": {
     "hygrothermal": {

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://www.buildingenvelopedata.org/schemas/v1/optical.json",
-  "title": "optical data",
+  "title": "metadata about optical data sets",
   "description": "Optical data sets of building envelope components with meta information like name, description, warnings, and more.",
   "$defs": {
     "optical": {
