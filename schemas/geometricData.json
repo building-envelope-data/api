@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/geometricData.json",
+  "title": "geometric data",
+  "description": "Geometric data sets of building envelope components. It shall be possible to exchange the results of all important details about the geometry of a component.",
+  "$defs": {
+    "data": {},
+  },
+  "$ref": "#/$defs/data"
+}
