@@ -145,11 +145,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "x",
-        "y",
-        "z"
-      ]
+      "required": ["x", "y", "z"]
     },
     "vector": {
       "title": "A geometric vector according to the definition of a coordinate system elsewhere.",
@@ -166,11 +162,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "x",
-        "y",
-        "z"
-      ]
+      "required": ["x", "y", "z"]
     },
     "coordinateSystem": {
       "title": "Definition of the coordinate system of the data set",
@@ -213,10 +205,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "uDirection",
-        "vDirection"
-      ]
+      "required": ["uDirection", "vDirection"]
     },
     "nurbsBoundedCurve": {
       "title": "A non-uniform rational B-spline (NURBS) is a very general way to define a curve.",
@@ -247,9 +236,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "weights"
-                ]
+                "required": ["weights"]
               }
             ],
             "minItems": 2,
@@ -269,11 +256,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "degree",
-        "controlPoints",
-        "knots"
-      ]
+      "required": ["degree", "controlPoints", "knots"]
     },
     "body": {
       "type": "object",
