@@ -23,10 +23,6 @@
         "orientation": {
           "$ref": "#/$defs/orientation",
           "description": "The orientation of the prime surface of the component."
-        },
-        "getHttpsResource": {
-          "$ref": "common.json#/$defs/getHttpsResource",
-          "description": "Instead of or in addition to the keys above, a file can be used to define the geometry of the component."
         }
       },
       "additionalProperties": false,
@@ -149,14 +145,6 @@
               "orientation": {
                 "$ref": "#/$defs/orientation",
                 "description": "The orientation of the prime surface of the component."
-              },
-              "getHttpsResource": {
-                "$ref": "common.json#/$defs/getHttpsResource",
-                "description": "Instead of or in addition to the keys above, a file can be used to define the geometry of the component."
-              },
-              "levelOfDevelopment": {
-                "$ref": "#/$defs/orientation",
-                "description": "The Level of Development or Level of Detail (LOD) is used to describe how accurate the reality is modelled."
               }
             },
             "additionalProperties": false,
