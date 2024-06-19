@@ -105,25 +105,6 @@
           "$ref": "#/$defs/origin",
           "description": "The origin of the coordinate system which is used by `assemblyList/location`."
         },
-        "definitionOfSurfacesAndPrimeDirections": {
-          "title": "Definition of surfaces and prime directions",
-          "description": "The prime surface and the prime direction are used to define the `orientation` of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry.",
-          "type": "object",
-          "properties": {
-            "reference": {
-              "$ref": "common.json#/$defs/reference",
-              "title": "Reference",
-              "description": "Reference that defines which surfaces of the components are defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define the prime directions of the components."
-            },
-            "description": {
-              "type": "string",
-              "title": "Description",
-              "description": "Description of which sides of the components are defined as non-prime and which as prime and which direction is defined as the prime direction. Often, the non-prime side faces the exterior and the prime side the interior."
-            }
-          },
-          "minProperties": 1,
-          "required": []
-        },
         "assemblyList": {
           "title": "The subcomponents which are used for this assembly.",
           "type": "array",
