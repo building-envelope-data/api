@@ -27,10 +27,6 @@
         "getHttpsResource": {
           "$ref": "common.json#/$defs/getHttpsResource",
           "description": "Instead of or in addition to the keys above, a file can be used to define the geometry of the component."
-        },
-        "levelOfDevelopment": {
-          "$ref": "#/$defs/orientation",
-          "description": "The Level of Development or Level of Detail (LOD) is used to describe how accurate the reality is modelled."
         }
       },
       "additionalProperties": false,
@@ -104,31 +100,6 @@
         "azimuth",
         "componentTilt"
       ]
-    },
-    "levelOfDevelopment": {
-      "title": "The Level of Development or Level of Detail (LOD) is used to describe how accurate the reality is modelled. As geometry/LOD refers to geometry, it is sometimes also called Level of Geometry.",
-      "type": "array",
-      "prefixItems": [
-        {
-          "$ref": "number.json#/$defs/nonNegativeInteger",
-          "description": "This integer indicates the LOD according to the definition of the reference below."
-        },
-        {
-          "type": "object",
-          "properties": {
-            "reference": {
-              "$ref": "common.json#/$defs/reference",
-              "description": "This reference defines the LOD which is indicated above."
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "reference"
-          ]
-        }
-      ],
-      "minItems": 2,
-      "items": false
     },
     "assembly": {
       "title": "An assembly of components where each item of the array defines one component of the assembly. Note that one component can either consist of a single component or of an assembly of components.",
