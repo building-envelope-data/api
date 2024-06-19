@@ -321,9 +321,9 @@
                 "$ref": "number.json#/$defs/meterWithUncertainty",
                 "description": "The width of the component along the horizontal axis of the building envelope. It has the units meter."
               },
-              "depth": {
+              "thickness": {
                 "$ref": "number.json#/$defs/meterWithUncertainty",
-                "description": "The depth of the component along the axis perpendicular to the building envelope. It has the units meter."
+                "description": "The thickness of the component along the axis perpendicular to the building envelope. It has the units meter."
               }
             },
             "additionalProperties": false,
