@@ -461,18 +461,6 @@
           "$ref": "number.json#/$defs/numberWithUncertainty",
           "description": "b* (bStar) defines the color between blue and yellow."
         },
-        "direction": {
-          "type": "string",
-          "enum": [
-            "reflection",
-            "transmission"
-          ],
-          "description": "`reflection` indicates that that the color is defined which is reflected by the component. `transmission` indicates that the color is defined which is transmitted through the component."
-        },
-        "surface": {
-          "$ref": "component.json#/$defs/surface",
-          "description": "Defines which surface is irradiated"
-        },
         "observer": {
           "type": "string",
           "enum": [
@@ -494,8 +482,7 @@
       "required": [
         "lStar",
         "aStar",
-        "bStar",
-        "direction"
+        "bStar"
       ]
     },
     "colorRenderingIndex": {
@@ -505,18 +492,6 @@
         "value": {
           "$ref": "number.json#/$defs/numberWithUncertainty",
           "description": "The value of the Color Rendering Index indicates how well for example the transmitted or reflected radiation matches daylight."
-        },
-        "direction": {
-          "type": "string",
-          "enum": [
-            "reflection",
-            "transmission"
-          ],
-          "description": "`reflection` indicates that that the Color Rendering Index is defined for radiation which is reflected by the component. `transmission` indicates that the Color Rendering Index is defined for radiation which is transmitted through the component."
-        },
-        "surface": {
-          "$ref": "component.json#/$defs/surface",
-          "description": "Defines which surface is irradiated"
         }
       },
       "additionalProperties": false,
