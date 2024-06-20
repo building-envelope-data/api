@@ -73,11 +73,6 @@
           "$ref": "#/$defs/emergence",
           "title": "Emergent radiation",
           "description": "Radiation that emerges from the component."
-        },
-        "results": {
-          "$ref": "#/$defs/results",
-          "title": "Results",
-          "description": "For example transmittance and reflectance."
         }
       },
       "additionalProperties": false,
@@ -85,7 +80,48 @@
         "incidence",
         "emergence",
         "results"
-      ]
+      ],
+      "if": {
+        "properties": {
+          "incidence": {
+            "type": "object",
+            "properties": {
+              "wavelengths": {
+                "type": "object",
+                "properties": {
+                  "integral": {
+                    "const": "visible"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "results": {
+            "$ref": "#/$defs/resultsWithColor",
+            "title": "Results with color",
+            "description": "For example transmittance, reflectance and the color."
+          }
+        },
+        "required": [
+          "results"
+        ]
+      },
+      "else": {
+        "properties": {
+          "results": {
+            "$ref": "#/$defs/results",
+            "title": "Results",
+            "description": "For example transmittance and reflectance."
+          }
+        },
+        "required": [
+          "results"
+        ]
+      }
     },
     "componentCharacteristics": {
       "title": "Component characteristics",
