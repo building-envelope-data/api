@@ -25,7 +25,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["dataPoints"]
+          "required": [
+            "dataPoints"
+          ]
         },
         {
           "title": "Internal data node with non-leaf children",
@@ -46,7 +48,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["data"]
+          "required": [
+            "data"
+          ]
         }
       ]
     },
@@ -71,8 +75,6 @@
           "description": "Radiation that emerges from the component."
         }
       },
-      "additionalProperties": false,
-      "required": ["incidence", "emergence", "results"],
       "if": {
         "properties": {
           "incidence": {
@@ -98,7 +100,9 @@
             "description": "For example transmittance, reflectance and the color."
           }
         },
-        "required": ["results"]
+        "required": [
+          "results"
+        ]
       },
       "else": {
         "properties": {
@@ -108,8 +112,15 @@
             "description": "For example transmittance and reflectance."
           }
         },
-        "required": ["results"]
-      }
+        "required": [
+          "results"
+        ]
+      },
+      "required": [
+        "incidence",
+        "emergence",
+        "results"
+      ]
     },
     "componentCharacteristics": {
       "title": "Component characteristics",
@@ -138,7 +149,12 @@
         },
         "normalization": {
           "type": "string",
-          "enum": ["absolute", "relative", "specular", "diffuseReflectance"],
+          "enum": [
+            "absolute",
+            "relative",
+            "specular",
+            "diffuseReflectance"
+          ],
           "title": "Normalization",
           "description": "Normalization methods absolute, relative, specular, and diffuse reflectance as standardized in [ASTM E2387-05(2011), Standard Practice for Goniometric Optical Scatter Measurements, ASTM International, West Conshohocken, PA, 2011, www.astm.org](https://www.astm.org/DATABASE.CART/HISTORICAL/E2387-05R11.htm)."
         },
@@ -196,13 +212,19 @@
             }
           },
           "additionalProperties": false,
-          "required": ["s", "p"]
+          "required": [
+            "s",
+            "p"
+          ]
         },
         {
           "title": "Circular polarization",
           "description": "`leftHanded` means that the radiation is circularly polarized and rotates in a left-hand sense with respect to the direction of radiation. `rightHanded` means that the radiation is circularly polarized and rotates in a right-hand sense with respect to the direction of radiation.",
           "type": "string",
-          "enum": ["leftHanded", "rightHanded"]
+          "enum": [
+            "leftHanded",
+            "rightHanded"
+          ]
         }
       ]
     },
@@ -232,12 +254,20 @@
       "properties": {
         "integral": {
           "type": "string",
-          "enum": ["infrared", "solar", "ultraviolet", "visible", "other"],
+          "enum": [
+            "infrared",
+            "solar",
+            "ultraviolet",
+            "visible",
+            "other"
+          ],
           "description": "Spectrum over which the integral result was measured or calculated. `ultraviolet`, `visible`, `solar` and `infrared` indicate the range of the wavelengths used for the integral values. Details about the spectrum are provided by the method which has been applied to generate the data set. If neither `ultraviolet`, `visible`, `solar` and `infrared` describe the spectrum correctly, `other` indicates that all information about the spectrum is provided by the applied method."
         }
       },
       "additionalProperties": false,
-      "required": ["integral"]
+      "required": [
+        "integral"
+      ]
     },
     "transmittance": {
       "$ref": "number.json#/$defs/numberWithUncertainty",
@@ -269,7 +299,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["polar"]
+          "required": [
+            "polar"
+          ]
         },
         {
           "title": "Hemispherical",
@@ -297,13 +329,18 @@
             }
           },
           "additionalProperties": false,
-          "required": ["polar"]
+          "required": [
+            "polar"
+          ]
         },
         {
           "title": "Diffuse or hemispherical",
           "description": "(i) Diffuse means all directions with an emergence angle greater than 10°. (ii) Hemispherical means all directions to the hemisphere above the sample surface. Both are used when the emergence in many directions is treated as a sum.",
           "type": "string",
-          "enum": ["diffuse", "hemispherical"]
+          "enum": [
+            "diffuse",
+            "hemispherical"
+          ]
         }
       ]
     },
@@ -320,7 +357,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["wavelength"]
+      "required": [
+        "wavelength"
+      ]
     },
     "wavelengths": {
       "title": "Wavelengths of radiation",
@@ -352,7 +391,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["direction", "wavelengths"]
+      "required": [
+        "direction",
+        "wavelengths"
+      ]
     },
     "emergence": {
       "title": "Emergent radiation",
@@ -364,7 +406,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["direction"]
+      "required": [
+        "direction"
+      ]
     },
     "results": {
       "title": "Measurement or simulation results",
@@ -454,17 +498,27 @@
         },
         "observer": {
           "type": "string",
-          "enum": ["twoDegrees", "tenDegrees"],
+          "enum": [
+            "twoDegrees",
+            "tenDegrees"
+          ],
           "description": "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
         },
         "illuminant": {
           "type": "string",
-          "enum": ["A", "D65"],
+          "enum": [
+            "A",
+            "D65"
+          ],
           "description": "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
         }
       },
       "additionalProperties": false,
-      "required": ["lStar", "aStar", "bStar"]
+      "required": [
+        "lStar",
+        "aStar",
+        "bStar"
+      ]
     },
     "colorRenderingIndex": {
       "title": "The Color Rendering Index (CRI) indicates how well the transmitted or reflected radiation matches daylight regarding the rendering of colors.",
@@ -476,7 +530,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["value", "direction"]
+      "required": [
+        "value",
+        "direction"
+      ]
     }
   },
   "$ref": "#/$defs/data"
