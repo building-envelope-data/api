@@ -392,23 +392,26 @@
         "transmittance": {
           "$ref": "#/$defs/transmittance"
         },
+        "colorTransmittance": {
+          "$ref": "#/$defs/colorTransmittance"
+        },
         "reflectance": {
           "$ref": "#/$defs/reflectance"
         },
+        "colorReflectance": {
+          "$ref": "#/$defs/colorReflectance"
+        },
         "absorptanceEmittance": {
           "$ref": "#/$defs/absorptanceEmittance"
-        },
-        "color": {
-          "$ref": "#/$defs/color"
         }
       },
       "additionalProperties": false,
       "required": [],
       "minProperties": 1
     },
-    "color": {
-      "title": "Color characterization",
-      "description": "The color of the component can be characterized in different ways, for example with the CIELAB Color Space and the Color Rendering Index. For angle-dependent characterization of colors, the general schema for measured and calculated optical data is better suited because incident and emergent radiation can be characterized in detail.",
+    "colorTransmittance": {
+      "title": "Color characterization of the irradiance transmitted through a component",
+      "description": "The color of the transmitted irradiance can be characterized in different ways, for example with the CIELAB Color Space and the Color Rendering Index.",
       "type": "object",
       "properties": {
         "name": {
@@ -427,6 +430,28 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/colorRenderingIndex"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
+    },
+    "colorReflectance": {
+      "title": "Color characterization of the irradiance reflected by a component",
+      "description": "The color of the reflected irradiance can be characterized in different ways, for example with the CIELAB Color Space.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the color in common language"
+        },
+        "cielabColors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cielabColor"
           },
           "uniqueItems": true,
           "minItems": 1

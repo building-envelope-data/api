@@ -14,13 +14,24 @@
       },
       "results": {
         "transmittance": 0.81,
-        "reflectance": 0.08,
-        "color": {
+        "colorTransmittance": {
           "cielabColors": [
             {
-              "lStar": 5,
-              "aStar": 1,
-              "bStar": -1,
+              "lStar": 94,
+              "aStar": 0,
+              "bStar": 0,
+              "observer": "tenDegrees",
+              "illuminant": "D65"
+            }
+          ]
+        },
+        "reflectance": 0.08,
+        "colorReflectance": {
+          "cielabColors": [
+            {
+              "lStar": 4,
+              "aStar": 0,
+              "bStar": 0,
               "observer": "tenDegrees",
               "illuminant": "D65"
             }

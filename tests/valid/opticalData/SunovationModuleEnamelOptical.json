@@ -1,17 +1,31 @@
 {
   "dataPoints": [
     {
-      "cielabColors": [
-        {
-          "lStar": 5,
-          "aStar": 1,
-          "bStar": -1,
-          "direction": "reflection",
-          "surface": "symmetric",
-          "observer": "tenDegrees",
-          "illuminant": "D65"
+      "incidence": {
+        "direction": {
+          "polar": 8
+        },
+        "wavelengths": {
+          "integral": "visible"
         }
-      ]
+      },
+      "emergence": {
+        "direction": "hemispherical"
+      },
+      "results": {
+        "reflectance": 0.08,
+        "colorReflectance": {
+          "cielabColors": [
+            {
+              "lStar": 5,
+              "aStar": 1,
+              "bStar": -1,
+              "observer": "tenDegrees",
+              "illuminant": "D65"
+            }
+          ]
+        }
+      }
     }
   ]
 }
