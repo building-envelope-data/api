@@ -13,24 +13,50 @@
             {
               "dataPoints": [
                 {
-                  "colorRenderingIndices": [
-                    {
-                      "value": 0.5,
-                      "direction": "transmission",
-                      "surface": "prime"
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": {
+                      "integral": "visible"
                     }
-                  ],
-                  "cielabColors": [
-                    {
-                      "lStar": 20,
-                      "aStar": 3,
-                      "bStar": -2,
-                      "direction": "reflection",
-                      "surface": "symmetric",
-                      "observer": "tenDegrees",
-                      "illuminant": "D65"
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.81,
+                    "colorTransmittance": {
+                      "colorRenderingIndices": [
+                        {
+                          "value": 0.5,
+                          "direction": "transmission",
+                          "surface": "prime"
+                        }
+                      ],
+                      "cielabColors": [
+                        {
+                          "lStar": 94,
+                          "aStar": 0,
+                          "bStar": 0,
+                          "observer": "tenDegrees",
+                          "illuminant": "D65"
+                        }
+                      ]
+                    },
+                    "reflectance": 0.08,
+                    "colorReflectance": {
+                      "cielabColors": [
+                        {
+                          "lStar": 4,
+                          "aStar": 0,
+                          "bStar": 0,
+                          "observer": "tenDegrees",
+                          "illuminant": "D65"
+                        }
+                      ]
                     }
-                  ]
+                  }
                 }
               ]
             }
