@@ -1,32 +1,32 @@
 {
-    "dataPoints": [
-        {
-            "incidence": {
-                "direction": {
-                    "polar": 8
-                },
-                "wavelengths": {
-                    "integral": "visible"
-                }
-            },
-            "emergence": {
-                "direction": "hemispherical"
-            },
-            "results": {
-                "transmittance": 0.81,
-                "reflectance": 0.08,
-                "color": {
-                    "cielabColors": [
-                        {
-                            "lStar": 5,
-                            "aStar": 1,
-                            "bStar": -1,
-                            "observer": "tenDegrees",
-                            "illuminant": "D65"
-                        }
-                    ]
-                }
-            }
+  "dataPoints": [
+    {
+      "incidence": {
+        "direction": {
+          "polar": 8
+        },
+        "wavelengths": {
+          "integral": "visible"
         }
-    ]
+      },
+      "emergence": {
+        "direction": "hemispherical"
+      },
+      "results": {
+        "transmittance": 0.81,
+        "reflectance": 0.08,
+        "color": {
+          "cielabColors": [
+            {
+              "lStar": 5,
+              "aStar": 1,
+              "bStar": -1,
+              "observer": "tenDegrees",
+              "illuminant": "D65"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }
