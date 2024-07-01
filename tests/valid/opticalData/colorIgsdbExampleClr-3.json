@@ -1,0 +1,371 @@
+{
+    "data": [
+        {
+            "componentCharacteristics": {
+                "surface": "prime",
+                "symmetries": "azimuthalAngleInvariance"
+            },
+            "dataPoints": [
+                {
+                    "incidence": {
+                        "wavelengths": "visible",
+                        "direction": {
+                            "polar": 8
+                        }
+                    },
+                    "emergence": {
+                        "direction": {
+                            "polar": 8
+                        }
+                    },
+                    "results": {
+                        "transmittance": 0.9044294,
+                        "reflectance": 0.08225287
+                    }
+                }
+            ]
+        },
+        {
+            "componentCharacteristics": {
+                "surface": "nonPrime",
+                "symmetries": "azimuthalAngleInvariance"
+            },
+            "dataPoints": [
+                {
+                    "incidence": {
+                        "wavelengths": "visible",
+                        "direction": {
+                            "polar": 8
+                        }
+                    },
+                    "emergence": {
+                        "direction": {
+                            "polar": 8
+                        }
+                    },
+                    "results": {
+                        "transmittance": 0.9044294,
+                        "reflectance": 0.08225287
+                    }
+                }
+            ]
+        }
+    ],
+    "color": {
+        "reflectance_back": {
+            "direct_direct": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "direct_diffuse": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "diffuse_diffuse": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "direct_hemispherical": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            }
+        },
+        "reflectance_front": {
+            "direct_direct": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "direct_diffuse": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "diffuse_diffuse": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "direct_hemispherical": {
+                "lab": {
+                    "a": -0.4781490764729779,
+                    "b": -0.4878317966566348,
+                    "l": 34.46499873850816
+                },
+                "rgb": {
+                    "b": 89.42135217644993,
+                    "g": 89.71199959506417,
+                    "r": 88.00823275144889
+                },
+                "trichromatic": {
+                    "x": 7.753658,
+                    "y": 8.233734,
+                    "z": 8.986135
+                }
+            }
+        },
+        "transmittance_back": {
+            "direct_direct": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "direct_diffuse": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "diffuse_diffuse": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "direct_hemispherical": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            }
+        },
+        "transmittance_front": {
+            "direct_direct": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "direct_diffuse": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "diffuse_diffuse": {
+                "lab": {
+                    "a": null,
+                    "b": null,
+                    "l": null
+                },
+                "rgb": {
+                    "b": null,
+                    "g": null,
+                    "r": null
+                },
+                "trichromatic": {
+                    "x": null,
+                    "y": null,
+                    "z": null
+                }
+            },
+            "direct_hemispherical": {
+                "lab": {
+                    "a": -0.8035122491914515,
+                    "b": 0.2168086516082468,
+                    "l": 96.18335944095739
+                },
+                "rgb": {
+                    "b": 255.0,
+                    "g": 255.0,
+                    "r": 255.0
+                },
+                "trichromatic": {
+                    "x": 85.31423,
+                    "y": 90.45058,
+                    "z": 96.74794
+                }
+            }
+        }
+    },
+    "photopic": {
+        "error": null,
+        "reflectance_back": {
+            "matrix": null,
+            "direct_direct": "0.08225287",
+            "direct_diffuse": null,
+            "diffuse_diffuse": null,
+            "direct_hemispherical": null
+        },
+        "reflectance_front": {
+            "matrix": null,
+            "direct_direct": "0.08225197",
+            "direct_diffuse": null,
+            "diffuse_diffuse": null,
+            "direct_hemispherical": null
+        },
+        "transmittance_back": {
+            "matrix": null,
+            "direct_direct": "0.9044294",
+            "direct_diffuse": null,
+            "diffuse_diffuse": null,
+            "direct_hemispherical": null
+        },
+        "transmittance_front": {
+            "matrix": null,
+            "direct_direct": "0.9044294",
+            "direct_diffuse": null,
+            "diffuse_diffuse": null,
+            "direct_hemispherical": null
+        },
+        "absorptance_back_direct": null,
+        "absorptance_front_direct": null,
+        "absorptance_back_hemispheric": null,
+        "absorptance_front_hemispheric": null
+    }
+}
