@@ -29,9 +29,14 @@
                     "colorTransmittance": {
                       "colorRenderingIndices": [
                         {
-                          "value": 0.5,
-                          "direction": "transmission",
-                          "surface": "prime"
+                          "Ra": 97,
+                          "observer": "twoDegrees",
+                          "illuminant": "D65"
+                        },
+                        {
+                          "Raout-in": 95,
+                          "observer": "tenDegrees",
+                          "illuminant": "A"
                         }
                       ],
                       "cielabColors": [

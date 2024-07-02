@@ -23,6 +23,18 @@
               "observer": "tenDegrees",
               "illuminant": "D65"
             }
+          ],
+          "colorRenderingIndices": [
+            {
+              "Ra": 97,
+              "observer": "twoDegrees",
+              "illuminant": "D65"
+            },
+            {
+              "Raout-in": 95,
+              "observer": "tenDegrees",
+              "illuminant": "A"
+            }
           ]
         },
         "reflectance": 0.08,

@@ -4,14 +4,10 @@
       "id": "102aed0a-2b9a-4748-8d98-e9d278cd12e4",
       "description": "Enamel at the edges of a PV module",
       "relations": {
-        "partOf": [
-          "20aaed0a-2b9a-4748-8d98-e9d278cd12e4"
-        ]
+        "partOf": ["20aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
       },
       "categories": {
-        "componentType": [
-          "layer"
-        ]
+        "componentType": ["layer"]
       },
       "optical": [
         {

@@ -490,13 +490,13 @@
       "required": ["lStar", "aStar", "bStar"]
     },
     "colorRenderingIndex": {
-      "title": "The Color Rendering Index (CRI) indicates how well the transmitted radiation matches daylight regarding the rendering of colors.",
+      "title": "The Color Rendering Index (CRI) indicates how well the transmitted radiation matches daylight regarding the rendering of colors. `Ra` considers one transmission of the building envelope. `Raout-in` considers two transmissions of the building envelope.",
       "oneOf": [
         {
           "type": "object",
           "properties": {
             "Ra": {
-              "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
+              "$ref": "number.json#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
               "description": "The Color Rendering Index as it is defined by EN 410 based on CIE 13. 3-1995, Method of Measuring and Specifying Colour RenderingProperties of Light Sources, 1995, ISBN: 9783900734572. It indicates how well colors are rendered after one transmission of the building envelope. For example, how the color of an object inside a building is perceived from within the building."
             },
             "observer": {
@@ -515,7 +515,7 @@
           "type": "object",
           "properties": {
             "Raout-in": {
-              "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
+              "$ref": "number.json#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
               "description": "The Color Rendering Index Raout-in is defined by T.E. Kuhn, H.R. Wilson, J. Hanek, M. Santamouris, Ra out-in Color rendering of objects in a daylit room viewed from outdoors, Energy and Buildings 118 (2016) 93–98, https://doi.org/10.1016/j.enbuild.2016.02.019. It indicates how well colors are rendered after two transmissions of the building envelope. For example, how the color of an object inside the building is percived from the outside."
             },
             "observer": {
