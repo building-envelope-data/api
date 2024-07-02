@@ -262,9 +262,9 @@
                 "$ref": "number.json#/$defs/ohmPerMeterWithUncertainty",
                 "description": "The electric resistance of the connection per length of the connection in ohms per meter."
               },
-              "color": {
-                "$ref": "opticalData.json#/$defs/color",
-                "description": "Color of the connection"
+              "colorReflectance": {
+                "$ref": "opticalData.json#/$defs/colorReflectance",
+                "description": "Color reflected by the connection"
               }
             },
             "additionalProperties": false,
@@ -410,9 +410,9 @@
               "$ref": "material.json#/$defs/characteristics",
               "description": "All properties which depend on the material in general and not on the specific component."
             },
-            "color": {
-              "$ref": "opticalData.json#/$defs/color",
-              "description": "Color of the frame."
+            "colorReflectance": {
+              "$ref": "opticalData.json#/$defs/colorReflectance",
+              "description": "Color reflected by the frame."
             }
           },
           "additionalProperties": false,
@@ -1155,9 +1155,9 @@
                 "$ref": "number.json#/$defs/ohmPerMeterWithUncertainty",
                 "description": "The electric resistance of the connection per length of the connection in ohms per meter."
               },
-              "color": {
-                "$ref": "opticalData.json#/$defs/color",
-                "description": "Color of the connection."
+              "colorReflectance": {
+                "$ref": "opticalData.json#/$defs/colorReflectance",
+                "description": "Color reflected by the connection."
               }
             },
             "additionalProperties": false,

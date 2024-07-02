@@ -6,7 +6,9 @@
       "relations": {
         "partOf": ["20aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
       },
-      "categories": { "componentType": ["layer"] },
+      "categories": {
+        "componentType": ["layer"]
+      },
       "optical": [
         {
           "id": {
@@ -17,17 +19,31 @@
             {
               "dataPoints": [
                 {
-                  "cielabColors": [
-                    {
-                      "lStar": 5,
-                      "aStar": 1,
-                      "bStar": -1,
-                      "direction": "reflection",
-                      "surface": "symmetric",
-                      "observer": "tenDegrees",
-                      "illuminant": "D65"
+                  "incidence": {
+                    "wavelengths": {
+                      "integral": "visible"
+                    },
+                    "direction": {
+                      "polar": 8
                     }
-                  ]
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "reflectance": 0.08225287,
+                    "colorReflectance": {
+                      "cielabColors": [
+                        {
+                          "lStar": 5,
+                          "aStar": 1,
+                          "bStar": -1,
+                          "observer": "tenDegrees",
+                          "illuminant": "D65"
+                        }
+                      ]
+                    }
+                  }
                 }
               ]
             }

@@ -1,0 +1,55 @@
+{
+  "dataPoints": [
+    {
+      "incidence": {
+        "direction": {
+          "polar": 8
+        },
+        "wavelengths": {
+          "integral": "visible"
+        }
+      },
+      "emergence": {
+        "direction": "hemispherical"
+      },
+      "results": {
+        "transmittance": 0.81,
+        "colorTransmittance": {
+          "cielabColors": [
+            {
+              "lStar": 94,
+              "aStar": 0,
+              "bStar": 0,
+              "observer": "tenDegrees",
+              "illuminant": "D65"
+            }
+          ],
+          "colorRenderingIndices": [
+            {
+              "Ra": 97,
+              "observer": "twoDegrees",
+              "illuminant": "D65"
+            },
+            {
+              "Raout-in": 95,
+              "observer": "tenDegrees",
+              "illuminant": "A"
+            }
+          ]
+        },
+        "reflectance": 0.08,
+        "colorReflectance": {
+          "cielabColors": [
+            {
+              "lStar": 4,
+              "aStar": 0,
+              "bStar": 0,
+              "observer": "tenDegrees",
+              "illuminant": "D65"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

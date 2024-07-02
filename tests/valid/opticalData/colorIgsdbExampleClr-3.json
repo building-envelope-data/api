@@ -1,0 +1,90 @@
+{
+  "data": [
+    {
+      "componentCharacteristics": {
+        "surface": "prime",
+        "symmetries": "azimuthalAngleInvariance"
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "wavelengths": {
+              "integral": "visible"
+            },
+            "direction": {
+              "polar": 8
+            }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": 0.9044294,
+            "colorTransmittance": {
+              "cielabColors": [
+                {
+                  "aStar": -0.8035122491914515,
+                  "bStar": 0.2168086516082468,
+                  "lStar": 96.18335944095739
+                }
+              ]
+            },
+            "reflectance": 0.08225287,
+            "colorReflectance": {
+              "cielabColors": [
+                {
+                  "aStar": -0.4781490764729779,
+                  "bStar": -0.4878317966566348,
+                  "lStar": 34.46499873850816
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "componentCharacteristics": {
+        "surface": "nonPrime",
+        "symmetries": "azimuthalAngleInvariance"
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "wavelengths": {
+              "integral": "visible"
+            },
+            "direction": {
+              "polar": 8
+            }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": 0.9044294,
+            "colorTransmittance": {
+              "cielabColors": [
+                {
+                  "aStar": -0.8035122491914515,
+                  "bStar": 0.2168086516082468,
+                  "lStar": 96.18335944095739
+                }
+              ]
+            },
+            "reflectance": 0.08225287,
+            "colorReflectance": {
+              "cielabColors": [
+                {
+                  "aStar": -0.4781490764729779,
+                  "bStar": -0.4878317966566348,
+                  "lStar": 34.46499873850816
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
