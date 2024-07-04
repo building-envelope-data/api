@@ -17,7 +17,7 @@
         "colorTransmittance": {
           "cielabColors": [
             {
-              "lStar": 94,
+              "lStar": 90,
               "aStar": -0.5,
               "bStar": 0.5,
               "observer": "tenDegrees",
