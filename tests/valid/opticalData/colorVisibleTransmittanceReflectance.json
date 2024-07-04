@@ -18,8 +18,8 @@
           "cielabColors": [
             {
               "lStar": 94,
-              "aStar": 0,
-              "bStar": 0,
+              "aStar": -0.5,
+              "bStar": 0.5,
               "observer": "tenDegrees",
               "illuminant": "D65"
             }
