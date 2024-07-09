@@ -923,15 +923,6 @@ type DataConnection {
   edges: [DataEdge!]!
 
   """
-  Data nodes to avoid the layer of indirection through edges in case edge meta
-  data is not needed. It is equal to the list comprehension
-  ```
-  [edge.node for edge in edges]
-  ```
-  """
-  nodes: [Data!]!
-
-  """
   Total number of data edges (and nodes) of which a slice is `edges` (and
   `nodes`). Note that the number of edges (and nodes) of the present slice is
   `pageInfo.count`.
@@ -982,7 +973,6 @@ See `DataConnection`.
 """
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
-  nodes: [OpticalData!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
@@ -1000,7 +990,6 @@ See `DataConnection`.
 """
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
-  nodes: [HygrothermalData!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
@@ -1018,7 +1007,6 @@ See `DataConnection`.
 """
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
-  nodes: [PhotovoltaicData!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
@@ -1036,7 +1024,6 @@ See `DataConnection`.
 """
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
-  nodes: [CalorimetricData!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
@@ -1046,7 +1033,6 @@ See `DataConnection`.
 """
 type GeometricDataConnection {
   edges: [GeometricDataEdge!]!
-  nodes: [GeometricData!]!
   pageInfo: PageInfo!
   timestamp: DateTime!
 }
