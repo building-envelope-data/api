@@ -125,4 +125,39 @@ query {
       }
     }
   }
+
+  byGValue: allCalorimetricData(
+    where: { gValues: { all: { lessThanOrEqualTo: 0.1 } } }
+  ) {
+    edges {
+      node {
+        uuid
+        gValues
+        uValues
+        resourceTree {
+          root {
+            value {
+              locator
+            }
+          }
+        }
+      }
+    }
+  }
+
+  byThickness: allGeometricData(
+    where: {
+      and: [
+        { thicknesses: { all: { greaterThanOrEqualTo: 0.0039 } } }
+        { thicknesses: { all: { lessThanOrEqualTo: 0.0041 } } }
+      ]
+    }
+  ) {
+    edges {
+      node {
+        componentId
+        thicknesses
+      }
+    }
+  }
 }
