@@ -67,6 +67,39 @@ query {
     }
   }
 
+  dataSetsByColor: allOpticalData(
+    where: {
+      and: [
+        { colorRenderingIndices: { some: { greaterThanOrEqualTo: 90 } } }
+        { cielabColors: { some: { lStar: { greaterThanOrEqualTo: 80 } } } }
+        { cielabColors: { some: { aStar: { greaterThanOrEqualTo: -5 } } } }
+        { cielabColors: { some: { aStar: { greaterThanOrEqualTo: 5 } } } }
+        { cielabColors: { some: { bStar: { greaterThanOrEqualTo: -5 } } } }
+        { cielabColors: { some: { bStar: { greaterThanOrEqualTo: 5 } } } }
+      ]
+    }
+  ) {
+    edges {
+      node {
+        name
+        componentId
+        colorRenderingIndices
+        cielabColors {
+          lStar
+          aStar
+          bStar
+        }
+        resourceTree {
+          root {
+            value {
+              locator
+            }
+          }
+        }
+      }
+    }
+  }
+
   allOpticalDataSets: allOpticalData {
     edges {
       node {
