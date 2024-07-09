@@ -7,54 +7,6 @@
       },
       "description": "A photovoltaic data set about one BIPV module of building N at Fraunhofer ISE, Freiburg, Germany. (i) `characteristics/assemblyList` defines the thickness of the front cover, the front embedding, the PV cells, the rear embedding and the backing.",
       "characteristics": {
-        "geometry": {
-          "assemblyList": [
-            {
-              "id": "01f5554f-e909-405e-9b7b-2f08ca201f63",
-              "dimensions": {
-                "independent": {
-                  "smallest": 0.0038,
-                  "intermediate": {
-                    "uncertainValue": 1.08,
-                    "uncertainty": 0.01,
-                    "confidenceInterval": 68.3
-                  },
-                  "largest": {
-                    "uncertainValue": 1.09,
-                    "uncertainty": 0.01,
-                    "confidenceInterval": 68.3
-                  }
-                }
-              }
-            },
-            {
-              "id": "02f5554f-e909-405e-9b7b-2f08ca201f63",
-              "dimensions": {
-                "independent": { "smallest": 0.002 }
-              }
-            },
-            {
-              "id": "03f5554f-e909-405e-9b7b-2f08ca201f63",
-
-              "dimensions": {
-                "independent": { "smallest": 0.0004 }
-              }
-            },
-            {
-              "id": "04f5554f-e909-405e-9b7b-2f08ca201f63",
-              "dimensions": {
-                "independent": { "smallest": 0.002 }
-              }
-            },
-            {
-              "id": "05f5554f-e909-405e-9b7b-2f08ca201f63",
-
-              "dimensions": {
-                "independent": { "smallest": 0.002 }
-              }
-            }
-          ]
-        },
         "weight": 29.7
       },
       "photovoltaic": [
@@ -218,6 +170,66 @@
                   ]
                 }
               }
+            }
+          ]
+        }
+      ],
+      "geometric": [
+        {
+          "data": [
+            {
+              "assembly": [
+                {
+                  "id": "01f5554f-e909-405e-9b7b-2f08ca201f63",
+                  "dimensions": {
+                    "independent": {
+                      "smallest": 0.0038,
+                      "intermediate": {
+                        "uncertainValue": 1.08,
+                        "uncertainty": 0.01,
+                        "confidenceInterval": 68.3
+                      },
+                      "largest": {
+                        "uncertainValue": 1.09,
+                        "uncertainty": 0.01,
+                        "confidenceInterval": 68.3
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "02f5554f-e909-405e-9b7b-2f08ca201f63",
+                  "dimensions": {
+                    "independent": {
+                      "smallest": 0.002
+                    }
+                  }
+                },
+                {
+                  "id": "03f5554f-e909-405e-9b7b-2f08ca201f63",
+                  "dimensions": {
+                    "independent": {
+                      "smallest": 0.0004
+                    }
+                  }
+                },
+                {
+                  "id": "04f5554f-e909-405e-9b7b-2f08ca201f63",
+                  "dimensions": {
+                    "independent": {
+                      "smallest": 0.002
+                    }
+                  }
+                },
+                {
+                  "id": "05f5554f-e909-405e-9b7b-2f08ca201f63",
+                  "dimensions": {
+                    "independent": {
+                      "smallest": 0.002
+                    }
+                  }
+                }
+              ]
             }
           ]
         }

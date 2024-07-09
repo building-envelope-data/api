@@ -10,17 +10,6 @@
           "102aed0a-2b9a-4748-8d98-e9d278cd12e4"
         ]
       },
-      "characteristics": {
-        "geometry": {
-          "dimensions": {
-            "independent": {
-              "smallest": 0.014,
-              "intermediate": 1.109,
-              "largest": 2.488
-            }
-          }
-        }
-      },
       "photovoltaic": [
         {
           "data": [
@@ -29,7 +18,6 @@
                 "cellTypes": [
                   {
                     "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-
                     "width": 0.156,
                     "categories": ["monocrystalline", "silicon"]
                   }
@@ -73,7 +61,6 @@
                       "id": "6a5083af-7bee-491c-b3fd-d6229f6a56ec"
                     }
                   ],
-
                   "connectorTypes": [
                     {
                       "id": "7c43b619-402f-4309-b66f-5672b8ca071d"
@@ -118,6 +105,21 @@
                     ]
                   },
                   "efficiency": 0.16
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "geometric": [
+        {
+          "data": [
+            {
+              "dimensions": {
+                "independent": {
+                  "smallest": 0.014,
+                  "intermediate": 1.109,
+                  "largest": 2.488
                 }
               }
             }

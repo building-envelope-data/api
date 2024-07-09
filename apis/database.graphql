@@ -222,6 +222,11 @@ type Query {
   """
   See `Query#data`.
   """
+  geometricData(id: Uuid!, timestamp: DateTime, locale: Locale): GeometricData!
+
+  """
+  See `Query#data`.
+  """
   hygrothermalData(
     id: Uuid!
     timestamp: DateTime
@@ -328,6 +333,19 @@ type Query {
   """
   See `Query#allData`.
   """
+  allGeometricData(
+    where: GeometricDataPropositionInput
+    timestamp: DateTime
+    locale: Locale
+    first: NonNegativeInt
+    after: Cursor
+    last: NonNegativeInt
+    before: Cursor
+  ): GeometricDataConnection!
+
+  """
+  See `Query#allData`.
+  """
   allHygrothermalData(
     where: HygrothermalDataPropositionInput
     timestamp: DateTime
@@ -382,6 +400,15 @@ type Query {
   """
   hasCalorimetricData(
     where: CalorimetricDataPropositionInput
+    timestamp: DateTime
+    locale: Locale
+  ): Boolean!
+
+  """
+  See `Query#hasData`.
+  """
+  hasGeometricData(
+    where: GeometricDataPropositionInput
     timestamp: DateTime
     locale: Locale
   ): Boolean!
@@ -713,6 +740,12 @@ input DataPropositionInput {
   uValues: FloatsPropositionInput
 
   """
+  True for data whose list of `thickness` values satisfies the proposition `thicknesses`,
+  otherwise false.
+  """
+  thicknesses: FloatsPropositionInput
+
+  """
   True for data whose list of nearnormal hemispherical visible transmittance
   values satisfies the proposition
   `nearnormalHemisphericalVisibleTransmittances`, otherwise false.
@@ -836,6 +869,18 @@ input CalorimetricDataPropositionInput {
   resources: GetHttpsResourcesPropositionInput
   gValues: FloatsPropositionInput
   uValues: FloatsPropositionInput
+}
+
+"""
+See `DataPropositionInput`.
+"""
+input GeometricDataPropositionInput {
+  componentId: UuidPropositionInput
+  and: [GeometricDataPropositionInput!]
+  not: GeometricDataPropositionInput
+  or: [GeometricDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
+  thicknesses: FloatsPropositionInput
 }
 
 """
@@ -997,11 +1042,29 @@ type CalorimetricDataConnection {
 }
 
 """
+See `DataConnection`.
+"""
+type GeometricDataConnection {
+  edges: [GeometricDataEdge!]!
+  nodes: [GeometricData!]!
+  pageInfo: PageInfo!
+  timestamp: DateTime!
+}
+
+"""
 See `DataEdge`.
 """
 type CalorimetricDataEdge {
   cursor: Cursor!
   node: CalorimetricData!
+}
+
+"""
+See `DataEdge`.
+"""
+type GeometricDataEdge {
+  cursor: Cursor!
+  node: GeometricData!
 }
 
 """
@@ -1215,6 +1278,30 @@ type CalorimetricData implements Node & Data {
   Mirrored `u` values that occur in the data
   """
   uValues: [Float!]!
+}
+
+type GeometricData implements Node & Data {
+  id: ID!
+  uuid: Uuid!
+  timestamp: DateTime!
+  locale: Locale!
+  databaseId: Uuid!
+  componentId: Uuid!
+  name: String
+  description: String
+  warnings: [String!]!
+  creatorId: Uuid!
+  createdAt: DateTime!
+  appliedMethod: AppliedMethod!
+  resources: [GetHttpsResource!]!
+  resourceTree: GetHttpsResourceTree!
+  approvals: [DataApproval!]!
+  approval: ResponseApproval!
+
+  """
+  Mirrored `thickness` values that occur in the data
+  """
+  thicknesses: [Float!]!
 }
 
 type HygrothermalData implements Node & Data {

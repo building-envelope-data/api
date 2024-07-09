@@ -113,11 +113,11 @@
             "shape": {
               "oneOf": [
                 {
-                  "$ref": "geometry.json#/$defs/nurbsBoundedCurve",
+                  "$ref": "geometricData.json#/$defs/nurbsBoundedCurve",
                   "description": "Usually, the shape of a slat is best described by a 2D curve of its cross section."
                 },
                 {
-                  "$ref": "geometry.json#/$defs/nurbsBoundedSurface",
+                  "$ref": "geometricData.json#/$defs/nurbsBoundedSurface",
                   "description": "If the shape of the slats needs to be defined in 3D, a surface can be used."
                 }
               ]

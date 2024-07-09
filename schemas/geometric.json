@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/hygrothermal.json",
-  "title": "metadata about hygrothermal data sets",
-  "description": "Hygrothermal data with meta information like name, description, warnings, and more.",
+  "$id": "https://www.buildingenvelopedata.org/schemas/v1/geometric.json",
+  "title": "metadata about geometric data sets",
+  "description": "Geometric data sets of building envelope components with meta information like name, description, warnings, and more.",
   "$defs": {
-    "hygrothermal": {
+    "geometric": {
       "type": "object",
       "properties": {
         "id": {
@@ -58,7 +58,7 @@
           "items": {
             "oneOf": [
               {
-                "$ref": "hygrothermalData.json",
+                "$ref": "geometricData.json",
                 "description": "The measured or simulated data in JSON."
               },
               {
@@ -75,5 +75,5 @@
       "required": []
     }
   },
-  "$ref": "#/$defs/hygrothermal"
+  "$ref": "#/$defs/geometric"
 }

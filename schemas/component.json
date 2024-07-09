@@ -118,6 +118,14 @@
           "minItems": 1,
           "description": "Calorimetric data sets of one component. For example the U value, the g value (or Solar Heat Gain Coefficient)."
         },
+        "geometric": {
+          "type": "array",
+          "items": {
+            "$ref": "geometric.json"
+          },
+          "minItems": 1,
+          "description": "Geometric data sets of one component. For example the dimensions of the component or a CAD resource."
+        },
         "photovoltaic": {
           "type": "array",
           "items": {
@@ -227,17 +235,6 @@
       "title": "The characteristics a component can have which do not change between different data sets about this component.",
       "type": "object",
       "properties": {
-        "geometry": {
-          "title": "The geometry of the component which can either be an assembly or a single component.",
-          "oneOf": [
-            {
-              "$ref": "geometry.json"
-            },
-            {
-              "$ref": "geometry.json#/$defs/assembly"
-            }
-          ]
-        },
         "weight": {
           "$ref": "number.json#/$defs/kilogramWithUncertainty",
           "description": "The weight of the component in kilogram."

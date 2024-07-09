@@ -487,6 +487,15 @@ type Database implements Node {
     timestamp: DateTime
     where: DataPropositionInput
   ): DataConnection
+  allGeometricData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    timestamp: DateTime
+    where: GeometricDataPropositionInput
+  ): GeometricDataConnection
   allHygrothermalData(
     after: String
     before: String
@@ -521,6 +530,7 @@ type Database implements Node {
   ): CalorimetricData
   data(id: Uuid!, locale: String, timestamp: DateTime): Data
   description: String!
+  geometricData(id: Uuid!, locale: String, timestamp: DateTime): GeometricData
   hasCalorimetricData(
     locale: String
     timestamp: DateTime
@@ -530,6 +540,11 @@ type Database implements Node {
     locale: String
     timestamp: DateTime
     where: DataPropositionInput
+  ): Boolean
+  hasGeometricData(
+    locale: String
+    timestamp: DateTime
+    where: GeometricDataPropositionInput
   ): Boolean
   hasHygrothermalData(
     locale: String
@@ -686,6 +701,36 @@ type GenerateUserTwoFactorRecoveryCodesPayload {
   query: Query!
   twoFactorRecoveryCodes: [String!]
   user: User
+}
+
+type GeometricData implements Data {
+  appliedMethod: AppliedMethod!
+  component: Component
+  componentId: Uuid!
+  createdAt: DateTime!
+  creatorId: Uuid!
+  description: String
+  id: String!
+  locale: String!
+  name: String
+  resourceTree: GetHttpsResourceTree!
+  resources: [GetHttpsResource!]!
+  thicknesses: [Float!]!
+  timestamp: DateTime!
+  uuid: Uuid!
+  warnings: [String!]!
+}
+
+type GeometricDataConnection {
+  edges: [GeometricDataEdge!]!
+  nodes: [GeometricData!]!
+  timestamp: DateTime!
+  totalCount: NonNegativeInt
+}
+
+type GeometricDataEdge {
+  cursor: String!
+  node: GeometricData!
 }
 
 type GetHttpsResource {
@@ -1877,6 +1922,16 @@ input FloatsPropositionInput {
   all: FloatPropositionInput
   none: FloatPropositionInput
   some: FloatPropositionInput
+}
+
+input GeometricDataPropositionInput {
+  and: [GeometricDataPropositionInput!]
+  componentId: UuidPropositionInput
+  gValues: FloatsPropositionInput
+  not: GeometricDataPropositionInput
+  or: [GeometricDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
+  uValues: FloatsPropositionInput
 }
 
 input GetHttpsResourcePropositionInput {
