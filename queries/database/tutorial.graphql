@@ -73,9 +73,9 @@ query {
         { colorRenderingIndices: { some: { greaterThanOrEqualTo: 90 } } }
         { cielabColors: { some: { lStar: { greaterThanOrEqualTo: 80 } } } }
         { cielabColors: { some: { aStar: { greaterThanOrEqualTo: -5 } } } }
-        { cielabColors: { some: { aStar: { greaterThanOrEqualTo: 5 } } } }
+        { cielabColors: { some: { aStar: { lessThanOrEqualTo: 5 } } } }
         { cielabColors: { some: { bStar: { greaterThanOrEqualTo: -5 } } } }
-        { cielabColors: { some: { bStar: { greaterThanOrEqualTo: 5 } } } }
+        { cielabColors: { some: { bStar: { lessThanOrEqualTo: 5 } } } }
       ]
     }
   ) {
