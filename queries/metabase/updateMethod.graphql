@@ -1,0 +1,20 @@
+mutation {
+  """
+  When metabase.graphql is updated from repo metabase, this mutation should be valid.
+  """
+  updateGeneralTestLabSolarFacadesMethod: updateMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "The general method of TestLab Solar Facade at Fraunhofer Institute for Solar Energy Systems for measurements of building envelope components."
+      methodId: "f8c2283a-7fe0-45b5-9608-9fbda4e2d415"
+      name: "General TestLab Solar Facades Method"
+      publication: {
+        webAddress: "https://gitlab.cc-asp.fraunhofer.de/cmaurer/bed-resources/-/tree/main/TestLabSolarFacades/general"
+      }
+    }
+  ) {
+    method {
+      name
+    }
+  }
+}
