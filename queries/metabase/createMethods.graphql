@@ -1,5 +1,22 @@
 mutation {
-  Lambda900Input: createMethod(
+  lambda900Measurement: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Measure the transmittance and/or reflectance with the spectrometer Lambda900."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "Lambda900 measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  lambda900Input: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for Lambda900 measurements."
@@ -16,13 +33,13 @@ mutation {
       name
     }
   }
-  Lambda900BaselineMeasurement: createMethod(
+  lambda900BaselineMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure the baselines with 0% and 100% irradiance."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "Lambda900 measure baselines"
+      name: "Lambda900 baseline measurement"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -33,7 +50,7 @@ mutation {
       name
     }
   }
-  Lambda900RawDataMeasurement: createMethod(
+  lambda900RawDataMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure the raw data for transmittance and reflectance with Lambda900."
@@ -50,7 +67,7 @@ mutation {
       name
     }
   }
-  Lambda900ReferenceMeasurement: createMethod(
+  lambda900ReferenceMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure the references like a mirror and a white standard."
@@ -67,7 +84,7 @@ mutation {
       name
     }
   }
-  Lambda900Calculation: createMethod(
+  lambda900Calculation: createMethod(
     input: {
       categories: CALCULATION
       description: "Calculate the transmittances and reflectances based on the measurement raw data."
@@ -84,7 +101,24 @@ mutation {
       name
     }
   }
-  TAUWINInput: createMethod(
+  tauwinMeasurement: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Measure the transmittance with TAUWIN."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "TAUWIN measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  tauwinInput: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for TAUWIN measurements."
@@ -101,13 +135,13 @@ mutation {
       name
     }
   }
-  TAUWINBaselineMeasurement: createMethod(
+  tauwinBaselineMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure the baselines with 0% and 100% irradiance."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "TAUWIN measure baselines"
+      name: "TAUWIN baseline measurement"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -118,7 +152,7 @@ mutation {
       name
     }
   }
-  TAUWINRawDataMeasurement: createMethod(
+  tauwinRawDataMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure the raw data for transmittance with TAUWIN."
@@ -135,13 +169,13 @@ mutation {
       name
     }
   }
-  TAUWINRHODIFFMeasurement: createMethod(
+  tauwinRhodiffMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure the diffuse reflectance with RHODIFF."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "TAUWIN measure diffuse reflectance"
+      name: "TAUWIN measurement diffuse reflectance"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -152,7 +186,7 @@ mutation {
       name
     }
   }
-  TAUWINCalculation: createMethod(
+  tauwinCalculation: createMethod(
     input: {
       categories: CALCULATION
       description: "Calculate the transmittances based on the measurement raw data."
@@ -169,7 +203,24 @@ mutation {
       name
     }
   }
-  RHOWINInput: createMethod(
+  rhowinMeasurement: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Measure the reflectance with the RHOWIN."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "RHOWIN measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  rhowinInput: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for RHOWIN measurements."
@@ -186,13 +237,13 @@ mutation {
       name
     }
   }
-  RHOWINBaselineMeasurement: createMethod(
+  rhowinBaselineMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure the baselines with 0% and 100% irradiance."
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-      name: "RHOWIN measure baselines"
+      name: "RHOWIN baseline measurement"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
@@ -203,7 +254,7 @@ mutation {
       name
     }
   }
-  RHOWINRawDataMeasurement: createMethod(
+  rhowinRawDataMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure the raw data for transmittance with RHOWIN."
@@ -220,7 +271,7 @@ mutation {
       name
     }
   }
-  RHOWINReferenceMeasurement: createMethod(
+  rhowinReferenceMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure a white standard as reference."
@@ -237,7 +288,7 @@ mutation {
       name
     }
   }
-  RHOWINCalculation: createMethod(
+  rhowinCalculation: createMethod(
     input: {
       categories: CALCULATION
       description: "Calculate the transmittances based on the measurement raw data."
@@ -254,7 +305,7 @@ mutation {
       name
     }
   }
-  EN410Integral: createMethod(
+  en410Integral: createMethod(
     input: {
       categories: CALCULATION
       description: "Calculate integral values according to EN410:2011 based on spectral data."
@@ -279,7 +330,7 @@ mutation {
       name
     }
   }
-  ISO9050Integral: createMethod(
+  iso9050Integral: createMethod(
     input: {
       categories: CALCULATION
       description: "Calculate integral values according to ISO9050:2003 based on spectral data."
@@ -304,7 +355,24 @@ mutation {
       name
     }
   }
-  PhotogoniometerInput: createMethod(
+  photogoniometerMeasurement: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Measure the transmittance and/or reflectance with the photogoniometer PGII."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "Photogoniometer measurement"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  photogoniometerInput: createMethod(
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for Photogoniometer measurements."
@@ -321,7 +389,7 @@ mutation {
       name
     }
   }
-  PhotogoniometerRawDataMeasurement: createMethod(
+  photogoniometerRawDataMeasurement: createMethod(
     input: {
       categories: MEASUREMENT
       description: "Measure the raw data for transmittance and reflectance with photogoniometer."
@@ -338,7 +406,7 @@ mutation {
       name
     }
   }
-  PhotogoniometerKlemsCalculation: createMethod(
+  photogoniometerKlemsCalculation: createMethod(
     input: {
       categories: CALCULATION
       description: "Calculate a Klems matrix based on bidirectional raw data."
@@ -355,7 +423,7 @@ mutation {
       name
     }
   }
-  PhotogoniometerTensorTreeCalculation: createMethod(
+  photogoniometerTensorTreeCalculation: createMethod(
     input: {
       categories: CALCULATION
       description: "Calculate a tensor-tree based on bidirectional raw data."
@@ -478,6 +546,23 @@ mutation {
       institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "g value beyond standards"
+      userDeveloperIds: [
+        "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
+        "2c103b27-eb15-423a-a184-fdd6c64eefe2"
+      ]
+    }
+  ) {
+    method {
+      name
+    }
+  }
+  uValueMeasurement: createMethod(
+    input: {
+      categories: [MEASUREMENT, CALCULATION]
+      description: "Measure the U value."
+      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      name: "U value measurement"
       userDeveloperIds: [
         "d1f19101-e1e7-4e16-a09a-78b7b127b89f"
         "2c103b27-eb15-423a-a184-fdd6c64eefe2"
