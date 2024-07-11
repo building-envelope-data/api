@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/optical.json",
-  "title": "metadata about optical data sets",
-  "description": "Optical data sets of building envelope components with meta information like name, description, warnings, and more.",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/cradleToCradle.json",
+  "title": "metadata about cradle-to-cradle data sets",
+  "description": "Cradle-to-cradle data sets with meta information like like name, description, warnings, and more.",
   "$defs": {
-    "optical": {
+    "data": {
       "type": "object",
       "properties": {
         "id": {
@@ -58,7 +58,7 @@
           "items": {
             "oneOf": [
               {
-                "$ref": "opticalData.json",
+                "$ref": "cradleToCradleData.json",
                 "description": "The measured or simulated data in JSON."
               },
               {
@@ -75,5 +75,5 @@
       "required": []
     }
   },
-  "$ref": "#/$defs/optical"
+  "$ref": "#/$defs/data"
 }

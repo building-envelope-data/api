@@ -1,7 +1,7 @@
 @startjson opticalDataSchema
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/opticalData.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/opticalData.json",
   "title": "Optical data",
   "description": "Optical data sets of building envelope components. It shall be possible to exchange the results of all important optical measurements and simulations. At the same time, this general format is intended to limit the number of possible representations of one data set to make it easy to develop software which interprets the data correctly.",
   "$defs": {

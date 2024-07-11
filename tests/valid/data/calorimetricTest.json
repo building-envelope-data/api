@@ -1,0 +1,15 @@
+{
+  "results": [
+    {
+      "area": {
+        "category": "center"
+      },
+      "uValue": 1,
+      "gValue": 1,
+      "efficiencies": {
+        "solarThermal": 0.5,
+        "photovoltaic": 0.1
+      }
+    }
+  ]
+}

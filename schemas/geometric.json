@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/geometric.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/geometric.json",
   "title": "metadata about geometric data sets",
   "description": "Geometric data sets of building envelope components with meta information like name, description, warnings, and more.",
   "$defs": {
