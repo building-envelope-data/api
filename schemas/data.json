@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/data.json",
+  "title": "general schema for BED-JSON data sets",
+  "description": "The schemas of building-envelope-data can be used to validate data sets from many domains such as `opticalData`, `calorimetricData`, `photovoltaicData`, `geometricData`, `hygrothermalData` and `cradleToCradleData`. The schemas from these domains together are name \"BED-JSON\" as a JSON format for building envelope data sets.",
+  "$defs": {
+    "data": {
+      "oneOf": [
+        {
+          "$ref": "opticalData.json",
+          "description": "optical data"
+        },
+        {
+          "$ref": "calorimetricData.json",
+          "description": "calorimetric data"
+        }
+      ]
+    }
+  },
+  "$ref": "#/$defs/data"
+}
