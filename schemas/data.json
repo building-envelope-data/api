@@ -13,6 +13,22 @@
         {
           "$ref": "calorimetricData.json",
           "description": "calorimetric data"
+        },
+        {
+          "$ref": "photovoltaicData.json",
+          "description": "photovoltaic data"
+        },
+        {
+          "$ref": "geometricData.json",
+          "description": "geometric data"
+        },
+        {
+          "$ref": "hygrothermalData.json",
+          "description": "hygrothermal data"
+        },
+        {
+          "$ref": "cradleToCradleData.json",
+          "description": "cradle-to-cradle data"
         }
       ]
     }
