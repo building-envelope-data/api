@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/photovoltaic.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/photovoltaic.json",
   "title": "metadata about photovoltaic data sets",
   "description": "Data about components of building envelopes which contribute to convert irradiance into electricity with meta information like name, description, warnings, and more.",
   "$defs": {

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/calorimetric.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/calorimetric.json",
   "title": "metadata about calorimetric data sets",
   "description": "Data about calorimetric measurements or simulations with meta information like name, description, warnings, and more.",
   "$defs": {
