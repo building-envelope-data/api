@@ -1927,11 +1927,10 @@ input FloatsPropositionInput {
 input GeometricDataPropositionInput {
   and: [GeometricDataPropositionInput!]
   componentId: UuidPropositionInput
-  gValues: FloatsPropositionInput
+  thicknesses: [Float!]!
   not: GeometricDataPropositionInput
   or: [GeometricDataPropositionInput!]
   resources: GetHttpsResourcesPropositionInput
-  uValues: FloatsPropositionInput
 }
 
 input GetHttpsResourcePropositionInput {
