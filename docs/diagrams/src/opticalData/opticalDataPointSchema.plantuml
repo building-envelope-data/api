@@ -137,52 +137,56 @@
               }
         },
     "then": {
-          "results": {
-            "transmittance": {
-              "number": "numberWithUncertainty"
-            }
-            ,
-            "reflectance": {
-              "number": "numberWithUncertainty"
-            }
-            ,
-            "absorptanceEmittance": {
-              "number": "numberWithUncertainty"
+      "results": {
+        "transmittance": {
+          "number": "numberWithUncertainty"
+        }
+        ,
+        "reflectance": {
+          "number": "numberWithUncertainty"
+        }
+        ,
+        "absorptanceEmittance": {
+          "number": "numberWithUncertainty"
+        },
+        "colorTransmittance": {
+          "name": {          "type": "string"        },
+          "cielabColors": {
+              "lStar": {
+                "number": "numberWithUncertainty"
+              },
+              "aStar": {
+                "number": "numberWithUncertainty"
+              },
+              "bStar": {
+                "number": "numberWithUncertainty"
+              },
+              "observer":  ["twoDegrees", "tenDegrees"],
+              "illuminant":  ["A", "D65"]
             },
-            "colorTransmittance": {
-              "name": {          "type": "string"        },
-              "cielabColor": {
-                  "lStar": {
-                    "number": "numberWithUncertainty"
-                  },
-                  "aStar": {
-                    "number": "numberWithUncertainty"
-                  },
-                  "bStar": {
-                    "number": "numberWithUncertainty"
-                  },
-                  "observer":  ["twoDegrees", "tenDegrees"],
-                  "illuminant":  ["A", "D65"]
+          "colorRenderingIndices": {
+              "Ra": { "number": "numberBetweenZeroAndOneHundredWithUncertainty"},
+              "observer":  ["twoDegrees", "tenDegrees"],
+              "illuminant":  ["A", "D65"]
+            }
+        },
+        "colorReflectance": {
+            "name": {"type": "string"   },
+            "cielabColors": {
+                "lStar": {
+                  "number": "numberWithUncertainty"
                 },
-              "colorRenderingIndices": {
-                "oneOf": 
-                  {
-                  "Ra": { "number": "numberBetweenZeroAndOneHundredWithUncertainty"},
-                  "observer":  ["twoDegrees", "tenDegrees"],
-                  "illuminant":  ["A", "D65"]
-                  },
-                "":
-                  {
-                  "Raout-in": {     "number": "numberBetweenZeroAndOneHundredWithUncertainty"},
-                  "observer":  ["twoDegrees", "tenDegrees"],
-                  "illuminant":  ["A", "D65"]
-                  }
-                }
-            },
-            "colorReflectance": {
-              "$ref": "#/$defs/colorReflectance"
+                "aStar": {
+                  "number": "numberWithUncertainty"
+                },
+                "bStar": {
+                  "number": "numberWithUncertainty"
+                },
+                "observer":  ["twoDegrees", "tenDegrees"],
+                "illuminant":  ["A", "D65"]
             }
-          }
+        }
+      }
     },
     "else": {
       "results": {
