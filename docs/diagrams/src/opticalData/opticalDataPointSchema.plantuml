@@ -171,6 +171,7 @@
                   "observer":  ["twoDegrees", "tenDegrees"],
                   "illuminant":  ["A", "D65"]
                   },
+                "":
                   {
                   "Raout-in": {     "number": "numberBetweenZeroAndOneHundredWithUncertainty"},
                   "observer":  ["twoDegrees", "tenDegrees"],
@@ -180,9 +181,9 @@
             },
             "colorReflectance": {
               "$ref": "#/$defs/colorReflectance"
-            },
+            }
           }
-    }
+    },
     "else": {
       "results": {
         "transmittance": {
