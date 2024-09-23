@@ -146,11 +146,11 @@
   ],
   "thermalConductivityTemperatureDependent": [
     {
-      "temperature": -20,
+      "temperature": 253,
       "thermalConductivity": 0.096
     },
     {
-      "temperature": 80,
+      "temperature": 353,
       "thermalConductivity": 0.116
     }
   ],
