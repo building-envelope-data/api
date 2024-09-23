@@ -183,7 +183,7 @@
                 "description": "Is a measure of the thermal energy within a substance, reflecting how hot or cold it is."
               },
               "enthalpy": {
-                "$ref": "number.json#/$defs/joulePerKg",
+                "$ref": "number.json#/$defs/joulePerKilogram",
                 "description": "Is a thermodynamic property that represents the total heat content of a system, encompassing both internal energy and the product of pressure and volume."
               }
             }

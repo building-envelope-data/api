@@ -16,7 +16,12 @@
     },
     "confidenceInterval": {
       "type": "number",
-      "enum": [68.3, 95.4, 99.7, 100],
+      "enum": [
+        68.3,
+        95.4,
+        99.7,
+        100
+      ],
       "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If it is 100% certain that the true value cannot be beyond the uncertainty, 100% is used."
     },
     "numberWithUncertainty": {
@@ -40,7 +45,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -75,7 +84,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -100,7 +113,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -131,7 +148,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -258,7 +279,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -283,7 +308,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -308,7 +337,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -333,7 +366,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -358,7 +395,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -447,15 +488,15 @@
       "$ref": "#/$defs/nonNegativeNumber",
       "description": "Kilogramm per square meter and per square root seconds (kg/(m^2*s^0.5)) are the SI uniut for the water absorption coefficient"
     },
-    "joulePerKg": {
+    "joulePerKilogram": {
       "$ref": "#/$defs/nonNegativeNumber",
       "description": "Joule per kilogram (J/kg) are the SI units of the enthalpy."
     },
-    "joulePerKgK": {
+    "joulePerKilogramKelvin": {
       "$ref": "#/$defs/nonNegativeNumber",
       "description": "Joule per kilogram and per Kelvin (J/(kg*K)) are the SI units of the specific heat capacity."
     },
-    "joulePerKgKwithUncertainty": {
+    "joulePerKilogramKelvinWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Joule per kilogram and per Kelvin (J/(kg*K)) are the SI units of the specific heat capacity. With this type, the uncertainty can be defined."
     },
