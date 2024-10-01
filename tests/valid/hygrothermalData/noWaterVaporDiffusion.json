@@ -154,24 +154,6 @@
       "thermalConductivity": 0.116
     }
   ],
-  "waterVaporDiffusionResistanceFactorMoistureDependent": [
-    {
-      "relativeHumidityAbsolut": 0,
-      "diffusionResistanceFactor": 91.58
-    },
-    {
-      "relativeHumidityAbsolut": 0.25,
-      "diffusionResistanceFactor": 91.58
-    },
-    {
-      "relativeHumidityAbsolut": 0.725,
-      "diffusionResistanceFactor": 36.18
-    },
-    {
-      "relativeHumidityAbsolut": 1,
-      "diffusionResistanceFactor": 36.18
-    }
-  ],
   "enthalpyTemperatureDependent": [
     {
       "temperature": 273.15,

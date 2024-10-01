@@ -75,7 +75,14 @@
                 "$ref": "number.json#/$defs/kilogramPerCubicMeter",
                 "description": "The amount of water present within a material"
               }
-            }
+            },
+            "additionalProperties": false, 
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": [
+              "relativeHumidityAbsolut",
+              "waterContent"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -94,7 +101,14 @@
                 "$ref": "number.json#/$defs/squareMeterPerSecond",
                 "description": "The capillary uptake of water when the imbibing surface is fully wetted."
               }
-            }
+            },
+            "additionalProperties": false, 
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": [
+              "waterContent",
+              "liquidTransportCoefficient"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -113,7 +127,14 @@
                 "$ref": "number.json#/$defs/squareMeterPerSecond",
                 "description": "The spreading of the imbibed water when the wetting is finished, no new water is taken up any more and the water present in the material is redistributing"
               }
-            }
+            },
+            "additionalProperties": false, 
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": [
+              "waterContent",
+              "liquidTransportCoefficient"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -132,7 +153,14 @@
                 "$ref": "number.json#/$defs/wattPerMeterKelvin",
                 "description": "Is the measure of a material's ability to conduct heat"
               }
-            }
+            },
+            "additionalProperties": false, 
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": [
+              "waterContent",
+              "thermalConductivity"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -150,7 +178,14 @@
                 "$ref": "number.json#/$defs/wattPerMeterKelvin",
                 "description": "Is the measure of a material's ability to conduct heat"
               }
-            }
+            },
+            "additionalProperties": false, 
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": [
+              "temperature",
+              "thermalConductivity"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -168,7 +203,14 @@
                 "$ref": "number.json#/$defs/nonNegativeNumber",
                 "description": "The value describes a material's resistance to the movement of water vapor through it"
               }
-            }
+            },
+            "additionalProperties": false, 
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": [
+              "relativeHumidityAbsolut",
+              "diffusionResistanceFactor"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -186,7 +228,14 @@
                 "$ref": "number.json#/$defs/joulePerKilogram",
                 "description": "Is a thermodynamic property that represents the total heat content of a system, encompassing both internal energy and the product of pressure and volume."
               }
-            }
+            },
+            "additionalProperties": false, 
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": [
+              "temperature",
+              "enthalpy"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -194,6 +243,7 @@
       },
       "additionalProperties": false,
       "minProperties": 5,
+      "uniqueItems": true,
       "required": [
         "bulkDensity",
         "porosity",

@@ -29,7 +29,7 @@
               "moistureDependentConductivitySupplement": 1.5,
               "temperatureDependentConductivitySupplement": 2e-4,
               "typicalBuildInMoisture": 0,
-              "moistureStorageFunction": [
+              "sorptionIsotherm": [
                 {
                   "relativeHumidityAbsolut": 0,
                   "waterContent": 0
@@ -127,7 +127,6 @@
                   "waterContent": 554
                 }
               ],
-              "moistureStorageFunctionGenerated": true,
               "liquidTransportCoefficientSuction": [
                 {
                   "waterContent": 0,
@@ -142,7 +141,6 @@
                   "liquidTransportCoefficient": 4.952495e-11
                 }
               ],
-              "liquidTransportCoefficientSuctionGenerated": true,
               "liquidTransportCoefficientRedistribution": [
                 {
                   "waterContent": 0,
@@ -157,7 +155,6 @@
                   "liquidTransportCoefficient": 8e-9
                 }
               ],
-              "liquidTransportCoefficientRedistributionGenerated": false,
               "thermalConductivityMoistureDependent": [
                 {
                   "waterContent": 0,
@@ -168,18 +165,16 @@
                   "thermalConductivity": 0.24
                 }
               ],
-              "thermalConductivityMoistureDependentGenerated": true,
               "thermalConductivityTemperatureDependent": [
                 {
-                  "temperature": -20,
+                  "temperature": 253,
                   "thermalConductivity": 0.096
                 },
                 {
-                  "temperature": 80,
+                  "temperature": 353,
                   "thermalConductivity": 0.116
                 }
               ],
-              "thermalConductivityTemperatureDependentGenerated": true,
               "waterVaporDiffusionResistanceFactorMoistureDependent": [
                 {
                   "relativeHumidityAbsolut": 0,
@@ -200,63 +195,63 @@
               ],
               "enthalpyTemperatureDependent": [
                 {
-                  "temperature": 0,
+                  "temperature": 273.15,
                   "enthalpy": 0
                 },
                 {
-                  "temperature": 5,
+                  "temperature": 278.15,
                   "enthalpy": 6000
                 },
                 {
-                  "temperature": 11.25,
+                  "temperature": 284.4,
                   "enthalpy": 13983
                 },
                 {
-                  "temperature": 14.5,
+                  "temperature": 287.65,
                   "enthalpy": 18838
                 },
                 {
-                  "temperature": 17,
+                  "temperature": 290.15,
                   "enthalpy": 23083
                 },
                 {
-                  "temperature": 18,
+                  "temperature": 291.15,
                   "enthalpy": 24943
                 },
                 {
-                  "temperature": 19,
+                  "temperature": 292.15,
                   "enthalpy": 27075
                 },
                 {
-                  "temperature": 20,
+                  "temperature": 293.15,
                   "enthalpy": 29721
                 },
                 {
-                  "temperature": 21,
+                  "temperature": 294.15,
                   "enthalpy": 33537
                 },
                 {
-                  "temperature": 22,
+                  "temperature": 295.15,
                   "enthalpy": 40586
                 },
                 {
-                  "temperature": 23,
+                  "temperature": 296.15,
                   "enthalpy": 49226
                 },
                 {
-                  "temperature": 24,
+                  "temperature": 297.15,
                   "enthalpy": 53772
                 },
                 {
-                  "temperature": 25,
+                  "temperature": 298.15,
                   "enthalpy": 55000
                 },
                 {
-                  "temperature": 26,
+                  "temperature": 299.15,
                   "enthalpy": 56200
                 },
                 {
-                  "temperature": 30,
+                  "temperature": 303.15,
                   "enthalpy": 61000
                 }
               ]
