@@ -76,7 +76,7 @@
                 "description": "The amount of water present within a material"
               }
             },
-            "additionalProperties": false, 
+            "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
             "required": [
@@ -102,7 +102,7 @@
                 "description": "The capillary uptake of water when the imbibing surface is fully wetted."
               }
             },
-            "additionalProperties": false, 
+            "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
             "required": [
@@ -128,7 +128,7 @@
                 "description": "The spreading of the imbibed water when the wetting is finished, no new water is taken up any more and the water present in the material is redistributing"
               }
             },
-            "additionalProperties": false, 
+            "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
             "required": [
@@ -154,7 +154,7 @@
                 "description": "Is the measure of a material's ability to conduct heat"
               }
             },
-            "additionalProperties": false, 
+            "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
             "required": [
@@ -179,7 +179,7 @@
                 "description": "Is the measure of a material's ability to conduct heat"
               }
             },
-            "additionalProperties": false, 
+            "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
             "required": [
@@ -204,7 +204,7 @@
                 "description": "The value describes a material's resistance to the movement of water vapor through it"
               }
             },
-            "additionalProperties": false, 
+            "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
             "required": [
@@ -229,7 +229,7 @@
                 "description": "Is a thermodynamic property that represents the total heat content of a system, encompassing both internal energy and the product of pressure and volume."
               }
             },
-            "additionalProperties": false, 
+            "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
             "required": [
@@ -243,7 +243,6 @@
       },
       "additionalProperties": false,
       "minProperties": 5,
-      "uniqueItems": true,
       "required": [
         "bulkDensity",
         "porosity",
