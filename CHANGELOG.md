@@ -11,7 +11,7 @@ and this project adheres to
 
 ### Added
 
--
+- Add createMethod.graphql as example of a mutation on the metabase [#324](https://github.com/building-envelope-data/api/pull/324)
 -
 -
 -
