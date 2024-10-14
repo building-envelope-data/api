@@ -3,7 +3,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the transmittance and/or reflectance with the spectrometer Lambda900."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "Lambda900 measurement"
       userDeveloperIds: [
@@ -23,7 +23,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for Lambda900 measurements."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "Lambda900 input"
       userDeveloperIds: [
@@ -40,7 +40,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the baselines with 0% and 100% irradiance."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "Lambda900 baseline measurement"
       userDeveloperIds: [
@@ -57,7 +57,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the raw data for transmittance and reflectance with Lambda900."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "Lambda900 raw data measurement"
       userDeveloperIds: [
@@ -74,7 +74,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the references like a mirror and a white standard."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "Lambda900 reference measurement"
       userDeveloperIds: [
@@ -91,7 +91,7 @@ mutation {
     input: {
       categories: CALCULATION
       description: "Calculate the transmittances and reflectances based on the measurement raw data."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "Lambda900 calculate transmittance and reflectance"
       userDeveloperIds: [
@@ -108,7 +108,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the transmittance with TAUWIN."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "TAUWIN measurement"
       userDeveloperIds: [
@@ -128,7 +128,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for TAUWIN measurements."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "TAUWIN input"
       userDeveloperIds: [
@@ -148,7 +148,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the baselines with 0% and 100% irradiance."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "TAUWIN baseline measurement"
       userDeveloperIds: [
@@ -165,7 +165,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the raw data for transmittance with TAUWIN."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "TAUWIN raw data measurement"
       userDeveloperIds: [
@@ -182,7 +182,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the diffuse reflectance with RHODIFF."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "TAUWIN measurement diffuse reflectance"
       userDeveloperIds: [
@@ -199,7 +199,7 @@ mutation {
     input: {
       categories: CALCULATION
       description: "Calculate the transmittances based on the measurement raw data."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "TAUWIN calculate transmittance"
       userDeveloperIds: [
@@ -216,7 +216,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the reflectance with the RHOWIN."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "RHOWIN measurement"
       userDeveloperIds: [
@@ -236,7 +236,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for RHOWIN measurements."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "RHOWIN input"
       userDeveloperIds: [
@@ -253,7 +253,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the baselines with 0% and 100% irradiance."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "RHOWIN baseline measurement"
       userDeveloperIds: [
@@ -270,7 +270,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the raw data for transmittance with RHOWIN."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "RHOWIN raw data measurement"
       userDeveloperIds: [
@@ -287,7 +287,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure a white standard as reference."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "RHOWIN reference measurement"
       userDeveloperIds: [
@@ -304,7 +304,7 @@ mutation {
     input: {
       categories: CALCULATION
       description: "Calculate the transmittances based on the measurement raw data."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "RHOWIN calculate transmittance"
       userDeveloperIds: [
@@ -321,7 +321,7 @@ mutation {
     input: {
       categories: CALCULATION
       description: "Calculate integral values according to EN410:2011 based on spectral data."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "EN 410 integral"
       standard: {
@@ -346,7 +346,7 @@ mutation {
     input: {
       categories: CALCULATION
       description: "Calculate integral values according to ISO9050:2003 based on spectral data."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "ISO 9050 integral"
       standard: {
@@ -371,7 +371,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the transmittance and/or reflectance with the photogoniometer PGII."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "Photogoniometer measurement"
       userDeveloperIds: [
@@ -391,7 +391,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for Photogoniometer measurements."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "photogoniometer input"
       userDeveloperIds: [
@@ -408,7 +408,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the raw data for transmittance and reflectance with photogoniometer."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "photogoniometer raw data measurement"
       userDeveloperIds: [
@@ -425,7 +425,7 @@ mutation {
     input: {
       categories: CALCULATION
       description: "Calculate a Klems matrix based on bidirectional raw data."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "calculate Klems matrix"
       userDeveloperIds: [
@@ -442,7 +442,7 @@ mutation {
     input: {
       categories: CALCULATION
       description: "Calculate a tensor-tree based on bidirectional raw data."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "calculate tensor-tree matrix"
       userDeveloperIds: [
@@ -459,7 +459,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the nearnormal g value according to ISO 19467 including frame."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "g value nearnormal including frame ISO 19467"
       standard: {
@@ -486,7 +486,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the center-of-glazing g value according to ISO 19467-2."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "center-of-glazing g value ISO 19467-2"
       standard: {
@@ -513,7 +513,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the g value for irradiance beyond the definition of existing standards."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "g value beyond standards"
       userDeveloperIds: [
@@ -533,7 +533,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for gValue measurements."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "g value input"
       userDeveloperIds: [
@@ -550,7 +550,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Run the g value measurement."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "g value raw data measurement"
       userDeveloperIds: [
@@ -567,7 +567,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Measure the irradiance in the plane of the sample in the g value test facility."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "g value raw data irradiance measurement"
       userDeveloperIds: [
@@ -584,7 +584,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the U value."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "U value measurement"
       userDeveloperIds: [
@@ -604,7 +604,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Collect the required input for U value measurements."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "U value input"
       userDeveloperIds: [
@@ -621,7 +621,7 @@ mutation {
     input: {
       categories: MEASUREMENT
       description: "Run the U value measurement."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "U value raw data measurement"
       userDeveloperIds: [
@@ -638,7 +638,7 @@ mutation {
     input: {
       categories: CALCULATION
       description: "Calculate the U value based on the measurement raw data."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "calculate U value"
       userDeveloperIds: [
@@ -655,7 +655,7 @@ mutation {
     input: {
       categories: [MEASUREMENT, CALCULATION]
       description: "Measure the U value according to EN 674."
-      institutionDeveloperIds: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "U value EN 674"
       standard: {
