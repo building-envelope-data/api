@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/lifeCycleData.json",
+  "title": "life cycle data",
+  "description": "##",
+  "$defs": {
+    "data": {
+      "empty": {
+        "type": "string"
+      }
+    }
+  },
+  "$ref": "#/$defs/data"
+}
