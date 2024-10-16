@@ -123,12 +123,24 @@
           ]
         }
       ],
+      "geometric": [
+        {
+          "data": [
+            {
+              "dimensions": {
+                "installed": [
+                  {
+                    "thickness": 0.00474980020523071
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
       "characteristics": {
         "definitionOfSurfacesAndPrimeDirection": {
           "Description": "The prime surface faces the exterior of the building and the nonPrime surface faces the interior."
-        },
-        "material": {
-          "thickness": 0.00474980020523071
         },
         "airPermeability": {
           "permeabilityFactor": 9.9999
