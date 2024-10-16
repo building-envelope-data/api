@@ -12,13 +12,17 @@
                 "surface": "prime",
                 "locationOnSample": {
                   "publication": {
-                    "identifiers": { "webAddress": "https://www.999999.com" }
+                    "identifiers": {
+                      "webAddress": "https://www.999999.com"
+                    }
                   }
                 },
                 "normalization": "relative",
                 "spot": {
                   "publication": {
-                    "identifiers": { "webAddress": "https://www.999999.com" }
+                    "identifiers": {
+                      "webAddress": "https://www.999999.com"
+                    }
                   }
                 },
                 "slatTilt": 9.9999,
@@ -27,10 +31,18 @@
               "dataPoints": [
                 {
                   "incidence": {
-                    "direction": { "polar": 8 },
-                    "wavelengths": { "wavelength": 0.305 }
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": {
+                      "wavelength": 0.305
+                    }
                   },
-                  "emergence": { "direction": { "polar": 8 } },
+                  "emergence": {
+                    "direction": {
+                      "polar": 8
+                    }
+                  },
                   "results": {
                     "transmittance": 0.0,
                     "reflectance": 0.0500000007450581
@@ -43,13 +55,17 @@
                 "surface": "nonPrime",
                 "locationOnSample": {
                   "publication": {
-                    "identifiers": { "webAddress": "https://www.999999.com" }
+                    "identifiers": {
+                      "webAddress": "https://www.999999.com"
+                    }
                   }
                 },
                 "normalization": "relative",
                 "spot": {
                   "publication": {
-                    "identifiers": { "webAddress": "https://www.999999.com" }
+                    "identifiers": {
+                      "webAddress": "https://www.999999.com"
+                    }
                   }
                 },
                 "slatTilt": 9.9999,
@@ -58,11 +74,17 @@
               "dataPoints": [
                 {
                   "incidence": {
-                    "direction": { "polar": 8 },
-                    "wavelengths": { "wavelength": 0.305 }
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": {
+                      "wavelength": 0.305
+                    }
                   },
                   "emergence": {
-                    "direction": { "polar": 8 }
+                    "direction": {
+                      "polar": 8
+                    }
                   },
                   "results": {
                     "transmittance": 9.9999,
@@ -85,7 +107,20 @@
           },
           "timestamp": "1999-09-09T09:09:09+00:00",
           "createdAt": "1999-09-09T09:09:09+00:00",
-          "approvals": [{ "approver": "99999999-9999-9999-9999-999999999999" }]
+          "approvals": [
+            {
+              "approver": "99999999-9999-9999-9999-999999999999"
+            }
+          ]
+        }
+      ],
+      "hygrothermal": [
+        {
+          "data": [
+            {
+              "thermalConductivityDry": 1.0
+            }
+          ]
         }
       ],
       "characteristics": {
@@ -93,10 +128,11 @@
           "Description": "The prime surface faces the exterior of the building and the nonPrime surface faces the interior."
         },
         "material": {
-          "thickness": 0.00474980020523071,
-          "thermalConductivity": 1.0
+          "thickness": 0.00474980020523071
         },
-        "airPermeability": { "permeabilityFactor": 9.9999 },
+        "airPermeability": {
+          "permeabilityFactor": 9.9999
+        },
         "positionOfCoatings": [0, 0],
         "layer": {
           "possiblePositions": [
