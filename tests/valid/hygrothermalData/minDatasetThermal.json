@@ -1,0 +1,7 @@
+{
+  "thermalConductivityDry": 0.102,
+  "bulkDensity": 621,
+  "porosity": 0.57,
+  "specificHeatCapacity": 2000,
+  "waterVaporDiffusionResistanceFactor": 91.58
+}

@@ -157,10 +157,6 @@
             "$ref": "identifier.json#/$defs/centralOrDecentral",
             "description": "The id represents a specific component of the assembly."
           },
-          "dimensions": {
-            "$ref": "#/$defs/dimensions",
-            "description": "Height, width and depth of the component."
-          },
           "location": {
             "$ref": "#/$defs/location",
             "description": "The location of the center of mass of the component."

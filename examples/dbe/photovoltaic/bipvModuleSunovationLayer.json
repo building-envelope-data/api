@@ -36,28 +36,13 @@
             {
               "assembly": [
                 {
-                  "id": "01f5554f-e909-405e-9b7b-2f08ca201f63",
-                  "dimensions": {
-                    "independent": {
-                      "smallest": 0.004
-                    }
-                  }
+                  "id": "01f5554f-e909-405e-9b7b-2f08ca201f63"
                 },
                 {
-                  "id": "02f5554f-e909-405e-9b7b-2f08ca201f63",
-                  "dimensions": {
-                    "independent": {
-                      "smallest": 0.001
-                    }
-                  }
+                  "id": "02f5554f-e909-405e-9b7b-2f08ca201f63"
                 },
                 {
-                  "id": "03f5554f-e909-405e-9b7b-2f08ca201f63",
-                  "dimensions": {
-                    "independent": {
-                      "smallest": 0.008
-                    }
-                  }
+                  "id": "03f5554f-e909-405e-9b7b-2f08ca201f63"
                 }
               ]
             }

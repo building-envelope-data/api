@@ -19,9 +19,6 @@
               "fraction": 10
             }
           ]
-        },
-        "material": {
-          "thermalConductivity": 0.017
         }
       },
       "geometric": [
@@ -33,6 +30,15 @@
                   "smallest": 0.016
                 }
               }
+            }
+          ]
+        }
+      ],
+      "hygrothermal": [
+        {
+          "data": [
+            {
+              "thermalConductivityDry": 0.017
             }
           ]
         }

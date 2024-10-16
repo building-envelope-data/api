@@ -149,7 +149,7 @@
       }
       ,
       "specificHeatCapacity": {
-        "number": "joulePerKgKwithUncertainty"
+        "number": "joulePerKilogramKelvinWithUncertainty"
       }
     }
     ,

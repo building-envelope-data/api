@@ -162,6 +162,7 @@ and this project adheres to
 - Add the position of coatings to components [#223](https://github.com/building-envelope-data/api/pull/223)
 - Add `currentVoltage` characteristics for modules [#224](https://github.com/building-envelope-data/api/pull/224)
 - Add release actions [#281](https://github.com/building-envelope-data/api/pull/281)
+- Add JSON schema for hygrothermal data [#322](https://github.com/building-envelope-data/api/pull/322)
 
 ### Changed
 
