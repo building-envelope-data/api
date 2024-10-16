@@ -10,13 +10,6 @@
               "assembly": [
                 {
                   "id": "cd85554f-e909-405e-9b7b-2f08ca201f63",
-                  "dimensions": {
-                    "independent": {
-                      "smallest": 0.1,
-                      "intermediate": 0.9,
-                      "largest": 1.4
-                    }
-                  },
                   "location": {
                     "east": 5,
                     "north": 0,
@@ -30,13 +23,6 @@
                 },
                 {
                   "id": "cd95554f-e909-405e-9b7b-2f08ca201f63",
-                  "dimensions": {
-                    "independent": {
-                      "smallest": 0.1,
-                      "intermediate": 0.9,
-                      "largest": 1.4
-                    }
-                  },
                   "location": {
                     "east": 0,
                     "north": 5,
