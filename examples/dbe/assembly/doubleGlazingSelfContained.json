@@ -1,0 +1,122 @@
+{
+  "components": [
+    {
+      "id": "6c8e7e46-3068-405b-b064-4739103c5f1c",
+      "name": "Double Glazing Unit",
+      "relations": {
+        "assembledOf": [
+          "9ce80ba5-6257-452a-839d-1324d1c46c63",
+          "4dc8e97e-0627-49ae-99a7-0608d1b13b1f",
+          "ca16a748-b859-4b13-92c8-60a6fa2f2fd4"
+        ]
+      },
+      "optical": [
+        {
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": "hemispherical",
+                    "wavelengths": {
+                      "integral": "solar"
+                    }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.6
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "calorimetric": [
+        {
+          "data": [
+            {
+              "results": [
+                {
+                  "gValue": 0.65,
+                  "uValue": 1.2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9ce80ba5-6257-452a-839d-1324d1c46c63",
+      "name": "Float Glass center-of-glazing",
+      "relations": {
+        "partOf": ["6c8e7e46-3068-405b-b064-4739103c5f1c"]
+      },
+      "optical": [
+        {
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": "hemispherical",
+                    "wavelengths": {
+                      "integral": "solar"
+                    }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.8
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4dc8e97e-0627-49ae-99a7-0608d1b13b1f",
+      "name": "Laminated Glass center-of-glazing",
+      "relations": {
+        "partOf": ["6c8e7e46-3068-405b-b064-4739103c5f1c"]
+      },
+      "optical": [
+        {
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": "hemispherical",
+                    "wavelengths": {
+                      "integral": "solar"
+                    }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.75
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ca16a748-b859-4b13-92c8-60a6fa2f2fd4",
+      "name": "Spacer",
+      "relations": {
+        "partOf": ["6c8e7e46-3068-405b-b064-4739103c5f1c"]
+      }
+    }
+  ]
+}
