@@ -168,11 +168,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "uncertainValue",
-            "uncertainty",
-            "confidenceInterval"
-          ]
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
         }
       ]
     },
