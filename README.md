@@ -19,7 +19,7 @@ The following introduction explains the structure for new users and the section 
 [How to use this repository](#how-to-use-this-repository)
 
 - [For beginners](#for-beginners)
-- [In your browser] (#in-your-browser)
+- [In your browser](#in-your-browser)
 - [On your Linux machine](#on-your-linux-machine)
 
 [Code of Conduct](#code-of-conduct)
