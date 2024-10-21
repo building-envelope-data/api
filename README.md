@@ -19,6 +19,7 @@ The following introduction explains the structure for new users and the section 
 [How to use this repository](#how-to-use-this-repository)
 
 - [For beginners](#for-beginners)
+- [In your browser] (#in-your-browser)
 - [On your Linux machine](#on-your-linux-machine)
 
 [Code of Conduct](#code-of-conduct)
@@ -49,7 +50,43 @@ Similarly, [calorimetric.json](https://github.com/building-envelope-data/api/blo
 
 With you web browser, you can search our [wiki](https://github.com/building-envelope-data/api/wiki), the [issues](https://github.com/building-envelope-data/api/issues) and [pull requests](https://github.com/building-envelope-data/api/pulls) and contribute to them.
 
-In order to browse the code conveniently, you should first [clone the repository](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) and then use a text editor, for example [Visual Studio Code](https://code.visualstudio.com/).
+### In your browser
+
+In order to browse the code conveniently, you can click on `Code` and then `+` to start a new codespace.
+
+![Start a new codespace](docs/images/open_codespace.png)
+
+If you are developing this repository further, you can use the following steps to test and format your contributions:
+
+1. Use the terminal at the bottom right of the codespace to prepare your environment with 
+   ```shell
+   cp ./.env.sample ./.env
+   ```
+1. Run
+   ```shell
+   make shell
+   ```
+   to enter a docker container with a shell with development tools.
+1. List all GNU Make targets by running
+   ```shell
+   make help
+   ```
+   - `compile` validates the JSON schemas against the
+     [JSON Schema meta-schemas](https://json-schema.org/specification-links.html#draft-7)
+     and the GraphQL schemas against the
+     [GrahpQL specification](http://spec.graphql.org/June2018/),
+   - `test` validates the tests against the schemas,
+   - `example` validates the examples against the schemas,
+   - `format` formats source files.
+1. Do something with the project like validating the schemas by running
+   ```shell
+   make compile
+   ```
+1. Drop out of the container by running
+   ```shell
+   exit
+   ```
+   or pressing `Ctrl-D`.
 
 ### On your Linux machine
 
@@ -93,7 +130,7 @@ In order to use our development tooling, for example, to format code and to run 
    ```
 1. Prepare your environment by running
    ```shell
-   cp /.env.sample /.env
+   cp ./.env.sample ./.env
    ```
    and adjusting the copied environment to your needs.
 
