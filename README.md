@@ -52,13 +52,11 @@ With you web browser, you can search our [wiki](https://github.com/building-enve
 
 ### In your browser
 
-In order to browse the code conveniently, you can click on `Code` and then `+` to start a new codespace.
-
-![Start a new codespace](docs/images/open_codespace.png)
+In order to browse the code conveniently with [Codespaces](https://docs.github.com/en/codespaces/overview), open [building-envelope-data/api](https://github.com/building-envelope-data/api) in your favorite web browser, click on the button "Code" in the top-right corner, select the tab "Codespaces", and on the first usage click on `+` to create a new codespace and on subsequent usages click on the name of an existing codespace.
 
 If you are developing this repository further, you can use the following steps to test and format your contributions:
 
-1. Use the terminal at the bottom right of the codespace to prepare your environment with 
+1. Use the terminal at the bottom right of the codespace to prepare your environment with
    ```shell
    cp ./.env.sample ./.env
    ```
