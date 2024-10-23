@@ -19,6 +19,7 @@ The following introduction explains the structure for new users and the section 
 [How to use this repository](#how-to-use-this-repository)
 
 - [For beginners](#for-beginners)
+- [In your browser](#in-your-browser)
 - [On your Linux machine](#on-your-linux-machine)
 
 [Code of Conduct](#code-of-conduct)
@@ -49,7 +50,20 @@ Similarly, [calorimetric.json](https://github.com/building-envelope-data/api/blo
 
 With you web browser, you can search our [wiki](https://github.com/building-envelope-data/api/wiki), the [issues](https://github.com/building-envelope-data/api/issues) and [pull requests](https://github.com/building-envelope-data/api/pulls) and contribute to them.
 
-In order to browse the code conveniently, you should first [clone the repository](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) and then use a text editor, for example [Visual Studio Code](https://code.visualstudio.com/).
+### In your web browser
+
+In order to browse the code conveniently with [Codespaces](https://docs.github.com/en/codespaces/overview), open [building-envelope-data/api](https://github.com/building-envelope-data/api) in your favorite web browser, click on the button "Code" in the top-right corner, select the tab "Codespaces", and on the first usage click on `+` to create a new codespace and on subsequent usages click on the name of an existing codespace.
+
+If you are developing this repository further, you can follow the description [With Docker](#with-docker). For example, you can test and format your contributions with
+
+```
+cp ./.env.sample ./.env
+make shell
+make compile
+make examples
+make test
+make format
+```
 
 ### On your Linux machine
 
@@ -93,7 +107,7 @@ In order to use our development tooling, for example, to format code and to run 
    ```
 1. Prepare your environment by running
    ```shell
-   cp /.env.sample /.env
+   cp ./.env.sample ./.env
    ```
    and adjusting the copied environment to your needs.
 
@@ -116,7 +130,7 @@ In order to use our development tooling, for example, to format code and to run 
      and the GraphQL schemas against the
      [GrahpQL specification](http://spec.graphql.org/June2018/),
    - `test` validates the tests against the schemas,
-   - `example` validates the examples against the schemas,
+   - `examples` validates the examples against the schemas,
    - `format` formats source files,
    - `introspect` introspects the GraphQL schemas,
    - `dos2unix` converts Windows-style to UNIX-style line endings,
