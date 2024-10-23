@@ -54,37 +54,16 @@ With you web browser, you can search our [wiki](https://github.com/building-enve
 
 In order to browse the code conveniently with [Codespaces](https://docs.github.com/en/codespaces/overview), open [building-envelope-data/api](https://github.com/building-envelope-data/api) in your favorite web browser, click on the button "Code" in the top-right corner, select the tab "Codespaces", and on the first usage click on `+` to create a new codespace and on subsequent usages click on the name of an existing codespace.
 
-If you are developing this repository further, you can use the following steps to test and format your contributions:
+If you are developing this repository further, you can follow the description [With Docker](#with-docker). For example, you can test and format your contributions with
 
-1. Use the terminal at the bottom right of the codespace to prepare your environment with
-   ```shell
-   cp ./.env.sample ./.env
-   ```
-1. Run
-   ```shell
-   make shell
-   ```
-   to enter a docker container with a shell with development tools.
-1. List all GNU Make targets by running
-   ```shell
-   make help
-   ```
-   - `compile` validates the JSON schemas against the
-     [JSON Schema meta-schemas](https://json-schema.org/specification-links.html#draft-7)
-     and the GraphQL schemas against the
-     [GrahpQL specification](http://spec.graphql.org/June2018/),
-   - `test` validates the tests against the schemas,
-   - `example` validates the examples against the schemas,
-   - `format` formats source files.
-1. Do something with the project like validating the schemas by running
-   ```shell
-   make compile
-   ```
-1. Drop out of the container by running
-   ```shell
-   exit
-   ```
-   or pressing `Ctrl-D`.
+```
+cp ./.env.sample ./.env
+make shell
+make compile
+make examples
+make test
+make format
+```
 
 ### On your Linux machine
 
@@ -151,7 +130,7 @@ In order to use our development tooling, for example, to format code and to run 
      and the GraphQL schemas against the
      [GrahpQL specification](http://spec.graphql.org/June2018/),
    - `test` validates the tests against the schemas,
-   - `example` validates the examples against the schemas,
+   - `examples` validates the examples against the schemas,
    - `format` formats source files,
    - `introspect` introspects the GraphQL schemas,
    - `dos2unix` converts Windows-style to UNIX-style line endings,
