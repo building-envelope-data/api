@@ -10,7 +10,7 @@ The following introduction explains the structure for new users and the section 
 
 [![Watch the video introduction](https://img.youtube.com/vi/QsulJnpvuh0/maxresdefault.jpg)](https://www.youtube.com/watch?v=QsulJnpvuh0)
 
-## Table Of Contents
+## Table of Contents
 
 [I don't want to read this whole thing, I just have a question!](#i-dont-want-to-read-this-whole-thing-i-just-have-a-question)
 
@@ -19,7 +19,7 @@ The following introduction explains the structure for new users and the section 
 [How to use this repository](#how-to-use-this-repository)
 
 - [For beginners](#for-beginners)
-- [In your browser](#in-your-browser)
+- [In your web browser](#in-your-web-browser)
 - [On your Linux machine](#on-your-linux-machine)
 
 [Code of Conduct](#code-of-conduct)
