@@ -50,7 +50,7 @@ Similarly, [calorimetric.json](https://github.com/building-envelope-data/api/blo
 
 With you web browser, you can search our [wiki](https://github.com/building-envelope-data/api/wiki), the [issues](https://github.com/building-envelope-data/api/issues) and [pull requests](https://github.com/building-envelope-data/api/pulls) and contribute to them.
 
-### In your browser
+### In your web browser
 
 In order to browse the code conveniently with [Codespaces](https://docs.github.com/en/codespaces/overview), open [building-envelope-data/api](https://github.com/building-envelope-data/api) in your favorite web browser, click on the button "Code" in the top-right corner, select the tab "Codespaces", and on the first usage click on `+` to create a new codespace and on subsequent usages click on the name of an existing codespace.
 
