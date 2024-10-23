@@ -196,6 +196,7 @@ and this project adheres to
 - Change propositions for lists and make parameter `where` optional [#260](https://github.com/building-envelope-data/api/pull/260)
 - Move `color` to the `results` of an optical data set [#326](https://github.com/building-envelope-data/api/pull/326)
 - Remove the shortcut `nodes` to reduce the implementation effort [#318](https://github.com/building-envelope-data/api/pull/318)
+- Describe codespaces as an option for Windows users [#336](https://github.com/building-envelope-data/api/pull/336)
 
 ### Removed
 
