@@ -21,8 +21,8 @@ mutation {
   createDetailedMethod: createMethod(
     input: {
       availability: {
-        from: "2024-06-05T12:00:0.000+01:00"
-        to: "2026-06-05T12:00:0.000+01:00"
+        from: "2024-06-05T12:00:00.000+01:00"
+        to: "2026-06-05T12:00:00.000+01:00"
       }
       calculationLocator: "https://github.com/calculator"
       categories: [CALCULATION, MEASUREMENT]
@@ -51,8 +51,8 @@ mutation {
       }
       userDeveloperIds: ["d1f19101-e1e7-4e16-a09a-78b7b127b89f"]
       validity: {
-        from: "2024-06-05T12:00:0.000+01:00"
-        to: "2026-06-05T12:00:0.000+01:00"
+        from: "2024-06-05T12:00:00.000+01:00"
+        to: "2026-06-05T12:00:00.000+01:00"
       }
     }
   ) {
