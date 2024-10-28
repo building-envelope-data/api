@@ -1,0 +1,21 @@
+{
+  "fluxes": {
+    "shortwaveRadiation": [
+      {
+        "side": "exterior",
+        "direction": {
+          "polar": 0,
+          "azimuth": 0
+        }
+      }
+    ]
+  },
+  "results": [
+    {
+      "area": {
+        "category": "center"
+      },
+      "gValue": 0.05
+    }
+  ]
+}
