@@ -1,0 +1,42 @@
+{
+  "characteristics": {
+    "conditions": "stationary",
+    "componentTilt": 90
+  },
+  "fluxes": {
+    "conductionConvectionLongwaveRadiation": [
+      {
+        "side": "interior",
+        "temperatures": {
+          "surrounding": 298
+        },
+        "coefficient": 7.7
+      },
+      {
+        "side": "exterior",
+        "temperatures": {
+          "surrounding": 299
+        },
+        "coefficient": 25
+      }
+    ],
+    "shortwaveRadiation": [
+      {
+        "side": "exterior",
+        "flux": 500,
+        "direction": {
+          "polar": 45,
+          "azimuth": 0
+        }
+      }
+    ]
+  },
+  "results": [
+    {
+      "area": {
+        "category": "center"
+      },
+      "gValue": 0.17
+    }
+  ]
+}
