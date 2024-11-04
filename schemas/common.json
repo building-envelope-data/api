@@ -307,6 +307,77 @@
         }
       }
     },
+    "stateSwitchableLayer": {
+      "title": "Define the state of switchable layers",
+      "description": "Layers can be switched by extending and retracting, by tilting slats, electrochromic, photochromic or thermochromic layers.",
+      "oneOf": [
+        {
+          "title": "Slats which can be rotated and or extended e.g. venetian blinds",
+          "type": "object",
+          "properties": {
+            "slatTilt": {
+              "$ref": "common.json#/$defs/angles/$defs/slatTilt",
+              "title": "Tilt angle",
+              "description": "The tilt angle, for example of venetian blinds."
+            },
+            "extensionRatio": {
+              "$ref": "number.json#/$defs/percentBetweenZeroAndOneHundred",
+              "title": "Ratio covered by the switchable layer",
+              "description": "Ratio of the area which is covered by the switchable layer, for example of venetian blinds. 100 means that the switchable layer covers the full area of the component. 0 means that the switchable layer is fully retracted and does not cover any an area of the component."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        {
+          "title": "Electrochromic layers",
+          "type": "object",
+          "properties": {
+            "voltage": {
+              "$ref": "number.json#/$defs/voltWithUncertainty",
+              "title": "Voltage of the switchable layer",
+              "description": "The voltage on the switchable layer in volt (V). It is important for electrochromic layers."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": ["voltage"]
+        },
+        {
+          "title": "Thermochromic layers",
+          "type": "object",
+          "properties": {
+            "temperature": {
+              "$ref": "number.json#/$defs/kelvinWithUncertainty",
+              "title": "Temperature of the switchable layer",
+              "description": "The temperature temperature the switchable layer in kelvin (K). It is important for thermochromic layers."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": ["temperature"]
+        },
+        {
+          "title": "Photochromic layers",
+          "type": "object",
+          "properties": {
+            "irradiance": {
+              "$ref": "number.json#/$defs/wattPerSquareMeterWithUncertainty",
+              "title": "Irradiance on the switchable layer",
+              "description": "The irradiance on the switchable layer in watt per square meter (W/m2). It is important for photochromic layers."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": ["irradiance"]
+        },
+        {
+          "type": "string",
+          "const": "Layer is not switchable"
+        }
+      ]
+    },
     "efficiencies": {
       "title": "Definitions of effiencies for the conversion of energy.",
       "$defs": {

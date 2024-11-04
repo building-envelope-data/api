@@ -1,0 +1,12 @@
+{
+  "characteristics": {
+    "secondSwitchableLayer": {
+      "voltage": 10
+    }
+  },
+  "results": [
+    {
+      "gValue": 0.1
+    }
+  ]
+}

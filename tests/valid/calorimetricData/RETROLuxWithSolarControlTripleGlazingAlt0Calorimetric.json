@@ -1,0 +1,28 @@
+{
+  "characteristics": {
+    "firstSwitchableLayer": {
+      "slatTilt": 80,
+      "extensionRatio": 100
+    }
+  },
+  "fluxes": {
+    "shortwaveRadiation": [
+      {
+        "side": "exterior",
+        "direction": {
+          "polar": 0,
+          "azimuth": 0
+        }
+      }
+    ]
+  },
+  "results": [
+    {
+      "gValue": {
+        "uncertainValue": 0.04,
+        "uncertainty": 0.05,
+        "confidenceInterval": 68.3
+      }
+    }
+  ]
+}

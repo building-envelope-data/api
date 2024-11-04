@@ -46,7 +46,7 @@
             {
               "characteristics": {
                 "conditions": "stationary",
-                "primeSurface": "interior"
+                "surface": "interior"
               },
               "fluxes": {
                 "mixed": [

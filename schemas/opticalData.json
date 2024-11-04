@@ -152,11 +152,6 @@
           "title": "Spot",
           "description": "Size and profile of the irradiance on the sample."
         },
-        "slatTilt": {
-          "$ref": "common.json#/$defs/angles/$defs/slatTilt",
-          "title": "Tilt angle",
-          "description": "Tilt angle, for example of venetian blinds."
-        },
         "symmetries": {
           "title": "Choose between the general symmetries `mirror`, `rotationalDependingOnAzimuth` and `mirrorAndRotational` and their important special cases `azimuthalAngleInvariance` and `profileAngle`.",
           "type": "string",
@@ -172,11 +167,42 @@
         "surface": {
           "$ref": "component.json#/$defs/surface",
           "description": "Defines which surface is irradiated"
+        },
+        "firstSwitchableLayer": {
+          "title": "Switchable layer which is the closest to the exterior",
+          "$ref": "common.json#/$defs/stateSwitchableLayer",
+          "description": "Define the state of the switchable layer which is the closest one to the exterior. No switchable layer can be indicated by `Layer is not switchable`. Additional switchable layers can be defined by `secondSwitchableLayer` and `thirdSwitchableLayer`."
         }
       },
-      "additionalProperties": false,
+      "dependentSchemas": {
+        "firstSwitchableLayer": {
+          "properties": {
+            "secondSwitchableLayer": {
+              "title": "Layer which is the second closest to the exterior",
+              "$ref": "common.json#/$defs/stateSwitchableLayer",
+              "description": "Define the state of the switchable layer is the second closest to the exterior."
+            }
+          },
+          "minProperties": 0,
+          "required": [],
+          "dependentSchemas": {
+            "secondSwitchableLayer": {
+              "properties": {
+                "thirdSwitchableLayer": {
+                  "title": "Layer which is the third closest to the exterior",
+                  "$ref": "common.json#/$defs/stateSwitchableLayer",
+                  "description": "Define the state of the switchable layer is the third closest to the exterior."
+                }
+              },
+              "minProperties": 0,
+              "required": []
+            }
+          }
+        }
+      },
       "minProperties": 1,
-      "required": []
+      "required": [],
+      "unevaluatedProperties": true
     },
     "polarization": {
       "title": "Polarization",

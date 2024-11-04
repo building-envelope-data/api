@@ -459,6 +459,10 @@
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Kilogram per second (kg/s) are the SI units of the mass flow. With this type, the uncertainty can be defined."
     },
+    "wattPerSquareMeterWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Watt per square meter (W/(m^2) are SI units for the power flowing through an area, for example for irradiance. With this type, the uncertainty can be defined."
+    },
     "wattPerSquareMeterKelvinWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Watt per square meter and per kelvin (W/(m^2*K) are the SI units of a heat transfer coefficient. With this type, the uncertainty can be defined."

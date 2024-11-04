@@ -1,0 +1,19 @@
+{
+  "characteristics": {
+    "firstSwitchableLayer": {
+      "slatTilt": 45,
+      "extensionRatio": 50
+    },
+    "secondSwitchableLayer": {
+      "voltage": 10
+    },
+    "thirdSwitchableLayer": {
+      "temperature": 300
+    }
+  },
+  "results": [
+    {
+      "gValue": 0.1
+    }
+  ]
+}

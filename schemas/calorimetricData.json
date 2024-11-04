@@ -41,17 +41,49 @@
           "enum": ["dynamic", "stationary"],
           "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
         },
-        "primeSurface": {
+        "surface": {
           "$ref": "#/$defs/side",
-          "description": "This subschema defines the orientation of the prime surface. The prime surface is defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`."
+          "description": "Defines which surface is irradiated"
         },
         "componentTilt": {
           "$ref": "common.json#/$defs/angles/$defs/componentTilt",
           "description": "The tilt angle of the component."
+        },
+        "firstSwitchableLayer": {
+          "title": "Switchable layer which is the closest to the exterior",
+          "$ref": "common.json#/$defs/stateSwitchableLayer",
+          "description": "Define the state of the switchable layer which is the closest one to the exterior. No switchable layer can be indicated by `Layer is not switchable`. Additional switchable layers can be defined by `secondSwitchableLayer` and `thirdSwitchableLayer`."
         }
       },
-      "additionalProperties": false,
-      "required": ["conditions"]
+      "dependentSchemas": {
+        "firstSwitchableLayer": {
+          "properties": {
+            "secondSwitchableLayer": {
+              "title": "Layer which is the second closest to the exterior",
+              "$ref": "common.json#/$defs/stateSwitchableLayer",
+              "description": "Define the state of the switchable layer is the second closest to the exterior."
+            }
+          },
+          "minProperties": 0,
+          "required": [],
+          "dependentSchemas": {
+            "secondSwitchableLayer": {
+              "properties": {
+                "thirdSwitchableLayer": {
+                  "title": "Layer which is the third closest to the exterior",
+                  "$ref": "common.json#/$defs/stateSwitchableLayer",
+                  "description": "Define the state of the switchable layer is the third closest to the exterior."
+                }
+              },
+              "minProperties": 0,
+              "required": []
+            }
+          }
+        }
+      },
+      "minProperties": 1,
+      "required": [],
+      "unevaluatedProperties": true
     },
     "fluxes": {
       "title": "Characterize several kinds of energy fluxes towards the sample. Energy flux from the sample has negative values.",
