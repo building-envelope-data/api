@@ -69,6 +69,7 @@ RUN \
 #   https://www.gnu.org/software/make
 # * Node package manager to install Node development tools, see
 #   https://www.npmjs.com
+ENV NPM_VERSION=10.8.2
 RUN \
   # Retrieve new lists of packages
   apt-get update && \
@@ -78,7 +79,7 @@ RUN \
     make \
     npm && \
   # Upgrade Node package manager
-  npm install --global npm@9.5.1 && \
+  npm install --global npm@${NPM_VERSION} && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
