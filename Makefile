@@ -40,6 +40,8 @@ run : build ## Run command `${COMMAND}` in fresh container for image with name `
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
 		--mount type=volume,destination=/app/node_modules \
+		--mount type=volume,source=api_vscode_server_extensions,destination=/home/me/.vscode-server/extensions \
+		--mount type=volume,source=api_vscode_server_insiders_extensions,destination=/home/me/.vscode-server-insiders/extensions \
 		${OPTIONS} \
 		${NAME} \
 		bash

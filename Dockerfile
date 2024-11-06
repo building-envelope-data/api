@@ -133,12 +133,27 @@ RUN \
   npm ci --no-optional && \
   npm cache clean --force
 
+#---------------------------#
+# Prepare volumes and binds #
+#---------------------------#
+# Create empty directories /home/me/.vscode-server/*` for user `me` and group
+# `us` to make the respective mounted volumes be owned by the user `me` and the
+# group `us`. For an explanation for the Visual Studio Code Server directories
+# see https://code.visualstudio.com/docs/remote/containers-advanced#_avoiding-extension-reinstalls-on-container-rebuild
+RUN \
+  mkdir --parents \
+    /home/me/.vscode-server/extensions \
+    /home/me/.vscode-server-insiders/extensions
+
 #-------------------------------------------#
 # Set-up for containers based on this image #
 #-------------------------------------------#
 # Create mount points to mount the project and the installed Node development
 # tools.
 VOLUME /app/
+VOLUME /app/node_modules
+VOLUME /home/me/.vscode-server/extensions
+VOLUME /home/me/.vscode-server-insiders/extensions
 
 # Run commands within the process supervisor and init system `dumb-init`
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
