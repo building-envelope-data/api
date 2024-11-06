@@ -26,8 +26,16 @@ ARG GID=1000
 # see https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
 RUN \
   userdel --remove node && \
-  addgroup --system --gid ${GID} us && \
-  adduser --system --uid ${UID} --ingroup us me
+  groupadd \
+    --gid ${GID} \
+    us && \
+  useradd \
+    --no-log-init \
+    --create-home \
+    --shell /bin/bash \
+    --uid ${UID} \
+    --gid us \
+    me
 
 #-------------------------------#
 # Make `bash` the default shell #
