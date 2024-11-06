@@ -65,6 +65,8 @@ RUN \
 #----------------------------------#
 # Install system development tools #
 #----------------------------------#
+# * `jq` to slice, filter, map, and transform JSON data, see
+#   https://stedolan.github.io/jq/
 # * GNU Make to run often needed commands, see
 #   https://www.gnu.org/software/make
 # * Node package manager to install Node development tools, see
