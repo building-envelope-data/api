@@ -69,6 +69,8 @@ RUN \
 #   https://stedolan.github.io/jq/
 # * GNU Make to run often needed commands, see
 #   https://www.gnu.org/software/make
+# * Neovim to edit text files and to show the difference between files, see
+#   https://neovim.io/
 # * Node package manager to install Node development tools, see
 #   https://www.npmjs.com
 ENV NPM_VERSION=10.8.2
@@ -79,6 +81,7 @@ RUN \
   apt-get install --assume-yes --no-install-recommends \
     jq \
     make \
+    neovim \
     npm && \
   # Upgrade Node package manager
   npm install --global npm@${NPM_VERSION} && \
