@@ -26,8 +26,16 @@ ARG GID=1000
 # see https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
 RUN \
   userdel --remove node && \
-  addgroup --system --gid ${GID} us && \
-  adduser --system --uid ${UID} --ingroup us me
+  groupadd \
+    --gid ${GID} \
+    us && \
+  useradd \
+    --no-log-init \
+    --create-home \
+    --shell /bin/bash \
+    --uid ${UID} \
+    --gid us \
+    me
 
 #-------------------------------#
 # Make `bash` the default shell #
@@ -57,10 +65,15 @@ RUN \
 #----------------------------------#
 # Install system development tools #
 #----------------------------------#
+# * `jq` to slice, filter, map, and transform JSON data, see
+#   https://stedolan.github.io/jq/
 # * GNU Make to run often needed commands, see
 #   https://www.gnu.org/software/make
+# * Neovim to edit text files and to show the difference between files, see
+#   https://neovim.io/
 # * Node package manager to install Node development tools, see
 #   https://www.npmjs.com
+ENV NPM_VERSION=10.8.2
 RUN \
   # Retrieve new lists of packages
   apt-get update && \
@@ -68,9 +81,10 @@ RUN \
   apt-get install --assume-yes --no-install-recommends \
     jq \
     make \
+    neovim \
     npm && \
   # Upgrade Node package manager
-  npm install --global npm@9.5.1 && \
+  npm install --global npm@${NPM_VERSION} && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
@@ -119,12 +133,27 @@ RUN \
   npm ci --no-optional && \
   npm cache clean --force
 
+#---------------------------#
+# Prepare volumes and binds #
+#---------------------------#
+# Create empty directories /home/me/.vscode-server/*` for user `me` and group
+# `us` to make the respective mounted volumes be owned by the user `me` and the
+# group `us`. For an explanation for the Visual Studio Code Server directories
+# see https://code.visualstudio.com/docs/remote/containers-advanced#_avoiding-extension-reinstalls-on-container-rebuild
+RUN \
+  mkdir --parents \
+    /home/me/.vscode-server/extensions \
+    /home/me/.vscode-server-insiders/extensions
+
 #-------------------------------------------#
 # Set-up for containers based on this image #
 #-------------------------------------------#
 # Create mount points to mount the project and the installed Node development
 # tools.
 VOLUME /app/
+VOLUME /app/node_modules
+VOLUME /home/me/.vscode-server/extensions
+VOLUME /home/me/.vscode-server-insiders/extensions
 
 # Run commands within the process supervisor and init system `dumb-init`
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
