@@ -196,7 +196,11 @@ example : ## Validate explicit examples, for example, `make SCHEMA_NAME=dbe EXAM
 .PHONY : example
 
 format : ## Format files with Prettier
-	npx --no-install prettier --write .
+	npx --no-install \
+		prettier \
+			--config ./.prettierrc \
+			--write \
+			.
 .PHONY : format
 
 introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.schema.json
