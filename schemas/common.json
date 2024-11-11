@@ -328,7 +328,7 @@
       "type": "array",
       "items": {
         "$ref": "common.json#/$defs/stateSwitchableLayer",
-        "description": "Define the state of the switchable layer. One option is `Layer is not switchable`."
+        "description": "Define the state of the switchable layer."
       },
       "uniqueItems": true,
       "minItems": 1
@@ -403,10 +403,6 @@
           "required": [
             "irradiance"
           ]
-        },
-        {
-          "type": "string",
-          "const": "Layer is not switchable"
         }
       ]
     },
