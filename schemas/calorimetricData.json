@@ -38,7 +38,10 @@
       "properties": {
         "conditions": {
           "type": "string",
-          "enum": ["dynamic", "stationary"],
+          "enum": [
+            "dynamic",
+            "stationary"
+          ],
           "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
         },
         "surface": {
@@ -49,41 +52,14 @@
           "$ref": "common.json#/$defs/angles/$defs/componentTilt",
           "description": "The tilt angle of the component."
         },
-        "firstSwitchableLayer": {
-          "title": "Switchable layer which is the closest to the exterior",
-          "$ref": "common.json#/$defs/stateSwitchableLayer",
-          "description": "Define the state of the switchable layer which is the closest one to the exterior. No switchable layer can be indicated by `Layer is not switchable`. Additional switchable layers can be defined by `secondSwitchableLayer` and `thirdSwitchableLayer`."
+        "switchableLayers": {
+          "$ref": "common.json#/$defs/switchableLayers",
+          "description": "Defines the state of switchable layers."
         }
       },
-      "dependentSchemas": {
-        "firstSwitchableLayer": {
-          "properties": {
-            "secondSwitchableLayer": {
-              "title": "Layer which is the second closest to the exterior",
-              "$ref": "common.json#/$defs/stateSwitchableLayer",
-              "description": "Define the state of the switchable layer is the second closest to the exterior."
-            }
-          },
-          "minProperties": 0,
-          "required": [],
-          "dependentSchemas": {
-            "secondSwitchableLayer": {
-              "properties": {
-                "thirdSwitchableLayer": {
-                  "title": "Layer which is the third closest to the exterior",
-                  "$ref": "common.json#/$defs/stateSwitchableLayer",
-                  "description": "Define the state of the switchable layer is the third closest to the exterior."
-                }
-              },
-              "minProperties": 0,
-              "required": []
-            }
-          }
-        }
-      },
+      "additionalProperties": true,
       "minProperties": 1,
-      "required": [],
-      "unevaluatedProperties": true
+      "required": []
     },
     "fluxes": {
       "title": "Characterize several kinds of energy fluxes towards the sample. Energy flux from the sample has negative values.",
@@ -400,10 +376,14 @@
             }
           },
           "then": {
-            "required": ["description"]
+            "required": [
+              "description"
+            ]
           },
           "else": {
-            "required": ["category"]
+            "required": [
+              "category"
+            ]
           },
           "additionalProperties": false
         },
@@ -444,7 +424,11 @@
     },
     "side": {
       "type": "string",
-      "enum": ["exterior", "interior", "lateral"],
+      "enum": [
+        "exterior",
+        "interior",
+        "lateral"
+      ],
       "description": "The name of one part of the surroundings."
     }
   },
