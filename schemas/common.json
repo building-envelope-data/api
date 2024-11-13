@@ -62,7 +62,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["standard"]
+          "required": [
+            "standard"
+          ]
         },
         {
           "type": "object",
@@ -73,7 +75,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["publication"]
+          "required": [
+            "publication"
+          ]
         }
       ]
     },
@@ -130,7 +134,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["identifiers"]
+      "required": [
+        "identifiers"
+      ]
     },
     "standard": {
       "title": "Standards are a special kind of publications. Therefore their data structure is different from publications.",
@@ -206,7 +212,9 @@
           },
           "additionalProperties": false,
           "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the acronyms for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
-          "required": ["mainNumber"]
+          "required": [
+            "mainNumber"
+          ]
         },
         "year": {
           "type": "integer",
@@ -220,7 +228,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["standardizers", "numeration"],
+      "required": [
+        "standardizers",
+        "numeration"
+      ],
       "description": "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
     },
     "currentVoltage": {
@@ -237,7 +248,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["I", "V"]
+      "required": [
+        "I",
+        "V"
+      ]
     },
     "approvals": {
       "title": "Institutions can approve data with cryptographic signatures which among other things can be used to ensure integrity and authenticity of data. The same data may be approved by several institutions.",
@@ -272,7 +286,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["approver"]
+      "required": [
+        "approver"
+      ]
     },
     "approvalVerification": {
       "title": "How to verify the approval",
@@ -319,7 +335,7 @@
     },
     "switchableLayerState": {
       "title": "State of a switchable layer",
-      "description": "Layers can be switched by extending and retracting, by tilting slats, electrochromic, photochromic or thermochromic layers.",
+      "description": "Layers can be switched by extending and retracting a layer, by tilting slats, by electrochromic, photochromic or thermochromic layers.",
       "oneOf": [
         {
           "title": "Slats which can be rotated and or extended e.g. venetian blinds",
@@ -352,7 +368,9 @@
           },
           "additionalProperties": false,
           "minProperties": 1,
-          "required": ["voltage"]
+          "required": [
+            "voltage"
+          ]
         },
         {
           "title": "Thermochromic layers",
@@ -366,7 +384,9 @@
           },
           "additionalProperties": false,
           "minProperties": 1,
-          "required": ["temperature"]
+          "required": [
+            "temperature"
+          ]
         },
         {
           "title": "Photochromic layers",
@@ -380,7 +400,9 @@
           },
           "additionalProperties": false,
           "minProperties": 1,
-          "required": ["irradiance"]
+          "required": [
+            "irradiance"
+          ]
         }
       ]
     },
@@ -474,7 +496,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["id"]
+      "required": [
+        "id"
+      ]
     },
     "fileMetaInformation": {
       "type": "object",
@@ -496,14 +520,22 @@
         }
       },
       "additionalProperties": false,
-      "required": ["path", "format"]
+      "required": [
+        "path",
+        "format"
+      ]
     },
     "possiblePositions": {
       "title": "The locations where a component can be used",
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["exterior", "asBuildingEnvelope", "inBetween", "interior"],
+        "enum": [
+          "exterior",
+          "asBuildingEnvelope",
+          "inBetween",
+          "interior"
+        ],
         "description": "(i) 'exterior' means that the component can be used on the external side of the building envelope. (ii) 'asBuildingEnvelope' means that the component can be used as building envelope without any additional components. (iii) 'inBetween' means that the component can be used within building envelope for example between two glass panes. (iv) 'interior' means that the component can be used on the internal side of the building envelope."
       },
       "uniqueItems": true,
@@ -652,7 +684,10 @@
       "properties": {
         "fractionType": {
           "type": "string",
-          "enum": ["weight", "volume"],
+          "enum": [
+            "weight",
+            "volume"
+          ],
           "description": "Whether the fraction is based on the weight or the volume of the "
         },
         "fractions": {
@@ -683,14 +718,20 @@
               }
             },
             "additionalProperties": false,
-            "required": ["material", "fraction"]
+            "required": [
+              "material",
+              "fraction"
+            ]
           },
           "minItems": 1,
           "uniqueItems": true
         }
       },
       "additionalProperties": false,
-      "required": ["fractionType", "fractions"]
+      "required": [
+        "fractionType",
+        "fractions"
+      ]
     }
   }
 }
