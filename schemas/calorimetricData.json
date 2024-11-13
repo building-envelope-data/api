@@ -57,7 +57,7 @@
           "description": "Defines the state of switchable layers."
         }
       },
-      "additionalProperties": true,
+      "additionalProperties": false,
       "minProperties": 1,
       "required": []
     },

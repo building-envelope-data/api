@@ -327,14 +327,14 @@
       "title": "If a component contains one or more switchable layers, then the switching state can be defined here starting with the switchable layer which is the closest to the exterior, followed by the second closest and so on until the switchable layer which is closest to the interior of the building.",
       "type": "array",
       "items": {
-        "$ref": "common.json#/$defs/stateSwitchableLayer",
+        "$ref": "common.json#/$defs/switchableLayerState",
         "description": "Define the state of the switchable layer."
       },
       "uniqueItems": true,
       "minItems": 1
     },
-    "stateSwitchableLayer": {
-      "title": "Define the state of switchable layers",
+    "switchableLayerState": {
+      "title": "State of a switchable layer",
       "description": "Layers can be switched by extending and retracting, by tilting slats, electrochromic, photochromic or thermochromic layers.",
       "oneOf": [
         {
