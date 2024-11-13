@@ -46,7 +46,7 @@
             {
               "characteristics": {
                 "conditions": "stationary",
-                "surface": "interior"
+                "surface": "nonPrime"
               },
               "fluxes": {
                 "mixed": [

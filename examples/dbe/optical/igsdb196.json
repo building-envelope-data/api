@@ -153,10 +153,7 @@
         "airPermeability": {
           "permeabilityFactor": 9.9999
         },
-        "positionOfCoatings": [
-          0,
-          0
-        ],
+        "positionOfCoatings": [0, 0],
         "layer": {
           "possiblePositions": [
             "exterior",
@@ -174,10 +171,7 @@
       },
       "version": "99999999-9999-9999-9999-999999999999",
       "categories": {
-        "componentType": [
-          "material",
-          "layer"
-        ]
+        "componentType": ["material", "layer"]
       },
       "available": {
         "from": "1999-09-09T09:09:09+00:00"

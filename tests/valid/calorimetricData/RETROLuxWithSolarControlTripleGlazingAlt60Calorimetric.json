@@ -1,9 +1,11 @@
 {
   "characteristics": {
-    "firstSwitchableLayer": {
-      "slatTilt": 0,
-      "extensionRatio": 100
-    }
+    "switchableLayers": [
+      {
+        "slatTilt": 0,
+        "extensionRatio": 100
+      }
+    ]
   },
   "fluxes": {
     "shortwaveRadiation": [

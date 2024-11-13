@@ -2,7 +2,7 @@
   "description": "test",
   "characteristics": {
     "conditions": "dynamic",
-    "primeSurface": "exterior",
+    "surface": "prime",
     "componentTilt": 45
   },
   "fluxes": {

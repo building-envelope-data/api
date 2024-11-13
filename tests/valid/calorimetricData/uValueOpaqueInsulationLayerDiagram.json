@@ -1,7 +1,7 @@
 {
   "characteristics": {
     "conditions": "stationary",
-    "primeSurface": "interior",
+    "surface": "symmetric",
     "componentTilt": 90
   },
   "fluxes": {
@@ -9,12 +9,16 @@
       {
         "side": "exterior",
         "flux": 3,
-        "temperatures": { "sample": 308 }
+        "temperatures": {
+          "sample": 308
+        }
       },
       {
         "side": "interior",
         "flux": -3,
-        "temperatures": { "sample": 288 }
+        "temperatures": {
+          "sample": 288
+        }
       }
     ]
   },
