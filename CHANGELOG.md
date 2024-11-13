@@ -164,6 +164,7 @@ and this project adheres to
 - Add release actions [#281](https://github.com/building-envelope-data/api/pull/281)
 - Add JSON schema for hygrothermal data [#322](https://github.com/building-envelope-data/api/pull/322)
 - Add example of double glazing including subcomponents [#334](https://github.com/building-envelope-data/api/pull/334)
+- Allow definition of switchable layers [#339](https://github.com/building-envelope-data/api/pull/339)
 
 ### Changed
 

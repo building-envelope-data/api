@@ -1,0 +1,24 @@
+{
+  "characteristics": {
+    "switchableLayers": [
+      {
+        "slatTilt": 45,
+        "extensionRatio": 50
+      },
+      {
+        "voltage": 10
+      },
+      {
+        "temperature": 300
+      },
+      {
+        "irradiance": 500
+      }
+    ]
+  },
+  "results": [
+    {
+      "gValue": 0.1
+    }
+  ]
+}

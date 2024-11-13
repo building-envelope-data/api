@@ -1,7 +1,7 @@
 {
   "characteristics": {
     "conditions": "stationary",
-    "primeSurface": "interior",
+    "surface": "nonPrime",
     "componentTilt": 90
   },
   "fluxes": {

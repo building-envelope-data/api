@@ -25,9 +25,11 @@
                     }
                   }
                 },
-                "firstSwitchableLayer": {
-                  "slatTilt": 9.9999
-                },
+                "switchableLayers": [
+                  {
+                    "slatTilt": 9.9999
+                  }
+                ],
                 "symmetries": "azimuthalAngleInvariance"
               },
               "dataPoints": [
@@ -70,9 +72,11 @@
                     }
                   }
                 },
-                "firstSwitchableLayer": {
-                  "slatTilt": 9.9999
-                },
+                "switchableLayers": [
+                  {
+                    "slatTilt": 9.9999
+                  }
+                ],
                 "symmetries": "azimuthalAngleInvariance"
               },
               "dataPoints": [

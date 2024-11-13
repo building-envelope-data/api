@@ -168,41 +168,14 @@
           "$ref": "component.json#/$defs/surface",
           "description": "Defines which surface is irradiated"
         },
-        "firstSwitchableLayer": {
-          "title": "Switchable layer which is the closest to the exterior",
-          "$ref": "common.json#/$defs/stateSwitchableLayer",
-          "description": "Define the state of the switchable layer which is the closest one to the exterior. No switchable layer can be indicated by `Layer is not switchable`. Additional switchable layers can be defined by `secondSwitchableLayer` and `thirdSwitchableLayer`."
+        "switchableLayers": {
+          "$ref": "common.json#/$defs/switchableLayers",
+          "description": "Defines the state of switchable layers."
         }
       },
-      "dependentSchemas": {
-        "firstSwitchableLayer": {
-          "properties": {
-            "secondSwitchableLayer": {
-              "title": "Layer which is the second closest to the exterior",
-              "$ref": "common.json#/$defs/stateSwitchableLayer",
-              "description": "Define the state of the switchable layer is the second closest to the exterior."
-            }
-          },
-          "minProperties": 0,
-          "required": [],
-          "dependentSchemas": {
-            "secondSwitchableLayer": {
-              "properties": {
-                "thirdSwitchableLayer": {
-                  "title": "Layer which is the third closest to the exterior",
-                  "$ref": "common.json#/$defs/stateSwitchableLayer",
-                  "description": "Define the state of the switchable layer is the third closest to the exterior."
-                }
-              },
-              "minProperties": 0,
-              "required": []
-            }
-          }
-        }
-      },
+      "additionalProperties": false,
       "minProperties": 1,
-      "required": [],
-      "unevaluatedProperties": true
+      "required": []
     },
     "polarization": {
       "title": "Polarization",

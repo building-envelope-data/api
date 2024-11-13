@@ -262,13 +262,13 @@
         },
         "definitionOfSurfacesAndPrimeDirection": {
           "title": "Definition of surfaces and prime direction",
-          "description": "The prime surface and the prime direction are used to define the orientation of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry.",
+          "description": "The prime surface and the prime direction are used to define the orientation of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry. The reference can also define which layers are switchable e.g. electrochromic.",
           "type": "object",
           "properties": {
             "reference": {
               "$ref": "common.json#/$defs/reference",
               "title": "Reference",
-              "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define a prime direction which is used to calculate the azimuth of the direction of incidence. Ideally, the manufacturer defines the surfaces and prime direction of a component in one document and refers to this document in optical data."
+              "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define a prime direction which is used to calculate the azimuth of the direction of incidence. Ideally, the manufacturer defines the surfaces and prime direction of a component in one document and refers to this document in optical data. The reference can also define which layers are switchable e.g. electrochromic."
             },
             "description": {
               "type": "string",
