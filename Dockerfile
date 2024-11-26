@@ -73,7 +73,7 @@ RUN \
 #   https://neovim.io/
 # * Node package manager to install Node development tools, see
 #   https://www.npmjs.com
-ENV NPM_VERSION=10.8.2
+ENV NPM_VERSION=10.9.1
 RUN \
   # Retrieve new lists of packages
   apt-get update && \
