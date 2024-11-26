@@ -18,8 +18,10 @@
         "unit": ["screen"]
       },
       "characteristics": {
-        "definitionOfSurfacesAndPrimeDirection": {
-          "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior."
+        "prime": {
+          "surface": {
+            "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior."
+          }
         }
       },
       "optical": [

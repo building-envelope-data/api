@@ -260,20 +260,66 @@
           "$ref": "common.json#/$defs/materialComposition",
           "description": "The chemical elements and basic materials which are part of the component."
         },
-        "definitionOfSurfacesAndPrimeDirection": {
-          "title": "Definition of surfaces and prime direction",
-          "description": "The prime surface and the prime direction are used to define the orientation of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry. The reference can also define which layers are switchable e.g. electrochromic.",
+        "prime": {
+          "title": "Prime surface and/or direction",
+          "description": "The prime surface and the prime direction are used to define the orientation of the component. Both may be defined with a reference and/or description. The two references may point to the same resource if it contains both the definition of prime surface and prime direction.",
+          "type": "object",
+          "properties": {
+            "surface": {
+              "title": "Prime surface",
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "$ref": "common.json#/$defs/reference",
+                  "title": "Reference",
+                  "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior."
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description",
+                  "description": "Description of which sides of the components are defined as non-prime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior."
+                }
+              },
+              "minProperties": 1,
+              "required": []
+            },
+            "direction": {
+              "title": "Prime direction",
+              "description": "The prime direction is used to define the orientation of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry.",
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "$ref": "common.json#/$defs/reference",
+                  "title": "Reference",
+                  "description": "Reference that defines the prime direction that is used to calculate the azimuth of the direction of incidence."
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description",
+                  "description": "Description of which direction is defined as the prime direction."
+                }
+              },
+              "minProperties": 1,
+              "required": []
+            }
+          },
+          "minProperties": 1,
+          "required": []
+        },
+        "switchableLayers": {
+          "title": "Switchable Layers",
+          "description": "Definition of which layers are switchable e.g. electrochromic.",
           "type": "object",
           "properties": {
             "reference": {
               "$ref": "common.json#/$defs/reference",
               "title": "Reference",
-              "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define a prime direction which is used to calculate the azimuth of the direction of incidence. Ideally, the manufacturer defines the surfaces and prime direction of a component in one document and refers to this document in optical data. The reference can also define which layers are switchable e.g. electrochromic."
+              "description": "Reference that defines which layers are switchable."
             },
             "description": {
               "type": "string",
               "title": "Description",
-              "description": "Description of which sides of the components are defined as non-prime and which as prime and which direction is defined as the prime direction. Often, the non-prime side faces the exterior and the prime side the interior."
+              "description": "Description of which layers are switchable."
             }
           },
           "minProperties": 1,
@@ -298,7 +344,7 @@
           }
         },
         "roughness": {
-          "title": "Definition of the roughness of the prime surfaces and the non-prime surface.Both are defined by `definitionOfSurfacesAndPrimeDirection`.",
+          "title": "Definition of the roughness of the prime surface and the non-prime surfaces. Both are defined by `prime/properties/surface`.",
           "type": "array",
           "items": {
             "type": "object",
