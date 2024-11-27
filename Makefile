@@ -244,3 +244,13 @@ licenses : ## Print licenses
 			# --failOn
 			# --onlyAllow
 .PHONY : licenses
+
+diagrams : ## Draw images from textual UML diagrams (does not work in the container until Debian features a newer version of PlantUML with JSON support)
+	for directory_name in $(shell ls --indicator-style=none ./docs/diagrams/src/) ; do \
+		echo "Directory Name: $${directory_name}" && \
+		for output_format in png svg ; do \
+			echo "Output Format: $${output_format}" && \
+			plantuml -t$${output_format} -output ./docs/diagrams/out/$${directory_name}/ ./docs/diagrams/src/$${directory_name}/*.plantuml ; \
+		done ; \
+	done
+.PHONY : diagrams
