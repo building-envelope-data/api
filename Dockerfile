@@ -5,7 +5,7 @@
 
 # Use Node on Debian as base image, see
 # https://hub.docker.com/_/node
-FROM node:20.13-bullseye-slim
+FROM node:22.11-bookworm-slim
 
 ##################
 # As user `root` #
@@ -82,7 +82,8 @@ RUN \
     jq \
     make \
     neovim \
-    npm && \
+    npm \
+    plantuml && \
   # Upgrade Node package manager
   npm install --global npm@${NPM_VERSION} && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
