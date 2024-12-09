@@ -465,7 +465,7 @@
       "type": "object",
       "properties": {
         "lStar": {
-          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "$ref": "number.json#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
           "description": "L* (lStar) defines the lightness of the color."
         },
         "aStar": {
