@@ -174,15 +174,11 @@ scalar Any
 """
 Fetch data, ask whether there is data, and search for data. Each field except
 `node` accepts
-- an optional timestamp to specify for which point in time the query is to be
-  made and
 - an optional locale to specify essentially the language of prose in the result.
-Each field's value is uniquely determined by the required arguments,
-timestamp, and locale throughout time.
+Each field's value is uniquely determined by the required arguments and locale.
 
-If timestamp is not given, the moment the query is received is used. And, if
-locale is not given, the default locale is used, which may differ from database
-to database.
+If locale is not given, the default locale is used, which may differ from
+database to database.
 """
 type Query {
   """
@@ -197,15 +193,12 @@ type Query {
   node("Global object identifier." id: ID!): Node!
 
   """
-  Fetch data by universally unique identifier, and optional timestamp and
-  locale, where all three arguments together uniquely determine the data
-  throughout time.
+  Fetch data by universally unique identifier, and optional locale, where all
+  three arguments together uniquely determine the data.
   """
   data(
     "Data identifier."
     id: Uuid!
-    "Timestamp. If not given, the moment the query is received is used."
-    timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
   ): Data!
@@ -215,35 +208,32 @@ type Query {
   """
   calorimetricData(
     id: Uuid!
-    timestamp: DateTime
     locale: Locale
   ): CalorimetricData!
 
   """
   See `Query#data`.
   """
-  geometricData(id: Uuid!, timestamp: DateTime, locale: Locale): GeometricData!
+  geometricData(id: Uuid!, locale: Locale): GeometricData!
 
   """
   See `Query#data`.
   """
   hygrothermalData(
     id: Uuid!
-    timestamp: DateTime
     locale: Locale
   ): HygrothermalData!
 
   """
   See `Query#data`.
   """
-  opticalData(id: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
+  opticalData(id: Uuid!, locale: Locale): OpticalData!
 
   """
   See `Query#data`.
   """
   photovoltaicData(
     id: Uuid!
-    timestamp: DateTime
     locale: Locale
   ): PhotovoltaicData!
 
@@ -303,8 +293,6 @@ type Query {
   allData(
     "Compound boolean expression that is true for all data being returned. If not given, a proposition that is always true is used."
     where: DataPropositionInput
-    "Timestamp. If not given, the moment the query is received is used."
-    timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
     "Maximum number of data edges after the cursor `after`. If not given, the default and maximum value 100 is used."
@@ -322,7 +310,6 @@ type Query {
   """
   allCalorimetricData(
     where: CalorimetricDataPropositionInput
-    timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
@@ -335,7 +322,6 @@ type Query {
   """
   allGeometricData(
     where: GeometricDataPropositionInput
-    timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
@@ -348,7 +334,6 @@ type Query {
   """
   allHygrothermalData(
     where: HygrothermalDataPropositionInput
-    timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
@@ -361,7 +346,6 @@ type Query {
   """
   allOpticalData(
     where: OpticalDataPropositionInput
-    timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
@@ -374,7 +358,6 @@ type Query {
   """
   allPhotovoltaicData(
     where: PhotovoltaicDataPropositionInput
-    timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
@@ -383,14 +366,11 @@ type Query {
   ): PhotovoltaicDataConnection!
 
   """
-  Whether there is data for which the proposition is true at the given
-  timestamp in the given locale.
+  Whether there is data for which the proposition is true in the given locale.
   """
   hasData(
     "Compound boolean expression that is true for data being searched for."
     where: DataPropositionInput!
-    "Timestamp. If not given, the moment the query is received is used."
-    timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
   ): Boolean!
@@ -400,7 +380,6 @@ type Query {
   """
   hasCalorimetricData(
     where: CalorimetricDataPropositionInput
-    timestamp: DateTime
     locale: Locale
   ): Boolean!
 
@@ -409,7 +388,6 @@ type Query {
   """
   hasGeometricData(
     where: GeometricDataPropositionInput
-    timestamp: DateTime
     locale: Locale
   ): Boolean!
 
@@ -418,7 +396,6 @@ type Query {
   """
   hasHygrothermalData(
     where: HygrothermalDataPropositionInput
-    timestamp: DateTime
     locale: Locale
   ): Boolean!
 
@@ -427,7 +404,6 @@ type Query {
   """
   hasOpticalData(
     where: OpticalDataPropositionInput
-    timestamp: DateTime
     locale: Locale
   ): Boolean!
 
@@ -436,7 +412,6 @@ type Query {
   """
   hasPhotovoltaicData(
     where: PhotovoltaicDataPropositionInput
-    timestamp: DateTime
     locale: Locale
   ): Boolean!
 
@@ -933,14 +908,6 @@ type DataConnection {
   Information about the present slice of all data edges (and nodes).
   """
   pageInfo: PageInfo!
-
-  """
-  Timestamp at or for which the connection, its edges and nodes are returned.
-  In case no timestamp was given as argument, this is the moment in time the
-  query was made. Otherwise, it is the given timestamp. All data edges and
-  nodes are fetched as they were at this timestamp.
-  """
-  timestamp: DateTime!
 }
 
 """
@@ -974,7 +941,6 @@ See `DataConnection`.
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
   pageInfo: PageInfo!
-  timestamp: DateTime!
 }
 
 """
@@ -991,7 +957,6 @@ See `DataConnection`.
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
   pageInfo: PageInfo!
-  timestamp: DateTime!
 }
 
 """
@@ -1008,7 +973,6 @@ See `DataConnection`.
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
   pageInfo: PageInfo!
-  timestamp: DateTime!
 }
 
 """
@@ -1025,7 +989,6 @@ See `DataConnection`.
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
   pageInfo: PageInfo!
-  timestamp: DateTime!
 }
 
 """
@@ -1034,7 +997,6 @@ See `DataConnection`.
 type GeometricDataConnection {
   edges: [GeometricDataEdge!]!
   pageInfo: PageInfo!
-  timestamp: DateTime!
 }
 
 """
@@ -1056,10 +1018,8 @@ type GeometricDataEdge {
 """
 Measured, simulated, or calculated data.
 
-The data identifier identifies the data modulo patches and locale, together
-with timestamp only modulo locale, together with locale only modulo patches,
-and together with both all data. In the last case, in particular, the order of
-any list values of (sub-)fields is fix.
+The data identifier identifies the data modulo patches and locale and together
+with locale only modulo patches.
 
 For non-patch versions a new data identifier is needed.
 
@@ -1068,8 +1028,7 @@ Note that the term 'patch' is used in the sense of
 """
 interface Data {
   """
-  Identifier, which together with timestamp uniquely identifies data and patch
-  version (within the database).
+  Identifier, which uniquely identifies data modulo patches and locale.
   """
   uuid: Uuid!
 
@@ -1083,7 +1042,7 @@ interface Data {
   """
   Component identifier issued by the metabase. The components's meta data can
   be obtained by sending the GraphQL query
-  `component(componentId: ..., timestamp: ...) { ... }`
+  `component(componentId: ...) { ... }`
   to the metabase.
   """
   componentId: Uuid!
@@ -1106,7 +1065,7 @@ interface Data {
   """
   Creator identifier issued by the metabase. The creator's meta data can be
   obtained by sending the GraphQL query
-  `stakeholder(stakeholderId: ..., timestamp: ...) { ... }`
+  `stakeholder(stakeholderId: ...) { ... }`
   to the metabase.
   """
   creatorId: Uuid!
@@ -1336,7 +1295,7 @@ type AppliedMethod {
   """
   Method identifier of method that was applied by the creator on the source
   data. The method's meta data can be obtained by sending the GraphQL query
-  `method(methodId: ..., timestamp: ...) { ... }`
+  `method(methodId: ...) { ... }`
   to the metabase.
   """
   methodId: Uuid!
@@ -1371,7 +1330,7 @@ type ToTreeVertexAppliedConversionMethod {
   Method identifier of conversion method that was applied by the creator on the
   source data. The method's meta data can be obtained by sending the GraphQL
   query
-  `method(methodId: ..., timestamp: ...) { ... }`
+  `method(methodId: ...) { ... }`
   to the metabase.
   """
   methodId: Uuid!
@@ -1432,11 +1391,6 @@ type CrossDatabaseDataReference {
   Identifier of the referenced data.
   """
   dataId: Uuid!
-
-  """
-  Timestamp of referenced data to designate the data's version.
-  """
-  dataTimestamp: DateTime!
 
   """
   Kind of the referenced data.
@@ -1620,8 +1574,7 @@ Best practices for accepting approvals by databases:
 * Check that the fingerprint belongs to a non-revoked and valid GnuPG key of an
   active representative of an institution who is allowed to make signatures for
   that institution.
-* Check that the query contains all necessary fields and sub-fields and
-  specifies a timestamp.
+* Check that the query contains all necessary fields and sub-fields.
 * Check that the response is the result of the given query.
 * Check that the signature is valid for the given response.
 
@@ -1671,17 +1624,12 @@ interface Approval {
   keyFingerprint: String!
 
   """
-  GraphQL query whose response is signed. The query includes the argument
-  `timestamp`, for example,
+  GraphQL query whose response is signed, for example,
   ```
-  opticalData(opticalDataId: ..., timestamp: ...) { ... }
+  opticalData(opticalDataId: ...) { ... }
   ```
-  as otherwise it is not reproducible. It does neither include other data
-  approvals by third parties nor the response approval by the database.  All
-  other fields and sub-fields of this GraphQL schema at the time given by
-  `timestamp` are included. Despite these restrictions specifying the query
-  explicitely is necessary because approvals shall not become invalid when the
-  GraphQL schema changes.
+  Specifying the query explicitely is necessary because approvals shall not
+  become invalid when the GraphQL schema changes.
   """
   query: GraphQlQuery!
 
@@ -1752,7 +1700,7 @@ type DataApproval implements Approval {
   """
   Approver identifier issued by the metabase. The approver's meta data can be
   obtained by sending the GraphQL query
-  `stakeholder(stakeholderId: ..., timestamp: ...) { ... }`
+  `stakeholder(stakeholderId: ...) { ... }`
   to the metabase.
   """
   approverId: Uuid!
@@ -1874,7 +1822,7 @@ type GetHttpsResource {
   [200](https://tools.ietf.org/html/rfc7231#section-6.3.1).
   The identifier is issued by the metabase. The format's meta data can be
   obtained by sending the GraphQL query
-  `dataFormat(dataFormatId: ..., timestamp: ...) { ... }`
+  `dataFormat(dataFormatId: ...) { ... }`
   to the metabase.
 
   The data format consists of a
@@ -2035,7 +1983,7 @@ type FileMetaInformation {
   """
   Identifier of the data format. The identifier is issued by the metabase. The
   format's meta data can be obtained by sending the GraphQL query
-  `dataFormat(dataFormatId: ..., timestamp: ...) { ... }`
+  `dataFormat(dataFormatId: ...) { ... }`
   to the metabase.
 
   The data format consists of a
