@@ -263,7 +263,7 @@ type Query {
   [pagination](https://graphql.org/learn/pagination/)
   together with the
   [forward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Forward-pagination-arguments)
-  `first` and `after` and the
+  `first` with the default and maximum 100 and `after` and the
   [backward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Backward-pagination-arguments)
   `last` and `before`.
 
@@ -307,7 +307,7 @@ type Query {
     timestamp: DateTime
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
-    "Maximum number of data edges after the cursor `after`."
+    "Maximum number of data edges after the cursor `after`. If not given, the default and maximum value 100 is used."
     first: NonNegativeInt
     "Data cursor after which to return at most `first` data edges."
     after: Cursor
