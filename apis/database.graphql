@@ -1454,6 +1454,7 @@ Data kind, either calorimetric, hygrothermal, optical, or photovoltaic.
 """
 enum DataKind {
   CALORIMETRIC_DATA
+  GEOMETRIC_DATA
   HYGROTHERMAL_DATA
   OPTICAL_DATA
   PHOTOVOLTAIC_DATA
