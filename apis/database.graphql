@@ -1393,6 +1393,11 @@ type CrossDatabaseDataReference {
   dataId: Uuid!
 
   """
+  Timestamp of referenced data to designate the data's version.
+  """
+  dataTimestamp: DateTime!
+
+  """
   Kind of the referenced data.
   """
   dataKind: DataKind!
