@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/lifeCycleData.json",
+  "title": "life cycle assessment data",
+  "description": "##",
+  "$defs": {
+    "data": {
+      "isoCode": {
+        "type": "string",
+        "description": "The 2 letter iso code for a country."
+      },
+      "owner": {
+        "type": "string",
+        "description": ""
+      },
+      "referenceYear": {
+        "$ref": "number.json#/$defs/nonNegativeInteger",
+        "description": ""
+      },
+      "validUntilYear": {
+        "$ref": "number.json#/$defs/nonNegativeInteger",
+        "description": ""
+      },
+      "datasetType": {
+        "type": "string",
+        "description": ""
+      },
+      "UUID": {
+        "type": "string",
+        "description": ""
+      },
+      "registrationNumber": {
+        "type": "string",
+        "description": ""
+      },
+      "version": {
+        "type": "string",
+        "description": ""
+      },
+      "compliance": {
+        "type": "string",
+        "description": ""
+      },
+      "environmentalCostIndicator": {
+        "$ref": "number.json#/$defs/nonNegativeNumber",
+        "description": ""
+      },
+      "phases": {
+        "title": "LCA Data",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "phaseId": {
+              "type": "string",
+              "enum": [
+                "NotSpecified",
+                "A1_A3",
+                "A4",
+                "A5",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "B6",
+                "B7",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "D"
+              ],
+              "description": ""
+            },
+            "EN15804_2012_04_A1_2013": {
+              "$ref": "lifeCycleAssessmentPhaseValues.json#/$defs/EN15804_2012_04_A1_2013",
+              "description": ""
+            },
+            "EN15804_2012_A2_2019": {
+              "$ref": "lifeCycleAssessmentPhaseValues.json#/$defs/EN15804_2012_04_A1_2013",
+              "description": ""
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "$ref": "#/$defs/data"
+    }
+  }
+}
