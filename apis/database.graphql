@@ -500,12 +500,6 @@ type PageInfo {
   [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
   """
   endCursor: Cursor!
-
-  """
-  Number of edges in the set defined by the client's arguments. This is equal
-  to the number of nodes.
-  """
-  count: NonNegativeInt!
 }
 
 """
