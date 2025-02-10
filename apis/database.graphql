@@ -193,31 +193,23 @@ type Query {
   node("Global object identifier." id: ID!): Node!
 
   """
-  Fetch data by universally unique identifier, and optional locale, where all
-  three arguments together uniquely determine the data.
+  Fetch calorimetric data by universally unique identifier, and optional
+  locale, where all three arguments together uniquely determine the data.
   """
-  data(
+  calorimetricData(
     "Data identifier."
     id: Uuid!
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
-  ): Data!
-
-  """
-  See `Query#data`.
-  """
-  calorimetricData(
-    id: Uuid!
-    locale: Locale
   ): CalorimetricData!
 
   """
-  See `Query#data`.
+  Confer `Query#calorimetricData`.
   """
   geometricData(id: Uuid!, locale: Locale): GeometricData!
 
   """
-  See `Query#data`.
+  Confer `Query#calorimetricData`.
   """
   hygrothermalData(
     id: Uuid!
@@ -225,12 +217,12 @@ type Query {
   ): HygrothermalData!
 
   """
-  See `Query#data`.
+  Confer `Query#calorimetricData`.
   """
   opticalData(id: Uuid!, locale: Locale): OpticalData!
 
   """
-  See `Query#data`.
+  Confer `Query#calorimetricData`.
   """
   photovoltaicData(
     id: Uuid!
@@ -238,7 +230,7 @@ type Query {
   ): PhotovoltaicData!
 
   """
-  Search for all data for which the proposition is true.
+  Search for all calorimetric data for which the proposition is true.
 
   The result is a
   [connection](https://relay.dev/graphql/connections.htm#sec-Connection-Types)
@@ -255,12 +247,12 @@ type Query {
   [forward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Forward-pagination-arguments)
   `first` with the default and maximum 100 and `after` and the
   [backward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Backward-pagination-arguments)
-  `last` and `before`.
+  `last` with the default and maximum 100 and `before`.
 
   Example:
   ```
   query {
-    allData(
+    allCalorimetricData(
       where: {
         or: [
           {
@@ -290,9 +282,9 @@ type Query {
   }
   ```
   """
-  allData(
+  allCalorimetricData(
     "Compound boolean expression that is true for all data being returned. If not given, a proposition that is always true is used."
-    where: DataPropositionInput
+    where: CalorimetricDataPropositionInput
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
     "Maximum number of data edges after the cursor `after`. If not given, the default and maximum value 100 is used."
@@ -303,22 +295,10 @@ type Query {
     last: NonNegativeInt
     "Data cursor before which to return at most `last` data edges."
     before: Cursor
-  ): DataConnection!
-
-  """
-  See `Query#allData`.
-  """
-  allCalorimetricData(
-    where: CalorimetricDataPropositionInput
-    locale: Locale
-    first: NonNegativeInt
-    after: Cursor
-    last: NonNegativeInt
-    before: Cursor
   ): CalorimetricDataConnection!
 
   """
-  See `Query#allData`.
+  Confer `Query#allCalorimetricData`.
   """
   allGeometricData(
     where: GeometricDataPropositionInput
@@ -330,7 +310,7 @@ type Query {
   ): GeometricDataConnection!
 
   """
-  See `Query#allData`.
+  Confer `Query#allCalorimetricData`.
   """
   allHygrothermalData(
     where: HygrothermalDataPropositionInput
@@ -342,7 +322,7 @@ type Query {
   ): HygrothermalDataConnection!
 
   """
-  See `Query#allData`.
+  Confer `Query#allCalorimetricData`.
   """
   allOpticalData(
     where: OpticalDataPropositionInput
@@ -354,7 +334,7 @@ type Query {
   ): OpticalDataConnection!
 
   """
-  See `Query#allData`.
+  Confer `Query#allCalorimetricData`.
   """
   allPhotovoltaicData(
     where: PhotovoltaicDataPropositionInput
@@ -368,23 +348,15 @@ type Query {
   """
   Whether there is data for which the proposition is true in the given locale.
   """
-  hasData(
+  hasCalorimetricData(
     "Compound boolean expression that is true for data being searched for."
-    where: DataPropositionInput!
+    where: CalorimetricDataPropositionInput
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
   ): Boolean!
 
   """
-  See `Query#hasData`.
-  """
-  hasCalorimetricData(
-    where: CalorimetricDataPropositionInput
-    locale: Locale
-  ): Boolean!
-
-  """
-  See `Query#hasData`.
+  Confer `Query#hasCalorimetricData`.
   """
   hasGeometricData(
     where: GeometricDataPropositionInput
@@ -392,7 +364,7 @@ type Query {
   ): Boolean!
 
   """
-  See `Query#hasData`.
+  Confer `Query#hasCalorimetricData`.
   """
   hasHygrothermalData(
     where: HygrothermalDataPropositionInput
@@ -400,7 +372,7 @@ type Query {
   ): Boolean!
 
   """
-  See `Query#hasData`.
+  Confer `Query#hasCalorimetricData`.
   """
   hasOpticalData(
     where: OpticalDataPropositionInput
@@ -408,7 +380,7 @@ type Query {
   ): Boolean!
 
   """
-  See `Query#hasData`.
+  Confer `Query#hasCalorimetricData`.
   """
   hasPhotovoltaicData(
     where: PhotovoltaicDataPropositionInput
@@ -812,24 +784,6 @@ input CielabColorsPropositionInput {
 """
 See `DataPropositionInput`.
 """
-input OpticalDataPropositionInput {
-  componentId: UuidPropositionInput
-  and: [OpticalDataPropositionInput!]
-  not: OpticalDataPropositionInput
-  or: [OpticalDataPropositionInput!]
-  resources: GetHttpsResourcesPropositionInput
-  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
-  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
-  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
-  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
-  infraredEmittances: FloatsPropositionInput
-  colorRenderingIndices: FloatsPropositionInput
-  cielabColors: CielabColorsPropositionInput
-}
-
-"""
-See `DataPropositionInput`.
-"""
 input CalorimetricDataPropositionInput {
   componentId: UuidPropositionInput
   and: [CalorimetricDataPropositionInput!]
@@ -866,6 +820,24 @@ input HygrothermalDataPropositionInput {
 """
 See `DataPropositionInput`.
 """
+input OpticalDataPropositionInput {
+  componentId: UuidPropositionInput
+  and: [OpticalDataPropositionInput!]
+  not: OpticalDataPropositionInput
+  or: [OpticalDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
+  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
+  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
+  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
+  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
+  infraredEmittances: FloatsPropositionInput
+  colorRenderingIndices: FloatsPropositionInput
+  cielabColors: CielabColorsPropositionInput
+}
+
+"""
+See `DataPropositionInput`.
+"""
 input PhotovoltaicDataPropositionInput {
   componentId: UuidPropositionInput
   and: [PhotovoltaicDataPropositionInput!]
@@ -890,13 +862,6 @@ type DataConnection {
   Edges to data nodes that expose opaque cursors for pagination.
   """
   edges: [DataEdge!]!
-
-  """
-  Total number of data edges (and nodes) of which a slice is `edges` (and
-  `nodes`). Note that the number of edges (and nodes) of the present slice is
-  `pageInfo.count`.
-  """
-  totalCount: NonNegativeInt!
 
   """
   Information about the present slice of all data edges (and nodes).
@@ -932,17 +897,33 @@ type DataEdge {
 """
 See `DataConnection`.
 """
-type OpticalDataConnection {
-  edges: [OpticalDataEdge!]!
+type CalorimetricDataConnection {
+  edges: [CalorimetricDataEdge!]!
   pageInfo: PageInfo!
 }
 
 """
 See `DataEdge`.
 """
-type OpticalDataEdge {
+type CalorimetricDataEdge {
   cursor: Cursor!
-  node: OpticalData!
+  node: CalorimetricData!
+}
+
+"""
+See `DataConnection`.
+"""
+type GeometricDataConnection {
+  edges: [GeometricDataEdge!]!
+  pageInfo: PageInfo!
+}
+
+"""
+See `DataEdge`.
+"""
+type GeometricDataEdge {
+  cursor: Cursor!
+  node: GeometricData!
 }
 
 """
@@ -964,6 +945,22 @@ type HygrothermalDataEdge {
 """
 See `DataConnection`.
 """
+type OpticalDataConnection {
+  edges: [OpticalDataEdge!]!
+  pageInfo: PageInfo!
+}
+
+"""
+See `DataEdge`.
+"""
+type OpticalDataEdge {
+  cursor: Cursor!
+  node: OpticalData!
+}
+
+"""
+See `DataConnection`.
+"""
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
   pageInfo: PageInfo!
@@ -977,37 +974,6 @@ type PhotovoltaicDataEdge {
   node: PhotovoltaicData!
 }
 
-"""
-See `DataConnection`.
-"""
-type CalorimetricDataConnection {
-  edges: [CalorimetricDataEdge!]!
-  pageInfo: PageInfo!
-}
-
-"""
-See `DataConnection`.
-"""
-type GeometricDataConnection {
-  edges: [GeometricDataEdge!]!
-  pageInfo: PageInfo!
-}
-
-"""
-See `DataEdge`.
-"""
-type CalorimetricDataEdge {
-  cursor: Cursor!
-  node: CalorimetricData!
-}
-
-"""
-See `DataEdge`.
-"""
-type GeometricDataEdge {
-  cursor: Cursor!
-  node: GeometricData!
-}
 
 """
 Measured, simulated, or calculated data.
