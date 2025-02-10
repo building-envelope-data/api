@@ -44,7 +44,7 @@ run : build ## Run command `${COMMAND}` in fresh container for image with name `
 		--mount type=volume,source=api_vscode_server_insiders_extensions,destination=/home/me/.vscode-server-insiders/extensions \
 		${OPTIONS} \
 		${NAME} \
-		bash
+		bash -c "exec ${COMMAND}"
 .PHONY : run
 
 shell : COMMAND = bash
