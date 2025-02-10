@@ -993,6 +993,13 @@ interface Data {
   uuid: Uuid!
 
   """
+  Identifier of this database that manages the data. The database's meta data
+  can be obtained by sending the GraphQL query
+  `database(databaseId: ...) { ... }` to the metabase.
+  """
+  databaseId: Uuid!
+
+  """
   Timestamp that designates the patch version. For example, correction of some
   grammatical error in the description results in a new patch version
   designated by a new timestamp, or adding an approval by some stakeholder.
