@@ -867,6 +867,11 @@ type DataConnection {
   Information about the present slice of all data edges (and nodes).
   """
   pageInfo: PageInfo!
+
+  """
+  The total count of items in the connection.
+  """
+  totalCount: Int!
 }
 
 """
@@ -900,6 +905,7 @@ See `DataConnection`.
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 """
@@ -916,6 +922,7 @@ See `DataConnection`.
 type GeometricDataConnection {
   edges: [GeometricDataEdge!]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 """
@@ -932,6 +939,7 @@ See `DataConnection`.
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 """
@@ -948,6 +956,7 @@ See `DataConnection`.
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 """
@@ -964,6 +973,7 @@ See `DataConnection`.
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 """
