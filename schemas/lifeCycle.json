@@ -59,7 +59,7 @@
             "oneOf": [
               {
                 "$ref": "lifeCycleData.json",
-                "description": "The measured or simulated data in JSON."
+                "description": ""
               },
               {
                 "$ref": "common.json#/$defs/getHttpsResource",
