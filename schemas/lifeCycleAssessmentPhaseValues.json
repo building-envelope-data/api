@@ -10,265 +10,273 @@
       "properties": {
         "EN15804_2012_04_A1_2013": {
           "title": "LCA ruleset EN 15804:2012-04+A1 2013",
-          "type": "object",
-          "properties": {
-            "globalWarmingPotential": {
-              "type": "number",
-              "description": "Embodied Carbon (GWP) (kg CO2e)"
-            },
-            "ozoneDeplationPotential": {
-              "type": "number",
-              "description": ""
-            },
-            "photoChemicalOxydantFormation": {
-              "type": "number",
-              "description": ""
-            },
-            "acidificationPotentialOfLandAndWater": {
-              "type": "number",
-              "description": ""
-            },
-            "eutrophicationPotential": {
-              "type": "number",
-              "description": ""
-            },
-            "abioticDeplationNonFossile": {
-              "type": "number",
-              "description": ""
-            },
-            "humanToxicityPotential": {
-              "type": "number",
-              "description": ""
-            },
-            "freshwaterAquaticEcotoxicityPotential": {
-              "type": "number",
-              "description": ""
-            },
-            "marinewaterAquaticEcotoxicityPotential": {
-              "type": "number",
-              "description": ""
-            },
-            "terrestrialEcotoxicityPotential": {
-              "type": "number",
-              "description": ""
-            },
-            "pere": {
-              "type": "number",
-              "description": ""
-            },
-            "perm": {
-              "type": "number",
-              "description": ""
-            },
-            "pert": {
-              "type": "number",
-              "description": ""
-            },
-            "penre": {
-              "type": "number",
-              "description": ""
-            },
-            "penrm": {
-              "type": "number",
-              "description": ""
-            },
-            "penrt": {
-              "type": "number",
-              "description": ""
-            },
-            "sm": {
-              "type": "number",
-              "description": ""
-            },
-            "rsf": {
-              "type": "number",
-              "description": ""
-            },
-            "nrsf": {
-              "type": "number",
-              "description": ""
-            },
-            "fw": {
-              "type": "number",
-              "description": ""
-            },
-            "hwd": {
-              "type": "number",
-              "description": ""
-            },
-            "nhwd": {
-              "type": "number",
-              "description": ""
-            },
-            "rwd": {
-              "type": "number",
-              "description": ""
-            },
-            "mfr": {
-              "type": "number",
-              "description": ""
-            },
-            "mer": {
-              "type": "number",
-              "description": ""
-            },
-            "eee": {
-              "type": "number",
-              "description": ""
-            },
-            "ete": {
-              "type": "number",
-              "description": ""
-            }
-          },
-          "additionalProperties": false,
-          "minProperties": 1,
-          "required": []
+          "$ref": "#/$defs/EN15804_2012_04_A1_2013"
         },
         "EN15804_2012_A2_2019": {
           "title": "LCA ruleset EN 15804:2012+A2:2019",
-          "type": "object",
-          "properties": {
-            "ozoneDeplationPotential": {
-              "type": "number",
-              "description": ""
-            },
-            "pere": {
-              "type": "number",
-              "description": ""
-            },
-            "perm": {
-              "type": "number",
-              "description": ""
-            },
-            "pert": {
-              "type": "number",
-              "description": ""
-            },
-            "penre": {
-              "type": "number",
-              "description": ""
-            },
-            "penrm": {
-              "type": "number",
-              "description": ""
-            },
-            "penrt": {
-              "type": "number",
-              "description": ""
-            },
-            "sm": {
-              "type": "number",
-              "description": ""
-            },
-            "rsf": {
-              "type": "number",
-              "description": ""
-            },
-            "nrsf": {
-              "type": "number",
-              "description": ""
-            },
-            "fw": {
-              "type": "number",
-              "description": ""
-            },
-            "hwd": {
-              "type": "number",
-              "description": ""
-            },
-            "nhwd": {
-              "type": "number",
-              "description": ""
-            },
-            "rwd": {
-              "type": "number",
-              "description": ""
-            },
-            "mfr": {
-              "type": "number",
-              "description": ""
-            },
-            "mer": {
-              "type": "number",
-              "description": ""
-            },
-            "eee": {
-              "type": "number",
-              "description": ""
-            },
-            "ete": {
-              "type": "number",
-              "description": ""
-            },
-            "globalWarmingPotentialTotal": {
-              "type": "number",
-              "description": ""
-            },
-            "globalWarmingPotentialFossil": {
-              "type": "number",
-              "description": ""
-            },
-            "globalWarmingPotentialBiogenic": {
-              "type": "number",
-              "description": ""
-            },
-            "globalWarmingPotentialLuluc": {
-              "type": "number",
-              "description": ""
-            },
-            "acidificationPotentialAccumulatedExceedance": {
-              "type": "number",
-              "description": ""
-            },
-            "eutrophicationPotentialFreshWater": {
-              "type": "number",
-              "description": ""
-            },
-            "eutrophicationPotentialMarineWater": {
-              "type": "number",
-              "description": ""
-            },
-            "eutrophicationTerrestrial": {
-              "type": "number",
-              "description": ""
-            },
-            "photoOxidantCreationPotential": {
-              "type": "number",
-              "description": ""
-            },
-            "waterUseDeprivationPotential": {
-              "type": "number",
-              "description": ""
-            },
-            "potentialIncidenceOfDiseaseDueToPMEmissions": {
-              "type": "number",
-              "description": ""
-            },
-            "potentialHumanExposureEfficiencyRelativeToU235": {
-              "type": "number",
-              "description": ""
-            },
-            "ecoTox": {
-              "type": "number",
-              "description": ""
-            },
-            "humanToxCancer": {
-              "type": "number",
-              "description": ""
-            },
-            "humanToxNonCancer": {
-              "type": "number",
-              "description": ""
-            },
-            "potentialSoilQualityIndex": {
-              "type": "number",
-              "description": ""
-            }
-          },
-          "additionalProperties": false,
-          "minProperties": 1,
-          "required": []
+          "$ref": "#/$defs/EN15804_2012_A2_2019"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "EN15804_2012_04_A1_2013": {
+      "title": "LCA ruleset EN 15804:2012-04+A1 2013",
+      "type": "object",
+      "properties": {
+        "globalWarmingPotential": {
+          "type": "number",
+          "description": "Embodied Carbon (GWP) (kg CO2e)"
+        },
+        "ozoneDeplationPotential": {
+          "type": "number",
+          "description": ""
+        },
+        "photoChemicalOxydantFormation": {
+          "type": "number",
+          "description": ""
+        },
+        "acidificationPotentialOfLandAndWater": {
+          "type": "number",
+          "description": ""
+        },
+        "eutrophicationPotential": {
+          "type": "number",
+          "description": ""
+        },
+        "abioticDeplationNonFossile": {
+          "type": "number",
+          "description": ""
+        },
+        "humanToxicityPotential": {
+          "type": "number",
+          "description": ""
+        },
+        "freshwaterAquaticEcotoxicityPotential": {
+          "type": "number",
+          "description": ""
+        },
+        "marinewaterAquaticEcotoxicityPotential": {
+          "type": "number",
+          "description": ""
+        },
+        "terrestrialEcotoxicityPotential": {
+          "type": "number",
+          "description": ""
+        },
+        "pere": {
+          "type": "number",
+          "description": ""
+        },
+        "perm": {
+          "type": "number",
+          "description": ""
+        },
+        "pert": {
+          "type": "number",
+          "description": ""
+        },
+        "penre": {
+          "type": "number",
+          "description": ""
+        },
+        "penrm": {
+          "type": "number",
+          "description": ""
+        },
+        "penrt": {
+          "type": "number",
+          "description": ""
+        },
+        "sm": {
+          "type": "number",
+          "description": ""
+        },
+        "rsf": {
+          "type": "number",
+          "description": ""
+        },
+        "nrsf": {
+          "type": "number",
+          "description": ""
+        },
+        "fw": {
+          "type": "number",
+          "description": ""
+        },
+        "hwd": {
+          "type": "number",
+          "description": ""
+        },
+        "nhwd": {
+          "type": "number",
+          "description": ""
+        },
+        "rwd": {
+          "type": "number",
+          "description": ""
+        },
+        "mfr": {
+          "type": "number",
+          "description": ""
+        },
+        "mer": {
+          "type": "number",
+          "description": ""
+        },
+        "eee": {
+          "type": "number",
+          "description": ""
+        },
+        "ete": {
+          "type": "number",
+          "description": ""
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "EN15804_2012_A2_2019": {
+      "title": "LCA ruleset EN 15804:2012+A2:2019",
+      "type": "object",
+      "properties": {
+        "ozoneDeplationPotential": {
+          "type": "number",
+          "description": ""
+        },
+        "pere": {
+          "type": "number",
+          "description": ""
+        },
+        "perm": {
+          "type": "number",
+          "description": ""
+        },
+        "pert": {
+          "type": "number",
+          "description": ""
+        },
+        "penre": {
+          "type": "number",
+          "description": ""
+        },
+        "penrm": {
+          "type": "number",
+          "description": ""
+        },
+        "penrt": {
+          "type": "number",
+          "description": ""
+        },
+        "sm": {
+          "type": "number",
+          "description": ""
+        },
+        "rsf": {
+          "type": "number",
+          "description": ""
+        },
+        "nrsf": {
+          "type": "number",
+          "description": ""
+        },
+        "fw": {
+          "type": "number",
+          "description": ""
+        },
+        "hwd": {
+          "type": "number",
+          "description": ""
+        },
+        "nhwd": {
+          "type": "number",
+          "description": ""
+        },
+        "rwd": {
+          "type": "number",
+          "description": ""
+        },
+        "mfr": {
+          "type": "number",
+          "description": ""
+        },
+        "mer": {
+          "type": "number",
+          "description": ""
+        },
+        "eee": {
+          "type": "number",
+          "description": ""
+        },
+        "ete": {
+          "type": "number",
+          "description": ""
+        },
+        "globalWarmingPotentialTotal": {
+          "type": "number",
+          "description": ""
+        },
+        "globalWarmingPotentialFossil": {
+          "type": "number",
+          "description": ""
+        },
+        "globalWarmingPotentialBiogenic": {
+          "type": "number",
+          "description": ""
+        },
+        "globalWarmingPotentialLuluc": {
+          "type": "number",
+          "description": ""
+        },
+        "acidificationPotentialAccumulatedExceedance": {
+          "type": "number",
+          "description": ""
+        },
+        "eutrophicationPotentialFreshWater": {
+          "type": "number",
+          "description": ""
+        },
+        "eutrophicationPotentialMarineWater": {
+          "type": "number",
+          "description": ""
+        },
+        "eutrophicationTerrestrial": {
+          "type": "number",
+          "description": ""
+        },
+        "photoOxidantCreationPotential": {
+          "type": "number",
+          "description": ""
+        },
+        "waterUseDeprivationPotential": {
+          "type": "number",
+          "description": ""
+        },
+        "potentialIncidenceOfDiseaseDueToPMEmissions": {
+          "type": "number",
+          "description": ""
+        },
+        "potentialHumanExposureEfficiencyRelativeToU235": {
+          "type": "number",
+          "description": ""
+        },
+        "ecoTox": {
+          "type": "number",
+          "description": ""
+        },
+        "humanToxCancer": {
+          "type": "number",
+          "description": ""
+        },
+        "humanToxNonCancer": {
+          "type": "number",
+          "description": ""
+        },
+        "potentialSoilQualityIndex": {
+          "type": "number",
+          "description": ""
         }
       },
       "additionalProperties": false,
