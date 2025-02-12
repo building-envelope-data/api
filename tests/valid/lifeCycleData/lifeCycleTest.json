@@ -1,9 +1,3 @@
 {
-    "$schema": "../../../schemas/lifeCycle.json",
-    "name": "test",
-    "data": [
-        "data"
-    ]
-    
-  }
-  
+    "functionalUnit": "Volume"
+}
