@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/number.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/lifeCycleAssessmentPhaseValues.json",
   "title": "lca data",
   "description": "Impact Values for LCA Data",
   "$defs": {
@@ -118,7 +118,7 @@
         }
       }
     },
-"EN15804_2012_A2_2019": {
+    "EN15804_2012_A2_2019": {
       "title": "LCA ruleset EN 15804:2012+A2:2019",
       "type": "object",
       "properties": {
@@ -259,6 +259,6 @@
           "description": ""
         }
       }
-    }    
+    }
   }
 }

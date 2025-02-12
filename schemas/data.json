@@ -27,8 +27,8 @@
           "description": "hygrothermal data"
         },
         {
-          "$ref": "cradleToCradleData.json",
-          "description": "cradle-to-cradle data"
+          "$ref": "lifeCycleData.json",
+          "description": "life-cycle data"
         }
       ]
     }
