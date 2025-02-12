@@ -984,6 +984,51 @@ type PhotovoltaicDataEdge {
   node: PhotovoltaicData!
 }
 
+"""
+Type of data.
+"""
+enum DataType {
+  GLAZING
+  SHADING
+}
+
+"""
+Subtype of data.
+"""
+enum DataSubtype {
+  MONOLITHIC
+  LAMINATE
+  INTERLAYER
+  EMBEDDED_COATING
+  COATED
+  COATING
+  APPLIED_FILM
+  FILM
+  VENETIAN_BLIND
+  DIFFUSING_SHADE
+  ROLLER_SHADE
+  WOVEN_SHADE
+  VERTICAL_LOUVER
+  PERFORATED_SCREEN
+  CELLULAR_SHADE
+  PLEATED_SHADE
+  ROMAN_SHADE
+  SHADE_MATERIAL
+  FRITTED_GLASS
+  ACID_ETCHED_GLASS
+  SANDBLASTED_GLASS
+  CHROMOGENIC
+}
+
+"""
+Coated side
+"""
+enum CoatedSide {
+  FRONT
+  BACK
+  BOTH
+  NEITHER
+}
 
 """
 Measured, simulated, or calculated data.
@@ -1023,6 +1068,21 @@ interface Data {
   to the metabase.
   """
   componentId: Uuid!
+
+  """
+  Type
+  """
+  type: DataType
+
+  """
+  Subtype
+  """
+  subtype: DataSubtype
+
+  """
+  Coated side
+  """
+  coatedSide: CoatedSide
 
   """
   Name
@@ -1127,6 +1187,9 @@ type OpticalData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
+  type: DataType
+  subtype: DataSubtype
+  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
@@ -1180,6 +1243,9 @@ type CalorimetricData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
+  type: DataType
+  subtype: DataSubtype
+  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
@@ -1209,6 +1275,9 @@ type GeometricData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
+  type: DataType
+  subtype: DataSubtype
+  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
@@ -1233,6 +1302,9 @@ type HygrothermalData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
+  type: DataType
+  subtype: DataSubtype
+  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
@@ -1252,6 +1324,9 @@ type PhotovoltaicData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
+  type: DataType
+  subtype: DataSubtype
+  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
