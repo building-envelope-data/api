@@ -5,10 +5,202 @@
   "description": "##",
   "$defs": {
     "data": {
-      "empty": {
-        "type": "string"
-      }
+      "functionalUnit": {
+        "type": "string",
+        "enum": [
+          "Volume",
+          "Quantity",
+          "Area",
+          "Length",
+          "OtherUnit",
+          "Energy",
+          "Weight"
+        ],
+        "description": "Defines the type of product."
+      },
+      "defaultFunctionalUnitAmount": {
+        "$ref": "number.json#/$defs/nonNegativeNumber",
+        "description": "Describes the default functional unit value. For a quantity/volume product, this describes the default volume (m3), for area product the default area (m2), length product the default length (m) and for weight product the default weight (kg)"
+      },
+      "fixedHeight": {
+        "$ref": "number.json#/$defs/meter",
+        "description": "This value describes the fixed height (m) of an area product"
+      },
+      "fixedArea": {
+        "$ref": "number.json#/$defs/squareMeter",
+        "description": "This values describes the fixed area (m2) of a length product"
+      },
+      "density": {
+        "$ref": "number.json#/$defs/density",
+        "description": "The product density in kg/[functional unit]."
+      },
+      "weight": {
+        "$ref": "number.json#/$defs/weight",
+        "description": "The weight in kg for a quantity product."
+      },
+      "lifespan": {
+        "$ref": "number.json#/$defs/nonNegativeInteger",
+        "description": "The functional lifespan (in years)"
+      },
+      "circularity": {
+        "title": "The product circularity information",
+        "type": "object",
+        "properties": {
+          "feedstock": {
+            "title": "The product circularity information",
+            "type": "object",
+            "properties": {
+              "renewables": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              },
+              "renewablesSustainablyProduced": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              },
+              "notRenewables": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              },
+              "recycled": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              },
+              "reused": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              },
+              "recyclingEfficiency": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              }
+            }
+          },
+          "output": {
+            "title": "Output",
+            "type": "object",
+            "properties": {
+              "availableForRecycle": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              },
+              "recyclingEfficiency": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              },
+              "landfill": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              },
+              "incineration": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              },
+              "availableForReuse": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Renewables"
+              }
+            }
+          },
+          "detachability": {
+            "title": "Output",
+            "type": "object",
+            "properties": {
+              "connectionType": {
+                "type": "string",
+                "enum": [
+                  "Unknown",
+                  "HardChemicalConnection",
+                  "SoftChemicalConnection",
+                  "DirectConnection",
+                  "AddedConnectionConnection",
+                  "DryConnection"
+                ],
+                "description": "Connection type."
+              },
+              "connectionTypeDetail": {
+                "type": "string",
+                "enum": [
+                  "Unknown",
+                  "BoltAndNut",
+                  "Spring",
+                  "Corner",
+                  "Screw",
+                  "None",
+                  "Click",
+                  "Velcro",
+                  "Magnetic",
+                  "Glue",
+                  "Dump",
+                  "Weld",
+                  "Concrete",
+                  "ChemicalAnchor",
+                  "Sealant",
+                  "Foam",
+                  "Peg",
+                  "Nail"
+                ],
+                "description": "Connection type."
+              },
+              "accessibility": {
+                "type": "string",
+                "enum": [
+                  "Unknown",
+                  "NotAccessible",
+                  "PartialWithDamage",
+                  "PartialWithRepairableDamage",
+                  "PartialNoDamage",
+                  "Accessible"
+                ],
+                "description": "Connection type."
+              },
+              "intersection": {
+                "type": "string",
+                "enum": [
+                  "Unknown",
+                  "Complete",
+                  "Incidental",
+                  "None"
+                ],
+                "description": "Connection type."
+              },
+              "productEdge": {
+                "type": "string",
+                "enum": [
+                  "Unknown",
+                  "Closed",
+                  "Overlapping",
+                  "Open"
+                ],
+                "description": "Connection type."
+              },
+              "index": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Detachability index"
+              }
+            }
+          }
+        }
+      },
+      "lifeCycleAssessment": {
+        "title": "LCA-Data",
+        "description": "",
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {
+              "$ref": "lifeCycleAssessmentData.json",
+              "description": "The LCA-data in JSON."
+            },
+            {
+              "$ref": "common.json#/$defs/getHttpsResource",
+              "description": "The measured or simulated data in some data format as HTTP resource fetchable with GET requests."
+            }
+          ]
+        },
+        "minItems": 1
+      },
+      "$ref": "#/$defs/data"
     }
-  },
-  "$ref": "#/$defs/data"
+  }
 }
