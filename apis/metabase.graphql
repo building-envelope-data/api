@@ -71,6 +71,7 @@ schema {
 
 interface Data {
   appliedMethod: AppliedMethod!
+  approvals: [DataApproval!]!
   componentId: Uuid!
   createdAt: DateTime!
   creatorId: Uuid!
@@ -203,6 +204,22 @@ type AddUserRolePayload {
   user: User
 }
 
+type Application {
+  canCurrentUserManageApplication: Boolean! @cost(weight: "10")
+  clientId: String
+  clientSecret: String
+  displayName: String
+  id: Uuid!
+  institutions: ApplicationInstitutionConnection! @cost(weight: "10")
+  permissions: [String]! @cost(weight: "10")
+  postLogoutRedirectUri: String @cost(weight: "10")
+  redirectUri: String @cost(weight: "10")
+}
+
+type ApplicationInstitutionConnection {
+  edges: [InstitutionApplicationEdge!]! @cost(weight: "10")
+}
+
 type AppliedMethod {
   arguments: [NamedMethodArgument!]!
   method: Method @cost(weight: "10")
@@ -210,8 +227,18 @@ type AppliedMethod {
   sources: [NamedMethodSource!]!
 }
 
+type Authorization {
+  canCurrentUserDeleteAuthorization: Boolean! @cost(weight: "10")
+  creationDate: DateTime
+  id: Uuid!
+  status: String
+  subject: String
+  type: String
+}
+
 type CalorimetricData implements Data {
   appliedMethod: AppliedMethod!
+  approvals: [DataApproval!]!
   component: Component @cost(weight: "10")
   componentId: Uuid!
   createdAt: DateTime!
@@ -234,7 +261,7 @@ type CalorimetricData implements Data {
 
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
-  timestamp: DateTime!
+  pageInfo: PageInfo!
   totalCount: NonNegativeInt
 }
 
@@ -296,10 +323,11 @@ type Component implements Node {
   description: String!
   generalizationOf: ComponentGeneralizationOfConnection! @cost(weight: "10")
   id: ID!
-  manufacturers(pending: Boolean! = false): ComponentManufacturerConnection!
-    @cost(weight: "10")
+  manufacturers(pending: Boolean! = false): ComponentManufacturerConnection! @cost(weight: "10")
   name: String!
   partOf: ComponentPartOfConnection! @cost(weight: "10")
+  prime: PrimeSurfaceOrDirection @cost(weight: "10")
+  switchableLayers: DescriptionOrReference
   uuid: Uuid! @cost(weight: "10")
   variantOf: ComponentVariantOfConnection! @cost(weight: "10")
 }
@@ -375,8 +403,6 @@ type ComponentVariantOfEdge {
 type ComponentsConnection {
   "A list of edges."
   edges: [ComponentsEdge!]
-  "A flattened list of the nodes."
-  nodes: [Component!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
   "Identifies the total count of items in the connection."
@@ -467,6 +493,18 @@ type ConfirmUserMethodDeveloperPayload {
   query: Query!
 }
 
+type CreateApplicationError {
+  code: CreateApplicationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type CreateApplicationPayload {
+  application: Application
+  errors: [CreateApplicationError!]
+  query: Query!
+}
+
 type CreateComponentError {
   code: CreateComponentErrorCode!
   message: String!
@@ -545,17 +583,6 @@ type DataApproval {
   timestamp: DateTime!
 }
 
-type DataConnection {
-  edges: [DataEdge!]!
-  timestamp: DateTime!
-  totalCount: NonNegativeInt
-}
-
-type DataEdge {
-  cursor: String!
-  node: Data!
-}
-
 type DataFormat implements Node {
   canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   description: String!
@@ -577,8 +604,6 @@ type DataFormatManagerEdge {
 type DataFormatsConnection {
   "A list of edges."
   edges: [DataFormatsEdge!]
-  "A flattened list of the nodes."
-  nodes: [DataFormat!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
   "Identifies the total count of items in the connection."
@@ -594,117 +619,28 @@ type DataFormatsEdge {
 }
 
 type Database implements Node {
-  allCalorimetricData(
-    after: String
-    before: String
-    first: NonNegativeInt
-    last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
-    where: CalorimetricDataPropositionInput
-  ): CalorimetricDataConnection @cost(weight: "10")
-  allData(
-    after: String
-    before: String
-    first: NonNegativeInt
-    last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
-    where: DataPropositionInput
-  ): DataConnection @cost(weight: "10")
-  allGeometricData(
-    after: String
-    before: String
-    first: NonNegativeInt
-    last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
-    where: GeometricDataPropositionInput
-  ): GeometricDataConnection @cost(weight: "10")
-  allHygrothermalData(
-    after: String
-    before: String
-    first: NonNegativeInt
-    last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
-    where: HygrothermalDataPropositionInput
-  ): HygrothermalDataConnection @cost(weight: "10")
-  allOpticalData(
-    after: String
-    before: String
-    first: NonNegativeInt
-    last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
-    where: OpticalDataPropositionInput
-  ): OpticalDataConnection @cost(weight: "10")
-  allPhotovoltaicData(
-    after: String
-    before: String
-    first: NonNegativeInt
-    last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
-    where: PhotovoltaicDataPropositionInput
-  ): PhotovoltaicDataConnection @cost(weight: "10")
-  calorimetricData(
-    id: Uuid!
-    locale: String
-    timestamp: DateTime
-  ): CalorimetricData @cost(weight: "10")
+  allCalorimetricData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: CalorimetricDataPropositionInput): CalorimetricDataConnection @cost(weight: "10")
+  allGeometricData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: GeometricDataPropositionInput): GeometricDataConnection @cost(weight: "10")
+  allHygrothermalData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: HygrothermalDataPropositionInput): HygrothermalDataConnection @cost(weight: "10")
+  allOpticalData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: OpticalDataPropositionInput): OpticalDataConnection @cost(weight: "10")
+  allPhotovoltaicData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: PhotovoltaicDataPropositionInput): PhotovoltaicDataConnection @cost(weight: "10")
+  calorimetricData(id: Uuid! locale: String): CalorimetricData @cost(weight: "10")
   canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   canCurrentUserVerifyNode: Boolean! @cost(weight: "10")
-  data(id: Uuid!, locale: String, timestamp: DateTime): Data @cost(weight: "10")
   description: String!
-  geometricData(id: Uuid!, locale: String, timestamp: DateTime): GeometricData
-    @cost(weight: "10")
-  hasCalorimetricData(
-    locale: String
-    timestamp: DateTime
-    where: CalorimetricDataPropositionInput
-  ): Boolean @cost(weight: "10")
-  hasData(
-    locale: String
-    timestamp: DateTime
-    where: DataPropositionInput
-  ): Boolean @cost(weight: "10")
-  hasGeometricData(
-    locale: String
-    timestamp: DateTime
-    where: GeometricDataPropositionInput
-  ): Boolean @cost(weight: "10")
-  hasHygrothermalData(
-    locale: String
-    timestamp: DateTime
-    where: HygrothermalDataPropositionInput
-  ): Boolean @cost(weight: "10")
-  hasOpticalData(
-    locale: String
-    timestamp: DateTime
-    where: OpticalDataPropositionInput
-  ): Boolean @cost(weight: "10")
-  hasPhotovoltaicData(
-    locale: String
-    timestamp: DateTime
-    where: PhotovoltaicDataPropositionInput
-  ): Boolean @cost(weight: "10")
-  hygrothermalData(
-    id: Uuid!
-    locale: String
-    timestamp: DateTime
-  ): HygrothermalData @cost(weight: "10")
+  geometricData(id: Uuid! locale: String): GeometricData @cost(weight: "10")
+  hasCalorimetricData(locale: String where: CalorimetricDataPropositionInput): Boolean @cost(weight: "10")
+  hasGeometricData(locale: String where: GeometricDataPropositionInput): Boolean @cost(weight: "10")
+  hasHygrothermalData(locale: String where: HygrothermalDataPropositionInput): Boolean @cost(weight: "10")
+  hasOpticalData(locale: String where: OpticalDataPropositionInput): Boolean @cost(weight: "10")
+  hasPhotovoltaicData(locale: String where: PhotovoltaicDataPropositionInput): Boolean @cost(weight: "10")
+  hygrothermalData(id: Uuid! locale: String): HygrothermalData @cost(weight: "10")
   id: ID!
   locator: Url!
   name: String!
   operator: DatabaseOperatorEdge! @cost(weight: "10")
-  opticalData(id: Uuid!, locale: String, timestamp: DateTime): OpticalData
-    @cost(weight: "10")
-  photovoltaicData(
-    id: Uuid!
-    locale: String
-    timestamp: DateTime
-  ): PhotovoltaicData @cost(weight: "10")
+  opticalData(id: Uuid! locale: String): OpticalData @cost(weight: "10")
+  photovoltaicData(id: Uuid! locale: String): PhotovoltaicData @cost(weight: "10")
   uuid: Uuid! @cost(weight: "10")
   verificationCode: String!
   verificationState: DatabaseVerificationState!
@@ -718,8 +654,6 @@ type DatabaseOperatorEdge {
 type DatabasesConnection {
   "A list of edges."
   edges: [DatabasesEdge!]
-  "A flattened list of the nodes."
-  nodes: [Database!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
   "Identifies the total count of items in the connection."
@@ -732,6 +666,28 @@ type DatabasesEdge {
   cursor: String!
   "The item at the end of the edge."
   node: Database!
+}
+
+type DeleteApplicationError {
+  code: DeleteApplicationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type DeleteApplicationPayload {
+  errors: [DeleteApplicationError!]
+  query: Query!
+}
+
+type DeleteAuthorizationError {
+  code: DeleteAuthorizationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type DeleteAuthorizationPayload {
+  errors: [DeleteAuthorizationError!]
+  query: Query!
 }
 
 type DeleteInstitutionError {
@@ -767,6 +723,11 @@ type DeleteUserPayload {
   errors: [DeleteUserError!]
   query: Query!
   user: User
+}
+
+type DescriptionOrReference {
+  description: String
+  reference: Reference @cost(weight: "10")
 }
 
 type DisableUserTwoFactorAuthenticationError {
@@ -843,6 +804,7 @@ type GenerateUserTwoFactorRecoveryCodesPayload {
 
 type GeometricData implements Data {
   appliedMethod: AppliedMethod!
+  approvals: [DataApproval!]!
   component: Component @cost(weight: "10")
   componentId: Uuid!
   createdAt: DateTime!
@@ -864,7 +826,7 @@ type GeometricData implements Data {
 
 type GeometricDataConnection {
   edges: [GeometricDataEdge!]!
-  timestamp: DateTime!
+  pageInfo: PageInfo!
   totalCount: NonNegativeInt
 }
 
@@ -901,6 +863,7 @@ type GetHttpsResourceTreeRoot {
 
 type HygrothermalData implements Data {
   appliedMethod: AppliedMethod!
+  approvals: [DataApproval!]!
   component: Component @cost(weight: "10")
   componentId: Uuid!
   createdAt: DateTime!
@@ -921,7 +884,7 @@ type HygrothermalData implements Data {
 
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
-  timestamp: DateTime!
+  pageInfo: PageInfo!
   totalCount: NonNegativeInt
 }
 
@@ -932,33 +895,34 @@ type HygrothermalDataEdge {
 
 type Institution implements Node & Stakeholder {
   abbreviation: String
+  applications: InstitutionApplicationConnection! @cost(weight: "10")
   canCurrentUserDeleteNode: Boolean! @cost(weight: "10")
   canCurrentUserSwitchOperatingStateOfNode: Boolean! @cost(weight: "10")
   canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   description: String!
-  developedMethods(
-    pending: Boolean! = false
-  ): InstitutionDevelopedMethodConnection! @cost(weight: "10")
+  developedMethods(pending: Boolean! = false): InstitutionDevelopedMethodConnection! @cost(weight: "10")
   id: ID!
-  managedDataFormats: InstitutionManagedDataFormatConnection!
-    @cost(weight: "10")
-  managedInstitutions: InstitutionManagedInstitutionConnection!
-    @cost(weight: "10")
+  managedDataFormats: InstitutionManagedDataFormatConnection! @cost(weight: "10")
+  managedInstitutions: InstitutionManagedInstitutionConnection! @cost(weight: "10")
   managedMethods: InstitutionManagedMethodConnection! @cost(weight: "10")
   manager: InstitutionManagerEdge @cost(weight: "10")
-  manufacturedComponents(
-    pending: Boolean! = false
-  ): InstitutionManufacturedComponentConnection! @cost(weight: "10")
+  manufacturedComponents(pending: Boolean! = false): InstitutionManufacturedComponentConnection! @cost(weight: "10")
   name: String!
   operatedDatabases: InstitutionOperatedDatabaseConnection! @cost(weight: "10")
   operatingState: InstitutionOperatingState!
   publicKey: String
-  representatives(
-    pending: Boolean! = false
-  ): InstitutionRepresentativeConnection! @cost(weight: "10")
+  representatives(pending: Boolean! = false): InstitutionRepresentativeConnection! @cost(weight: "10")
   state: InstitutionState!
   uuid: Uuid! @cost(weight: "10")
   websiteLocator: Url
+}
+
+type InstitutionApplicationConnection {
+  edges: [InstitutionApplicationEdge!]! @cost(weight: "10")
+}
+
+type InstitutionApplicationEdge {
+  node: Institution! @cost(weight: "10")
 }
 
 type InstitutionDevelopedMethodConnection {
@@ -1040,8 +1004,6 @@ type InstitutionRepresentativeEdge {
 type InstitutionsConnection {
   "A list of edges."
   edges: [InstitutionsEdge!]
-  "A flattened list of the nodes."
-  nodes: [Institution!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
   "Identifies the total count of items in the connection."
@@ -1111,8 +1073,7 @@ type Method implements Node {
   canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   categories: [MethodCategory!]!
   description: String!
-  developers(pending: Boolean! = false): MethodDeveloperConnection!
-    @cost(weight: "10")
+  developers(pending: Boolean! = false): MethodDeveloperConnection! @cost(weight: "10")
   id: ID!
   manager: MethodManagerEdge! @cost(weight: "10")
   name: String!
@@ -1141,8 +1102,6 @@ type MethodManagerEdge {
 type MethodsConnection {
   "A list of edges."
   edges: [MethodsEdge!]
-  "A flattened list of the nodes."
-  nodes: [Method!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
   "Identifies the total count of items in the connection."
@@ -1158,226 +1117,70 @@ type MethodsEdge {
 }
 
 type Mutation {
-  addComponentAssembly(
-    input: AddComponentAssemblyInput!
-  ): AddComponentAssemblyPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  addComponentGeneralization(
-    input: AddComponentGeneralizationInput!
-  ): AddComponentGeneralizationPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  addComponentManufacturer(
-    input: AddComponentManufacturerInput!
-  ): AddComponentManufacturerPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  addComponentVariant(
-    input: AddComponentVariantInput!
-  ): AddComponentVariantPayload! @authorize(policy: "Write") @cost(weight: "10")
-  addInstitutionMethodDeveloper(
-    input: AddInstitutionMethodDeveloperInput!
-  ): AddInstitutionMethodDeveloperPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  addInstitutionRepresentative(
-    input: AddInstitutionRepresentativeInput!
-  ): AddInstitutionRepresentativePayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  addUserMethodDeveloper(
-    input: AddUserMethodDeveloperInput!
-  ): AddUserMethodDeveloperPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  addUserRole(input: AddUserRoleInput!): AddUserRolePayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  changeInstitutionRepresentativeRole(
-    input: ChangeInstitutionRepresentativeRoleInput!
-  ): ChangeInstitutionRepresentativeRolePayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  changeUserEmail(input: ChangeUserEmailInput!): ChangeUserEmailPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  changeUserPassword(
-    input: ChangeUserPasswordInput!
-  ): ChangeUserPasswordPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  confirmComponentManufacturer(
-    input: ConfirmComponentManufacturerInput!
-  ): ConfirmComponentManufacturerPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  confirmInstitutionMethodDeveloper(
-    input: ConfirmInstitutionMethodDeveloperInput!
-  ): ConfirmInstitutionMethodDeveloperPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  confirmInstitutionRepresentative(
-    input: ConfirmInstitutionRepresentativeInput!
-  ): ConfirmInstitutionRepresentativePayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  confirmUserEmail(input: ConfirmUserEmailInput!): ConfirmUserEmailPayload!
-    @cost(weight: "10")
-  confirmUserEmailChange(
-    input: ConfirmUserEmailChangeInput!
-  ): ConfirmUserEmailChangePayload! @cost(weight: "10")
-  confirmUserMethodDeveloper(
-    input: ConfirmUserMethodDeveloperInput!
-  ): ConfirmUserMethodDeveloperPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  createComponent(input: CreateComponentInput!): CreateComponentPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  createMethod(input: CreateMethodInput!): CreateMethodPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  deleteInstitution(input: DeleteInstitutionInput!): DeleteInstitutionPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  deletePersonalUserData(
-    input: DeletePersonalUserDataInput!
-  ): DeletePersonalUserDataPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  deleteUser(input: DeleteUserInput!): DeleteUserPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  disableUserTwoFactorAuthentication: DisableUserTwoFactorAuthenticationPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  enableUserTwoFactorAuthenticator(
-    input: EnableUserTwoFactorAuthenticatorInput!
-  ): EnableUserTwoFactorAuthenticatorPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  forgetUserTwoFactorAuthenticationClient: ForgetUserTwoFactorAuthenticationClientPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  generateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUri: GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  generateUserTwoFactorRecoveryCodes: GenerateUserTwoFactorRecoveryCodesPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
+  addComponentAssembly(input: AddComponentAssemblyInput!): AddComponentAssemblyPayload! @authorize(policy: "Write") @cost(weight: "10")
+  addComponentGeneralization(input: AddComponentGeneralizationInput!): AddComponentGeneralizationPayload! @authorize(policy: "Write") @cost(weight: "10")
+  addComponentManufacturer(input: AddComponentManufacturerInput!): AddComponentManufacturerPayload! @authorize(policy: "Write") @cost(weight: "10")
+  addComponentVariant(input: AddComponentVariantInput!): AddComponentVariantPayload! @authorize(policy: "Write") @cost(weight: "10")
+  addInstitutionMethodDeveloper(input: AddInstitutionMethodDeveloperInput!): AddInstitutionMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
+  addInstitutionRepresentative(input: AddInstitutionRepresentativeInput!): AddInstitutionRepresentativePayload! @authorize(policy: "Write") @cost(weight: "10")
+  addUserMethodDeveloper(input: AddUserMethodDeveloperInput!): AddUserMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
+  addUserRole(input: AddUserRoleInput!): AddUserRolePayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  changeInstitutionRepresentativeRole(input: ChangeInstitutionRepresentativeRoleInput!): ChangeInstitutionRepresentativeRolePayload! @authorize(policy: "Write") @cost(weight: "10")
+  changeUserEmail(input: ChangeUserEmailInput!): ChangeUserEmailPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  changeUserPassword(input: ChangeUserPasswordInput!): ChangeUserPasswordPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  confirmComponentManufacturer(input: ConfirmComponentManufacturerInput!): ConfirmComponentManufacturerPayload! @authorize(policy: "Write") @cost(weight: "10")
+  confirmInstitutionMethodDeveloper(input: ConfirmInstitutionMethodDeveloperInput!): ConfirmInstitutionMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
+  confirmInstitutionRepresentative(input: ConfirmInstitutionRepresentativeInput!): ConfirmInstitutionRepresentativePayload! @authorize(policy: "Write") @cost(weight: "10")
+  confirmUserEmail(input: ConfirmUserEmailInput!): ConfirmUserEmailPayload! @cost(weight: "10")
+  confirmUserEmailChange(input: ConfirmUserEmailChangeInput!): ConfirmUserEmailChangePayload! @cost(weight: "10")
+  confirmUserMethodDeveloper(input: ConfirmUserMethodDeveloperInput!): ConfirmUserMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
+  createApplication(input: CreateApplicationInput!): CreateApplicationPayload! @authorize(policy: "Write") @cost(weight: "10")
+  createComponent(input: CreateComponentInput!): CreateComponentPayload! @authorize(policy: "Write") @cost(weight: "10")
+  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload! @authorize(policy: "Write") @cost(weight: "10")
+  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload! @authorize(policy: "Write") @cost(weight: "10")
+  createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload! @authorize(policy: "Write") @cost(weight: "10")
+  createMethod(input: CreateMethodInput!): CreateMethodPayload! @authorize(policy: "Write") @cost(weight: "10")
+  deleteApplication(input: DeleteApplicationInput!): DeleteApplicationPayload! @authorize(policy: "Write") @cost(weight: "10")
+  deleteAuthorization(input: DeleteAuthorizationInput!): DeleteAuthorizationPayload! @authorize(policy: "Write") @cost(weight: "10")
+  deleteInstitution(input: DeleteInstitutionInput!): DeleteInstitutionPayload! @authorize(policy: "Write") @cost(weight: "10")
+  deletePersonalUserData(input: DeletePersonalUserDataInput!): DeletePersonalUserDataPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  disableUserTwoFactorAuthentication: DisableUserTwoFactorAuthenticationPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  enableUserTwoFactorAuthenticator(input: EnableUserTwoFactorAuthenticatorInput!): EnableUserTwoFactorAuthenticatorPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  forgetUserTwoFactorAuthenticationClient: ForgetUserTwoFactorAuthenticationClientPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  generateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUri: GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  generateUserTwoFactorRecoveryCodes: GenerateUserTwoFactorRecoveryCodesPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
   loginUser(input: LoginUserInput!): LoginUserPayload! @cost(weight: "10")
-  loginUserWithRecoveryCode(
-    input: LoginUserWithRecoveryCodeInput!
-  ): LoginUserWithRecoveryCodePayload! @cost(weight: "10")
-  loginUserWithTwoFactorCode(
-    input: LoginUserWithTwoFactorCodeInput!
-  ): LoginUserWithTwoFactorCodePayload! @cost(weight: "10")
-  logoutUser: LogoutUserPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  registerUser(input: RegisterUserInput!): RegisterUserPayload!
-    @cost(weight: "10")
-  removeComponentAssembly(
-    input: RemoveComponentAssemblyInput!
-  ): RemoveComponentAssemblyPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  removeComponentGeneralization(
-    input: RemoveComponentGeneralizationInput!
-  ): RemoveComponentGeneralizationPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  removeComponentManufacturer(
-    input: RemoveComponentManufacturerInput!
-  ): RemoveComponentManufacturerPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  removeComponentVariant(
-    input: RemoveComponentVariantInput!
-  ): RemoveComponentVariantPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  removeInstitutionMethodDeveloper(
-    input: RemoveInstitutionMethodDeveloperInput!
-  ): RemoveInstitutionMethodDeveloperPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  removeInstitutionRepresentative(
-    input: RemoveInstitutionRepresentativeInput!
-  ): RemoveInstitutionRepresentativePayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  removeUserMethodDeveloper(
-    input: RemoveUserMethodDeveloperInput!
-  ): RemoveUserMethodDeveloperPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  removeUserRole(input: RemoveUserRoleInput!): RemoveUserRolePayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  requestUserPasswordReset(
-    input: RequestUserPasswordResetInput!
-  ): RequestUserPasswordResetPayload! @cost(weight: "10")
-  resendUserEmailConfirmation(
-    input: ResendUserEmailConfirmationInput!
-  ): ResendUserEmailConfirmationPayload! @cost(weight: "10")
-  resendUserEmailVerification: ResendUserEmailVerificationPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  resetUserPassword(input: ResetUserPasswordInput!): ResetUserPasswordPayload!
-    @cost(weight: "10")
-  resetUserTwoFactorAuthenticator: ResetUserTwoFactorAuthenticatorPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  setUserPassword(input: SetUserPasswordInput!): SetUserPasswordPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  setUserPhoneNumber(
-    input: SetUserPhoneNumberInput!
-  ): SetUserPhoneNumberPayload!
-    @authorize(policy: "ManageUser")
-    @cost(weight: "10")
-  switchInstitutionOperatingState(
-    input: SwitchInstitutionOperatingStateInput!
-  ): SwitchInstitutionOperatingStatePayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  updateComponent(input: UpdateComponentInput!): UpdateComponentPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  updateComponentAssembly(
-    input: UpdateComponentAssemblyInput!
-  ): UpdateComponentAssemblyPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  updateDatabase(input: UpdateDatabaseInput!): UpdateDatabasePayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  updateDataFormat(input: UpdateDataFormatInput!): UpdateDataFormatPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  updateInstitution(input: UpdateInstitutionInput!): UpdateInstitutionPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  updateMethod(input: UpdateMethodInput!): UpdateMethodPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  verifyDatabase(input: VerifyDatabaseInput!): VerifyDatabasePayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
-  verifyInstitution(input: VerifyInstitutionInput!): VerifyInstitutionPayload!
-    @authorize(policy: "Write")
-    @cost(weight: "10")
+  loginUserWithRecoveryCode(input: LoginUserWithRecoveryCodeInput!): LoginUserWithRecoveryCodePayload! @cost(weight: "10")
+  loginUserWithTwoFactorCode(input: LoginUserWithTwoFactorCodeInput!): LoginUserWithTwoFactorCodePayload! @cost(weight: "10")
+  logoutUser: LogoutUserPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  registerUser(input: RegisterUserInput!): RegisterUserPayload! @cost(weight: "10")
+  removeComponentAssembly(input: RemoveComponentAssemblyInput!): RemoveComponentAssemblyPayload! @authorize(policy: "Write") @cost(weight: "10")
+  removeComponentGeneralization(input: RemoveComponentGeneralizationInput!): RemoveComponentGeneralizationPayload! @authorize(policy: "Write") @cost(weight: "10")
+  removeComponentManufacturer(input: RemoveComponentManufacturerInput!): RemoveComponentManufacturerPayload! @authorize(policy: "Write") @cost(weight: "10")
+  removeComponentVariant(input: RemoveComponentVariantInput!): RemoveComponentVariantPayload! @authorize(policy: "Write") @cost(weight: "10")
+  removeInstitutionMethodDeveloper(input: RemoveInstitutionMethodDeveloperInput!): RemoveInstitutionMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
+  removeInstitutionRepresentative(input: RemoveInstitutionRepresentativeInput!): RemoveInstitutionRepresentativePayload! @authorize(policy: "Write") @cost(weight: "10")
+  removeUserMethodDeveloper(input: RemoveUserMethodDeveloperInput!): RemoveUserMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
+  removeUserRole(input: RemoveUserRoleInput!): RemoveUserRolePayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  requestUserPasswordReset(input: RequestUserPasswordResetInput!): RequestUserPasswordResetPayload! @cost(weight: "10")
+  resendUserEmailConfirmation(input: ResendUserEmailConfirmationInput!): ResendUserEmailConfirmationPayload! @cost(weight: "10")
+  resendUserEmailVerification: ResendUserEmailVerificationPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  resetUserPassword(input: ResetUserPasswordInput!): ResetUserPasswordPayload! @cost(weight: "10")
+  resetUserTwoFactorAuthenticator: ResetUserTwoFactorAuthenticatorPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  revokeToken(input: RevokeTokenInput!): RevokeTokenPayload! @authorize(policy: "Write") @cost(weight: "10")
+  setUserPassword(input: SetUserPasswordInput!): SetUserPasswordPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  setUserPhoneNumber(input: SetUserPhoneNumberInput!): SetUserPhoneNumberPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  switchInstitutionOperatingState(input: SwitchInstitutionOperatingStateInput!): SwitchInstitutionOperatingStatePayload! @authorize(policy: "Write") @cost(weight: "10")
+  updateApplication(input: UpdateApplicationInput!): UpdateApplicationPayload! @authorize(policy: "Write") @cost(weight: "10")
+  updateComponent(input: UpdateComponentInput!): UpdateComponentPayload! @authorize(policy: "Write") @cost(weight: "10")
+  updateComponentAssembly(input: UpdateComponentAssemblyInput!): UpdateComponentAssemblyPayload! @authorize(policy: "Write") @cost(weight: "10")
+  updateDatabase(input: UpdateDatabaseInput!): UpdateDatabasePayload! @authorize(policy: "Write") @cost(weight: "10")
+  updateDataFormat(input: UpdateDataFormatInput!): UpdateDataFormatPayload! @authorize(policy: "Write") @cost(weight: "10")
+  updateInstitution(input: UpdateInstitutionInput!): UpdateInstitutionPayload! @authorize(policy: "Write") @cost(weight: "10")
+  updateMethod(input: UpdateMethodInput!): UpdateMethodPayload! @authorize(policy: "Write") @cost(weight: "10")
+  verifyDatabase(input: VerifyDatabaseInput!): VerifyDatabasePayload! @authorize(policy: "Write") @cost(weight: "10")
+  verifyInstitution(input: VerifyInstitutionInput!): VerifyInstitutionPayload! @authorize(policy: "Write") @cost(weight: "10")
 }
 
 type NamedMethodArgument {
@@ -1401,70 +1204,9 @@ type OpenEndedDateTimeRange {
   to: DateTime @cost(weight: "10")
 }
 
-type OpenIdConnectApplication {
-  applicationType: String
-  authorizations: [OpenIdConnectAuthorization!]!
-  clientId: String
-  clientSecret: String
-  clientType: String
-  concurrencyToken: String
-  consentType: String
-  displayName: String
-  displayNames: String
-  id: String
-  jsonWebKeySet: String
-  permissions: String
-  postLogoutRedirectUris: String
-  properties: String
-  redirectUris: String
-  requirements: String
-  settings: String
-  tokens: [OpenIdConnectToken!]!
-}
-
-type OpenIdConnectAuthorization {
-  application: OpenIdConnectApplication
-  concurrencyToken: String
-  creationDate: DateTime
-  id: String
-  properties: String
-  scopes: String
-  status: String
-  subject: String
-  tokens: [OpenIdConnectToken!]!
-  type: String
-}
-
-type OpenIdConnectScope {
-  concurrencyToken: String
-  description: String
-  descriptions: String
-  displayName: String
-  displayNames: String
-  id: String
-  name: String
-  properties: String
-  resources: String
-}
-
-type OpenIdConnectToken {
-  application: OpenIdConnectApplication
-  authorization: OpenIdConnectAuthorization
-  concurrencyToken: String
-  creationDate: DateTime
-  expirationDate: DateTime
-  id: String
-  payload: String
-  properties: String
-  redemptionDate: DateTime
-  referenceId: String
-  status: String
-  subject: String
-  type: String
-}
-
 type OpticalData implements Data {
   appliedMethod: AppliedMethod!
+  approvals: [DataApproval!]!
   cielabColors: [CielabColor!]!
   colorRenderingIndices: [Float!]!
   component: Component @cost(weight: "10")
@@ -1492,7 +1234,7 @@ type OpticalData implements Data {
 
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
-  timestamp: DateTime!
+  pageInfo: PageInfo!
   totalCount: NonNegativeInt
 }
 
@@ -1517,8 +1259,6 @@ type PageInfo {
 type PendingDatabasesConnection {
   "A list of edges."
   edges: [PendingDatabasesEdge!]
-  "A flattened list of the nodes."
-  nodes: [Database!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
   "Identifies the total count of items in the connection."
@@ -1537,8 +1277,6 @@ type PendingDatabasesEdge {
 type PendingInstitutionsConnection {
   "A list of edges."
   edges: [PendingInstitutionsEdge!]
-  "A flattened list of the nodes."
-  nodes: [Institution!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
   "Identifies the total count of items in the connection."
@@ -1555,6 +1293,7 @@ type PendingInstitutionsEdge {
 
 type PhotovoltaicData implements Data {
   appliedMethod: AppliedMethod!
+  approvals: [DataApproval!]!
   component: Component @cost(weight: "10")
   componentId: Uuid!
   createdAt: DateTime!
@@ -1575,13 +1314,18 @@ type PhotovoltaicData implements Data {
 
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
-  timestamp: DateTime!
+  pageInfo: PageInfo!
   totalCount: NonNegativeInt
 }
 
 type PhotovoltaicDataEdge {
   cursor: String!
   node: PhotovoltaicData!
+}
+
+type PrimeSurfaceOrDirection {
+  direction: DescriptionOrReference
+  surface: DescriptionOrReference
 }
 
 type Publication implements Reference {
@@ -1601,165 +1345,35 @@ type Publication implements Reference {
 }
 
 type Query {
+  application(applicationId: Uuid!): Application @authorize(policy: "Read") @cost(weight: "10")
+  applications: [Application!]! @authorize(policy: "Read") @cost(weight: "10")
+  authorization(authorizationId: Uuid!): Authorization @authorize(policy: "Read") @cost(weight: "10")
+  authorizations: [Authorization!]! @authorize(policy: "Read") @cost(weight: "10")
+  authorizationsByApplicationId(applicationId: Uuid!): [Authorization!]! @authorize(policy: "Read") @cost(weight: "10")
   component(uuid: Uuid!): Component @cost(weight: "10")
-  components(
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the last _n_ elements from the list."
-    last: Int
-    order: [ComponentSortInput!] @cost(weight: "10")
-    where: ComponentFilterInput @cost(weight: "10")
-  ): ComponentsConnection
-    @listSize(
-      assumedSize: 2147483647
-      slicingArguments: ["first", "last"]
-      sizedFields: ["edges", "nodes"]
-    )
-    @cost(weight: "10")
+  components("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [ComponentSortInput!] @cost(weight: "10") where: ComponentFilterInput @cost(weight: "10")): ComponentsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   currentUser: User @cost(weight: "10")
   database(uuid: Uuid!): Database @cost(weight: "10")
-  databases(
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the last _n_ elements from the list."
-    last: Int
-    order: [DatabaseSortInput!] @cost(weight: "10")
-    where: DatabaseFilterInput @cost(weight: "10")
-  ): DatabasesConnection
-    @listSize(
-      assumedSize: 2147483647
-      slicingArguments: ["first", "last"]
-      sizedFields: ["edges", "nodes"]
-    )
-    @cost(weight: "10")
+  databases("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [DatabaseSortInput!] @cost(weight: "10") where: DatabaseFilterInput @cost(weight: "10")): DatabasesConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   dataFormat(uuid: Uuid!): DataFormat @cost(weight: "10")
-  dataFormats(
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the last _n_ elements from the list."
-    last: Int
-    order: [DataFormatSortInput!] @cost(weight: "10")
-    where: DataFormatFilterInput @cost(weight: "10")
-  ): DataFormatsConnection
-    @listSize(
-      assumedSize: 2147483647
-      slicingArguments: ["first", "last"]
-      sizedFields: ["edges", "nodes"]
-    )
-    @cost(weight: "10")
+  dataFormats("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [DataFormatSortInput!] @cost(weight: "10") where: DataFormatFilterInput @cost(weight: "10")): DataFormatsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   institution(uuid: Uuid!): Institution @cost(weight: "10")
-  institutions(
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the last _n_ elements from the list."
-    last: Int
-    order: [InstitutionSortInput!] @cost(weight: "10")
-    where: InstitutionFilterInput @cost(weight: "10")
-  ): InstitutionsConnection
-    @listSize(
-      assumedSize: 2147483647
-      slicingArguments: ["first", "last"]
-      sizedFields: ["edges", "nodes"]
-    )
-    @cost(weight: "10")
+  institutions("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [InstitutionSortInput!] @cost(weight: "10") where: InstitutionFilterInput @cost(weight: "10")): InstitutionsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   method(uuid: Uuid!): Method @cost(weight: "10")
-  methods(
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the last _n_ elements from the list."
-    last: Int
-    order: [MethodSortInput!] @cost(weight: "10")
-    where: MethodFilterInput @cost(weight: "10")
-  ): MethodsConnection
-    @listSize(
-      assumedSize: 2147483647
-      slicingArguments: ["first", "last"]
-      sizedFields: ["edges", "nodes"]
-    )
-    @cost(weight: "10")
+  methods("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [MethodSortInput!] @cost(weight: "10") where: MethodFilterInput @cost(weight: "10")): MethodsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   "Fetches an object given its ID."
   node("ID of the object." id: ID!): Node @cost(weight: "10")
   "Lookup nodes by a list of IDs."
   nodes("The list of node IDs." ids: [ID!]!): [Node]! @cost(weight: "10")
-  openIdConnectApplications: [OpenIdConnectApplication!]! @cost(weight: "10")
-  openIdConnectAuthorizations: [OpenIdConnectAuthorization!]!
-    @cost(weight: "10")
-  openIdConnectScopes: [OpenIdConnectScope!]! @cost(weight: "10")
-  openIdConnectTokens: [OpenIdConnectToken!]! @cost(weight: "10")
-  pendingDatabases(
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the last _n_ elements from the list."
-    last: Int
-    order: [DatabaseSortInput!] @cost(weight: "10")
-    where: DatabaseFilterInput @cost(weight: "10")
-  ): PendingDatabasesConnection
-    @listSize(
-      assumedSize: 2147483647
-      slicingArguments: ["first", "last"]
-      sizedFields: ["edges", "nodes"]
-    )
-    @cost(weight: "10")
-  pendingInstitutions(
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the last _n_ elements from the list."
-    last: Int
-    order: [InstitutionSortInput!] @cost(weight: "10")
-    where: InstitutionFilterInput @cost(weight: "10")
-  ): PendingInstitutionsConnection
-    @listSize(
-      assumedSize: 2147483647
-      slicingArguments: ["first", "last"]
-      sizedFields: ["edges", "nodes"]
-    )
-    @cost(weight: "10")
+  pendingDatabases("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [DatabaseSortInput!] @cost(weight: "10") where: DatabaseFilterInput @cost(weight: "10")): PendingDatabasesConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  pendingInstitutions("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [InstitutionSortInput!] @cost(weight: "10") where: InstitutionFilterInput @cost(weight: "10")): PendingInstitutionsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  scope(scopeId: Uuid!): Scope @authorize(policy: "Read") @cost(weight: "10")
+  scopes: [Scope!]! @authorize(policy: "Read") @cost(weight: "10")
+  token(tokenId: Uuid!): Token @authorize(policy: "Read") @cost(weight: "10")
+  tokens: [Token!]! @authorize(policy: "Read") @cost(weight: "10")
+  tokensByApplicationId(applicationId: Uuid!): [Token!]! @authorize(policy: "Read") @cost(weight: "10")
   user(uuid: Uuid!): User @cost(weight: "10")
-  users(
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the last _n_ elements from the list."
-    last: Int
-    order: [UserSortInput!] @cost(weight: "10")
-  ): UsersConnection
-    @listSize(
-      assumedSize: 2147483647
-      slicingArguments: ["first", "last"]
-      sizedFields: ["edges", "nodes"]
-    )
-    @cost(weight: "10")
+  users("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [UserSortInput!] @cost(weight: "10") where: UserFilterInput @cost(weight: "10")): UsersConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
 }
 
 type RegisterUserError {
@@ -1942,6 +1556,24 @@ type ResponseApproval {
   timestamp: DateTime!
 }
 
+type RevokeTokenError {
+  code: RevokeTokenErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type RevokeTokenPayload {
+  errors: [RevokeTokenError!]
+  query: Query!
+}
+
+type Scope {
+  description: String
+  displayName: String
+  id: Uuid!
+  name: String! @cost(weight: "10")
+}
+
 type SetUserPasswordError {
   code: SetUserPasswordErrorCode!
   message: String!
@@ -1998,11 +1630,34 @@ type ToTreeVertexAppliedConversionMethod {
   sourceName: String!
 }
 
+type Token {
+  canCurrentUserRevokeToken: Boolean! @cost(weight: "10")
+  creationDate: DateTime
+  expirationDate: DateTime
+  id: Uuid!
+  redemptionDate: DateTime
+  status: String
+  subject: String
+  type: String
+}
+
 type TwoFactorAuthentication {
   hasAuthenticator: Boolean!
   isEnabled: Boolean!
   isMachineRemembered: Boolean!
   recoveryCodesLeftCount: Int!
+}
+
+type UpdateApplicationError {
+  code: UpdateApplicationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type UpdateApplicationPayload {
+  application: Application
+  errors: [UpdateApplicationError!]
+  query: Query!
 }
 
 type UpdateComponentAssemblyError {
@@ -2079,9 +1734,10 @@ type UpdateMethodPayload {
 }
 
 type User implements Node & Stakeholder {
+  canCurrentUserAddApplications: Boolean! @cost(weight: "10")
   canCurrentUserDeleteUser: Boolean! @cost(weight: "10")
-  developedMethods(pending: Boolean! = false): UserDevelopedMethodConnection!
-    @cost(weight: "10")
+  canCurrentUserViewApplications: Boolean! @cost(weight: "10")
+  developedMethods(pending: Boolean! = false): UserDevelopedMethodConnection! @cost(weight: "10")
   email: String @cost(weight: "10")
   hasPassword: Boolean @cost(weight: "10")
   id: ID!
@@ -2091,9 +1747,7 @@ type User implements Node & Stakeholder {
   name: String! @cost(weight: "10")
   phoneNumber: String @cost(weight: "10")
   postalAddress: String @cost(weight: "10")
-  representedInstitutions(
-    pending: Boolean! = false
-  ): UserRepresentedInstitutionConnection! @cost(weight: "10")
+  representedInstitutions(pending: Boolean! = false): UserRepresentedInstitutionConnection! @cost(weight: "10")
   roles: [UserRole!] @cost(weight: "10")
   rolesCurrentUserCanAdd: [UserRole!]! @cost(weight: "10")
   rolesCurrentUserCanRemove: [UserRole!]! @cost(weight: "10")
@@ -2131,8 +1785,6 @@ type UserRepresentedInstitutionEdge {
 type UsersConnection {
   "A list of edges."
   edges: [UsersEdge!]
-  "A flattened list of the nodes."
-  nodes: [User!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
   "Identifies the total count of items in the connection."
@@ -2215,23 +1867,8 @@ input AddUserRoleInput {
 }
 
 input BooleanOperationFilterInput {
-  eq: Boolean @cost(weight: "10")
-  neq: Boolean @cost(weight: "10")
-}
-
-input ByteOperationFilterInput {
-  eq: Byte @cost(weight: "10")
-  neq: Byte @cost(weight: "10")
-  in: [Byte] @cost(weight: "10")
-  nin: [Byte] @cost(weight: "10")
-  gt: Byte @cost(weight: "10")
-  ngt: Byte @cost(weight: "10")
-  gte: Byte @cost(weight: "10")
-  ngte: Byte @cost(weight: "10")
-  lt: Byte @cost(weight: "10")
-  nlt: Byte @cost(weight: "10")
-  lte: Byte @cost(weight: "10")
-  nlte: Byte @cost(weight: "10")
+  equalTo: Boolean @cost(weight: "10")
+  notEqualTo: Boolean @cost(weight: "10")
 }
 
 input CalorimetricDataPropositionInput {
@@ -2277,26 +1914,71 @@ input ClosedIntervalInput {
   upperBound: Float!
 }
 
+input ComparableGuidOperationFilterInput {
+  equalTo: Uuid @cost(weight: "10")
+  notEqualTo: Uuid @cost(weight: "10")
+  in: [Uuid!] @cost(weight: "10")
+  notIn: [Uuid!] @cost(weight: "10")
+  greaterThan: Uuid @cost(weight: "10")
+  notGreaterThan: Uuid @cost(weight: "10")
+  greaterThanOrEqualTo: Uuid @cost(weight: "10")
+  notGreaterThanOrEqualTo: Uuid @cost(weight: "10")
+  lessThan: Uuid @cost(weight: "10")
+  notLessThan: Uuid @cost(weight: "10")
+  lessThanOrEqualTo: Uuid @cost(weight: "10")
+  notLessThanOrEqualTo: Uuid @cost(weight: "10")
+}
+
+input ComparableInt32OperationFilterInput {
+  equalTo: Int @cost(weight: "10")
+  notEqualTo: Int @cost(weight: "10")
+  in: [Int!] @cost(weight: "10")
+  notIn: [Int!] @cost(weight: "10")
+  greaterThan: Int @cost(weight: "10")
+  notGreaterThan: Int @cost(weight: "10")
+  greaterThanOrEqualTo: Int @cost(weight: "10")
+  notGreaterThanOrEqualTo: Int @cost(weight: "10")
+  lessThan: Int @cost(weight: "10")
+  notLessThan: Int @cost(weight: "10")
+  lessThanOrEqualTo: Int @cost(weight: "10")
+  notLessThanOrEqualTo: Int @cost(weight: "10")
+}
+
+input ComparableNullableOfByteOperationFilterInput {
+  equalTo: Byte @cost(weight: "10")
+  notEqualTo: Byte @cost(weight: "10")
+  in: [Byte] @cost(weight: "10")
+  notIn: [Byte] @cost(weight: "10")
+  greaterThan: Byte @cost(weight: "10")
+  notGreaterThan: Byte @cost(weight: "10")
+  greaterThanOrEqualTo: Byte @cost(weight: "10")
+  notGreaterThanOrEqualTo: Byte @cost(weight: "10")
+  lessThan: Byte @cost(weight: "10")
+  notLessThan: Byte @cost(weight: "10")
+  lessThanOrEqualTo: Byte @cost(weight: "10")
+  notLessThanOrEqualTo: Byte @cost(weight: "10")
+}
+
 input ComponentAssemblyFilterInput {
   and: [ComponentAssemblyFilterInput!]
   or: [ComponentAssemblyFilterInput!]
   assembledComponent: ComponentFilterInput
   partComponent: ComponentFilterInput
-  index: ByteOperationFilterInput
+  index: ComparableNullableOfByteOperationFilterInput
   primeSurface: NullableOfPrimeSurfaceOperationFilterInput
 }
 
 input ComponentCategoryOperationFilterInput {
-  eq: ComponentCategory @cost(weight: "10")
-  neq: ComponentCategory @cost(weight: "10")
+  equalTo: ComponentCategory @cost(weight: "10")
+  notEqualTo: ComponentCategory @cost(weight: "10")
   in: [ComponentCategory!] @cost(weight: "10")
-  nin: [ComponentCategory!] @cost(weight: "10")
+  notIn: [ComponentCategory!] @cost(weight: "10")
 }
 
 input ComponentFilterInput {
   and: [ComponentFilterInput!]
   or: [ComponentFilterInput!]
-  id: UuidOperationFilterInput
+  id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
   abbreviation: StringOperationFilterInput
   description: StringOperationFilterInput
@@ -2321,12 +2003,10 @@ input ComponentManufacturerFilterInput {
 }
 
 input ComponentSortInput {
+  id: SortEnumType @cost(weight: "10")
   name: SortEnumType @cost(weight: "10")
   abbreviation: SortEnumType @cost(weight: "10")
   description: SortEnumType @cost(weight: "10")
-  availability: SortEnumType @cost(weight: "10")
-  id: SortEnumType @cost(weight: "10")
-  version: SortEnumType @cost(weight: "10")
 }
 
 input ConfirmComponentManufacturerInput {
@@ -2360,6 +2040,15 @@ input ConfirmUserMethodDeveloperInput {
   userId: Uuid!
 }
 
+input CreateApplicationInput {
+  associatedInstitutionId: Uuid!
+  clientId: String!
+  displayName: String!
+  permissions: [String!]!
+  postLogoutRedirectUri: String!
+  redirectUri: String!
+}
+
 input CreateComponentInput {
   abbreviation: String
   availability: OpenEndedDateTimeRangeInput
@@ -2367,6 +2056,9 @@ input CreateComponentInput {
   description: String!
   manufacturerId: Uuid!
   name: String!
+  primeDirection: DescriptionOrReferenceInput
+  primeSurface: DescriptionOrReferenceInput
+  switchableLayers: DescriptionOrReferenceInput
 }
 
 input CreateDataFormatInput {
@@ -2375,9 +2067,8 @@ input CreateDataFormatInput {
   managerId: Uuid!
   mediaType: String!
   name: String!
-  publication: CreatePublicationInput
+  reference: ReferenceInput
   schemaLocator: Url
-  standard: CreateStandardInput
 }
 
 input CreateDatabaseInput {
@@ -2405,8 +2096,7 @@ input CreateMethodInput {
   institutionDeveloperIds: [Uuid!]!
   managerId: Uuid!
   name: String!
-  publication: CreatePublicationInput
-  standard: CreateStandardInput
+  reference: ReferenceInput
   userDeveloperIds: [Uuid!]!
   validity: OpenEndedDateTimeRangeInput
 }
@@ -2417,93 +2107,52 @@ input CreateNumerationInput {
   suffix: String
 }
 
-input CreatePublicationInput {
-  abstract: String
-  arXiv: String
-  authors: [String!]
-  doi: String
-  section: String
-  title: String
-  urn: String
-  webAddress: Url
-}
-
-input CreateStandardInput {
-  abstract: String
-  locator: Url
-  numeration: CreateNumerationInput!
-  section: String
-  standardizers: [Standardizer!]!
-  title: String
-  year: Int
-}
-
 input DataFormatFilterInput {
   and: [DataFormatFilterInput!]
   or: [DataFormatFilterInput!]
-  id: UuidOperationFilterInput
+  id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
   extension: StringOperationFilterInput
   description: StringOperationFilterInput
   mediaType: StringOperationFilterInput
-  schemaLocator: UrlOperationFilterInput
-  standard: StandardFilterInput
-  publication: PublicationFilterInput
+  schemaLocator: UriFilterInput
   manager: InstitutionFilterInput
 }
 
 input DataFormatSortInput {
+  id: SortEnumType @cost(weight: "10")
   name: SortEnumType @cost(weight: "10")
   extension: SortEnumType @cost(weight: "10")
   description: SortEnumType @cost(weight: "10")
   mediaType: SortEnumType @cost(weight: "10")
   schemaLocator: UriSortInput @cost(weight: "10")
-  standard: StandardSortInput @cost(weight: "10")
-  publication: PublicationSortInput @cost(weight: "10")
-  reference: IReferenceSortInput @cost(weight: "10")
-  managerId: SortEnumType @cost(weight: "10")
   manager: InstitutionSortInput @cost(weight: "10")
-  id: SortEnumType @cost(weight: "10")
-  version: SortEnumType @cost(weight: "10")
-}
-
-input DataPropositionInput {
-  and: [DataPropositionInput!]
-  cielabColors: CielabColorsPropositionInput
-  colorRenderingIndices: FloatsPropositionInput
-  componentId: UuidPropositionInput
-  gValues: FloatsPropositionInput
-  infraredEmittances: FloatsPropositionInput
-  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
-  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
-  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
-  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
-  not: DataPropositionInput
-  or: [DataPropositionInput!]
-  resources: GetHttpsResourcesPropositionInput
-  uValues: FloatsPropositionInput
 }
 
 input DatabaseFilterInput {
   and: [DatabaseFilterInput!]
   or: [DatabaseFilterInput!]
-  id: UuidOperationFilterInput
+  id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
   description: StringOperationFilterInput
-  locator: UrlOperationFilterInput
+  locator: UriFilterInput
   operator: InstitutionFilterInput
 }
 
 input DatabaseSortInput {
+  id: SortEnumType @cost(weight: "10")
   name: SortEnumType @cost(weight: "10")
   description: SortEnumType @cost(weight: "10")
   locator: UriSortInput @cost(weight: "10")
-  verificationState: SortEnumType @cost(weight: "10")
-  verificationCode: SortEnumType @cost(weight: "10")
-  operatorId: SortEnumType @cost(weight: "10")
   operator: InstitutionSortInput @cost(weight: "10")
-  id: SortEnumType @cost(weight: "10")
-  version: SortEnumType @cost(weight: "10")
+}
+
+input DeleteApplicationInput {
+  applicationId: Uuid!
+}
+
+input DeleteAuthorizationInput {
+  authorizationId: Uuid!
 }
 
 input DeleteInstitutionInput {
@@ -2516,6 +2165,11 @@ input DeletePersonalUserDataInput {
 
 input DeleteUserInput {
   userId: Uuid!
+}
+
+input DescriptionOrReferenceInput {
+  description: String
+  reference: ReferenceInput
 }
 
 input EnableUserTwoFactorAuthenticatorInput {
@@ -2573,20 +2227,14 @@ input HygrothermalDataPropositionInput {
   resources: GetHttpsResourcesPropositionInput
 }
 
-input IReferenceSortInput {
-  title: SortEnumType @cost(weight: "10")
-  abstract: SortEnumType @cost(weight: "10")
-  section: SortEnumType @cost(weight: "10")
-}
-
 input InstitutionFilterInput {
   and: [InstitutionFilterInput!]
   or: [InstitutionFilterInput!]
-  id: UuidOperationFilterInput
+  id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
   abbreviation: StringOperationFilterInput
   description: StringOperationFilterInput
-  websiteLocator: UrlOperationFilterInput
+  websiteLocator: UriFilterInput
   state: InstitutionStateOperationFilterInput
   developedMethods: ListMethodFilterTypeFilterInput
   developedMethodEdges: ListInstitutionMethodDeveloperFilterTypeFilterInput
@@ -2619,46 +2267,27 @@ input InstitutionRepresentativeFilterInput {
 }
 
 input InstitutionRepresentativeRoleOperationFilterInput {
-  eq: InstitutionRepresentativeRole @cost(weight: "10")
-  neq: InstitutionRepresentativeRole @cost(weight: "10")
+  equalTo: InstitutionRepresentativeRole @cost(weight: "10")
+  notEqualTo: InstitutionRepresentativeRole @cost(weight: "10")
   in: [InstitutionRepresentativeRole!] @cost(weight: "10")
-  nin: [InstitutionRepresentativeRole!] @cost(weight: "10")
+  notIn: [InstitutionRepresentativeRole!] @cost(weight: "10")
 }
 
 input InstitutionSortInput {
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
   abbreviation: SortEnumType @cost(weight: "10")
   description: SortEnumType @cost(weight: "10")
   websiteLocator: UriSortInput @cost(weight: "10")
-  publicKey: SortEnumType @cost(weight: "10")
   state: SortEnumType @cost(weight: "10")
-  operatingState: SortEnumType @cost(weight: "10")
-  managerId: SortEnumType @cost(weight: "10")
   manager: InstitutionSortInput @cost(weight: "10")
-  name: SortEnumType @cost(weight: "10")
-  id: SortEnumType @cost(weight: "10")
-  version: SortEnumType @cost(weight: "10")
 }
 
 input InstitutionStateOperationFilterInput {
-  eq: InstitutionState @cost(weight: "10")
-  neq: InstitutionState @cost(weight: "10")
+  equalTo: InstitutionState @cost(weight: "10")
+  notEqualTo: InstitutionState @cost(weight: "10")
   in: [InstitutionState!] @cost(weight: "10")
-  nin: [InstitutionState!] @cost(weight: "10")
-}
-
-input IntOperationFilterInput {
-  eq: Int @cost(weight: "10")
-  neq: Int @cost(weight: "10")
-  in: [Int] @cost(weight: "10")
-  nin: [Int] @cost(weight: "10")
-  gt: Int @cost(weight: "10")
-  ngt: Int @cost(weight: "10")
-  gte: Int @cost(weight: "10")
-  ngte: Int @cost(weight: "10")
-  lt: Int @cost(weight: "10")
-  nlt: Int @cost(weight: "10")
-  lte: Int @cost(weight: "10")
-  nlte: Int @cost(weight: "10")
+  notIn: [InstitutionState!] @cost(weight: "10")
 }
 
 input ListComponentAssemblyFilterTypeFilterInput {
@@ -2738,13 +2367,6 @@ input ListMethodFilterTypeFilterInput {
   any: Boolean @cost(weight: "10")
 }
 
-input ListStandardizerOperationFilterInput {
-  all: StandardizerOperationFilterInput @cost(weight: "10")
-  none: StandardizerOperationFilterInput @cost(weight: "10")
-  some: StandardizerOperationFilterInput @cost(weight: "10")
-  any: Boolean @cost(weight: "10")
-}
-
 input ListStringOperationFilterInput {
   all: StringOperationFilterInput @cost(weight: "10")
   none: StringOperationFilterInput @cost(weight: "10")
@@ -2781,21 +2403,19 @@ input LoginUserWithTwoFactorCodeInput {
 }
 
 input MethodCategoryOperationFilterInput {
-  eq: MethodCategory @cost(weight: "10")
-  neq: MethodCategory @cost(weight: "10")
+  equalTo: MethodCategory @cost(weight: "10")
+  notEqualTo: MethodCategory @cost(weight: "10")
   in: [MethodCategory!] @cost(weight: "10")
-  nin: [MethodCategory!] @cost(weight: "10")
+  notIn: [MethodCategory!] @cost(weight: "10")
 }
 
 input MethodFilterInput {
   and: [MethodFilterInput!]
   or: [MethodFilterInput!]
-  id: UuidOperationFilterInput
+  id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
   description: StringOperationFilterInput
-  standard: StandardFilterInput
-  publication: PublicationFilterInput
-  calculationLocator: UrlOperationFilterInput
+  calculationLocator: UriFilterInput
   categories: ListMethodCategoryOperationFilterInput
   institutionDevelopers: ListInstitutionFilterTypeFilterInput
   institutionDeveloperEdges: ListInstitutionMethodDeveloperFilterTypeFilterInput
@@ -2805,39 +2425,18 @@ input MethodFilterInput {
 }
 
 input MethodSortInput {
+  id: SortEnumType @cost(weight: "10")
   name: SortEnumType @cost(weight: "10")
   description: SortEnumType @cost(weight: "10")
-  standard: StandardSortInput @cost(weight: "10")
-  publication: PublicationSortInput @cost(weight: "10")
-  reference: IReferenceSortInput @cost(weight: "10")
-  validity: SortEnumType @cost(weight: "10")
-  availability: SortEnumType @cost(weight: "10")
   calculationLocator: UriSortInput @cost(weight: "10")
-  managerId: SortEnumType @cost(weight: "10")
   manager: InstitutionSortInput @cost(weight: "10")
-  id: SortEnumType @cost(weight: "10")
-  version: SortEnumType @cost(weight: "10")
 }
 
 input NullableOfPrimeSurfaceOperationFilterInput {
-  eq: PrimeSurface @cost(weight: "10")
-  neq: PrimeSurface @cost(weight: "10")
+  equalTo: PrimeSurface @cost(weight: "10")
+  notEqualTo: PrimeSurface @cost(weight: "10")
   in: [PrimeSurface] @cost(weight: "10")
-  nin: [PrimeSurface] @cost(weight: "10")
-}
-
-input NumerationFilterInput {
-  and: [NumerationFilterInput!]
-  or: [NumerationFilterInput!]
-  prefix: StringOperationFilterInput
-  mainNumber: StringOperationFilterInput
-  suffix: StringOperationFilterInput
-}
-
-input NumerationSortInput {
-  prefix: SortEnumType @cost(weight: "10")
-  mainNumber: SortEnumType @cost(weight: "10")
-  suffix: SortEnumType @cost(weight: "10")
+  notIn: [PrimeSurface] @cost(weight: "10")
 }
 
 input OpenEndedDateTimeRangeInput {
@@ -2868,37 +2467,20 @@ input PhotovoltaicDataPropositionInput {
   resources: GetHttpsResourcesPropositionInput
 }
 
-input PublicationFilterInput {
-  and: [PublicationFilterInput!]
-  or: [PublicationFilterInput!]
-  authors: ListStringOperationFilterInput
-  "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
-  doi: StringOperationFilterInput
-  "The website arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
-  arXiv: StringOperationFilterInput
-  "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
-  urn: StringOperationFilterInput
-  "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
-  webAddress: UrlOperationFilterInput
-  title: StringOperationFilterInput
-  abstract: StringOperationFilterInput
-  "Referenced section"
-  section: StringOperationFilterInput
+input PublicationInput {
+  abstract: String
+  arXiv: String
+  authors: [String!]
+  doi: String
+  section: String
+  title: String
+  urn: String
+  webAddress: Url
 }
 
-input PublicationSortInput {
-  "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
-  doi: SortEnumType @cost(weight: "10")
-  "The website arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
-  arXiv: SortEnumType @cost(weight: "10")
-  "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
-  urn: SortEnumType @cost(weight: "10")
-  "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
-  webAddress: UriSortInput @cost(weight: "10")
-  title: SortEnumType @cost(weight: "10")
-  abstract: SortEnumType @cost(weight: "10")
-  "Referenced section"
-  section: SortEnumType @cost(weight: "10")
+input ReferenceInput {
+  publication: PublicationInput
+  standard: StandardInput
 }
 
 input RegisterUserInput {
@@ -2965,6 +2547,10 @@ input ResetUserPasswordInput {
   resetCode: String!
 }
 
+input RevokeTokenInput {
+  tokenId: Uuid!
+}
+
 input SetUserPasswordInput {
   password: String!
   passwordConfirmation: String!
@@ -2974,57 +2560,42 @@ input SetUserPhoneNumberInput {
   phoneNumber: String!
 }
 
-"`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
-input StandardFilterInput {
-  and: [StandardFilterInput!]
-  or: [StandardFilterInput!]
-  "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
-  year: IntOperationFilterInput
-  numeration: NumerationFilterInput
-  standardizers: ListStandardizerOperationFilterInput
-  locator: UrlOperationFilterInput
-  title: StringOperationFilterInput
-  abstract: StringOperationFilterInput
-  "The section of the standard to which the reference refers to."
-  section: StringOperationFilterInput
-}
-
-"`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
-input StandardSortInput {
-  "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
-  year: SortEnumType @cost(weight: "10")
-  numeration: NumerationSortInput @cost(weight: "10")
-  locator: UriSortInput @cost(weight: "10")
-  title: SortEnumType @cost(weight: "10")
-  abstract: SortEnumType @cost(weight: "10")
-  "The section of the standard to which the reference refers to."
-  section: SortEnumType @cost(weight: "10")
-}
-
-input StandardizerOperationFilterInput {
-  eq: Standardizer @cost(weight: "10")
-  neq: Standardizer @cost(weight: "10")
-  in: [Standardizer!] @cost(weight: "10")
-  nin: [Standardizer!] @cost(weight: "10")
+input StandardInput {
+  abstract: String
+  locator: Url
+  numeration: CreateNumerationInput!
+  section: String
+  standardizers: [Standardizer!]!
+  title: String
+  year: Int
 }
 
 input StringOperationFilterInput {
   and: [StringOperationFilterInput!]
   or: [StringOperationFilterInput!]
-  eq: String @cost(weight: "10")
-  neq: String @cost(weight: "10")
+  equalTo: String @cost(weight: "10")
+  notEqualTo: String @cost(weight: "10")
   contains: String @cost(weight: "20")
-  ncontains: String @cost(weight: "20")
+  doesNotContain: String @cost(weight: "20")
   in: [String] @cost(weight: "10")
-  nin: [String] @cost(weight: "10")
+  notIn: [String] @cost(weight: "10")
   startsWith: String @cost(weight: "20")
-  nstartsWith: String @cost(weight: "20")
+  doesNotStartWith: String @cost(weight: "20")
   endsWith: String @cost(weight: "20")
-  nendsWith: String @cost(weight: "20")
+  doesNotEndWith: String @cost(weight: "20")
 }
 
 input SwitchInstitutionOperatingStateInput {
   institutionId: Uuid!
+}
+
+input UpdateApplicationInput {
+  applicationId: Uuid!
+  clientId: String!
+  displayName: String!
+  permissions: [String!]!
+  postLogoutRedirectUri: String!
+  redirectUri: String!
 }
 
 input UpdateComponentAssemblyInput {
@@ -3041,6 +2612,9 @@ input UpdateComponentInput {
   componentId: Uuid!
   description: String!
   name: String!
+  primeDirection: DescriptionOrReferenceInput
+  primeSurface: DescriptionOrReferenceInput
+  switchableLayers: DescriptionOrReferenceInput
 }
 
 input UpdateDataFormatInput {
@@ -3049,9 +2623,8 @@ input UpdateDataFormatInput {
   extension: String
   mediaType: String!
   name: String!
-  publication: UpdatePublicationInput
+  reference: ReferenceInput
   schemaLocator: Url
-  standard: UpdateStandardInput
 }
 
 input UpdateDatabaseInput {
@@ -3077,36 +2650,42 @@ input UpdateMethodInput {
   description: String!
   methodId: Uuid!
   name: String!
-  publication: UpdatePublicationInput
-  standard: UpdateStandardInput
+  reference: ReferenceInput
   validity: OpenEndedDateTimeRangeInput
 }
 
-input UpdateNumerationInput {
-  mainNumber: String!
-  prefix: String
-  suffix: String
+input UriFilterInput {
+  and: [UriFilterInput!]
+  or: [UriFilterInput!]
+  absolutePath: StringOperationFilterInput
+  absoluteUri: StringOperationFilterInput
+  localPath: StringOperationFilterInput
+  authority: StringOperationFilterInput
+  hostNameType: UriHostNameTypeOperationFilterInput
+  isDefaultPort: BooleanOperationFilterInput
+  isFile: BooleanOperationFilterInput
+  isLoopback: BooleanOperationFilterInput
+  pathAndQuery: StringOperationFilterInput
+  segments: ListStringOperationFilterInput
+  isUnc: BooleanOperationFilterInput
+  host: StringOperationFilterInput
+  port: ComparableInt32OperationFilterInput
+  query: StringOperationFilterInput
+  fragment: StringOperationFilterInput
+  scheme: StringOperationFilterInput
+  originalString: StringOperationFilterInput
+  dnsSafeHost: StringOperationFilterInput
+  idnHost: StringOperationFilterInput
+  isAbsoluteUri: BooleanOperationFilterInput
+  userEscaped: BooleanOperationFilterInput
+  userInfo: StringOperationFilterInput
 }
 
-input UpdatePublicationInput {
-  abstract: String
-  arXiv: String
-  authors: [String!]
-  doi: String
-  section: String
-  title: String
-  urn: String
-  webAddress: Url
-}
-
-input UpdateStandardInput {
-  abstract: String
-  locator: Url
-  numeration: UpdateNumerationInput!
-  section: String
-  standardizers: [Standardizer!]!
-  title: String
-  year: Int
+input UriHostNameTypeOperationFilterInput {
+  equalTo: UriHostNameType @cost(weight: "10")
+  notEqualTo: UriHostNameType @cost(weight: "10")
+  in: [UriHostNameType!] @cost(weight: "10")
+  notIn: [UriHostNameType!] @cost(weight: "10")
 }
 
 input UriSortInput {
@@ -3133,25 +2712,10 @@ input UriSortInput {
   userInfo: SortEnumType @cost(weight: "10")
 }
 
-input UrlOperationFilterInput {
-  eq: Url @cost(weight: "10")
-  neq: Url @cost(weight: "10")
-  in: [Url] @cost(weight: "10")
-  nin: [Url] @cost(weight: "10")
-  gt: Url @cost(weight: "10")
-  ngt: Url @cost(weight: "10")
-  gte: Url @cost(weight: "10")
-  ngte: Url @cost(weight: "10")
-  lt: Url @cost(weight: "10")
-  nlt: Url @cost(weight: "10")
-  lte: Url @cost(weight: "10")
-  nlte: Url @cost(weight: "10")
-}
-
 input UserFilterInput {
   and: [UserFilterInput!]
   or: [UserFilterInput!]
-  id: UuidOperationFilterInput
+  id: ComparableGuidOperationFilterInput
   developedMethods: ListMethodFilterTypeFilterInput
   developedMethodEdges: ListUserMethodDeveloperFilterTypeFilterInput
   representedInstitutions: ListInstitutionFilterTypeFilterInput
@@ -3167,41 +2731,7 @@ input UserMethodDeveloperFilterInput {
 }
 
 input UserSortInput {
-  postalAddress: SortEnumType @cost(weight: "10")
-  websiteLocator: UriSortInput @cost(weight: "10")
-  version: SortEnumType @cost(weight: "10")
-  "Full name"
-  name: SortEnumType @cost(weight: "10")
   id: SortEnumType @cost(weight: "10")
-  userName: SortEnumType @cost(weight: "10")
-  normalizedUserName: SortEnumType @cost(weight: "10")
-  email: SortEnumType @cost(weight: "10")
-  normalizedEmail: SortEnumType @cost(weight: "10")
-  emailConfirmed: SortEnumType @cost(weight: "10")
-  passwordHash: SortEnumType @cost(weight: "10")
-  securityStamp: SortEnumType @cost(weight: "10")
-  concurrencyStamp: SortEnumType @cost(weight: "10")
-  phoneNumber: SortEnumType @cost(weight: "10")
-  phoneNumberConfirmed: SortEnumType @cost(weight: "10")
-  twoFactorEnabled: SortEnumType @cost(weight: "10")
-  lockoutEnd: SortEnumType @cost(weight: "10")
-  lockoutEnabled: SortEnumType @cost(weight: "10")
-  accessFailedCount: SortEnumType @cost(weight: "10")
-}
-
-input UuidOperationFilterInput {
-  eq: Uuid @cost(weight: "10")
-  neq: Uuid @cost(weight: "10")
-  in: [Uuid] @cost(weight: "10")
-  nin: [Uuid] @cost(weight: "10")
-  gt: Uuid @cost(weight: "10")
-  ngt: Uuid @cost(weight: "10")
-  gte: Uuid @cost(weight: "10")
-  ngte: Uuid @cost(weight: "10")
-  lt: Uuid @cost(weight: "10")
-  nlt: Uuid @cost(weight: "10")
-  lte: Uuid @cost(weight: "10")
-  nlte: Uuid @cost(weight: "10")
 }
 
 input UuidPropositionInput {
@@ -3367,10 +2897,17 @@ enum ConfirmUserMethodDeveloperErrorCode {
   UNKNOWN_DEVELOPER
 }
 
+enum CreateApplicationErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_INSTITUTION
+}
+
 enum CreateComponentErrorCode {
   UNKNOWN
   UNKNOWN_MANUFACTURER
   UNAUTHORIZED
+  AMBIGUOUS_REFERENCE
 }
 
 enum CreateDataFormatErrorCode {
@@ -3414,6 +2951,18 @@ enum DataKind {
 enum DatabaseVerificationState {
   PENDING
   VERIFIED
+}
+
+enum DeleteApplicationErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_APPLICATION
+}
+
+enum DeleteAuthorizationErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_AUTHORIZATION
 }
 
 enum DeleteInstitutionErrorCode {
@@ -3629,6 +3178,12 @@ enum ResetUserTwoFactorAuthenticatorErrorCode {
   RESETTING_FAILED
 }
 
+enum RevokeTokenErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_TOKEN
+}
+
 enum SetUserPasswordErrorCode {
   UNKNOWN
   UNKNOWN_USER
@@ -3685,6 +3240,12 @@ enum SwitchInstitutionOperatingStateErrorCode {
   UNAUTHORIZED
 }
 
+enum UpdateApplicationErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_APPLICATION
+}
+
 enum UpdateComponentAssemblyErrorCode {
   UNKNOWN
   UNKNOWN_ASSEMBLED_COMPONENT
@@ -3732,6 +3293,14 @@ enum UpdateMethodErrorCode {
   UNKNOWN_METHOD
 }
 
+enum UriHostNameType {
+  UNKNOWN
+  BASIC
+  DNS
+  I_PV4
+  I_PV6
+}
+
 enum UserRole {
   ADMINISTRATOR
   VERIFIER
@@ -3753,38 +3322,16 @@ enum VerifyInstitutionErrorCode {
 }
 
 "The authorize directive."
-directive @authorize(
-  "Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase."
-  apply: ApplyPolicy! = BEFORE_RESOLVER
-  "The name of the authorization policy that determines access to the annotated resource."
-  policy: String
-  "Roles that are allowed to access the annotated resource."
-  roles: [String!]
-) repeatable on OBJECT | FIELD_DEFINITION
+directive @authorize("Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase." apply: ApplyPolicy! = BEFORE_RESOLVER "The name of the authorization policy that determines access to the annotated resource." policy: String "Roles that are allowed to access the annotated resource." roles: [String!]) repeatable on OBJECT | FIELD_DEFINITION
 
 "The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
-directive @cost(
-  "The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc."
-  weight: String!
-) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
+directive @cost("The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc." weight: String!) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
 
 "The purpose of the `@listSize` directive is to either inform the static analysis about the size of returned lists (if that information is statically available), or to point the analysis to where to find that information."
-directive @listSize(
-  "The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field."
-  assumedSize: Int
-  "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error."
-  requireOneSlicingArgument: Boolean! = true
-  "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields."
-  sizedFields: [String!]
-  "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments."
-  slicingArguments: [String!]
-) on FIELD_DEFINITION
+directive @listSize("The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field." assumedSize: Int "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error." requireOneSlicingArgument: Boolean! = true "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields." sizedFields: [String!] "The `slicingArgumentDefaultValue` argument can be used to define a default value for a slicing argument, which is used if the argument is not present in a query." slicingArgumentDefaultValue: Int "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments." slicingArguments: [String!]) on FIELD_DEFINITION
 
 "The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
-directive @specifiedBy(
-  "The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types."
-  url: String!
-) on SCALAR
+directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
 
 scalar Any
 
@@ -3792,7 +3339,7 @@ scalar Any
 scalar Byte
 
 "The `DateTime` scalar represents an ISO-8601 compliant date time type."
-scalar DateTime @specifiedBy(url: "https://www.graphql-scalars.com/date-time")
+scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
 
 "The NonNegativeInt scalar type represents a unsigned 32-bit numeric non-fractional value equal to or greater than 0."
 scalar NonNegativeInt
