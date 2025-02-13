@@ -323,7 +323,8 @@ type Component implements Node {
   description: String!
   generalizationOf: ComponentGeneralizationOfConnection! @cost(weight: "10")
   id: ID!
-  manufacturers(pending: Boolean! = false): ComponentManufacturerConnection! @cost(weight: "10")
+  manufacturers(pending: Boolean! = false): ComponentManufacturerConnection!
+    @cost(weight: "10")
   name: String!
   partOf: ComponentPartOfConnection! @cost(weight: "10")
   prime: PrimeSurfaceOrDirection @cost(weight: "10")
@@ -619,28 +620,79 @@ type DataFormatsEdge {
 }
 
 type Database implements Node {
-  allCalorimetricData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: CalorimetricDataPropositionInput): CalorimetricDataConnection @cost(weight: "10")
-  allGeometricData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: GeometricDataPropositionInput): GeometricDataConnection @cost(weight: "10")
-  allHygrothermalData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: HygrothermalDataPropositionInput): HygrothermalDataConnection @cost(weight: "10")
-  allOpticalData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: OpticalDataPropositionInput): OpticalDataConnection @cost(weight: "10")
-  allPhotovoltaicData(after: String before: String first: NonNegativeInt last: NonNegativeInt locale: String where: PhotovoltaicDataPropositionInput): PhotovoltaicDataConnection @cost(weight: "10")
-  calorimetricData(id: Uuid! locale: String): CalorimetricData @cost(weight: "10")
+  allCalorimetricData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    where: CalorimetricDataPropositionInput
+  ): CalorimetricDataConnection @cost(weight: "10")
+  allGeometricData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    where: GeometricDataPropositionInput
+  ): GeometricDataConnection @cost(weight: "10")
+  allHygrothermalData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    where: HygrothermalDataPropositionInput
+  ): HygrothermalDataConnection @cost(weight: "10")
+  allOpticalData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    where: OpticalDataPropositionInput
+  ): OpticalDataConnection @cost(weight: "10")
+  allPhotovoltaicData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: String
+    where: PhotovoltaicDataPropositionInput
+  ): PhotovoltaicDataConnection @cost(weight: "10")
+  calorimetricData(id: Uuid!, locale: String): CalorimetricData
+    @cost(weight: "10")
   canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   canCurrentUserVerifyNode: Boolean! @cost(weight: "10")
   description: String!
-  geometricData(id: Uuid! locale: String): GeometricData @cost(weight: "10")
-  hasCalorimetricData(locale: String where: CalorimetricDataPropositionInput): Boolean @cost(weight: "10")
-  hasGeometricData(locale: String where: GeometricDataPropositionInput): Boolean @cost(weight: "10")
-  hasHygrothermalData(locale: String where: HygrothermalDataPropositionInput): Boolean @cost(weight: "10")
-  hasOpticalData(locale: String where: OpticalDataPropositionInput): Boolean @cost(weight: "10")
-  hasPhotovoltaicData(locale: String where: PhotovoltaicDataPropositionInput): Boolean @cost(weight: "10")
-  hygrothermalData(id: Uuid! locale: String): HygrothermalData @cost(weight: "10")
+  geometricData(id: Uuid!, locale: String): GeometricData @cost(weight: "10")
+  hasCalorimetricData(
+    locale: String
+    where: CalorimetricDataPropositionInput
+  ): Boolean @cost(weight: "10")
+  hasGeometricData(
+    locale: String
+    where: GeometricDataPropositionInput
+  ): Boolean @cost(weight: "10")
+  hasHygrothermalData(
+    locale: String
+    where: HygrothermalDataPropositionInput
+  ): Boolean @cost(weight: "10")
+  hasOpticalData(locale: String, where: OpticalDataPropositionInput): Boolean
+    @cost(weight: "10")
+  hasPhotovoltaicData(
+    locale: String
+    where: PhotovoltaicDataPropositionInput
+  ): Boolean @cost(weight: "10")
+  hygrothermalData(id: Uuid!, locale: String): HygrothermalData
+    @cost(weight: "10")
   id: ID!
   locator: Url!
   name: String!
   operator: DatabaseOperatorEdge! @cost(weight: "10")
-  opticalData(id: Uuid! locale: String): OpticalData @cost(weight: "10")
-  photovoltaicData(id: Uuid! locale: String): PhotovoltaicData @cost(weight: "10")
+  opticalData(id: Uuid!, locale: String): OpticalData @cost(weight: "10")
+  photovoltaicData(id: Uuid!, locale: String): PhotovoltaicData
+    @cost(weight: "10")
   uuid: Uuid! @cost(weight: "10")
   verificationCode: String!
   verificationState: DatabaseVerificationState!
@@ -900,18 +952,26 @@ type Institution implements Node & Stakeholder {
   canCurrentUserSwitchOperatingStateOfNode: Boolean! @cost(weight: "10")
   canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   description: String!
-  developedMethods(pending: Boolean! = false): InstitutionDevelopedMethodConnection! @cost(weight: "10")
+  developedMethods(
+    pending: Boolean! = false
+  ): InstitutionDevelopedMethodConnection! @cost(weight: "10")
   id: ID!
-  managedDataFormats: InstitutionManagedDataFormatConnection! @cost(weight: "10")
-  managedInstitutions: InstitutionManagedInstitutionConnection! @cost(weight: "10")
+  managedDataFormats: InstitutionManagedDataFormatConnection!
+    @cost(weight: "10")
+  managedInstitutions: InstitutionManagedInstitutionConnection!
+    @cost(weight: "10")
   managedMethods: InstitutionManagedMethodConnection! @cost(weight: "10")
   manager: InstitutionManagerEdge @cost(weight: "10")
-  manufacturedComponents(pending: Boolean! = false): InstitutionManufacturedComponentConnection! @cost(weight: "10")
+  manufacturedComponents(
+    pending: Boolean! = false
+  ): InstitutionManufacturedComponentConnection! @cost(weight: "10")
   name: String!
   operatedDatabases: InstitutionOperatedDatabaseConnection! @cost(weight: "10")
   operatingState: InstitutionOperatingState!
   publicKey: String
-  representatives(pending: Boolean! = false): InstitutionRepresentativeConnection! @cost(weight: "10")
+  representatives(
+    pending: Boolean! = false
+  ): InstitutionRepresentativeConnection! @cost(weight: "10")
   state: InstitutionState!
   uuid: Uuid! @cost(weight: "10")
   websiteLocator: Url
@@ -1073,7 +1133,8 @@ type Method implements Node {
   canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   categories: [MethodCategory!]!
   description: String!
-  developers(pending: Boolean! = false): MethodDeveloperConnection! @cost(weight: "10")
+  developers(pending: Boolean! = false): MethodDeveloperConnection!
+    @cost(weight: "10")
   id: ID!
   manager: MethodManagerEdge! @cost(weight: "10")
   name: String!
@@ -1117,70 +1178,241 @@ type MethodsEdge {
 }
 
 type Mutation {
-  addComponentAssembly(input: AddComponentAssemblyInput!): AddComponentAssemblyPayload! @authorize(policy: "Write") @cost(weight: "10")
-  addComponentGeneralization(input: AddComponentGeneralizationInput!): AddComponentGeneralizationPayload! @authorize(policy: "Write") @cost(weight: "10")
-  addComponentManufacturer(input: AddComponentManufacturerInput!): AddComponentManufacturerPayload! @authorize(policy: "Write") @cost(weight: "10")
-  addComponentVariant(input: AddComponentVariantInput!): AddComponentVariantPayload! @authorize(policy: "Write") @cost(weight: "10")
-  addInstitutionMethodDeveloper(input: AddInstitutionMethodDeveloperInput!): AddInstitutionMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
-  addInstitutionRepresentative(input: AddInstitutionRepresentativeInput!): AddInstitutionRepresentativePayload! @authorize(policy: "Write") @cost(weight: "10")
-  addUserMethodDeveloper(input: AddUserMethodDeveloperInput!): AddUserMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
-  addUserRole(input: AddUserRoleInput!): AddUserRolePayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  changeInstitutionRepresentativeRole(input: ChangeInstitutionRepresentativeRoleInput!): ChangeInstitutionRepresentativeRolePayload! @authorize(policy: "Write") @cost(weight: "10")
-  changeUserEmail(input: ChangeUserEmailInput!): ChangeUserEmailPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  changeUserPassword(input: ChangeUserPasswordInput!): ChangeUserPasswordPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  confirmComponentManufacturer(input: ConfirmComponentManufacturerInput!): ConfirmComponentManufacturerPayload! @authorize(policy: "Write") @cost(weight: "10")
-  confirmInstitutionMethodDeveloper(input: ConfirmInstitutionMethodDeveloperInput!): ConfirmInstitutionMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
-  confirmInstitutionRepresentative(input: ConfirmInstitutionRepresentativeInput!): ConfirmInstitutionRepresentativePayload! @authorize(policy: "Write") @cost(weight: "10")
-  confirmUserEmail(input: ConfirmUserEmailInput!): ConfirmUserEmailPayload! @cost(weight: "10")
-  confirmUserEmailChange(input: ConfirmUserEmailChangeInput!): ConfirmUserEmailChangePayload! @cost(weight: "10")
-  confirmUserMethodDeveloper(input: ConfirmUserMethodDeveloperInput!): ConfirmUserMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
-  createApplication(input: CreateApplicationInput!): CreateApplicationPayload! @authorize(policy: "Write") @cost(weight: "10")
-  createComponent(input: CreateComponentInput!): CreateComponentPayload! @authorize(policy: "Write") @cost(weight: "10")
-  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload! @authorize(policy: "Write") @cost(weight: "10")
-  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload! @authorize(policy: "Write") @cost(weight: "10")
-  createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload! @authorize(policy: "Write") @cost(weight: "10")
-  createMethod(input: CreateMethodInput!): CreateMethodPayload! @authorize(policy: "Write") @cost(weight: "10")
-  deleteApplication(input: DeleteApplicationInput!): DeleteApplicationPayload! @authorize(policy: "Write") @cost(weight: "10")
-  deleteAuthorization(input: DeleteAuthorizationInput!): DeleteAuthorizationPayload! @authorize(policy: "Write") @cost(weight: "10")
-  deleteInstitution(input: DeleteInstitutionInput!): DeleteInstitutionPayload! @authorize(policy: "Write") @cost(weight: "10")
-  deletePersonalUserData(input: DeletePersonalUserDataInput!): DeletePersonalUserDataPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  deleteUser(input: DeleteUserInput!): DeleteUserPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  disableUserTwoFactorAuthentication: DisableUserTwoFactorAuthenticationPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  enableUserTwoFactorAuthenticator(input: EnableUserTwoFactorAuthenticatorInput!): EnableUserTwoFactorAuthenticatorPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  forgetUserTwoFactorAuthenticationClient: ForgetUserTwoFactorAuthenticationClientPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  generateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUri: GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  generateUserTwoFactorRecoveryCodes: GenerateUserTwoFactorRecoveryCodesPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
+  addComponentAssembly(
+    input: AddComponentAssemblyInput!
+  ): AddComponentAssemblyPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addComponentGeneralization(
+    input: AddComponentGeneralizationInput!
+  ): AddComponentGeneralizationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addComponentManufacturer(
+    input: AddComponentManufacturerInput!
+  ): AddComponentManufacturerPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addComponentVariant(
+    input: AddComponentVariantInput!
+  ): AddComponentVariantPayload! @authorize(policy: "Write") @cost(weight: "10")
+  addInstitutionMethodDeveloper(
+    input: AddInstitutionMethodDeveloperInput!
+  ): AddInstitutionMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addInstitutionRepresentative(
+    input: AddInstitutionRepresentativeInput!
+  ): AddInstitutionRepresentativePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addUserMethodDeveloper(
+    input: AddUserMethodDeveloperInput!
+  ): AddUserMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addUserRole(input: AddUserRoleInput!): AddUserRolePayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  changeInstitutionRepresentativeRole(
+    input: ChangeInstitutionRepresentativeRoleInput!
+  ): ChangeInstitutionRepresentativeRolePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  changeUserEmail(input: ChangeUserEmailInput!): ChangeUserEmailPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  changeUserPassword(
+    input: ChangeUserPasswordInput!
+  ): ChangeUserPasswordPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  confirmComponentManufacturer(
+    input: ConfirmComponentManufacturerInput!
+  ): ConfirmComponentManufacturerPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  confirmInstitutionMethodDeveloper(
+    input: ConfirmInstitutionMethodDeveloperInput!
+  ): ConfirmInstitutionMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  confirmInstitutionRepresentative(
+    input: ConfirmInstitutionRepresentativeInput!
+  ): ConfirmInstitutionRepresentativePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  confirmUserEmail(input: ConfirmUserEmailInput!): ConfirmUserEmailPayload!
+    @cost(weight: "10")
+  confirmUserEmailChange(
+    input: ConfirmUserEmailChangeInput!
+  ): ConfirmUserEmailChangePayload! @cost(weight: "10")
+  confirmUserMethodDeveloper(
+    input: ConfirmUserMethodDeveloperInput!
+  ): ConfirmUserMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  createApplication(input: CreateApplicationInput!): CreateApplicationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  createComponent(input: CreateComponentInput!): CreateComponentPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  createMethod(input: CreateMethodInput!): CreateMethodPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  deleteApplication(input: DeleteApplicationInput!): DeleteApplicationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  deleteAuthorization(
+    input: DeleteAuthorizationInput!
+  ): DeleteAuthorizationPayload! @authorize(policy: "Write") @cost(weight: "10")
+  deleteInstitution(input: DeleteInstitutionInput!): DeleteInstitutionPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  deletePersonalUserData(
+    input: DeletePersonalUserDataInput!
+  ): DeletePersonalUserDataPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  disableUserTwoFactorAuthentication: DisableUserTwoFactorAuthenticationPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  enableUserTwoFactorAuthenticator(
+    input: EnableUserTwoFactorAuthenticatorInput!
+  ): EnableUserTwoFactorAuthenticatorPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  forgetUserTwoFactorAuthenticationClient: ForgetUserTwoFactorAuthenticationClientPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  generateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUri: GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  generateUserTwoFactorRecoveryCodes: GenerateUserTwoFactorRecoveryCodesPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   loginUser(input: LoginUserInput!): LoginUserPayload! @cost(weight: "10")
-  loginUserWithRecoveryCode(input: LoginUserWithRecoveryCodeInput!): LoginUserWithRecoveryCodePayload! @cost(weight: "10")
-  loginUserWithTwoFactorCode(input: LoginUserWithTwoFactorCodeInput!): LoginUserWithTwoFactorCodePayload! @cost(weight: "10")
-  logoutUser: LogoutUserPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  registerUser(input: RegisterUserInput!): RegisterUserPayload! @cost(weight: "10")
-  removeComponentAssembly(input: RemoveComponentAssemblyInput!): RemoveComponentAssemblyPayload! @authorize(policy: "Write") @cost(weight: "10")
-  removeComponentGeneralization(input: RemoveComponentGeneralizationInput!): RemoveComponentGeneralizationPayload! @authorize(policy: "Write") @cost(weight: "10")
-  removeComponentManufacturer(input: RemoveComponentManufacturerInput!): RemoveComponentManufacturerPayload! @authorize(policy: "Write") @cost(weight: "10")
-  removeComponentVariant(input: RemoveComponentVariantInput!): RemoveComponentVariantPayload! @authorize(policy: "Write") @cost(weight: "10")
-  removeInstitutionMethodDeveloper(input: RemoveInstitutionMethodDeveloperInput!): RemoveInstitutionMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
-  removeInstitutionRepresentative(input: RemoveInstitutionRepresentativeInput!): RemoveInstitutionRepresentativePayload! @authorize(policy: "Write") @cost(weight: "10")
-  removeUserMethodDeveloper(input: RemoveUserMethodDeveloperInput!): RemoveUserMethodDeveloperPayload! @authorize(policy: "Write") @cost(weight: "10")
-  removeUserRole(input: RemoveUserRoleInput!): RemoveUserRolePayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  requestUserPasswordReset(input: RequestUserPasswordResetInput!): RequestUserPasswordResetPayload! @cost(weight: "10")
-  resendUserEmailConfirmation(input: ResendUserEmailConfirmationInput!): ResendUserEmailConfirmationPayload! @cost(weight: "10")
-  resendUserEmailVerification: ResendUserEmailVerificationPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  resetUserPassword(input: ResetUserPasswordInput!): ResetUserPasswordPayload! @cost(weight: "10")
-  resetUserTwoFactorAuthenticator: ResetUserTwoFactorAuthenticatorPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  revokeToken(input: RevokeTokenInput!): RevokeTokenPayload! @authorize(policy: "Write") @cost(weight: "10")
-  setUserPassword(input: SetUserPasswordInput!): SetUserPasswordPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  setUserPhoneNumber(input: SetUserPhoneNumberInput!): SetUserPhoneNumberPayload! @authorize(policy: "ManageUser") @cost(weight: "10")
-  switchInstitutionOperatingState(input: SwitchInstitutionOperatingStateInput!): SwitchInstitutionOperatingStatePayload! @authorize(policy: "Write") @cost(weight: "10")
-  updateApplication(input: UpdateApplicationInput!): UpdateApplicationPayload! @authorize(policy: "Write") @cost(weight: "10")
-  updateComponent(input: UpdateComponentInput!): UpdateComponentPayload! @authorize(policy: "Write") @cost(weight: "10")
-  updateComponentAssembly(input: UpdateComponentAssemblyInput!): UpdateComponentAssemblyPayload! @authorize(policy: "Write") @cost(weight: "10")
-  updateDatabase(input: UpdateDatabaseInput!): UpdateDatabasePayload! @authorize(policy: "Write") @cost(weight: "10")
-  updateDataFormat(input: UpdateDataFormatInput!): UpdateDataFormatPayload! @authorize(policy: "Write") @cost(weight: "10")
-  updateInstitution(input: UpdateInstitutionInput!): UpdateInstitutionPayload! @authorize(policy: "Write") @cost(weight: "10")
-  updateMethod(input: UpdateMethodInput!): UpdateMethodPayload! @authorize(policy: "Write") @cost(weight: "10")
-  verifyDatabase(input: VerifyDatabaseInput!): VerifyDatabasePayload! @authorize(policy: "Write") @cost(weight: "10")
-  verifyInstitution(input: VerifyInstitutionInput!): VerifyInstitutionPayload! @authorize(policy: "Write") @cost(weight: "10")
+  loginUserWithRecoveryCode(
+    input: LoginUserWithRecoveryCodeInput!
+  ): LoginUserWithRecoveryCodePayload! @cost(weight: "10")
+  loginUserWithTwoFactorCode(
+    input: LoginUserWithTwoFactorCodeInput!
+  ): LoginUserWithTwoFactorCodePayload! @cost(weight: "10")
+  logoutUser: LogoutUserPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  registerUser(input: RegisterUserInput!): RegisterUserPayload!
+    @cost(weight: "10")
+  removeComponentAssembly(
+    input: RemoveComponentAssemblyInput!
+  ): RemoveComponentAssemblyPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeComponentGeneralization(
+    input: RemoveComponentGeneralizationInput!
+  ): RemoveComponentGeneralizationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeComponentManufacturer(
+    input: RemoveComponentManufacturerInput!
+  ): RemoveComponentManufacturerPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeComponentVariant(
+    input: RemoveComponentVariantInput!
+  ): RemoveComponentVariantPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeInstitutionMethodDeveloper(
+    input: RemoveInstitutionMethodDeveloperInput!
+  ): RemoveInstitutionMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeInstitutionRepresentative(
+    input: RemoveInstitutionRepresentativeInput!
+  ): RemoveInstitutionRepresentativePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeUserMethodDeveloper(
+    input: RemoveUserMethodDeveloperInput!
+  ): RemoveUserMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeUserRole(input: RemoveUserRoleInput!): RemoveUserRolePayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  requestUserPasswordReset(
+    input: RequestUserPasswordResetInput!
+  ): RequestUserPasswordResetPayload! @cost(weight: "10")
+  resendUserEmailConfirmation(
+    input: ResendUserEmailConfirmationInput!
+  ): ResendUserEmailConfirmationPayload! @cost(weight: "10")
+  resendUserEmailVerification: ResendUserEmailVerificationPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  resetUserPassword(input: ResetUserPasswordInput!): ResetUserPasswordPayload!
+    @cost(weight: "10")
+  resetUserTwoFactorAuthenticator: ResetUserTwoFactorAuthenticatorPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  revokeToken(input: RevokeTokenInput!): RevokeTokenPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  setUserPassword(input: SetUserPasswordInput!): SetUserPasswordPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  setUserPhoneNumber(
+    input: SetUserPhoneNumberInput!
+  ): SetUserPhoneNumberPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  switchInstitutionOperatingState(
+    input: SwitchInstitutionOperatingStateInput!
+  ): SwitchInstitutionOperatingStatePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateApplication(input: UpdateApplicationInput!): UpdateApplicationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateComponent(input: UpdateComponentInput!): UpdateComponentPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateComponentAssembly(
+    input: UpdateComponentAssemblyInput!
+  ): UpdateComponentAssemblyPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateDatabase(input: UpdateDatabaseInput!): UpdateDatabasePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateDataFormat(input: UpdateDataFormatInput!): UpdateDataFormatPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateInstitution(input: UpdateInstitutionInput!): UpdateInstitutionPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateMethod(input: UpdateMethodInput!): UpdateMethodPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  verifyDatabase(input: VerifyDatabaseInput!): VerifyDatabasePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  verifyInstitution(input: VerifyInstitutionInput!): VerifyInstitutionPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
 }
 
 type NamedMethodArgument {
@@ -1345,35 +1577,197 @@ type Publication implements Reference {
 }
 
 type Query {
-  application(applicationId: Uuid!): Application @authorize(policy: "Read") @cost(weight: "10")
+  application(applicationId: Uuid!): Application
+    @authorize(policy: "Read")
+    @cost(weight: "10")
   applications: [Application!]! @authorize(policy: "Read") @cost(weight: "10")
-  authorization(authorizationId: Uuid!): Authorization @authorize(policy: "Read") @cost(weight: "10")
-  authorizations: [Authorization!]! @authorize(policy: "Read") @cost(weight: "10")
-  authorizationsByApplicationId(applicationId: Uuid!): [Authorization!]! @authorize(policy: "Read") @cost(weight: "10")
+  authorization(authorizationId: Uuid!): Authorization
+    @authorize(policy: "Read")
+    @cost(weight: "10")
+  authorizations: [Authorization!]!
+    @authorize(policy: "Read")
+    @cost(weight: "10")
+  authorizationsByApplicationId(applicationId: Uuid!): [Authorization!]!
+    @authorize(policy: "Read")
+    @cost(weight: "10")
   component(uuid: Uuid!): Component @cost(weight: "10")
-  components("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [ComponentSortInput!] @cost(weight: "10") where: ComponentFilterInput @cost(weight: "10")): ComponentsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  components(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [ComponentSortInput!] @cost(weight: "10")
+    where: ComponentFilterInput @cost(weight: "10")
+  ): ComponentsConnection
+    @listSize(
+      assumedSize: 100
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
   currentUser: User @cost(weight: "10")
   database(uuid: Uuid!): Database @cost(weight: "10")
-  databases("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [DatabaseSortInput!] @cost(weight: "10") where: DatabaseFilterInput @cost(weight: "10")): DatabasesConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  databases(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [DatabaseSortInput!] @cost(weight: "10")
+    where: DatabaseFilterInput @cost(weight: "10")
+  ): DatabasesConnection
+    @listSize(
+      assumedSize: 100
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
   dataFormat(uuid: Uuid!): DataFormat @cost(weight: "10")
-  dataFormats("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [DataFormatSortInput!] @cost(weight: "10") where: DataFormatFilterInput @cost(weight: "10")): DataFormatsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  dataFormats(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [DataFormatSortInput!] @cost(weight: "10")
+    where: DataFormatFilterInput @cost(weight: "10")
+  ): DataFormatsConnection
+    @listSize(
+      assumedSize: 100
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
   institution(uuid: Uuid!): Institution @cost(weight: "10")
-  institutions("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [InstitutionSortInput!] @cost(weight: "10") where: InstitutionFilterInput @cost(weight: "10")): InstitutionsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  institutions(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [InstitutionSortInput!] @cost(weight: "10")
+    where: InstitutionFilterInput @cost(weight: "10")
+  ): InstitutionsConnection
+    @listSize(
+      assumedSize: 100
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
   method(uuid: Uuid!): Method @cost(weight: "10")
-  methods("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [MethodSortInput!] @cost(weight: "10") where: MethodFilterInput @cost(weight: "10")): MethodsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  methods(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [MethodSortInput!] @cost(weight: "10")
+    where: MethodFilterInput @cost(weight: "10")
+  ): MethodsConnection
+    @listSize(
+      assumedSize: 100
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
   "Fetches an object given its ID."
   node("ID of the object." id: ID!): Node @cost(weight: "10")
   "Lookup nodes by a list of IDs."
   nodes("The list of node IDs." ids: [ID!]!): [Node]! @cost(weight: "10")
-  pendingDatabases("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [DatabaseSortInput!] @cost(weight: "10") where: DatabaseFilterInput @cost(weight: "10")): PendingDatabasesConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
-  pendingInstitutions("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [InstitutionSortInput!] @cost(weight: "10") where: InstitutionFilterInput @cost(weight: "10")): PendingInstitutionsConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  pendingDatabases(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [DatabaseSortInput!] @cost(weight: "10")
+    where: DatabaseFilterInput @cost(weight: "10")
+  ): PendingDatabasesConnection
+    @listSize(
+      assumedSize: 100
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  pendingInstitutions(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [InstitutionSortInput!] @cost(weight: "10")
+    where: InstitutionFilterInput @cost(weight: "10")
+  ): PendingInstitutionsConnection
+    @listSize(
+      assumedSize: 100
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
   scope(scopeId: Uuid!): Scope @authorize(policy: "Read") @cost(weight: "10")
   scopes: [Scope!]! @authorize(policy: "Read") @cost(weight: "10")
   token(tokenId: Uuid!): Token @authorize(policy: "Read") @cost(weight: "10")
   tokens: [Token!]! @authorize(policy: "Read") @cost(weight: "10")
-  tokensByApplicationId(applicationId: Uuid!): [Token!]! @authorize(policy: "Read") @cost(weight: "10")
+  tokensByApplicationId(applicationId: Uuid!): [Token!]!
+    @authorize(policy: "Read")
+    @cost(weight: "10")
   user(uuid: Uuid!): User @cost(weight: "10")
-  users("Returns the elements in the list that come after the specified cursor." after: String "Returns the elements in the list that come before the specified cursor." before: String "Returns the first _n_ elements from the list." first: Int "Returns the last _n_ elements from the list." last: Int order: [UserSortInput!] @cost(weight: "10") where: UserFilterInput @cost(weight: "10")): UsersConnection @listSize(assumedSize: 100, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 100, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  users(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [UserSortInput!] @cost(weight: "10")
+    where: UserFilterInput @cost(weight: "10")
+  ): UsersConnection
+    @listSize(
+      assumedSize: 100
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
 }
 
 type RegisterUserError {
@@ -1737,7 +2131,8 @@ type User implements Node & Stakeholder {
   canCurrentUserAddApplications: Boolean! @cost(weight: "10")
   canCurrentUserDeleteUser: Boolean! @cost(weight: "10")
   canCurrentUserViewApplications: Boolean! @cost(weight: "10")
-  developedMethods(pending: Boolean! = false): UserDevelopedMethodConnection! @cost(weight: "10")
+  developedMethods(pending: Boolean! = false): UserDevelopedMethodConnection!
+    @cost(weight: "10")
   email: String @cost(weight: "10")
   hasPassword: Boolean @cost(weight: "10")
   id: ID!
@@ -1747,7 +2142,9 @@ type User implements Node & Stakeholder {
   name: String! @cost(weight: "10")
   phoneNumber: String @cost(weight: "10")
   postalAddress: String @cost(weight: "10")
-  representedInstitutions(pending: Boolean! = false): UserRepresentedInstitutionConnection! @cost(weight: "10")
+  representedInstitutions(
+    pending: Boolean! = false
+  ): UserRepresentedInstitutionConnection! @cost(weight: "10")
   roles: [UserRole!] @cost(weight: "10")
   rolesCurrentUserCanAdd: [UserRole!]! @cost(weight: "10")
   rolesCurrentUserCanRemove: [UserRole!]! @cost(weight: "10")
@@ -3322,16 +3719,40 @@ enum VerifyInstitutionErrorCode {
 }
 
 "The authorize directive."
-directive @authorize("Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase." apply: ApplyPolicy! = BEFORE_RESOLVER "The name of the authorization policy that determines access to the annotated resource." policy: String "Roles that are allowed to access the annotated resource." roles: [String!]) repeatable on OBJECT | FIELD_DEFINITION
+directive @authorize(
+  "Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase."
+  apply: ApplyPolicy! = BEFORE_RESOLVER
+  "The name of the authorization policy that determines access to the annotated resource."
+  policy: String
+  "Roles that are allowed to access the annotated resource."
+  roles: [String!]
+) repeatable on OBJECT | FIELD_DEFINITION
 
 "The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
-directive @cost("The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc." weight: String!) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
+directive @cost(
+  "The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc."
+  weight: String!
+) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
 
 "The purpose of the `@listSize` directive is to either inform the static analysis about the size of returned lists (if that information is statically available), or to point the analysis to where to find that information."
-directive @listSize("The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field." assumedSize: Int "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error." requireOneSlicingArgument: Boolean! = true "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields." sizedFields: [String!] "The `slicingArgumentDefaultValue` argument can be used to define a default value for a slicing argument, which is used if the argument is not present in a query." slicingArgumentDefaultValue: Int "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments." slicingArguments: [String!]) on FIELD_DEFINITION
+directive @listSize(
+  "The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field."
+  assumedSize: Int
+  "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error."
+  requireOneSlicingArgument: Boolean! = true
+  "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields."
+  sizedFields: [String!]
+  "The `slicingArgumentDefaultValue` argument can be used to define a default value for a slicing argument, which is used if the argument is not present in a query."
+  slicingArgumentDefaultValue: Int
+  "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments."
+  slicingArguments: [String!]
+) on FIELD_DEFINITION
 
 "The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
-directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
+directive @specifiedBy(
+  "The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types."
+  url: String!
+) on SCALAR
 
 scalar Any
 
@@ -3339,7 +3760,7 @@ scalar Any
 scalar Byte
 
 "The `DateTime` scalar represents an ISO-8601 compliant date time type."
-scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
+scalar DateTime @specifiedBy(url: "https://www.graphql-scalars.com/date-time")
 
 "The NonNegativeInt scalar type represents a unsigned 32-bit numeric non-fractional value equal to or greater than 0."
 scalar NonNegativeInt

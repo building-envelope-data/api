@@ -211,10 +211,7 @@ type Query {
   """
   Confer `Query#calorimetricData`.
   """
-  hygrothermalData(
-    id: Uuid!
-    locale: Locale
-  ): HygrothermalData!
+  hygrothermalData(id: Uuid!, locale: Locale): HygrothermalData!
 
   """
   Confer `Query#calorimetricData`.
@@ -224,10 +221,7 @@ type Query {
   """
   Confer `Query#calorimetricData`.
   """
-  photovoltaicData(
-    id: Uuid!
-    locale: Locale
-  ): PhotovoltaicData!
+  photovoltaicData(id: Uuid!, locale: Locale): PhotovoltaicData!
 
   """
   Search for all calorimetric data for which the proposition is true.
@@ -374,10 +368,7 @@ type Query {
   """
   Confer `Query#hasCalorimetricData`.
   """
-  hasOpticalData(
-    where: OpticalDataPropositionInput
-    locale: Locale
-  ): Boolean!
+  hasOpticalData(where: OpticalDataPropositionInput, locale: Locale): Boolean!
 
   """
   Confer `Query#hasCalorimetricData`.
