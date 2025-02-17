@@ -809,6 +809,42 @@ input HygrothermalDataPropositionInput {
 }
 
 """
+Proposition for values of enum type `OpticalComponentType`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+set of sub-propositions is true.
+"""
+input OpticalComponentTypePropositionInput {
+  equalTo: OpticalComponentType
+  notEqualTo: OpticalComponentType
+  in: [OpticalComponentType]
+  notIn: [OpticalComponentType]
+}
+
+"""
+Proposition for values of enum type `OpticalComponentSubtype`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+set of sub-propositions is true.
+"""
+input OpticalComponentSubtypePropositionInput {
+  equalTo: OpticalComponentSubtype
+  notEqualTo: OpticalComponentSubtype
+  in: [OpticalComponentSubtype]
+  notIn: [OpticalComponentSubtype]
+}
+
+"""
+Proposition for values of enum type `CoatedSide`. Multiple sub-propositions are
+combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input CoatedSidePropositionInput {
+  equalTo: CoatedSide
+  notEqualTo: CoatedSide
+  in: [CoatedSide]
+  notIn: [CoatedSide]
+}
+
+"""
 See `DataPropositionInput`.
 """
 input OpticalDataPropositionInput {
@@ -817,6 +853,9 @@ input OpticalDataPropositionInput {
   not: OpticalDataPropositionInput
   or: [OpticalDataPropositionInput!]
   resources: GetHttpsResourcesPropositionInput
+  type: OpticalComponentTypePropositionInput
+  subtype: OpticalComponentSubtypePropositionInput
+  coatedSide: CoatedSidePropositionInput
   nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
   nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
   nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
@@ -978,7 +1017,7 @@ type PhotovoltaicDataEdge {
 """
 Type of data.
 """
-enum DataType {
+enum OpticalComponentType {
   GLAZING
   SHADING
 }
@@ -986,7 +1025,7 @@ enum DataType {
 """
 Subtype of data.
 """
-enum DataSubtype {
+enum OpticalComponentSubtype {
   MONOLITHIC
   LAMINATE
   INTERLAYER
@@ -1059,21 +1098,6 @@ interface Data {
   to the metabase.
   """
   componentId: Uuid!
-
-  """
-  Type
-  """
-  type: DataType
-
-  """
-  Subtype
-  """
-  subtype: DataSubtype
-
-  """
-  Coated side
-  """
-  coatedSide: CoatedSide
 
   """
   Name
@@ -1178,9 +1202,6 @@ type OpticalData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
-  type: DataType
-  subtype: DataSubtype
-  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
@@ -1191,6 +1212,21 @@ type OpticalData implements Node & Data {
   resourceTree: GetHttpsResourceTree!
   approvals: [DataApproval!]!
   approval: ResponseApproval!
+
+  """
+  Type
+  """
+  type: OpticalComponentType
+
+  """
+  Subtype
+  """
+  subtype: OpticalComponentSubtype
+
+  """
+  Coated side
+  """
+  coatedSide: CoatedSide
 
   """
   Mirrored nearnormal hemispherical visible transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
@@ -1234,9 +1270,6 @@ type CalorimetricData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
-  type: DataType
-  subtype: DataSubtype
-  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
@@ -1266,9 +1299,6 @@ type GeometricData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
-  type: DataType
-  subtype: DataSubtype
-  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
@@ -1293,9 +1323,6 @@ type HygrothermalData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
-  type: DataType
-  subtype: DataSubtype
-  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
@@ -1315,9 +1342,6 @@ type PhotovoltaicData implements Node & Data {
   locale: Locale!
   databaseId: Uuid!
   componentId: Uuid!
-  type: DataType
-  subtype: DataSubtype
-  coatedSide: CoatedSide
   name: String
   description: String
   warnings: [String!]!
