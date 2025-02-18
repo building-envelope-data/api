@@ -1440,6 +1440,7 @@ type OpticalData implements Data {
   appliedMethod: AppliedMethod!
   approvals: [DataApproval!]!
   cielabColors: [CielabColor!]!
+  coatedSide: CoatedSide
   colorRenderingIndices: [Float!]!
   component: Component @cost(weight: "10")
   componentId: Uuid!
@@ -1459,7 +1460,9 @@ type OpticalData implements Data {
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
   resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
+  subtype: OpticalComponentSubtype
   timestamp: DateTime!
+  type: OpticalComponentType
   uuid: Uuid!
   warnings: [String!]!
 }
@@ -2311,6 +2314,13 @@ input ClosedIntervalInput {
   upperBound: Float!
 }
 
+input CoatedSidePropositionInput {
+  equalTo: CoatedSide
+  in: [CoatedSide!]
+  notEqualTo: CoatedSide
+  notIn: [CoatedSide!]
+}
+
 input ComparableGuidOperationFilterInput {
   equalTo: Uuid @cost(weight: "10")
   notEqualTo: Uuid @cost(weight: "10")
@@ -2841,9 +2851,24 @@ input OpenEndedDateTimeRangeInput {
   to: DateTime
 }
 
+input OpticalComponentSubtypePropositionInput {
+  equalTo: OpticalComponentSubtype
+  in: [OpticalComponentSubtype!]
+  notEqualTo: OpticalComponentSubtype
+  notIn: [OpticalComponentSubtype!]
+}
+
+input OpticalComponentTypePropositionInput {
+  equalTo: OpticalComponentType
+  in: [OpticalComponentType!]
+  notEqualTo: OpticalComponentType
+  notIn: [OpticalComponentType!]
+}
+
 input OpticalDataPropositionInput {
   and: [OpticalDataPropositionInput!]
   cielabColors: CielabColorsPropositionInput
+  coatedSide: CoatedSidePropositionInput
   colorRenderingIndices: FloatsPropositionInput
   componentId: UuidPropositionInput
   infraredEmittances: FloatsPropositionInput
@@ -2854,6 +2879,8 @@ input OpticalDataPropositionInput {
   not: OpticalDataPropositionInput
   or: [OpticalDataPropositionInput!]
   resources: GetHttpsResourcesPropositionInput
+  subtype: OpticalComponentSubtypePropositionInput
+  type: OpticalComponentTypePropositionInput
 }
 
 input PhotovoltaicDataPropositionInput {
@@ -3243,6 +3270,13 @@ enum ChangeUserPasswordErrorCode {
   PASSWORD_TOO_SHORT
 }
 
+enum CoatedSide {
+  FRONT
+  BACK
+  BOTH
+  NEITHER
+}
+
 enum ComponentCategory {
   MATERIAL
   LAYER
@@ -3459,6 +3493,36 @@ enum LogoutUserErrorCode {
 enum MethodCategory {
   MEASUREMENT
   CALCULATION
+}
+
+enum OpticalComponentSubtype {
+  MONOLITHIC
+  LAMINATE
+  INTERLAYER
+  EMBEDDED_COATING
+  COATED
+  COATING
+  APPLIED_FILM
+  FILM
+  VENETIAN_BLIND
+  DIFFUSING_SHADE
+  ROLLER_SHADE
+  WOVEN_SHADE
+  VERTICAL_LOUVER
+  PERFORATED_SCREEN
+  CELLULAR_SHADE
+  PLEATED_SHADE
+  ROMAN_SHADE
+  SHADE_MATERIAL
+  FRITTED_GLASS
+  ACID_ETCHED_GLASS
+  SANDBLASTED_GLASS
+  CHROMOGENIC
+}
+
+enum OpticalComponentType {
+  GLAZING
+  SHADING
 }
 
 enum PrimeSurface {
