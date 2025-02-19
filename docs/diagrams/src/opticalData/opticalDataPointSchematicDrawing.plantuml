@@ -1,0 +1,121 @@
+@startjson opticalDataPointSchema
+{
+  "componentCharacteristics": {
+    "surface": {
+      "component": "surface"
+    },
+    "symmetries": [
+    "azimuthalAngleInvariance",
+    "profileAngle",
+    "mirror",
+    "rotationalDependingOnAzimuth",
+    "mirrorAndRotational"
+    ]
+    ,
+    "slatTilt": {
+      "common": "angles/slatTilt"
+    }
+  }
+  ,
+  "incidence": {
+    "direction": {
+      "oneOf":
+      {
+        "polar": "degreeBetweenZeroAndNinetyWithUncertainty"
+      
+        ,
+        "azimuth": "degreeBetweenZeroAndThreeHundredSixtyWithUncertainty"
+      }
+      ,
+      "":
+      {
+        "string":"hemispherical"
+      }
+
+    }
+    ,
+    "wavelengths": {
+      "oneOf":
+      {
+        "wavelength": "nanometer"
+      }
+      ,
+      "":
+      {
+        "integral": ["infrared", "solar", "ultraviolet", "visible"]
+      }
+
+    }
+    ,
+    "polarization": {
+      "oneOf":
+      {
+        "s": "numberWithUncertainty"
+        
+        ,
+        "p": "numberWithUncertainty"
+        
+      }
+      ,
+      "":
+      {
+        "Circular polarization": ["leftHanded", "rightHanded"]
+      }
+
+    }
+  }
+  ,
+  "emergence": {
+    "direction": {
+      "oneOf":
+      {
+        "polar": "degreeWithUncertainty"
+        
+        ,
+        "azimuth": "degreeWithUncertainty"
+        
+      }
+      ,
+      "":
+      {
+        "string": ["diffuse", "hemispherical"]
+      }
+
+    }
+  },
+  "results": {
+    "transmittance": "numberWithUncertainty",
+    "reflectance": "numberWithUncertainty",
+    "absorptanceEmittance":"numberWithUncertainty",
+    "colorTransmittance": {
+      "cielabColors": {
+          "lStar": "numberWithUncertainty"
+          ,
+          "aStar": "numberWithUncertainty"
+          ,
+          "bStar": "numberWithUncertainty"
+          ,
+          "observer":  ["twoDegrees", "tenDegrees"],
+          "illuminant":  ["A", "D65"]
+        },
+      "colorRenderingIndices": {
+          "Ra": "numberBetweenZeroAndOneHundredWithUncertainty",
+          "observer":  ["twoDegrees", "tenDegrees"],
+          "illuminant":  ["A", "D65"]
+        }
+    },
+    "colorReflectance": {
+        "cielabColors": {
+            "lStar": "numberWithUncertainty"
+            ,
+            "aStar": "numberWithUncertainty"
+            ,
+            "bStar":"numberWithUncertainty"
+            ,
+            "observer":  ["twoDegrees", "tenDegrees"],
+            "illuminant":  ["A", "D65"]
+        }
+    }
+  }
+}
+@endjson
