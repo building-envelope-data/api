@@ -1,0 +1,112 @@
+@startjson calorimetricDataSchematicDrawing
+{
+  "characteristics": {
+    "conditions":  ["dynamic", "stationary"]
+    ,
+    "primeSurface": ["exterior", "interior", "lateral"],
+    "componentTilt": {
+      "common": "componentTilt"
+    }
+  }
+  ,
+  "fluxes": {
+    "conduction":
+    {
+      "side":  ["exterior", "interior", "lateral"],
+      "flux": "wattWithUncertainty",
+      "temperatures": {
+        "surrounding": "kelvinWithUncertainty",
+        "sample": "kelvinWithUncertainty"
+      }
+      ,
+      "coefficient": "wattPerSquareMeterKelvinWithUncertainty"
+    }
+    ,
+    "convection":
+    {
+      "side":  ["exterior", "interior", "lateral"]
+      ,
+      "flux": "wattWithUncertainty",
+      "temperatures": {
+        "surrounding": "wattWithUncertainty",
+        "sample": "wattWithUncertainty"
+      }
+      ,
+      "coefficient": "wattPerSquareMeterKelvinWithUncertainty"
+    }
+    ,
+    "longwaveRadiation":
+    {
+      "side":  ["exterior", "interior", "lateral"]
+      ,
+      "flux": "wattWithUncertainty",
+      "temperatures": {
+        "surrounding": "wattWithUncertainty",
+        "sample": "wattWithUncertainty"
+      }
+      ,
+      "emittanceSurroundings": {
+        "number": "numberBetweenZeroAndOneWithUncertainty"
+      }
+    }
+    ,
+    "conductionConvectionLongwaveRadiation":
+    {
+      "side":  ["exterior", "interior", "lateral"],
+      "flux": "wattWithUncertainty",
+      "temperatures": {
+        "surrounding": "wattWithUncertainty",
+        "sample": "wattWithUncertainty"
+      },
+      "coefficient": "wattPerSquareMeterKelvinWithUncertainty"
+    },
+    "shortwaveRadiation":
+    {
+      "side":  ["exterior", "interior", "lateral"],
+      "flux": "wattWithUncertainty",
+      "direction": "opticalDataIncidenceDirection"
+    }
+    ,
+    "mixed":
+    {
+      "side":  ["exterior", "interior", "lateral"],
+      "flux": "wattWithUncertainty"
+    }
+    ,
+    "fluid":
+    {
+      "flux": "wattWithUncertainty",
+      "temperatures": {
+        "inlet": "wattWithUncertainty",
+        "outlet": "wattWithUncertainty"
+      },
+      "massFlow": "kilogramPerSecondWithUncertainty",
+      "specificHeatCapacity": "joulePerKilogramKelvinWithUncertainty"
+    }
+    ,
+    "electricity":
+    {
+      "flux": "wattWithUncertainty",
+      "currentVoltage": "currentVoltage"
+    }
+  }
+  ,
+  "results": {
+    "area": {
+      "category":  [
+      "center",
+      "irradiatedAbsorber",
+      "outerDimensions",
+      "projectedIrradiatedAbsorber"
+      ]
+    }
+    ,
+    "uValue": "wattPerSquareMeterKelvinWithUncertainty",
+    "gValue": "numberWithUncertainty",
+    "efficiencies": {
+      "photovoltaic": "efficiency",
+      "solarThermal": "efficiency"
+    }
+  }
+}
+@endjson
