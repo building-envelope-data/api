@@ -1058,6 +1058,8 @@ enum CoatedSide {
   BACK
   BOTH
   NEITHER
+  UNKNOWN
+  NOT_APPLICABLE
 }
 
 """
@@ -1226,7 +1228,7 @@ type OpticalData implements Node & Data {
   """
   Coated side
   """
-  coatedSide: CoatedSide
+  coatedSide: CoatedSide!
 
   """
   Mirrored nearnormal hemispherical visible transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
