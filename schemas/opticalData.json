@@ -256,11 +256,11 @@
       ]
     },
     "transmittance": {
-      "$ref": "number.json#/$defs/numberWithUncertainty",
+      "$ref": "number.json#/$defs/numberWithUncertaintyOrString",
       "description": "Transmittance is the ratio between the irradiance transmitted through the sample and the irradiance on the sample. In theory it is between `0` and `1` inclusive. However, in practice, it may be less than `0` or greater than `1` for example due to measurement uncertainty."
     },
     "reflectance": {
-      "$ref": "number.json#/$defs/numberWithUncertainty",
+      "$ref": "number.json#/$defs/numberWithUncertaintyOrString",
       "description": "Reflectance is the ratio between the irradiance reflected by the sample and the irradiance on the sample. In theory it is between `0` and `1` inclusive. However, in practice, it may be less than `0` or greater than `1` for example due to measurement uncertainty."
     },
     "absorptanceEmittance": {
