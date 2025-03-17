@@ -29,13 +29,21 @@
               }
             },
             "additionalProperties": false,
-            "required": ["dataPoints"]
+            "required": [
+              "dataPoints"
+            ]
           },
           "minItems": 1
+        },
+        "serverSpecific": {
+          "title": "server-specific data",
+          "$ref": "#/$defs/serverSpecific"
         }
       },
       "additionalProperties": false,
-      "required": ["data"]
+      "required": [
+        "data"
+      ]
     },
     "dataPoint": {
       "title": "Measured or calculated optical `results` for an `incidence` and `emergence`",
@@ -78,7 +86,9 @@
             "description": "For example transmittance, reflectance and the color."
           }
         },
-        "required": ["results"]
+        "required": [
+          "results"
+        ]
       },
       "else": {
         "properties": {
@@ -88,10 +98,16 @@
             "description": "For example transmittance and reflectance."
           }
         },
-        "required": ["results"]
+        "required": [
+          "results"
+        ]
       },
       "unevaluatedProperties": false,
-      "required": ["incidence", "emergence", "results"]
+      "required": [
+        "incidence",
+        "emergence",
+        "results"
+      ]
     },
     "componentCharacteristics": {
       "title": "Component characteristics",
@@ -120,7 +136,12 @@
         },
         "normalization": {
           "type": "string",
-          "enum": ["absolute", "relative", "specular", "diffuseReflectance"],
+          "enum": [
+            "absolute",
+            "relative",
+            "specular",
+            "diffuseReflectance"
+          ],
           "title": "Normalization",
           "description": "Normalization methods absolute, relative, specular, and diffuse reflectance as standardized in [ASTM E2387-05(2011), Standard Practice for Goniometric Optical Scatter Measurements, ASTM International, West Conshohocken, PA, 2011, www.astm.org](https://www.astm.org/DATABASE.CART/HISTORICAL/E2387-05R11.htm)."
         },
@@ -177,13 +198,19 @@
             }
           },
           "additionalProperties": false,
-          "required": ["s", "p"]
+          "required": [
+            "s",
+            "p"
+          ]
         },
         {
           "title": "Circular polarization",
           "description": "`leftHanded` means that the radiation is circularly polarized and rotates in a left-hand sense with respect to the direction of radiation. `rightHanded` means that the radiation is circularly polarized and rotates in a right-hand sense with respect to the direction of radiation.",
           "type": "string",
-          "enum": ["leftHanded", "rightHanded"]
+          "enum": [
+            "leftHanded",
+            "rightHanded"
+          ]
         }
       ]
     },
@@ -213,12 +240,20 @@
       "properties": {
         "integral": {
           "type": "string",
-          "enum": ["infrared", "solar", "ultraviolet", "visible", "other"],
-          "description": "Spectrum over which the integral result was measured or calculated. `ultraviolet`, `visible`, `solar` and `infrared` indicate the range of the wavelengths used for the integral values. Details about the spectrum are provided by the method which has been applied to generate the data set. If neither `ultraviolet`, `visible`, `solar` and `infrared` describe the spectrum correctly, `other` indicates that all information about the spectrum is provided by the applied method."
+          "enum": [
+            "infrared",
+            "solar",
+            "ultraviolet",
+            "visible",
+            "other"
+          ],
+          "description": "Spectrum over which the integral result was measured or calculated. `ultraviolet`, `visible`, `solar` and `infrared` indicate the range of the wavelengths used for the integral values. Details about the spectrum are provided by the method which has been applied to generate the data set. `visible` is also known as `photopic`. `infrared` is also known as `thermal_ir`. If neither `ultraviolet`, `visible`, `solar` and `infrared` describe the spectrum correctly, `other` indicates that all information about the spectrum is provided by the applied method."
         }
       },
       "additionalProperties": false,
-      "required": ["integral"]
+      "required": [
+        "integral"
+      ]
     },
     "transmittance": {
       "$ref": "number.json#/$defs/numberWithUncertainty",
@@ -250,7 +285,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["polar"]
+          "required": [
+            "polar"
+          ]
         },
         {
           "title": "Hemispherical",
@@ -278,13 +315,18 @@
             }
           },
           "additionalProperties": false,
-          "required": ["polar"]
+          "required": [
+            "polar"
+          ]
         },
         {
           "title": "Diffuse or hemispherical",
           "description": "(i) Diffuse means all directions with an emergence angle greater than 10°. (ii) Hemispherical means all directions to the hemisphere above the sample surface. Both are used when the emergence in many directions is treated as a sum.",
           "type": "string",
-          "enum": ["diffuse", "hemispherical"]
+          "enum": [
+            "diffuse",
+            "hemispherical"
+          ]
         }
       ]
     },
@@ -301,7 +343,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["wavelength"]
+      "required": [
+        "wavelength"
+      ]
     },
     "wavelengths": {
       "title": "Wavelengths of radiation",
@@ -333,7 +377,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["direction", "wavelengths"]
+      "required": [
+        "direction",
+        "wavelengths"
+      ]
     },
     "emergence": {
       "title": "Emergent radiation",
@@ -345,7 +392,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["direction"]
+      "required": [
+        "direction"
+      ]
     },
     "results": {
       "title": "Measurement or simulation results",
@@ -468,7 +517,11 @@
         }
       },
       "additionalProperties": false,
-      "required": ["lStar", "aStar", "bStar"]
+      "required": [
+        "lStar",
+        "aStar",
+        "bStar"
+      ]
     },
     "colorRenderingIndex": {
       "title": "The Color Rendering Index (CRI) indicates how well the transmitted radiation matches daylight regarding the rendering of colors. `Ra` considers one transmission of the building envelope. `Raout-in` considers two transmissions of the building envelope.",
@@ -490,7 +543,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["Ra"]
+          "required": [
+            "Ra"
+          ]
         },
         {
           "type": "object",
@@ -509,19 +564,469 @@
             }
           },
           "additionalProperties": false,
-          "required": ["Raout-in"]
+          "required": [
+            "Raout-in"
+          ]
         }
       ]
     },
     "observer": {
       "type": "string",
-      "enum": ["twoDegrees", "tenDegrees"],
+      "enum": [
+        "twoDegrees",
+        "tenDegrees"
+      ],
       "description": "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
     },
     "illuminant": {
       "type": "string",
-      "enum": ["A", "D65"],
+      "enum": [
+        "A",
+        "D65"
+      ],
       "description": "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+    },
+    "serverSpecific": {
+      "title": "Data which is specific for a product data server and exceeds the structure of `#/$defs/dataPoint`.",
+      "type": "object",
+      "properties": {
+        "igsdb": {
+          "title": "Data specific for the International Glazing and Shading Database (IGSDB) of Lawrence Berkeley National Laboratory (LBNL, Berkeley Lab)",
+          "$ref": "#/$defs/igsdb"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "igsdb": {
+      "description": "This data is in development and subject to change. When the scope of `#/$defs/dataPoint` extends, data will move from this `server-specific` key to the key `dataPoints`. The following keys have been specific for IGSDB and are now part of `database.graphql`: `type`, `subtype`, `name`, `manufacturer_name`. The following keys have been specific for IGSDB and are now part of `dataPoints`: `emissivity_front`, `emissivity_back`, `tir_front`, `tir_back`, `solar`, `photopic`, `thermal_ir`, `wavelength_data`.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "component_id": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "historical_tokens": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "marketing_name": {
+          "type": "string"
+        },
+        "nfrc_id": {
+          "type": "integer"
+        },
+        "igdb_id": {
+          "type": "integer"
+        },
+        "cgdb_id": {
+          "type": "integer"
+        },
+        "mdb_time_created": {
+          "type": "string"
+        },
+        "cgdb_database_version": {
+          "type": "string"
+        },
+        "acceptance": {
+          "type": "string",
+          "enum": [
+            "#",
+            ""
+          ]
+        },
+        "reference": {
+          "type": "boolean"
+        },
+        "appearance": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "owner_name": {
+          "type": "string"
+        },
+        "data_file_name": {
+          "type": "string"
+        },
+        "data_file_type": {
+          "type": "string"
+        },
+        "data_file_available": {
+          "type": "boolean"
+        },
+        "short_description": {
+          "type": "string"
+        },
+        "deconstructable": {
+          "type": "boolean"
+        },
+        "coating_name": {
+          "type": "string"
+        },
+        "coating_id": {
+          "type": "integer"
+        },
+        "coated_side": {
+          "type": "string"
+        },
+        "igdb_checksum": {
+          "type": "integer"
+        },
+        "cgdb_checksum": {
+          "type": "string"
+        },
+        "checksum_date": {
+          "type": "string"
+        },
+        "window8_application_type": {
+          "type": "string"
+        },
+        "product_detail_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "composition": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "integrated_spectral_averages_summaries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "calculation_standard": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "source_version": {
+                "type": "string"
+              },
+              "opticalc_pywincalc_version": {
+                "type": "string"
+              },
+              "spf": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "tdw": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "tkr": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "tuv": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "color": {
+                "type": "object",
+                "properties": {
+                  "reflectance_back": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  },
+                  "reflectance_front": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  },
+                  "transmittance_back": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  },
+                  "transmittance_front": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  }
+                },
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": []
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": []
+          },
+          "minItems": 1
+        },
+        "geometric_properties": {
+          "type": "string"
+        },
+        "material": {
+          "type": "string"
+        },
+        "material_bulk_properties": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "integer"
+            },
+            "conductivity": {
+              "type": "string"
+            },
+            "youngs_modulus": {
+              "type": "number"
+            },
+            "poissons_ratio": {
+              "type": "number"
+            },
+            "elasticity": {
+              "type": "number"
+            },
+            "moisture_properties": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "extra_data": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true,
+          "required": []
+        },
+        "physical_properties": {
+          "type": "object",
+          "properties": {
+            "is_specular": {
+              "type": "boolean"
+            },
+            "thickness": {
+              "type": "number"
+            },
+            "predefined_emissivity_front": {
+              "type": "number"
+            },
+            "predefined_emissivity_back": {
+              "type": "number"
+            },
+            "predefined_tir_front": {
+              "type": "number"
+            },
+            "predefined_tir_back": {
+              "type": "number"
+            },
+            "permeability_factor": {
+              "type": "number"
+            },
+            "bulk_properties_override": {
+              "type": "object",
+              "properties": {
+                "conductivity": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1,
+              "required": []
+            },
+            "optical_properties": {
+              "type": "object",
+              "properties": {
+                "optical_data_type": {
+                  "type": "string"
+                },
+                "incidence_angular_resolution_type": {
+                  "type": "string"
+                },
+                "outgoing_angular_resolution_type": {
+                  "type": "string"
+                },
+                "optical_data": {
+                  "type": "object",
+                  "properties": {
+                    "angle_blocks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "incidence_angle": {
+                            "type": "number"
+                          },
+                          "num_wavelengths": {
+                            "type": "number"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": []
+                      },
+                      "minItems": 1
+                    },
+                    "number_incidence_angles": {
+                      "type": "integer"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "required": []
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1,
+              "required": []
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "integratedSpectralAverageOpticalResultsIgsdb": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "reflectance_back": {
+          "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
+        },
+        "reflectance_front": {
+          "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
+        },
+        "transmittance_back": {
+          "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
+        },
+        "transmittance_front": {
+          "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
+        },
+        "absorptance_back_direct": {
+          "type": "string"
+        },
+        "absorptance_front_direct": {
+          "type": "string"
+        },
+        "absorptance_back_hemispheric": {
+          "type": "string"
+        },
+        "absorptance_front_hemispheric": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "integratedSpectralAverageTransmittanceReflectanceIgsdb": {
+      "type": "object",
+      "properties": {
+        "matrix": {
+          "type": "string"
+        },
+        "direct_direct": {
+          "type": "string"
+        },
+        "direct_diffuse": {
+          "type": "string"
+        },
+        "diffuse_diffuse": {
+          "type": "string"
+        },
+        "direct_hemispherical": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "colorTransmittanceReflectanceIgsdb": {
+      "type": "object",
+      "properties": {
+        "direct_direct": {
+          "$ref": "#/$defs/colorsIgsdb"
+        },
+        "direct_diffuse": {
+          "$ref": "#/$defs/colorsIgsdb"
+        },
+        "diffuse_diffuse": {
+          "$ref": "#/$defs/colorsIgsdb"
+        },
+        "direct_hemispherical": {
+          "$ref": "#/$defs/colorsIgsdb"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "colorsIgsdb": {
+      "type": "object",
+      "properties": {
+        "lab": {
+          "type": "object",
+          "properties": {
+            "a": {
+              "type": "string"
+            },
+            "b": {
+              "type": "string"
+            },
+            "l": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "rgb": {
+          "type": "object",
+          "properties": {
+            "b": {
+              "type": "string"
+            },
+            "g": {
+              "type": "string"
+            },
+            "r": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "trichromatic": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "string"
+            },
+            "y": {
+              "type": "string"
+            },
+            "z": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
     }
   },
   "$ref": "#/$defs/data"
