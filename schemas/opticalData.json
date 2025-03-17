@@ -604,40 +604,43 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "component_id": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "token": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "historical_tokens": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "number.json#/$defs/stringOrNull"
           }
         },
         "marketing_name": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "nfrc_id": {
-          "type": "integer"
+          "$ref": "number.json#/$defs/integerOrNull"
         },
         "igdb_id": {
-          "type": "integer"
+          "$ref": "number.json#/$defs/integerOrNull"
         },
         "cgdb_id": {
-          "type": "integer"
+          "$ref": "number.json#/$defs/integerOrNull"
         },
         "mdb_time_created": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "igdb_database_version": {
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "cgdb_database_version": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "acceptance": {
-          "type": "string",
+          "$ref": "number.json#/$defs/stringOrNull",
           "enum": [
             "#",
             ""
@@ -647,60 +650,60 @@
           "type": "boolean"
         },
         "appearance": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "hidden": {
           "type": "boolean"
         },
         "owner_name": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "data_file_name": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "data_file_type": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "data_file_available": {
           "type": "boolean"
         },
         "short_description": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "deconstructable": {
           "type": "boolean"
         },
         "coating_name": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "coating_id": {
-          "type": "integer"
+          "$ref": "number.json#/$defs/integerOrNull"
         },
         "coated_side": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "igdb_checksum": {
-          "type": "integer"
+          "$ref": "number.json#/$defs/integerOrNull"
         },
         "cgdb_checksum": {
-          "type": "string"
+          "$ref": "number.json#/$defs/integerOrNull"
         },
         "checksum_date": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "window8_application_type": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "product_detail_files": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "number.json#/$defs/stringOrNull"
           }
         },
         "composition": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "number.json#/$defs/stringOrNull"
           }
         },
         "integrated_spectral_averages_summaries": {
@@ -709,16 +712,16 @@
             "type": "object",
             "properties": {
               "calculation_standard": {
-                "type": "string"
+                "$ref": "number.json#/$defs/stringOrNull"
               },
               "source": {
-                "type": "string"
+                "$ref": "number.json#/$defs/stringOrNull"
               },
               "source_version": {
-                "type": "string"
+                "$ref": "number.json#/$defs/stringOrNull"
               },
               "opticalc_pywincalc_version": {
-                "type": "string"
+                "$ref": "number.json#/$defs/stringOrNull"
               },
               "spf": {
                 "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
@@ -760,34 +763,34 @@
           "minItems": 1
         },
         "geometric_properties": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "material": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "material_bulk_properties": {
           "type": "object",
           "properties": {
             "name": {
-              "type": "string"
+              "$ref": "number.json#/$defs/stringOrNull"
             },
             "version": {
-              "type": "integer"
+              "$ref": "number.json#/$defs/integerOrNull"
             },
             "conductivity": {
-              "type": "string"
+              "$ref": "number.json#/$defs/stringOrNull"
             },
             "youngs_modulus": {
-              "type": "number"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "poissons_ratio": {
-              "type": "number"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "elasticity": {
-              "type": "number"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "moisture_properties": {
-              "type": "string"
+              "$ref": "number.json#/$defs/stringOrNull"
             }
           },
           "additionalProperties": false,
@@ -807,28 +810,28 @@
               "type": "boolean"
             },
             "thickness": {
-              "type": "number"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "predefined_emissivity_front": {
-              "type": "number"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "predefined_emissivity_back": {
-              "type": "number"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "predefined_tir_front": {
-              "type": "number"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "predefined_tir_back": {
-              "type": "number"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "permeability_factor": {
-              "type": "number"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "bulk_properties_override": {
               "type": "object",
               "properties": {
                 "conductivity": {
-                  "type": "string"
+                  "$ref": "number.json#/$defs/stringOrNull"
                 }
               },
               "additionalProperties": false,
@@ -839,13 +842,13 @@
               "type": "object",
               "properties": {
                 "optical_data_type": {
-                  "type": "string"
+                  "$ref": "number.json#/$defs/stringOrNull"
                 },
                 "incidence_angular_resolution_type": {
-                  "type": "string"
+                  "$ref": "number.json#/$defs/stringOrNull"
                 },
                 "outgoing_angular_resolution_type": {
-                  "type": "string"
+                  "$ref": "number.json#/$defs/stringOrNull"
                 },
                 "optical_data": {
                   "type": "object",
@@ -856,10 +859,10 @@
                         "type": "object",
                         "properties": {
                           "incidence_angle": {
-                            "type": "number"
+                            "$ref": "number.json#/$defs/numberOrNull"
                           },
                           "num_wavelengths": {
-                            "type": "number"
+                            "$ref": "number.json#/$defs/numberOrNull"
                           }
                         },
                         "additionalProperties": false,
@@ -869,7 +872,7 @@
                       "minItems": 1
                     },
                     "number_incidence_angles": {
-                      "type": "integer"
+                      "$ref": "number.json#/$defs/integerOrNull"
                     }
                   },
                   "additionalProperties": false,
@@ -895,7 +898,7 @@
       "type": "object",
       "properties": {
         "error": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "reflectance_back": {
           "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
@@ -910,16 +913,16 @@
           "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
         },
         "absorptance_back_direct": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "absorptance_front_direct": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "absorptance_back_hemispheric": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "absorptance_front_hemispheric": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         }
       },
       "additionalProperties": false,
@@ -930,19 +933,19 @@
       "type": "object",
       "properties": {
         "matrix": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "direct_direct": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "direct_diffuse": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "diffuse_diffuse": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         },
         "direct_hemispherical": {
-          "type": "string"
+          "$ref": "number.json#/$defs/stringOrNull"
         }
       },
       "additionalProperties": false,
@@ -976,13 +979,13 @@
           "type": "object",
           "properties": {
             "a": {
-              "type": "string"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "b": {
-              "type": "string"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "l": {
-              "type": "string"
+              "$ref": "number.json#/$defs/numberOrNull"
             }
           },
           "additionalProperties": false,
@@ -993,13 +996,13 @@
           "type": "object",
           "properties": {
             "b": {
-              "type": "string"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "g": {
-              "type": "string"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "r": {
-              "type": "string"
+              "$ref": "number.json#/$defs/numberOrNull"
             }
           },
           "additionalProperties": false,
@@ -1010,13 +1013,13 @@
           "type": "object",
           "properties": {
             "x": {
-              "type": "string"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "y": {
-              "type": "string"
+              "$ref": "number.json#/$defs/numberOrNull"
             },
             "z": {
-              "type": "string"
+              "$ref": "number.json#/$defs/numberOrNull"
             }
           },
           "additionalProperties": false,

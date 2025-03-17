@@ -227,6 +227,39 @@
         }
       ]
     },
+    "integerOrNull": {
+      "title": "Some servers return `null` when they do not have a value",
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "numberOrNull": {
+      "title": "Some servers return `null` when they do not have a value",
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stringOrNull": {
+      "title": "Some servers return `null` when they do not have a value",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "meterWithUncertainty": {
       "$ref": "#/$defs/numberWithUncertainty",
       "description": "Meter is the SI unit for length. With this type, the uncertainty can be defined."
