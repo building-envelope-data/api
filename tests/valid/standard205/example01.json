@@ -1,5 +1,17 @@
 {
-  "optical": [
+  "metadata": {
+    "data_model": "ASHRAE_205",
+    "schema": "FS0001",
+    "schema_version": "1.0.0",
+    "id": "6b876d7c-0a49-4c8d-9b9a-80a7f1e2ab66",
+    "description": "Example of product data of a fenestration system according to ASHRAE Standard 205",
+    "data_timestamp": "2025-03-25T12:00Z",
+    "data_version": 1,
+    "data_source": "Measurements",
+    "disclaimer": "This is an example. Similarities with real components are coincidences.",
+    "notes": "Keep in mind that this is only an example."
+  },
+  "performanceMapOptical": [
     {
       "data": [
         {
@@ -5884,6 +5896,19 @@
               }
             }
           ]
+        }
+      ]
+    }
+  ],
+  "performanceMapCalorimetric": [
+    {
+      "results": [
+        {
+          "area": {
+            "category": "center"
+          },
+          "uValue": 0.8,
+          "gValue": 0.15
         }
       ]
     }
