@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/standard205.json",
+  "title": "fenestration data for ASHRAE Standard 205",
+  "description": "Data sets about fenestration systems according to Standard 205",
+  "$defs": {
+    "standard205": {
+      "type": "object",
+      "properties": {
+        "exampleProperty1": {
+          "type": "string",
+          "description": "Please add here all properties which are needed for Standard 205 and not available in the other schemas."
+        },
+        "exampleProperty2": {
+          "type": "number",
+          "description": "Please add here all properties which are needed for Standard 205 and not available in the other schemas."
+        },
+        "optical": {
+          "title": "optical data",
+          "description": "Optical data sets according to BED-JSON",
+          "type": "array",
+          "items": {
+            "$ref": "opticalData.json",
+            "description": "The measured or simulated data in JSON."
+          },
+          "minItems": 1
+        },
+        "calorimetric": {
+          "title": "calorimetric data",
+          "description": "Calorimetric data sets according to BED-JSON",
+          "type": "array",
+          "items": {
+            "$ref": "calorimetric.json",
+            "description": "The measured or simulated data in JSON."
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    }
+  },
+  "$ref": "#/$defs/standard205"
+}
