@@ -27,10 +27,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "value",
-        "issuedBy"
-      ]
+      "required": ["value", "issuedBy"]
     },
     "centralOrDecentral": {
       "title": "Either a central or decentral identifier",

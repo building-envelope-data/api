@@ -79,10 +79,7 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": [
-              "relativeHumidityAbsolute",
-              "waterContent"
-            ]
+            "required": ["relativeHumidityAbsolute", "waterContent"]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -105,10 +102,7 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": [
-              "waterContent",
-              "liquidTransportCoefficient"
-            ]
+            "required": ["waterContent", "liquidTransportCoefficient"]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -131,10 +125,7 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": [
-              "waterContent",
-              "liquidTransportCoefficient"
-            ]
+            "required": ["waterContent", "liquidTransportCoefficient"]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -157,10 +148,7 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": [
-              "waterContent",
-              "thermalConductivity"
-            ]
+            "required": ["waterContent", "thermalConductivity"]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -182,10 +170,7 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": [
-              "temperature",
-              "thermalConductivity"
-            ]
+            "required": ["temperature", "thermalConductivity"]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -232,10 +217,7 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": [
-              "temperature",
-              "enthalpy"
-            ]
+            "required": ["temperature", "enthalpy"]
           },
           "minItems": 0,
           "uniqueItems": true
