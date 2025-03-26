@@ -6,99 +6,99 @@
   "waterVaporDiffusionResistanceFactor": 91.58,
   "sorptionIsotherm": [
     {
-      "relativeHumidityAbsolut": 0,
+      "relativeHumidityAbsolute": 0,
       "waterContent": 0
     },
     {
-      "relativeHumidityAbsolut": 0.1,
+      "relativeHumidityAbsolute": 0.1,
       "waterContent": 2.55
     },
     {
-      "relativeHumidityAbsolut": 0.2,
+      "relativeHumidityAbsolute": 0.2,
       "waterContent": 5.7
     },
     {
-      "relativeHumidityAbsolut": 0.3,
+      "relativeHumidityAbsolute": 0.3,
       "waterContent": 9.7
     },
     {
-      "relativeHumidityAbsolut": 0.4,
+      "relativeHumidityAbsolute": 0.4,
       "waterContent": 14.94
     },
     {
-      "relativeHumidityAbsolut": 0.5,
+      "relativeHumidityAbsolute": 0.5,
       "waterContent": 14.94
     },
     {
-      "relativeHumidityAbsolut": 0.55,
+      "relativeHumidityAbsolute": 0.55,
       "waterContent": 26.79
     },
     {
-      "relativeHumidityAbsolut": 0.6,
+      "relativeHumidityAbsolute": 0.6,
       "waterContent": 32.52
     },
     {
-      "relativeHumidityAbsolut": 0.65,
+      "relativeHumidityAbsolute": 0.65,
       "waterContent": 39.71
     },
     {
-      "relativeHumidityAbsolut": 0.7,
+      "relativeHumidityAbsolute": 0.7,
       "waterContent": 48.99
     },
     {
-      "relativeHumidityAbsolut": 0.75,
+      "relativeHumidityAbsolute": 0.75,
       "waterContent": 61.44
     },
     {
-      "relativeHumidityAbsolut": 0.8,
+      "relativeHumidityAbsolute": 0.8,
       "waterContent": 79
     },
     {
-      "relativeHumidityAbsolut": 0.85,
+      "relativeHumidityAbsolute": 0.85,
       "waterContent": 105.64
     },
     {
-      "relativeHumidityAbsolut": 0.9,
+      "relativeHumidityAbsolute": 0.9,
       "waterContent": 150.86
     },
     {
-      "relativeHumidityAbsolut": 0.9,
+      "relativeHumidityAbsolute": 0.9,
       "waterContent": 163.97
     },
     {
-      "relativeHumidityAbsolut": 0.95,
+      "relativeHumidityAbsolute": 0.95,
       "waterContent": 179.21
     },
     {
-      "relativeHumidityAbsolut": 0.95,
+      "relativeHumidityAbsolute": 0.95,
       "waterContent": 197.13
     },
     {
-      "relativeHumidityAbsolut": 0.95,
+      "relativeHumidityAbsolute": 0.95,
       "waterContent": 218.53
     },
     {
-      "relativeHumidityAbsolut": 0.95,
+      "relativeHumidityAbsolute": 0.95,
       "waterContent": 244.5
     },
     {
-      "relativeHumidityAbsolut": 0.95,
+      "relativeHumidityAbsolute": 0.95,
       "waterContent": 276.71
     },
     {
-      "relativeHumidityAbsolut": 0.9,
+      "relativeHumidityAbsolute": 0.9,
       "waterContent": 317.69
     },
     {
-      "relativeHumidityAbsolut": 0.95,
+      "relativeHumidityAbsolute": 0.95,
       "waterContent": 371.61
     },
     {
-      "relativeHumidityAbsolut": 1,
+      "relativeHumidityAbsolute": 1,
       "waterContent": 445.72
     },
     {
-      "relativeHumidityAbsolut": 1,
+      "relativeHumidityAbsolute": 1,
       "waterContent": 554
     }
   ],
@@ -156,19 +156,19 @@
   ],
   "waterVaporDiffusionResistanceFactorMoistureDependent": [
     {
-      "relativeHumidityAbsolut": 0,
+      "relativeHumidityAbsolute": 0,
       "diffusionResistanceFactor": 91.58
     },
     {
-      "relativeHumidityAbsolut": 0.25,
+      "relativeHumidityAbsolute": 0.25,
       "diffusionResistanceFactor": 91.58
     },
     {
-      "relativeHumidityAbsolut": 0.725,
+      "relativeHumidityAbsolute": 0.725,
       "diffusionResistanceFactor": 36.18
     },
     {
-      "relativeHumidityAbsolut": 1,
+      "relativeHumidityAbsolute": 1,
       "diffusionResistanceFactor": 36.18
     }
   ],
