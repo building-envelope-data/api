@@ -30,8 +30,7 @@
   "update.mode": "default",
   "explorer.confirmDelete": false,
   "workbench.editorAssociations": {
-    "git-rebase-todo": "default",
-    "*.ipynb": "jupyter.notebook.ipynb"
+    "git-rebase-todo": "default"
   },
   "search.useReplacePreview": false,
   "security.workspace.trust.untrustedFiles": "open",
@@ -39,6 +38,19 @@
   "editor.renderControlCharacters": true,
   "cSpell.language": "en-US",
   "cSpell.userWords": [
+    "kilogramme",
+    "octofluorpropane",
+    "hexafluoride",
+    "electrochromic",
+    "photochromic",
+    "thermochromic",
+    "ETSI",
+    "FFFD",
+    "Emittances",
+    "Raout",
+    "Colour",
+    "Hanek",
+    "Santamouris",
     "AERC",
     "ASHRAE",
     "ASTM",

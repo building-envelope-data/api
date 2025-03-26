@@ -58,22 +58,26 @@
           "properties": {
             "standard": {
               "$ref": "#/$defs/standard",
-              "description": "The standard refered to."
+              "description": "The standard referred to."
             }
           },
           "additionalProperties": false,
-          "required": ["standard"]
+          "required": [
+            "standard"
+          ]
         },
         {
           "type": "object",
           "properties": {
             "publication": {
               "$ref": "#/$defs/publication",
-              "description": "The publication refered to."
+              "description": "The publication referred to."
             }
           },
           "additionalProperties": false,
-          "required": ["publication"]
+          "required": [
+            "publication"
+          ]
         }
       ]
     },
@@ -101,7 +105,7 @@
             },
             "webAddress": {
               "$ref": "#/$defs/webAddress",
-              "description": "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
+              "description": "If a persistent identifier like DOI is defined above, this webAddress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
             }
           },
           "additionalProperties": false,
@@ -130,7 +134,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["identifiers"]
+      "required": [
+        "identifiers"
+      ]
     },
     "standard": {
       "title": "Standards are a special kind of publications. Therefore their data structure is different from publications.",
@@ -206,7 +212,9 @@
           },
           "additionalProperties": false,
           "description": "A standard may be named `ISO 52022-1` or `ASTM E2387`. While `ISO` and `ASTM` are the acronyms for the standardizers, `52022` and `2387` are the main numbers. `E` is the prefix and `1` is the postfix which may indicate for example a part number. This classification facilitates the search, because there are multiple ways to refer to a standard.",
-          "required": ["mainNumber"]
+          "required": [
+            "mainNumber"
+          ]
         },
         "year": {
           "type": "integer",
@@ -220,7 +228,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["standardizers", "numeration"],
+      "required": [
+        "standardizers",
+        "numeration"
+      ],
       "description": "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
     },
     "currentVoltage": {
@@ -237,7 +248,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["I", "V"]
+      "required": [
+        "I",
+        "V"
+      ]
     },
     "approvals": {
       "title": "Institutions can approve data with cryptographic signatures which among other things can be used to ensure integrity and authenticity of data. The same data may be approved by several institutions.",
@@ -272,7 +286,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["approver"]
+      "required": [
+        "approver"
+      ]
     },
     "approvalVerification": {
       "title": "How to verify the approval",
@@ -352,7 +368,9 @@
           },
           "additionalProperties": false,
           "minProperties": 1,
-          "required": ["voltage"]
+          "required": [
+            "voltage"
+          ]
         },
         {
           "title": "Thermochromic layers",
@@ -366,7 +384,9 @@
           },
           "additionalProperties": false,
           "minProperties": 1,
-          "required": ["temperature"]
+          "required": [
+            "temperature"
+          ]
         },
         {
           "title": "Photochromic layers",
@@ -380,12 +400,14 @@
           },
           "additionalProperties": false,
           "minProperties": 1,
-          "required": ["irradiance"]
+          "required": [
+            "irradiance"
+          ]
         }
       ]
     },
     "efficiencies": {
-      "title": "Definitions of effiencies for the conversion of energy.",
+      "title": "Definitions of efficiencies for the conversion of energy.",
       "$defs": {
         "photovoltaic": {
           "$ref": "number.json#/$defs/numberBetweenZeroAndOneWithUncertainty",
@@ -403,7 +425,7 @@
     },
     "getHttpsResource": {
       "title": "GET HTTP(S) resource",
-      "description": "HTTP resource with meta information requestable through the protocol [HTTP over TLS](https://tools.ietf.org/html/rfc2818) with `GET` requests. The protocol is colloquially called Hypertext Transfer Protocol Secure (HTTPS) and uses [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc8446) to secure [Hypertext Transfer Protocol (HTTP)](https://tools.ietf.org/html/rfc7231) connections over the internet.\n\nIf an HTTP `GET` request of the resource is [successful](https://tools.ietf.org/html/rfc7231#section-6.3) with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1), the response message body is the resource's content. Otherwise, there is some issue that can be identified and hopefully resolved by examining the status code.\n\nNote that the [Internet Assigned Numbers Authority (IANA)](https://www.iana.org) maintains the [HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml). See also [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).",
+      "description": "HTTP resource with meta information which can be requested through the protocol [HTTP over TLS](https://tools.ietf.org/html/rfc2818) with `GET` requests. The protocol is colloquially called Hypertext Transfer Protocol Secure (HTTPS) and uses [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc8446) to secure [Hypertext Transfer Protocol (HTTP)](https://tools.ietf.org/html/rfc7231) connections over the internet.\n\nIf an HTTP `GET` request of the resource is [successful](https://tools.ietf.org/html/rfc7231#section-6.3) with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1), the response message body is the resource's content. Otherwise, there is some issue that can be identified and hopefully resolved by examining the status code.\n\nNote that the [Internet Assigned Numbers Authority (IANA)](https://www.iana.org) maintains the [HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml). See also [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).",
       "type": "object",
       "properties": {
         "description": {
@@ -412,7 +434,7 @@
         },
         "hashValue": {
           "$ref": "string.json#/$defs/sha256Hash",
-          "description": "Hash value of sucessful HTTP response message body with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1) computed with Secure Hash Algorithm 256 (SHA-256) as described in the [United States's Federal Information Processing Standard 180-4 (FIPS 180-4)](https://csrc.nist.gov/publications/detail/fips/180/4/final) by the [National Institute of Standards and Technology (NIST)](https://www.nist.gov). See also [RFC 6234](https://tools.ietf.org/html/rfc6234)."
+          "description": "Hash value of successful HTTP response message body with [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6) [200](https://tools.ietf.org/html/rfc7231#section-6.3.1) computed with Secure Hash Algorithm 256 (SHA-256) as described in the [United States's Federal Information Processing Standard 180-4 (FIPS 180-4)](https://csrc.nist.gov/publications/detail/fips/180/4/final) by the [National Institute of Standards and Technology (NIST)](https://www.nist.gov). See also [RFC 6234](https://tools.ietf.org/html/rfc6234)."
         },
         "locator": {
           "$ref": "common.json#/$defs/webAddress",
@@ -474,7 +496,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["id"]
+      "required": [
+        "id"
+      ]
     },
     "fileMetaInformation": {
       "type": "object",
@@ -496,14 +520,22 @@
         }
       },
       "additionalProperties": false,
-      "required": ["path", "format"]
+      "required": [
+        "path",
+        "format"
+      ]
     },
     "possiblePositions": {
       "title": "The locations where a component can be used",
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["exterior", "asBuildingEnvelope", "inBetween", "interior"],
+        "enum": [
+          "exterior",
+          "asBuildingEnvelope",
+          "inBetween",
+          "interior"
+        ],
         "description": "(i) 'exterior' means that the component can be used on the external side of the building envelope. (ii) 'asBuildingEnvelope' means that the component can be used as building envelope without any additional components. (iii) 'inBetween' means that the component can be used within building envelope for example between two glass panes. (iv) 'interior' means that the component can be used on the internal side of the building envelope."
       },
       "uniqueItems": true,
@@ -652,7 +684,10 @@
       "properties": {
         "fractionType": {
           "type": "string",
-          "enum": ["weight", "volume"],
+          "enum": [
+            "weight",
+            "volume"
+          ],
           "description": "Whether the fraction is based on the weight or the volume of the "
         },
         "fractions": {
@@ -683,14 +718,20 @@
               }
             },
             "additionalProperties": false,
-            "required": ["material", "fraction"]
+            "required": [
+              "material",
+              "fraction"
+            ]
           },
           "minItems": 1,
           "uniqueItems": true
         }
       },
       "additionalProperties": false,
-      "required": ["fractionType", "fractions"]
+      "required": [
+        "fractionType",
+        "fractions"
+      ]
     }
   }
 }

@@ -6,8 +6,7 @@
   "$defs": {
     "central": {
       "title": "Central identifier",
-      "description": "Identifier issued by the metabase `buildingenvelopedata.org`. The metabase guarantees the identifier's uniqueness within its scope and maintains at least meta information about whatever the identifier identifies. The metabase issues for example identifiers for components, institutions, and methods.",
-      "title": " issues the central identifiers and guarantees their uniqueness.",
+      "description": "Identifier issued by the metabase `buildingenvelopedata.org`. The metabase guarantees the identifier's uniqueness within its scope and maintains at least meta information about whatever the identifier identifies. The metabase issues for example central identifiers for components, institutions, and methods and guarantees their uniqueness.",
       "type": "string",
       "format": "uuid"
     },
@@ -28,7 +27,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["value", "issuedBy"]
+      "required": [
+        "value",
+        "issuedBy"
+      ]
     },
     "centralOrDecentral": {
       "title": "Either a central or decentral identifier",

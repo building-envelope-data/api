@@ -35,7 +35,7 @@
         },
         "freeWaterSaturation": {
           "$ref": "number.json#/$defs/kilogramPerCubicMeter",
-          "description": "The amount of water of a capillay-active material it will take up in contact with water. Not the maximum water saturation, which regard water that additionally can be absorbed via vapor diffusion and condensation, regarding the poroxity, until completly filled pores."
+          "description": "The amount of water of a capillary-active material it will take up in contact with water. Not the maximum water saturation, which regard water that additionally can be absorbed via vapor diffusion and condensation, regarding the porosity, until completely filled pores."
         },
         "waterAbsorptionCoefficient": {
           "$ref": "number.json#/$defs/kilogramPerSquareMeterAndSquareRootSeconds",
@@ -43,11 +43,11 @@
         },
         "moistureDependentConductivitySupplement": {
           "$ref": "number.json#/$defs/percentPerMassPercent",
-          "description": "The supplement gives the fractional increase [in %] of the heat conductivity per mass-% moisture if a simple linear dependance of the heat conductivity on moisture content is sufficient."
+          "description": "The supplement gives the fractional increase [in %] of the heat conductivity per mass-% moisture if a simple linear dependence of the heat conductivity on moisture content is sufficient."
         },
         "temperatureDependentConductivitySupplement": {
           "$ref": "number.json#/$defs/wattPerMeterSquareKelvin",
-          "description": "Descibes the supplement of heat conductivity in dependance to the material temperature, if a simple linear dependence is sufficient."
+          "description": "Describes the supplement of heat conductivity in dependence to the material temperature, if a simple linear dependence is sufficient."
         },
         "typicalBuildInMoisture": {
           "$ref": "number.json#/$defs/kilogramPerCubicMeter",
@@ -55,7 +55,7 @@
         },
         "thermalEmissivity": {
           "$ref": "number.json#/$defs/nonNegativeNumber",
-          "description": "Typically the hemisperical long-wave radiation emissivity of the dry material surface (ASTM E408)"
+          "description": "Typically the hemispherical long-wave radiation emissivity of the dry material surface (ASTM E408)"
         },
         "thermalAbsorptivity": {
           "$ref": "number.json#/$defs/nonNegativeNumber",
@@ -63,13 +63,13 @@
         },
         "sorptionIsotherm": {
           "type": "array",
-          "description": "In a porous hygroscopic material, the specific equilibrium moisture content corresponding to the humidity of the ambient air. Also known as moisture storage function (ASTM C1498). Free water saturation is at 100% relative humitidy. Higher water content at 100% relative humidity is possible up to maximum water saturation and completly filled pores",
+          "description": "In a porous hygroscopic material, the specific equilibrium moisture content corresponding to the humidity of the ambient air. Also known as moisture storage function (ASTM C1498). Free water saturation is at 100% relative humidity. Higher water content at 100% relative humidity is possible up to maximum water saturation and completely filled pores",
           "items": {
             "type": "object",
             "properties": {
-              "relativeHumidityAbsolut": {
+              "relativeHumidityAbsolute": {
                 "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-                "description": "Is the percentage of moisture in the air compared to the maximum amount the air can hold at a given temperature expressed with an absolut value (1 = 100%)"
+                "description": "Is the percentage of moisture in the air compared to the maximum amount the air can hold at a given temperature expressed with an absolute value (1 = 100%)"
               },
               "waterContent": {
                 "$ref": "number.json#/$defs/kilogramPerCubicMeter",
@@ -79,7 +79,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["relativeHumidityAbsolut", "waterContent"]
+            "required": [
+              "relativeHumidityAbsolute",
+              "waterContent"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -102,7 +105,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["waterContent", "liquidTransportCoefficient"]
+            "required": [
+              "waterContent",
+              "liquidTransportCoefficient"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -125,7 +131,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["waterContent", "liquidTransportCoefficient"]
+            "required": [
+              "waterContent",
+              "liquidTransportCoefficient"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -148,7 +157,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["waterContent", "thermalConductivity"]
+            "required": [
+              "waterContent",
+              "thermalConductivity"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -170,7 +182,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["temperature", "thermalConductivity"]
+            "required": [
+              "temperature",
+              "thermalConductivity"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -180,9 +195,9 @@
           "items": {
             "type": "object",
             "properties": {
-              "relativeHumidityAbsolut": {
+              "relativeHumidityAbsolute": {
                 "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-                "description": "Is the percentage of moisture in the air compared to the maximum amount the air can hold at a given temperature expressed with an absolut value (1 = 100%)"
+                "description": "Is the percentage of moisture in the air compared to the maximum amount the air can hold at a given temperature expressed with an absolute value (1 = 100%)"
               },
               "diffusionResistanceFactor": {
                 "$ref": "number.json#/$defs/nonNegativeNumber",
@@ -192,7 +207,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["relativeHumidityAbsolut", "diffusionResistanceFactor"]
+            "required": [
+              "relativeHumidityAbsolute",
+              "diffusionResistanceFactor"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -214,7 +232,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["temperature", "enthalpy"]
+            "required": [
+              "temperature",
+              "enthalpy"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
