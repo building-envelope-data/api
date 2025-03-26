@@ -12257,9 +12257,8 @@
       "serverSpecific": {
         "igsdb": {
           "id": null,
-          "component_id": "6bda6b4d-8c87-47e8-9447-74b60a9e3e3d",
           "token": "clearlite-4",
-          "historical_tokens": [
+          "historicalTokens": [
             "clr2-hidden-20130417-kur",
             "armorcoat-reserved-8-mil-stainless-steel-35",
             "cl-6",
@@ -12267,181 +12266,181 @@
             "pacifica-10",
             "6xedn0169-d"
           ],
-          "marketing_name": null,
-          "nfrc_id": 4492,
-          "igdb_id": 9360,
-          "cgdb_id": null,
-          "mdb_time_created": "2016-08-14T18:06:37Z",
-          "igdb_database_version": "49.0",
-          "cgdb_database_version": null,
+          "marketingName": null,
+          "nfrcId": 4492,
+          "igdbId": 9360,
+          "cgdbId": null,
+          "mdbTimeCreated": "2016-08-14T18:06:37Z",
+          "igdbDatabaseVersion": "49.0",
+          "cgdbDatabaseVersion": null,
           "acceptance": "#",
           "reference": false,
           "appearance": "",
           "hidden": false,
-          "owner_name": null,
-          "data_file_name": "clearlite_4.gvb",
-          "data_file_type": "IGDB_LEGACY_SUBMISSION_FILE",
-          "data_file_available": false,
-          "short_description": null,
+          "ownerName": null,
+          "dataFileName": "clearlite_4.gvb",
+          "dataFileType": "IGDB_LEGACY_SUBMISSION_FILE",
+          "dataFileAvailable": false,
+          "shortDescription": null,
           "deconstructable": false,
-          "coating_name": null,
-          "coating_id": 2,
-          "coated_side": "NA",
-          "igdb_checksum": 670340591,
-          "cgdb_checksum": null,
-          "checksum_date": "2016-08-01T14:55:35Z",
-          "window8_application_type": "MONOLITHIC",
-          "product_detail_files": [],
+          "coatingName": null,
+          "coatingId": 2,
+          "coatedSide": "NA",
+          "igdbChecksum": 670340591,
+          "cgdbChecksum": null,
+          "checksumDate": "2016-08-01T14:55:35Z",
+          "window8ApplicationType": "MONOLITHIC",
+          "productDetailFiles": [],
           "composition": [],
-          "integrated_spectral_averages_summaries": [
+          "integratedSpectralAveragesSummaries": [
             {
-              "calculation_standard": "NFRC",
+              "calculationStandard": "NFRC",
               "source": "IGDB",
-              "source_version": "103",
-              "opticalc_pywincalc_version": null,
+              "sourceVersion": "103",
+              "opticalcPywincalcVersion": null,
               "spf": {
                 "error": null,
-                "reflectance_back": {
+                "reflectanceBack": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "reflectance_front": {
+                "reflectanceFront": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "transmittance_back": {
+                "transmittanceBack": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "transmittance_front": {
+                "transmittanceFront": {
                   "matrix": null,
-                  "direct_direct": "8.480444",
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": "8.480444",
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "absorptance_back_direct": null,
-                "absorptance_front_direct": null,
-                "absorptance_back_hemispheric": null,
-                "absorptance_front_hemispheric": null
+                "absorptanceBackDirect": null,
+                "absorptanceFrontDirect": null,
+                "absorptanceBackHemispheric": null,
+                "absorptanceFrontHemispheric": null
               },
               "tdw": {
                 "error": null,
-                "reflectance_back": {
+                "reflectanceBack": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "reflectance_front": {
+                "reflectanceFront": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "transmittance_back": {
+                "transmittanceBack": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "transmittance_front": {
+                "transmittanceFront": {
                   "matrix": null,
-                  "direct_direct": "0.8534895",
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": "0.8534895",
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "absorptance_back_direct": null,
-                "absorptance_front_direct": null,
-                "absorptance_back_hemispheric": null,
-                "absorptance_front_hemispheric": null
+                "absorptanceBackDirect": null,
+                "absorptanceFrontDirect": null,
+                "absorptanceBackHemispheric": null,
+                "absorptanceFrontHemispheric": null
               },
               "tkr": {
                 "error": null,
-                "reflectance_back": {
+                "reflectanceBack": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "reflectance_front": {
+                "reflectanceFront": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "transmittance_back": {
+                "transmittanceBack": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "transmittance_front": {
+                "transmittanceFront": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "absorptance_back_direct": null,
-                "absorptance_front_direct": null,
-                "absorptance_back_hemispheric": null,
-                "absorptance_front_hemispheric": null
+                "absorptanceBackDirect": null,
+                "absorptanceFrontDirect": null,
+                "absorptanceBackHemispheric": null,
+                "absorptanceFrontHemispheric": null
               },
               "tuv": {
                 "error": null,
-                "reflectance_back": {
+                "reflectanceBack": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "reflectance_front": {
+                "reflectanceFront": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "transmittance_back": {
+                "transmittanceBack": {
                   "matrix": null,
-                  "direct_direct": null,
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": null,
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "transmittance_front": {
+                "transmittanceFront": {
                   "matrix": null,
-                  "direct_direct": "0.7491414",
-                  "direct_diffuse": null,
-                  "diffuse_diffuse": null,
-                  "direct_hemispherical": null
+                  "directDirect": "0.7491414",
+                  "directDiffuse": null,
+                  "diffuseDiffuse": null,
+                  "directHemispherical": null
                 },
-                "absorptance_back_direct": null,
-                "absorptance_front_direct": null,
-                "absorptance_back_hemispheric": null,
-                "absorptance_front_hemispheric": null
+                "absorptanceBackDirect": null,
+                "absorptanceFrontDirect": null,
+                "absorptanceBackHemispheric": null,
+                "absorptanceFrontHemispheric": null
               },
               "color": {
-                "reflectance_back": {
-                  "direct_direct": {
+                "reflectanceBack": {
+                  "directDirect": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12458,7 +12457,7 @@
                       "z": null
                     }
                   },
-                  "direct_diffuse": {
+                  "directDiffuse": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12475,7 +12474,7 @@
                       "z": null
                     }
                   },
-                  "diffuse_diffuse": {
+                  "diffuseDiffuse": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12492,7 +12491,7 @@
                       "z": null
                     }
                   },
-                  "direct_hemispherical": {
+                  "directHemispherical": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12510,8 +12509,8 @@
                     }
                   }
                 },
-                "reflectance_front": {
-                  "direct_direct": {
+                "reflectanceFront": {
+                  "directDirect": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12528,7 +12527,7 @@
                       "z": null
                     }
                   },
-                  "direct_diffuse": {
+                  "directDiffuse": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12545,7 +12544,7 @@
                       "z": null
                     }
                   },
-                  "diffuse_diffuse": {
+                  "diffuseDiffuse": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12562,7 +12561,7 @@
                       "z": null
                     }
                   },
-                  "direct_hemispherical": {
+                  "directHemispherical": {
                     "lab": {
                       "a": -0.2953564474190429,
                       "b": -0.5069940541208129,
@@ -12580,8 +12579,8 @@
                     }
                   }
                 },
-                "transmittance_back": {
-                  "direct_direct": {
+                "transmittanceBack": {
+                  "directDirect": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12598,7 +12597,7 @@
                       "z": null
                     }
                   },
-                  "direct_diffuse": {
+                  "directDiffuse": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12615,7 +12614,7 @@
                       "z": null
                     }
                   },
-                  "diffuse_diffuse": {
+                  "diffuseDiffuse": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12632,7 +12631,7 @@
                       "z": null
                     }
                   },
-                  "direct_hemispherical": {
+                  "directHemispherical": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12650,8 +12649,8 @@
                     }
                   }
                 },
-                "transmittance_front": {
-                  "direct_direct": {
+                "transmittanceFront": {
+                  "directDirect": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12668,7 +12667,7 @@
                       "z": null
                     }
                   },
-                  "direct_diffuse": {
+                  "directDiffuse": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12685,7 +12684,7 @@
                       "z": null
                     }
                   },
-                  "diffuse_diffuse": {
+                  "diffuseDiffuse": {
                     "lab": {
                       "a": null,
                       "b": null,
@@ -12702,7 +12701,7 @@
                       "z": null
                     }
                   },
-                  "direct_hemispherical": {
+                  "directHemispherical": {
                     "lab": {
                       "a": -0.5693913431529252,
                       "b": 0.29968973743668137,
@@ -12723,41 +12722,41 @@
               }
             }
           ],
-          "geometric_properties": null,
+          "geometricProperties": null,
           "material": "GLASS",
-          "material_bulk_properties": {
+          "materialBulkProperties": {
             "name": "GLASS",
             "version": 1,
             "conductivity": "0.84000000000000000",
-            "youngs_modulus": 0.0,
-            "poissons_ratio": 0.0,
+            "youngsModulus": 0.0,
+            "poissonsRatio": 0.0,
             "elasticity": 0.0,
-            "moisture_properties": null
+            "moistureProperties": null
           },
-          "extra_data": {},
-          "physical_properties": {
-            "is_specular": true,
+          "extraData": {},
+          "physicalProperties": {
+            "isSberpecular": true,
             "thickness": 3.85,
-            "predefined_emissivity_front": 0.84,
-            "predefined_emissivity_back": 0.84,
-            "predefined_tir_front": 0.0,
-            "predefined_tir_back": 0.0,
-            "permeability_factor": null,
-            "bulk_properties_override": {
+            "preberdefinedEmissivityFront": 0.84,
+            "preberdefinedEmissivityBack": 0.84,
+            "preberdefinedTirFront": 0.0,
+            "preberdefinedTirBack": 0.0,
+            "perbermeabilityFactor": null,
+            "bulberkPropertiesOverride": {
               "conductivity": "1.0"
             },
-            "optical_properties": {
-              "optical_data_type": "DISCRETE",
-              "incidence_angular_resolution_type": "DIRECT",
-              "outgoing_angular_resolution_type": "DIRECT",
-              "optical_data": {
-                "angle_blocks": [
+            "optbericalProperties": {
+              "optbericalDataType": "DISCRETE",
+              "incberidenceAngularResolutionType": "DIRECT",
+              "outbergoingAngularResolutionType": "DIRECT",
+              "optbericalData": {
+                "angberleBlocks": [
                   {
-                    "incidence_angle": 0,
-                    "num_wavelengths": 642
+                    "incberidenceAngle": 0,
+                    "numberWavelengths": 642
                   }
                 ],
-                "number_incidence_angles": 1
+                "numberberIncidenceAngles": 1
               }
             }
           }

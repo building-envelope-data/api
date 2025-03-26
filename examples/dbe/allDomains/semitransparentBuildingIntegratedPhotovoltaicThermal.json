@@ -109,7 +109,10 @@
                   {
                     "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
                     "width": 0.156,
-                    "categories": ["monocrystalline", "silicon"]
+                    "categories": [
+                      "monocrystalline",
+                      "silicon"
+                    ]
                   }
                 ],
                 "cellPattern": {
@@ -182,15 +185,15 @@
                     "angleDependency": [
                       {
                         "incidence": 0,
-                        "IAM": 1
+                        "incidenceAngleModifier": 1
                       },
                       {
                         "incidence": 60,
-                        "IAM": 0.924
+                        "incidenceAngleModifier": 0.924
                       },
                       {
                         "incidence": 90,
-                        "IAM": 0
+                        "incidenceAngleModifier": 0
                       }
                     ]
                   },

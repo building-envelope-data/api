@@ -524,12 +524,12 @@
       ]
     },
     "colorRenderingIndex": {
-      "title": "The Color Rendering Index (CRI) indicates how well the transmitted radiation matches daylight regarding the rendering of colors. `Ra` considers one transmission of the building envelope. `Raout-in` considers two transmissions of the building envelope.",
+      "title": "The Color Rendering Index (CRI) indicates how well the transmitted radiation matches daylight regarding the rendering of colors. `Ra` or `ra` considers one transmission of the building envelope. `Raout-in` or `raOutIn` considers two transmissions of the building envelope.",
       "oneOf": [
         {
           "type": "object",
           "properties": {
-            "Ra": {
+            "ra": {
               "$ref": "number.json#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
               "description": "The Color Rendering Index as it is defined by EN 410 based on CIE 13. 3-1995, Method of Measuring and Specifying Colour Rendering Properties of Light Sources, 1995, ISBN: 9783900734572. It indicates how well colors are rendered after one transmission of the building envelope. For example, how the color of an object inside a building is perceived from within the building."
             },
@@ -544,15 +544,15 @@
           },
           "additionalProperties": false,
           "required": [
-            "Ra"
+            "ra"
           ]
         },
         {
           "type": "object",
           "properties": {
-            "Raout-in": {
+            "raOutIn": {
               "$ref": "number.json#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
-              "description": "The Color Rendering Index Raout-in is defined by T.E. Kuhn, H.R. Wilson, J. Hanek, M. Santamouris, Ra out-in Color rendering of objects in a daylit room viewed from outdoors, Energy and Buildings 118 (2016) 93–98, https://doi.org/10.1016/j.enbuild.2016.02.019. It indicates how well colors are rendered after two transmissions of the building envelope. For example, how the color of an object inside the building is perceived from the outside."
+              "description": "The Color Rendering Index `Raout-in` or `raOutIn` is defined by T.E. Kuhn, H.R. Wilson, J. Hanek, M. Santamouris, Ra out-in Color rendering of objects in a daylit room viewed from outdoors, Energy and Buildings 118 (2016) 93–98, https://doi.org/10.1016/j.enbuild.2016.02.019. It indicates how well colors are rendered after two transmissions of the building envelope. For example, how the color of an object inside the building is perceived from the outside."
             },
             "observer": {
               "$ref": "#/$defs/observer",
@@ -565,7 +565,7 @@
           },
           "additionalProperties": false,
           "required": [
-            "Raout-in"
+            "raOutIn"
           ]
         }
       ]
@@ -600,7 +600,7 @@
       "required": []
     },
     "igsdb": {
-      "description": "This data is in development and subject to change. When the scope of `#/$defs/dataPoint` extends, data will move from this `server-specific` key to the key `dataPoints`. The following keys have been specific for IGSDB and are now part of `database.graphql`: `type`, `subtype`, `name`, `manufacturer_name`. The following keys have been specific for IGSDB and are now part of `dataPoints`: `emissivity_front`, `emissivity_back`, `tir_front`, `tir_back`, `solar`, `photopic`, `thermal_ir`, `wavelength_data`.",
+      "description": "This data is in development and subject to change. When the scope of `#/$defs/dataPoint` extends, data will move from this `server-specific` key to the key `dataPoints`. The following keys have been specific for IGSDB and are now part of `database.graphql`: `type`, `subtype`, `name`, `manufacturer_name` and `component_id`. The following keys have been specific for IGSDB and are now part of `dataPoints`: `emissivity_front`, `emissivity_back`, `tir_front`, `tir_back`, `solar`, `photopic`, `thermal_ir`, `wavelength_data`.",
       "type": "object",
       "properties": {
         "id": {
@@ -609,31 +609,31 @@
         "token": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "historical_tokens": {
+        "historicalTokens": {
           "type": "array",
           "items": {
             "$ref": "number.json#/$defs/stringOrNull"
           }
         },
-        "marketing_name": {
+        "marketingName": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "nfrc_id": {
+        "nfrcId": {
           "$ref": "number.json#/$defs/integerOrNull"
         },
-        "igdb_id": {
+        "igdbId": {
           "$ref": "number.json#/$defs/integerOrNull"
         },
-        "cgdb_id": {
+        "cgdbId": {
           "$ref": "number.json#/$defs/integerOrNull"
         },
-        "mdb_time_created": {
+        "mdbTimeCreated": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "igdb_database_version": {
+        "igdbDatabaseVersion": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "cgdb_database_version": {
+        "cgdbDatabaseVersion": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
         "acceptance": {
@@ -653,13 +653,13 @@
         "hidden": {
           "type": "boolean"
         },
-        "owner_name": {
+        "ownerName": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "data_file_name": {
+        "dataFileName": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "data_file_type": {
+        "dataFileType": {
           "type": "string",
           "enum": [
             "IGDB_LEGACY_SUBMISSION_FILE",
@@ -672,22 +672,22 @@
           ],
           "description": "BSDF_XML and THERM are 'legacy' file types that were used in the old IGDB database to describe shading types like roller shade and roman/pleated/cellular shades."
         },
-        "data_file_available": {
+        "dataFileAvailable": {
           "type": "boolean"
         },
-        "short_description": {
+        "shortDescription": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
         "deconstructable": {
           "type": "boolean"
         },
-        "coating_name": {
+        "coatingName": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "coating_id": {
+        "coatingId": {
           "$ref": "number.json#/$defs/integerOrNull"
         },
-        "coated_side": {
+        "coatedSide": {
           "type": "string",
           "enum": [
             "MULTIPLE",
@@ -701,19 +701,19 @@
           ],
           "description": "`MULTIPLE` means = embedded and either front or back or both front and back. `NA` means `not applicable`."
         },
-        "igdb_checksum": {
+        "igdbChecksum": {
           "$ref": "number.json#/$defs/integerOrNull"
         },
-        "cgdb_checksum": {
+        "cgdbChecksum": {
           "$ref": "number.json#/$defs/integerOrNull"
         },
-        "checksum_date": {
+        "checksumDate": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "window8_application_type": {
+        "window8ApplicationType": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "product_detail_files": {
+        "productDetailFiles": {
           "type": "array",
           "items": {
             "type": "string",
@@ -786,21 +786,21 @@
             },
             "minItems": 1
           },
-          "integrated_spectral_averages_summaries": {
+          "integratedSpectralAveragesSummaries": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "calculation_standard": {
+                "calculationStandard": {
                   "$ref": "number.json#/$defs/stringOrNull"
                 },
                 "source": {
                   "$ref": "number.json#/$defs/stringOrNull"
                 },
-                "source_version": {
+                "sourceVersion": {
                   "$ref": "number.json#/$defs/stringOrNull"
                 },
-                "opticalc_pywincalc_version": {
+                "opticalcPywincalcVersion": {
                   "$ref": "number.json#/$defs/stringOrNull"
                 },
                 "spf": {
@@ -818,16 +818,16 @@
                 "color": {
                   "type": "object",
                   "properties": {
-                    "reflectance_back": {
+                    "reflectanceBack": {
                       "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
                     },
-                    "reflectance_front": {
+                    "reflectanceFront": {
                       "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
                     },
-                    "transmittance_back": {
+                    "transmittanceBack": {
                       "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
                     },
-                    "transmittance_front": {
+                    "transmittanceFront": {
                       "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
                     }
                   },
@@ -842,7 +842,7 @@
             },
             "minItems": 1
           },
-          "geometric_properties": {
+          "geometricProperties": {
             "oneOf": [
               {
                 "$ref": "#/$defs/perforatedScreenGeometry"
@@ -858,7 +858,7 @@
           "material": {
             "$ref": "number.json#/$defs/stringOrNull"
           },
-          "material_bulk_properties": {
+          "materialBulkProperties": {
             "type": "object",
             "properties": {
               "name": {
@@ -870,16 +870,16 @@
               "conductivity": {
                 "$ref": "number.json#/$defs/stringOrNull"
               },
-              "youngs_modulus": {
+              "youngsModulus": {
                 "$ref": "number.json#/$defs/numberOrNull"
               },
-              "poissons_ratio": {
+              "poissonsRatio": {
                 "$ref": "number.json#/$defs/numberOrNull"
               },
               "elasticity": {
                 "$ref": "number.json#/$defs/numberOrNull"
               },
-              "moisture_properties": {
+              "moistureProperties": {
                 "$ref": "number.json#/$defs/stringOrNull"
               }
             },
@@ -887,37 +887,37 @@
             "minProperties": 1,
             "required": []
           },
-          "extra_data": {
+          "extraData": {
             "type": "object",
             "properties": {},
             "additionalProperties": true,
             "required": []
           },
-          "physical_properties": {
+          "physicalProperties": {
             "type": "object",
             "properties": {
-              "is_specular": {
+              "isSpecular": {
                 "type": "boolean"
               },
               "thickness": {
                 "$ref": "number.json#/$defs/numberOrNull"
               },
-              "predefined_emissivity_front": {
+              "predefinedEmissivityFront": {
                 "$ref": "number.json#/$defs/numberOrNull"
               },
-              "predefined_emissivity_back": {
+              "predefinedEmissivityBack": {
                 "$ref": "number.json#/$defs/numberOrNull"
               },
-              "predefined_tir_front": {
+              "predefinedTirFront": {
                 "$ref": "number.json#/$defs/numberOrNull"
               },
-              "predefined_tir_back": {
+              "predefinedTirBack": {
                 "$ref": "number.json#/$defs/numberOrNull"
               },
-              "permeability_factor": {
+              "permeabilityFactor": {
                 "$ref": "number.json#/$defs/numberOrNull"
               },
-              "bulk_properties_override": {
+              "bulkPropertiesOverride": {
                 "type": "object",
                 "properties": {
                   "conductivity": {
@@ -928,24 +928,24 @@
                 "minProperties": 1,
                 "required": []
               },
-              "optical_properties": {
+              "opticalProperties": {
                 "type": "object",
                 "properties": {
-                  "optical_data_type": {
+                  "opticalDataType": {
                     "type": "string",
                     "enum": [
                       "DISCRETE",
                       "BAND"
                     ]
                   },
-                  "incidence_angular_resolution_type": {
+                  "incidenceAngularResolutionType": {
                     "type": "string",
                     "enum": [
                       "DIRECT",
                       "BSDF"
                     ]
                   },
-                  "outgoing_angular_resolution_type": {
+                  "outgoingAngularResolutionType": {
                     "type": "string",
                     "enum": [
                       "DIRECT",
@@ -954,18 +954,18 @@
                       "BSDF"
                     ]
                   },
-                  "optical_data": {
+                  "opticalData": {
                     "type": "object",
                     "properties": {
-                      "angle_blocks": {
+                      "angleBlocks": {
                         "type": "array",
                         "items": {
                           "type": "object",
                           "properties": {
-                            "incidence_angle": {
+                            "incidenceAngle": {
                               "$ref": "number.json#/$defs/numberOrNull"
                             },
-                            "num_wavelengths": {
+                            "numberWavelengths": {
                               "$ref": "number.json#/$defs/numberOrNull"
                             }
                           },
@@ -975,7 +975,7 @@
                         },
                         "minItems": 1
                       },
-                      "number_incidence_angles": {
+                      "numberIncidenceAngles": {
                         "$ref": "number.json#/$defs/integerOrNull"
                       }
                     },
@@ -1005,28 +1005,28 @@
         "error": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "reflectance_back": {
+        "reflectanceBack": {
           "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
         },
-        "reflectance_front": {
+        "reflectanceFront": {
           "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
         },
-        "transmittance_back": {
+        "transmittanceBack": {
           "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
         },
-        "transmittance_front": {
+        "transmittanceFront": {
           "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
         },
-        "absorptance_back_direct": {
+        "absorptanceBackDirect": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "absorptance_front_direct": {
+        "absorptanceFrontDirect": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "absorptance_back_hemispheric": {
+        "absorptanceBackHemispheric": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "absorptance_front_hemispheric": {
+        "absorptanceFrontHemispheric": {
           "$ref": "number.json#/$defs/stringOrNull"
         }
       },
@@ -1040,16 +1040,16 @@
         "matrix": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "direct_direct": {
+        "directDirect": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "direct_diffuse": {
+        "directDiffuse": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "diffuse_diffuse": {
+        "diffuseDiffuse": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "direct_hemispherical": {
+        "directHemispherical": {
           "$ref": "number.json#/$defs/stringOrNull"
         }
       },
@@ -1060,16 +1060,16 @@
     "colorTransmittanceReflectanceIgsdb": {
       "type": "object",
       "properties": {
-        "direct_direct": {
+        "directDirect": {
           "$ref": "#/$defs/colorsIgsdb"
         },
-        "direct_diffuse": {
+        "directDiffuse": {
           "$ref": "#/$defs/colorsIgsdb"
         },
-        "diffuse_diffuse": {
+        "diffuseDiffuse": {
           "$ref": "#/$defs/colorsIgsdb"
         },
-        "direct_hemispherical": {
+        "directHemispherical": {
           "$ref": "#/$defs/colorsIgsdb"
         }
       },
@@ -1148,18 +1148,18 @@
           ],
           "description": "Defines the geometric properties of a perforated screen. Type indicates shape of perforations. 0: `circular`, 1: `square`,2: `rectangle`."
         },
-        "dim_x": {
+        "dimX": {
           "$ref": "number.json#/$defs/numberOrNull",
-          "description": "dim_x is the radius if `type`: `circular`."
+          "description": "dimX is the radius if `type`: `circular`."
         },
-        "dim_y": {
+        "dimY": {
           "$ref": "number.json#/$defs/numberOrNull",
-          "description": "dim_y is not used if `type` is `circular` or `square`."
+          "description": "dimY is not used if `type` is `circular` or `square`."
         },
-        "spacing_x": {
+        "spacingX": {
           "$ref": "number.json#/$defs/numberOrNull"
         },
-        "spacing_y": {
+        "spacingY": {
           "$ref": "number.json#/$defs/numberOrNull"
         }
       },
@@ -1191,27 +1191,27 @@
         "rise": {
           "$ref": "number.json#/$defs/stringOrNull"
         },
-        "slat_width": {
+        "slatWidth": {
           "$ref": "number.json#/$defs/stringOrNull",
           "description": "Units: mm"
         },
-        "slat_spacing": {
+        "slatSpacing": {
           "$ref": "number.json#/$defs/stringOrNull",
           "description": "Units: mm"
         },
-        "slat_curvature": {
+        "slatCurvature": {
           "$ref": "number.json#/$defs/stringOrNull",
           "description": "Units: mm"
         },
-        "slat_tilt": {
+        "slatTilt": {
           "$ref": "number.json#/$defs/stringOrNull",
           "description": "Units: degrees"
         },
-        "n_segments": {
+        "numberSegments": {
           "$ref": "number.json#/$defs/integerOrNull",
           "description": "Segments are used to represent curvature (Defaults to 5)."
         },
-        "tilt_choice": {
+        "tiltChoice": {
           "$ref": "number.json#/$defs/stringOrNull",
           "description": "Value can be an integer or string like `CUSTOM`, so declaring this field as str."
         }

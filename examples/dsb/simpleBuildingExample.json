@@ -4,7 +4,7 @@
       "id": "8ca1102b-264a-4023-8351-5897ec38e388",
       "name": "The name of the building.",
       "description": "A simple example for data about a building.",
-      "IFC": {
+      "ifc": {
         "full": {
           "id": {
             "value": "8ca1102b-264a-4023-8351-5897ec38e388",
@@ -15,7 +15,7 @@
           "createdAt": "2018-09-01T12:00:00+01:00"
         }
       },
-      "Revit": {
+      "revit": {
         "full": {
           "id": {
             "value": "8ca1102b-264a-4023-8351-5897ec38e388",
@@ -26,8 +26,8 @@
           "createdAt": "2018-09-01T12:00:00+01:00"
         }
       },
-      "LinkedData": {
-        "SPARQL": {
+      "linkedData": {
+        "sparql": {
           "webAddress": "http://www.owner034.com/kdje102b-264a-4023-8351-5897ec38e388"
         }
       }

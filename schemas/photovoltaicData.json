@@ -15,7 +15,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["module"]
+          "required": [
+            "module"
+          ]
         },
         {
           "type": "object",
@@ -26,7 +28,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["inverter"]
+          "required": [
+            "inverter"
+          ]
         },
         {
           "type": "object",
@@ -37,7 +41,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["system"]
+          "required": [
+            "system"
+          ]
         }
       ]
     },
@@ -131,7 +137,9 @@
               }
             },
             "additionalProperties": false,
-            "required": ["id"]
+            "required": [
+              "id"
+            ]
           },
           "minItems": 1
         },
@@ -156,7 +164,9 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": ["cellNumber"]
+                  "required": [
+                    "cellNumber"
+                  ]
                 },
                 "transversal": {
                   "title": "'transversal' is the direction with the smaller number of cells.",
@@ -172,11 +182,16 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": ["cellNumber"]
+                  "required": [
+                    "cellNumber"
+                  ]
                 }
               },
               "additionalProperties": false,
-              "required": ["longitudinal", "transversal"]
+              "required": [
+                "longitudinal",
+                "transversal"
+              ]
             }
           },
           "additionalProperties": false,
@@ -199,7 +214,10 @@
               }
             },
             "additionalProperties": false,
-            "required": ["id", "cellType"]
+            "required": [
+              "id",
+              "cellType"
+            ]
           },
           "minItems": 1
         },
@@ -240,7 +258,10 @@
               }
             },
             "additionalProperties": false,
-            "required": ["id", "diodeType"]
+            "required": [
+              "id",
+              "diodeType"
+            ]
           },
           "minItems": 0
         },
@@ -385,7 +406,9 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["id"]
+                "required": [
+                  "id"
+                ]
               },
               "minItems": 1
             },
@@ -449,7 +472,10 @@
                       }
                     },
                     "additionalProperties": false,
-                    "required": ["years", "percentage"]
+                    "required": [
+                      "years",
+                      "percentage"
+                    ]
                   },
                   "minItems": 1
                 },
@@ -466,9 +492,9 @@
                             "$ref": "number.json#/$defs/degree",
                             "description": "The incidence angle in degree"
                           },
-                          "IAM": {
+                          "incidenceAngleModifier": {
                             "$ref": "number.json#/$defs/nonNegativeNumber",
-                            "description": "The value of the incidence angle modifier at the angle defined by `incidence`."
+                            "description": "The value of the incidence angle modifier (IAM) at the angle defined by `incidence`."
                           }
                         },
                         "additionalProperties": false,
@@ -492,7 +518,10 @@
                           }
                         },
                         "additionalProperties": false,
-                        "required": ["direction", "modifier"]
+                        "required": [
+                          "direction",
+                          "modifier"
+                        ]
                       }
                     }
                   ]
@@ -570,7 +599,7 @@
                   "title": "The fire safety class of the photovoltaic module depending on the region for which the class is valid.",
                   "type": "object",
                   "properties": {
-                    "EN": {
+                    "european": {
                       "title": "The fire safety class according to the regulations of the European Union. EN 13501-1 defines the categories as well as the additional classification for smoke development and burning drops falling from the component.",
                       "type": "object",
                       "properties": {
@@ -601,12 +630,20 @@
                         },
                         "smoke": {
                           "type": "string",
-                          "enum": ["s1", "s2", "s3"],
+                          "enum": [
+                            "s1",
+                            "s2",
+                            "s3"
+                          ],
                           "description": "Abbreviations for smoke according to EN 13501-1."
                         },
                         "drops": {
                           "type": "string",
-                          "enum": ["d0", "d1", "d2"],
+                          "enum": [
+                            "d0",
+                            "d1",
+                            "d2"
+                          ],
                           "description": "Abbreviations for burning drops according to EN 13501-1."
                         }
                       },
@@ -666,7 +703,9 @@
                         },
                         "additionalProperties": false,
                         "minProperties": 2,
-                        "required": ["reference"]
+                        "required": [
+                          "reference"
+                        ]
                       },
                       "minItems": 1
                     },
@@ -690,7 +729,9 @@
                           }
                         },
                         "additionalProperties": false,
-                        "required": ["reference"]
+                        "required": [
+                          "reference"
+                        ]
                       },
                       "minItems": 1
                     },
@@ -743,7 +784,9 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["years"]
+                "required": [
+                  "years"
+                ]
               },
               "minItems": 1
             },
@@ -925,7 +968,7 @@
               "title": "The electric safety of the inverter.",
               "type": "object",
               "properties": {
-                "IPcode": {
+                "ipCode": {
                   "title": "The electric safety according to the International Protection Marking, also called Ingress Protection Marking, with codes between IPXX and IP69K.",
                   "type": "array",
                   "items": {
@@ -935,7 +978,10 @@
                         "type": "array",
                         "items": {
                           "type": "string",
-                          "enum": ["EN IEC 60529", "ISO 20653"],
+                          "enum": [
+                            "EN IEC 60529",
+                            "ISO 20653"
+                          ],
                           "description": "`EN IEC 60529` and `ISO 20653` indicate the standard according to which the IP code is defined."
                         },
                         "uniqueItems": true,
@@ -980,17 +1026,31 @@
                       },
                       "thirdDigit": {
                         "type": "string",
-                        "enum": ["A", "B", "C", "D"],
+                        "enum": [
+                          "A",
+                          "B",
+                          "C",
+                          "D"
+                        ],
                         "description": "The third digit is optional and represents the access to dangerous active parts."
                       },
                       "fourthDigit": {
                         "type": "string",
-                        "enum": ["f", "H", "M", "S", "W"],
+                        "enum": [
+                          "f",
+                          "H",
+                          "M",
+                          "S",
+                          "W"
+                        ],
                         "description": "The fourth digit can include additional information."
                       }
                     },
                     "additionalProperties": false,
-                    "required": ["firstDigit", "secondDigit"]
+                    "required": [
+                      "firstDigit",
+                      "secondDigit"
+                    ]
                   },
                   "minItems": 1
                 },
@@ -1007,12 +1067,21 @@
                       },
                       "class": {
                         "type": "string",
-                        "enum": ["0", "I", "0I", "II", "III"],
+                        "enum": [
+                          "0",
+                          "I",
+                          "0I",
+                          "II",
+                          "III"
+                        ],
                         "description": "The appliance class."
                       }
                     },
                     "additionalProperties": false,
-                    "required": ["standard", "class"]
+                    "required": [
+                      "standard",
+                      "class"
+                    ]
                   },
                   "minItems": 1
                 }
@@ -1050,7 +1119,7 @@
               "$ref": "common.json#/$defs/efficiencies/$defs/inverter",
               "description": "The maximum efficiency of this inverter. The efficiency has no units."
             },
-            "European": {
+            "european": {
               "$ref": "common.json#/$defs/efficiencies/$defs/inverter",
               "description": "The efficiency of this inverter according to the european regulations. The efficiency has no units."
             }
@@ -1088,7 +1157,9 @@
               }
             },
             "additionalProperties": false,
-            "required": ["id"]
+            "required": [
+              "id"
+            ]
           },
           "minItems": 1
         },
@@ -1129,7 +1200,10 @@
               }
             },
             "additionalProperties": false,
-            "required": ["id", "diodeType"]
+            "required": [
+              "id",
+              "diodeType"
+            ]
           },
           "minItems": 1
         },
@@ -1223,13 +1297,20 @@
               }
             },
             "additionalProperties": false,
-            "required": ["id1", "id2"]
+            "required": [
+              "id1",
+              "id2"
+            ]
           },
           "minItems": 1
         },
         "category": {
           "type": "string",
-          "enum": ["parallel", "series", "complex"],
+          "enum": [
+            "parallel",
+            "series",
+            "complex"
+          ],
           "description": "The electric connection can either be in parallel or in series or a more complex pattern."
         },
         "grounding": {
@@ -1261,12 +1342,19 @@
               },
               "grounding": {
                 "type": "string",
-                "enum": ["plus", "minus", "neither"],
+                "enum": [
+                  "plus",
+                  "minus",
+                  "neither"
+                ],
                 "description": "Whether the electric plus or minus of the component is connected to the ground."
               }
             },
             "additionalProperties": false,
-            "required": ["id1", "grounding"]
+            "required": [
+              "id1",
+              "grounding"
+            ]
           },
           "minItems": 1
         }
