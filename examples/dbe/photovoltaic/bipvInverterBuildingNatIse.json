@@ -58,9 +58,7 @@
                   "electric": {
                     "ipCode": [
                       {
-                        "standard": [
-                          "EN IEC 60529"
-                        ],
+                        "standard": ["EN IEC 60529"],
                         "firstDigit": "6",
                         "secondDigit": "5"
                       }

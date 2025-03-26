@@ -772,63 +772,214 @@
                     },
                     "coatedSideFacesExterior": {
                       "type": "boolean"
-                    },
-                    "additionalProperties": false,
-                    "minProperties": 1,
-                    "required": []
+                    }
                   },
-                  "minItems": 1
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "required": []
+                },
+                "minItems": 1
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": []
+          }
+        },
+        "integratedSpectralAveragesSummaries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "calculationStandard": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "source": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "sourceVersion": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "opticalcPywincalcVersion": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "spf": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "tdw": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "tkr": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "tuv": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "color": {
+                "type": "object",
+                "properties": {
+                  "reflectanceBack": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  },
+                  "reflectanceFront": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  },
+                  "transmittanceBack": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  },
+                  "transmittanceFront": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  }
+                },
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": []
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": []
+          },
+          "minItems": 1
+        },
+        "geometricProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/perforatedScreenGeometry"
+            },
+            {
+              "$ref": "#/$defs/wovenShadeGeometry"
+            },
+            {
+              "$ref": "#/$defs/blindGeometry"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "material": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "materialBulkProperties": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "$ref": "number.json#/$defs/stringOrNull"
+            },
+            "version": {
+              "$ref": "number.json#/$defs/integerOrNull"
+            },
+            "conductivity": {
+              "$ref": "number.json#/$defs/stringOrNull"
+            },
+            "youngsModulus": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "poissonsRatio": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "elasticity": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "moistureProperties": {
+              "$ref": "number.json#/$defs/stringOrNull"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "extraData": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true,
+          "required": []
+        },
+        "physicalProperties": {
+          "type": "object",
+          "properties": {
+            "isSpecular": {
+              "type": "boolean"
+            },
+            "thickness": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "predefinedEmissivityFront": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "predefinedEmissivityBack": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "predefinedTirFront": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "predefinedTirBack": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "permeabilityFactor": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "bulkPropertiesOverride": {
+              "type": "object",
+              "properties": {
+                "conductivity": {
+                  "$ref": "number.json#/$defs/stringOrNull"
                 }
               },
               "additionalProperties": false,
               "minProperties": 1,
               "required": []
             },
-            "minItems": 1
-          },
-          "integratedSpectralAveragesSummaries": {
-            "type": "array",
-            "items": {
+            "opticalProperties": {
               "type": "object",
               "properties": {
-                "calculationStandard": {
-                  "$ref": "number.json#/$defs/stringOrNull"
+                "opticalDataType": {
+                  "type": "string",
+                  "enum": [
+                    "DISCRETE",
+                    "BAND"
+                  ]
                 },
-                "source": {
-                  "$ref": "number.json#/$defs/stringOrNull"
+                "incidenceAngularResolutionType": {
+                  "type": "string",
+                  "enum": [
+                    "DIRECT",
+                    "BSDF"
+                  ]
                 },
-                "sourceVersion": {
-                  "$ref": "number.json#/$defs/stringOrNull"
+                "outgoingAngularResolutionType": {
+                  "type": "string",
+                  "enum": [
+                    "DIRECT",
+                    "DIFFUSE",
+                    "DIRECT_DIFFUSE",
+                    "BSDF"
+                  ]
                 },
-                "opticalcPywincalcVersion": {
-                  "$ref": "number.json#/$defs/stringOrNull"
-                },
-                "spf": {
-                  "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
-                },
-                "tdw": {
-                  "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
-                },
-                "tkr": {
-                  "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
-                },
-                "tuv": {
-                  "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
-                },
-                "color": {
+                "opticalData": {
                   "type": "object",
                   "properties": {
-                    "reflectanceBack": {
-                      "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                    "angleBlocks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "incidenceAngle": {
+                            "$ref": "number.json#/$defs/numberOrNull"
+                          },
+                          "numberWavelengths": {
+                            "$ref": "number.json#/$defs/numberOrNull"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": []
+                      },
+                      "minItems": 1
                     },
-                    "reflectanceFront": {
-                      "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
-                    },
-                    "transmittanceBack": {
-                      "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
-                    },
-                    "transmittanceFront": {
-                      "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                    "numberIncidenceAngles": {
+                      "$ref": "number.json#/$defs/integerOrNull"
                     }
                   },
                   "additionalProperties": false,
@@ -839,160 +990,11 @@
               "additionalProperties": false,
               "minProperties": 1,
               "required": []
-            },
-            "minItems": 1
+            }
           },
-          "geometricProperties": {
-            "oneOf": [
-              {
-                "$ref": "#/$defs/perforatedScreenGeometry"
-              },
-              {
-                "$ref": "#/$defs/wovenShadeGeometry"
-              },
-              {
-                "$ref": "#/$defs/blindGeometry"
-              }
-            ]
-          },
-          "material": {
-            "$ref": "number.json#/$defs/stringOrNull"
-          },
-          "materialBulkProperties": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "$ref": "number.json#/$defs/stringOrNull"
-              },
-              "version": {
-                "$ref": "number.json#/$defs/integerOrNull"
-              },
-              "conductivity": {
-                "$ref": "number.json#/$defs/stringOrNull"
-              },
-              "youngsModulus": {
-                "$ref": "number.json#/$defs/numberOrNull"
-              },
-              "poissonsRatio": {
-                "$ref": "number.json#/$defs/numberOrNull"
-              },
-              "elasticity": {
-                "$ref": "number.json#/$defs/numberOrNull"
-              },
-              "moistureProperties": {
-                "$ref": "number.json#/$defs/stringOrNull"
-              }
-            },
-            "additionalProperties": false,
-            "minProperties": 1,
-            "required": []
-          },
-          "extraData": {
-            "type": "object",
-            "properties": {},
-            "additionalProperties": true,
-            "required": []
-          },
-          "physicalProperties": {
-            "type": "object",
-            "properties": {
-              "isSpecular": {
-                "type": "boolean"
-              },
-              "thickness": {
-                "$ref": "number.json#/$defs/numberOrNull"
-              },
-              "predefinedEmissivityFront": {
-                "$ref": "number.json#/$defs/numberOrNull"
-              },
-              "predefinedEmissivityBack": {
-                "$ref": "number.json#/$defs/numberOrNull"
-              },
-              "predefinedTirFront": {
-                "$ref": "number.json#/$defs/numberOrNull"
-              },
-              "predefinedTirBack": {
-                "$ref": "number.json#/$defs/numberOrNull"
-              },
-              "permeabilityFactor": {
-                "$ref": "number.json#/$defs/numberOrNull"
-              },
-              "bulkPropertiesOverride": {
-                "type": "object",
-                "properties": {
-                  "conductivity": {
-                    "$ref": "number.json#/$defs/stringOrNull"
-                  }
-                },
-                "additionalProperties": false,
-                "minProperties": 1,
-                "required": []
-              },
-              "opticalProperties": {
-                "type": "object",
-                "properties": {
-                  "opticalDataType": {
-                    "type": "string",
-                    "enum": [
-                      "DISCRETE",
-                      "BAND"
-                    ]
-                  },
-                  "incidenceAngularResolutionType": {
-                    "type": "string",
-                    "enum": [
-                      "DIRECT",
-                      "BSDF"
-                    ]
-                  },
-                  "outgoingAngularResolutionType": {
-                    "type": "string",
-                    "enum": [
-                      "DIRECT",
-                      "DIFFUSE",
-                      "DIRECT_DIFFUSE",
-                      "BSDF"
-                    ]
-                  },
-                  "opticalData": {
-                    "type": "object",
-                    "properties": {
-                      "angleBlocks": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "incidenceAngle": {
-                              "$ref": "number.json#/$defs/numberOrNull"
-                            },
-                            "numberWavelengths": {
-                              "$ref": "number.json#/$defs/numberOrNull"
-                            }
-                          },
-                          "additionalProperties": false,
-                          "minProperties": 1,
-                          "required": []
-                        },
-                        "minItems": 1
-                      },
-                      "numberIncidenceAngles": {
-                        "$ref": "number.json#/$defs/integerOrNull"
-                      }
-                    },
-                    "additionalProperties": false,
-                    "minProperties": 1,
-                    "required": []
-                  }
-                },
-                "additionalProperties": false,
-                "minProperties": 1,
-                "required": []
-              }
-            },
-            "additionalProperties": false,
-            "minProperties": 1,
-            "required": []
-          }
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         }
       },
       "additionalProperties": false,

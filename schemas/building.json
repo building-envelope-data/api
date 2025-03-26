@@ -168,10 +168,7 @@
           },
           "additionalProperties": false,
           "minProperties": 1,
-          "required": [
-            "owner",
-            "BIMmanager"
-          ]
+          "required": ["owner", "BIMmanager"]
         },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",
@@ -208,12 +205,7 @@
                 }
               },
               "additionalProperties": false,
-              "required": [
-                "id",
-                "webAddress",
-                "dataFormat",
-                "createdAt"
-              ]
+              "required": ["id", "webAddress", "dataFormat", "createdAt"]
             }
           },
           "additionalProperties": false,
@@ -251,12 +243,7 @@
                 }
               },
               "additionalProperties": false,
-              "required": [
-                "id",
-                "webAddress",
-                "dataFormat",
-                "createdAt"
-              ]
+              "required": ["id", "webAddress", "dataFormat", "createdAt"]
             }
           },
           "additionalProperties": false,
@@ -281,9 +268,7 @@
                 }
               },
               "additionalProperties": false,
-              "required": [
-                "webAddress"
-              ]
+              "required": ["webAddress"]
             }
           },
           "additionalProperties": false,
@@ -293,9 +278,7 @@
       },
       "additionalProperties": false,
       "minProperties": 1,
-      "required": [
-        "id"
-      ]
+      "required": ["id"]
     },
     "characteristics": {
       "title": "Characteristics of a building which do not depend on a specific schema such as 'IFC' or 'Revit' and which may be helpful for searches.",
@@ -324,10 +307,7 @@
           },
           "additionalProperties": false,
           "minProperties": 1,
-          "required": [
-            "latitude",
-            "longitude"
-          ]
+          "required": ["latitude", "longitude"]
         }
       },
       "additionalProperties": false,

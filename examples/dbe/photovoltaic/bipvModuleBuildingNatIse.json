@@ -25,10 +25,7 @@
                       "effective": 3.047
                     },
                     "width": 0.125,
-                    "categories": [
-                      "monocrystalline",
-                      "silicon"
-                    ]
+                    "categories": ["monocrystalline", "silicon"]
                   }
                 ],
                 "cellPattern": {

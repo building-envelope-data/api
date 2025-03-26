@@ -12735,28 +12735,28 @@
           },
           "extraData": {},
           "physicalProperties": {
-            "isSberpecular": true,
+            "isSpecular": true,
             "thickness": 3.85,
-            "preberdefinedEmissivityFront": 0.84,
-            "preberdefinedEmissivityBack": 0.84,
-            "preberdefinedTirFront": 0.0,
-            "preberdefinedTirBack": 0.0,
-            "perbermeabilityFactor": null,
-            "bulberkPropertiesOverride": {
+            "predefinedEmissivityFront": 0.84,
+            "predefinedEmissivityBack": 0.84,
+            "predefinedTirFront": 0.0,
+            "predefinedTirBack": 0.0,
+            "permeabilityFactor": null,
+            "bulkPropertiesOverride": {
               "conductivity": "1.0"
             },
-            "optbericalProperties": {
-              "optbericalDataType": "DISCRETE",
-              "incberidenceAngularResolutionType": "DIRECT",
-              "outbergoingAngularResolutionType": "DIRECT",
-              "optbericalData": {
-                "angberleBlocks": [
+            "opticalProperties": {
+              "opticalDataType": "DISCRETE",
+              "incidenceAngularResolutionType": "DIRECT",
+              "outgoingAngularResolutionType": "DIRECT",
+              "opticalData": {
+                "angleBlocks": [
                   {
-                    "incberidenceAngle": 0,
+                    "incidenceAngle": 0,
                     "numberWavelengths": 642
                   }
                 ],
-                "numberberIncidenceAngles": 1
+                "numberIncidenceAngles": 1
               }
             }
           }
