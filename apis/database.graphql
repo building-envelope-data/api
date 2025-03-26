@@ -1052,15 +1052,11 @@ enum OpticalComponentSubtype {
 
 """
 Coated side
-
-Multiple means embedded and either front or back or both front and back.
 """
 enum CoatedSide {
-  MUTLIPLE
   FRONT
   BACK
   BOTH
-  EMBEDDED
   NEITHER
   UNKNOWN
   NOT_APPLICABLE
