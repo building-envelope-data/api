@@ -11,51 +11,61 @@
           "description": "Example: an optical data set of a spectrally resolved nearnormal-hemispherical measurement",
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 500
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.85,
+                        "reflectance": 0.1
+                      }
                     },
-                    "wavelengths": { "wavelength": 500 }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.85,
-                    "reflectance": 0.1
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 1000
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.9,
+                        "reflectance": 0.05
+                      }
                     },
-                    "wavelengths": { "wavelength": 1000 }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.9,
-                    "reflectance": 0.05
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": { "wavelength": 1500 }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.8,
-                    "reflectance": 0.1
-                  }
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 1500
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.8,
+                        "reflectance": 0.1
+                      }
+                    }
+                  ]
                 }
               ]
             }

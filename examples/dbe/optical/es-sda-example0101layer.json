@@ -33,98 +33,102 @@
           "description": "This optical data set contains infrared integral values and spectrally-resolved values of the layer with incidence on the exterior `nonPrime` surface.",
           "data": [
             {
-              "componentCharacteristics": {
-                "surface": "nonPrime"
-              },
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                  "componentCharacteristics": {
+                    "surface": "nonPrime"
+                  },
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "integral": "infrared"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.04,
+                        "absorptanceEmittance": 0.89
+                      }
                     },
-                    "wavelengths": {
-                      "integral": "infrared"
-                    }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.04,
-                    "absorptanceEmittance": 0.89
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 280
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.032,
+                        "reflectance": 0.0
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 280
-                    }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.032,
-                    "reflectance": 0.0
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 280
+                        }
+                      },
+                      "emergence": {
+                        "direction": "diffuse"
+                      },
+                      "results": {
+                        "transmittance": 0.008,
+                        "reflectance": 0.074
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 280
-                    }
-                  },
-                  "emergence": {
-                    "direction": "diffuse"
-                  },
-                  "results": {
-                    "transmittance": 0.008,
-                    "reflectance": 0.074
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 285
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.032,
+                        "reflectance": 0.0
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 285
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 285
+                        }
+                      },
+                      "emergence": {
+                        "direction": "diffuse"
+                      },
+                      "results": {
+                        "transmittance": 0.009,
+                        "reflectance": 0.078
+                      }
                     }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.032,
-                    "reflectance": 0.0
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": {
-                      "wavelength": 285
-                    }
-                  },
-                  "emergence": {
-                    "direction": "diffuse"
-                  },
-                  "results": {
-                    "transmittance": 0.009,
-                    "reflectance": 0.078
-                  }
+                  ]
                 }
               ]
             }
@@ -138,98 +142,102 @@
           "description": "This optical data set contains infrared integral values and spectrally-resolved values of the layer with incidence on the interior `prime` surface.",
           "data": [
             {
-              "componentCharacteristics": {
-                "surface": "prime"
-              },
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                  "componentCharacteristics": {
+                    "surface": "prime"
+                  },
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "integral": "infrared"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.04,
+                        "absorptanceEmittance": 0.89
+                      }
                     },
-                    "wavelengths": {
-                      "integral": "infrared"
-                    }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.04,
-                    "absorptanceEmittance": 0.89
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 280
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.032,
+                        "reflectance": 0.0
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 280
-                    }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.032,
-                    "reflectance": 0.0
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 280
+                        }
+                      },
+                      "emergence": {
+                        "direction": "diffuse"
+                      },
+                      "results": {
+                        "transmittance": 0.008,
+                        "reflectance": 0.074
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 280
-                    }
-                  },
-                  "emergence": {
-                    "direction": "diffuse"
-                  },
-                  "results": {
-                    "transmittance": 0.008,
-                    "reflectance": 0.074
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 285
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.032,
+                        "reflectance": 0.0
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 285
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 285
+                        }
+                      },
+                      "emergence": {
+                        "direction": "diffuse"
+                      },
+                      "results": {
+                        "transmittance": 0.009,
+                        "reflectance": 0.078
+                      }
                     }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.032,
-                    "reflectance": 0.0
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": {
-                      "wavelength": 285
-                    }
-                  },
-                  "emergence": {
-                    "direction": "diffuse"
-                  },
-                  "results": {
-                    "transmittance": 0.009,
-                    "reflectance": 0.078
-                  }
+                  ]
                 }
               ]
             }

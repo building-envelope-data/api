@@ -1,11 +1,17 @@
 {
+  "componentCharacteristics": {
+    "instrumentSignature": 42
+  },
   "data": [
     {
+      "componentCharacteristics": {
+        "normalization": "absolute"
+      },
       "dataPoints": [
         {
           "incidence": {
             "direction": {
-              "polar": 0
+              "polar": 8
             },
             "wavelengths": {
               "integral": "solar"
@@ -13,11 +19,11 @@
           },
           "emergence": {
             "direction": {
-              "polar": 0
+              "polar": 8
             }
           },
           "results": {
-            "transmittance": 1.0004209694906112
+            "transmittance": 0.85
           }
         }
       ]

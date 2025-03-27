@@ -1,25 +1,29 @@
 {
-  "dataPoints": [
+  "data": [
     {
-      "incidence": {
-        "direction": {
-          "polar": 8
-        },
-        "wavelengths": {
-          "wavelength": 500,
-          "uncertainty": {
-            "bandwidth": 4
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "wavelength": 500,
+              "uncertainty": {
+                "bandwidth": 4
+              }
+            }
+          },
+          "emergence": {
+            "direction": {
+              "polar": 8
+            }
+          },
+          "results": {
+            "transmittance": 0.85
           }
         }
-      },
-      "emergence": {
-        "direction": {
-          "polar": 8
-        }
-      },
-      "results": {
-        "transmittance": 0.85
-      }
+      ]
     }
   ]
 }

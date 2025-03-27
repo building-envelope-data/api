@@ -73,114 +73,118 @@
           "description": "Example: Nearnormal-nearnormal and nearnormal-hemispherical transmittance and reflectance for red, green and blue.",
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 430
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.32,
+                        "reflectance": 0.015
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 430
-                    }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.32,
-                    "reflectance": 0.015
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 540
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.32,
+                        "reflectance": 0.015
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 540
-                    }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.32,
-                    "reflectance": 0.015
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 570
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.32,
+                        "reflectance": 0.015
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 570
-                    }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.32,
-                    "reflectance": 0.015
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 430
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.32,
+                        "reflectance": 0.14
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 430
-                    }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.32,
-                    "reflectance": 0.14
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 540
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.32,
+                        "reflectance": 0.14
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 540
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 570
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.32,
+                        "reflectance": 0.14
+                      }
                     }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.32,
-                    "reflectance": 0.14
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": {
-                      "wavelength": 570
-                    }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.32,
-                    "reflectance": 0.14
-                  }
+                  ]
                 }
               ]
             }

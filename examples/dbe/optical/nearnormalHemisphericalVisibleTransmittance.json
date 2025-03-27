@@ -14,20 +14,26 @@
           "description": "Example for a nearnormal-hemispherical visible reflectance of a component.",
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": { "integral": "visible" }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "reflectance": 0.1
-                  }
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "integral": "visible"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "reflectance": 0.1
+                      }
+                    }
+                  ]
                 }
               ]
             }
