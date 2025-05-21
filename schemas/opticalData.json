@@ -42,7 +42,7 @@
       ]
     },
     "dataPoint": {
-      "title": "General schema for measured and calculated optical data",
+      "title": "Measured or calculated optical `results` for an `incidence` and `emergence`",
       "description": "An optical data point consists of a definition of the incident radiation, the component characteristics, the emergent radiation, and the optical results.",
       "type": "object",
       "properties": {
