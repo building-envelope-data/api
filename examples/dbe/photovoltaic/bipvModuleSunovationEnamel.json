@@ -17,33 +17,37 @@
           },
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "wavelengths": {
-                      "integral": "visible"
-                    },
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "reflectance": 0.08225287,
-                    "colorReflectance": {
-                      "cielabColors": [
-                        {
-                          "lStar": 5,
-                          "aStar": 1,
-                          "bStar": -1,
-                          "observer": "tenDegrees",
-                          "illuminant": "D65"
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "wavelengths": {
+                          "integral": "visible"
+                        },
+                        "direction": {
+                          "polar": 8
                         }
-                      ]
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "reflectance": 0.08225287,
+                        "colorReflectance": {
+                          "cielabColors": [
+                            {
+                              "lStar": 5,
+                              "aStar": 1,
+                              "bStar": -1,
+                              "observer": "tenDegrees",
+                              "illuminant": "D65"
+                            }
+                          ]
+                        }
+                      }
                     }
-                  }
+                  ]
                 }
               ]
             }

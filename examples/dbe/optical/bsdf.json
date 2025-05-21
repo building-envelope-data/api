@@ -11,42 +11,50 @@
           "description": "Example: bidirectional optical data.",
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 10,
-                      "azimuth": 45
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 10,
+                          "azimuth": 45
+                        },
+                        "wavelengths": {
+                          "integral": "visible"
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 20,
+                          "azimuth": 60
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.1
+                      }
                     },
-                    "wavelengths": { "integral": "visible" }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 20,
-                      "azimuth": 60
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 30,
+                          "azimuth": 15
+                        },
+                        "wavelengths": {
+                          "integral": "visible"
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 10,
+                          "azimuth": 70
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.05
+                      }
                     }
-                  },
-                  "results": {
-                    "transmittance": 0.1
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 30,
-                      "azimuth": 15
-                    },
-                    "wavelengths": { "integral": "visible" }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 10,
-                      "azimuth": 70
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.05
-                  }
+                  ]
                 }
               ]
             }

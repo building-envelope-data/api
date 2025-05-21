@@ -5,53 +5,40 @@
   "description": "Optical data sets of building envelope components. It shall be possible to exchange the results of all important optical measurements and simulations. At the same time, this general format is intended to limit the number of possible representations of one data set to make it easy to develop software which interprets the data correctly.",
   "$defs": {
     "data": {
-      "oneOf": [
-        {
-          "title": "Internal data node with leaf children",
-          "description": "Internal node of the data tree whose children are leaf data point nodes. It specifies component characteristics that are identical for child data points.",
-          "type": "object",
-          "properties": {
-            "componentCharacteristics": {
-              "$ref": "#/$defs/componentCharacteristics",
-              "description": "Component characteristics that are identical for all child data points in `dataPoints`. Such characteristics must be specified here and not in child data points in `dataPoints[*]/componentCharacteristics`."
-            },
-            "dataPoints": {
-              "title": "Optical data points",
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/dataPoint"
+      "title": "Optical data",
+      "description": "Optical `data` as an array of optical `dataPoints` with their `componentCharacteristics`. An additional property can be added for `serverSpecific` data.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "title": "Optical data",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "componentCharacteristics": {
+                "$ref": "#/$defs/componentCharacteristics",
+                "description": "Component characteristics that are identical for all data points of this object."
               },
-              "minItems": 1
-            }
-          },
-          "additionalProperties": false,
-          "required": ["dataPoints"]
-        },
-        {
-          "title": "Internal data node with non-leaf children",
-          "description": "Internal node of the data tree whose children are data nodes. It specifies component characteristics that are identical for descendant data points.",
-          "type": "object",
-          "properties": {
-            "componentCharacteristics": {
-              "$ref": "#/$defs/componentCharacteristics",
-              "description": "Component characteristics that are identical for descendant data points in `data`. Such characteristics must be specified here and not in descendant nodes in `data` like `data[*]/componentCharacteristics` or `data[*]/dataPoints[*]/componentCharacteristics`."
+              "dataPoints": {
+                "title": "Optical data points. They provide the `results` for a given `incidence` and emergence`.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dataPoint"
+                },
+                "minItems": 1
+              }
             },
-            "data": {
-              "title": "Optical data",
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/data"
-              },
-              "minItems": 1
-            }
+            "additionalProperties": false,
+            "required": ["dataPoints"]
           },
-          "additionalProperties": false,
-          "required": ["data"]
+          "minItems": 1
         }
-      ]
+      },
+      "additionalProperties": false,
+      "required": ["data"]
     },
     "dataPoint": {
-      "title": "General schema for measured and calculated optical data",
+      "title": "Measured or calculated optical `results` for an `incidence` and `emergence`",
       "description": "An optical data point consists of a definition of the incident radiation, the component characteristics, the emergent radiation, and the optical results.",
       "type": "object",
       "properties": {
@@ -59,11 +46,6 @@
           "$ref": "#/$defs/incidence",
           "title": "Incident radiation",
           "description": "Incident radiation on the component."
-        },
-        "componentCharacteristics": {
-          "$ref": "#/$defs/componentCharacteristics",
-          "title": "Component characteristics",
-          "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
         },
         "emergence": {
           "$ref": "#/$defs/emergence",

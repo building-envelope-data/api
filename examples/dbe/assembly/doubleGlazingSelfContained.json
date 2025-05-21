@@ -14,20 +14,24 @@
         {
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": "hemispherical",
-                    "wavelengths": {
-                      "integral": "solar"
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": "hemispherical",
+                        "wavelengths": {
+                          "integral": "solar"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.6
+                      }
                     }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.6
-                  }
+                  ]
                 }
               ]
             }
@@ -59,20 +63,24 @@
         {
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": "hemispherical",
-                    "wavelengths": {
-                      "integral": "solar"
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": "hemispherical",
+                        "wavelengths": {
+                          "integral": "solar"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.8
+                      }
                     }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.8
-                  }
+                  ]
                 }
               ]
             }
@@ -90,20 +98,24 @@
         {
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": "hemispherical",
-                    "wavelengths": {
-                      "integral": "solar"
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": "hemispherical",
+                        "wavelengths": {
+                          "integral": "solar"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.75
+                      }
                     }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.75
-                  }
+                  ]
                 }
               ]
             }

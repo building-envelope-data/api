@@ -11,57 +11,61 @@
           "description": "Example of a Color Rendering Index (CRI) for the transmitted radiation and the color of the reflected radiation defined by CIELAB parameters.",
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": {
-                      "integral": "visible"
-                    }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.81,
-                    "colorTransmittance": {
-                      "colorRenderingIndices": [
-                        {
-                          "Ra": 97,
-                          "observer": "twoDegrees",
-                          "illuminant": "D65"
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
                         },
-                        {
-                          "Raout-in": 95,
-                          "observer": "tenDegrees",
-                          "illuminant": "A"
+                        "wavelengths": {
+                          "integral": "visible"
                         }
-                      ],
-                      "cielabColors": [
-                        {
-                          "lStar": 94,
-                          "aStar": 0,
-                          "bStar": 0,
-                          "observer": "tenDegrees",
-                          "illuminant": "D65"
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.81,
+                        "colorTransmittance": {
+                          "colorRenderingIndices": [
+                            {
+                              "Ra": 97,
+                              "observer": "twoDegrees",
+                              "illuminant": "D65"
+                            },
+                            {
+                              "Raout-in": 95,
+                              "observer": "tenDegrees",
+                              "illuminant": "A"
+                            }
+                          ],
+                          "cielabColors": [
+                            {
+                              "lStar": 94,
+                              "aStar": 0,
+                              "bStar": 0,
+                              "observer": "tenDegrees",
+                              "illuminant": "D65"
+                            }
+                          ]
+                        },
+                        "reflectance": 0.08,
+                        "colorReflectance": {
+                          "cielabColors": [
+                            {
+                              "lStar": 4,
+                              "aStar": 0,
+                              "bStar": 0,
+                              "observer": "tenDegrees",
+                              "illuminant": "D65"
+                            }
+                          ]
                         }
-                      ]
-                    },
-                    "reflectance": 0.08,
-                    "colorReflectance": {
-                      "cielabColors": [
-                        {
-                          "lStar": 4,
-                          "aStar": 0,
-                          "bStar": 0,
-                          "observer": "tenDegrees",
-                          "illuminant": "D65"
-                        }
-                      ]
+                      }
                     }
-                  }
+                  ]
                 }
               ]
             }

@@ -16,7 +16,10 @@
           "e01e3431-8b04-410e-b98b-d7afc3123f46"
         ]
       },
-      "categories": { "componentType": ["unit"], "unit": ["screen"] },
+      "categories": {
+        "componentType": ["unit"],
+        "unit": ["screen"]
+      },
       "characteristics": {
         "prime": {
           "surface": {
@@ -33,69 +36,81 @@
           "description": "This optical data set contains integral values of the unit with incidence on the exterior `nonPrime` surface.",
           "data": [
             {
-              "componentCharacteristics": {
-                "surface": "nonPrime"
-              },
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                  "componentCharacteristics": {
+                    "surface": "nonPrime"
+                  },
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "integral": "solar"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.3007,
+                        "reflectance": 0.5575
+                      }
                     },
-                    "wavelengths": { "integral": "solar" }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.3007,
-                    "reflectance": 0.5575
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "integral": "solar"
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.3007
+                      }
                     },
-                    "wavelengths": { "integral": "solar" }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "integral": "visible"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.2991,
+                        "reflectance": 0.5935
+                      }
+                    },
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "integral": "visible"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "diffuse"
+                      },
+                      "results": {
+                        "transmittance": 0.2667
+                      }
                     }
-                  },
-                  "results": {
-                    "transmittance": 0.3007
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": { "integral": "visible" }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.2991,
-                    "reflectance": 0.5935
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": { "integral": "visible" }
-                  },
-                  "emergence": {
-                    "direction": "diffuse"
-                  },
-                  "results": {
-                    "transmittance": 0.2667
-                  }
+                  ]
                 }
               ]
             }
@@ -109,23 +124,29 @@
           "description": "This optical data set contains integral values of the unit with incidence on the interior `prime` surface.",
           "data": [
             {
-              "componentCharacteristics": {
-                "surface": "prime"
-              },
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": { "integral": "solar" }
+                  "componentCharacteristics": {
+                    "surface": "prime"
                   },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "reflectance": 0.5575
-                  }
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "integral": "solar"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "reflectance": 0.5575
+                      }
+                    }
+                  ]
                 }
               ]
             }
@@ -138,7 +159,9 @@
             {
               "results": [
                 {
-                  "area": { "category": "center" },
+                  "area": {
+                    "category": "center"
+                  },
                   "uValue": 0.8,
                   "gValue": 0.3793
                 }

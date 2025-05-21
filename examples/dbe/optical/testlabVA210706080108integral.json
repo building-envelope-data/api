@@ -34,22 +34,26 @@
           },
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 0
-                    },
-                    "wavelengths": {
-                      "integral": "solar"
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 0
+                        },
+                        "wavelengths": {
+                          "integral": "solar"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.1026189342588151
+                      }
                     }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.1026189342588151
-                  }
+                  ]
                 }
               ]
             }
@@ -86,22 +90,26 @@
           },
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 0
-                    },
-                    "wavelengths": {
-                      "integral": "solar"
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 0
+                        },
+                        "wavelengths": {
+                          "integral": "solar"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.10271510030628442
+                      }
                     }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.10271510030628442
-                  }
+                  ]
                 }
               ]
             }
@@ -138,22 +146,26 @@
           },
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 0
-                    },
-                    "wavelengths": {
-                      "integral": "solar"
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 0
+                        },
+                        "wavelengths": {
+                          "integral": "solar"
+                        }
+                      },
+                      "emergence": {
+                        "direction": "hemispherical"
+                      },
+                      "results": {
+                        "transmittance": 0.10261251287581805
+                      }
                     }
-                  },
-                  "emergence": {
-                    "direction": "hemispherical"
-                  },
-                  "results": {
-                    "transmittance": 0.10261251287581805
-                  }
+                  ]
                 }
               ]
             }

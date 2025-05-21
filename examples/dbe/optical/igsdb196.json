@@ -8,96 +8,100 @@
         {
           "data": [
             {
-              "componentCharacteristics": {
-                "surface": "prime",
-                "locationOnSample": {
-                  "publication": {
-                    "identifiers": {
-                      "webAddress": "https://www.999999.com"
-                    }
-                  }
-                },
-                "normalization": "relative",
-                "spot": {
-                  "publication": {
-                    "identifiers": {
-                      "webAddress": "https://www.999999.com"
-                    }
-                  }
-                },
-                "switchableLayers": [
-                  {
-                    "slatTilt": 9.9999
-                  }
-                ],
-                "symmetries": "azimuthalAngleInvariance"
-              },
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                  "componentCharacteristics": {
+                    "surface": "prime",
+                    "locationOnSample": {
+                      "publication": {
+                        "identifiers": {
+                          "webAddress": "https://www.999999.com"
+                        }
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 0.305
-                    }
+                    "normalization": "relative",
+                    "spot": {
+                      "publication": {
+                        "identifiers": {
+                          "webAddress": "https://www.999999.com"
+                        }
+                      }
+                    },
+                    "switchableLayers": [
+                      {
+                        "slatTilt": 9.9999
+                      }
+                    ],
+                    "symmetries": "azimuthalAngleInvariance"
                   },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 0.305
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.0,
+                        "reflectance": 0.0500000007450581
+                      }
                     }
-                  },
-                  "results": {
-                    "transmittance": 0.0,
-                    "reflectance": 0.0500000007450581
-                  }
-                }
-              ]
-            },
-            {
-              "componentCharacteristics": {
-                "surface": "nonPrime",
-                "locationOnSample": {
-                  "publication": {
-                    "identifiers": {
-                      "webAddress": "https://www.999999.com"
-                    }
-                  }
+                  ]
                 },
-                "normalization": "relative",
-                "spot": {
-                  "publication": {
-                    "identifiers": {
-                      "webAddress": "https://www.999999.com"
-                    }
-                  }
-                },
-                "switchableLayers": [
-                  {
-                    "slatTilt": 9.9999
-                  }
-                ],
-                "symmetries": "azimuthalAngleInvariance"
-              },
-              "dataPoints": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                  "componentCharacteristics": {
+                    "surface": "nonPrime",
+                    "locationOnSample": {
+                      "publication": {
+                        "identifiers": {
+                          "webAddress": "https://www.999999.com"
+                        }
+                      }
                     },
-                    "wavelengths": {
-                      "wavelength": 0.305
-                    }
+                    "normalization": "relative",
+                    "spot": {
+                      "publication": {
+                        "identifiers": {
+                          "webAddress": "https://www.999999.com"
+                        }
+                      }
+                    },
+                    "switchableLayers": [
+                      {
+                        "slatTilt": 9.9999
+                      }
+                    ],
+                    "symmetries": "azimuthalAngleInvariance"
                   },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 0.305
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 9.9999,
+                        "reflectance": 0.0500000007450581
+                      }
                     }
-                  },
-                  "results": {
-                    "transmittance": 9.9999,
-                    "reflectance": 0.0500000007450581
-                  }
+                  ]
                 }
               ]
             }

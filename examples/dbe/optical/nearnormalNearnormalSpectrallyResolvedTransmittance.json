@@ -11,54 +11,64 @@
           "description": "Example: optical data about a nearnormal-nearnormal measurement of the transmittance, spectrally resolved.",
           "data": [
             {
-              "dataPoints": [
+              "data": [
                 {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                  "dataPoints": [
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 500
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.85
+                      }
                     },
-                    "wavelengths": { "wavelength": 500 }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.85
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 1000
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.9
+                      }
                     },
-                    "wavelengths": { "wavelength": 1000 }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
+                    {
+                      "incidence": {
+                        "direction": {
+                          "polar": 8
+                        },
+                        "wavelengths": {
+                          "wavelength": 1500
+                        }
+                      },
+                      "emergence": {
+                        "direction": {
+                          "polar": 8
+                        }
+                      },
+                      "results": {
+                        "transmittance": 0.8
+                      }
                     }
-                  },
-                  "results": {
-                    "transmittance": 0.9
-                  }
-                },
-                {
-                  "incidence": {
-                    "direction": {
-                      "polar": 8
-                    },
-                    "wavelengths": { "wavelength": 1500 }
-                  },
-                  "emergence": {
-                    "direction": {
-                      "polar": 8
-                    }
-                  },
-                  "results": {
-                    "transmittance": 0.8
-                  }
+                  ]
                 }
               ]
             }

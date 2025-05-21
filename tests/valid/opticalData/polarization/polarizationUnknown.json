@@ -1,18 +1,24 @@
 {
-  "dataPoints": [
+  "data": [
     {
-      "incidence": {
-        "direction": {
-          "polar": 60
-        },
-        "wavelengths": { "integral": "solar" }
-      },
-      "emergence": {
-        "direction": "hemispherical"
-      },
-      "results": {
-        "transmittance": 0.1
-      }
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": {
+              "polar": 60
+            },
+            "wavelengths": {
+              "integral": "solar"
+            }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": 0.1
+          }
+        }
+      ]
     }
   ]
 }

@@ -1,7 +1,4 @@
 {
-  "componentCharacteristics": {
-    "instrumentSignature": 42
-  },
   "data": [
     {
       "componentCharacteristics": {
@@ -13,7 +10,9 @@
             "direction": {
               "polar": 8
             },
-            "wavelengths": { "integral": "solar" }
+            "wavelengths": {
+              "integral": "solar"
+            }
           },
           "emergence": {
             "direction": {
@@ -28,61 +27,67 @@
     },
     {
       "componentCharacteristics": {
-        "normalization": "relative"
+        "normalization": "relative",
+        "surface": "symmetric"
       },
-      "data": [
+      "dataPoints": [
         {
-          "componentCharacteristics": {
-            "surface": "symmetric"
-          },
-          "dataPoints": [
-            {
-              "incidence": {
-                "direction": {
-                  "polar": 8
-                },
-                "wavelengths": { "integral": "solar" }
-              },
-              "emergence": {
-                "direction": {
-                  "polar": 8
-                }
-              },
-              "results": {
-                "transmittance": 0.85
-              }
-            }
-          ]
-        },
-        {
-          "componentCharacteristics": {
-            "surface": "prime",
-            "referenceSample": {
-              "publication": {
-                "identifiers": {
-                  "webAddress": "https://oc.ise.fraunhofer.de/index.php/s/w9uW4Veh4fWyD2q"
-                },
-                "title": "Description of the reference sample",
-                "authors": [{ "fullName": "Dirk Müller" }]
-              }
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "integral": "solar"
             }
           },
-          "dataPoints": [
-            {
-              "incidence": {
-                "direction": { "polar": 45, "azimuth": 90 },
-                "wavelengths": {
-                  "integral": "solar"
-                }
-              },
-              "emergence": {
-                "direction": { "polar": 60, "azimuth": 90 }
-              },
-              "results": {
-                "transmittance": 0.85
-              }
+          "emergence": {
+            "direction": {
+              "polar": 8
             }
-          ]
+          },
+          "results": {
+            "transmittance": 0.85
+          }
+        }
+      ]
+    },
+    {
+      "componentCharacteristics": {
+        "surface": "prime",
+        "referenceSample": {
+          "publication": {
+            "identifiers": {
+              "webAddress": "https://oc.ise.fraunhofer.de/index.php/s/w9uW4Veh4fWyD2q"
+            },
+            "title": "Description of the reference sample",
+            "authors": [
+              {
+                "fullName": "Dirk Müller"
+              }
+            ]
+          }
+        }
+      },
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": {
+              "polar": 45,
+              "azimuth": 90
+            },
+            "wavelengths": {
+              "integral": "solar"
+            }
+          },
+          "emergence": {
+            "direction": {
+              "polar": 60,
+              "azimuth": 90
+            }
+          },
+          "results": {
+            "transmittance": 0.85
+          }
         }
       ]
     }
