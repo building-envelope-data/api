@@ -106,6 +106,12 @@ compliant
 [absolute Uniform Resource Locator (URL)](https://tools.ietf.org/html/rfc3986#section-4.3)
 string with optional
 [fragment identifier](https://tools.ietf.org/html/rfc3986#section-3.5).
+[Valid values are for example](https://datatracker.ietf.org/doc/html/rfc3986#section-1.1.2)
+`ftp://ftp.is.co.za/rfc/rfc1808.txt`, `http://www.ietf.org/rfc/rfc2396.txt`,
+`ldap://[2001:db8::7]/c=GB?objectClass?one`, `mailto:John.Doe@example.com`,
+`news:comp.infosystems.www.servers.unix`, `tel:+1-816-555-1212`,
+`telnet://192.0.2.16:80/`,
+`urn:oasis:names:specification:docbook:dtd:xml:4.1.2`
 
 See also
 [URL Living Standard](https://url.spec.whatwg.org/#absolute-url-with-fragment-string)
@@ -113,6 +119,27 @@ and
 [Identifying resources on the Web](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web).
 """
 scalar Url
+
+"""
+arXiv identifier, that is, a string of the format
+[Understanding the arXiv identifier](https://info.arxiv.org/help/arxiv_identifier.html).
+"""
+scalar ArXiv
+
+"""
+Digital Object Identifier (DOI) name, that is, a string compliant with [ISO
+26324:2025](https://www.iso.org/standard/88862.html).
+
+See also
+[What is a DOI?](https://www.doi.org/the-identifier/what-is-a-doi/). In short,
+a DOI name is a digital identifier of an object, any object — physical,
+digital, or abstract. DOIs solve a common problem: keeping track of things.
+Things can be matter, material, content, or activities. Designed to be used by
+humans as well as machines, DOIs identify objects persistently. They allow
+things to be uniquely identified and accessed reliably. You know what you have,
+where it is, and others can track it too.
+"""
+scalar Doi
 
 """
 [BCP 47](https://tools.ietf.org/html/bcp47)
@@ -1504,6 +1531,81 @@ type OpenEndedDateTimeRange {
 }
 
 """
+
+"""
+interface Reference {
+  """
+
+  """
+  title: String
+
+  """
+
+  """
+  abstract: String
+
+  """
+  Referenced section
+  """
+  section: String
+}
+
+"""
+`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier.
+"""
+type Standard implements Reference {
+  title: String
+  abstract: String
+  "The section of the standard to which the reference refers to."
+  section: String
+
+  locator: Url
+  numeration: Numeration!
+
+  standardizers: [Standardizer!]!
+
+  "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
+  year: Int
+}
+
+type Publication implements Reference {
+  abstract: String
+  section: String
+  title: String
+
+  """
+  arXiv identifier. [arXiv](https://arxiv.org) is a free distribution service
+  and an open-access archive for scholarly articles in the fields of physics,
+  mathematics, computer science, quantitative biology, quantitative finance,
+  statistics, electrical engineering and systems science, and economics.
+  """
+  arXiv: ArXiv
+
+  authors: [String!]
+
+  """
+  Digital Object Identifier (DOI). It MUST be defined here if it exists.
+  """
+  doi: Doi
+
+  """
+  Uniform Resource Name (URN).
+  """
+  urn: Url
+
+  """
+  Web address
+
+  If a persistent identifiert like DOI is defined above, this address can
+  define a convenient web address to access the publication. However, if no
+  persistent identifier exist, this web address is the only identifier of this
+  publication. In this case, it is important to choose a web address with a high
+  probability to persist long.
+  """
+  webAddress: Url
+}
+
+"""
 Approval with
 [GnuPG](https://www.gnupg.org)
 signature.
@@ -1770,6 +1872,11 @@ type DataApproval implements Approval {
   keyFingerprint: String!
   query: GraphQlQuery!
   response: JsonGraphQlResponse!
+
+  """
+
+  """
+  statement: Reference
 
   """
   Approver identifier issued by the metabase. The approver's meta data can be
