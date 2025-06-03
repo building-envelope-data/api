@@ -31,12 +31,12 @@
                         "colorTransmittance": {
                           "colorRenderingIndices": [
                             {
-                              "Ra": 97,
+                              "ra": 97,
                               "observer": "twoDegrees",
                               "illuminant": "D65"
                             },
                             {
-                              "Raout-in": 95,
+                              "raOutIn": 95,
                               "observer": "tenDegrees",
                               "illuminant": "A"
                             }
