@@ -24979,7 +24979,6 @@
           }
         }
       ],
-      "geometricProperties": null,
       "material": "GLASS",
       "materialBulkProperties": {
         "name": "GLASS",
@@ -24994,6 +24993,7 @@
       "physicalProperties": {
         "isSpecular": true,
         "thickness": 3.85,
+        "geometricProperties": null,
         "predefinedEmissivityFront": 0.84,
         "predefinedEmissivityBack": 0.84,
         "predefinedTirFront": 0.0,
