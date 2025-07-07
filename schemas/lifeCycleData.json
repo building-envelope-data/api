@@ -203,6 +203,16 @@
             "description": "The LCA-data in JSON."
           },
           "minItems": 1
+        },
+        "compliance": {
+          "title": "Compliance Data",
+          "description": "",
+          "type": "object",
+          "items": {
+            "$ref": "lifeCycleComplianceData.json",
+            "description": "The compliance data in JSON."
+          },
+          "minItems": 1
         }
       },
       "additionalProperties": false,

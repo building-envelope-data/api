@@ -27,111 +27,115 @@
       "properties": {
         "globalWarmingPotential": {
           "type": "number",
-          "description": "Embodied Carbon (GWP) (kg CO2e)"
+          "description": "Global Warming Potential (GWP)"
         },
         "ozoneDeplationPotential": {
           "type": "number",
-          "description": ""
+          "description": "Ozone Deplation Potential (ODP) (kg CFC11e)"
         },
         "photoChemicalOxydantFormation": {
           "type": "number",
-          "description": ""
+          "description": "Photo Chemical Oxydant Formation (POCP) (kg C2H4e)"
         },
         "acidificationPotentialOfLandAndWater": {
           "type": "number",
-          "description": ""
+          "description": "Acidification potential of land and water (AP) (kg SO2e)"
         },
         "eutrophicationPotential": {
           "type": "number",
-          "description": ""
+          "description": "Eutrophication potential (EP) (kg (PO4)³e)"
         },
         "abioticDeplationNonFossile": {
           "type": "number",
-          "description": ""
+          "description": "Abiotic Depletion Non Fossil (ADPE) (kg Sbe)"
         },
+        "abioticDeplationFossile": {
+          "type": "number",
+          "description": "Abiotic Depletion Fossil (ADPF) (MJ)"
+        },        
         "humanToxicityPotential": {
           "type": "number",
-          "description": ""
+          "description": "Human toxicity potential (HTP) (kg 1,4-Dichlorobenzene)"
         },
         "freshwaterAquaticEcotoxicityPotential": {
           "type": "number",
-          "description": ""
+          "description": "Freshwater aquatic ecotoxicity potential (FAETP) (kg 1,4-Dichlorobenzene)"
         },
         "marinewaterAquaticEcotoxicityPotential": {
           "type": "number",
-          "description": ""
+          "description": "Marinewater aquatic ecotoxicity potential (MAETP) (kg 1,4-Dichlorobenzene)"
         },
         "terrestrialEcotoxicityPotential": {
           "type": "number",
-          "description": ""
+          "description": "Terrestrial ecotoxicity potential (TETP) (kg 1,4-Dichlorobenzene)"
         },
         "pere": {
           "type": "number",
-          "description": ""
+          "description": "Use of renewable primary energy (PERE) (MJ)"
         },
         "perm": {
           "type": "number",
-          "description": ""
+          "description": "Use of renewable primary energy resources used as raw materials (PERM) (MJ)"
         },
         "pert": {
           "type": "number",
-          "description": ""
+          "description": "Total use of renewable primary energy resources (PERT) (MJ)"
         },
         "penre": {
           "type": "number",
-          "description": ""
+          "description": "Use of non renewable primary energy (PENRE) (MJ)"
         },
         "penrm": {
           "type": "number",
-          "description": ""
+          "description": "Use of non renewable primary energy resources used as raw materials (PENRM) (MJ)"
         },
         "penrt": {
           "type": "number",
-          "description": ""
+          "description": "Total use of non renewable primary energy resource (PENRT) (MJ)"
         },
         "sm": {
           "type": "number",
-          "description": ""
+          "description": "Use of secondary material (SM) (kg)"
         },
         "rsf": {
           "type": "number",
-          "description": ""
+          "description": "Use of renewable secondary fuels (RSF) (MJ)"
         },
         "nrsf": {
           "type": "number",
-          "description": ""
+          "description": "Use of non renewable secondary fuels (NRSF) (MJ)"
         },
         "fw": {
           "type": "number",
-          "description": ""
+          "description": "Use of net fresh water (FW) (m3)"
         },
         "hwd": {
           "type": "number",
-          "description": ""
+          "description": "Hazardous waste disposed (HWD) (kg)"
         },
         "nhwd": {
           "type": "number",
-          "description": ""
+          "description": "Non hazardous waste dispose (NHWD) (kg)"
         },
         "rwd": {
           "type": "number",
-          "description": ""
+          "description": "Radioactive waste disposed (RWD) (kg)"
         },
         "mfr": {
           "type": "number",
-          "description": ""
+          "description": "Materials for recycling (MFR) (kg)"
         },
         "mer": {
           "type": "number",
-          "description": ""
+          "description": "Materials for energy recovery (MER) (MJ)"
         },
         "eee": {
           "type": "number",
-          "description": ""
+          "description": "Exported electrical energy (EEE) (MJ)"
         },
         "ete": {
           "type": "number",
-          "description": ""
+          "description": "Exported thermal energy (EET) (MJ)"
         }
       },
       "additionalProperties": false,
@@ -144,139 +148,147 @@
       "properties": {
         "ozoneDeplationPotential": {
           "type": "number",
-          "description": ""
+          "description": "Ozone Deplation Potential (ODP) (kg CFC11e)"
         },
         "pere": {
           "type": "number",
-          "description": ""
+          "description": "Use of renewable primary energy (PERE) (MJ)"
         },
         "perm": {
           "type": "number",
-          "description": ""
+          "description": "Use of renewable primary energy resources used as raw materials (PERM) (MJ)"
         },
         "pert": {
           "type": "number",
-          "description": ""
+          "description": "Total use of renewable primary energy resources (PERT) (MJ)"
         },
         "penre": {
           "type": "number",
-          "description": ""
+          "description": "Use of non renewable primary energy (PENRE) (MJ)"
         },
         "penrm": {
           "type": "number",
-          "description": ""
+          "description": "Use of non renewable primary energy resources used as raw materials (PENRM) (MJ)"
         },
         "penrt": {
           "type": "number",
-          "description": ""
+          "description": "Total use of non renewable primary energy resource (PENRT) (MJ)"
         },
         "sm": {
           "type": "number",
-          "description": ""
+          "description": "Use of secondary material (SM) (kg)"
         },
         "rsf": {
           "type": "number",
-          "description": ""
+          "description": "Use of renewable secondary fuels (RSF) (MJ)"
         },
         "nrsf": {
           "type": "number",
-          "description": ""
+          "description": "Use of non renewable secondary fuels (NRSF) (MJ)"
         },
         "fw": {
           "type": "number",
-          "description": ""
+          "description": "Use of net fresh water (FW) (m3)"
         },
         "hwd": {
           "type": "number",
-          "description": ""
+          "description": "Hazardous waste disposed (HWD) (kg)"
         },
         "nhwd": {
           "type": "number",
-          "description": ""
+          "description": "Non hazardous waste dispose (NHWD) (kg)"
         },
         "rwd": {
           "type": "number",
-          "description": ""
+          "description": "Radioactive waste disposed (RWD) (kg)"
         },
         "mfr": {
           "type": "number",
-          "description": ""
+          "description": "Materials for recycling (MFR) (kg)"
         },
         "mer": {
           "type": "number",
-          "description": ""
+          "description": "Materials for energy recovery (MER) (MJ)"
         },
         "eee": {
           "type": "number",
-          "description": ""
+          "description": "Exported electrical energy (EEE) (MJ)"
         },
         "ete": {
           "type": "number",
-          "description": ""
+          "description": "Exported thermal energy (EET) (MJ)"
         },
         "globalWarmingPotentialTotal": {
           "type": "number",
-          "description": ""
+          "description": "Global Warming Potential Total (GWP-total) (kg CO2e)"
         },
         "globalWarmingPotentialFossil": {
           "type": "number",
-          "description": ""
+          "description": "Global Warming Potential Fossil (GWP-fossil) (kg CO2e)"
         },
         "globalWarmingPotentialBiogenic": {
           "type": "number",
-          "description": ""
+          "description": "Global Warming Potential Biogenic (GWP-biogenic) (kg CO2e)"
         },
         "globalWarmingPotentialLuluc": {
           "type": "number",
-          "description": ""
+          "description": "Global Warming Potential Land use and Land use change (GWP-luluc) (kg CO2e)"
         },
         "acidificationPotentialAccumulatedExceedance": {
           "type": "number",
-          "description": ""
+          "description": "Acidification Potential Accumulated Exceedance (AP) (mol H+e)"
         },
         "eutrophicationPotentialFreshWater": {
           "type": "number",
-          "description": ""
+          "description": "Eutrophication Potential Fresh Water (EP-F) (kg PO4e)"
         },
         "eutrophicationPotentialMarineWater": {
           "type": "number",
-          "description": ""
+          "description": "Eutrophication Potential Marine Water (EP-M) (kg Ne)"
         },
         "eutrophicationTerrestrial": {
           "type": "number",
-          "description": ""
+          "description": "Eutrophication potential terrestrial (EP-T) (mol Ne)"
         },
         "photoOxidantCreationPotential": {
           "type": "number",
-          "description": ""
+          "description": "Photo Oxidant Creation Potential (POCP) (kg NMVOCe)"
+        },
+        "abioticDeplationNonFossile": {
+          "type": "number",
+          "description": "Abiotic Depletion Non Fossil (ADPE) (kg Sbe)"
+        },
+        "abioticDeplationFossile": {
+          "type": "number",
+          "description": "Abiotic Depletion Fossil (ADPF) (MJ)"
         },
         "waterUseDeprivationPotential": {
           "type": "number",
-          "description": ""
+          "description": "Water Use Deprivation Potential (WDP) (m³e depr.)"
         },
         "potentialIncidenceOfDiseaseDueToPMEmissions": {
           "type": "number",
-          "description": ""
+          "description": "Potential Incidence of disease due to PM emissions"
         },
         "potentialHumanExposureEfficiencyRelativeToU235": {
           "type": "number",
-          "description": ""
+          "description": "Potential Human Exposure Efficiency relative to U235 (kBq U235 eq)"
         },
         "ecoTox": {
           "type": "number",
-          "description": ""
+          "description": "Potential Comparative Toxic Unit for ecosystems (ETP-fw) (CTU-e)"
         },
         "humanToxCancer": {
           "type": "number",
-          "description": ""
+          "description": "Potential comparative toxic unit for humans - cancerogenic (CTU-h)"
         },
         "humanToxNonCancer": {
           "type": "number",
-          "description": ""
+          "description": "Potential comparative toxic unit for humans - not\ncancerogenic (CTU-h)"
         },
         "potentialSoilQualityIndex": {
           "type": "number",
-          "description": ""
+          "description": "Potential soil quality index"
         }
       },
       "additionalProperties": false,
