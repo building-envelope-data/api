@@ -1586,10 +1586,6 @@
                   "ZAG"
                 ]
               },
-              "epdUuidOfProgrammeOperator": {
-                "type": "string",
-                "description": "UUID of the product at the programme operator"
-              },
               "UBAZincProof": {
                 "type": "boolean",
                 "description": "Proof of water run-off according to UBA 17/05 exists"
@@ -1799,35 +1795,7 @@
                       "type": ["integer", "null"]
                     }
                   },
-                  "required": ["resultTypeId", "result"],
-                  "allOf": [
-                    {
-                      "if": {
-                        "properties": {
-                          "resultTypeId": {
-                            "enum": [
-                              "BREEAM_DE_18_HEA02_01",
-                              "BREEAM_DE_18_MAN03"
-                            ]
-                          }
-                        }
-                      },
-                      "then": {
-                        "properties": {
-                          "result": {
-                            "type": ["boolean", "null"]
-                          }
-                        }
-                      },
-                      "else": {
-                        "properties": {
-                          "result": {
-                            "type": ["integer", "null"]
-                          }
-                        }
-                      }
-                    }
-                  ]
+                  "required": ["resultTypeId", "result"]
                 }
               },
               "DGNB18": {
@@ -1889,7 +1857,7 @@
                       ]
                     },
                     "result": {
-                      "type": ["boolean", "null"]
+                      "type": ["integer", "null"]
                     }
                   },
                   "required": ["resultTypeId", "result"]
@@ -1910,13 +1878,13 @@
                       ]
                     },
                     "result": {
-                      "type": ["boolean", "null"]
+                      "type": ["integer", "null"]
                     }
                   },
                   "required": ["resultTypeId", "result"]
                 }
               },
-              "LEED": {
+              "LEED ": {
                 "type": "array",
                 "description": "LEED (Leadership in Energy and Environmental Design) BD + C: Core and Shell.",
                 "items": {
@@ -1941,26 +1909,6 @@
                   "required": ["resultTypeId", "result"]
                 }
               },
-              "LEED4.1": {
-                "type": "array",
-                "description": "LEED (Leadership in Energy and Environmental Design) 4.1 IEQ: Low-Emitting Materials.",
-                "items": {
-                  "type": "object",
-                  "description": "Each object includes a specific result type and its result value.",
-                  "properties": {
-                    "resultTypeId": {
-                      "type": "string",
-                      "enum": [
-                        "LEED4.1_IEQ"
-                      ]
-                    },
-                    "result": {
-                      "type": ["integer", "null"]
-                    }
-                  },
-                  "required": ["resultTypeId", "result"]
-                }
-              },
               "QNG23": {
                 "type": "array",
                 "description": "QNG (Qualitätssiegel Nachhaltiges Gebäude) 2023",
@@ -1975,7 +1923,7 @@
                       ]
                     },
                     "result": {
-                      "type": ["boolean", "null"]
+                      "type": ["integer", "null"]
                     }
                   },
                   "required": ["resultTypeId", "result"]
@@ -2000,38 +1948,10 @@
                       ]
                     },
                     "result": {
-                      "type": ["boolean", "null"]
+                      "type": ["integer", "null"]
                     }
                   },
-                  "required": ["resultTypeId", "result"],
-                  "allOf": [
-                    {
-                      "if": {
-                        "properties": {
-                          "resultTypeId": {
-                            "enum": [
-                              "WE_Pre_X02_v2",
-                              "WELL_Pre_X01_v2"
-                            ]
-                          }
-                        }
-                      },
-                      "then": {
-                        "properties": {
-                          "result": {
-                            "type": ["boolean", "null"]
-                          }
-                        }
-                      },
-                      "else": {
-                        "properties": {
-                          "result": {
-                            "type": ["integer", "null"]
-                          }
-                        }
-                      }
-                    }
-                  ]
+                  "required": ["resultTypeId", "result"]
                 }
               }
             }
