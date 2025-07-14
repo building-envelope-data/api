@@ -4,7 +4,7 @@
   "title": "metadata about life cycle data sets",
   "description": "##",
   "$defs": {
-    "optical": {
+    "lifeCycle": {
       "type": "object",
       "properties": {
         "id": {
@@ -75,5 +75,5 @@
       "required": []
     }
   },
-  "$ref": "#/$defs/optical"
+  "$ref": "#/$defs/lifeCycle"
 }
