@@ -257,7 +257,7 @@
       "description": "Meter is the SI unit for length. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "squareMeter": {
-      "type": "number",
+     "$ref": "#/$defs/nonNegativeNumber",
       "description": "A square meter (m^2) is a unit for an area. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "nanometer": {
