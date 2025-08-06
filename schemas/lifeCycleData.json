@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/lifeCycleData.json",
   "title": "life cycle data",
-  "description": "##",
+  "description": "Life-cycle data sets of building envelope components. It shall be possible to exchange the most important data about circularity, life-cycle analysis and compliance. At the same time, this general format is intended to limit the number of possible representations of one data set to make it easy to develop software which interprets the data correctly.",
   "$defs": {
     "data": {
       "type": "object",
