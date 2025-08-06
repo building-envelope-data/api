@@ -1808,7 +1808,10 @@
               "type": "boolean",
               "description": "The product is made of polystyrene (PS, EPS, XPS, etc.)."
             }
-          }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         },
         "assessmentResults": {
           "type": "object",
@@ -1834,11 +1837,14 @@
                     ]
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "resultTypeId",
                   "result"
                 ]
-              }
+              },
+              "uniqueItems": true,
+              "minItems": 1
             },
             "BREEAM_DE_NB": {
               "type": "array",
@@ -1865,11 +1871,14 @@
                     ]
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "resultTypeId",
                   "result"
                 ]
-              }
+              },
+              "uniqueItems": true,
+              "minItems": 1
             },
             "DGNB18": {
               "type": "array",
@@ -1893,11 +1902,14 @@
                     ]
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "resultTypeId",
                   "result"
                 ]
-              }
+              },
+              "uniqueItems": true,
+              "minItems": 1
             },
             "DGNB23": {
               "type": "array",
@@ -1921,11 +1933,14 @@
                     ]
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "resultTypeId",
                   "result"
                 ]
-              }
+              },
+              "uniqueItems": true,
+              "minItems": 1
             },
             "EUTAX23": {
               "type": "array",
@@ -1948,11 +1963,14 @@
                     ]
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "resultTypeId",
                   "result"
                 ]
-              }
+              },
+              "uniqueItems": true,
+              "minItems": 1
             },
             "EUTAX24": {
               "type": "array",
@@ -1975,11 +1993,14 @@
                     ]
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "resultTypeId",
                   "result"
                 ]
-              }
+              },
+              "uniqueItems": true,
+              "minItems": 1
             },
             "LEED ": {
               "type": "array",
@@ -2006,11 +2027,14 @@
                     ]
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "resultTypeId",
                   "result"
                 ]
-              }
+              },
+              "uniqueItems": true,
+              "minItems": 1
             },
             "QNG23": {
               "type": "array",
@@ -2032,11 +2056,14 @@
                     ]
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "resultTypeId",
                   "result"
                 ]
-              }
+              },
+              "uniqueItems": true,
+              "minItems": 1
             },
             "WELL": {
               "type": "array",
@@ -2063,11 +2090,14 @@
                     ]
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "resultTypeId",
                   "result"
                 ]
-              }
+              },
+              "uniqueItems": true,
+              "minItems": 1
             }
           },
           "additionalProperties": false,
@@ -2075,6 +2105,7 @@
           "required": []
         }
       },
+      "additionalProperties": false,
       "required": [
         "productType",
         "productAttributes"
@@ -2109,6 +2140,7 @@
           },
           "UUID": {
             "type": "string",
+            "format": "uuid",
             "description": ""
           },
           "registrationNumber": {
@@ -2124,7 +2156,9 @@
             "description": "",
             "items": {
               "type": "string"
-            }
+            },
+            "uniqueItems": true,
+            "minItems": 1
           },
           "environmentalCostIndicator": {
             "$ref": "number.json#/$defs/nonNegativeNumber",
@@ -2170,10 +2204,17 @@
               "additionalProperties": false,
               "minProperties": 1,
               "required": []
-            }
+            },
+            "uniqueItems": true,
+            "minItems": 1
           }
-        }
-      }
+        },
+        "additionalProperties": false,
+        "minProperties": 1,
+        "required": []
+      },
+      "uniqueItems": true,
+      "minItems": 1
     },
     "lifeCycleAssessmentPhaseValues": {
       "type": "object",
@@ -2295,7 +2336,10 @@
               "type": "number",
               "description": "Exported thermal energy (EET) (MJ)"
             }
-          }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         },
         "EN15804_2012_A2_2019": {
           "title": "LCA ruleset EN 15804:2012+A2:2019",
@@ -2445,9 +2489,15 @@
               "type": "number",
               "description": "Potential soil quality index"
             }
-          }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         }
-      }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
     },
     "circularity": {
       "title": "The product circularity information",
@@ -2481,7 +2531,10 @@
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
               "description": "Renewables"
             }
-          }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         },
         "output": {
           "title": "Output",
@@ -2507,7 +2560,10 @@
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
               "description": "Renewables"
             }
-          }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         },
         "detachability": {
           "title": "Output",
@@ -2585,9 +2641,15 @@
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
               "description": "Detachability index"
             }
-          }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
         }
-      }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
     }
   },
   "$ref": "#/$defs/data"

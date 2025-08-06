@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/lifeCycle.json",
   "title": "metadata about life cycle data sets",
-  "description": "##",
+  "description": "Life-cycle data sets of components with meta information like name, description, warnings, and more.",
   "$defs": {
     "data": {
       "type": "object",
