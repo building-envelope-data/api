@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/calorimetric.json",
-  "title": "metadata about calorimetric data sets",
+  "title": "metadata about calorimetric datasets",
   "description": "Data about calorimetric measurements or simulations with meta information like name, description, warnings, and more.",
   "$defs": {
     "calorimetric": {
@@ -41,12 +41,12 @@
         },
         "createdAt": {
           "title": "Creation timestamp",
-          "description": "When the present data set was created, for example, after completion of a measurement, simulation, or calculation.",
+          "description": "When the present dataset was created, for example, after completion of a measurement, simulation, or calculation.",
           "$ref": "common.json#/$defs/timestamp"
         },
         "appliedMethod": {
           "$ref": "method.json#/$defs/appliedMethod",
-          "description": "Method that was applied to create this data set."
+          "description": "Method that was applied to create this dataset."
         },
         "approvals": {
           "$ref": "common.json#/$defs/approvals",

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/method.json",
   "title": "method data",
-  "description": "Definition of a method that can be applied by a creator to some source data to create a data set. By defining the method and the source data, the origin of the data set can be traced back.",
+  "description": "Definition of a method that can be applied by a creator to some source data to create a dataset. By defining the method and the source data, the origin of the dataset can be traced back.",
   "$defs": {
     "method": {
       "type": "object",
@@ -129,7 +129,7 @@
       "required": ["name", "value"]
     },
     "namedSource": {
-      "title": "Source data which is an input for a method. A creator uses a method and source data to create a new data set.",
+      "title": "Source data which is an input for a method. A creator uses a method and source data to create a new dataset.",
       "type": "object",
       "properties": {
         "name": {
