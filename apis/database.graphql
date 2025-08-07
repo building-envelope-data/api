@@ -2138,7 +2138,7 @@ GraphQL schema. However, the actual GraphQL schema of the database is in
 general an extension of the present GraphQL schema and may have paths to some
 associates like data format specifics of HTTP resources that it may fetch from
 the "metabase" and provides for convenience. These specifics should not be
-sigend as a change of, for example, the data format description would
+signed as a change of, for example, the data format description would
 invalidate the signature although the data itself did not change.
 """
 type DataApproval implements Approval {
