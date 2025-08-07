@@ -15,7 +15,7 @@ It follows best practices for
   as exemplified in
   [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections).
 
-Global object identifiers as requird by the best practice are exposed by the
+Global object identifiers as required by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
 are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
 concatenation of `uuid` and the requested locale.
@@ -2016,7 +2016,7 @@ interface Approval {
     opticalData(id: $id) { ... }
   }
   ```
-  Specifying the query explicitely is necessary because approvals shall not
+  Specifying the query explicitly is necessary because approvals shall not
   become invalid when the GraphQL schema changes.
   """
   query: GraphQlQuery!
@@ -2231,7 +2231,7 @@ type GetHttpsResource {
   description: String
 
   """
-  Hash value of sucessful HTTP response message body with
+  Hash value of successful HTTP response message body with
   [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6)
   [200](https://tools.ietf.org/html/rfc7231#section-6.3.1)
   computed with
