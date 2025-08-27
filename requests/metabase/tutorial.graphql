@@ -54,27 +54,6 @@ query {
     }
   }
 
-  allData: databases {
-    edges {
-      node {
-        allData {
-          edges {
-            node {
-              name
-              resourceTree {
-                root {
-                  value {
-                    locator
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   dataFormat: databases {
     edges {
       node {

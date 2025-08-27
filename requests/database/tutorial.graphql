@@ -15,21 +15,6 @@ query {
     }
   }
 
-  allData: allData {
-    edges {
-      node {
-        name
-        resourceTree {
-          root {
-            value {
-              locator
-            }
-          }
-        }
-      }
-    }
-  }
-
   dataSetsByOpticalPropertiesAndDataFormat: allOpticalData(
     where: {
       and: [
