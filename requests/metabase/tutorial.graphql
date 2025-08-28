@@ -6,6 +6,12 @@ query {
         uuid
       }
     }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
   }
 
   componentsByInstitution: institution(
@@ -17,12 +23,6 @@ query {
           uuid
           name
         }
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-        hasPreviousPage
-        startCursor
       }
     }
   }
