@@ -1,92 +1,113 @@
 query {
-  data(
-    id: "810e84b4-9ebf-416c-88ea-aade848f1fdf"
-    timestamp: "2019-09-01T12:00:00+01:00"
-    locale: "en-GB"
-  ) {
-    uuid
-    timestamp
-    componentId
+  data(id: "7fc8c70b-24c2-4363-a05e-4ac39d38207f", locale: "en-US") {
     name
-    description
-    warnings
-    creatorId
-    createdAt
+    locale
+    resourceTree {
+      root {
+        value {
+          locator
+          description
+          hashValue
+          id
+          archivedFilesMetaInformation {
+            dataFormatId
+            path
+          }
+          dataFormatId
+        }
+        vertexId
+      }
+      nonRootVertices {
+        parentId
+        vertexId
+        appliedConversionMethod {
+          methodId
+          sourceName
+        }
+        value {
+          dataFormatId
+          description
+          hashValue
+          id
+          locator
+          uuid
+        }
+      }
+    }
     appliedMethod {
-      methodId
+      sources {
+        value {
+          databaseId
+          dataId
+          dataKind
+          dataTimestamp
+        }
+        name
+      }
       arguments {
         name
         value
       }
-      sources {
-        name
-        value {
-          dataId
-          dataTimestamp
-          dataKind
-          databaseId
-        }
-      }
+      methodId
     }
-    approvals {
-      timestamp
-      signature
+    approval {
       keyFingerprint
       query
       response
-      approverId
+      signature
+      timestamp
     }
+    approvals {
+      approverId
+      keyFingerprint
+      query
+      response
+      signature
+      timestamp
+      statement {
+        ... on Publication {
+          abstract
+          arXiv
+          authors
+          doi
+          section
+          title
+          urn
+          webAddress
+        }
+        ... on Standard {
+          abstract
+          locator
+          section
+          standardizers
+          title
+          year
+          numeration {
+            mainNumber
+            prefix
+            suffix
+          }
+        }
+      }
+    }
+    componentId
+    createdAt
+    creatorId
+    databaseId
+    description
+    timestamp
+    uuid
+    warnings
     resources {
+      dataFormatId
       description
       hashValue
+      id
       locator
-      dataFormatId
       archivedFilesMetaInformation {
-        path
         dataFormatId
+        path
       }
     }
-    resourceTree {
-      root {
-        vertexId
-        value {
-          description
-          hashValue
-          locator
-          dataFormatId
-          archivedFilesMetaInformation {
-            path
-            dataFormatId
-          }
-        }
-      }
-      nonRootVertices {
-        vertexId
-        parentId
-        value {
-          description
-          hashValue
-          locator
-          dataFormatId
-          archivedFilesMetaInformation {
-            path
-            dataFormatId
-          }
-        }
-        appliedConversionMethod {
-          methodId
-          arguments {
-            name
-            value
-          }
-          sourceName
-        }
-      }
-    }
-    approval {
-      signature
-      keyFingerprint
-    }
-    locale
   }
 }
