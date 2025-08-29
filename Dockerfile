@@ -47,16 +47,16 @@ RUN \
     "s#bin/dash#bin/bash#" \
     /etc/passwd
 
-#---------------------#
-# Install `dumb-init` #
-#---------------------#
-# a minimal init system for Linux containers, see https://github.com/Yelp/dumb-init
+#----------------#
+# Install `tini` #
+#----------------#
+# a minimal init system for Linux containers, see https://github.com/krallin/tini
 RUN \
   # Retrieve new lists of packages
   apt-get update && \
-  # Install `dumb-init`
+  # Install `tini`
   apt-get install --assume-yes --no-install-recommends \
-    dumb-init && \
+    tini && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
@@ -156,8 +156,9 @@ VOLUME /app/node_modules
 VOLUME /home/me/.vscode-server/extensions
 VOLUME /home/me/.vscode-server-insiders/extensions
 
-# Run commands within the process supervisor and init system `dumb-init`
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+# Run commands within the process supervisor and init system `tini`
+# https://github.com/krallin/tini?tab=readme-ov-file#using-tini
+ENTRYPOINT ["/usr/bin/tini", "--"]
 # Make `bash` the default command, see
-# https://github.com/Yelp/dumb-init#using-a-shell-for-pre-start-hooks
+# https://github.com/Yelp/dumb-init?tab=readme-ov-file#using-a-shell-for-pre-start-hooks
 CMD ["bash"]

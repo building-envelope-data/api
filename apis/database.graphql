@@ -106,6 +106,12 @@ compliant
 [absolute Uniform Resource Locator (URL)](https://tools.ietf.org/html/rfc3986#section-4.3)
 string with optional
 [fragment identifier](https://tools.ietf.org/html/rfc3986#section-3.5).
+[Valid values are for example](https://datatracker.ietf.org/doc/html/rfc3986#section-1.1.2)
+`ftp://ftp.is.co.za/rfc/rfc1808.txt`, `http://www.ietf.org/rfc/rfc2396.txt`,
+`ldap://[2001:db8::7]/c=GB?objectClass?one`, `mailto:John.Doe@example.com`,
+`news:comp.infosystems.www.servers.unix`, `tel:+1-816-555-1212`,
+`telnet://192.0.2.16:80/`,
+`urn:oasis:names:specification:docbook:dtd:xml:4.1.2`
 
 See also
 [URL Living Standard](https://url.spec.whatwg.org/#absolute-url-with-fragment-string)
@@ -113,6 +119,27 @@ and
 [Identifying resources on the Web](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web).
 """
 scalar Url
+
+"""
+arXiv identifier, that is, a string of the format
+[Understanding the arXiv identifier](https://info.arxiv.org/help/arxiv_identifier.html).
+"""
+scalar ArXiv
+
+"""
+Digital Object Identifier (DOI) name, that is, a string compliant with [ISO
+26324:2025](https://www.iso.org/standard/88862.html).
+
+See also
+[What is a DOI?](https://www.doi.org/the-identifier/what-is-a-doi/). In short,
+a DOI name is a digital identifier of an object, any object — physical,
+digital, or abstract. DOIs solve a common problem: keeping track of things.
+Things can be matter, material, content, or activities. Designed to be used by
+humans as well as machines, DOIs identify objects persistently. They allow
+things to be uniquely identified and accessed reliably. You know what you have,
+where it is, and others can track it too.
+"""
+scalar Doi
 
 """
 [BCP 47](https://tools.ietf.org/html/bcp47)
@@ -1054,8 +1081,8 @@ enum OpticalComponentSubtype {
 Coated side
 """
 enum CoatedSide {
-  FRONT
-  BACK
+  PRIME
+  NON_PRIME
   BOTH
   NEITHER
   UNKNOWN
@@ -1082,21 +1109,21 @@ interface Data {
   """
   Identifier of this database that manages the data. The database's meta data
   can be obtained by sending the GraphQL query
-  `database(databaseId: ...) { ... }` to the metabase.
+  `query { database(id: ...) { ... }}` to the metabas e.
   """
   databaseId: Uuid!
 
   """
   Timestamp that designates the patch version. For example, correction of some
   grammatical error in the description results in a new patch version
-  designated by a new timestamp, or adding an approval by some stakeholder.
+  designated by a new timestamp, or adding an approval by some institution.
   """
   timestamp: DateTime!
 
   """
   Component identifier issued by the metabase. The components's meta data can
   be obtained by sending the GraphQL query
-  `component(componentId: ...) { ... }`
+  `query { component(id: ...) { ... } }`
   to the metabase.
   """
   componentId: Uuid!
@@ -1119,7 +1146,7 @@ interface Data {
   """
   Creator identifier issued by the metabase. The creator's meta data can be
   obtained by sending the GraphQL query
-  `stakeholder(stakeholderId: ...) { ... }`
+  `query { institution(id: ...) { ... } }`
   to the metabase.
   """
   creatorId: Uuid!
@@ -1136,7 +1163,7 @@ interface Data {
   appliedMethod: AppliedMethod!
 
   """
-  Approvals by stakeholders in the form of GnuPG signatures. See the type
+  Approvals by institutions in the form of GnuPG signatures. See the type
   `Approval` for details on how to verify data and approvals.
   """
   approvals: [DataApproval!]!
@@ -1364,7 +1391,7 @@ type AppliedMethod {
   """
   Method identifier of method that was applied by the creator on the source
   data. The method's meta data can be obtained by sending the GraphQL query
-  `method(methodId: ...) { ... }`
+  `query { method(id: ...) { ... } }`
   to the metabase.
   """
   methodId: Uuid!
@@ -1399,7 +1426,7 @@ type ToTreeVertexAppliedConversionMethod {
   Method identifier of conversion method that was applied by the creator on the
   source data. The method's meta data can be obtained by sending the GraphQL
   query
-  `method(methodId: ...) { ... }`
+  `query { method(id: ...) { ... } }`
   to the metabase.
   """
   methodId: Uuid!
@@ -1504,52 +1531,270 @@ type OpenEndedDateTimeRange {
 }
 
 """
+Numeration of a standard consisting of a main number and optional prefix and
+suffix.
+
+For example, a standard may be named "ISO 52022-1" or "ASTM E2387", which have
+"ISO" and "ASTM" as acronyms for the standardizers, "52022" and "2387" as main
+numbers, "E" as prefix, and "1" as suffix. The suffix may indicate for example
+a part number.
+"""
+type Numeration {
+  """
+  Main number
+  """
+  mainNumber: String!
+
+  """
+  Prefix
+  """
+  prefix: String
+
+  """
+  Suffix
+  """
+  suffix: String
+}
+
+"""
+Acronyms or abbreviations of standardization institutions.
+
+Additional information about each standardization institution is stored in the
+metabase.
+"""
+enum Standardizer {
+  AERC
+  AGI
+  ASHRAE
+  BREEAM
+  BS
+  BSI
+  CEN
+  CIE
+  DGNB
+  DIN
+  DVWG
+  IEC
+  IES
+  IFT
+  ISO
+  JIS
+  LEED
+  NFRC
+  RIBA
+  UL
+  UNECE
+  VDI
+  VFF
+  WELL
+}
+
+"""
+Standard or publication.
+"""
+union Reference = Standard | Publication
+
+"""
+`ISO 52022` is an example of the abbreviation of a standardizer and the main
+number of the identifier.
+"""
+type Standard {
+  """
+  Title
+  """
+  title: String
+
+  """
+  Abstract
+  """
+  abstract: String
+
+  """
+  Section referred to.
+  """
+  section: String
+
+  """
+  Web address
+  """
+  locator: Url
+
+  """
+  Numeration
+  """
+  numeration: Numeration!
+
+  """
+  Standardizers
+  """
+  standardizers: [Standardizer!]!
+
+  """
+  Year
+
+  Important because there can be relevant updates of one standard.
+  """
+  year: Int
+}
+
+type Publication {
+  """
+  Title
+  """
+  title: String
+
+  """
+  Abstract
+  """
+  abstract: String
+
+  """
+  Section referred to.
+  """
+  section: String
+
+  """
+  Names of authors of the publication.
+  """
+  authors: [String!]
+
+  """
+  arXiv identifier. [arXiv](https://arxiv.org) is a free distribution service
+  and an open-access archive for scholarly articles in the fields of physics,
+  mathematics, computer science, quantitative biology, quantitative finance,
+  statistics, electrical engineering and systems science, and economics.
+  """
+  arXiv: ArXiv
+
+  """
+  Digital Object Identifier (DOI). It must be defined here if it exists.
+  """
+  doi: Doi
+
+  """
+  Uniform Resource Name (URN).
+  """
+  urn: Url
+
+  """
+  Web address.
+
+  If a persistent identifiert like DOI is defined above, this address can
+  define a convenient web address to access the publication. However, if no
+  persistent identifier exist, this web address is the only identifier of this
+  publication. In this case, it is important to choose a web address with a high
+  probability to persist long.
+  """
+  webAddress: Url
+}
+
+"""
 Approval with
 [GnuPG](https://www.gnupg.org)
 signature.
 
 To verify an approval,
 1. install [GnuPG](https://www.gnupg.org),
-2. save the approved response in a file `response.json`,
-3. save the ASCII-armored signature in a file `response.json.asc`,
-4. * retrieve the public key for the given fingerprint from the metabase's
-     keyserver by running
-     `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --recv-keys <FINGERPRINT>`
-     (or
-     `gpg --fetch-keys https://buildingenvelopedata.org/gnuPgKey/<FINGERPRINT>.asc`)
-     and make sure that the key belongs to the approver, was allowed for
-     signing, and was valid at a given timestamp by sending a request of the
+2. save the approved response in the file `./response.json`,
+3. save the ASCII-armored signature in the file `./response.json.asc`,
+4. * receive (and import) the public key for the given fingerprint from the
+     OpenPGP keyserver by running
+     `gpg --keyserver hkps://keys.openpgp.org/ --receive-keys <FINGERPRINT>`
+   * make sure that the key was not expired and was not revoked when the
+     approval was created by checking that the output of
+     `gpg --list-keys <FINGERPRINT>`
+     does not say so: Look for the terms 'revoked' and 'expired'.
+   * make sure that the key belongs to the approver and was allowed for signing
+     and not revoked when the approval was created by sending a request of the
      form
      ```
-     database(databaseId: ..., timestamp: <TIMESTAMP>) {
-       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
+     query {
+       institution(id: <APPROVER_ID>) {
+         hasGnuPgKeyFingerprint(
+           where: {
+             and: [
+               { fingerprint: { equalTo: <FINGERPRINT> } }
+               { allowedAt: { lessThanOrEqualTo: <TIMESTAMP> } }
+               { forbiddenAt: { greaterThan: <TIMESTAMP> } }
+             ]
+           }
+         )
+       }
      }
      ```
-     or
+     to the metabase and checking that the response is
      ```
-     stakeholder(stakeholderId: ..., timestamp: <TIMESTAMP>) {
-       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
+     {
+       "data": {
+         "institution": {
+           "hasGnuPgKeyFingerprint": true
+         }
+       }
+     }
+     ```.
+     Alternatively, retrieve the allowed-for-signing and
+     not-revoked-at-the-given-time key fingerprint from the metabase's GraphQL
+     endpoint by sending a request of the form
+     ```
+     query {
+       institution(id: <APPROVER_ID>) {
+         gnuPgKeyFingerprints(
+           where: {
+             and: [
+               { fingerprint: { equalTo: <FINGERPRINT> } }
+               { allowedAt: { lessThanOrEqualTo: <TIMESTAMP> } }
+               { forbiddenAt: { greaterThan: <TIMESTAMP> } }
+             ]
+           }
+         ) {
+           edges {
+             node {
+               fingerprint
+               allowedAt
+               forbiddenAt
+               user {
+                 node {
+                   uuid
+                   name
+                 }
+               }
+             }
+           }
+           totalCount
+         }
+       }
      }
      ```
-   * or retrieve the allowed-for-signing and valid-at-the-given-time key from
-     the metabase's GraphQL endpoint by sending a request of the form
+     to the metabase and check that the response
      ```
-     database(databaseId: ..., timestamp: <TIMESTAMP>) {
-       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
+     {
+       "data": {
+         "institution": {
+           "gnuPgKeyFingerprints": {
+             "edges": [
+               {
+                 "node": {
+                   "fingerprint": <FINGERPRINT>,
+                   "allowedAt": ...,
+                   "forbiddenAt": ...,
+                   "user": {
+                     "node": {
+                       "uuid": ...,
+                       "name": ...
+                     }
+                   }
+                 }
+               }
+             ],
+             "totalCount": 1
+           }
+         }
+       }
      }
      ```
-     or
-     ```
-     stakeholder(stakeholderId: ..., timestamp: <TIMESTAMP>) {
-       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
-     }
-     ```
-     save the ASCII-armored key in a file `my.gpg.asc`, and import it by running
-     `gpg --import ./my.gpg.asc`.
-   where `<TIMESTAMP>` is the timestamp at which the approval was created (for
-   response approvals this is the timestamp of the response).
+     contains exactly one edge (and node).
 5. verify the signature with the public key by running
-   `gpg --verify response.json.asc response.json`.
+   `gpg --verify ./response.json.asc ./response.json`.
 
 To create an approval,
 1. install [GnuPG](https://www.gnupg.org),
@@ -1569,61 +1814,70 @@ To create an approval,
    entering the command `save`.
 4. list your keys with fingerprints by running
    `gpg --list-keys --with-subkey-fingerprint <YOUR_EMAIL_ADDRESS>`.
-5. adds it your signing key to the metabase and its keyserver (both are
-   coupled and one cannot be done without the other) either with the GraphQL
+5. add your signing key to the
+   [OpenPGP keyserver](https://keys.openpgp.org)
+   by running
+   `gpg --keyserver hkps://keys.openpgp.org --send-keys <SIGNING_KEY_FINGERPRINT>`
+   or by exporting the public key by running
+   `gpg --export --armor --output ./signing_key.pub.asc <SIGNING_KEY_FINGERPRINT>`
+   and uploading it via the form on
+   [OpenPGP Key Upload](https://keys.openpgp.org/upload).
+6. verify the signing key's user ID, which is `<YOUR_EMAIL_ADDRESS>`, by
+   following the verification link sent to you.
+7. add the signing key fingerprint to the metabase with the GraphQL mutation
+   ```
+   mutation {
+     addGnuPgKeyFingerprint(input: {
+       institutionId: <APPROVER_ID>
+       fingerprint: <SIGNING_KEY_FINGERPRINT>
+     }) {
+       errors {
+         code
+         message
+         path
+       }
+     }
+   }
+   ```
+   and ask the institution owner to allow the key for signing with the GraphQL
    mutation
    ```
    mutation {
-     sendKeys(input: {
-       asciiArmoredKeys: <ASCII_ARMORED_KEYS>
-       keyFingerprint: <SIGNING_KEY_FINGERPRINT>
-     }) { }
+     allowGnuPgKeyFingerprint(input: {
+       fingerprint: <SIGNING_KEY_FINGERPRINT>
+     }) {
+       errors {
+         code
+         message
+         path
+       }
+     }
    }
    ```
-   where `<ASCII_ARMORED_KEYS>` is the standard output of running
-   `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
-   or by running
-   `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`.
-6. save the response to be approved in a file `response.json`,
-7. compute the signature and write it to `response.json.asc` by running
-   `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> response.json`, and
-8. add the signature as approval to the database through its interface.
+8. save the response to be approved in a file `./response.json`,
+9. compute the signature and write it to `./response.json.asc` by running
+   `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> ./response.json`, and
+10. add the signature as approval to the database through its interface.
 
 Best practices for managing GnuPG keys within an institution:
-* In the metabase, each institution has at least one representative and the
-  institution's GnuPG keys are but the keys of all its representatives.
-* Each representative of an institution within the metabase who is allowed to
-  approve data for its institution adds its signing key to the metabase and its
-  keyserver (both are coupled and one cannot be done without the other) either
-  with the GraphQL mutation
-  ```
-  mutation {
-    sendKeys(input: {
-      asciiArmoredKeys: <ASCII_ARMORED_KEYS>
-      keyFingerprint: <SIGNING_KEY_FINGERPRINT>
-    }) { }
-  }
-  ```
-  where `<ASCII_ARMORED_KEYS>` is the standard output of running
-  `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
-  or by running
-  `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`.
+* In the metabase, each institution has at least one representative. The
+  institution's GnuPG keys are the ones whose fingerprints are associated with
+  the institution. Fingerprints can be added by representatives and allowed and
+  forbidden for signing by instiution owners. The corresponding GraphQL
+  mutations are `addGnuPgKeyFingerprint`, `allowGnuPgKeyFingerprint`, and
+  `forbidGnuPgKeyFingerprint`.
+* Each representative of an institution within the metabase who is supposed to
+  approve data for its institution adds its signing key to the
+  [OpenPGP Keyserver](https://keys.openpgp.org),
+  the key fingerprint to the metabase, and lets the fingerprint be allowed for
+  signing by the institution owner.
 * When a representative's signing subkey is compromised she revokes it as
   described in
-  [Revoking key components](https://www.gnupg.org/gph/en/manual.html#AEN305)
-  and publishes the revocation either with the corresponding GraphQL mutation
-  ```
-  mutation {
-    sendKeys(input: {
-      asciiArmoredKeys: <ASCII_ARMORED_KEYS>
-      keyFingerprint: <SIGNING_KEY_FINGERPRINT>
-    }) { }
-  }
-  ```
-  where `<ASCII_ARMORED_KEYS>` is the standard output of running
-  `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
-  or by running
-  `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-key <SIGNING_KEY_FINGERPRINT>`.
+  [Revoking key components](https://www.gnupg.org/gph/en/manual.html#AEN305),
+  publishes the revocation to the keyserver by running
+  `gpg --keyserver hkps://keys.openpgp.org --send-key <SIGNING_KEY_FINGERPRINT>`,
+  and forbids the key for signing on the metabase with the mutation
+  `forbidGnuPgKeyFingerprint`
 * When a representative leaves a company or is no longer allowed to approve data,
   the metabase is informed about that with the GraphQL mutation
   ```
@@ -1631,23 +1885,22 @@ Best practices for managing GnuPG keys within an institution:
     removeInstitutionRepresentative(input: {
       userId: <USER_ID>
       institutionId: <INSTITUTION_ID>
-    }) { }
+    }) {
+      errors {
+        code
+        message
+        path
+      }
+    }
   }
   ```
-  or
-  ```
-  mutation {
-    forbidInstitutionRepresentativeToSignData(input: {
-      userId: <USER_ID>
-      institutionId: <INSTITUTION_ID>
-    }) { }
-  }
-  ```
+  which also forbids all GnuPG keys associated with this representative from
+  signing.
 
 Best practices for accepting approvals by databases:
-* Check that the fingerprint belongs to a non-revoked and valid GnuPG key of an
-  active representative of an institution who is allowed to make signatures for
-  that institution.
+* Check that at the time of approval creation, the fingerprint belonged to
+  a non-revoked and non-disabled GnuPG key.
+* Check that the key was allowed to make signatures for that institution.
 * Check that the query contains all necessary fields and sub-fields.
 * Check that the response is the result of the given query.
 * Check that the signature is valid for the given response.
@@ -1671,12 +1924,12 @@ interface Approval {
   """
   Detached ASCII-armored GnuPG signature of the GraphQL query response.
 
-  With the query response saved in the file `response.json`, the signature can
-  be computed and written to `response.json.asc` by running
-  `gpg --detach-sig --armor response.json`
+  With the query response saved in the file `./response.json`, the signature can
+  be computed and written to `./response.json.asc` by running
+  `gpg --detach-sig --armor ./response.json`
   (to write it to standard output instead, add the option `--output -`). And,
   the signature can be verified by running
-  `gpg --verify response.json.asc response.json`.
+  `gpg --verify ./response.json.asc ./response.json`.
   Note that to compute a signature you need a GnuPG signing private key in your
   key ring and to verify a signature you need the GnuPG signing public key
   whose corresponding private key was used to compute the signature.
@@ -1687,7 +1940,7 @@ interface Approval {
   Fingerprint of the GnuPG signing key used to compute the signature.
 
   The key's fingerprint, long identifier, and short identifier are related as
-  in the follow example:
+  in the following example:
   * fingerprint: 0D69 E11F 12BD BA07 7B37  26AB 4E1F 799A A4FF 2279
   * long id:                                    4E1F 799A A4FF 2279
   * short id:                                             A4FF 2279
@@ -1698,9 +1951,12 @@ interface Approval {
   keyFingerprint: String!
 
   """
-  GraphQL query whose response is signed, for example,
+  [GraphQL query](https://graphql.org/learn/queries/)
+  whose response is signed, for example,
   ```
-  opticalData(opticalDataId: ...) { ... }
+  query OpticalData($id: Uuid!) {
+    opticalData(id: $id) { ... }
+  }
   ```
   Specifying the query explicitely is necessary because approvals shall not
   become invalid when the GraphQL schema changes.
@@ -1708,19 +1964,28 @@ interface Approval {
   query: GraphQlQuery!
 
   """
+  [GraphQL variables](https://graphql.org/learn/queries/#variables)
+  defined by the GraphQL query, for example,
+  ```
+  { "id": "018731a4-4c0a-49af-a5d9-f377fbd0a939" }
+  ```
+  """
+  variables: Any!
+
+  """
   JSON serialized GraphQL response that is signed.
 
-  With the response put in the file `response.json`, the GnuPG signature put in
-  the file `response.json.asc`, and the GnuPG public key of the approver added
+  With the response put in the file `./response.json`, the GnuPG signature put in
+  the file `./response.json.asc`, and the GnuPG public key of the approver added
   to the GnuPG key ring, the signature can be verified by running
-  `gpg --verify response.json.asc response.json`.
+  `gpg --verify ./response.json.asc ./response.json`.
 
-  To compare the response `response.json` and another response `another.json`,
+  To compare the response `./response.json` and another response `./another.json`,
   run the command
   ```
   diff --side-by-side --suppress-common-lines \
-    <(jq --sort-keys --monochrome-output . response.json) \
-    <(jq --sort-keys --monochrome-output . another.json)
+    <(jq --sort-keys --monochrome-output . ./response.json) \
+    <(jq --sort-keys --monochrome-output . ./another.json)
   ```
   in a
   [Bourne-again shell (Bash)](https://www.gnu.org/software/bash/),
@@ -1729,7 +1994,7 @@ interface Approval {
   and
   [Using jq or alternative command line tools to compare JSON files](https://stackoverflow.com/questions/31930041/using-jq-or-alternative-command-line-tools-to-compare-json-files/37175540#37175540).
 
-  Comparing responses is necessary to verify that the data `another.json` you
+  Comparing responses is necessary to verify that the data `./another.json` you
   received in a query that includes this approval matches the approved data.
   Which is of course the case if all involved organizations are trustworthy.
   However, verified signatures and matching responses together prove data
@@ -1743,17 +2008,65 @@ interface Approval {
 Approval of data by third party with GnuPG signature that is created at some
 point in time. It becomes invalid when the approved data changes, even if the
 change is but a spelling-error correction in meta data like the description.
-In that case, the third party needs to re-create its approval.
+In that case, the third party needs to re-create its approval. Unnecessary
+invalidation can be avoided by choosing the meta data that is part of the
+message being approved carefully.
 
 Steps to approve data:
-1. An institution adds data to a database.
-2. Some institution (may be the same) queries the data with a GraphQL query.
-3. The latter institution reviews the data and, if correct, signs it with one
-   of its GnuPG signing keys.
-4. The institution adds its approval of the data to the database.
+1. An institution adds data with meta information to a database.
+2. Some institution (may be the same) queries some meta information with
+   a GraphQL query like
+   ```
+   query {
+     opticalData(id: <OPTICAL_DATA_ID>) {
+       uuid
+       name
+       description
+       resourceTree {
+         root {
+           value {
+             hashValue
+             locator
+             dataFormatId
+           }
+         }
+       }
+     }
+   }
+   ```
+   and loads the data with a HTTPS GET request to the locator URL by running
+   `wget <LOCATOR>`.
+3. The latter institution reviews whether some statement is true for the data,
+   for example, whether the data conforms to some standard. If that is so, the
+   institution queries the meta information to be signed which at least
+   contains the hash value of the data
+   ```
+   query {
+     opticalData(id: <OPTICAL_DATA_ID>) {
+       resourceTree {
+         root {
+           value {
+             hashValue
+           }
+         }
+       }
+     }
+   }
+   ```
+   makes sure that the hash value is the same as before, wraps the statement
+   and the meta information (called response below) like so
+   ```
+   {
+     "statement": <STATEMENT>,
+     "response": <RESPONSE>
+   }
+   ```
+   and signs this JSON data.
+4. The institution adds its approval of the data to some database or asks it to
+   be added.
 
-Storing the GraphQL query with the signature is necessary because it needs to be
-known exactly which JSON data was signed.
+Storing the GraphQL query, variables, and response with the signature is
+necessary because it needs to be known exactly which JSON data was signed.
 
 Note that the query to be signed only includes paths that are part of the data
 and not part of some associates, which are actually all paths in the present
@@ -1769,15 +2082,35 @@ type DataApproval implements Approval {
   signature: String!
   keyFingerprint: String!
   query: GraphQlQuery!
+  variables: Any!
   response: JsonGraphQlResponse!
+
+  """
+  Statement that is being made by the approver about the data identified by the
+  query. The reference could for example be an ISO standard, which would mean
+  that this approval states that the data conforms to this standard.
+  """
+  statement: Reference!
 
   """
   Approver identifier issued by the metabase. The approver's meta data can be
   obtained by sending the GraphQL query
-  `stakeholder(stakeholderId: ...) { ... }`
+  `query { institution(id: ...) { ... } }`
   to the metabase.
   """
   approverId: Uuid!
+
+  """
+  Message that is signed. It is a string representation of the JSON
+  ```
+  {
+    "statement": statement,
+    "response": response
+  }
+  ```
+  with the whitespaces as when the signature was created.
+  """
+  message: String!
 }
 
 """
@@ -1790,6 +2123,7 @@ type ResponseApproval implements Approval {
   signature: String!
   keyFingerprint: String!
   query: GraphQlQuery!
+  variables: Any!
   response: JsonGraphQlResponse!
 }
 
@@ -1896,7 +2230,7 @@ type GetHttpsResource {
   [200](https://tools.ietf.org/html/rfc7231#section-6.3.1).
   The identifier is issued by the metabase. The format's meta data can be
   obtained by sending the GraphQL query
-  `dataFormat(dataFormatId: ...) { ... }`
+  `query { dataFormat(id: ...) { ... } }`
   to the metabase.
 
   The data format consists of a
@@ -2057,7 +2391,7 @@ type FileMetaInformation {
   """
   Identifier of the data format. The identifier is issued by the metabase. The
   format's meta data can be obtained by sending the GraphQL query
-  `dataFormat(dataFormatId: ...) { ... }`
+  `query { dataFormat(id: ...) { ... } }`
   to the metabase.
 
   The data format consists of a
