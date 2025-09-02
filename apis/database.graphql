@@ -171,16 +171,6 @@ and without unnecessary white-space for the present schema.
 scalar GraphQlQuery
 
 """
-[June 2018 GraphQL](http://spec.graphql.org/June2018/)
-compliant
-[JavaScript Object Notation (JSON)](https://tools.ietf.org/html/rfc8259)
-[serialized](http://spec.graphql.org/June2018/#sec-JSON-Serialization)
-[response](http://spec.graphql.org/June2018/#sec-Response)
-string without unnecessary white-space for the present schema.
-"""
-scalar JsonGraphQlResponse
-
-"""
 [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
 compliant
 [Cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
@@ -1695,14 +1685,17 @@ signature.
 
 To verify an approval,
 1. install [GnuPG](https://www.gnupg.org),
-2. save the approved response in the file `./response.json`,
-3. save the ASCII-armored signature in the file `./response.json.asc`,
+2. save the approved message in the file `./message.json` (it is the value of
+   the field `message`),
+3. save the ASCII-armored signature in the file `./message.json.asc` (it is the
+   value of the field `signature`),
 4. * receive (and import) the public key for the given fingerprint from the
-     OpenPGP keyserver by running
-     `gpg --keyserver hkps://keys.openpgp.org/ --receive-keys <FINGERPRINT>`
+     [OpenPGP Keyserver](https://keys.openpgp.org) by running
+     `gpg --keyserver hkps://keys.openpgp.org/ --receive-keys <KEY_FINGERPRINT>`
+     where `<KEY_FINGERPRINT>` is the value of the field `keyFingerprint`.
    * make sure that the key was not expired and was not revoked when the
      approval was created by checking that the output of
-     `gpg --list-keys <FINGERPRINT>`
+     `gpg --list-keys <KEY_FINGERPRINT>`
      does not say so: Look for the terms 'revoked' and 'expired'.
    * make sure that the key belongs to the approver and was allowed for signing
      and not revoked when the approval was created by sending a request of the
@@ -1713,7 +1706,7 @@ To verify an approval,
          hasGnuPgKeyFingerprint(
            where: {
              and: [
-               { fingerprint: { equalTo: <FINGERPRINT> } }
+               { fingerprint: { equalTo: <KEY_FINGERPRINT> } }
                { allowedAt: { lessThanOrEqualTo: <TIMESTAMP> } }
                { forbiddenAt: { greaterThan: <TIMESTAMP> } }
              ]
@@ -1731,17 +1724,19 @@ To verify an approval,
          }
        }
      }
-     ```.
-     Alternatively, retrieve the allowed-for-signing and
-     not-revoked-at-the-given-time key fingerprint from the metabase's GraphQL
-     endpoint by sending a request of the form
+     ```
+     where `<APPROVER_ID>`, `<KEY_FINGERPRINT>`, and `<TIMESTAMP>` are the values
+     of the fields `approverId`, `keyFingerprint`, and `timestamp`. Alternatively,
+     retrieve the allowed-for-signing and not-revoked-at-the-given-time key
+     fingerprint from the metabase's GraphQL endpoint by sending a request of
+     the form
      ```
      query {
        institution(id: <APPROVER_ID>) {
          gnuPgKeyFingerprints(
            where: {
              and: [
-               { fingerprint: { equalTo: <FINGERPRINT> } }
+               { fingerprint: { equalTo: <KEY_FINGERPRINT> } }
                { allowedAt: { lessThanOrEqualTo: <TIMESTAMP> } }
                { forbiddenAt: { greaterThan: <TIMESTAMP> } }
              ]
@@ -1774,7 +1769,7 @@ To verify an approval,
              "edges": [
                {
                  "node": {
-                   "fingerprint": <FINGERPRINT>,
+                   "fingerprint": <KEY_FINGERPRINT>,
                    "allowedAt": ...,
                    "forbiddenAt": ...,
                    "user": {
@@ -1794,7 +1789,7 @@ To verify an approval,
      ```
      contains exactly one edge (and node).
 5. verify the signature with the public key by running
-   `gpg --verify ./response.json.asc ./response.json`.
+   `gpg --verify ./message.json.asc ./message.json`.
 
 To create an approval,
 1. install [GnuPG](https://www.gnupg.org),
@@ -1815,15 +1810,15 @@ To create an approval,
 4. list your keys with fingerprints by running
    `gpg --list-keys --with-subkey-fingerprint <YOUR_EMAIL_ADDRESS>`.
 5. add your signing key to the
-   [OpenPGP keyserver](https://keys.openpgp.org)
+   [OpenPGP Keyserver](https://keys.openpgp.org)
    by running
    `gpg --keyserver hkps://keys.openpgp.org --send-keys <SIGNING_KEY_FINGERPRINT>`
    or by exporting the public key by running
    `gpg --export --armor --output ./signing_key.pub.asc <SIGNING_KEY_FINGERPRINT>`
    and uploading it via the form on
    [OpenPGP Key Upload](https://keys.openpgp.org/upload).
-6. verify the signing key's user ID, which is `<YOUR_EMAIL_ADDRESS>`, by
-   following the verification link sent to you.
+6. within a few minutes, verify the signing key's user ID, which is
+   `<YOUR_EMAIL_ADDRESS>`, by following the verification link sent to you.
 7. add the signing key fingerprint to the metabase with the GraphQL mutation
    ```
    mutation {
@@ -1854,10 +1849,71 @@ To create an approval,
      }
    }
    ```
-8. save the response to be approved in a file `./response.json`,
-9. compute the signature and write it to `./response.json.asc` by running
-   `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> ./response.json`, and
-10. add the signature as approval to the database through its interface.
+   Note that if you are the owner, the key is allowed automatically.
+
+For a response approval,
+8. save the response of the present query in a file `./message.json`.
+9. compute the signature and write it to `./message.json.asc` by running
+  `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> --output ./message.json.asc ./message.json`, and
+10. add the approval to the final response of the present query through the
+    field `approval`.
+
+For a data approval,
+8. query meta information of the data set to be signed with a GraphQL query
+   like
+   ```
+   query {
+     opticalData(id: <OPTICAL_DATA_ID>) {
+       uuid
+       name
+       description
+       resourceTree {
+         root {
+           value {
+             hashValue
+             locator
+             dataFormatId
+           }
+         }
+       }
+     }
+   }
+   ```
+   and load the data with an HTTPS GET request to the locator URL by running
+   `wget <LOCATOR>`.
+9. review whether some statement is true for the data, for example, whether the
+   data conforms to some standard. If that is so, query the meta information to
+   be signed which at least contains the hash value of the data
+   ```
+   query {
+     opticalData(id: <OPTICAL_DATA_ID>) {
+       resourceTree {
+         root {
+           value {
+             hashValue
+           }
+         }
+       }
+     }
+   }
+   ```
+   make sure that the hash value is the same as before, wrap the statement and
+   the meta information (named `<RESPONSE>` below) like so
+   ```
+   {
+     "statement": <STATEMENT>,
+     "response": <RESPONSE>
+   }
+   ```
+   and save this in a file `./message.json`. The query should ask for the
+   information necessary to identify the meta information and the data set
+   itself uniquely like its ID and the data set's fingerprint, aka, hash value.
+   It should not ask for information whose change would invalidate the approval
+   unnecessaritly like the the verbal description of the data set.
+10. compute the signature and write it to `./message.json.asc` by running
+    `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> --output ./message.json.asc ./message.json`, and
+11. add the signature as data approval to the database through its interface,
+    which could for example have a GraphQL mutation `AddDataApproval`.
 
 Best practices for managing GnuPG keys within an institution:
 * In the metabase, each institution has at least one representative. The
@@ -1897,13 +1953,14 @@ Best practices for managing GnuPG keys within an institution:
   which also forbids all GnuPG keys associated with this representative from
   signing.
 
-Best practices for accepting approvals by databases:
+Best practices for accepting data approvals by databases:
 * Check that at the time of approval creation, the fingerprint belonged to
   a non-revoked and non-disabled GnuPG key.
 * Check that the key was allowed to make signatures for that institution.
 * Check that the query contains all necessary fields and sub-fields.
-* Check that the response is the result of the given query.
-* Check that the signature is valid for the given response.
+* Check that the message is constructed properly according to the documentation
+  of the implementing type `DataApproval`.
+* Check that the signature is valid for the given message.
 
 Note that GnuPG is compliant with
 [OpenPGP Message Format](https://tools.ietf.org/html/rfc4880).
@@ -1922,14 +1979,15 @@ interface Approval {
   timestamp: DateTime!
 
   """
-  Detached ASCII-armored GnuPG signature of the GraphQL query response.
+  Detached ASCII-armored GnuPG signature of the message which includes the
+  GraphQL query response.
 
-  With the query response saved in the file `./response.json`, the signature can
-  be computed and written to `./response.json.asc` by running
-  `gpg --detach-sig --armor ./response.json`
-  (to write it to standard output instead, add the option `--output -`). And,
+  With the message saved in the file `./message.json`, the signature can
+  be computed and written to `./message.json.asc` by running
+  `gpg --detach-sig --armor --output ./message.json.asc ./message.json`
+  (to write it to standard output instead, use the option `--output -`). And,
   the signature can be verified by running
-  `gpg --verify ./response.json.asc ./response.json`.
+  `gpg --verify ./message.json.asc ./message.json`.
   Note that to compute a signature you need a GnuPG signing private key in your
   key ring and to verify a signature you need the GnuPG signing public key
   whose corresponding private key was used to compute the signature.
@@ -1952,7 +2010,7 @@ interface Approval {
 
   """
   [GraphQL query](https://graphql.org/learn/queries/)
-  whose response is signed, for example,
+  whose response is included in the message being signed, for example,
   ```
   query OpticalData($id: Uuid!) {
     opticalData(id: $id) { ... }
@@ -1973,18 +2031,23 @@ interface Approval {
   variables: Any!
 
   """
-  JSON serialized GraphQL response that is signed.
+  Message that is signed.
 
-  With the response put in the file `./response.json`, the GnuPG signature put in
-  the file `./response.json.asc`, and the GnuPG public key of the approver added
+  For `ResponseApproval` it is the serialized GraphQL response of `query`. And
+  for `DataApproval` it is a serialized JSON combining the statement being made
+  and the response. See the documentation of `ResponseApproval#message` and
+  `DataApproval#message` for details.
+
+  With the message put in the file `./message.json`, the GnuPG signature put in
+  the file `./message.json.asc`, and the GnuPG public key of the approver added
   to the GnuPG key ring, the signature can be verified by running
-  `gpg --verify ./response.json.asc ./response.json`.
+  `gpg --verify ./message.json.asc ./message.json`.
 
-  To compare the response `./response.json` and another response `./another.json`,
+  To compare the message `./message.json` and another message `./another.json`,
   run the command
   ```
   diff --side-by-side --suppress-common-lines \
-    <(jq --sort-keys --monochrome-output . ./response.json) \
+    <(jq --sort-keys --monochrome-output . ./message.json) \
     <(jq --sort-keys --monochrome-output . ./another.json)
   ```
   in a
@@ -1994,14 +2057,14 @@ interface Approval {
   and
   [Using jq or alternative command line tools to compare JSON files](https://stackoverflow.com/questions/31930041/using-jq-or-alternative-command-line-tools-to-compare-json-files/37175540#37175540).
 
-  Comparing responses is necessary to verify that the data `./another.json` you
+  Comparing messages is necessary to verify that the data `./another.json` you
   received in a query that includes this approval matches the approved data.
   Which is of course the case if all involved organizations are trustworthy.
-  However, verified signatures and matching responses together prove data
+  However, verified signatures and matching messages together prove data
   integrity (at least if private keys used to make the signatures in the first
   place are not compromised).
   """
-  response: JsonGraphQlResponse!
+  message: String!
 }
 
 """
@@ -2034,7 +2097,7 @@ Steps to approve data:
      }
    }
    ```
-   and loads the data with a HTTPS GET request to the locator URL by running
+   and loads the data with an HTTPS GET request to the locator URL by running
    `wget <LOCATOR>`.
 3. The latter institution reviews whether some statement is true for the data,
    for example, whether the data conforms to some standard. If that is so, the
@@ -2054,7 +2117,7 @@ Steps to approve data:
    }
    ```
    makes sure that the hash value is the same as before, wraps the statement
-   and the meta information (called response below) like so
+   and the meta information (named `<RESPONSE>` below) like so
    ```
    {
      "statement": <STATEMENT>,
@@ -2065,8 +2128,9 @@ Steps to approve data:
 4. The institution adds its approval of the data to some database or asks it to
    be added.
 
-Storing the GraphQL query, variables, and response with the signature is
-necessary because it needs to be known exactly which JSON data was signed.
+Storing the GraphQL query, variables, and message with the signature is
+necessary because it needs to be known exactly which JSON data was signed (with
+exact whitespaces).
 
 Note that the query to be signed only includes paths that are part of the data
 and not part of some associates, which are actually all paths in the present
@@ -2083,7 +2147,20 @@ type DataApproval implements Approval {
   keyFingerprint: String!
   query: GraphQlQuery!
   variables: Any!
-  response: JsonGraphQlResponse!
+
+  """
+  Message that is signed. It is a string representation of the JSON
+  ```
+  {
+    "statement": <STATEMENT>,
+    "response": <RESPONSE>
+  }
+  ```
+  with whitespaces as when the signature was created, where `<STATEMENT>` is
+  the JSON of the field `statement` and `<RESPONSE>` is the JSON response of
+  sending the GraphQL request given by the field `query`.
+  """
+  message: String!
 
   """
   Statement that is being made by the approver about the data identified by the
@@ -2096,21 +2173,10 @@ type DataApproval implements Approval {
   Approver identifier issued by the metabase. The approver's meta data can be
   obtained by sending the GraphQL query
   `query { institution(id: ...) { ... } }`
-  to the metabase.
+  to the metabase. The approver makes the statement about the data identified
+  by the query.
   """
   approverId: Uuid!
-
-  """
-  Message that is signed. It is a string representation of the JSON
-  ```
-  {
-    "statement": statement,
-    "response": response
-  }
-  ```
-  with the whitespaces as when the signature was created.
-  """
-  message: String!
 }
 
 """
@@ -2124,7 +2190,12 @@ type ResponseApproval implements Approval {
   keyFingerprint: String!
   query: GraphQlQuery!
   variables: Any!
-  response: JsonGraphQlResponse!
+
+  """
+  Serialized response of the GraphQL query with whitespaces as when the
+  signature was created.
+  """
+  message: String!
 }
 
 """
