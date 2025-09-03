@@ -190,18 +190,6 @@
       "minimum": -180,
       "maximum": 180
     },
-    "numberWithUncertaintyOrString": {
-      "title": "Not every JSON parser allows to choose how a `number` is processed. Some software developers prefer to share numbers as `string`, because a string can be cast into a type which preserves the precision of the number. Therefore, this definition allows to define a number as a `numberWithUncertainty`, but also as a `string`.",
-      "oneOf": [
-        {
-          "$ref": "#/$defs/numberWithUncertainty"
-        },
-        {
-          "type": "string",
-          "description": "The string can be cast into the proper type to preserve the precision of the number."
-        }
-      ]
-    },
     "integerOrNull": {
       "title": "Some servers return `null` when they do not have a value",
       "oneOf": [
