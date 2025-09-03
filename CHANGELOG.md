@@ -37,7 +37,7 @@ and this project adheres to
 - Upgrade development packages to latest versions [#285](https://github.com/building-envelope-data/api/pull/285)
 - Use JSON Schema Draft 2020-12 and upgrade tooling [#307](https://github.com/building-envelope-data/api/pull/307)
 - Simplify the structure of optical datasets [#354](https://github.com/building-envelope-data/api/pull/354)
--
+- Extend BED-JSON to include everything from LBNL-JSON [#352](https://github.com/building-envelope-data/api/pull/352)
 -
 -
 -

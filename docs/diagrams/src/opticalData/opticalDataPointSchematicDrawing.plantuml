@@ -59,7 +59,7 @@
       ,
       "":
       {
-        "Circular polarization": ["leftHanded", "rightHanded"]
+        "circular polarization": ["leftHanded", "rightHanded"]
       }
 
     }
@@ -99,7 +99,7 @@
           "illuminant":  ["A", "D65"]
         },
       "colorRenderingIndices": {
-          "Ra": "numberBetweenZeroAndOneHundredWithUncertainty",
+          "ra": "numberBetweenZeroAndOneHundredWithUncertainty",
           "observer":  ["twoDegrees", "tenDegrees"],
           "illuminant":  ["A", "D65"]
         }

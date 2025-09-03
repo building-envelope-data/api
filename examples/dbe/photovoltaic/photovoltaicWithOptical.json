@@ -238,15 +238,15 @@
                     "angleDependency": [
                       {
                         "incidence": 0,
-                        "IAM": 1
+                        "incidenceAngleModifier": 1
                       },
                       {
                         "incidence": 60,
-                        "IAM": 0.924
+                        "incidenceAngleModifier": 0.924
                       },
                       {
                         "incidence": 90,
-                        "IAM": 0
+                        "incidenceAngleModifier": 0
                       }
                     ]
                   },

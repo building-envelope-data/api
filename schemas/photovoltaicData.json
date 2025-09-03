@@ -466,9 +466,9 @@
                             "$ref": "number.json#/$defs/degree",
                             "description": "The incidence angle in degree"
                           },
-                          "IAM": {
+                          "incidenceAngleModifier": {
                             "$ref": "number.json#/$defs/nonNegativeNumber",
-                            "description": "The value of the incidence angle modifier at the angle defined by `incidence`."
+                            "description": "The value of the incidence angle modifier (IAM) at the angle defined by `incidence`."
                           }
                         },
                         "additionalProperties": false,
@@ -570,7 +570,7 @@
                   "title": "The fire safety class of the photovoltaic module depending on the region for which the class is valid.",
                   "type": "object",
                   "properties": {
-                    "EN": {
+                    "european": {
                       "title": "The fire safety class according to the regulations of the European Union. EN 13501-1 defines the categories as well as the additional classification for smoke development and burning drops falling from the component.",
                       "type": "object",
                       "properties": {
@@ -925,7 +925,7 @@
               "title": "The electric safety of the inverter.",
               "type": "object",
               "properties": {
-                "IPcode": {
+                "ipCode": {
                   "title": "The electric safety according to the International Protection Marking, also called Ingress Protection Marking, with codes between IPXX and IP69K.",
                   "type": "array",
                   "items": {
@@ -1050,7 +1050,7 @@
               "$ref": "common.json#/$defs/efficiencies/$defs/inverter",
               "description": "The maximum efficiency of this inverter. The efficiency has no units."
             },
-            "European": {
+            "european": {
               "$ref": "common.json#/$defs/efficiencies/$defs/inverter",
               "description": "The efficiency of this inverter according to the european regulations. The efficiency has no units."
             }

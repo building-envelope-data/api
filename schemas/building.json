@@ -97,7 +97,7 @@
               },
               "minItems": 1
             },
-            "BIMmanager": {
+            "bimManager": {
               "$ref": "stakeholder.json",
               "description": "The BIM manager MUST guarantee the uniqueness of the decentral identifiers. She is responsible for the database of the building at the moment indicated by the timestamp of this data."
             },
@@ -174,7 +174,7 @@
           "$ref": "common.json#/$defs/approvals",
           "description": "If the dataset for this building has been approved by an institution, this approval is specified here."
         },
-        "IFC": {
+        "ifc": {
           "title": "The data about a building can be stored in the open source format Industry Foundation Classes (IFC).",
           "type": "object",
           "properties": {
@@ -212,7 +212,7 @@
           "minProperties": 1,
           "required": []
         },
-        "Revit": {
+        "revit": {
           "title": "The data about a building can be stored in the closed source format of Autodesk Revit.",
           "type": "object",
           "properties": {
@@ -250,11 +250,11 @@
           "minProperties": 1,
           "required": []
         },
-        "LinkedData": {
+        "linkedData": {
           "title": "The data about a building can be stored as linked building data.",
           "type": "object",
           "properties": {
-            "SPARQL": {
+            "sparql": {
               "title": "The SPARQL endpoint which can be used to access the data about the building.",
               "type": "object",
               "properties": {

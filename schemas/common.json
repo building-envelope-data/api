@@ -227,17 +227,17 @@
       "title": "The current-voltage characteristic can be important for example for photovoltaics.",
       "type": "object",
       "properties": {
-        "I": {
+        "i": {
           "$ref": "number.json#/$defs/ampere",
           "description": "The electric current in amperes."
         },
-        "V": {
+        "v": {
           "$ref": "number.json#/$defs/volt",
           "description": "The electric potential difference in volts."
         }
       },
       "additionalProperties": false,
-      "required": ["I", "V"]
+      "required": ["i", "v"]
     },
     "approvals": {
       "title": "Institutions can approve data with cryptographic signatures which among other things can be used to ensure integrity and authenticity of data. The same data may be approved by several institutions.",
