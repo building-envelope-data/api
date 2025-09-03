@@ -6,6 +6,12 @@ query {
         uuid
       }
     }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
   }
 
   componentsByInstitution: institution(
@@ -48,27 +54,6 @@ query {
     }
   }
 
-  allData: databases {
-    edges {
-      node {
-        allData {
-          edges {
-            node {
-              name
-              resourceTree {
-                root {
-                  value {
-                    locator
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   dataFormat: databases {
     edges {
       node {
@@ -94,6 +79,12 @@ query {
                 }
               }
             }
+          }
+          pageInfo {
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
           }
         }
       }
@@ -141,6 +132,12 @@ query {
               }
             }
           }
+          pageInfo {
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+          }
         }
       }
     }
@@ -154,6 +151,12 @@ query {
             node {
               name
             }
+          }
+          pageInfo {
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
           }
         }
       }

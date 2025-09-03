@@ -1,0 +1,15 @@
+query {
+  byComponentId: hasOpticalData(
+    where: { componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } }
+    locale: "en-US"
+  )
+
+  byGValue: hasOpticalData(
+    where: {
+      nearnormalHemisphericalVisibleReflectance: {
+        some: { lessThanOrEqualTo: 0.04 }
+      }
+    }
+    locale: "de-AT"
+  )
+}
