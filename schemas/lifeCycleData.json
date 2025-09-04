@@ -19,7 +19,7 @@
             "Energy",
             "Weight"
           ],
-          "description": "Defines the type of product."
+          "description": "The unit used to measure the component."
         },
         "defaultFunctionalUnitAmount": {
           "$ref": "number.json#/$defs/nonNegativeNumber",
@@ -69,27 +69,27 @@
           "properties": {
             "renewables": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Share of renewable content"
             },
             "renewablesSustainablyProduced": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Share of sustainably produced renewable content"
             },
             "notRenewables": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Share of non-renewable content"
             },
             "recycled": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Share of recycled content"
             },
             "reused": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Share of reused content"
             },
             "recyclingEfficiency": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Efficiency of the recycling process"
             }
           },
           "additionalProperties": false,
@@ -102,23 +102,23 @@
           "properties": {
             "availableForRecycle": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Share of material available for recycling"
             },
             "recyclingEfficiency": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Efficiency of the recycling process"
             },
             "landfill": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Share of material sent to landfill"
             },
             "incineration": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Share of material treated by incineration"
             },
             "availableForReuse": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
-              "description": "Renewables"
+              "description": "Share of material available for reuse"
             }
           },
           "additionalProperties": false,
@@ -126,7 +126,7 @@
           "required": []
         },
         "detachability": {
-          "title": "Output",
+          "title": "Detachability",
           "type": "object",
           "properties": {
             "connectionType": {
@@ -139,7 +139,7 @@
                 "AddedConnectionConnection",
                 "DryConnection"
               ],
-              "description": "Connection type."
+              "description": "General Connection type."
             },
             "connectionTypeDetail": {
               "type": "string",
@@ -163,7 +163,7 @@
                 "Peg",
                 "Nail"
               ],
-              "description": "Connection type."
+              "description": "Details on the connection type."
             },
             "accessibility": {
               "type": "string",
@@ -175,17 +175,17 @@
                 "PartialNoDamage",
                 "Accessible"
               ],
-              "description": "Connection type."
+              "description": "Accessibility of the materials."
             },
             "intersection": {
               "type": "string",
               "enum": ["Unknown", "Complete", "Incidental", "None"],
-              "description": "Connection type."
+              "description": "Intersection of the materials."
             },
             "productEdge": {
               "type": "string",
               "enum": ["Unknown", "Closed", "Overlapping", "Open"],
-              "description": "Connection type."
+              "description": "Form of the product edge."
             },
             "index": {
               "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
@@ -206,44 +206,44 @@
       "title": "Defines life cycle assessment (LCA) data.",
       "items": {
         "type": "object",
-        "description": "xxx",
+        "description": "There can be multiple LCAs per product, each item is one LCA of the product",
         "properties": {
           "isoCode": {
             "type": "string",
-            "description": "The 2 letter iso code for a country."
+            "description": "The 2 letter iso code for the country the EPD is valid in. It is possible that for the same product in different countries different EPDs apply."
           },
           "owner": {
             "type": "string",
-            "description": ""
+            "description": "The owner of the LCA"
           },
           "referenceYear": {
             "$ref": "number.json#/$defs/nonNegativeInteger",
-            "description": ""
+            "description": "Reference Year"
           },
           "validUntilYear": {
             "$ref": "number.json#/$defs/nonNegativeInteger",
-            "description": ""
+            "description": "Year until it is valid"
           },
           "datasetType": {
             "type": "string",
-            "description": ""
+            "description": "Type of dataset"
           },
           "UUID": {
             "type": "string",
             "format": "uuid",
-            "description": ""
+            "description": "Universally unique identifier"
           },
           "registrationNumber": {
             "type": "string",
-            "description": ""
+            "description": "Registration number"
           },
           "version": {
             "type": "string",
-            "description": ""
+            "description": "Version"
           },
           "compliance": {
             "type": "array",
-            "description": "",
+            "description": "List of norms this specific LCA dataset complies with (not the whole product itself)",
             "items": {
               "type": "string"
             },
@@ -252,7 +252,7 @@
           },
           "environmentalCostIndicator": {
             "$ref": "number.json#/$defs/nonNegativeNumber",
-            "description": ""
+            "description": "Environmental cost indicator"
           },
           "phases": {
             "title": "LCA Data",
@@ -280,15 +280,15 @@
                     "C4",
                     "D"
                   ],
-                  "description": ""
+                  "description": "Life cycle phase id"
                 },
                 "EN15804_2012_04_A1_2013": {
                   "$ref": "#/$defs/EN15804_2012_04_A1_2013",
-                  "description": ""
+                  "description": "LCA ruleset EN 15804:2012-04+A1 2013"
                 },
                 "EN15804_2012_A2_2019": {
                   "$ref": "#/$defs/EN15804_2012_A2_2019",
-                  "description": ""
+                  "description": "LCA ruleset EN 15804:2012+A2:2019"
                 }
               },
               "additionalProperties": false,
@@ -379,7 +379,7 @@
           "description": "Total use of non renewable primary energy resource (PENRT) (MJ)"
         },
         "sm": {
-          "type": "number",
+          "type": "number.json#/$defs/kilogram",
           "description": "Use of secondary material (SM) (kg)"
         },
         "rsf": {
