@@ -208,6 +208,11 @@
         "type": "object",
         "description": "There can be multiple LCAs per product, each item is one LCA of the product",
         "properties": {
+          "UUID": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The universally unique identifier of this life-cycle analysis."
+          },
           "isoCode": {
             "type": "string",
             "description": "The 2 letter iso code for the country the EPD is valid in. It is possible that for the same product in different countries different EPDs apply."
@@ -227,11 +232,6 @@
           "datasetType": {
             "type": "string",
             "description": "Type of dataset"
-          },
-          "UUID": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Universally unique identifier"
           },
           "registrationNumber": {
             "type": "string",
