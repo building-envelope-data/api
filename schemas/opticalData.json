@@ -580,11 +580,7 @@
         },
         "acceptance": {
           "$ref": "number.json#/$defs/stringOrNull",
-          "enum": [
-            "#",
-            "@",
-            ""
-          ]
+          "enum": ["#", "@", ""]
         },
         "reference": {
           "type": "boolean"
@@ -659,13 +655,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": [
-              "GEN_BSDF_XML",
-              "BSDF_XML",
-              "THMX",
-              "TOLERANCE",
-              "OTHER"
-            ],
+            "enum": ["GEN_BSDF_XML", "BSDF_XML", "THMX", "TOLERANCE", "OTHER"],
             "description": "`TOLERANCE` means `Tolerance Report`."
           }
         },
@@ -878,26 +868,15 @@
               "properties": {
                 "opticalDataType": {
                   "type": "string",
-                  "enum": [
-                    "DISCRETE",
-                    "BAND"
-                  ]
+                  "enum": ["DISCRETE", "BAND"]
                 },
                 "incidenceAngularResolutionType": {
                   "type": "string",
-                  "enum": [
-                    "DIRECT",
-                    "BSDF"
-                  ]
+                  "enum": ["DIRECT", "BSDF"]
                 },
                 "outgoingAngularResolutionType": {
                   "type": "string",
-                  "enum": [
-                    "DIRECT",
-                    "DIFFUSE",
-                    "DIRECT_DIFFUSE",
-                    "BSDF"
-                  ]
+                  "enum": ["DIRECT", "DIFFUSE", "DIRECT_DIFFUSE", "BSDF"]
                 },
                 "opticalData": {
                   "type": "object",
@@ -1085,11 +1064,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [
-            "circular",
-            "square",
-            "rectangle"
-          ],
+          "enum": ["circular", "square", "rectangle"],
           "description": "Defines the geometric properties of a perforated screen. Type indicates shape of perforations. 0: `circular`, 1: `square`,2: `rectangle`."
         },
         "dimX": {

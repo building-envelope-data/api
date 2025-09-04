@@ -280,7 +280,7 @@
                     "C4",
                     "D"
                   ],
-                  "description": "Life cycle phase id"
+                  "description": "Life cycle phase id. `A1_A3` covers the phases `A1`, `A2` and `A3`."
                 },
                 "EN15804_2012_04_A1_2013": {
                   "$ref": "#/$defs/EN15804_2012_04_A1_2013",
