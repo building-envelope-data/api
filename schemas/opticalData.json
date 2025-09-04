@@ -495,7 +495,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["Ra"]
+          "required": ["ra"]
         },
         {
           "type": "object",
@@ -514,7 +514,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["Raout-in"]
+          "required": ["raOutIn"]
         }
       ]
     },
