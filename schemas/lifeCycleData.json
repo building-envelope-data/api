@@ -379,7 +379,7 @@
           "description": "Total use of non renewable primary energy resource (PENRT) (MJ)"
         },
         "sm": {
-          "type": "number.json#/$defs/kilogram",
+          "$ref": "number.json#/$defs/kilogram",
           "description": "Use of secondary material (SM) (kg)"
         },
         "rsf": {
