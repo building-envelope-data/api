@@ -2065,6 +2065,16 @@ interface Approval {
   place are not compromised).
   """
   message: String!
+
+  """
+  Approver identifier issued by the metabase. The approver's meta data can be
+  obtained by sending the GraphQL query
+  `query { institution(id: ...) { ... } }`
+  to the metabase. For data approvals, the approver makes the statement about
+  the data identified by the query. For response approvals, the approver states
+  that the message is the response to the query by the present database.
+  """
+  approverId: Uuid!
 }
 
 """
@@ -2147,6 +2157,7 @@ type DataApproval implements Approval {
   keyFingerprint: String!
   query: GraphQlQuery!
   variables: Any!
+  approverId: Uuid!
 
   """
   Message that is signed. It is a string representation of the JSON
@@ -2168,15 +2179,6 @@ type DataApproval implements Approval {
   that this approval states that the data conforms to this standard.
   """
   statement: Reference!
-
-  """
-  Approver identifier issued by the metabase. The approver's meta data can be
-  obtained by sending the GraphQL query
-  `query { institution(id: ...) { ... } }`
-  to the metabase. The approver makes the statement about the data identified
-  by the query.
-  """
-  approverId: Uuid!
 }
 
 """
@@ -2190,6 +2192,7 @@ type ResponseApproval implements Approval {
   keyFingerprint: String!
   query: GraphQlQuery!
   variables: Any!
+  approverId: Uuid!
 
   """
   Serialized response of the GraphQL query with whitespaces as when the
