@@ -88,7 +88,9 @@ ajv = npx --no-install ajv \
 
 compile : ## Compile schemas
 	-for schema_file_path in ./apis/*.graphql ; do \
-		npx --no-install graphql-schema-linter $${schema_file_path} ; \
+		npx --no-install graphql-schema-linter \
+			--ignore '{"descriptions-are-capitalized": ["Publication.arXiv"]}' \
+			$${schema_file_path} ; \
 	done
 	-for schema_file_path in ${schema_file_paths} ; do \
 		${ajv} compile \
