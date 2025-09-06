@@ -26,6 +26,10 @@ ARG GID=1000
 # see https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
 RUN \
   userdel --remove node && \
+  existing_user_name="$(getent passwd ${UID} 2>/dev/null | cut --delimiter=: --fields=1)" && \
+  existing_group_name="$(getent group ${GID} 2>/dev/null | cut --delimiter=: --fields=1)" && \
+  if test -n "${existing_user_name}"; then deluser --system "${existing_user_name}"; fi && \
+  if test -n "${existing_group_name}"; then delgroup --system "${existing_group_name}"; fi && \
   groupadd \
     --gid ${GID} \
     us && \
