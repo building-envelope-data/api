@@ -6,7 +6,7 @@
   "$defs": {
     "data": {
       "type": "object",
-      "title": "The object is used to define life cycle data.",
+      "title": "Life cycle data.",
       "properties": {
         "functionalUnit": {
           "type": "string",
@@ -60,7 +60,7 @@
       "required": []
     },
     "circularity": {
-      "title": "Defines circularity data",
+      "title": "Circularity data",
       "type": "object",
       "properties": {
         "feedstock": {
@@ -203,7 +203,7 @@
     },
     "lifeCycleAssessment": {
       "type": "array",
-      "title": "Defines life cycle assessment (LCA) data.",
+      "title": "Life cycle assessment (LCA) data.",
       "items": {
         "type": "object",
         "description": "There can be multiple LCAs per product, each item is one LCA of the product",
@@ -379,7 +379,7 @@
           "description": "Total use of non renewable primary energy resource (PENRT) (MJ)"
         },
         "sm": {
-          "$ref": "number.json#/$defs/kilogram",
+          "type": "number",
           "description": "Use of secondary material (SM) (kg)"
         },
         "rsf": {
@@ -582,7 +582,7 @@
     },
     "compliance": {
       "type": "object",
-      "description": "Defines life cycle compliance data.",
+      "description": "Life cycle compliance data.",
       "properties": {
         "productType": {
           "type": "string",
@@ -756,14 +756,17 @@
                 "DD1",
                 "DD2",
                 "DH20",
-                "DH30, DSA20",
+                "DH30",
+                "DSA20",
                 "DSA30",
                 "DSC20",
                 "DSE20",
                 "DSE30",
                 "DSO20",
                 "DSW30",
-                "G1, G2, G3",
+                "G1",
+                "G2",
+                "G3",
                 "GF0",
                 "GF50",
                 "GF60",
@@ -2262,7 +2265,8 @@
                     "enum": ["BNB_1.1.6"]
                   },
                   "result": {
-                    "type": ["integer", "null"]
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
@@ -2290,7 +2294,8 @@
                     ]
                   },
                   "result": {
-                    "type": ["integer", "null"]
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
@@ -2311,7 +2316,8 @@
                     "enum": ["DGNB18_ENV12", "DGNB18_ENV131", "DGNB18_ENV132"]
                   },
                   "result": {
-                    "type": ["integer", "null"]
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
@@ -2332,7 +2338,8 @@
                     "enum": ["DGNB23_ENV1.2", "DGNB23_ENV131", "DGNB23_ENV132"]
                   },
                   "result": {
-                    "type": ["integer", "null"]
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
@@ -2356,7 +2363,8 @@
                     ]
                   },
                   "result": {
-                    "type": ["integer", "null"]
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
@@ -2377,7 +2385,8 @@
                     "enum": ["EU_TAX_DNSH_Pollution", "EU_TAX_DNSH_Water"]
                   },
                   "result": {
-                    "type": ["integer", "null"]
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
@@ -2405,7 +2414,8 @@
                     ]
                   },
                   "result": {
-                    "type": ["integer", "null"]
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
@@ -2426,7 +2436,8 @@
                     "enum": ["QNG313"]
                   },
                   "result": {
-                    "type": ["integer", "null"]
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
@@ -2454,7 +2465,8 @@
                     ]
                   },
                   "result": {
-                    "type": ["integer", "null"]
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
