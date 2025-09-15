@@ -155,5 +155,8 @@
   "plantuml.commandArgs": [],
   "[plantuml]": {
     "editor.defaultFormatter": "jebbs.plantuml"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }

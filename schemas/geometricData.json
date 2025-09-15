@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/geometricData.json",
   "title": "geometric data",
-  "description": "Geometric data sets of building envelope components. It shall be possible to exchange the results of all important details about the geometry of a component.",
+  "description": "Geometric datasets of building envelope components. It shall be possible to exchange the results of all important details about the geometry of a component.",
   "$defs": {
     "data": {
       "title": "Describe the geometry of a component either by its outer dimensions or as a resource for a Computer Aided Drawing (CAD) software.",
@@ -207,7 +207,7 @@
       "required": ["x", "y", "z"]
     },
     "coordinateSystem": {
-      "title": "Definition of the coordinate system of the data set",
+      "title": "Definition of the coordinate system of the dataset",
       "type": "object",
       "properties": {
         "reference": {

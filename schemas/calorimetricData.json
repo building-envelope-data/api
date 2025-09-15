@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/calorimetricData.json",
   "title": "calorimetric data",
-  "description": "Data sets about calorimetric measurements or simulations. In particular, energy fluxes are important.",
+  "description": "datasets about calorimetric measurements or simulations. In particular, energy fluxes are important.",
   "$defs": {
     "data": {
       "type": "object",
@@ -10,7 +10,7 @@
       "properties": {
         "description": {
           "type": "string",
-          "description": "This string explains humans the calorimetric data set."
+          "description": "This string explains humans the calorimetric dataset."
         },
         "characteristics": {
           "title": "Characteristics like quasi-stationary or dynamic conditions.",

@@ -79,7 +79,7 @@
         },
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "Characteristics of a component which do not depend on a specific domain such as 'optical' or 'calorimetric'. Therefore, they are constant and valid for all data sets. Characteristics which may vary between data sets about this component are stored on lower levels of the structure. For example, 'optical/globalCharacteristics' defines characteristics which are specific for optical data, but do not change within one optical data set. 'optical/dataPoints/componentCharacteristics' defines characteristics which vary between dataPoints of one optical data set. This structure aims to reduce the size of the data."
+          "description": "Characteristics of a component which do not depend on a specific domain such as 'optical' or 'calorimetric'. Therefore, they are constant and valid for all datasets. Characteristics which may vary between datasets about this component are stored on lower levels of the structure. For example, 'optical/globalCharacteristics' defines characteristics which are specific for optical data, but do not change within one optical dataset. 'optical/dataPoints/componentCharacteristics' defines characteristics which vary between dataPoints of one optical dataset. This structure aims to reduce the size of the data."
         },
         "roles": {
           "type": "object",
@@ -108,7 +108,7 @@
             "$ref": "optical.json"
           },
           "minItems": 1,
-          "description": "Optical data sets of one component. For example the transmittance and reflectance with specific boundary conditions."
+          "description": "Optical datasets of one component. For example the transmittance and reflectance with specific boundary conditions."
         },
         "calorimetric": {
           "type": "array",
@@ -116,7 +116,7 @@
             "$ref": "calorimetric.json"
           },
           "minItems": 1,
-          "description": "Calorimetric data sets of one component. For example the U value, the g value (or Solar Heat Gain Coefficient)."
+          "description": "Calorimetric datasets of one component. For example the U value, the g value (or Solar Heat Gain Coefficient)."
         },
         "geometric": {
           "type": "array",
@@ -124,7 +124,7 @@
             "$ref": "geometric.json"
           },
           "minItems": 1,
-          "description": "Geometric data sets of one component. For example the dimensions of the component or a CAD resource."
+          "description": "Geometric datasets of one component. For example the dimensions of the component or a CAD resource."
         },
         "photovoltaic": {
           "type": "array",
@@ -132,7 +132,7 @@
             "$ref": "photovoltaic.json"
           },
           "minItems": 1,
-          "description": "Photovoltaic data sets. This means building envelopes which can convert irradiance into electric power."
+          "description": "Photovoltaic datasets. This means building envelopes which can convert irradiance into electric power."
         },
         "hygrothermal": {
           "type": "array",
@@ -232,7 +232,7 @@
       "required": ["id"]
     },
     "characteristics": {
-      "title": "The characteristics a component can have which do not change between different data sets about this component.",
+      "title": "The characteristics a component can have which do not change between different datasets about this component.",
       "type": "object",
       "properties": {
         "weight": {

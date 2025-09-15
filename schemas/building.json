@@ -192,7 +192,7 @@
                 },
                 "description": {
                   "type": "string",
-                  "description": "An explanation of the status of the full data set in natural language."
+                  "description": "An explanation of the status of the full dataset in natural language."
                 },
                 "dataFormat": {
                   "type": "string",
@@ -230,7 +230,7 @@
                 },
                 "description": {
                   "type": "string",
-                  "description": "An explanation of the status of the full data set in natural language."
+                  "description": "An explanation of the status of the full dataset in natural language."
                 },
                 "dataFormat": {
                   "type": "string",
@@ -264,7 +264,7 @@
                 },
                 "description": {
                   "type": "string",
-                  "description": "An explanation of the status of the full data set in natural language."
+                  "description": "An explanation of the status of the full dataset in natural language."
                 }
               },
               "additionalProperties": false,

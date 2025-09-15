@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/opticalData.json",
   "title": "optical data",
-  "description": "Optical data sets of building envelope components. It shall be possible to exchange the results of all important optical measurements and simulations. At the same time, this general format is intended to limit the number of possible representations of one data set to make it easy to develop software which interprets the data correctly.",
+  "description": "Optical datasets of building envelope components. It shall be possible to exchange the results of all important optical measurements and simulations. At the same time, this general format is intended to limit the number of possible representations of one dataset to make it easy to develop software which interprets the data correctly.",
   "$defs": {
     "data": {
       "title": "Optical data",
@@ -25,6 +25,7 @@
                 "items": {
                   "$ref": "#/$defs/dataPoint"
                 },
+                "uniqueItems": true,
                 "minItems": 1
               }
             },
@@ -218,7 +219,7 @@
         "integral": {
           "type": "string",
           "enum": ["infrared", "solar", "ultraviolet", "visible", "other"],
-          "description": "Spectrum over which the integral result was measured or calculated. `ultraviolet`, `visible`, `solar` and `infrared` indicate the range of the wavelengths used for the integral values. Details about the spectrum are provided by the method which has been applied to generate the data set. `visible` is also known as `photopic`. `infrared` is also known as `thermal_ir`. If neither `ultraviolet`, `visible`, `solar` and `infrared` describe the spectrum correctly, `other` indicates that all information about the spectrum is provided by the applied method."
+          "description": "Spectrum over which the integral result was measured or calculated. `ultraviolet`, `visible`, `solar` and `infrared` indicate the range of the wavelengths used for the integral values. Details about the spectrum are provided by the method which has been applied to generate the dataset. If neither `ultraviolet`, `visible`, `solar` and `infrared` describe the spectrum correctly, `other` indicates that all information about the spectrum is provided by the applied method."
         }
       },
       "additionalProperties": false,

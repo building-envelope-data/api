@@ -15,7 +15,7 @@ It follows best practices for
   as exemplified in
   [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections).
 
-Global object identifiers as requird by the best practice are exposed by the
+Global object identifiers as required by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
 are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
 concatenation of `uuid` and the requested locale.
@@ -2016,7 +2016,7 @@ interface Approval {
     opticalData(id: $id) { ... }
   }
   ```
-  Specifying the query explicitely is necessary because approvals shall not
+  Specifying the query explicitly is necessary because approvals shall not
   become invalid when the GraphQL schema changes.
   """
   query: GraphQlQuery!
@@ -2148,7 +2148,7 @@ GraphQL schema. However, the actual GraphQL schema of the database is in
 general an extension of the present GraphQL schema and may have paths to some
 associates like data format specifics of HTTP resources that it may fetch from
 the "metabase" and provides for convenience. These specifics should not be
-sigend as a change of, for example, the data format description would
+signed as a change of, for example, the data format description would
 invalidate the signature although the data itself did not change.
 """
 type DataApproval implements Approval {
@@ -2234,7 +2234,7 @@ type GetHttpsResource {
   description: String
 
   """
-  Hash value of sucessful HTTP response message body with
+  Hash value of successful HTTP response message body with
   [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6)
   [200](https://tools.ietf.org/html/rfc7231#section-6.3.1)
   computed with

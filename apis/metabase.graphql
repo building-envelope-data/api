@@ -13,7 +13,7 @@ It follows best practices for
   as exemplified in
   [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections).
 
-Global object identifiers as requird by the best practice are exposed by the
+Global object identifiers as required by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
 are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
 concatenation of `uuid` and the requested locale.
@@ -1518,7 +1518,7 @@ type Publication {
   title: String
   "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
   urn: String
-  "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
+  "If a persistent identified like DOI is defined above, this webAddress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
   webAddress: Url
 }
 

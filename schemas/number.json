@@ -231,6 +231,10 @@
       "type": "number",
       "description": "Meter is the SI unit for length. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
+    "squareMeter": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "A square meter (m^2) is a unit for an area. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
     "nanometer": {
       "type": "number",
       "minimum": 0,
@@ -449,8 +453,12 @@
       "description": "Ohm per meter is a unit for the electric resistance depending on the length. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "kilogramWithUncertainty": {
-      "$ref": "#/$defs/numberWithUncertainty",
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. With this type, the uncertainty can be defined."
+    },
+    "kilogram": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "pascal": {
       "type": "number",
