@@ -165,6 +165,7 @@ and this project adheres to
 - Add JSON schema for hygrothermal data [#322](https://github.com/building-envelope-data/api/pull/322)
 - Add example of double glazing including subcomponents [#334](https://github.com/building-envelope-data/api/pull/334)
 - Allow definition of switchable layers [#339](https://github.com/building-envelope-data/api/pull/339)
+- Create a JSON schema for life cycle data [#335](https://github.com/building-envelope-data/api/pull/335)
 
 ### Changed
 
