@@ -285,7 +285,7 @@
             },
             "direction": {
               "title": "Prime direction",
-              "description": "The prime direction is used to define the orientation of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry. For a facade component, the prime direction is often defined as the vertical direction from the bottom to the top of the component.",
+              "description": "The prime direction is used to define the orientation of the component within the plane of the prime surface. For a facade component, the prime direction is often defined as the vertical direction from the bottom to the top of the component.",
               "type": "object",
               "properties": {
                 "reference": {

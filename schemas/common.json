@@ -299,7 +299,7 @@
         },
         "slatTilt": {
           "$ref": "number.json#/$defs/degreeWithUncertainty",
-          "description": "For horizontal slats, the slat tilt angle is the angle between the plane of a slat ant the horizontal plane. 0° means fully open slats and 70° almost closed slats. For vertical slats, the slat tilt angle is the angle between the plane of a slat and a vertical plane which is perpendicular to the plane of the building envelope. 90° means that the slats are parallel to the plane of the building envelope."
+          "description": "For horizontal slats, the slat tilt angle is the angle between the plane of a slat and the horizontal plane. 0° means fully open slats and 70° almost closed slats. For vertical slats, the slat tilt angle is the angle between the plane of a slat and a vertical plane which is perpendicular to the plane of the building envelope. 90° means that the slats are parallel to the plane of the building envelope. When the slats rotate counterclockwise as seen from above, the slat tilt angle decreases and reaches 0° when the slats are perpendicular to the plane of the building envelope."
         },
         "slatMaximumClosing": {
           "$ref": "number.json#/$defs/degreeWithUncertainty",

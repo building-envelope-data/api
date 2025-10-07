@@ -22,7 +22,7 @@
         },
         "orientation": {
           "$ref": "#/$defs/orientation",
-          "description": "The orientation of the prime surface of the component."
+          "description": "The orientation of the non-prime surface of the component."
         },
         "assembly": {
           "$ref": "#/$defs/assembly",
@@ -128,12 +128,12 @@
       "required": ["east", "north"]
     },
     "orientation": {
-      "title": "The orientation of the prime surface of the component.",
+      "title": "The orientation of the non-prime surface of the component.",
       "type": "object",
       "properties": {
         "azimuth": {
           "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
-          "description": "When the normal of the non-prime surface is projected on a horizontal plane, then the azimuth angle of the component is the angle between this projection and the north direction. If the prime surface faces west, then the azimuth angle equals 90°."
+          "description": "When the normal of the non-prime surface is projected on a horizontal plane, then the azimuth angle of the component is the angle between this projection and the north direction. If the non-prime surface faces east, then the azimuth angle equals 90°. If the non-prime surface faces west, then the azimuth angle equals 270°."
         },
         "componentTilt": {
           "$ref": "common.json#/$defs/angles/$defs/componentTilt",
@@ -141,7 +141,7 @@
         },
         "rotation": {
           "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
-          "description": "The angle of rotation around the normal of the non-prime surface. First, imagine a plane which is rectangular to the non-prime surface and parallel to the direction of the azimuth angle. The cross-section from the bottom to the top is the first important direction. The rotation angle is the angle between this direction and the prime direction. If the prime direction leads from the bottom to the top, then the rotation angle equals 0°. If the prime direction leads from the left-hand side to the right-hand side as seen from the exterior, then the rotation angle equals 90°."
+          "description": "The angle of rotation within the plane of the non-prime surface around the normal of the non-prime surface. First, imagine a plane which is perpendicular to the non-prime surface and parallel to the direction of the azimuth angle. The cross-section from the bottom to the top is the first important direction. The rotation angle is the angle between this direction and the prime direction. If we look at the non-prime surface as if it was a clock, the prime direction being 12 o'clock and the cross-section from the bottom to the top 11 o'clock, then the rotation angle equals +30° because of the right-handed coordinate system of [ISO 80000-2: 2019, Quantities and units - Part 2: Mathematics](https: //www.iso.org/standard/64973.html)."
         }
       },
       "additionalProperties": false,
@@ -163,7 +163,7 @@
           },
           "orientation": {
             "$ref": "#/$defs/orientation",
-            "description": "The orientation of the prime surface of the component."
+            "description": "The orientation of the non-prime surface of the component."
           }
         },
         "additionalProperties": false,
