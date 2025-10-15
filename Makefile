@@ -166,11 +166,11 @@ test : ## Validate test files
 # .PHONY : test
 
 examples : ## Validate example files
-	-for schema_name in $(shell ls --indicator-style=none ./queries/) ; do \
+	-for schema_name in $(shell ls --indicator-style=none ./requests/) ; do \
 		echo "---------------------------------------------" && \
 		echo "Queries against schema ./apis/$${schema_name}.graphql" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
-		for query_file in $$(find ./queries/$${schema_name} -name "*.graphql") ; do \
+		for query_file in $$(find ./requests/$${schema_name} -name "*.graphql") ; do \
 			echo "$${query_file}" && \
 			npx --no-install graphql-inspector validate \
 				$${query_file} \
