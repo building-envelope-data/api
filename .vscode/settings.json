@@ -18,8 +18,8 @@
       "url": "./schemas/buildingEnvelopes.json"
     },
     {
-      "fileMatch": ["./examples/dsb/*.json"],
-      "url": "./schemas/dsb.json"
+      "fileMatch": ["./examples/buildings/*.json"],
+      "url": "./schemas/buildings.json"
     },
     {
       "fileMatch": ["./*/optical/*.json"],
