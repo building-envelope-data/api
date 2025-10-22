@@ -39,7 +39,7 @@ and this project adheres to
 - Simplify the structure of optical datasets [#354](https://github.com/building-envelope-data/api/pull/354)
 - Extend BED-JSON to include everything from LBNL-JSON [#352](https://github.com/building-envelope-data/api/pull/352)
 - Improve descriptions of angles, surfaces and orientations [#360](https://github.com/building-envelope-data/api/pull/360)
--
+- Rename `dbe` to `buildingEnvelopes` and `dsb` to `buildings` [#361](https://github.com/building-envelope-data/api/pull/361)
 -
 -
 -
