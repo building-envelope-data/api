@@ -190,7 +190,7 @@ examples : ## Validate example files
 	done
 .PHONY : examples
 
-example : ## Validate explicit examples, for example, `make SCHEMA_NAME=dbe EXAMPLES="optical/spectrum.json optical/bsdf.json" example`
+example : ## Validate explicit examples, for example, `make SCHEMA_NAME=buildingEnvelopes EXAMPLES="optical/spectrum.json optical/bsdf.json" example`
 	for example_name in ${EXAMPLES} ; do \
 		${ajv} validate \
 			-s ./schemas/${SCHEMA_NAME}.json \

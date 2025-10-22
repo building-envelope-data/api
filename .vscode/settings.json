@@ -14,12 +14,12 @@
   },
   "json.schemas": [
     {
-      "fileMatch": ["./examples/dbe/*.json"],
-      "url": "./schemas/dbe.json"
+      "fileMatch": ["./examples/buildingEnvelopes/*.json"],
+      "url": "./schemas/buildingEnvelopes.json"
     },
     {
-      "fileMatch": ["./examples/dsb/*.json"],
-      "url": "./schemas/dsb.json"
+      "fileMatch": ["./examples/buildings/*.json"],
+      "url": "./schemas/buildings.json"
     },
     {
       "fileMatch": ["./*/optical/*.json"],

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/dbe.json",
-  "title": "dbe - data schema for building envelopes",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/buildingEnvelopes.json",
+  "title": "Building envelopes",
   "description": "Data about building envelopes. The aim is to restrict the possible representations of one dataset as much as possible to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next update of this schema.",
   "type": "object",
   "properties": {
