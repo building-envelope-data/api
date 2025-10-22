@@ -1708,7 +1708,12 @@ To verify an approval,
              and: [
                { fingerprint: { equalTo: <KEY_FINGERPRINT> } }
                { allowedAt: { lessThanOrEqualTo: <TIMESTAMP> } }
-               { forbiddenAt: { greaterThan: <TIMESTAMP> } }
+               {
+                 or: [
+                   { forbiddenAt: { equalTo: null } }
+                   { forbiddenAt: { greaterThan: <TIMESTAMP> } }
+                 ]
+               }
              ]
            }
          )
@@ -1738,7 +1743,12 @@ To verify an approval,
              and: [
                { fingerprint: { equalTo: <KEY_FINGERPRINT> } }
                { allowedAt: { lessThanOrEqualTo: <TIMESTAMP> } }
-               { forbiddenAt: { greaterThan: <TIMESTAMP> } }
+               {
+                 or: [
+                   { forbiddenAt: { equalTo: null } }
+                   { forbiddenAt: { greaterThan: <TIMESTAMP> } }
+                 ]
+               }
              ]
            }
          ) {
@@ -1789,7 +1799,7 @@ To verify an approval,
      ```
      contains exactly one edge (and node).
 5. verify the signature with the public key by running
-   `gpg --verify ./message.json.asc ./message.json`.
+   `gpg --assert-signer <KEY_FINGERPRINT> --verify ./message.json.asc ./message.json`.
 
 To create an approval,
 1. install [GnuPG](https://www.gnupg.org),
