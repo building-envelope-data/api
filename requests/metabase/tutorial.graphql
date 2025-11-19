@@ -15,7 +15,7 @@ query {
   }
 
   componentsByInstitution: institution(
-    uuid: "24cd615f-ccc3-4da0-811b-0e0ce18f354c"
+    id: "24cd615f-ccc3-4da0-811b-0e0ce18f354c"
   ) {
     manufacturedComponents {
       edges {
