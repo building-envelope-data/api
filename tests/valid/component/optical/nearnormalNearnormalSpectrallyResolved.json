@@ -27,7 +27,8 @@
                     }
                   },
                   "results": {
-                    "transmittance": 0.85
+                    "transmittance": 0.85,
+                    "reflectance": 0.1
                   }
                 },
                 {
@@ -45,7 +46,8 @@
                     }
                   },
                   "results": {
-                    "transmittance": 0.9
+                    "transmittance": 0.9,
+                    "reflectance": 0.05
                   }
                 },
                 {
@@ -63,7 +65,8 @@
                     }
                   },
                   "results": {
-                    "transmittance": 0.8
+                    "transmittance": 0.8,
+                    "reflectance": 0.1
                   }
                 }
               ]

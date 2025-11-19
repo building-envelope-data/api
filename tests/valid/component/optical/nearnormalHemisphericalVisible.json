@@ -28,6 +28,7 @@
                     "direction": "hemispherical"
                   },
                   "results": {
+                    "transmittance": 0.8,
                     "reflectance": 0.1
                   }
                 }

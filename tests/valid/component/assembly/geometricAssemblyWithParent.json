@@ -1,6 +1,6 @@
 {
   "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
-  "description": "This is an example of a general component which is a modification of a parent component. At the same time, the component is an assembly of two other general components.",
+  "description": "This is an example of a general component which is a more detailed version of a parent component. At the same time, the component is an assembly of two other general components.",
   "relations": {
     "concretizationOf": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
     "assembledOf": [
