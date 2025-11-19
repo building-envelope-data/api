@@ -1,53 +1,49 @@
 {
-  "components": [
+  "id": "102aed0a-2b9a-4748-8d98-e9d278cd12e4",
+  "description": "Enamel at the edges of a PV module",
+  "relations": {
+    "partOf": ["20aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
+  },
+  "categories": {
+    "componentType": ["layer"]
+  },
+  "optical": [
     {
-      "id": "102aed0a-2b9a-4748-8d98-e9d278cd12e4",
-      "description": "Enamel at the edges of a PV module",
-      "relations": {
-        "partOf": ["20aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
+      "id": {
+        "value": "333ca288-0c51-11ea-8d71-362b9e155667",
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       },
-      "categories": {
-        "componentType": ["layer"]
-      },
-      "optical": [
+      "data": [
         {
-          "id": {
-            "value": "333ca288-0c51-11ea-8d71-362b9e155667",
-            "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-          },
           "data": [
             {
-              "data": [
+              "dataPoints": [
                 {
-                  "dataPoints": [
-                    {
-                      "incidence": {
-                        "wavelengths": {
-                          "integral": "visible"
-                        },
-                        "direction": {
-                          "polar": 8
-                        }
-                      },
-                      "emergence": {
-                        "direction": "hemispherical"
-                      },
-                      "results": {
-                        "reflectance": 0.08225287,
-                        "colorReflectance": {
-                          "cielabColors": [
-                            {
-                              "lStar": 5,
-                              "aStar": 1,
-                              "bStar": -1,
-                              "observer": "tenDegrees",
-                              "illuminant": "D65"
-                            }
-                          ]
-                        }
-                      }
+                  "incidence": {
+                    "wavelengths": {
+                      "integral": "visible"
+                    },
+                    "direction": {
+                      "polar": 8
                     }
-                  ]
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "reflectance": 0.08225287,
+                    "colorReflectance": {
+                      "cielabColors": [
+                        {
+                          "lStar": 5,
+                          "aStar": 1,
+                          "bStar": -1,
+                          "observer": "tenDegrees",
+                          "illuminant": "D65"
+                        }
+                      ]
+                    }
+                  }
                 }
               ]
             }

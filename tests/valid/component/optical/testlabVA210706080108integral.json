@@ -1,171 +1,167 @@
 {
-  "components": [
+  "id": "031c9043-db85-4c8f-a706-236ad530da12",
+  "optical": [
     {
-      "id": "031c9043-db85-4c8f-a706-236ad530da12",
-      "optical": [
+      "appliedMethod": {
+        "method": {
+          "id": "f07499ab-f119-471f-8aad-d3c016676bce",
+          "reference": {
+            "standard": {
+              "standardizers": ["DIN", "EN"],
+              "numeration": {
+                "mainNumber": 410
+              },
+              "year": 2011
+            }
+          }
+        },
+        "arguments": [],
+        "sources": [
+          {
+            "name": "spectrum",
+            "value": {
+              "dataId": {
+                "value": "d0937e80-a268-4cde-b878-60a967351bf3",
+                "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
+              },
+              "dataTimestamp": "2021-07-16T11:07:20.4796120+02:00",
+              "dataKind": "opticalData"
+            }
+          }
+        ]
+      },
+      "data": [
         {
-          "appliedMethod": {
-            "method": {
-              "id": "f07499ab-f119-471f-8aad-d3c016676bce",
-              "reference": {
-                "standard": {
-                  "standardizers": ["DIN", "EN"],
-                  "numeration": {
-                    "mainNumber": 410
-                  },
-                  "year": 2011
-                }
-              }
-            },
-            "arguments": [],
-            "sources": [
-              {
-                "name": "spectrum",
-                "value": {
-                  "dataId": {
-                    "value": "d0937e80-a268-4cde-b878-60a967351bf3",
-                    "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
-                  },
-                  "dataTimestamp": "2021-07-16T11:07:20.4796120+02:00",
-                  "dataKind": "opticalData"
-                }
-              }
-            ]
-          },
           "data": [
             {
-              "data": [
+              "dataPoints": [
                 {
-                  "dataPoints": [
-                    {
-                      "incidence": {
-                        "direction": {
-                          "polar": 0
-                        },
-                        "wavelengths": {
-                          "integral": "solar"
-                        }
-                      },
-                      "emergence": {
-                        "direction": "hemispherical"
-                      },
-                      "results": {
-                        "transmittance": 0.1026189342588151
-                      }
+                  "incidence": {
+                    "direction": {
+                      "polar": 0
+                    },
+                    "wavelengths": {
+                      "integral": "solar"
                     }
-                  ]
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.1026189342588151
+                  }
                 }
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "appliedMethod": {
+        "method": {
+          "id": "f07499ab-f119-471f-8aad-d3c016676bce",
+          "reference": {
+            "standard": {
+              "standardizers": ["DIN", "EN"],
+              "numeration": {
+                "mainNumber": 410
+              },
+              "year": 2011
+            }
+          }
         },
+        "arguments": [],
+        "sources": [
+          {
+            "name": "spectrum",
+            "value": {
+              "dataId": {
+                "value": "d59741f2-6806-4eee-88ba-feccf5c5f508",
+                "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
+              },
+              "dataTimestamp": "2021-07-16T11:07:20.4796120+02:00",
+              "dataKind": "opticalData"
+            }
+          }
+        ]
+      },
+      "data": [
         {
-          "appliedMethod": {
-            "method": {
-              "id": "f07499ab-f119-471f-8aad-d3c016676bce",
-              "reference": {
-                "standard": {
-                  "standardizers": ["DIN", "EN"],
-                  "numeration": {
-                    "mainNumber": 410
-                  },
-                  "year": 2011
-                }
-              }
-            },
-            "arguments": [],
-            "sources": [
-              {
-                "name": "spectrum",
-                "value": {
-                  "dataId": {
-                    "value": "d59741f2-6806-4eee-88ba-feccf5c5f508",
-                    "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
-                  },
-                  "dataTimestamp": "2021-07-16T11:07:20.4796120+02:00",
-                  "dataKind": "opticalData"
-                }
-              }
-            ]
-          },
           "data": [
             {
-              "data": [
+              "dataPoints": [
                 {
-                  "dataPoints": [
-                    {
-                      "incidence": {
-                        "direction": {
-                          "polar": 0
-                        },
-                        "wavelengths": {
-                          "integral": "solar"
-                        }
-                      },
-                      "emergence": {
-                        "direction": "hemispherical"
-                      },
-                      "results": {
-                        "transmittance": 0.10271510030628442
-                      }
+                  "incidence": {
+                    "direction": {
+                      "polar": 0
+                    },
+                    "wavelengths": {
+                      "integral": "solar"
                     }
-                  ]
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.10271510030628442
+                  }
                 }
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "appliedMethod": {
+        "method": {
+          "id": "0cbc343a-b065-47fb-b4a5-6000cfe4ff18",
+          "reference": {
+            "standard": {
+              "standardizers": ["ISO"],
+              "numeration": {
+                "mainNumber": 9050
+              },
+              "year": 2003
+            }
+          }
         },
+        "arguments": [],
+        "sources": [
+          {
+            "name": "spectrum",
+            "value": {
+              "dataId": {
+                "value": "5acd0ddf-efca-43f8-b87b-ee245d09b480",
+                "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
+              },
+              "dataTimestamp": "2021-07-16T11:07:20.4796120+02:00",
+              "dataKind": "opticalData"
+            }
+          }
+        ]
+      },
+      "data": [
         {
-          "appliedMethod": {
-            "method": {
-              "id": "0cbc343a-b065-47fb-b4a5-6000cfe4ff18",
-              "reference": {
-                "standard": {
-                  "standardizers": ["ISO"],
-                  "numeration": {
-                    "mainNumber": 9050
-                  },
-                  "year": 2003
-                }
-              }
-            },
-            "arguments": [],
-            "sources": [
-              {
-                "name": "spectrum",
-                "value": {
-                  "dataId": {
-                    "value": "5acd0ddf-efca-43f8-b87b-ee245d09b480",
-                    "issuedBy": "82b9f95c-3261-463a-90fe-0e9da707af17"
-                  },
-                  "dataTimestamp": "2021-07-16T11:07:20.4796120+02:00",
-                  "dataKind": "opticalData"
-                }
-              }
-            ]
-          },
           "data": [
             {
-              "data": [
+              "dataPoints": [
                 {
-                  "dataPoints": [
-                    {
-                      "incidence": {
-                        "direction": {
-                          "polar": 0
-                        },
-                        "wavelengths": {
-                          "integral": "solar"
-                        }
-                      },
-                      "emergence": {
-                        "direction": "hemispherical"
-                      },
-                      "results": {
-                        "transmittance": 0.10261251287581805
-                      }
+                  "incidence": {
+                    "direction": {
+                      "polar": 0
+                    },
+                    "wavelengths": {
+                      "integral": "solar"
                     }
-                  ]
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.10261251287581805
+                  }
                 }
               ]
             }

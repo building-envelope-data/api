@@ -1,60 +1,56 @@
 {
-  "components": [
+  "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+  "optical": [
     {
-      "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
-      "optical": [
+      "id": {
+        "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      },
+      "description": "Example: bidirectional optical data.",
+      "data": [
         {
-          "id": {
-            "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
-            "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-          },
-          "description": "Example: bidirectional optical data.",
           "data": [
             {
-              "data": [
+              "dataPoints": [
                 {
-                  "dataPoints": [
-                    {
-                      "incidence": {
-                        "direction": {
-                          "polar": 10,
-                          "azimuth": 45
-                        },
-                        "wavelengths": {
-                          "integral": "visible"
-                        }
-                      },
-                      "emergence": {
-                        "direction": {
-                          "polar": 20,
-                          "azimuth": 60
-                        }
-                      },
-                      "results": {
-                        "transmittance": 0.1
-                      }
+                  "incidence": {
+                    "direction": {
+                      "polar": 10,
+                      "azimuth": 45
                     },
-                    {
-                      "incidence": {
-                        "direction": {
-                          "polar": 30,
-                          "azimuth": 15
-                        },
-                        "wavelengths": {
-                          "integral": "visible"
-                        }
-                      },
-                      "emergence": {
-                        "direction": {
-                          "polar": 10,
-                          "azimuth": 70
-                        }
-                      },
-                      "results": {
-                        "transmittance": 0.05
-                      }
+                    "wavelengths": {
+                      "integral": "visible"
                     }
-                  ]
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 20,
+                      "azimuth": 60
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.1
+                  }
+                },
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 30,
+                      "azimuth": 15
+                    },
+                    "wavelengths": {
+                      "integral": "visible"
+                    }
+                  },
+                  "emergence": {
+                    "direction": {
+                      "polar": 10,
+                      "azimuth": 70
+                    }
+                  },
+                  "results": {
+                    "transmittance": 0.05
+                  }
                 }
               ]
             }

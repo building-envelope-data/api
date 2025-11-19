@@ -1,39 +1,35 @@
 {
-  "components": [
+  "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+  "optical": [
     {
-      "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
-      "optical": [
+      "id": {
+        "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
+        "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+      },
+      "description": "BSDF in Klems format of Verosol EnviroScreen Silver(metallic)/black fabric from Rollease Acmeda.",
+      "creator": {
+        "id": "03030f13-13cc-4d29-a166-b9919f9c7972"
+      },
+      "createdAt": "2019-09-01T12:00:00+01:00",
+      "data": [
         {
-          "id": {
-            "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
-            "issuedBy": "ce588e6a-1d3c-4909-afdd-bcde4c33864e"
+          "description": "This resource contains BSDF in Klems format, which has been interpolated from photogoniometer measurements at the TestLab Solar Facades (3D scanning photogoniometer pg2). Sample ID: VS413001b.",
+          "hashValue": "d13baa5b91ea95462b1d26b3a3b1874b6be955af5a9630d1d1d0ea9bb981bf0e",
+          "locator": "https://oc.ise.fraunhofer.de/ceef5dc1-2501-4ea9-a994-a1ae41ea1f11",
+          "format": {
+            "id": "e021cf20-e887-4dce-ad27-35da70cec472",
+            "timestamp": "2019-09-01T12:00:00+01:00",
+            "name": "LBNL/Klems",
+            "reference": {
+              "publication": {
+                "identifiers": {
+                  "doi": "10.1016/j.solener.2017.05.065"
+                }
+              }
+            },
+            "mediaType": "application/xml; charset=UTF-8"
           },
-          "description": "BSDF in Klems format of Verosol EnviroScreen Silver(metallic)/black fabric from Rollease Acmeda.",
-          "creator": {
-            "id": "03030f13-13cc-4d29-a166-b9919f9c7972"
-          },
-          "createdAt": "2019-09-01T12:00:00+01:00",
-          "data": [
-            {
-              "description": "This resource contains BSDF in Klems format, which has been interpolated from photogoniometer measurements at the TestLab Solar Facades (3D scanning photogoniometer pg2). Sample ID: VS413001b.",
-              "hashValue": "d13baa5b91ea95462b1d26b3a3b1874b6be955af5a9630d1d1d0ea9bb981bf0e",
-              "locator": "https://oc.ise.fraunhofer.de/ceef5dc1-2501-4ea9-a994-a1ae41ea1f11",
-              "format": {
-                "id": "e021cf20-e887-4dce-ad27-35da70cec472",
-                "timestamp": "2019-09-01T12:00:00+01:00",
-                "name": "LBNL/Klems",
-                "reference": {
-                  "publication": {
-                    "identifiers": {
-                      "doi": "10.1016/j.solener.2017.05.065"
-                    }
-                  }
-                },
-                "mediaType": "application/xml; charset=UTF-8"
-              },
-              "archivedFilesMetaInformation": []
-            }
-          ]
+          "archivedFilesMetaInformation": []
         }
       ]
     }

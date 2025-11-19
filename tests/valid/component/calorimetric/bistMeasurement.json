@@ -1,132 +1,128 @@
 {
-  "components": [
-    {
-      "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
-      "characteristics": {
-        "prime": {
-          "surface": {
-            "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior."
-          },
-          "direction": {
-            "description": "The prime direction is indicated by a label on the sample. Facing the installed component from the exterior, the prime direction directs to the right-hand side."
-          }
-        }
+  "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+  "characteristics": {
+    "prime": {
+      "surface": {
+        "description": "The prime surface faces the interior of the building and the nonPrime surface faces the exterior."
       },
-      "calorimetric": [
+      "direction": {
+        "description": "The prime direction is indicated by a label on the sample. Facing the installed component from the exterior, the prime direction directs to the right-hand side."
+      }
+    }
+  },
+  "calorimetric": [
+    {
+      "id": {
+        "value": "da951012-29b7-4b9a-890c-4f4514f676b3",
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      },
+      "name": "Example BIST collector",
+      "description": "Example: a calorimetric data set of a buildling-integrated solar thermal element.",
+      "warnings": ["One warning"],
+      "appliedMethod": {
+        "method": {
+          "id": "ea951012-29b7-4b9a-890c-4f4514f676b3"
+        },
+        "arguments": [],
+        "sources": [
+          {
+            "name": "mySource",
+            "value": {
+              "dataId": {
+                "value": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+                "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+              },
+              "dataTimestamp": "2018-09-01T12:00:00+01:00",
+              "dataKind": "calorimetricData"
+            }
+          }
+        ]
+      },
+      "approvals": [
         {
-          "id": {
-            "value": "da951012-29b7-4b9a-890c-4f4514f676b3",
-            "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+          "approver": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
+          "signature": "MIIB6gYJKoZIhvcNAQcCoIIB2zCCAdcCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGCAbYwggGyAgEBMIGcMIGOMQswCQYDVQQGEwJVUzEOMAwGA1UECBMFVGV4YXMxFDASBgNVBAcTC1NhbiBBbnRvbmlvMQ0wCwYDVQQKEwRVVFNBMQswCQYDVQQLEwJDUzEXMBUGA1UEAxMOYWkuY3MudXRzYS5lZHUxJDAiBgkqhkiG9w0BCQEWFWp1bGlldEBhaS5jcy51dHNhLmVkdQIJAMvyApGmAWbKMAkGBSsOAwIaBQCggbEwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMDcwMjEyMjI1ODU4WjAjBgkqhkiG9w0BCQQxFgQUdBfDe/KmnhmYA9DILxfq/zKlvwEwUgYJKoZIhvcNAQkPMUUwQzAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwDQYJKoZIhvcNAQEBBQAEQFbJ+8cZivvgvrjj8l1QbK2o7gWdWBM9yav6NJR2eBVj3hKGaKQ+7JNbygcqtVcMDIo1jSpsZas33BvhocwGOqs="
+        }
+      ],
+      "createdAt": "2018-09-01T12:00:00+01:00",
+      "data": [
+        {
+          "characteristics": {
+            "conditions": "stationary",
+            "surface": "nonPrime"
           },
-          "name": "Example BIST collector",
-          "description": "Example: a calorimetric data set of a buildling-integrated solar thermal element.",
-          "warnings": ["One warning"],
-          "appliedMethod": {
-            "method": {
-              "id": "ea951012-29b7-4b9a-890c-4f4514f676b3"
-            },
-            "arguments": [],
-            "sources": [
+          "fluxes": {
+            "mixed": [
               {
-                "name": "mySource",
-                "value": {
-                  "dataId": {
-                    "value": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
-                    "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
-                  },
-                  "dataTimestamp": "2018-09-01T12:00:00+01:00",
-                  "dataKind": "calorimetricData"
+                "side": "interior",
+                "flux": {
+                  "uncertainValue": 15.0,
+                  "uncertainty": 4,
+                  "confidenceInterval": 95.4
                 }
+              }
+            ],
+            "shortwaveRadiation": [
+              {
+                "side": "exterior",
+                "flux": {
+                  "uncertainValue": 1000,
+                  "uncertainty": 50,
+                  "confidenceInterval": 68.3
+                },
+                "direction": {
+                  "polar": 60,
+                  "azimuth": 90
+                }
+              }
+            ],
+            "fluid": [
+              {
+                "flux": 100,
+                "temperatures": {
+                  "inlet": 300,
+                  "outlet": 320
+                },
+                "massFlow": 0.02,
+                "specificHeatCapacity": 4179.6
               }
             ]
           },
-          "approvals": [
+          "results": [
             {
-              "approver": "ae56820c-6bf1-4839-8b2f-2fa595cd18b6",
-              "signature": "MIIB6gYJKoZIhvcNAQcCoIIB2zCCAdcCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGCAbYwggGyAgEBMIGcMIGOMQswCQYDVQQGEwJVUzEOMAwGA1UECBMFVGV4YXMxFDASBgNVBAcTC1NhbiBBbnRvbmlvMQ0wCwYDVQQKEwRVVFNBMQswCQYDVQQLEwJDUzEXMBUGA1UEAxMOYWkuY3MudXRzYS5lZHUxJDAiBgkqhkiG9w0BCQEWFWp1bGlldEBhaS5jcy51dHNhLmVkdQIJAMvyApGmAWbKMAkGBSsOAwIaBQCggbEwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMDcwMjEyMjI1ODU4WjAjBgkqhkiG9w0BCQQxFgQUdBfDe/KmnhmYA9DILxfq/zKlvwEwUgYJKoZIhvcNAQkPMUUwQzAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwDQYJKoZIhvcNAQEBBQAEQFbJ+8cZivvgvrjj8l1QbK2o7gWdWBM9yav6NJR2eBVj3hKGaKQ+7JNbygcqtVcMDIo1jSpsZas33BvhocwGOqs="
-            }
-          ],
-          "createdAt": "2018-09-01T12:00:00+01:00",
-          "data": [
-            {
-              "characteristics": {
-                "conditions": "stationary",
-                "surface": "nonPrime"
+              "area": {
+                "category": "center"
               },
-              "fluxes": {
-                "mixed": [
-                  {
-                    "side": "interior",
-                    "flux": {
-                      "uncertainValue": 15.0,
-                      "uncertainty": 4,
-                      "confidenceInterval": 95.4
-                    }
-                  }
-                ],
-                "shortwaveRadiation": [
-                  {
-                    "side": "exterior",
-                    "flux": {
-                      "uncertainValue": 1000,
-                      "uncertainty": 50,
-                      "confidenceInterval": 68.3
-                    },
-                    "direction": {
-                      "polar": 60,
-                      "azimuth": 90
-                    }
-                  }
-                ],
-                "fluid": [
-                  {
-                    "flux": 100,
-                    "temperatures": {
-                      "inlet": 300,
-                      "outlet": 320
-                    },
-                    "massFlow": 0.02,
-                    "specificHeatCapacity": 4179.6
-                  }
-                ]
+              "uValue": {
+                "uncertainValue": 1.0,
+                "uncertainty": 0.1,
+                "confidenceInterval": 68.3
               },
-              "results": [
-                {
-                  "area": {
-                    "category": "center"
-                  },
-                  "uValue": {
-                    "uncertainValue": 1.0,
-                    "uncertainty": 0.1,
-                    "confidenceInterval": 68.3
-                  },
-                  "gValue": {
-                    "uncertainValue": 0.07,
-                    "uncertainty": 0.01,
-                    "confidenceInterval": 68.3
-                  },
-                  "efficiencies": {
-                    "solarThermal": 0.5
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "geometric": [
-        {
-          "data": [
-            {
-              "dimensions": {
-                "installed": [
-                  {
-                    "thickness": 0.3
-                  }
-                ]
+              "gValue": {
+                "uncertainValue": 0.07,
+                "uncertainty": 0.01,
+                "confidenceInterval": 68.3
+              },
+              "efficiencies": {
+                "solarThermal": 0.5
               }
             }
           ]
+        }
+      ]
+    }
+  ],
+  "geometric": [
+    {
+      "data": [
+        {
+          "dimensions": {
+            "installed": [
+              {
+                "thickness": 0.3
+              }
+            ]
+          }
         }
       ]
     }

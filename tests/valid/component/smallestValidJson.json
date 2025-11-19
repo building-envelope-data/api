@@ -1,8 +1,4 @@
 {
-  "components": [
-    {
-      "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
-      "description": "This is the smallest JSON data which is allowed by the JSON schema."
-    }
-  ]
+  "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+  "description": "This is the smallest JSON data which is allowed by the JSON schema."
 }

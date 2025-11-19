@@ -1,50 +1,46 @@
 {
-  "components": [
+  "id": "101aed0a-2b9a-4748-8d98-e9d278cd12e4",
+  "description": "This example represents a laminated glass with photovoltaic cells with its center-of-glazing properties.",
+  "relations": {
+    "partOf": ["20aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
+  },
+  "categories": {
+    "componentType": ["layer"]
+  },
+  "photovoltaic": [
     {
-      "id": "101aed0a-2b9a-4748-8d98-e9d278cd12e4",
-      "description": "This example represents a laminated glass with photovoltaic cells with its center-of-glazing properties.",
-      "relations": {
-        "partOf": ["20aaed0a-2b9a-4748-8d98-e9d278cd12e4"]
-      },
-      "categories": {
-        "componentType": ["layer"]
-      },
-      "photovoltaic": [
+      "data": [
         {
-          "data": [
-            {
-              "module": {
-                "cellTypes": [
-                  {
-                    "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
-                    "width": 0.156,
-                    "categories": ["monocrystalline", "silicon"]
-                  }
-                ],
-                "connectionPattern": "series",
-                "electricConfiguration": {
-                  "groundingNecessary": false
-                }
+          "module": {
+            "cellTypes": [
+              {
+                "id": "b0d2b769-74d8-46ab-a3b7-16bb52ac4c60",
+                "width": 0.156,
+                "categories": ["monocrystalline", "silicon"]
               }
+            ],
+            "connectionPattern": "series",
+            "electricConfiguration": {
+              "groundingNecessary": false
             }
-          ]
+          }
         }
-      ],
-      "geometric": [
+      ]
+    }
+  ],
+  "geometric": [
+    {
+      "data": [
         {
-          "data": [
+          "assembly": [
             {
-              "assembly": [
-                {
-                  "id": "01f5554f-e909-405e-9b7b-2f08ca201f63"
-                },
-                {
-                  "id": "02f5554f-e909-405e-9b7b-2f08ca201f63"
-                },
-                {
-                  "id": "03f5554f-e909-405e-9b7b-2f08ca201f63"
-                }
-              ]
+              "id": "01f5554f-e909-405e-9b7b-2f08ca201f63"
+            },
+            {
+              "id": "02f5554f-e909-405e-9b7b-2f08ca201f63"
+            },
+            {
+              "id": "03f5554f-e909-405e-9b7b-2f08ca201f63"
             }
           ]
         }
