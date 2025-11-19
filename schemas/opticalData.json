@@ -242,7 +242,7 @@
       "description": "Direction of incident radiation on sample. An incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance) is called 'nearnormal' and said to be 'almost perpendicular'.",
       "oneOf": [
         {
-          "description": "Direction of incidence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
+          "description": "Direction of incidence in a spherical coordinate system according to [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
           "type": "object",
           "properties": {
             "polar": {
@@ -251,7 +251,7 @@
             },
             "azimuth": {
               "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
-              "description": "The direction of incidence is projected onto the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/prime/properties/direction`. It can have values between 0° and 360°. If we look at the irradiated surface as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals +30° because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
+              "description": "The direction of incidence is projected onto the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/prime/properties/direction`. It can have values between 0° and 360°. If we look at the irradiated surface as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals +30° because of the right-handed coordinate system of [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
             }
           },
           "additionalProperties": false,
@@ -270,7 +270,7 @@
       "description": "Direction of emergent radiation from a sample. An polar angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance) is called 'nearnormal' and said to be 'almost perpendicular'.",
       "oneOf": [
         {
-          "description": "Direction of emergence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
+          "description": "Direction of emergence in a spherical coordinate system according to [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
           "type": "object",
           "properties": {
             "polar": {
@@ -279,7 +279,7 @@
             },
             "azimuth": {
               "$ref": "number.json#/$defs/degreeWithUncertainty",
-              "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/prime/properties/direction`. It can have values between 0° and 360°. If we look at the irradiated surface as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals +30° because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
+              "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/prime/properties/direction`. It can have values between 0° and 360°. If we look at the irradiated surface as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals +30° because of the right-handed coordinate system of [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
             }
           },
           "additionalProperties": false,
