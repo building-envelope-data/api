@@ -8,7 +8,7 @@ GraphQL queries deal with metadata about data sets. They are used to find suitab
 
 The format [BED-JSON](https://github.com/building-envelope-data/api/blob/develop/schemas/data.json) is used for the pure data. [solarTransmittanceReflectance.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/opticalData/solarTransmittanceReflectance.json) is an example of a pure data set. It must be valid against the JSON Schema [opticalData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/opticalData.json).
 
-JSON schemas are in the directory `./schemas` and example JSON files in the directory `./examples`. The directory `./tests/valid` provides test JSON files that are supposed to be valid and the directory `./tests/invalid` JSON files that are supposed to be invalid. There is a [schematic drawing of an optical data point](docs/diagrams/out/opticalData/opticalDataPointSchematicDrawing/opticalDataPointSchematicDrawing.png) and more [visualizations of optical examples](docs/diagrams/out/opticalData). There is also a [schematic drawing of a calorimetric data set](docs/diagrams/out/calorimetricData/calorimetricDataSchematicDrawing/calorimetricDataSchematicDrawing.png) and more [visualizations of calorimetric examples](docs/diagrams/out/calorimetricData).
+JSON schemas are in the directory `./schemas` and realistic example JSON files in the directory `./examples`. The directory `./tests/valid` provides test JSON files that must be valid and the directory `./tests/invalid` JSON files that must to be invalid against the schema with the same name as the folder. There is a [schematic drawing of an optical data point](docs/diagrams/out/opticalData/opticalDataPointSchematicDrawing/opticalDataPointSchematicDrawing.png) and more [visualizations of optical examples](docs/diagrams/out/opticalData). There is also a [schematic drawing of a calorimetric data set](docs/diagrams/out/calorimetricData/calorimetricDataSchematicDrawing/calorimetricDataSchematicDrawing.png) and more [visualizations of calorimetric examples](docs/diagrams/out/calorimetricData).
 
 The following introduction explains the structure for new users and the section "On your Linux machine" explains how you can work with the API specification.
 
@@ -40,7 +40,54 @@ If you don't find the answer there and if your question is related to the code, 
 
 ## Introduction
 
-The example JSON files `./examples` present examples of data formatted according to the JSON schemas and could be part of the response of a GraphQL endpoint. For example, [nearnormalHemisphericalSolarReflectanceAccordingToStandard.json](https://github.com/building-envelope-data/api/blob/develop/examples/buildingEnvelopes/optical/integralAccordingToStandard.json) is an example of data about a component with an [identifier](https://github.com/building-envelope-data/api/blob/d3e2771ada2672ef9ecdfc4d32a2356a13909fc9/examples/buildingEnvelopes/optical/integralAccordingToStandard.json#L4) and an [optical data set](https://github.com/building-envelope-data/api/blob/d3e2771ada2672ef9ecdfc4d32a2356a13909fc9/examples/buildingEnvelopes/optical/integralAccordingToStandard.json#L42).
+There are many domains of data such as optical, calorimetric, geometric, hygrothermal, lifeCycle and more. This introduction begins with optical data to illustrate the structure.
+
+[solarTransmittanceReflectance.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/opticalData/solarTransmittanceReflectance.json) is a simple example how the nearnormal-hemispherical solar transmittance and reflectance can be exchanged. [infraredDataPointForDiagram.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/opticalData/infraredDataPointForDiagram.json) is an example for infrared values. [colorVisibleTransmittanceReflectance.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/opticalData/colorVisibleTransmittanceReflectance.json) is an example for visible optical properties. All three are examples of optical properties integrated over a range of wavelengths.
+
+[spectrallyResolvedDataPointsForDiagram.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/opticalData/spectrallyResolvedDataPointsForDiagram.json) is an example of spectrally resolved optical data. To keep it simple, it includes only the values for three wavelenghts. [igsdbExampleClearlite-4_250903.json](https://github.com/building-envelope-data/api/blob/develop/examples/opticalData/igsdbExampleClearlite-4_250903.json) is a realistic optical data set which includes spectrally-resolved data as well as integral data.
+
+These optical datasets must all be valid against the JSON Schema [opticalData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/opticalData.json). [opticalData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/opticalData.json) defines each key and is therefore the best source to learn more about the details of optical datasets.
+
+In order to find such optical data sets, it's best to start with the GraphQL endpoint https://www.buildingenvelopedata.org/graphql/ as the entrance to the product data network. You can enter there for example the following query:
+
+```
+query {
+  databases {
+    edges {
+      node {
+        name
+        allOpticalData(first: 3) {
+          edges {
+            node {
+              componentId
+              resourceTree {
+                root {
+                  value {
+                    locator
+                  }
+                }
+              }
+            }
+          }
+          totalCount
+          pageInfo {
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+The field `locator` returns a URL which you can use to download the optical data set. The query is for all optical data of the product data network. You can use [pagination](https://graphql.org/learn/pagination/) to download all optical datasets. This example shows you that first GraphQL is used to search for the data sets before JSON data sets are downloaded. You find more query examples in [tutorial.graphql](https://github.com/building-envelope-data/api/blob/develop/requests/metabase/tutorial.graphql)
+
+#########
+
+The folder `./examples` provides realistic examples of data formatted according to the JSON schema with the same name of the subfolder. For example, [s and could be part of the response of a GraphQL endpoint. For example, [nearnormalHemisphericalSolarReflectanceAccordingToStandard.json](https://github.com/building-envelope-data/api/blob/develop/examples/buildingEnvelopes/optical/integralAccordingToStandard.json) is an example of data about a component with an [identifier](https://github.com/building-envelope-data/api/blob/d3e2771ada2672ef9ecdfc4d32a2356a13909fc9/examples/buildingEnvelopes/optical/integralAccordingToStandard.json#L4) and an [optical data set](https://github.com/building-envelope-data/api/blob/d3e2771ada2672ef9ecdfc4d32a2356a13909fc9/examples/buildingEnvelopes/optical/integralAccordingToStandard.json#L42).
 
 Like all data about components, the example is valid against the schema [component.json](https://github.com/building-envelope-data/api/blob/develop/schemas/component.json) which references [optical.json](https://github.com/building-envelope-data/api/blob/develop/schemas/optical.json), [calorimetric.json](https://github.com/building-envelope-data/api/blob/develop/schemas/calorimetric.json) and more. In this way, metadata about one component can be exchanged as well as optical data, calorimetric data and more about this component.
 
