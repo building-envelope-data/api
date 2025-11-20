@@ -20,6 +20,11 @@ The following introduction explains the structure for new users and the section 
 
 [Introduction](#introduction)
 
+- [With optical data as example](#with-optical-data-as-example)
+- [In general for all domains](#in-general-for-all-domains)
+- [Combining the GraphQL responses with the datasets](#combining-the-graphql-responses-with-the-datasets)
+- [How was the data created?](#how-was-the-data-created)
+
 [How to use this repository](#how-to-use-this-repository)
 
 - [For beginners](#for-beginners)
@@ -41,6 +46,8 @@ If you don't find the answer there and if your question is related to the code, 
 ## Introduction
 
 There are many domains of data such as optical, calorimetric, geometric, hygrothermal, lifeCycle and more. This introduction begins with optical data to illustrate the structure.
+
+### With optical data as example
 
 [solarTransmittanceReflectance.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/opticalData/solarTransmittanceReflectance.json) is a simple example how the nearnormal-hemispherical solar transmittance and reflectance can be exchanged. [infraredDataPointForDiagram.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/opticalData/infraredDataPointForDiagram.json) is an example for infrared values. [colorVisibleTransmittanceReflectance.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/opticalData/colorVisibleTransmittanceReflectance.json) is an example for visible optical properties. All three are examples of optical properties integrated over a range of wavelengths.
 
@@ -83,17 +90,27 @@ query {
 }
 ```
 
-The field `locator` returns a URL which you can use to download the optical data set. The query is for all optical data of the product data network. You can use [pagination](https://graphql.org/learn/pagination/) to download all optical datasets. This example shows you that first GraphQL is used to search for the data sets before JSON data sets are downloaded. You find more query examples in [tutorial.graphql](https://github.com/building-envelope-data/api/blob/develop/requests/metabase/tutorial.graphql)
+The field `locator` returns a URL which you can use to download the optical data set. The query is for all optical data of the product data network. You can use [pagination](https://graphql.org/learn/pagination/) to download all optical datasets. This example shows you that first GraphQL is used to search for the data sets before JSON data sets are downloaded. You find more query examples in [tutorial.graphql](https://github.com/building-envelope-data/api/blob/develop/requests/metabase/tutorial.graphql). Whenever you have questions regarding these queries, you find all details about them in the [GraphQL specification](https://github.com/building-envelope-data/api/blob/develop/apis/metabase.graphql).
 
-#########
+### In general for all domains
 
-The folder `./examples` provides realistic examples of data formatted according to the JSON schema with the same name of the subfolder. For example, [s and could be part of the response of a GraphQL endpoint. For example, [nearnormalHemisphericalSolarReflectanceAccordingToStandard.json](https://github.com/building-envelope-data/api/blob/develop/examples/buildingEnvelopes/optical/integralAccordingToStandard.json) is an example of data about a component with an [identifier](https://github.com/building-envelope-data/api/blob/d3e2771ada2672ef9ecdfc4d32a2356a13909fc9/examples/buildingEnvelopes/optical/integralAccordingToStandard.json#L4) and an [optical data set](https://github.com/building-envelope-data/api/blob/d3e2771ada2672ef9ecdfc4d32a2356a13909fc9/examples/buildingEnvelopes/optical/integralAccordingToStandard.json#L42).
+For other domains hygrothermal, geometric, calorimetric and lifeCycle, it is helpful to understand the structure of this repository. For each domain, there is a JSON Schema like [hygrothermalData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/hygrothermalData.json), [geometricData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/geometricData.json), ... in the folder `./schemas`. The folder `./examples` provides realistic examples. Each example must be valid against the JSON Schema with the name of the subfolder. For example, the JSON files of `./examples/calorimetricData` must be valid against the JSON Schema [calorimetricData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/calorimetricData.json). The JSON Schema contains all information which you need to understand the content of the JSON files.
 
-Like all data about components, the example is valid against the schema [component.json](https://github.com/building-envelope-data/api/blob/develop/schemas/component.json) which references [optical.json](https://github.com/building-envelope-data/api/blob/develop/schemas/optical.json), [calorimetric.json](https://github.com/building-envelope-data/api/blob/develop/schemas/calorimetric.json) and more. In this way, metadata about one component can be exchanged as well as optical data, calorimetric data and more about this component.
+The folder `./tests/valid` contains JSON files which test specifically what their name indicates. Each test must be valid against the JSON Schema with the name of the subfolder. For example, the JSON files of `./tests/valid/hygrothermalData` must be valid against the JSON Schema [hygrothermalData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/hygrothermalData.json). The folder `./tests/invalid` contains JSON files which must be invalid against the JSON Schema with the name of the subfolder.
 
-An optical data set can include metadata like the [standard](https://github.com/building-envelope-data/api/blob/4bce48eda1a3a8a0e4532d3c7d9ae44e01bb73cd/examples/buildingEnvelopes/optical/integralAccordingToStandard.json#L16) according to which the optical data was determined. The pure [optical data](https://github.com/building-envelope-data/api/blob/d3e2771ada2672ef9ecdfc4d32a2356a13909fc9/examples/buildingEnvelopes/optical/integralAccordingToStandard.json#L42) is formatted according to [opticalData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/opticalData.json), because optical.json [references opticalData.json](https://github.com/building-envelope-data/api/blob/6af9034b0964133386100d484d7bd9fdcf8e5afb/schemas/optical.json#L65).
+The tests and examples help to understand the exchange of product data. They are also important for the development of this specification to ensure that a new feature does not compromise the existing features.
 
-Similarly, [calorimetric.json](https://github.com/building-envelope-data/api/blob/develop/schemas/calorimetric.json) defines the metadata about a calorimetric data set and refers to [calorimetricData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/calorimetricData.json) for the pure calorimetric data which is illustrated by the example [bistMeasurement.json](https://github.com/building-envelope-data/api/blob/develop/examples/buildingEnvelopes/calorimetric/bistMeasurement.json).
+### Combining the GraphQL responses with the datasets
+
+Usually, GraphQL is used to to query for datasets and then the dataset are downloaded as a JSON file. However, the response of a GraphQL query is valid JSON. Therefore, the GraphQL responses can be combined with the datasets to one large JSON file.
+
+For example, [semitransparentBuildingIntegratedPhotovoltaicThermal.json](https://github.com/building-envelope-data/api/blob/develop/examples/component/severalDomains/semitransparentBuildingIntegratedPhotovoltaicThermal.json) must be valid against the JSON Schema [component.json](https://github.com/building-envelope-data/api/blob/develop/schemas/component.json). It contains the [central identifier](https://github.com/building-envelope-data/api/blob/5f56f029c97366ab42154527d03a76408eb2ae6c/examples/component/severalDomains/semitransparentBuildingIntegratedPhotovoltaicThermal.json#L2) of the component which is create when the component is registered in the metabase buildingenvelopedata.org. Each dataset of each domain has its own [decentral identifier](https://github.com/building-envelope-data/api/blob/5f56f029c97366ab42154527d03a76408eb2ae6c/examples/component/severalDomains/semitransparentBuildingIntegratedPhotovoltaicThermal.json#L6-L9) which is managed by the product database(s) which contain the datasets.
+
+### How was the data created?
+
+It is possible to define the method which was used to create a dataset. The methods can be registered in the metabase buildingenvelopedata.org . Each method receives its unique central identifier.
+
+The test [integralAccordingToStandard.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/component/optical/integralAccordingToStandard.json) is an example of an optical dataset which was created according to [a standard](https://github.com/building-envelope-data/api/blob/develop/tests/valid/component/optical/integralAccordingToStandard.json#L14-L20). The dataset which was used as the source of the calculation is defined in the [lines 25-31](https://github.com/building-envelope-data/api/blob/develop/tests/valid/component/optical/integralAccordingToStandard.json#L25-L31). It would be possible to define [arguments](https://github.com/building-envelope-data/api/blob/develop/tests/valid/component/optical/integralAccordingToStandard.json#L23) of the calculation method.
 
 ## How to use this repository
 

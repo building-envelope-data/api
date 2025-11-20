@@ -25,7 +25,8 @@
                     "direction": "hemispherical"
                   },
                   "results": {
-                    "reflectance": 0.5
+                    "transmittance": 0.15,
+                    "reflectance": 0.1
                   }
                 }
               ]
@@ -100,6 +101,10 @@
   ],
   "photovoltaic": [
     {
+      "id": {
+        "value": "6976d1c4-db17-4bab-a55f-10edb7120b6b",
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      },
       "data": [
         {
           "module": {
@@ -194,6 +199,25 @@
               },
               "efficiency": 0.1
             }
+          }
+        }
+      ]
+    }
+  ],
+  "geometric": [
+    {
+      "id": {
+        "value": "d7aa6538-44cc-4e90-a628-880d5d482e50",
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      },
+      "data": [
+        {
+          "dimensions": {
+            "installed": [
+              {
+                "thickness": 0.3
+              }
+            ]
           }
         }
       ]
