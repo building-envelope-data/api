@@ -1,0 +1,28 @@
+{
+  "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+  "description": "This is an example of a layer with a gap and a category.",
+  "categories": {
+    "componentType": ["layer"],
+    "layer": ["venetian", "blind"]
+  },
+  "characteristics": {
+    "materialComposition": {
+      "fractionType": "weight",
+      "fractions": [
+        {
+          "material": "aluminum alloy",
+          "fraction": 90
+        },
+        {
+          "material": "other",
+          "fraction": 10
+        }
+      ]
+    },
+    "layer": {
+      "gaps": {
+        "dTop": 0.02
+      }
+    }
+  }
+}

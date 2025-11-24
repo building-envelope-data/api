@@ -18,10 +18,6 @@
       "url": "./schemas/buildingEnvelopes.json"
     },
     {
-      "fileMatch": ["./examples/buildings/*.json"],
-      "url": "./schemas/buildings.json"
-    },
-    {
       "fileMatch": ["./*/optical/*.json"],
       "url": "./schemas/optical.json"
     }

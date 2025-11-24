@@ -1,0 +1,67 @@
+{
+  "id": "a99941df-5bb8-4080-89a4-4f3d230afeb6",
+  "optical": [
+    {
+      "id": {
+        "value": "7ceff10a-075a-4a22-aaa3-f671a649bf9e",
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      },
+      "description": "Example: nearnormal-hemispherical integral values calculated according to a standard and based on a spectrally-resolved optical data set",
+      "appliedMethod": {
+        "method": {
+          "id": "0cbc343a-b065-47fb-b4a5-6000cfe4ff18",
+          "reference": {
+            "standard": {
+              "standardizers": ["ISO"],
+              "numeration": {
+                "mainNumber": 9050
+              },
+              "year": 2003
+            }
+          }
+        },
+        "arguments": [],
+        "sources": [
+          {
+            "name": "Measured spectrum used to calculate the integral value",
+            "value": {
+              "dataId": {
+                "value": "b8435146-5270-46f5-b925-4b00de265823",
+                "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+              },
+              "dataTimestamp": "2021-07-01T12:00:00+01:00",
+              "dataKind": "opticalData"
+            }
+          }
+        ]
+      },
+      "data": [
+        {
+          "data": [
+            {
+              "dataPoints": [
+                {
+                  "incidence": {
+                    "direction": {
+                      "polar": 8
+                    },
+                    "wavelengths": {
+                      "integral": "solar"
+                    }
+                  },
+                  "emergence": {
+                    "direction": "hemispherical"
+                  },
+                  "results": {
+                    "transmittance": 0.85,
+                    "reflectance": 0.08
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
