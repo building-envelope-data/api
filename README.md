@@ -8,7 +8,7 @@ GraphQL queries deal with metadata about data sets. They are used to find suitab
 
 The format [BED-JSON](https://github.com/building-envelope-data/api/blob/develop/schemas/data.json) is used for the pure data. [solarTransmittanceReflectance.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/opticalData/solarTransmittanceReflectance.json) is an example of a pure data set. It must be valid against the JSON Schema [opticalData.json](https://github.com/building-envelope-data/api/blob/develop/schemas/opticalData.json).
 
-JSON schemas are in the directory `./schemas` and realistic example JSON files in the directory `./examples`. The directory `./tests/valid` provides test JSON files that must be valid and the directory `./tests/invalid` JSON files that must to be invalid against the schema with the same name as the folder. There is a [schematic drawing of an optical data point](docs/diagrams/out/opticalData/opticalDataPointSchematicDrawing/opticalDataPointSchematicDrawing.png) and more [visualizations of optical examples](docs/diagrams/out/opticalData). There is also a [schematic drawing of a calorimetric data set](docs/diagrams/out/calorimetricData/calorimetricDataSchematicDrawing/calorimetricDataSchematicDrawing.png) and more [visualizations of calorimetric examples](docs/diagrams/out/calorimetricData).
+JSON schemas are in the directory `./schemas` and realistic example JSON files in the directory `./examples`. The directory `./tests/valid` provides test JSON files that must be valid and the directory `./tests/invalid` JSON files that must be invalid against the schema with the same name as the folder. There is a [schematic drawing of an optical data point](docs/diagrams/out/opticalData/opticalDataPointSchematicDrawing/opticalDataPointSchematicDrawing.png) and more [visualizations of optical examples](docs/diagrams/out/opticalData). There is also a [schematic drawing of a calorimetric data set](docs/diagrams/out/calorimetricData/calorimetricDataSchematicDrawing/calorimetricDataSchematicDrawing.png) and more [visualizations of calorimetric examples](docs/diagrams/out/calorimetricData).
 
 The following introduction explains the structure for new users and the section "On your Linux machine" explains how you can work with the API specification.
 
@@ -45,7 +45,7 @@ If you don't find the answer there and if your question is related to the code, 
 
 ## Introduction
 
-There are many domains of data such as optical, calorimetric, geometric, hygrothermal, lifeCycle and more. This introduction begins with optical data to illustrate the structure.
+There are many domains of data such as optical, calorimetric, geometric, hygrothermal, life cycle and more. This introduction begins with optical data to illustrate the structure.
 
 ### With optical data as example
 
@@ -108,9 +108,9 @@ For example, [semitransparentBuildingIntegratedPhotovoltaicThermal.json](https:/
 
 ### How was the data created?
 
-It is possible to define the method which was used to create a dataset. The methods can be registered in the metabase buildingenvelopedata.org . Each method receives its unique central identifier.
+It is possible to define the method which was used to create a dataset. The methods must be registered in the metabase buildingenvelopedata.org . Each method receives its unique central identifier.
 
-The test [integralAccordingToStandard.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/component/optical/integralAccordingToStandard.json) is an example of an optical dataset which was created according to [a standard](https://github.com/building-envelope-data/api/blob/develop/tests/valid/component/optical/integralAccordingToStandard.json#L14-L20). The dataset which was used as the source of the calculation is defined in the [lines 25-31](https://github.com/building-envelope-data/api/blob/develop/tests/valid/component/optical/integralAccordingToStandard.json#L25-L31). It would be possible to define [arguments](https://github.com/building-envelope-data/api/blob/develop/tests/valid/component/optical/integralAccordingToStandard.json#L23) of the calculation method.
+The test [integralAccordingToStandard.json](https://github.com/building-envelope-data/api/blob/develop/tests/valid/component/optical/integralAccordingToStandard.json) is an example of an optical dataset which was created according to [a standard](https://github.com/building-envelope-data/api/blob/5f56f029c97366ab42154527d03a76408eb2ae6c/tests/valid/component/optical/integralAccordingToStandard.json#L14-L20). The dataset which was used as the source of the calculation is defined in the [lines 25-31](https://github.com/building-envelope-data/api/blob/5f56f029c97366ab42154527d03a76408eb2ae6c/tests/valid/component/optical/integralAccordingToStandard.json#L25-L31). It would be possible to define [arguments](https://github.com/building-envelope-data/api/blob/5f56f029c97366ab42154527d03a76408eb2ae6c/tests/valid/component/optical/integralAccordingToStandard.json#L23) of the calculation method.
 
 ## How to use this repository
 
