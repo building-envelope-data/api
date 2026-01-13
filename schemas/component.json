@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/component.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/component.json",
   "title": "component data",
   "description": "A component can be small like a screw and large like a building. A component can be an assembly of other components. For example, the building envelope can be a component assembled of windows and walls. The data of a component contains metadata about the component as well as keys for special data domains such as 'optical' for optical data and 'geometric' for geometric data of the component. The aim is to restrict the possible representations of one dataset as much as possible to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next update of this schema.",
   "$defs": {
@@ -145,7 +145,9 @@
       },
       "additionalProperties": false,
       "minProperties": 1,
-      "required": ["id"]
+      "required": [
+        "id"
+      ]
     },
     "categories": {
       "title": "The categories which a component can have.",
@@ -155,7 +157,11 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["material", "layer", "unit"],
+            "enum": [
+              "material",
+              "layer",
+              "unit"
+            ],
             "description": "A building envelope component can have one or more of the following categories. (i) If the component is a plain material, for example a sheet which could be used to build a blind, the category 'material' should be used. (ii) If the component can be treated as a layer for optical simulations of a stack of layers, then the category 'layer' should be used. Venetian blinds are one example of a layer. The center-of-glazing values are important for the simulation of a stack of layers. (iii) If the width, the height and the edges of the component are well defined, then the category 'unit' should be used. For example a window with frame and shading system."
           },
           "uniqueItems": true,
@@ -229,7 +235,9 @@
         }
       },
       "additionalProperties": false,
-      "required": ["id"]
+      "required": [
+        "id"
+      ]
     },
     "characteristics": {
       "title": "The characteristics a component can have which do not change between different datasets about this component.",
@@ -359,7 +367,10 @@
               }
             },
             "minProperties": 2,
-            "required": ["surface", "rootMeanSquare"]
+            "required": [
+              "surface",
+              "rootMeanSquare"
+            ]
           },
           "minItems": 1,
           "description": "Each item of the array defines a surface of the component together with the roughness of this surface."
@@ -383,7 +394,11 @@
     },
     "surface": {
       "type": "string",
-      "enum": ["nonPrime", "prime", "symmetric"],
+      "enum": [
+        "nonPrime",
+        "prime",
+        "symmetric"
+      ],
       "title": "Surface",
       "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in the property `prime/surface`. If the results are identical for both sides, 'symmetric' is used."
     }

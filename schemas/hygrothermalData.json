@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/hygrothermalData.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/hygrothermalData.json",
   "title": "hygrothermal data",
   "description": "Hygrothermal data which can be used for hygrothermal simulations. Humidity needs to be handled properly to create sustainable buildings with high comfort.",
   "$defs": {
@@ -79,7 +79,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["relativeHumidityAbsolute", "waterContent"]
+            "required": [
+              "relativeHumidityAbsolute",
+              "waterContent"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -102,7 +105,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["waterContent", "liquidTransportCoefficient"]
+            "required": [
+              "waterContent",
+              "liquidTransportCoefficient"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -125,7 +131,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["waterContent", "liquidTransportCoefficient"]
+            "required": [
+              "waterContent",
+              "liquidTransportCoefficient"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -148,7 +157,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["waterContent", "thermalConductivity"]
+            "required": [
+              "waterContent",
+              "thermalConductivity"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -170,7 +182,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["temperature", "thermalConductivity"]
+            "required": [
+              "temperature",
+              "thermalConductivity"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true
@@ -217,7 +232,10 @@
             "additionalProperties": false,
             "minProperties": 2,
             "maxProperties": 2,
-            "required": ["temperature", "enthalpy"]
+            "required": [
+              "temperature",
+              "enthalpy"
+            ]
           },
           "minItems": 0,
           "uniqueItems": true

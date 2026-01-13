@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/number.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/number.json",
   "title": "number types",
   "description": "Types for numbers with and without uncertainty and units. The number types are used to restrict the range of allowed values to a reasonable range.",
   "$defs": {
@@ -16,7 +16,12 @@
     },
     "confidenceInterval": {
       "type": "number",
-      "enum": [68.3, 95.4, 99.7, 100],
+      "enum": [
+        68.3,
+        95.4,
+        99.7,
+        100
+      ],
       "description": "The confidence interval defines the probability that the true value lies within the uncertainty. The first three values belong to the standard errors 68.3% (one sigma), 95.4% (two sigma) or 99.7% (three sigma). If it is 100% certain that the true value cannot be beyond the uncertainty, 100% is used."
     },
     "numberWithUncertainty": {
@@ -40,7 +45,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -75,7 +84,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -100,7 +113,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -131,7 +148,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -168,7 +189,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -291,7 +316,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -316,7 +345,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -341,7 +374,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -366,7 +403,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },
@@ -391,7 +432,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+          "required": [
+            "uncertainValue",
+            "uncertainty",
+            "confidenceInterval"
+          ]
         }
       ]
     },

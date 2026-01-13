@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/geometricData.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/geometricData.json",
   "title": "geometric data",
   "description": "Geometric datasets of building envelope components. It shall be possible to exchange the results of all important details about the geometry of a component.",
   "$defs": {
@@ -105,7 +105,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["latitude", "longitude"]
+      "required": [
+        "latitude",
+        "longitude"
+      ]
     },
     "location": {
       "title": "The location of the center of mass of the component.",
@@ -125,7 +128,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["east", "north"]
+      "required": [
+        "east",
+        "north"
+      ]
     },
     "orientation": {
       "title": "The orientation of the non-prime surface of the component.",
@@ -145,7 +151,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["azimuth", "componentTilt"]
+      "required": [
+        "azimuth",
+        "componentTilt"
+      ]
     },
     "assembly": {
       "title": "The geometry of the subcomponents which are used for this assembly.",
@@ -168,7 +177,9 @@
         },
         "additionalProperties": false,
         "minProperties": 1,
-        "required": ["id"]
+        "required": [
+          "id"
+        ]
       },
       "minItems": 2
     },
@@ -187,7 +198,11 @@
         }
       },
       "additionalProperties": false,
-      "required": ["x", "y", "z"]
+      "required": [
+        "x",
+        "y",
+        "z"
+      ]
     },
     "vector": {
       "title": "A geometric vector according to the definition of a coordinate system elsewhere.",
@@ -204,7 +219,11 @@
         }
       },
       "additionalProperties": false,
-      "required": ["x", "y", "z"]
+      "required": [
+        "x",
+        "y",
+        "z"
+      ]
     },
     "coordinateSystem": {
       "title": "Definition of the coordinate system of the dataset",
@@ -247,7 +266,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["uDirection", "vDirection"]
+      "required": [
+        "uDirection",
+        "vDirection"
+      ]
     },
     "nurbsBoundedCurve": {
       "title": "A non-uniform rational B-spline (NURBS) is a very general way to define a curve.",
@@ -278,7 +300,9 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["weights"]
+                "required": [
+                  "weights"
+                ]
               }
             ],
             "minItems": 2,
@@ -298,7 +322,11 @@
         }
       },
       "additionalProperties": false,
-      "required": ["degree", "controlPoints", "knots"]
+      "required": [
+        "degree",
+        "controlPoints",
+        "knots"
+      ]
     },
     "body": {
       "type": "object",

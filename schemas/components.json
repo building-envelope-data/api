@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/components.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/components.json",
   "title": "data about components",
   "description": "This schema can be used to share an array of components. For example the components of a manufacturer can be shared or an assembled component together with all subcomponents.",
   "type": "object",
@@ -15,5 +15,7 @@
     }
   },
   "additionalProperties": false,
-  "required": ["components"]
+  "required": [
+    "components"
+  ]
 }

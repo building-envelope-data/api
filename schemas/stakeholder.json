@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/stakeholder.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/stakeholder.json",
   "title": "Stakeholder",
   "description": "Institution or person",
   "$defs": {
@@ -43,7 +43,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["standard", "approvals"]
+      "required": [
+        "standard",
+        "approvals"
+      ]
     },
     "institution": {
       "title": "Institution",
@@ -115,13 +118,18 @@
               }
             },
             "additionalProperties": false,
-            "required": ["kind", "person"]
+            "required": [
+              "kind",
+              "person"
+            ]
           },
           "minItems": 1
         }
       },
       "additionalProperties": false,
-      "required": ["id"]
+      "required": [
+        "id"
+      ]
     },
     "person": {
       "title": "Person",
@@ -165,7 +173,10 @@
               }
             },
             "additionalProperties": false,
-            "required": ["kind", "institution"]
+            "required": [
+              "kind",
+              "institution"
+            ]
           },
           "minItems": 1
         },
