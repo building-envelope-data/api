@@ -179,22 +179,12 @@
             },
             "intersection": {
               "type": "string",
-              "enum": [
-                "Unknown",
-                "Complete",
-                "Incidental",
-                "None"
-              ],
+              "enum": ["Unknown", "Complete", "Incidental", "None"],
               "description": "Intersection of the materials."
             },
             "productEdge": {
               "type": "string",
-              "enum": [
-                "Unknown",
-                "Closed",
-                "Overlapping",
-                "Open"
-              ],
+              "enum": ["Unknown", "Closed", "Overlapping", "Open"],
               "description": "Form of the product edge."
             },
             "index": {
@@ -656,14 +646,7 @@
             "CategoryDecopaint": {
               "type": "string",
               "description": "Category (Wb) of current Decopaint-RL (Appendix II)",
-              "enum": [
-                "n.v.",
-                "a",
-                "b",
-                "g",
-                "h",
-                "d"
-              ]
+              "enum": ["n.v.", "a", "b", "g", "h", "d"]
             },
             "WaterSoluble": {
               "type": "boolean",
@@ -874,13 +857,7 @@
             "Emicode": {
               "type": "string",
               "description": "Certified with EMICODE",
-              "enum": [
-                "n.v",
-                "EC1",
-                "EC1PLUS",
-                "EC1-R",
-                "EC1PLUS-R"
-              ]
+              "enum": ["n.v", "EC1", "EC1PLUS", "EC1-R", "EC1PLUS-R"]
             },
             "ConsistsOfPu": {
               "type": "boolean",
@@ -949,16 +926,7 @@
             "CorrosivityCategory": {
               "type": "string",
               "description": "Which corrosivity category according to DIN EN ISO 12944-2 does the application of the product fall under?",
-              "enum": [
-                "n.v.",
-                "C1",
-                "C2",
-                "C3",
-                "C4",
-                "C5-I",
-                "C5-M",
-                "all"
-              ]
+              "enum": ["n.v.", "C1", "C2", "C3", "C4", "C5-I", "C5-M", "all"]
             },
             "VocContentPerSquaremeter": {
               "type": "number",
@@ -1011,17 +979,7 @@
             "ApplicationClass": {
               "type": "string",
               "description": "Wood application class according to DIN 68800-3",
-              "enum": [
-                "n.v.",
-                "0",
-                "1",
-                "2",
-                "3",
-                "3.1",
-                "3.2",
-                "4",
-                "5"
-              ]
+              "enum": ["n.v.", "0", "1", "2", "3", "3.1", "3.2", "4", "5"]
             },
             "OnlyConstructiveWoodProtection": {
               "type": "boolean",
@@ -1545,11 +1503,7 @@
             "EPDAvailable": {
               "type": "string",
               "description": "Type of EPD available for the product. ",
-              "enum": [
-                "n.v.",
-                "Industry-average EPD",
-                "Product specific EPD"
-              ]
+              "enum": ["n.v.", "Industry-average EPD", "Product specific EPD"]
             },
             "Reduction5": {
               "type": "boolean",
@@ -1568,13 +1522,7 @@
             "C2CCertified": {
               "type": "string",
               "description": "The product is Cradle to Cradle (version 3 or later) certified",
-              "enum": [
-                "n.v.",
-                "bronze",
-                "silver",
-                "gold",
-                "platinum"
-              ]
+              "enum": ["n.v.", "bronze", "silver", "gold", "platinum"]
             },
             "DeclareCertified": {
               "type": "string",
@@ -1591,13 +1539,7 @@
             "FactsCertified": {
               "type": "string",
               "description": "Product is Facts – NSF/ANSI 336 certified",
-              "enum": [
-                "n.v.",
-                "compliant",
-                "silver",
-                "gold",
-                "platinum"
-              ]
+              "enum": ["n.v.", "compliant", "silver", "gold", "platinum"]
             },
             "GlobalGreenTagPHDCertified": {
               "type": "boolean",
@@ -1762,11 +1704,7 @@
             "SCAQMDVOCLimitsCompliant": {
               "type": "string",
               "description": "Product is compliant with the VOC Limits of  SCAQMD Rule 1113",
-              "enum": [
-                "n.v.",
-                "Rule 1113",
-                "Rule 1168"
-              ]
+              "enum": ["n.v.", "Rule 1113", "Rule 1168"]
             },
             "TSCACompliant": {
               "type": "boolean",
@@ -1815,12 +1753,7 @@
             "HealthRATECertified": {
               "type": "string",
               "description": "The product is HealthRATE™ mark certified",
-              "enum": [
-                "n.v.",
-                "SilverHEALTH",
-                "GoldHEALTH",
-                "PlatinumHEALTH"
-              ]
+              "enum": ["n.v.", "SilverHEALTH", "GoldHEALTH", "PlatinumHEALTH"]
             },
             "PFASFree": {
               "type": "boolean",
@@ -1849,12 +1782,7 @@
             "ByggvarubedömningenCompliant": {
               "type": "string",
               "description": "The product is classified according to the Byggvarubedömningen criterion",
-              "enum": [
-                "n.v.",
-                "recommended",
-                "accepted",
-                "to be avoided"
-              ]
+              "enum": ["n.v.", "recommended", "accepted", "to be avoided"]
             },
             "IngredientsThirdPartyVerified": {
               "type": "boolean",
@@ -1863,13 +1791,7 @@
             "MaterialHealthCertified": {
               "type": "string",
               "description": "Product has Material Health Certificate (version 3 or later)",
-              "enum": [
-                "n.v.",
-                "bronze",
-                "silver",
-                "gold",
-                "platinum"
-              ]
+              "enum": ["n.v.", "bronze", "silver", "gold", "platinum"]
             },
             "LCAActionPlanAvailable": {
               "type": "boolean",
@@ -1922,11 +1844,7 @@
             "PS109Compliant": {
               "type": "string",
               "description": "The product is compliant with the PS 1-09 standard for structural plywood",
-              "enum": [
-                "n.v.",
-                "Exterior",
-                "Exposure 1"
-              ]
+              "enum": ["n.v.", "Exterior", "Exposure 1"]
             },
             "PS210Compliant": {
               "type": "boolean",
@@ -2232,17 +2150,7 @@
             "WoodApplicationClassInSitu": {
               "type": "string",
               "description": "To which wood use class according to DIN 68800-3 is the product applied?",
-              "enum": [
-                "n.v.",
-                "0",
-                "1",
-                "2",
-                "3",
-                "3.1",
-                "3.2",
-                "4",
-                "5"
-              ]
+              "enum": ["n.v.", "0", "1", "2", "3", "3.1", "3.2", "4", "5"]
             },
             "FilmprotectedWoodCoating": {
               "type": "boolean",
@@ -2354,23 +2262,15 @@
                 "properties": {
                   "resultTypeId": {
                     "type": "string",
-                    "enum": [
-                      "BNB_1.1.6"
-                    ]
+                    "enum": ["BNB_1.1.6"]
                   },
                   "result": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
+                    "type": ["integer", "null"],
                     "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "resultTypeId",
-                  "result"
-                ]
+                "required": ["resultTypeId", "result"]
               },
               "uniqueItems": true,
               "minItems": 1
@@ -2394,18 +2294,12 @@
                     ]
                   },
                   "result": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
+                    "type": ["integer", "null"],
                     "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "resultTypeId",
-                  "result"
-                ]
+                "required": ["resultTypeId", "result"]
               },
               "uniqueItems": true,
               "minItems": 1
@@ -2419,25 +2313,15 @@
                 "properties": {
                   "resultTypeId": {
                     "type": "string",
-                    "enum": [
-                      "DGNB18_ENV12",
-                      "DGNB18_ENV131",
-                      "DGNB18_ENV132"
-                    ]
+                    "enum": ["DGNB18_ENV12", "DGNB18_ENV131", "DGNB18_ENV132"]
                   },
                   "result": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
+                    "type": ["integer", "null"],
                     "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "resultTypeId",
-                  "result"
-                ]
+                "required": ["resultTypeId", "result"]
               },
               "uniqueItems": true,
               "minItems": 1
@@ -2451,25 +2335,15 @@
                 "properties": {
                   "resultTypeId": {
                     "type": "string",
-                    "enum": [
-                      "DGNB23_ENV1.2",
-                      "DGNB23_ENV131",
-                      "DGNB23_ENV132"
-                    ]
+                    "enum": ["DGNB23_ENV1.2", "DGNB23_ENV131", "DGNB23_ENV132"]
                   },
                   "result": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
+                    "type": ["integer", "null"],
                     "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "resultTypeId",
-                  "result"
-                ]
+                "required": ["resultTypeId", "result"]
               },
               "uniqueItems": true,
               "minItems": 1
@@ -2489,18 +2363,12 @@
                     ]
                   },
                   "result": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
+                    "type": ["integer", "null"],
                     "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "resultTypeId",
-                  "result"
-                ]
+                "required": ["resultTypeId", "result"]
               },
               "uniqueItems": true,
               "minItems": 1
@@ -2514,24 +2382,15 @@
                 "properties": {
                   "resultTypeId": {
                     "type": "string",
-                    "enum": [
-                      "EU_TAX_DNSH_Pollution",
-                      "EU_TAX_DNSH_Water"
-                    ]
+                    "enum": ["EU_TAX_DNSH_Pollution", "EU_TAX_DNSH_Water"]
                   },
                   "result": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
+                    "type": ["integer", "null"],
                     "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "resultTypeId",
-                  "result"
-                ]
+                "required": ["resultTypeId", "result"]
               },
               "uniqueItems": true,
               "minItems": 1
@@ -2555,18 +2414,12 @@
                     ]
                   },
                   "result": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
+                    "type": ["integer", "null"],
                     "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "resultTypeId",
-                  "result"
-                ]
+                "required": ["resultTypeId", "result"]
               },
               "uniqueItems": true,
               "minItems": 1
@@ -2580,23 +2433,15 @@
                 "properties": {
                   "resultTypeId": {
                     "type": "string",
-                    "enum": [
-                      "QNG313"
-                    ]
+                    "enum": ["QNG313"]
                   },
                   "result": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
+                    "type": ["integer", "null"],
                     "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "resultTypeId",
-                  "result"
-                ]
+                "required": ["resultTypeId", "result"]
               },
               "uniqueItems": true,
               "minItems": 1
@@ -2620,18 +2465,12 @@
                     ]
                   },
                   "result": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
+                    "type": ["integer", "null"],
                     "description": "Result of an assessment. If no requirements apply the result value is null."
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "resultTypeId",
-                  "result"
-                ]
+                "required": ["resultTypeId", "result"]
               },
               "uniqueItems": true,
               "minItems": 1

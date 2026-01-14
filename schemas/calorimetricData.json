@@ -38,10 +38,7 @@
       "properties": {
         "conditions": {
           "type": "string",
-          "enum": [
-            "dynamic",
-            "stationary"
-          ],
+          "enum": ["dynamic", "stationary"],
           "description": "Either a measurement aims at quasi-stationary conditions or at dynamic conditions where the values change over time."
         },
         "surface": {
@@ -376,14 +373,10 @@
             }
           },
           "then": {
-            "required": [
-              "description"
-            ]
+            "required": ["description"]
           },
           "else": {
-            "required": [
-              "category"
-            ]
+            "required": ["category"]
           },
           "additionalProperties": false
         },
@@ -424,11 +417,7 @@
     },
     "side": {
       "type": "string",
-      "enum": [
-        "exterior",
-        "interior",
-        "lateral"
-      ],
+      "enum": ["exterior", "interior", "lateral"],
       "description": "The name of one part of the surroundings."
     }
   },

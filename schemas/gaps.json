@@ -10,11 +10,7 @@
       "properties": {
         "reveal": {
           "type": "string",
-          "enum": [
-            "inside",
-            "outside",
-            "other"
-          ],
+          "enum": ["inside", "outside", "other"],
           "description": "The item defines whether the shading is inside the reveal or outside or something beyond both categories."
         },
         "dTop": {
