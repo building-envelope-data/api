@@ -41,7 +41,7 @@ and this project adheres to
 - Improve descriptions of angles, surfaces and orientations [#360](https://github.com/building-envelope-data/api/pull/360)
 - Rename `dbe` to `buildingEnvelopes` and `dsb` to `buildings` [#361](https://github.com/building-envelope-data/api/pull/361)
 - Restructure the repository [#364](https://github.com/building-envelope-data/api/pull/364)
--
+- Update "$id" of all JSON Schemas [#365](https://github.com/building-envelope-data/api/pull/365)
 -
 -
 -

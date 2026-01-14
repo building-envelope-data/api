@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/optical.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/optical.json",
   "title": "metadata about optical datasets",
   "description": "Optical datasets of building envelope components with meta information like name, description, warnings, and more.",
   "$defs": {

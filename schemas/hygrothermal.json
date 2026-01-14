@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/hygrothermal.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/hygrothermal.json",
   "title": "metadata about hygrothermal datasets",
   "description": "Hygrothermal data with meta information like name, description, warnings, and more.",
   "$defs": {

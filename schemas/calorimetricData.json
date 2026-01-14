@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/calorimetricData.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/calorimetricData.json",
   "title": "calorimetric data",
   "description": "datasets about calorimetric measurements or simulations. In particular, energy fluxes are important.",
   "$defs": {

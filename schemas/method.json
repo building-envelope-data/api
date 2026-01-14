@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/method.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/method.json",
   "title": "method data",
   "description": "Definition of a method that can be applied by a creator to some source data to create a dataset. By defining the method and the source data, the origin of the dataset can be traced back.",
   "$defs": {

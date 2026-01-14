@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/v1.0.0/schemas/component.json",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/component.json",
   "title": "component data",
   "description": "A component can be small like a screw and large like a building. A component can be an assembly of other components. For example, the building envelope can be a component assembled of windows and walls. The data of a component contains metadata about the component as well as keys for special data domains such as 'optical' for optical data and 'geometric' for geometric data of the component. The aim is to restrict the possible representations of one dataset as much as possible to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next update of this schema.",
   "$defs": {
