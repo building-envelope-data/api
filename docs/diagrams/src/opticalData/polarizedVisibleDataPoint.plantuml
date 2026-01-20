@@ -1,0 +1,28 @@
+@startjson polarizedVisibleDataPoint
+{
+  "incidence": {
+    "direction": {
+      "polar": 60,
+      "azimuth": 90
+    }
+    ,
+    "wavelengths": {
+      "integral": "visible"
+    }
+    ,
+    "polarization": {
+      "s": 1,
+      "p": 0
+    }
+  }
+  ,
+  "emergence": {
+    "direction": "hemispherical"
+  }
+  ,
+  "results": {
+    "transmittance": 0.81,
+    "reflectance": 0.08
+  }
+}
+@endjson

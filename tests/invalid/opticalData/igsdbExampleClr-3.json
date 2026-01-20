@@ -1,0 +1,4742 @@
+{
+  "id": null,
+  "component_id": "850e5dc2-0162-42d0-8ddc-1a532444b21b",
+  "type": "GLAZING",
+  "subtype": "MONOLITHIC",
+  "token": "clr-3",
+  "name": "Float Glass - 3mm",
+  "marketing_name": null,
+  "nfrc_id": 2001,
+  "igdb_id": 3538,
+  "cgdb_id": null,
+  "mdb_time_created": "2009-02-27T11:49:20Z",
+  "igdb_database_version": "29.0",
+  "cgdb_database_version": null,
+  "acceptance": "#",
+  "reference": false,
+  "appearance": "Clear",
+  "hidden": false,
+  "manufacturer_name": "Cardinal Glass Industries",
+  "owner_name": null,
+  "data_file_name": "Clr-3.CIG",
+  "data_file_type": "IGDB_LEGACY_SUBMISSION_FILE",
+  "data_file_available": false,
+  "short_description": null,
+  "deconstructable": false,
+  "coating_name": null,
+  "coating_id": 2,
+  "coated_side": "NA",
+  "igdb_checksum": -1555487955,
+  "cgdb_checksum": null,
+  "checksum_date": "2013-04-05T14:20:44Z",
+  "window8_application_type": "MONOLITHIC",
+  "emissivity_front": 0.84,
+  "emissivity_back": 0.84,
+  "tir_front": 0.0,
+  "tir_back": 0.0,
+  "product_detail_files": [],
+  "composition": [],
+  "integrated_spectral_averages_summaries": [
+    {
+      "calculation_standard": "NFRC",
+      "source": "IGDB",
+      "source_version": "98",
+      "spf": {
+        "error": null,
+        "reflectance_back": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "reflectance_front": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_back": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_front": {
+          "matrix": null,
+          "direct_direct": "10.40653",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "absorptance_back_direct": null,
+        "absorptance_front_direct": null,
+        "absorptance_back_hemispheric": null,
+        "absorptance_front_hemispheric": null
+      },
+      "tdw": {
+        "error": null,
+        "reflectance_back": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "reflectance_front": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_back": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_front": {
+          "matrix": null,
+          "direct_direct": "0.8480601",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "absorptance_back_direct": null,
+        "absorptance_front_direct": null,
+        "absorptance_back_hemispheric": null,
+        "absorptance_front_hemispheric": null
+      },
+      "tkr": {
+        "error": null,
+        "reflectance_back": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "reflectance_front": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_back": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_front": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "absorptance_back_direct": null,
+        "absorptance_front_direct": null,
+        "absorptance_back_hemispheric": null,
+        "absorptance_front_hemispheric": null
+      },
+      "tuv": {
+        "error": null,
+        "reflectance_back": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "reflectance_front": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_back": {
+          "matrix": null,
+          "direct_direct": null,
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_front": {
+          "matrix": null,
+          "direct_direct": "0.7253202",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "absorptance_back_direct": null,
+        "absorptance_front_direct": null,
+        "absorptance_back_hemispheric": null,
+        "absorptance_front_hemispheric": null
+      },
+      "color": {
+        "reflectance_back": {
+          "direct_direct": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "direct_diffuse": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "diffuse_diffuse": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "direct_hemispherical": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          }
+        },
+        "reflectance_front": {
+          "direct_direct": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "direct_diffuse": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "diffuse_diffuse": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "direct_hemispherical": {
+            "lab": {
+              "a": -0.4781490764729779,
+              "b": -0.4878317966566348,
+              "l": 34.46499873850816
+            },
+            "rgb": {
+              "b": 89.42135217644993,
+              "g": 89.71199959506417,
+              "r": 88.00823275144889
+            },
+            "trichromatic": {
+              "x": 7.753658,
+              "y": 8.233734,
+              "z": 8.986135
+            }
+          }
+        },
+        "transmittance_back": {
+          "direct_direct": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "direct_diffuse": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "diffuse_diffuse": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "direct_hemispherical": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          }
+        },
+        "transmittance_front": {
+          "direct_direct": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "direct_diffuse": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "diffuse_diffuse": {
+            "lab": {
+              "a": null,
+              "b": null,
+              "l": null
+            },
+            "rgb": {
+              "b": null,
+              "g": null,
+              "r": null
+            },
+            "trichromatic": {
+              "x": null,
+              "y": null,
+              "z": null
+            }
+          },
+          "direct_hemispherical": {
+            "lab": {
+              "a": -0.8035122491914515,
+              "b": 0.2168086516082468,
+              "l": 96.18335944095739
+            },
+            "rgb": {
+              "b": 255.0,
+              "g": 255.0,
+              "r": 255.0
+            },
+            "trichromatic": {
+              "x": 85.31423,
+              "y": 90.45058,
+              "z": 96.74794
+            }
+          }
+        }
+      },
+      "solar": {
+        "error": null,
+        "reflectance_back": {
+          "matrix": null,
+          "direct_direct": "0.07565702",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "reflectance_front": {
+          "matrix": null,
+          "direct_direct": "0.07563639",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_back": {
+          "matrix": null,
+          "direct_direct": "0.8483579",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_front": {
+          "matrix": null,
+          "direct_direct": "0.8483579",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "absorptance_back_direct": null,
+        "absorptance_front_direct": null,
+        "absorptance_back_hemispheric": null,
+        "absorptance_front_hemispheric": null
+      },
+      "photopic": {
+        "error": null,
+        "reflectance_back": {
+          "matrix": null,
+          "direct_direct": "0.08225287",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "reflectance_front": {
+          "matrix": null,
+          "direct_direct": "0.08225197",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_back": {
+          "matrix": null,
+          "direct_direct": "0.9044294",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "transmittance_front": {
+          "matrix": null,
+          "direct_direct": "0.9044294",
+          "direct_diffuse": null,
+          "diffuse_diffuse": null,
+          "direct_hemispherical": null
+        },
+        "absorptance_back_direct": null,
+        "absorptance_front_direct": null,
+        "absorptance_back_hemispheric": null,
+        "absorptance_front_hemispheric": null
+      },
+      "thermal_ir": {
+        "emissivity_back_hemispheric": null,
+        "emissivity_front_hemispheric": null,
+        "transmittance_back_diffuse_diffuse": null,
+        "transmittance_front_diffuse_diffuse": null
+      }
+    }
+  ],
+  "geometric_properties": null,
+  "material": "GLASS",
+  "material_bulk_properties": {
+    "name": "GLASS",
+    "version": 1,
+    "conductivity": "0.84000000000000000",
+    "youngs_modulus": 0.0,
+    "poissons_ratio": 0.0,
+    "elasticity": 0.0,
+    "moisture_properties": null
+  },
+  "extra_data": {},
+  "physical_properties": {
+    "is_specular": true,
+    "thickness": 3.0,
+    "predefined_emissivity_front": 0.84,
+    "predefined_emissivity_back": 0.84,
+    "predefined_tir_front": 0.0,
+    "predefined_tir_back": 0.0,
+    "permeability_factor": null,
+    "bulk_properties_override": {
+      "conductivity": "1.0"
+    },
+    "optical_properties": {
+      "optical_data_type": "DISCRETE",
+      "incidence_angular_resolution_type": "DIRECT",
+      "outgoing_angular_resolution_type": "DIRECT",
+      "optical_data": {
+        "angle_blocks": [
+          {
+            "incidence_angle": 0,
+            "num_wavelengths": 462,
+            "wavelength_data": [
+              {
+                "w": "0.3",
+                "specular": {
+                  "rb": "0.047",
+                  "rf": "0.0467",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "0.305",
+                "specular": {
+                  "rb": "0.047",
+                  "rf": "0.0467",
+                  "tb": "0.0011",
+                  "tf": "0.0011"
+                }
+              },
+              {
+                "w": "0.31",
+                "specular": {
+                  "rb": "0.0469",
+                  "rf": "0.0467",
+                  "tb": "0.0093",
+                  "tf": "0.0093"
+                }
+              },
+              {
+                "w": "0.315",
+                "specular": {
+                  "rb": "0.047",
+                  "rf": "0.0467",
+                  "tb": "0.0425",
+                  "tf": "0.0425"
+                }
+              },
+              {
+                "w": "0.32",
+                "specular": {
+                  "rb": "0.047",
+                  "rf": "0.0467",
+                  "tb": "0.1149",
+                  "tf": "0.1149"
+                }
+              },
+              {
+                "w": "0.325",
+                "specular": {
+                  "rb": "0.05",
+                  "rf": "0.0498",
+                  "tb": "0.2409",
+                  "tf": "0.2409"
+                }
+              },
+              {
+                "w": "0.33",
+                "specular": {
+                  "rb": "0.054",
+                  "rf": "0.0538",
+                  "tb": "0.3809",
+                  "tf": "0.3809"
+                }
+              },
+              {
+                "w": "0.335",
+                "specular": {
+                  "rb": "0.061",
+                  "rf": "0.0609",
+                  "tb": "0.5245",
+                  "tf": "0.5245"
+                }
+              },
+              {
+                "w": "0.34",
+                "specular": {
+                  "rb": "0.068",
+                  "rf": "0.0679",
+                  "tb": "0.6365",
+                  "tf": "0.6365"
+                }
+              },
+              {
+                "w": "0.345",
+                "specular": {
+                  "rb": "0.074",
+                  "rf": "0.074",
+                  "tb": "0.7272",
+                  "tf": "0.7272"
+                }
+              },
+              {
+                "w": "0.35",
+                "specular": {
+                  "rb": "0.0781",
+                  "rf": "0.078",
+                  "tb": "0.7862",
+                  "tf": "0.7862"
+                }
+              },
+              {
+                "w": "0.355",
+                "specular": {
+                  "rb": "0.0821",
+                  "rf": "0.082",
+                  "tb": "0.8281",
+                  "tf": "0.8281"
+                }
+              },
+              {
+                "w": "0.36",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.8541",
+                  "tf": "0.8541"
+                }
+              },
+              {
+                "w": "0.365",
+                "specular": {
+                  "rb": "0.0841",
+                  "rf": "0.0841",
+                  "tb": "0.8681",
+                  "tf": "0.8681"
+                }
+              },
+              {
+                "w": "0.37",
+                "specular": {
+                  "rb": "0.0841",
+                  "rf": "0.0841",
+                  "tb": "0.8721",
+                  "tf": "0.8721"
+                }
+              },
+              {
+                "w": "0.375",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.8603",
+                  "tf": "0.8603"
+                }
+              },
+              {
+                "w": "0.38",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.8593",
+                  "tf": "0.8593"
+                }
+              },
+              {
+                "w": "0.385",
+                "specular": {
+                  "rb": "0.0841",
+                  "rf": "0.0841",
+                  "tb": "0.8731",
+                  "tf": "0.8731"
+                }
+              },
+              {
+                "w": "0.39",
+                "specular": {
+                  "rb": "0.0851",
+                  "rf": "0.0851",
+                  "tb": "0.886",
+                  "tf": "0.886"
+                }
+              },
+              {
+                "w": "0.395",
+                "specular": {
+                  "rb": "0.0851",
+                  "rf": "0.0851",
+                  "tb": "0.894",
+                  "tf": "0.894"
+                }
+              },
+              {
+                "w": "0.4",
+                "specular": {
+                  "rb": "0.0851",
+                  "rf": "0.0851",
+                  "tb": "0.897",
+                  "tf": "0.897"
+                }
+              },
+              {
+                "w": "0.405",
+                "specular": {
+                  "rb": "0.0852",
+                  "rf": "0.0851",
+                  "tb": "0.8976",
+                  "tf": "0.8976"
+                }
+              },
+              {
+                "w": "0.41",
+                "specular": {
+                  "rb": "0.0851",
+                  "rf": "0.0851",
+                  "tb": "0.897",
+                  "tf": "0.897"
+                }
+              },
+              {
+                "w": "0.415",
+                "specular": {
+                  "rb": "0.0846",
+                  "rf": "0.0846",
+                  "tb": "0.8964",
+                  "tf": "0.8964"
+                }
+              },
+              {
+                "w": "0.42",
+                "specular": {
+                  "rb": "0.0841",
+                  "rf": "0.0841",
+                  "tb": "0.896",
+                  "tf": "0.896"
+                }
+              },
+              {
+                "w": "0.425",
+                "specular": {
+                  "rb": "0.0841",
+                  "rf": "0.0841",
+                  "tb": "0.8965",
+                  "tf": "0.8965"
+                }
+              },
+              {
+                "w": "0.43",
+                "specular": {
+                  "rb": "0.0841",
+                  "rf": "0.0841",
+                  "tb": "0.897",
+                  "tf": "0.897"
+                }
+              },
+              {
+                "w": "0.435",
+                "specular": {
+                  "rb": "0.0835",
+                  "rf": "0.0835",
+                  "tb": "0.8968",
+                  "tf": "0.8968"
+                }
+              },
+              {
+                "w": "0.44",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.897",
+                  "tf": "0.897"
+                }
+              },
+              {
+                "w": "0.445",
+                "specular": {
+                  "rb": "0.0835",
+                  "rf": "0.0835",
+                  "tb": "0.8988",
+                  "tf": "0.8988"
+                }
+              },
+              {
+                "w": "0.45",
+                "specular": {
+                  "rb": "0.0841",
+                  "rf": "0.0841",
+                  "tb": "0.901",
+                  "tf": "0.901"
+                }
+              },
+              {
+                "w": "0.455",
+                "specular": {
+                  "rb": "0.0842",
+                  "rf": "0.0842",
+                  "tb": "0.9026",
+                  "tf": "0.9026"
+                }
+              },
+              {
+                "w": "0.46",
+                "specular": {
+                  "rb": "0.0841",
+                  "rf": "0.0841",
+                  "tb": "0.904",
+                  "tf": "0.904"
+                }
+              },
+              {
+                "w": "0.465",
+                "specular": {
+                  "rb": "0.0836",
+                  "rf": "0.0836",
+                  "tb": "0.9051",
+                  "tf": "0.9051"
+                }
+              },
+              {
+                "w": "0.47",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.906",
+                  "tf": "0.906"
+                }
+              },
+              {
+                "w": "0.475",
+                "specular": {
+                  "rb": "0.083",
+                  "rf": "0.083",
+                  "tb": "0.9065",
+                  "tf": "0.9065"
+                }
+              },
+              {
+                "w": "0.48",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.9069",
+                  "tf": "0.9069"
+                }
+              },
+              {
+                "w": "0.485",
+                "specular": {
+                  "rb": "0.0837",
+                  "rf": "0.0836",
+                  "tb": "0.9074",
+                  "tf": "0.9074"
+                }
+              },
+              {
+                "w": "0.49",
+                "specular": {
+                  "rb": "0.0841",
+                  "rf": "0.0841",
+                  "tb": "0.9079",
+                  "tf": "0.9079"
+                }
+              },
+              {
+                "w": "0.495",
+                "specular": {
+                  "rb": "0.0836",
+                  "rf": "0.0836",
+                  "tb": "0.9085",
+                  "tf": "0.9085"
+                }
+              },
+              {
+                "w": "0.5",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.9089",
+                  "tf": "0.9089"
+                }
+              },
+              {
+                "w": "0.505",
+                "specular": {
+                  "rb": "0.083",
+                  "rf": "0.083",
+                  "tb": "0.909",
+                  "tf": "0.909"
+                }
+              },
+              {
+                "w": "0.51",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.9089",
+                  "tf": "0.9089"
+                }
+              },
+              {
+                "w": "0.515",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.909",
+                  "tf": "0.909"
+                }
+              },
+              {
+                "w": "0.52",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.9089",
+                  "tf": "0.9089"
+                }
+              },
+              {
+                "w": "0.525",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.9084",
+                  "tf": "0.9084"
+                }
+              },
+              {
+                "w": "0.53",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.908",
+                  "tf": "0.908"
+                }
+              },
+              {
+                "w": "0.535",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.9084",
+                  "tf": "0.9084"
+                }
+              },
+              {
+                "w": "0.54",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.9089",
+                  "tf": "0.9089"
+                }
+              },
+              {
+                "w": "0.545",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.9085",
+                  "tf": "0.9085"
+                }
+              },
+              {
+                "w": "0.55",
+                "specular": {
+                  "rb": "0.0831",
+                  "rf": "0.0831",
+                  "tb": "0.9079",
+                  "tf": "0.9079"
+                }
+              },
+              {
+                "w": "0.555",
+                "specular": {
+                  "rb": "0.0826",
+                  "rf": "0.0826",
+                  "tb": "0.9075",
+                  "tf": "0.9075"
+                }
+              },
+              {
+                "w": "0.56",
+                "specular": {
+                  "rb": "0.0821",
+                  "rf": "0.0821",
+                  "tb": "0.9069",
+                  "tf": "0.9069"
+                }
+              },
+              {
+                "w": "0.565",
+                "specular": {
+                  "rb": "0.082",
+                  "rf": "0.082",
+                  "tb": "0.906",
+                  "tf": "0.906"
+                }
+              },
+              {
+                "w": "0.57",
+                "specular": {
+                  "rb": "0.0821",
+                  "rf": "0.0821",
+                  "tb": "0.9049",
+                  "tf": "0.9049"
+                }
+              },
+              {
+                "w": "0.575",
+                "specular": {
+                  "rb": "0.0821",
+                  "rf": "0.0821",
+                  "tb": "0.9039",
+                  "tf": "0.9039"
+                }
+              },
+              {
+                "w": "0.58",
+                "specular": {
+                  "rb": "0.0821",
+                  "rf": "0.0821",
+                  "tb": "0.903",
+                  "tf": "0.903"
+                }
+              },
+              {
+                "w": "0.585",
+                "specular": {
+                  "rb": "0.0816",
+                  "rf": "0.0816",
+                  "tb": "0.9025",
+                  "tf": "0.9025"
+                }
+              },
+              {
+                "w": "0.59",
+                "specular": {
+                  "rb": "0.0811",
+                  "rf": "0.0811",
+                  "tb": "0.9019",
+                  "tf": "0.9019"
+                }
+              },
+              {
+                "w": "0.595",
+                "specular": {
+                  "rb": "0.081",
+                  "rf": "0.081",
+                  "tb": "0.9005",
+                  "tf": "0.9005"
+                }
+              },
+              {
+                "w": "0.6",
+                "specular": {
+                  "rb": "0.0811",
+                  "rf": "0.0811",
+                  "tb": "0.899",
+                  "tf": "0.899"
+                }
+              },
+              {
+                "w": "0.605",
+                "specular": {
+                  "rb": "0.0811",
+                  "rf": "0.0811",
+                  "tb": "0.898",
+                  "tf": "0.898"
+                }
+              },
+              {
+                "w": "0.61",
+                "specular": {
+                  "rb": "0.0811",
+                  "rf": "0.0811",
+                  "tb": "0.897",
+                  "tf": "0.897"
+                }
+              },
+              {
+                "w": "0.615",
+                "specular": {
+                  "rb": "0.0806",
+                  "rf": "0.0806",
+                  "tb": "0.8955",
+                  "tf": "0.8955"
+                }
+              },
+              {
+                "w": "0.62",
+                "specular": {
+                  "rb": "0.0801",
+                  "rf": "0.0801",
+                  "tb": "0.894",
+                  "tf": "0.894"
+                }
+              },
+              {
+                "w": "0.625",
+                "specular": {
+                  "rb": "0.0801",
+                  "rf": "0.0801",
+                  "tb": "0.8925",
+                  "tf": "0.8925"
+                }
+              },
+              {
+                "w": "0.63",
+                "specular": {
+                  "rb": "0.0801",
+                  "rf": "0.0801",
+                  "tb": "0.891",
+                  "tf": "0.891"
+                }
+              },
+              {
+                "w": "0.635",
+                "specular": {
+                  "rb": "0.0796",
+                  "rf": "0.0796",
+                  "tb": "0.8895",
+                  "tf": "0.8895"
+                }
+              },
+              {
+                "w": "0.64",
+                "specular": {
+                  "rb": "0.0791",
+                  "rf": "0.0791",
+                  "tb": "0.888",
+                  "tf": "0.888"
+                }
+              },
+              {
+                "w": "0.645",
+                "specular": {
+                  "rb": "0.079",
+                  "rf": "0.079",
+                  "tb": "0.8865",
+                  "tf": "0.8865"
+                }
+              },
+              {
+                "w": "0.65",
+                "specular": {
+                  "rb": "0.0791",
+                  "rf": "0.0791",
+                  "tb": "0.885",
+                  "tf": "0.885"
+                }
+              },
+              {
+                "w": "0.655",
+                "specular": {
+                  "rb": "0.0791",
+                  "rf": "0.0791",
+                  "tb": "0.8836",
+                  "tf": "0.8836"
+                }
+              },
+              {
+                "w": "0.66",
+                "specular": {
+                  "rb": "0.0791",
+                  "rf": "0.0791",
+                  "tb": "0.882",
+                  "tf": "0.882"
+                }
+              },
+              {
+                "w": "0.665",
+                "specular": {
+                  "rb": "0.0786",
+                  "rf": "0.0786",
+                  "tb": "0.8801",
+                  "tf": "0.8801"
+                }
+              },
+              {
+                "w": "0.67",
+                "specular": {
+                  "rb": "0.0781",
+                  "rf": "0.0781",
+                  "tb": "0.8781",
+                  "tf": "0.8781"
+                }
+              },
+              {
+                "w": "0.675",
+                "specular": {
+                  "rb": "0.0781",
+                  "rf": "0.0781",
+                  "tb": "0.8761",
+                  "tf": "0.8761"
+                }
+              },
+              {
+                "w": "0.68",
+                "specular": {
+                  "rb": "0.0781",
+                  "rf": "0.0781",
+                  "tb": "0.8741",
+                  "tf": "0.8741"
+                }
+              },
+              {
+                "w": "0.685",
+                "specular": {
+                  "rb": "0.0776",
+                  "rf": "0.0776",
+                  "tb": "0.8721",
+                  "tf": "0.8721"
+                }
+              },
+              {
+                "w": "0.69",
+                "specular": {
+                  "rb": "0.0771",
+                  "rf": "0.0771",
+                  "tb": "0.8701",
+                  "tf": "0.8701"
+                }
+              },
+              {
+                "w": "0.695",
+                "specular": {
+                  "rb": "0.077",
+                  "rf": "0.077",
+                  "tb": "0.8681",
+                  "tf": "0.8681"
+                }
+              },
+              {
+                "w": "0.7",
+                "specular": {
+                  "rb": "0.0771",
+                  "rf": "0.0771",
+                  "tb": "0.8662",
+                  "tf": "0.8662"
+                }
+              },
+              {
+                "w": "0.705",
+                "specular": {
+                  "rb": "0.0771",
+                  "rf": "0.0771",
+                  "tb": "0.8647",
+                  "tf": "0.8647"
+                }
+              },
+              {
+                "w": "0.71",
+                "specular": {
+                  "rb": "0.0771",
+                  "rf": "0.0771",
+                  "tb": "0.8632",
+                  "tf": "0.8632"
+                }
+              },
+              {
+                "w": "0.715",
+                "specular": {
+                  "rb": "0.0766",
+                  "rf": "0.0766",
+                  "tb": "0.8612",
+                  "tf": "0.8612"
+                }
+              },
+              {
+                "w": "0.72",
+                "specular": {
+                  "rb": "0.0761",
+                  "rf": "0.0761",
+                  "tb": "0.8592",
+                  "tf": "0.8592"
+                }
+              },
+              {
+                "w": "0.725",
+                "specular": {
+                  "rb": "0.076",
+                  "rf": "0.076",
+                  "tb": "0.8573",
+                  "tf": "0.8573"
+                }
+              },
+              {
+                "w": "0.73",
+                "specular": {
+                  "rb": "0.0761",
+                  "rf": "0.0761",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "0.735",
+                "specular": {
+                  "rb": "0.0761",
+                  "rf": "0.0761",
+                  "tb": "0.8526",
+                  "tf": "0.8526"
+                }
+              },
+              {
+                "w": "0.74",
+                "specular": {
+                  "rb": "0.0761",
+                  "rf": "0.0761",
+                  "tb": "0.8503",
+                  "tf": "0.8503"
+                }
+              },
+              {
+                "w": "0.745",
+                "specular": {
+                  "rb": "0.0756",
+                  "rf": "0.0756",
+                  "tb": "0.8488",
+                  "tf": "0.8488"
+                }
+              },
+              {
+                "w": "0.75",
+                "specular": {
+                  "rb": "0.0751",
+                  "rf": "0.0751",
+                  "tb": "0.8472",
+                  "tf": "0.8472"
+                }
+              },
+              {
+                "w": "0.755",
+                "specular": {
+                  "rb": "0.075",
+                  "rf": "0.075",
+                  "tb": "0.8447",
+                  "tf": "0.8447"
+                }
+              },
+              {
+                "w": "0.76",
+                "specular": {
+                  "rb": "0.0751",
+                  "rf": "0.0751",
+                  "tb": "0.8423",
+                  "tf": "0.8423"
+                }
+              },
+              {
+                "w": "0.765",
+                "specular": {
+                  "rb": "0.0751",
+                  "rf": "0.0751",
+                  "tb": "0.8409",
+                  "tf": "0.8409"
+                }
+              },
+              {
+                "w": "0.77",
+                "specular": {
+                  "rb": "0.0751",
+                  "rf": "0.075",
+                  "tb": "0.8393",
+                  "tf": "0.8393"
+                }
+              },
+              {
+                "w": "0.775",
+                "specular": {
+                  "rb": "0.0746",
+                  "rf": "0.0746",
+                  "tb": "0.8363",
+                  "tf": "0.8363"
+                }
+              },
+              {
+                "w": "0.78",
+                "specular": {
+                  "rb": "0.0741",
+                  "rf": "0.0741",
+                  "tb": "0.8333",
+                  "tf": "0.8333"
+                }
+              },
+              {
+                "w": "0.785",
+                "specular": {
+                  "rb": "0.0741",
+                  "rf": "0.0741",
+                  "tb": "0.8317",
+                  "tf": "0.8317"
+                }
+              },
+              {
+                "w": "0.79",
+                "specular": {
+                  "rb": "0.0741",
+                  "rf": "0.074",
+                  "tb": "0.8303",
+                  "tf": "0.8303"
+                }
+              },
+              {
+                "w": "0.795",
+                "specular": {
+                  "rb": "0.0736",
+                  "rf": "0.0736",
+                  "tb": "0.8284",
+                  "tf": "0.8284"
+                }
+              },
+              {
+                "w": "0.8",
+                "specular": {
+                  "rb": "0.0731",
+                  "rf": "0.0731",
+                  "tb": "0.8264",
+                  "tf": "0.8264"
+                }
+              },
+              {
+                "w": "0.805",
+                "specular": {
+                  "rb": "0.073",
+                  "rf": "0.0729",
+                  "tb": "0.8248",
+                  "tf": "0.8248"
+                }
+              },
+              {
+                "w": "0.81",
+                "specular": {
+                  "rb": "0.0731",
+                  "rf": "0.0731",
+                  "tb": "0.8234",
+                  "tf": "0.8234"
+                }
+              },
+              {
+                "w": "0.815",
+                "specular": {
+                  "rb": "0.0736",
+                  "rf": "0.0736",
+                  "tb": "0.822",
+                  "tf": "0.822"
+                }
+              },
+              {
+                "w": "0.82",
+                "specular": {
+                  "rb": "0.074",
+                  "rf": "0.074",
+                  "tb": "0.8204",
+                  "tf": "0.8204"
+                }
+              },
+              {
+                "w": "0.825",
+                "specular": {
+                  "rb": "0.0737",
+                  "rf": "0.0736",
+                  "tb": "0.8178",
+                  "tf": "0.8178"
+                }
+              },
+              {
+                "w": "0.83",
+                "specular": {
+                  "rb": "0.0731",
+                  "rf": "0.073",
+                  "tb": "0.8155",
+                  "tf": "0.8155"
+                }
+              },
+              {
+                "w": "0.835",
+                "specular": {
+                  "rb": "0.0725",
+                  "rf": "0.0725",
+                  "tb": "0.8149",
+                  "tf": "0.8149"
+                }
+              },
+              {
+                "w": "0.84",
+                "specular": {
+                  "rb": "0.0721",
+                  "rf": "0.0721",
+                  "tb": "0.8144",
+                  "tf": "0.8144"
+                }
+              },
+              {
+                "w": "0.845",
+                "specular": {
+                  "rb": "0.072",
+                  "rf": "0.072",
+                  "tb": "0.812",
+                  "tf": "0.812"
+                }
+              },
+              {
+                "w": "0.85",
+                "specular": {
+                  "rb": "0.0721",
+                  "rf": "0.072",
+                  "tb": "0.8094",
+                  "tf": "0.8094"
+                }
+              },
+              {
+                "w": "0.855",
+                "specular": {
+                  "rb": "0.0721",
+                  "rf": "0.072",
+                  "tb": "0.8079",
+                  "tf": "0.8079"
+                }
+              },
+              {
+                "w": "0.86",
+                "specular": {
+                  "rb": "0.0721",
+                  "rf": "0.072",
+                  "tb": "0.8065",
+                  "tf": "0.8065"
+                }
+              },
+              {
+                "w": "0.865",
+                "specular": {
+                  "rb": "0.072",
+                  "rf": "0.072",
+                  "tb": "0.805",
+                  "tf": "0.805"
+                }
+              },
+              {
+                "w": "0.87",
+                "specular": {
+                  "rb": "0.0721",
+                  "rf": "0.072",
+                  "tb": "0.8035",
+                  "tf": "0.8035"
+                }
+              },
+              {
+                "w": "0.875",
+                "specular": {
+                  "rb": "0.0726",
+                  "rf": "0.0726",
+                  "tb": "0.8024",
+                  "tf": "0.8024"
+                }
+              },
+              {
+                "w": "0.88",
+                "specular": {
+                  "rb": "0.073",
+                  "rf": "0.073",
+                  "tb": "0.8015",
+                  "tf": "0.8015"
+                }
+              },
+              {
+                "w": "0.885",
+                "specular": {
+                  "rb": "0.0726",
+                  "rf": "0.0726",
+                  "tb": "0.801",
+                  "tf": "0.801"
+                }
+              },
+              {
+                "w": "0.89",
+                "specular": {
+                  "rb": "0.072",
+                  "rf": "0.072",
+                  "tb": "0.8005",
+                  "tf": "0.8005"
+                }
+              },
+              {
+                "w": "0.895",
+                "specular": {
+                  "rb": "0.072",
+                  "rf": "0.072",
+                  "tb": "0.7996",
+                  "tf": "0.7996"
+                }
+              },
+              {
+                "w": "0.9",
+                "specular": {
+                  "rb": "0.072",
+                  "rf": "0.072",
+                  "tb": "0.7985",
+                  "tf": "0.7985"
+                }
+              },
+              {
+                "w": "0.905",
+                "specular": {
+                  "rb": "0.0716",
+                  "rf": "0.0716",
+                  "tb": "0.7975",
+                  "tf": "0.7975"
+                }
+              },
+              {
+                "w": "0.91",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.071",
+                  "tb": "0.7966",
+                  "tf": "0.7966"
+                }
+              },
+              {
+                "w": "0.915",
+                "specular": {
+                  "rb": "0.0705",
+                  "rf": "0.0705",
+                  "tb": "0.7955",
+                  "tf": "0.7955"
+                }
+              },
+              {
+                "w": "0.92",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.7946",
+                  "tf": "0.7946"
+                }
+              },
+              {
+                "w": "0.925",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.794",
+                  "tf": "0.794"
+                }
+              },
+              {
+                "w": "0.93",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7936",
+                  "tf": "0.7936"
+                }
+              },
+              {
+                "w": "0.935",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7931",
+                  "tf": "0.7931"
+                }
+              },
+              {
+                "w": "0.94",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7926",
+                  "tf": "0.7926"
+                }
+              },
+              {
+                "w": "0.945",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.7915",
+                  "tf": "0.7915"
+                }
+              },
+              {
+                "w": "0.95",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7906",
+                  "tf": "0.7906"
+                }
+              },
+              {
+                "w": "0.955",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7906",
+                  "tf": "0.7906"
+                }
+              },
+              {
+                "w": "0.96",
+                "specular": {
+                  "rb": "0.0702",
+                  "rf": "0.07",
+                  "tb": "0.7906",
+                  "tf": "0.7906"
+                }
+              },
+              {
+                "w": "0.965",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7896",
+                  "tf": "0.7896"
+                }
+              },
+              {
+                "w": "0.97",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.7886",
+                  "tf": "0.7886"
+                }
+              },
+              {
+                "w": "0.975",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7885",
+                  "tf": "0.7885"
+                }
+              },
+              {
+                "w": "0.98",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7886",
+                  "tf": "0.7886"
+                }
+              },
+              {
+                "w": "0.985",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7882",
+                  "tf": "0.7882"
+                }
+              },
+              {
+                "w": "0.99",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.7876",
+                  "tf": "0.7876"
+                }
+              },
+              {
+                "w": "0.995",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7871",
+                  "tf": "0.7871"
+                }
+              },
+              {
+                "w": "1.0",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.7866",
+                  "tf": "0.7866"
+                }
+              },
+              {
+                "w": "1.005",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.7862",
+                  "tf": "0.7862"
+                }
+              },
+              {
+                "w": "1.01",
+                "specular": {
+                  "rb": "0.0699",
+                  "rf": "0.0699",
+                  "tb": "0.786",
+                  "tf": "0.786"
+                }
+              },
+              {
+                "w": "1.015",
+                "specular": {
+                  "rb": "0.0698",
+                  "rf": "0.0698",
+                  "tb": "0.7858",
+                  "tf": "0.7858"
+                }
+              },
+              {
+                "w": "1.02",
+                "specular": {
+                  "rb": "0.0697",
+                  "rf": "0.0697",
+                  "tb": "0.7857",
+                  "tf": "0.7857"
+                }
+              },
+              {
+                "w": "1.025",
+                "specular": {
+                  "rb": "0.0696",
+                  "rf": "0.0696",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.03",
+                "specular": {
+                  "rb": "0.0695",
+                  "rf": "0.0694",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.035",
+                "specular": {
+                  "rb": "0.0693",
+                  "rf": "0.0693",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.04",
+                "specular": {
+                  "rb": "0.0692",
+                  "rf": "0.0692",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.045",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.05",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.055",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.06",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.7855",
+                  "tf": "0.7855"
+                }
+              },
+              {
+                "w": "1.065",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.7855",
+                  "tf": "0.7855"
+                }
+              },
+              {
+                "w": "1.07",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7855",
+                  "tf": "0.7855"
+                }
+              },
+              {
+                "w": "1.075",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.0689",
+                  "tb": "0.7855",
+                  "tf": "0.7855"
+                }
+              },
+              {
+                "w": "1.08",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.7855",
+                  "tf": "0.7855"
+                }
+              },
+              {
+                "w": "1.085",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.7855",
+                  "tf": "0.7855"
+                }
+              },
+              {
+                "w": "1.09",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.7855",
+                  "tf": "0.7855"
+                }
+              },
+              {
+                "w": "1.095",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.1",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.105",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.7856",
+                  "tf": "0.7856"
+                }
+              },
+              {
+                "w": "1.11",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7857",
+                  "tf": "0.7857"
+                }
+              },
+              {
+                "w": "1.115",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7858",
+                  "tf": "0.7858"
+                }
+              },
+              {
+                "w": "1.12",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7858",
+                  "tf": "0.7858"
+                }
+              },
+              {
+                "w": "1.125",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7859",
+                  "tf": "0.7859"
+                }
+              },
+              {
+                "w": "1.13",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.786",
+                  "tf": "0.786"
+                }
+              },
+              {
+                "w": "1.135",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0689",
+                  "tb": "0.7861",
+                  "tf": "0.7861"
+                }
+              },
+              {
+                "w": "1.14",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7863",
+                  "tf": "0.7863"
+                }
+              },
+              {
+                "w": "1.145",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7864",
+                  "tf": "0.7864"
+                }
+              },
+              {
+                "w": "1.15",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.7866",
+                  "tf": "0.7866"
+                }
+              },
+              {
+                "w": "1.155",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7868",
+                  "tf": "0.7868"
+                }
+              },
+              {
+                "w": "1.16",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.787",
+                  "tf": "0.787"
+                }
+              },
+              {
+                "w": "1.165",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.0691",
+                  "tb": "0.7873",
+                  "tf": "0.7873"
+                }
+              },
+              {
+                "w": "1.17",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.7876",
+                  "tf": "0.7876"
+                }
+              },
+              {
+                "w": "1.175",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.7878",
+                  "tf": "0.7878"
+                }
+              },
+              {
+                "w": "1.18",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.7881",
+                  "tf": "0.7881"
+                }
+              },
+              {
+                "w": "1.185",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.7885",
+                  "tf": "0.7885"
+                }
+              },
+              {
+                "w": "1.19",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.0691",
+                  "tb": "0.7888",
+                  "tf": "0.7888"
+                }
+              },
+              {
+                "w": "1.195",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.7892",
+                  "tf": "0.7892"
+                }
+              },
+              {
+                "w": "1.2",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.7896",
+                  "tf": "0.7896"
+                }
+              },
+              {
+                "w": "1.205",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.79",
+                  "tf": "0.79"
+                }
+              },
+              {
+                "w": "1.21",
+                "specular": {
+                  "rb": "0.0689",
+                  "rf": "0.0689",
+                  "tb": "0.7904",
+                  "tf": "0.7904"
+                }
+              },
+              {
+                "w": "1.215",
+                "specular": {
+                  "rb": "0.0688",
+                  "rf": "0.0687",
+                  "tb": "0.7909",
+                  "tf": "0.7909"
+                }
+              },
+              {
+                "w": "1.22",
+                "specular": {
+                  "rb": "0.0686",
+                  "rf": "0.0686",
+                  "tb": "0.7914",
+                  "tf": "0.7914"
+                }
+              },
+              {
+                "w": "1.225",
+                "specular": {
+                  "rb": "0.0685",
+                  "rf": "0.0685",
+                  "tb": "0.7919",
+                  "tf": "0.7919"
+                }
+              },
+              {
+                "w": "1.23",
+                "specular": {
+                  "rb": "0.0684",
+                  "rf": "0.0683",
+                  "tb": "0.7924",
+                  "tf": "0.7924"
+                }
+              },
+              {
+                "w": "1.235",
+                "specular": {
+                  "rb": "0.0683",
+                  "rf": "0.0682",
+                  "tb": "0.7929",
+                  "tf": "0.7929"
+                }
+              },
+              {
+                "w": "1.24",
+                "specular": {
+                  "rb": "0.0682",
+                  "rf": "0.0681",
+                  "tb": "0.7935",
+                  "tf": "0.7935"
+                }
+              },
+              {
+                "w": "1.245",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.794",
+                  "tf": "0.794"
+                }
+              },
+              {
+                "w": "1.25",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.7946",
+                  "tf": "0.7946"
+                }
+              },
+              {
+                "w": "1.255",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.7951",
+                  "tf": "0.7951"
+                }
+              },
+              {
+                "w": "1.26",
+                "specular": {
+                  "rb": "0.0682",
+                  "rf": "0.0682",
+                  "tb": "0.7956",
+                  "tf": "0.7956"
+                }
+              },
+              {
+                "w": "1.265",
+                "specular": {
+                  "rb": "0.0683",
+                  "rf": "0.0683",
+                  "tb": "0.7962",
+                  "tf": "0.7962"
+                }
+              },
+              {
+                "w": "1.27",
+                "specular": {
+                  "rb": "0.0684",
+                  "rf": "0.0684",
+                  "tb": "0.7968",
+                  "tf": "0.7968"
+                }
+              },
+              {
+                "w": "1.275",
+                "specular": {
+                  "rb": "0.0686",
+                  "rf": "0.0685",
+                  "tb": "0.7973",
+                  "tf": "0.7973"
+                }
+              },
+              {
+                "w": "1.28",
+                "specular": {
+                  "rb": "0.0687",
+                  "rf": "0.0687",
+                  "tb": "0.7979",
+                  "tf": "0.7979"
+                }
+              },
+              {
+                "w": "1.285",
+                "specular": {
+                  "rb": "0.0689",
+                  "rf": "0.0688",
+                  "tb": "0.7986",
+                  "tf": "0.7986"
+                }
+              },
+              {
+                "w": "1.29",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.0689",
+                  "tb": "0.7992",
+                  "tf": "0.7992"
+                }
+              },
+              {
+                "w": "1.295",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.7998",
+                  "tf": "0.7998"
+                }
+              },
+              {
+                "w": "1.3",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.8005",
+                  "tf": "0.8005"
+                }
+              },
+              {
+                "w": "1.305",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8012",
+                  "tf": "0.8012"
+                }
+              },
+              {
+                "w": "1.31",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.0689",
+                  "tb": "0.802",
+                  "tf": "0.802"
+                }
+              },
+              {
+                "w": "1.315",
+                "specular": {
+                  "rb": "0.0688",
+                  "rf": "0.0688",
+                  "tb": "0.8028",
+                  "tf": "0.8028"
+                }
+              },
+              {
+                "w": "1.32",
+                "specular": {
+                  "rb": "0.0687",
+                  "rf": "0.0687",
+                  "tb": "0.8036",
+                  "tf": "0.8036"
+                }
+              },
+              {
+                "w": "1.325",
+                "specular": {
+                  "rb": "0.0685",
+                  "rf": "0.0685",
+                  "tb": "0.8044",
+                  "tf": "0.8044"
+                }
+              },
+              {
+                "w": "1.33",
+                "specular": {
+                  "rb": "0.0684",
+                  "rf": "0.0683",
+                  "tb": "0.8052",
+                  "tf": "0.8052"
+                }
+              },
+              {
+                "w": "1.335",
+                "specular": {
+                  "rb": "0.0682",
+                  "rf": "0.0682",
+                  "tb": "0.806",
+                  "tf": "0.806"
+                }
+              },
+              {
+                "w": "1.34",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.8069",
+                  "tf": "0.8069"
+                }
+              },
+              {
+                "w": "1.345",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.8077",
+                  "tf": "0.8077"
+                }
+              },
+              {
+                "w": "1.35",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.8085",
+                  "tf": "0.8085"
+                }
+              },
+              {
+                "w": "1.355",
+                "specular": {
+                  "rb": "0.0682",
+                  "rf": "0.0682",
+                  "tb": "0.8093",
+                  "tf": "0.8093"
+                }
+              },
+              {
+                "w": "1.36",
+                "specular": {
+                  "rb": "0.0683",
+                  "rf": "0.0683",
+                  "tb": "0.81",
+                  "tf": "0.81"
+                }
+              },
+              {
+                "w": "1.365",
+                "specular": {
+                  "rb": "0.0685",
+                  "rf": "0.0685",
+                  "tb": "0.8108",
+                  "tf": "0.8108"
+                }
+              },
+              {
+                "w": "1.37",
+                "specular": {
+                  "rb": "0.0688",
+                  "rf": "0.0687",
+                  "tb": "0.8116",
+                  "tf": "0.8116"
+                }
+              },
+              {
+                "w": "1.375",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8123",
+                  "tf": "0.8123"
+                }
+              },
+              {
+                "w": "1.38",
+                "specular": {
+                  "rb": "0.0693",
+                  "rf": "0.0693",
+                  "tb": "0.8131",
+                  "tf": "0.8131"
+                }
+              },
+              {
+                "w": "1.385",
+                "specular": {
+                  "rb": "0.0695",
+                  "rf": "0.0695",
+                  "tb": "0.8139",
+                  "tf": "0.8139"
+                }
+              },
+              {
+                "w": "1.39",
+                "specular": {
+                  "rb": "0.0697",
+                  "rf": "0.0697",
+                  "tb": "0.8147",
+                  "tf": "0.8147"
+                }
+              },
+              {
+                "w": "1.395",
+                "specular": {
+                  "rb": "0.0699",
+                  "rf": "0.0699",
+                  "tb": "0.8155",
+                  "tf": "0.8155"
+                }
+              },
+              {
+                "w": "1.4",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.8164",
+                  "tf": "0.8164"
+                }
+              },
+              {
+                "w": "1.405",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8174",
+                  "tf": "0.8174"
+                }
+              },
+              {
+                "w": "1.41",
+                "specular": {
+                  "rb": "0.0702",
+                  "rf": "0.0701",
+                  "tb": "0.8184",
+                  "tf": "0.8184"
+                }
+              },
+              {
+                "w": "1.415",
+                "specular": {
+                  "rb": "0.0702",
+                  "rf": "0.0701",
+                  "tb": "0.8195",
+                  "tf": "0.8195"
+                }
+              },
+              {
+                "w": "1.42",
+                "specular": {
+                  "rb": "0.0702",
+                  "rf": "0.0701",
+                  "tb": "0.8206",
+                  "tf": "0.8206"
+                }
+              },
+              {
+                "w": "1.425",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8218",
+                  "tf": "0.8218"
+                }
+              },
+              {
+                "w": "1.43",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8229",
+                  "tf": "0.8229"
+                }
+              },
+              {
+                "w": "1.435",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.8241",
+                  "tf": "0.8241"
+                }
+              },
+              {
+                "w": "1.44",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8252",
+                  "tf": "0.8252"
+                }
+              },
+              {
+                "w": "1.445",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8263",
+                  "tf": "0.8263"
+                }
+              },
+              {
+                "w": "1.45",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8274",
+                  "tf": "0.8274"
+                }
+              },
+              {
+                "w": "1.455",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8284",
+                  "tf": "0.8284"
+                }
+              },
+              {
+                "w": "1.46",
+                "specular": {
+                  "rb": "0.0702",
+                  "rf": "0.0702",
+                  "tb": "0.8294",
+                  "tf": "0.8294"
+                }
+              },
+              {
+                "w": "1.465",
+                "specular": {
+                  "rb": "0.0703",
+                  "rf": "0.0703",
+                  "tb": "0.8305",
+                  "tf": "0.8305"
+                }
+              },
+              {
+                "w": "1.47",
+                "specular": {
+                  "rb": "0.0705",
+                  "rf": "0.0704",
+                  "tb": "0.8315",
+                  "tf": "0.8315"
+                }
+              },
+              {
+                "w": "1.475",
+                "specular": {
+                  "rb": "0.0706",
+                  "rf": "0.0706",
+                  "tb": "0.8325",
+                  "tf": "0.8325"
+                }
+              },
+              {
+                "w": "1.48",
+                "specular": {
+                  "rb": "0.0707",
+                  "rf": "0.0707",
+                  "tb": "0.8335",
+                  "tf": "0.8335"
+                }
+              },
+              {
+                "w": "1.485",
+                "specular": {
+                  "rb": "0.0708",
+                  "rf": "0.0708",
+                  "tb": "0.8344",
+                  "tf": "0.8344"
+                }
+              },
+              {
+                "w": "1.49",
+                "specular": {
+                  "rb": "0.0709",
+                  "rf": "0.0709",
+                  "tb": "0.8354",
+                  "tf": "0.8354"
+                }
+              },
+              {
+                "w": "1.495",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.8364",
+                  "tf": "0.8364"
+                }
+              },
+              {
+                "w": "1.5",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.071",
+                  "tb": "0.8373",
+                  "tf": "0.8373"
+                }
+              },
+              {
+                "w": "1.505",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8383",
+                  "tf": "0.8383"
+                }
+              },
+              {
+                "w": "1.51",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8392",
+                  "tf": "0.8392"
+                }
+              },
+              {
+                "w": "1.515",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8402",
+                  "tf": "0.8402"
+                }
+              },
+              {
+                "w": "1.52",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8412",
+                  "tf": "0.8412"
+                }
+              },
+              {
+                "w": "1.525",
+                "specular": {
+                  "rb": "0.0712",
+                  "rf": "0.0711",
+                  "tb": "0.8421",
+                  "tf": "0.8421"
+                }
+              },
+              {
+                "w": "1.53",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.843",
+                  "tf": "0.843"
+                }
+              },
+              {
+                "w": "1.535",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8439",
+                  "tf": "0.8439"
+                }
+              },
+              {
+                "w": "1.54",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8448",
+                  "tf": "0.8448"
+                }
+              },
+              {
+                "w": "1.545",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.071",
+                  "tb": "0.8455",
+                  "tf": "0.8455"
+                }
+              },
+              {
+                "w": "1.55",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8463",
+                  "tf": "0.8463"
+                }
+              },
+              {
+                "w": "1.555",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8469",
+                  "tf": "0.8469"
+                }
+              },
+              {
+                "w": "1.56",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8475",
+                  "tf": "0.8475"
+                }
+              },
+              {
+                "w": "1.565",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.0711",
+                  "tb": "0.8481",
+                  "tf": "0.8481"
+                }
+              },
+              {
+                "w": "1.57",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8486",
+                  "tf": "0.8486"
+                }
+              },
+              {
+                "w": "1.575",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.849",
+                  "tf": "0.849"
+                }
+              },
+              {
+                "w": "1.58",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8495",
+                  "tf": "0.8495"
+                }
+              },
+              {
+                "w": "1.585",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.0711",
+                  "tb": "0.8499",
+                  "tf": "0.8499"
+                }
+              },
+              {
+                "w": "1.59",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8503",
+                  "tf": "0.8503"
+                }
+              },
+              {
+                "w": "1.595",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.071",
+                  "tb": "0.8508",
+                  "tf": "0.8508"
+                }
+              },
+              {
+                "w": "1.6",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8513",
+                  "tf": "0.8513"
+                }
+              },
+              {
+                "w": "1.605",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8518",
+                  "tf": "0.8518"
+                }
+              },
+              {
+                "w": "1.61",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8523",
+                  "tf": "0.8523"
+                }
+              },
+              {
+                "w": "1.615",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.071",
+                  "tb": "0.8529",
+                  "tf": "0.8529"
+                }
+              },
+              {
+                "w": "1.62",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.8534",
+                  "tf": "0.8534"
+                }
+              },
+              {
+                "w": "1.625",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.854",
+                  "tf": "0.854"
+                }
+              },
+              {
+                "w": "1.63",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.0711",
+                  "tb": "0.8545",
+                  "tf": "0.8545"
+                }
+              },
+              {
+                "w": "1.635",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.855",
+                  "tf": "0.855"
+                }
+              },
+              {
+                "w": "1.64",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.8555",
+                  "tf": "0.8555"
+                }
+              },
+              {
+                "w": "1.645",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.071",
+                  "tb": "0.8559",
+                  "tf": "0.8559"
+                }
+              },
+              {
+                "w": "1.65",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "1.655",
+                "specular": {
+                  "rb": "0.0712",
+                  "rf": "0.0711",
+                  "tb": "0.8565",
+                  "tf": "0.8565"
+                }
+              },
+              {
+                "w": "1.66",
+                "specular": {
+                  "rb": "0.0713",
+                  "rf": "0.0712",
+                  "tb": "0.8567",
+                  "tf": "0.8567"
+                }
+              },
+              {
+                "w": "1.665",
+                "specular": {
+                  "rb": "0.0714",
+                  "rf": "0.0714",
+                  "tb": "0.8568",
+                  "tf": "0.8568"
+                }
+              },
+              {
+                "w": "1.67",
+                "specular": {
+                  "rb": "0.0715",
+                  "rf": "0.0715",
+                  "tb": "0.857",
+                  "tf": "0.857"
+                }
+              },
+              {
+                "w": "1.675",
+                "specular": {
+                  "rb": "0.0716",
+                  "rf": "0.0716",
+                  "tb": "0.857",
+                  "tf": "0.857"
+                }
+              },
+              {
+                "w": "1.68",
+                "specular": {
+                  "rb": "0.0718",
+                  "rf": "0.0718",
+                  "tb": "0.8571",
+                  "tf": "0.8571"
+                }
+              },
+              {
+                "w": "1.685",
+                "specular": {
+                  "rb": "0.0719",
+                  "rf": "0.0719",
+                  "tb": "0.8571",
+                  "tf": "0.8571"
+                }
+              },
+              {
+                "w": "1.69",
+                "specular": {
+                  "rb": "0.072",
+                  "rf": "0.072",
+                  "tb": "0.8572",
+                  "tf": "0.8572"
+                }
+              },
+              {
+                "w": "1.695",
+                "specular": {
+                  "rb": "0.072",
+                  "rf": "0.072",
+                  "tb": "0.8572",
+                  "tf": "0.8572"
+                }
+              },
+              {
+                "w": "1.7",
+                "specular": {
+                  "rb": "0.0721",
+                  "rf": "0.072",
+                  "tb": "0.8572",
+                  "tf": "0.8572"
+                }
+              },
+              {
+                "w": "1.705",
+                "specular": {
+                  "rb": "0.072",
+                  "rf": "0.072",
+                  "tb": "0.8573",
+                  "tf": "0.8573"
+                }
+              },
+              {
+                "w": "1.71",
+                "specular": {
+                  "rb": "0.072",
+                  "rf": "0.072",
+                  "tb": "0.8573",
+                  "tf": "0.8573"
+                }
+              },
+              {
+                "w": "1.715",
+                "specular": {
+                  "rb": "0.0719",
+                  "rf": "0.0719",
+                  "tb": "0.8573",
+                  "tf": "0.8573"
+                }
+              },
+              {
+                "w": "1.72",
+                "specular": {
+                  "rb": "0.0718",
+                  "rf": "0.0717",
+                  "tb": "0.8573",
+                  "tf": "0.8573"
+                }
+              },
+              {
+                "w": "1.725",
+                "specular": {
+                  "rb": "0.0716",
+                  "rf": "0.0716",
+                  "tb": "0.8574",
+                  "tf": "0.8574"
+                }
+              },
+              {
+                "w": "1.73",
+                "specular": {
+                  "rb": "0.0715",
+                  "rf": "0.0715",
+                  "tb": "0.8573",
+                  "tf": "0.8573"
+                }
+              },
+              {
+                "w": "1.735",
+                "specular": {
+                  "rb": "0.0714",
+                  "rf": "0.0713",
+                  "tb": "0.8573",
+                  "tf": "0.8573"
+                }
+              },
+              {
+                "w": "1.74",
+                "specular": {
+                  "rb": "0.0712",
+                  "rf": "0.0712",
+                  "tb": "0.8573",
+                  "tf": "0.8573"
+                }
+              },
+              {
+                "w": "1.745",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8573",
+                  "tf": "0.8573"
+                }
+              },
+              {
+                "w": "1.75",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8572",
+                  "tf": "0.8572"
+                }
+              },
+              {
+                "w": "1.755",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.8572",
+                  "tf": "0.8572"
+                }
+              },
+              {
+                "w": "1.76",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.8571",
+                  "tf": "0.8571"
+                }
+              },
+              {
+                "w": "1.765",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.857",
+                  "tf": "0.857"
+                }
+              },
+              {
+                "w": "1.77",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.8569",
+                  "tf": "0.8569"
+                }
+              },
+              {
+                "w": "1.775",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8567",
+                  "tf": "0.8567"
+                }
+              },
+              {
+                "w": "1.78",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8566",
+                  "tf": "0.8566"
+                }
+              },
+              {
+                "w": "1.785",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8565",
+                  "tf": "0.8565"
+                }
+              },
+              {
+                "w": "1.79",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8564",
+                  "tf": "0.8564"
+                }
+              },
+              {
+                "w": "1.795",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8563",
+                  "tf": "0.8563"
+                }
+              },
+              {
+                "w": "1.8",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.0711",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "1.805",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "1.81",
+                "specular": {
+                  "rb": "0.0709",
+                  "rf": "0.0709",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "1.815",
+                "specular": {
+                  "rb": "0.0708",
+                  "rf": "0.0708",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "1.82",
+                "specular": {
+                  "rb": "0.0707",
+                  "rf": "0.0707",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "1.825",
+                "specular": {
+                  "rb": "0.0706",
+                  "rf": "0.0706",
+                  "tb": "0.8563",
+                  "tf": "0.8563"
+                }
+              },
+              {
+                "w": "1.83",
+                "specular": {
+                  "rb": "0.0705",
+                  "rf": "0.0704",
+                  "tb": "0.8563",
+                  "tf": "0.8563"
+                }
+              },
+              {
+                "w": "1.835",
+                "specular": {
+                  "rb": "0.0703",
+                  "rf": "0.0703",
+                  "tb": "0.8563",
+                  "tf": "0.8563"
+                }
+              },
+              {
+                "w": "1.84",
+                "specular": {
+                  "rb": "0.0702",
+                  "rf": "0.0702",
+                  "tb": "0.8563",
+                  "tf": "0.8563"
+                }
+              },
+              {
+                "w": "1.845",
+                "specular": {
+                  "rb": "0.0702",
+                  "rf": "0.0701",
+                  "tb": "0.8563",
+                  "tf": "0.8563"
+                }
+              },
+              {
+                "w": "1.85",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "1.855",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.8561",
+                  "tf": "0.8561"
+                }
+              },
+              {
+                "w": "1.86",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8559",
+                  "tf": "0.8559"
+                }
+              },
+              {
+                "w": "1.865",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8557",
+                  "tf": "0.8557"
+                }
+              },
+              {
+                "w": "1.87",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8555",
+                  "tf": "0.8555"
+                }
+              },
+              {
+                "w": "1.875",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "1.88",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.855",
+                  "tf": "0.855"
+                }
+              },
+              {
+                "w": "1.885",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8547",
+                  "tf": "0.8547"
+                }
+              },
+              {
+                "w": "1.89",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8545",
+                  "tf": "0.8545"
+                }
+              },
+              {
+                "w": "1.895",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8544",
+                  "tf": "0.8544"
+                }
+              },
+              {
+                "w": "1.9",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8542",
+                  "tf": "0.8542"
+                }
+              },
+              {
+                "w": "1.905",
+                "specular": {
+                  "rb": "0.0702",
+                  "rf": "0.0701",
+                  "tb": "0.8541",
+                  "tf": "0.8541"
+                }
+              },
+              {
+                "w": "1.91",
+                "specular": {
+                  "rb": "0.0703",
+                  "rf": "0.0702",
+                  "tb": "0.8541",
+                  "tf": "0.8541"
+                }
+              },
+              {
+                "w": "1.915",
+                "specular": {
+                  "rb": "0.0704",
+                  "rf": "0.0704",
+                  "tb": "0.8541",
+                  "tf": "0.8541"
+                }
+              },
+              {
+                "w": "1.92",
+                "specular": {
+                  "rb": "0.0705",
+                  "rf": "0.0705",
+                  "tb": "0.854",
+                  "tf": "0.854"
+                }
+              },
+              {
+                "w": "1.925",
+                "specular": {
+                  "rb": "0.0706",
+                  "rf": "0.0706",
+                  "tb": "0.854",
+                  "tf": "0.854"
+                }
+              },
+              {
+                "w": "1.93",
+                "specular": {
+                  "rb": "0.0708",
+                  "rf": "0.0707",
+                  "tb": "0.8541",
+                  "tf": "0.8541"
+                }
+              },
+              {
+                "w": "1.935",
+                "specular": {
+                  "rb": "0.0709",
+                  "rf": "0.0709",
+                  "tb": "0.8541",
+                  "tf": "0.8541"
+                }
+              },
+              {
+                "w": "1.94",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.0709",
+                  "tb": "0.8541",
+                  "tf": "0.8541"
+                }
+              },
+              {
+                "w": "1.945",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.8542",
+                  "tf": "0.8542"
+                }
+              },
+              {
+                "w": "1.95",
+                "specular": {
+                  "rb": "0.0711",
+                  "rf": "0.071",
+                  "tb": "0.8542",
+                  "tf": "0.8542"
+                }
+              },
+              {
+                "w": "1.955",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.071",
+                  "tb": "0.8543",
+                  "tf": "0.8543"
+                }
+              },
+              {
+                "w": "1.96",
+                "specular": {
+                  "rb": "0.071",
+                  "rf": "0.0709",
+                  "tb": "0.8544",
+                  "tf": "0.8544"
+                }
+              },
+              {
+                "w": "1.965",
+                "specular": {
+                  "rb": "0.0709",
+                  "rf": "0.0709",
+                  "tb": "0.8545",
+                  "tf": "0.8545"
+                }
+              },
+              {
+                "w": "1.97",
+                "specular": {
+                  "rb": "0.0708",
+                  "rf": "0.0707",
+                  "tb": "0.8546",
+                  "tf": "0.8546"
+                }
+              },
+              {
+                "w": "1.975",
+                "specular": {
+                  "rb": "0.0706",
+                  "rf": "0.0706",
+                  "tb": "0.8547",
+                  "tf": "0.8547"
+                }
+              },
+              {
+                "w": "1.98",
+                "specular": {
+                  "rb": "0.0705",
+                  "rf": "0.0705",
+                  "tb": "0.8548",
+                  "tf": "0.8548"
+                }
+              },
+              {
+                "w": "1.985",
+                "specular": {
+                  "rb": "0.0704",
+                  "rf": "0.0703",
+                  "tb": "0.8549",
+                  "tf": "0.8549"
+                }
+              },
+              {
+                "w": "1.99",
+                "specular": {
+                  "rb": "0.0702",
+                  "rf": "0.0702",
+                  "tb": "0.855",
+                  "tf": "0.855"
+                }
+              },
+              {
+                "w": "1.995",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8551",
+                  "tf": "0.8551"
+                }
+              },
+              {
+                "w": "2.0",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "2.005",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "2.01",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "2.015",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "2.02",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "2.025",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "2.03",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "2.035",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8551",
+                  "tf": "0.8551"
+                }
+              },
+              {
+                "w": "2.04",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8551",
+                  "tf": "0.8551"
+                }
+              },
+              {
+                "w": "2.045",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "2.05",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.8552",
+                  "tf": "0.8552"
+                }
+              },
+              {
+                "w": "2.055",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.07",
+                  "tb": "0.8553",
+                  "tf": "0.8553"
+                }
+              },
+              {
+                "w": "2.06",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8554",
+                  "tf": "0.8554"
+                }
+              },
+              {
+                "w": "2.065",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8555",
+                  "tf": "0.8555"
+                }
+              },
+              {
+                "w": "2.07",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8556",
+                  "tf": "0.8556"
+                }
+              },
+              {
+                "w": "2.075",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8557",
+                  "tf": "0.8557"
+                }
+              },
+              {
+                "w": "2.08",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8559",
+                  "tf": "0.8559"
+                }
+              },
+              {
+                "w": "2.085",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.856",
+                  "tf": "0.856"
+                }
+              },
+              {
+                "w": "2.09",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8561",
+                  "tf": "0.8561"
+                }
+              },
+              {
+                "w": "2.095",
+                "specular": {
+                  "rb": "0.0701",
+                  "rf": "0.0701",
+                  "tb": "0.8561",
+                  "tf": "0.8561"
+                }
+              },
+              {
+                "w": "2.1",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "2.105",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "2.11",
+                "specular": {
+                  "rb": "0.0699",
+                  "rf": "0.0699",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "2.115",
+                "specular": {
+                  "rb": "0.0698",
+                  "rf": "0.0698",
+                  "tb": "0.8563",
+                  "tf": "0.8563"
+                }
+              },
+              {
+                "w": "2.12",
+                "specular": {
+                  "rb": "0.0697",
+                  "rf": "0.0697",
+                  "tb": "0.8564",
+                  "tf": "0.8564"
+                }
+              },
+              {
+                "w": "2.125",
+                "specular": {
+                  "rb": "0.0696",
+                  "rf": "0.0696",
+                  "tb": "0.8564",
+                  "tf": "0.8564"
+                }
+              },
+              {
+                "w": "2.13",
+                "specular": {
+                  "rb": "0.0695",
+                  "rf": "0.0695",
+                  "tb": "0.8563",
+                  "tf": "0.8563"
+                }
+              },
+              {
+                "w": "2.135",
+                "specular": {
+                  "rb": "0.0694",
+                  "rf": "0.0694",
+                  "tb": "0.8562",
+                  "tf": "0.8562"
+                }
+              },
+              {
+                "w": "2.14",
+                "specular": {
+                  "rb": "0.0693",
+                  "rf": "0.0693",
+                  "tb": "0.856",
+                  "tf": "0.856"
+                }
+              },
+              {
+                "w": "2.145",
+                "specular": {
+                  "rb": "0.0692",
+                  "rf": "0.0691",
+                  "tb": "0.8556",
+                  "tf": "0.8556"
+                }
+              },
+              {
+                "w": "2.15",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8551",
+                  "tf": "0.8551"
+                }
+              },
+              {
+                "w": "2.155",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.0689",
+                  "tb": "0.8544",
+                  "tf": "0.8544"
+                }
+              },
+              {
+                "w": "2.16",
+                "specular": {
+                  "rb": "0.0688",
+                  "rf": "0.0688",
+                  "tb": "0.8534",
+                  "tf": "0.8534"
+                }
+              },
+              {
+                "w": "2.165",
+                "specular": {
+                  "rb": "0.0687",
+                  "rf": "0.0687",
+                  "tb": "0.8523",
+                  "tf": "0.8523"
+                }
+              },
+              {
+                "w": "2.17",
+                "specular": {
+                  "rb": "0.0686",
+                  "rf": "0.0686",
+                  "tb": "0.851",
+                  "tf": "0.851"
+                }
+              },
+              {
+                "w": "2.175",
+                "specular": {
+                  "rb": "0.0685",
+                  "rf": "0.0684",
+                  "tb": "0.8496",
+                  "tf": "0.8496"
+                }
+              },
+              {
+                "w": "2.18",
+                "specular": {
+                  "rb": "0.0683",
+                  "rf": "0.0683",
+                  "tb": "0.8483",
+                  "tf": "0.8483"
+                }
+              },
+              {
+                "w": "2.185",
+                "specular": {
+                  "rb": "0.0682",
+                  "rf": "0.0682",
+                  "tb": "0.847",
+                  "tf": "0.847"
+                }
+              },
+              {
+                "w": "2.19",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.8458",
+                  "tf": "0.8458"
+                }
+              },
+              {
+                "w": "2.195",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.8449",
+                  "tf": "0.8449"
+                }
+              },
+              {
+                "w": "2.2",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.8441",
+                  "tf": "0.8441"
+                }
+              },
+              {
+                "w": "2.205",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.8437",
+                  "tf": "0.8437"
+                }
+              },
+              {
+                "w": "2.21",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.8433",
+                  "tf": "0.8433"
+                }
+              },
+              {
+                "w": "2.215",
+                "specular": {
+                  "rb": "0.0682",
+                  "rf": "0.0682",
+                  "tb": "0.8431",
+                  "tf": "0.8431"
+                }
+              },
+              {
+                "w": "2.22",
+                "specular": {
+                  "rb": "0.0684",
+                  "rf": "0.0683",
+                  "tb": "0.8431",
+                  "tf": "0.8431"
+                }
+              },
+              {
+                "w": "2.225",
+                "specular": {
+                  "rb": "0.0685",
+                  "rf": "0.0685",
+                  "tb": "0.8431",
+                  "tf": "0.8431"
+                }
+              },
+              {
+                "w": "2.23",
+                "specular": {
+                  "rb": "0.0686",
+                  "rf": "0.0686",
+                  "tb": "0.8432",
+                  "tf": "0.8432"
+                }
+              },
+              {
+                "w": "2.235",
+                "specular": {
+                  "rb": "0.0687",
+                  "rf": "0.0687",
+                  "tb": "0.8434",
+                  "tf": "0.8434"
+                }
+              },
+              {
+                "w": "2.24",
+                "specular": {
+                  "rb": "0.0689",
+                  "rf": "0.0688",
+                  "tb": "0.8436",
+                  "tf": "0.8436"
+                }
+              },
+              {
+                "w": "2.245",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.0689",
+                  "tb": "0.8439",
+                  "tf": "0.8439"
+                }
+              },
+              {
+                "w": "2.25",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8441",
+                  "tf": "0.8441"
+                }
+              },
+              {
+                "w": "2.255",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8444",
+                  "tf": "0.8444"
+                }
+              },
+              {
+                "w": "2.26",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8449",
+                  "tf": "0.8449"
+                }
+              },
+              {
+                "w": "2.265",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8454",
+                  "tf": "0.8454"
+                }
+              },
+              {
+                "w": "2.27",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8459",
+                  "tf": "0.8459"
+                }
+              },
+              {
+                "w": "2.275",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8465",
+                  "tf": "0.8465"
+                }
+              },
+              {
+                "w": "2.28",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8471",
+                  "tf": "0.8471"
+                }
+              },
+              {
+                "w": "2.285",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.8477",
+                  "tf": "0.8477"
+                }
+              },
+              {
+                "w": "2.29",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8482",
+                  "tf": "0.8482"
+                }
+              },
+              {
+                "w": "2.295",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8487",
+                  "tf": "0.8487"
+                }
+              },
+              {
+                "w": "2.3",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8491",
+                  "tf": "0.8491"
+                }
+              },
+              {
+                "w": "2.305",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.8494",
+                  "tf": "0.8494"
+                }
+              },
+              {
+                "w": "2.31",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8497",
+                  "tf": "0.8497"
+                }
+              },
+              {
+                "w": "2.315",
+                "specular": {
+                  "rb": "0.0689",
+                  "rf": "0.069",
+                  "tb": "0.85",
+                  "tf": "0.85"
+                }
+              },
+              {
+                "w": "2.32",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8503",
+                  "tf": "0.8503"
+                }
+              },
+              {
+                "w": "2.325",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8505",
+                  "tf": "0.8505"
+                }
+              },
+              {
+                "w": "2.33",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8507",
+                  "tf": "0.8507"
+                }
+              },
+              {
+                "w": "2.335",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8508",
+                  "tf": "0.8508"
+                }
+              },
+              {
+                "w": "2.34",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8509",
+                  "tf": "0.8509"
+                }
+              },
+              {
+                "w": "2.345",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.851",
+                  "tf": "0.851"
+                }
+              },
+              {
+                "w": "2.35",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8511",
+                  "tf": "0.8511"
+                }
+              },
+              {
+                "w": "2.355",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8512",
+                  "tf": "0.8512"
+                }
+              },
+              {
+                "w": "2.36",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8512",
+                  "tf": "0.8512"
+                }
+              },
+              {
+                "w": "2.365",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8512",
+                  "tf": "0.8512"
+                }
+              },
+              {
+                "w": "2.37",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.8512",
+                  "tf": "0.8512"
+                }
+              },
+              {
+                "w": "2.375",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8512",
+                  "tf": "0.8512"
+                }
+              },
+              {
+                "w": "2.38",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8511",
+                  "tf": "0.8511"
+                }
+              },
+              {
+                "w": "2.385",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8509",
+                  "tf": "0.8509"
+                }
+              },
+              {
+                "w": "2.39",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.0691",
+                  "tb": "0.8507",
+                  "tf": "0.8507"
+                }
+              },
+              {
+                "w": "2.395",
+                "specular": {
+                  "rb": "0.0691",
+                  "rf": "0.069",
+                  "tb": "0.8504",
+                  "tf": "0.8504"
+                }
+              },
+              {
+                "w": "2.4",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.069",
+                  "tb": "0.8501",
+                  "tf": "0.8501"
+                }
+              },
+              {
+                "w": "2.405",
+                "specular": {
+                  "rb": "0.069",
+                  "rf": "0.0689",
+                  "tb": "0.8496",
+                  "tf": "0.8496"
+                }
+              },
+              {
+                "w": "2.41",
+                "specular": {
+                  "rb": "0.0689",
+                  "rf": "0.0689",
+                  "tb": "0.849",
+                  "tf": "0.849"
+                }
+              },
+              {
+                "w": "2.415",
+                "specular": {
+                  "rb": "0.0688",
+                  "rf": "0.0688",
+                  "tb": "0.8484",
+                  "tf": "0.8484"
+                }
+              },
+              {
+                "w": "2.42",
+                "specular": {
+                  "rb": "0.0687",
+                  "rf": "0.0687",
+                  "tb": "0.8476",
+                  "tf": "0.8476"
+                }
+              },
+              {
+                "w": "2.425",
+                "specular": {
+                  "rb": "0.0686",
+                  "rf": "0.0686",
+                  "tb": "0.8469",
+                  "tf": "0.8469"
+                }
+              },
+              {
+                "w": "2.43",
+                "specular": {
+                  "rb": "0.0685",
+                  "rf": "0.0684",
+                  "tb": "0.8461",
+                  "tf": "0.8461"
+                }
+              },
+              {
+                "w": "2.435",
+                "specular": {
+                  "rb": "0.0683",
+                  "rf": "0.0683",
+                  "tb": "0.8453",
+                  "tf": "0.8453"
+                }
+              },
+              {
+                "w": "2.44",
+                "specular": {
+                  "rb": "0.0682",
+                  "rf": "0.0682",
+                  "tb": "0.8445",
+                  "tf": "0.8445"
+                }
+              },
+              {
+                "w": "2.445",
+                "specular": {
+                  "rb": "0.0681",
+                  "rf": "0.0681",
+                  "tb": "0.8438",
+                  "tf": "0.8438"
+                }
+              },
+              {
+                "w": "2.45",
+                "specular": {
+                  "rb": "0.068",
+                  "rf": "0.068",
+                  "tb": "0.8431",
+                  "tf": "0.8431"
+                }
+              },
+              {
+                "w": "2.455",
+                "specular": {
+                  "rb": "0.0679",
+                  "rf": "0.0679",
+                  "tb": "0.8425",
+                  "tf": "0.8425"
+                }
+              },
+              {
+                "w": "2.46",
+                "specular": {
+                  "rb": "0.0678",
+                  "rf": "0.0678",
+                  "tb": "0.842",
+                  "tf": "0.842"
+                }
+              },
+              {
+                "w": "2.465",
+                "specular": {
+                  "rb": "0.0677",
+                  "rf": "0.0677",
+                  "tb": "0.8414",
+                  "tf": "0.8414"
+                }
+              },
+              {
+                "w": "2.47",
+                "specular": {
+                  "rb": "0.0676",
+                  "rf": "0.0676",
+                  "tb": "0.8409",
+                  "tf": "0.8409"
+                }
+              },
+              {
+                "w": "2.475",
+                "specular": {
+                  "rb": "0.0675",
+                  "rf": "0.0675",
+                  "tb": "0.8403",
+                  "tf": "0.8403"
+                }
+              },
+              {
+                "w": "2.48",
+                "specular": {
+                  "rb": "0.0674",
+                  "rf": "0.0674",
+                  "tb": "0.8398",
+                  "tf": "0.8398"
+                }
+              },
+              {
+                "w": "2.485",
+                "specular": {
+                  "rb": "0.0673",
+                  "rf": "0.0673",
+                  "tb": "0.8394",
+                  "tf": "0.8394"
+                }
+              },
+              {
+                "w": "2.49",
+                "specular": {
+                  "rb": "0.0672",
+                  "rf": "0.0672",
+                  "tb": "0.8389",
+                  "tf": "0.8389"
+                }
+              },
+              {
+                "w": "2.495",
+                "specular": {
+                  "rb": "0.0671",
+                  "rf": "0.0671",
+                  "tb": "0.8385",
+                  "tf": "0.8385"
+                }
+              },
+              {
+                "w": "2.5",
+                "specular": {
+                  "rb": "0.067",
+                  "rf": "0.067",
+                  "tb": "0.8381",
+                  "tf": "0.8381"
+                }
+              },
+              {
+                "w": "5.0",
+                "specular": {
+                  "rb": "0.03",
+                  "rf": "0.03",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "6.0",
+                "specular": {
+                  "rb": "0.023",
+                  "rf": "0.023",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "7.0",
+                "specular": {
+                  "rb": "0.012",
+                  "rf": "0.012",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "8.0",
+                "specular": {
+                  "rb": "0.005",
+                  "rf": "0.005",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "9.0",
+                "specular": {
+                  "rb": "0.22",
+                  "rf": "0.22",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "10.0",
+                "specular": {
+                  "rb": "0.237",
+                  "rf": "0.237",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "11.0",
+                "specular": {
+                  "rb": "0.146",
+                  "rf": "0.146",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "12.0",
+                "specular": {
+                  "rb": "0.07",
+                  "rf": "0.07",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "13.0",
+                "specular": {
+                  "rb": "0.081",
+                  "rf": "0.081",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "14.0",
+                "specular": {
+                  "rb": "0.067",
+                  "rf": "0.067",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "15.0",
+                "specular": {
+                  "rb": "0.051",
+                  "rf": "0.051",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "16.0",
+                "specular": {
+                  "rb": "0.044",
+                  "rf": "0.044",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "17.0",
+                "specular": {
+                  "rb": "0.033",
+                  "rf": "0.033",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "18.0",
+                "specular": {
+                  "rb": "0.024",
+                  "rf": "0.024",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "19.0",
+                "specular": {
+                  "rb": "0.077",
+                  "rf": "0.077",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "20.0",
+                "specular": {
+                  "rb": "0.192",
+                  "rf": "0.192",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "21.0",
+                "specular": {
+                  "rb": "0.247",
+                  "rf": "0.247",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "22.0",
+                "specular": {
+                  "rb": "0.241",
+                  "rf": "0.241",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "23.0",
+                "specular": {
+                  "rb": "0.21",
+                  "rf": "0.21",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "24.0",
+                "specular": {
+                  "rb": "0.189",
+                  "rf": "0.189",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              },
+              {
+                "w": "25.0",
+                "specular": {
+                  "rb": "0.168",
+                  "rf": "0.168",
+                  "tb": "0.0",
+                  "tf": "0.0"
+                }
+              }
+            ]
+          }
+        ],
+        "number_incidence_angles": 1
+      }
+    }
+  }
+}

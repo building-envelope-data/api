@@ -1,11 +1,7 @@
 # Concise introduction to GNU Make:
 # https://swcarpentry.github.io/make-novice/reference.html
 
-name = building_envelopes_data
-tag = latest
-
-DATABASE_PORT = 4000
-METABASE_PORT = 4001
+include .env
 
 # Taken from https://www.client9.com/self-documenting-makefiles/
 help : ## Print this help
@@ -19,46 +15,46 @@ help : ## Print this help
 # Interface with Docker #
 # --------------------- #
 
-name : ## Print value of variable `name`
-	@echo ${name}
+name : ## Print value of variable `NAME`
+	@echo ${NAME}
 .PHONY : name
 
-tag : ## Print value of variable `tag`
-	@echo ${tag}
-.PHONY : tag
-
-build : ## Build image with name `${name}` and tag '${tag}', for example, `make build`
-	docker build \
-		--tag ${name}:${tag} \
-		--build-arg UID=$(shell id --user) \
-		--build-arg GID=$(shell id --group) \
-		.
+build : ## Build image with name `${NAME}`, for example, `make build`
+	DOCKER_BUILDKIT=1 \
+		docker build \
+			--tag ${NAME} \
+			--build-arg UID=$(shell id --user) \
+			--build-arg GID=$(shell id --group) \
+			.
 .PHONY : build
 
-remove : ## Remove image with name `${name}` and tag '${tag}'
-	docker rmi ${name}:${tag}
+remove : ## Remove image with name `${NAME}`
+	docker rmi ${NAME}
 .PHONY : remove
 
-run : build ## Run command `${COMMAND}` in fresh container for image with name `${name}` and tag '${tag}', for example, `make COMMAND="ls -al"` run (note that Node development tools are installed to or updated in the Docker volume `${name}_node_modules` when necessary --- stop and remove containers using the volume and remove the volume by running `make remove-containers remove-volumes`)
+run : build ## Run command `${COMMAND}` in fresh container for image with name `${NAME}`, for example, `make COMMAND="ls -al"` run
 	docker run \
+		--rm \
 		--interactive \
 		--tty \
 		--user $(shell id --user):$(shell id --group) \
 		--mount type=bind,source="$(shell pwd)",destination=/app \
-		--mount type=volume,source=${name}_node_modules,destination=/app/node_modules \
+		--mount type=volume,destination=/app/node_modules \
+		--mount type=volume,source=api_vscode_server_extensions,destination=/home/me/.vscode-server/extensions \
+		--mount type=volume,source=api_vscode_server_insiders_extensions,destination=/home/me/.vscode-server-insiders/extensions \
 		${OPTIONS} \
-		${name}:${tag} \
-		bash -c "make install-tools && (exec ${COMMAND})"
+		${NAME} \
+		bash -c "exec ${COMMAND}"
 .PHONY : run
 
 shell : COMMAND = bash
-shell : run ## Enter `bash` shell in fresh container for image with name `${name}` and tag '${tag}'
+shell : run ## Enter `bash` shell in fresh container for image with name `${NAME}`
 .PHONY : shell
 
 remove-containers : containers = $(shell docker ps --all --quiet --filter ancestor=building_envelopes_data)
-remove-containers : ## Stop and remove containers for image with name `${name}`
+remove-containers : ## Stop and remove containers for image with name `${NAME}`
 	if [ "$(strip ${containers})" = '' ] ; then \
-		echo 'There are no containers for image with name `${name}`' ; \
+		echo 'There are no containers for image with name `${NAME}`' ; \
 	else \
 		echo 'About to stop and remove containers with identifier(s) `${containers}`' && \
 		docker container stop ${containers} && \
@@ -67,7 +63,7 @@ remove-containers : ## Stop and remove containers for image with name `${name}`
 .PHONY : remove-containers
 
 remove-volumes : ## Remove volumes created on the fly and used by running `make run` and `make shell` (note that all containers using the volume must be removed first, for example by running `make remove-containers`)
-	docker volume rm ${name}_node_modules
+	docker volume rm ${NAME}_node_modules
 .PHONY : remove-volumes
 
 serve : COMMAND = \
@@ -77,7 +73,7 @@ serve : COMMAND = \
 serve : OPTIONS = \
 					--publish ${DATABASE_PORT}:4000 \
 					--publish ${METABASE_PORT}:4001
-serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` and `${METABASE_PORT}` with defaults 4000 and 4001, for example, `make serve` or `make DATABASE_PORT=8000 METABASE_PORT=8001 serve` (afterwards, open the GraphiQL IDE, a graphical interactive in-browser GraphQL IDE, in your web browser on localhost with the respective port)
+serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` and `${METABASE_PORT}` with values from the .env file, for example, `make serve` or `make DATABASE_PORT=8000 METABASE_PORT=8001 serve` (afterwards, open the GraphiQL IDE, a graphical interactive in-browser GraphQL IDE, in your web browser on localhost with the respective port)
 .PHONY : serve
 
 # ------------------------------------------------ #
@@ -87,12 +83,14 @@ serve : run ## Serve GraphQL schemas with fake data on ports `${DATABASE_PORT}` 
 schema_file_paths = $(shell find ./schemas/ -name "*.json")
 schema_file_references = $(addprefix -r ,${schema_file_paths})
 ajv = npx --no-install ajv \
-				--spec=draft2019 \
+				--spec=draft2020 \
 				-c ajv-formats
 
 compile : ## Compile schemas
 	-for schema_file_path in ./apis/*.graphql ; do \
-		npx --no-install graphql-schema-linter $${schema_file_path} ; \
+		npx --no-install graphql-schema-linter \
+			--ignore '{"descriptions-are-capitalized": ["Publication.arXiv"]}' \
+			$${schema_file_path} ; \
 	done
 	-for schema_file_path in ${schema_file_paths} ; do \
 		${ajv} compile \
@@ -167,12 +165,12 @@ test : ## Validate test files
 # 	done
 # .PHONY : test
 
-example : ## Validate example files
-	-for schema_name in $(shell ls --indicator-style=none ./queries/) ; do \
+examples : ## Validate example files
+	-for schema_name in $(shell ls --indicator-style=none ./requests/) ; do \
 		echo "---------------------------------------------" && \
 		echo "Queries against schema ./apis/$${schema_name}.graphql" && \
 		echo "- - - - - - - - - - - - - - - - - - - - - - -" && \
-		for query_file in $$(find ./queries/$${schema_name} -name "*.graphql") ; do \
+		for query_file in $$(find ./requests/$${schema_name} -name "*.graphql") ; do \
 			echo "$${query_file}" && \
 			npx --no-install graphql-inspector validate \
 				$${query_file} \
@@ -190,10 +188,23 @@ example : ## Validate example files
 				$$(echo "${schema_file_references}" | sed "s#-r \./schemas/$${schema_name}\.json##g") ; \
 		done ; \
 	done
+.PHONY : examples
+
+example : ## Validate explicit examples, for example, `make SCHEMA_NAME=buildingEnvelopes EXAMPLES="optical/spectrum.json optical/bsdf.json" example`
+	for example_name in ${EXAMPLES} ; do \
+		${ajv} validate \
+			-s ./schemas/${SCHEMA_NAME}.json \
+			-d ./examples/${SCHEMA_NAME}/$${example_name} \
+			$$(echo "${schema_file_references}" | sed "s#-r \./schemas/${SCHEMA_NAME}\.json##g") ; \
+	done
 .PHONY : example
 
 format : ## Format files with Prettier
-	npx --no-install prettier --write .
+	npx --no-install \
+		prettier \
+			--config ./.prettierrc \
+			--write \
+			.
 .PHONY : format
 
 introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.schema.json
@@ -212,17 +223,36 @@ dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage
 		-exec sed -i -e "$(shell printf '1s/^\357\273\277//')" -e "s/\r//" {} +
 .PHONY : dos2unix
 
-# For the dry run in the condition we should use `npm ci` However, that command
-# does not support dry runs.
-install-tools : ## Install development tools if necessary
-	if [ \
-			"$$(npm install --no-optional --dry-run --json | jq "(.added + .removed + .updated + .moved + .failed) | length")" \
-			-ne 0 \
-		 ]; then \
-		npm ci --no-optional ; \
-	fi
+install-tools : ## Install development tools from the lock file
+	npm ci \
+		--omit optional
 .PHONY : install-tools
 
+outdated-tools : ## List outdated tools
+	npm outdated
+.PHONY : outdated-tools
+
 update-tools : ## Update development tools to the latest compatible minor versions
-	npm install --no-optional
+	npm install \
+		--omit optional
 .PHONY : update-tools
+
+licenses : ## Print licenses
+	npx --no-install \
+		license-checker \
+			--unknown \
+			--direct \
+			--summary
+			# --failOn
+			# --onlyAllow
+.PHONY : licenses
+
+diagrams : ## Draw images from textual UML diagrams (does not work in the container until Debian features a newer version of PlantUML with JSON support)
+	for directory_name in $(shell ls --indicator-style=none ./docs/diagrams/src/) ; do \
+		echo "Directory Name: $${directory_name}" && \
+		for output_format in png svg ; do \
+			echo "Output Format: $${output_format}" && \
+			plantuml -t$${output_format} -output ./docs/diagrams/out/$${directory_name}/ ./docs/diagrams/src/$${directory_name}/*.plantuml ; \
+		done ; \
+	done
+.PHONY : diagrams

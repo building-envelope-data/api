@@ -1,0 +1,33 @@
+@startjson uValueOpaqueInsulation
+{
+  "characteristics": {
+    "conditions": "stationary",
+    "primeSurface": "interior",
+    "componentTilt": 90
+  },
+  "fluxes": {
+    "conductionConvectionLongwaveRadiation": [
+      {
+        "side": "exterior",
+        "flux": 3,
+        "temperatures": { "sample": 308 }
+      },
+      {
+        "side": "interior",
+        "flux": -3,
+        "temperatures": { "sample": 288 }
+      }
+    ]
+  },
+  "results": {
+    "area": {
+      "category": "center"
+    },
+    "uValue": {
+      "uncertainValue": 0.15,
+      "uncertainty": 0.015,
+      "confidenceInterval": 68.3
+    }
+  }
+}
+@endjson

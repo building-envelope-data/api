@@ -1,6 +1,6 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/number.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/number.json",
   "title": "number types",
   "description": "Types for numbers with and without uncertainty and units. The number types are used to restrict the range of allowed values to a reasonable range.",
   "$defs": {
@@ -111,7 +111,7 @@
       "maximum": 1
     },
     "numberBetweenZeroAndOneWithUncertainty": {
-      "title": "If a number may have an uncertainty and only numbers between 0 an 1 are valid, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "title": "If a number may have an uncertainty and only numbers between 0 and 1 are valid, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
       "oneOf": [
         {
           "$ref": "#/$defs/numberBetweenZeroAndOne",
@@ -141,6 +141,37 @@
       "minimum": 0,
       "maximum": 90
     },
+    "numberBetweenZeroAndOneHundred": {
+      "description": "This type is used when only numbers between 0 and 100 are valid and no uncertainty can occur.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "numberBetweenZeroAndOneHundredWithUncertainty": {
+      "title": "If a number may have an uncertainty and only numbers between 0 and 100 are valid, then this schema is used. If the uncertainty is unknown, only one number is defined. If the uncertainty is known, the mean value is defined as `uncertainValue`, the uncertainty as `uncertainty` and the confidence interval as `confidenceInterval`.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/numberBetweenZeroAndOneHundred",
+          "description": "If the uncertainty is unknown, then this this option is used."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "uncertainValue": {
+              "$ref": "#/$defs/numberBetweenZeroAndOneHundred"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/uncertaintyNumber"
+            },
+            "confidenceInterval": {
+              "$ref": "#/$defs/confidenceInterval"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["uncertainValue", "uncertainty", "confidenceInterval"]
+        }
+      ]
+    },
     "numberBetweenZeroAndOneHundredEighty": {
       "description": "This type is used when only numbers between 0 and 90 are valid and no uncertainty can occur.",
       "type": "number",
@@ -159,6 +190,39 @@
       "minimum": -180,
       "maximum": 180
     },
+    "integerOrNull": {
+      "title": "Some servers return `null` when they do not have a value",
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "numberOrNull": {
+      "title": "Some servers return `null` when they do not have a value",
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stringOrNull": {
+      "title": "Some servers return `null` when they do not have a value",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "meterWithUncertainty": {
       "$ref": "#/$defs/numberWithUncertainty",
       "description": "Meter is the SI unit for length. With this type, the uncertainty can be defined."
@@ -166,6 +230,10 @@
     "meter": {
       "type": "number",
       "description": "Meter is the SI unit for length. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "squareMeter": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "A square meter (m^2) is a unit for an area. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "nanometer": {
       "type": "number",
@@ -175,6 +243,14 @@
     "squareMeterWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "A square meter (m^2) is a unit for an area. With this type, the uncertainty can be defined."
+    },
+    "squareMeterPerSecond": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Square meter per second (m^2/s) is is a unit in the category of kinematic viscosity."
+    },
+    "squareMeterPerSecondWithUncertainty": {
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
+      "description": "Square meter per second (m^2/s) is is a unit in the category of kinematic viscosity. With this type, the uncertainty can be defined."
     },
     "squareMillimeterWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
@@ -332,12 +408,17 @@
       "description": "Watt (W) is the SI unit for power. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "kelvinWithUncertainty": {
-      "$ref": "#/$defs/numberWithUncertainty",
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Kelvin (K) is the SI unit for temperature. With this type, the uncertainty can be defined."
     },
     "kelvin": {
-      "type": "number",
+      "$ref": "#/$defs/nonNegativeNumber",
       "description": "Kelvin (K) is the SI unit for temperature. This type is used for rare cases in which the option of an uncertainty is not desired."
+    },
+    "degreeCelsius": {
+      "type": "number",
+      "minimum": -273.15,
+      "description": "degree Celsius (°C) is the unit of temperature on the Celsius temperature scale."
     },
     "voltWithUncertainty": {
       "$ref": "#/$defs/numberWithUncertainty",
@@ -372,8 +453,12 @@
       "description": "Ohm per meter is a unit for the electric resistance depending on the length. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "kilogramWithUncertainty": {
-      "$ref": "#/$defs/numberWithUncertainty",
+      "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. With this type, the uncertainty can be defined."
+    },
+    "kilogram": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Kilogram (also kilogramme, kg) is the SI unit for mass. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
     "pascal": {
       "type": "number",
@@ -387,11 +472,27 @@
       "type": "number",
       "description": "Hertz (Hz) is a derived SI unit of frequency. This type is used for rare cases in which the option of an uncertainty is not desired."
     },
+    "kilogramPerCubicMeter": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "The density of a material has the SI units kg/m^3."
+    },
     "kilogramPerCubicMeterWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "The density of a material has the SI units kg/m^3. With this type, the uncertainty can be defined."
     },
-    "joulePerKgKwithUncertainty": {
+    "kilogramPerSquareMeterAndSquareRootSeconds": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Kilogram per square meter and per square root seconds (kg/(m^2*s^0.5)) are the SI unit for the water absorption coefficient"
+    },
+    "joulePerKilogram": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Joule per kilogram (J/kg) are the SI units of the enthalpy."
+    },
+    "joulePerKilogramKelvin": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Joule per kilogram and per Kelvin (J/(kg*K)) are the SI units of the specific heat capacity."
+    },
+    "joulePerKilogramKelvinWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Joule per kilogram and per Kelvin (J/(kg*K)) are the SI units of the specific heat capacity. With this type, the uncertainty can be defined."
     },
@@ -399,9 +500,21 @@
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Kilogram per second (kg/s) are the SI units of the mass flow. With this type, the uncertainty can be defined."
     },
+    "wattPerSquareMeterWithUncertainty": {
+      "$ref": "#/$defs/numberWithUncertainty",
+      "description": "Watt per square meter (W/(m^2) are SI units for the power flowing through an area, for example for irradiance. With this type, the uncertainty can be defined."
+    },
     "wattPerSquareMeterKelvinWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
       "description": "Watt per square meter and per kelvin (W/(m^2*K) are the SI units of a heat transfer coefficient. With this type, the uncertainty can be defined."
+    },
+    "wattPerMeterKelvin": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Watt per meter and per kelvin (W/(m*K)) are the SI units of the thermal conductivity."
+    },
+    "wattPerMeterSquareKelvin": {
+      "$ref": "#/$defs/nonNegativeNumber",
+      "description": "Watt per meter and per kelvin (W/(m*K²)) are the SI units of the thermal conductivity supplement per kelvin."
     },
     "wattPerMeterKelvinWithUncertainty": {
       "$ref": "#/$defs/nonNegativeNumberWithUncertainty",
@@ -413,15 +526,33 @@
       "minimum": -100,
       "maximum": 100
     },
+    "percentPerMassPercent": {
+      "description": "Percent per mass percent (%/M-%), for example used for moisture dependent conductivity supplement without uncertainty.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
     "percent": {
       "description": "Percent, for example, the number 5 of this type means 5 %.",
       "type": "number"
     },
     "percentBetweenZeroAndOneHundred": {
-      "description": "Percent, for example, the number 5 of this type means 5 %.",
+      "$ref": "#/$defs/numberBetweenZeroAndOneHundred",
+      "description": "Percent without uncertainty. For example, the number 5 of this type means 5 %."
+    },
+    "percentBetweenZeroAndOneHundredWithUncertainty": {
+      "$ref": "#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
+      "description": "Percent. For example, the number 5 of this type means 5 %. With this type, the uncertainty can be defined."
+    },
+    "percentDecimal": {
+      "description": "Equivalent decimal value to percent, for example, the number 0.05 of this type means 5 %.",
+      "type": "number"
+    },
+    "percentDecimalBetweenZeroAndOne": {
+      "description": "Equivalent decimal value to percent, for example, the number 0.05 of this type means 5 %.",
       "type": "number",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 1
     },
     "latitude": {
       "$ref": "#/$defs/degreeBetweenZeroAndNinetyWithUncertainty",

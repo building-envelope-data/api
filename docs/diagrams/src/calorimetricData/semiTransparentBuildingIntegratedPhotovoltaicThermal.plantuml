@@ -1,0 +1,90 @@
+@startjson semiTransparentBuildingIntegratedPhotovoltaicThermalCalorimetric
+{
+  "characteristics": {
+    "conditions": "stationary",
+    "primeSurface": "interior",
+    "componentTilt": 90
+  }
+  ,
+  "fluxes": {
+    "convection":
+    {
+      "side": "exterior",
+      "temperatures": {
+        "surrounding": 293
+      }
+      ,
+      "coefficient": 18
+    }
+    ,
+    "longwaveRadiation":
+    {
+      "side": "exterior",
+      "temperatures": {
+        "surrounding": 293
+      }
+      ,
+      "emittanceSurroundings": 0.9
+    }
+    ,
+    "mixed":
+    {
+      "side": "interior",
+      "flux": {
+        "uncertainValue": -60,
+        "uncertainty": 3,
+        "confidenceInterval": 95.4
+      }
+    }
+    ,
+    "shortwaveRadiation":
+    {
+      "side": "exterior",
+      "flux": {
+        "uncertainValue": 1000,
+        "uncertainty": 50,
+        "confidenceInterval": 68.3
+      }
+      ,
+      "direction": {
+        "polar": 30,
+        "azimuth": 0
+      }
+    }
+    ,
+    "fluid":
+    {
+      "temperatures": {
+        "inlet": 293,
+        "outlet": 298
+      }
+      ,
+      "massFlow": 0.02,
+      "specificHeatCapacity": 4179.6
+    }
+    ,
+    "electricity":
+    {
+      "flux": -200
+    }
+  }
+  ,
+  "results":
+  {
+    "area": {
+      "category": "center"
+    }
+    ,
+    "gValue": {
+      "uncertainValue": 0.06,
+      "uncertainty": 0.01,
+      "confidenceInterval": 68.3
+    }
+    ,
+    "efficiencies": {
+      "solarThermal": 0.5,
+      "photovoltaic": 0.2
+    }
+  }
+}
+@endjson

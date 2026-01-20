@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/geometric.json",
+  "title": "metadata about geometric datasets",
+  "description": "Geometric datasets of building envelope components with meta information like name, description, warnings, and more.",
+  "$defs": {
+    "geometric": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Decentral identifier",
+          "description": "Together with timestamp uniquely identifies data and version.",
+          "$ref": "identifier.json#/$defs/decentral"
+        },
+        "timestamp": {
+          "title": "Timestamp that designates the version",
+          "description": "Together with decentral identifier uniquely identifies data and version. For example, correction of some grammatical error in the description results in a new version designated by a new timestamp, or adding an approval by some stakeholder.",
+          "$ref": "common.json#/$defs/timestamp"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description for humans",
+          "type": "string"
+        },
+        "warnings": {
+          "title": "Warnings",
+          "description": "Critical information to avoid mistakes due to data misinterpretation.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "creator": {
+          "title": "Creator",
+          "$ref": "stakeholder.json"
+        },
+        "createdAt": {
+          "title": "Creation timestamp",
+          "description": "When the present dataset was created, for example, after completion of a measurement, simulation, or calculation.",
+          "$ref": "common.json#/$defs/timestamp"
+        },
+        "appliedMethod": {
+          "$ref": "method.json#/$defs/appliedMethod",
+          "description": "Method that was applied to create this dataset."
+        },
+        "approvals": {
+          "$ref": "common.json#/$defs/approvals",
+          "description": "Approvals by stakeholders in the form of GnuPG signatures."
+        },
+        "data": {
+          "title": "Data in various formats",
+          "description": "The first data item is the result of applying the method `appliedMethod`. The other data items are the result of applying some conversion method or a chain of such methods to the first data item.",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "geometricData.json",
+                "description": "The measured or simulated data in JSON."
+              },
+              {
+                "$ref": "common.json#/$defs/getHttpsResource",
+                "description": "The measured or simulated data in some data format as HTTP resource fetchable with GET requests."
+              }
+            ]
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    }
+  },
+  "$ref": "#/$defs/geometric"
+}

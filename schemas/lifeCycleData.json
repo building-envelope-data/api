@@ -1,0 +1,2490 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/lifeCycleData.json",
+  "title": "life cycle data",
+  "description": "Life-cycle datasets of building envelope components. It shall be possible to exchange the most important data about circularity, life-cycle analysis and compliance. At the same time, this general format is intended to limit the number of possible representations of one dataset to make it easy to develop software which interprets the data correctly.",
+  "$defs": {
+    "data": {
+      "type": "object",
+      "title": "Life cycle data.",
+      "properties": {
+        "functionalUnit": {
+          "type": "string",
+          "enum": [
+            "Volume",
+            "Quantity",
+            "Area",
+            "Length",
+            "OtherUnit",
+            "Energy",
+            "Weight"
+          ],
+          "description": "The unit used to measure the component."
+        },
+        "defaultFunctionalUnitAmount": {
+          "$ref": "number.json#/$defs/nonNegativeNumber",
+          "description": "Describes the default functional unit value. For a quantity/volume product, this describes the default volume (m3), for area product the default area (m2), length product the default length (m) and for weight product the default weight (kg)"
+        },
+        "fixedHeight": {
+          "$ref": "number.json#/$defs/meter",
+          "description": "This value describes the fixed height (m) of an area product"
+        },
+        "fixedArea": {
+          "$ref": "number.json#/$defs/squareMeter",
+          "description": "This values describes the fixed area (m2) of a length product"
+        },
+        "density": {
+          "$ref": "number.json#/$defs/nonNegativeNumber",
+          "description": "The product density in kg/[functional unit]."
+        },
+        "weight": {
+          "$ref": "number.json#/$defs/kilogram",
+          "description": "The weight in kg for a quantity product."
+        },
+        "lifespan": {
+          "$ref": "number.json#/$defs/nonNegativeInteger",
+          "description": "The functional lifespan (in years)"
+        },
+        "circularity": {
+          "$ref": "#/$defs/circularity"
+        },
+        "lifeCycleAssessment": {
+          "$ref": "#/$defs/lifeCycleAssessment"
+        },
+        "compliance": {
+          "$ref": "#/$defs/compliance"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "circularity": {
+      "title": "Circularity data",
+      "type": "object",
+      "properties": {
+        "feedstock": {
+          "title": "The product circularity information",
+          "type": "object",
+          "properties": {
+            "renewables": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Share of renewable content"
+            },
+            "renewablesSustainablyProduced": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Share of sustainably produced renewable content"
+            },
+            "notRenewables": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Share of non-renewable content"
+            },
+            "recycled": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Share of recycled content"
+            },
+            "reused": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Share of reused content"
+            },
+            "recyclingEfficiency": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Efficiency of the recycling process"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "output": {
+          "title": "Output",
+          "type": "object",
+          "properties": {
+            "availableForRecycle": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Share of material available for recycling"
+            },
+            "recyclingEfficiency": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Efficiency of the recycling process"
+            },
+            "landfill": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Share of material sent to landfill"
+            },
+            "incineration": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Share of material treated by incineration"
+            },
+            "availableForReuse": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Share of material available for reuse"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "detachability": {
+          "title": "Detachability",
+          "type": "object",
+          "properties": {
+            "connectionType": {
+              "type": "string",
+              "enum": [
+                "Unknown",
+                "HardChemicalConnection",
+                "SoftChemicalConnection",
+                "DirectConnection",
+                "AddedConnectionConnection",
+                "DryConnection"
+              ],
+              "description": "General Connection type."
+            },
+            "connectionTypeDetail": {
+              "type": "string",
+              "enum": [
+                "Unknown",
+                "BoltAndNut",
+                "Spring",
+                "Corner",
+                "Screw",
+                "None",
+                "Click",
+                "Velcro",
+                "Magnetic",
+                "Glue",
+                "Dump",
+                "Weld",
+                "Concrete",
+                "ChemicalAnchor",
+                "Sealant",
+                "Foam",
+                "Peg",
+                "Nail"
+              ],
+              "description": "Details on the connection type."
+            },
+            "accessibility": {
+              "type": "string",
+              "enum": [
+                "Unknown",
+                "NotAccessible",
+                "PartialWithDamage",
+                "PartialWithRepairableDamage",
+                "PartialNoDamage",
+                "Accessible"
+              ],
+              "description": "Accessibility of the materials."
+            },
+            "intersection": {
+              "type": "string",
+              "enum": ["Unknown", "Complete", "Incidental", "None"],
+              "description": "Intersection of the materials."
+            },
+            "productEdge": {
+              "type": "string",
+              "enum": ["Unknown", "Closed", "Overlapping", "Open"],
+              "description": "Form of the product edge."
+            },
+            "index": {
+              "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+              "description": "Detachability index"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "lifeCycleAssessment": {
+      "type": "array",
+      "title": "Life cycle assessment (LCA) data.",
+      "items": {
+        "type": "object",
+        "description": "There can be multiple LCAs per product, each item is one LCA of the product",
+        "properties": {
+          "UUID": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The universally unique identifier of this life-cycle analysis."
+          },
+          "isoCode": {
+            "type": "string",
+            "description": "The 2 letter iso code for the country the EPD is valid in. It is possible that for the same product in different countries different EPDs apply."
+          },
+          "owner": {
+            "type": "string",
+            "description": "The owner of the LCA"
+          },
+          "referenceYear": {
+            "$ref": "number.json#/$defs/nonNegativeInteger",
+            "description": "Reference Year"
+          },
+          "validUntilYear": {
+            "$ref": "number.json#/$defs/nonNegativeInteger",
+            "description": "Year until it is valid"
+          },
+          "datasetType": {
+            "type": "string",
+            "description": "Type of dataset"
+          },
+          "registrationNumber": {
+            "type": "string",
+            "description": "Registration number"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version"
+          },
+          "compliance": {
+            "type": "array",
+            "description": "List of norms this specific LCA dataset complies with (not the whole product itself)",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "environmentalCostIndicator": {
+            "$ref": "number.json#/$defs/nonNegativeNumber",
+            "description": "Environmental cost indicator"
+          },
+          "phases": {
+            "title": "LCA Data",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "phaseId": {
+                  "type": "string",
+                  "enum": [
+                    "NotSpecified",
+                    "A1_A3",
+                    "A4",
+                    "A5",
+                    "B1",
+                    "B2",
+                    "B3",
+                    "B4",
+                    "B5",
+                    "B6",
+                    "B7",
+                    "C1",
+                    "C2",
+                    "C3",
+                    "C4",
+                    "D"
+                  ],
+                  "description": "Life cycle phase id. `A1_A3` covers the phases `A1`, `A2` and `A3`."
+                },
+                "EN15804_2012_04_A1_2013": {
+                  "$ref": "#/$defs/EN15804_2012_04_A1_2013",
+                  "description": "LCA ruleset EN 15804:2012-04+A1 2013"
+                },
+                "EN15804_2012_A2_2019": {
+                  "$ref": "#/$defs/EN15804_2012_A2_2019",
+                  "description": "LCA ruleset EN 15804:2012+A2:2019"
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1,
+              "required": []
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false,
+        "minProperties": 1,
+        "required": []
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "EN15804_2012_04_A1_2013": {
+      "title": "LCA ruleset EN 15804:2012-04+A1 2013",
+      "type": "object",
+      "properties": {
+        "globalWarmingPotential": {
+          "type": "number",
+          "description": "Global Warming Potential (GWP)"
+        },
+        "ozoneDeplationPotential": {
+          "type": "number",
+          "description": "Ozone Deplation Potential (ODP) (kg CFC11e)"
+        },
+        "photoChemicalOxydantFormation": {
+          "type": "number",
+          "description": "Photo Chemical Oxydant Formation (POCP) (kg C2H4e)"
+        },
+        "acidificationPotentialOfLandAndWater": {
+          "type": "number",
+          "description": "Acidification potential of land and water (AP) (kg SO2e)"
+        },
+        "eutrophicationPotential": {
+          "type": "number",
+          "description": "Eutrophication potential (EP) (kg (PO4)³e)"
+        },
+        "abioticDeplationNonFossile": {
+          "type": "number",
+          "description": "Abiotic Depletion Non Fossil (ADPE) (kg Sbe)"
+        },
+        "abioticDeplationFossile": {
+          "type": "number",
+          "description": "Abiotic Depletion Fossil (ADPF) (MJ)"
+        },
+        "humanToxicityPotential": {
+          "type": "number",
+          "description": "Human toxicity potential (HTP) (kg 1,4-Dichlorobenzene)"
+        },
+        "freshwaterAquaticEcotoxicityPotential": {
+          "type": "number",
+          "description": "Freshwater aquatic ecotoxicity potential (FAETP) (kg 1,4-Dichlorobenzene)"
+        },
+        "marinewaterAquaticEcotoxicityPotential": {
+          "type": "number",
+          "description": "Marinewater aquatic ecotoxicity potential (MAETP) (kg 1,4-Dichlorobenzene)"
+        },
+        "terrestrialEcotoxicityPotential": {
+          "type": "number",
+          "description": "Terrestrial ecotoxicity potential (TETP) (kg 1,4-Dichlorobenzene)"
+        },
+        "pere": {
+          "type": "number",
+          "description": "Use of renewable primary energy (PERE) (MJ)"
+        },
+        "perm": {
+          "type": "number",
+          "description": "Use of renewable primary energy resources used as raw materials (PERM) (MJ)"
+        },
+        "pert": {
+          "type": "number",
+          "description": "Total use of renewable primary energy resources (PERT) (MJ)"
+        },
+        "penre": {
+          "type": "number",
+          "description": "Use of non renewable primary energy (PENRE) (MJ)"
+        },
+        "penrm": {
+          "type": "number",
+          "description": "Use of non renewable primary energy resources used as raw materials (PENRM) (MJ)"
+        },
+        "penrt": {
+          "type": "number",
+          "description": "Total use of non renewable primary energy resource (PENRT) (MJ)"
+        },
+        "sm": {
+          "type": "number",
+          "description": "Use of secondary material (SM) (kg)"
+        },
+        "rsf": {
+          "type": "number",
+          "description": "Use of renewable secondary fuels (RSF) (MJ)"
+        },
+        "nrsf": {
+          "type": "number",
+          "description": "Use of non renewable secondary fuels (NRSF) (MJ)"
+        },
+        "fw": {
+          "type": "number",
+          "description": "Use of net fresh water (FW) (m3)"
+        },
+        "hwd": {
+          "type": "number",
+          "description": "Hazardous waste disposed (HWD) (kg)"
+        },
+        "nhwd": {
+          "type": "number",
+          "description": "Non hazardous waste dispose (NHWD) (kg)"
+        },
+        "rwd": {
+          "type": "number",
+          "description": "Radioactive waste disposed (RWD) (kg)"
+        },
+        "mfr": {
+          "type": "number",
+          "description": "Materials for recycling (MFR) (kg)"
+        },
+        "mer": {
+          "type": "number",
+          "description": "Materials for energy recovery (MER) (MJ)"
+        },
+        "eee": {
+          "type": "number",
+          "description": "Exported electrical energy (EEE) (MJ)"
+        },
+        "ete": {
+          "type": "number",
+          "description": "Exported thermal energy (EET) (MJ)"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "EN15804_2012_A2_2019": {
+      "title": "LCA ruleset EN 15804:2012+A2:2019",
+      "type": "object",
+      "properties": {
+        "ozoneDeplationPotential": {
+          "type": "number",
+          "description": "Ozone Deplation Potential (ODP) (kg CFC11e)"
+        },
+        "pere": {
+          "type": "number",
+          "description": "Use of renewable primary energy (PERE) (MJ)"
+        },
+        "perm": {
+          "type": "number",
+          "description": "Use of renewable primary energy resources used as raw materials (PERM) (MJ)"
+        },
+        "pert": {
+          "type": "number",
+          "description": "Total use of renewable primary energy resources (PERT) (MJ)"
+        },
+        "penre": {
+          "type": "number",
+          "description": "Use of non renewable primary energy (PENRE) (MJ)"
+        },
+        "penrm": {
+          "type": "number",
+          "description": "Use of non renewable primary energy resources used as raw materials (PENRM) (MJ)"
+        },
+        "penrt": {
+          "type": "number",
+          "description": "Total use of non renewable primary energy resource (PENRT) (MJ)"
+        },
+        "sm": {
+          "type": "number",
+          "description": "Use of secondary material (SM) (kg)"
+        },
+        "rsf": {
+          "type": "number",
+          "description": "Use of renewable secondary fuels (RSF) (MJ)"
+        },
+        "nrsf": {
+          "type": "number",
+          "description": "Use of non renewable secondary fuels (NRSF) (MJ)"
+        },
+        "fw": {
+          "type": "number",
+          "description": "Use of net fresh water (FW) (m3)"
+        },
+        "hwd": {
+          "type": "number",
+          "description": "Hazardous waste disposed (HWD) (kg)"
+        },
+        "nhwd": {
+          "type": "number",
+          "description": "Non hazardous waste dispose (NHWD) (kg)"
+        },
+        "rwd": {
+          "type": "number",
+          "description": "Radioactive waste disposed (RWD) (kg)"
+        },
+        "mfr": {
+          "type": "number",
+          "description": "Materials for recycling (MFR) (kg)"
+        },
+        "mer": {
+          "type": "number",
+          "description": "Materials for energy recovery (MER) (MJ)"
+        },
+        "eee": {
+          "type": "number",
+          "description": "Exported electrical energy (EEE) (MJ)"
+        },
+        "ete": {
+          "type": "number",
+          "description": "Exported thermal energy (EET) (MJ)"
+        },
+        "globalWarmingPotentialTotal": {
+          "type": "number",
+          "description": "Global Warming Potential Total (GWP-total) (kg CO2e)"
+        },
+        "globalWarmingPotentialFossil": {
+          "type": "number",
+          "description": "Global Warming Potential Fossil (GWP-fossil) (kg CO2e)"
+        },
+        "globalWarmingPotentialBiogenic": {
+          "type": "number",
+          "description": "Global Warming Potential Biogenic (GWP-biogenic) (kg CO2e)"
+        },
+        "globalWarmingPotentialLuluc": {
+          "type": "number",
+          "description": "Global Warming Potential Land use and Land use change (GWP-luluc) (kg CO2e)"
+        },
+        "acidificationPotentialAccumulatedExceedance": {
+          "type": "number",
+          "description": "Acidification Potential Accumulated Exceedance (AP) (mol H+e)"
+        },
+        "eutrophicationPotentialFreshWater": {
+          "type": "number",
+          "description": "Eutrophication Potential Fresh Water (EP-F) (kg PO4e)"
+        },
+        "eutrophicationPotentialMarineWater": {
+          "type": "number",
+          "description": "Eutrophication Potential Marine Water (EP-M) (kg Ne)"
+        },
+        "eutrophicationTerrestrial": {
+          "type": "number",
+          "description": "Eutrophication potential terrestrial (EP-T) (mol Ne)"
+        },
+        "photoOxidantCreationPotential": {
+          "type": "number",
+          "description": "Photo Oxidant Creation Potential (POCP) (kg NMVOCe)"
+        },
+        "abioticDeplationNonFossile": {
+          "type": "number",
+          "description": "Abiotic Depletion Non Fossil (ADPE) (kg Sbe)"
+        },
+        "abioticDeplationFossile": {
+          "type": "number",
+          "description": "Abiotic Depletion Fossil (ADPF) (MJ)"
+        },
+        "waterUseDeprivationPotential": {
+          "type": "number",
+          "description": "Water Use Deprivation Potential (WDP) (m³e depr.)"
+        },
+        "potentialIncidenceOfDiseaseDueToPMEmissions": {
+          "type": "number",
+          "description": "Potential Incidence of disease due to PM emissions"
+        },
+        "potentialHumanExposureEfficiencyRelativeToU235": {
+          "type": "number",
+          "description": "Potential Human Exposure Efficiency relative to U235 (kBq U235 eq)"
+        },
+        "ecoTox": {
+          "type": "number",
+          "description": "Potential Comparative Toxic Unit for ecosystems (ETP-fw) (CTU-e)"
+        },
+        "humanToxCancer": {
+          "type": "number",
+          "description": "Potential comparative toxic unit for humans - cancerogenic (CTU-h)"
+        },
+        "humanToxNonCancer": {
+          "type": "number",
+          "description": "Potential comparative toxic unit for humans - not\ncancerogenic (CTU-h)"
+        },
+        "potentialSoilQualityIndex": {
+          "type": "number",
+          "description": "Potential soil quality index"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "compliance": {
+      "type": "object",
+      "description": "Life cycle compliance data.",
+      "properties": {
+        "productType": {
+          "type": "string",
+          "description": "Product type as number code.",
+          "pattern": "^[0-9]+$"
+        },
+        "productAttributes": {
+          "type": "object",
+          "description": "This object includes the attributes of the product.",
+          "properties": {
+            "SvhcFree": {
+              "type": "boolean",
+              "description": "The product is free of SVHC (< 0.1%)."
+            },
+            "BlueAngel": {
+              "type": "string",
+              "description": "Certified with Blue Angel (DE-UZ) or meets the relevant guidelines",
+              "enum": [
+                "n.v.",
+                "12a",
+                "32",
+                "35",
+                "76",
+                "102",
+                "113",
+                "120",
+                "123",
+                "128",
+                "132",
+                "140",
+                "156",
+                "157",
+                "176",
+                "178",
+                "198",
+                "216",
+                "218",
+                "221",
+                "224",
+                "225",
+                "227",
+                "230",
+                "231",
+                "232",
+                "233",
+                "830"
+              ]
+            },
+            "ChlorinatedParaffineFree": {
+              "type": "boolean",
+              "description": "Chlorinated paraffine content (SCCPs + MCCPs + LCCPs) < 0.1 %."
+            },
+            "UsedIndoors": {
+              "type": "boolean",
+              "description": "The product is used indoors"
+            },
+            "MineralUnderground": {
+              "type": "boolean",
+              "description": "The product is applied to mineral underground"
+            },
+            "CategoryDecopaint": {
+              "type": "string",
+              "description": "Category (Wb) of current Decopaint-RL (Appendix II)",
+              "enum": ["n.v.", "a", "b", "g", "h", "d"]
+            },
+            "WaterSoluble": {
+              "type": "boolean",
+              "description": "The product or coating is a water-soluble product according to current Decopaint-Directive (Appendix II)."
+            },
+            "SolventFree": {
+              "type": "boolean",
+              "description": "The product is solvent-free in accordance with VdL-RL01"
+            },
+            "PlasticizerFree": {
+              "type": "boolean",
+              "description": "The product is free of plasticizers according to VdL-RL01"
+            },
+            "DustBindingCoating": {
+              "type": "boolean",
+              "description": "The product is used as a base coat"
+            },
+            "VocContentPerLiter": {
+              "type": "number",
+              "description": "VOC content (g/l) as per Decopaint RL"
+            },
+            "WallpaperAdhesive": {
+              "type": "boolean",
+              "description": "Product is used as wallpaper adhesive"
+            },
+            "PowderProduct": {
+              "type": "boolean",
+              "description": "Product is powder product"
+            },
+            "DispersionAdhesive": {
+              "type": "boolean",
+              "description": "Product is dispersion adhesive"
+            },
+            "DispersionInsulativeAdhesive": {
+              "type": "boolean",
+              "description": "The product is used outdoors as a dispersion insulation adhesive."
+            },
+            "DecorativePaint": {
+              "type": "boolean",
+              "description": "The product is a decorative paint or a base coat for a decorative paint."
+            },
+            "Plaster": {
+              "type": "boolean",
+              "description": "Product is plaster"
+            },
+            "GutQualitySeal": {
+              "type": "boolean",
+              "description": "Certified with GUT quality seal"
+            },
+            "TextileProduct": {
+              "type": "boolean",
+              "description": "Product is textile product"
+            },
+            "Giscode": {
+              "type": "string",
+              "description": "GISCODE-Classification",
+              "enum": [
+                "n.v.",
+                "ABZ10",
+                "ABZ20",
+                "ABZ30",
+                "ABZ40",
+                "ABZ50",
+                "ABZ60",
+                "BBP10",
+                "BBP20",
+                "BBP30",
+                "BBP40",
+                "BBP50",
+                "BBP60",
+                "BBP70",
+                "BBP80",
+                "BSL10",
+                "BSL20",
+                "BSL30",
+                "BSL40",
+                "BSL50",
+                "BSL60",
+                "BSW10",
+                "BSW20",
+                "BSW30",
+                "BSW40",
+                "BSW50",
+                "BSW60",
+                "BTM01",
+                "BTM05",
+                "BTM10",
+                "BTM15",
+                "BTM20",
+                "BTM30",
+                "BTM40",
+                "BTM50",
+                "BTM60",
+                "BTM70",
+                "BZM10",
+                "BZM20",
+                "BZM30",
+                "BZM40",
+                "BZM50",
+                "CP1",
+                "CP2",
+                "CP3",
+                "D1",
+                "D2",
+                "D3",
+                "DA20",
+                "DD1",
+                "DD2",
+                "DH20",
+                "DH30",
+                "DSA20",
+                "DSA30",
+                "DSC20",
+                "DSE20",
+                "DSE30",
+                "DSO20",
+                "DSW30",
+                "G1",
+                "G2",
+                "G3",
+                "GF0",
+                "GF50",
+                "GF60",
+                "GF70",
+                "GH0",
+                "GH10",
+                "GH20",
+                "GH30",
+                "GH40",
+                "KH1",
+                "KH2",
+                "NBM10",
+                "Ö10+",
+                "Ö10",
+                "Ö10/DD+",
+                "Ö20+",
+                "Ö20",
+                "Ö30",
+                "Ö40+",
+                "Ö40",
+                "Ö40/DD+",
+                "Ö50",
+                "Ö60+",
+                "Ö60",
+                "Ö70",
+                "Ö80",
+                "Ö90",
+                "Ö100",
+                "PU10",
+                "PU20",
+                "PU30",
+                "PU35",
+                "PU40",
+                "PU45",
+                "PU50",
+                "PU55",
+                "PU60",
+                "PU70",
+                "PU80",
+                "RE0",
+                "RE1",
+                "RE2",
+                "RE2.5",
+                "RE3",
+                "RE4",
+                "RE05",
+                "RE6",
+                "RE7",
+                "RE8",
+                "RE9",
+                "RE10",
+                "RE20",
+                "RE30",
+                "RE40",
+                "RE50",
+                "RE55",
+                "RE60",
+                "RE70",
+                "RE75",
+                "RE80",
+                "RE90",
+                "RMA10",
+                "RMA15",
+                "RMA20",
+                "RS10",
+                "RS15",
+                "RS20",
+                "RS25",
+                "RSP20",
+                "RSP25",
+                "RU0,5",
+                "RU1",
+                "RU2",
+                "SH1",
+                "W1",
+                "W1/DD",
+                "W2+",
+                "W2/DD+",
+                "W2",
+                "W3+",
+                "W3/DD+",
+                "W3",
+                "W3/DD",
+                "ZP1",
+                "ZP2"
+              ]
+            },
+            "Emicode": {
+              "type": "string",
+              "description": "Certified with EMICODE",
+              "enum": ["n.v", "EC1", "EC1PLUS", "EC1-R", "EC1PLUS-R"]
+            },
+            "ConsistsOfPu": {
+              "type": "boolean",
+              "description": "The product is made of polyurethane (PU)."
+            },
+            "MaterialCoveringSurface": {
+              "type": "boolean",
+              "description": "The product is used as a laying material for covering surfaces"
+            },
+            "Sealing": {
+              "type": "boolean",
+              "description": "The product is used as a sealant, barrier coating, or screed resin."
+            },
+            "AppliedToNaturalStone": {
+              "type": "boolean",
+              "description": "The product is an impregnation for natural stone, cast stone, or terrazzo floors."
+            },
+            "SolventContent": {
+              "type": "number",
+              "description": "Solvent content (%)"
+            },
+            "CrackBridging": {
+              "type": "boolean",
+              "description": "Product is crackbridging "
+            },
+            "AdhesiveSealant": {
+              "type": "boolean",
+              "description": "The product is used for spot or line bonding."
+            },
+            "ChlorinatedParaffinsFree": {
+              "type": "boolean",
+              "description": "Chlorinated paraffins free according to MSDS"
+            },
+            "KwsPlasticizerContent": {
+              "type": "boolean",
+              "description": "KWS plasticizer < 0.1%"
+            },
+            "AirtightSealing": {
+              "type": "boolean",
+              "description": "Product is used as sealant for creating airtightness at the building envelope"
+            },
+            "VocContentPercent": {
+              "type": "number",
+              "description": "VOC content (%)"
+            },
+            "HalogenatedFree": {
+              "type": "boolean",
+              "description": " The product is free of halogenated propellants (< 0.1%)."
+            },
+            "FormworkOil": {
+              "type": "boolean",
+              "description": "Product is used as formwork oil"
+            },
+            "FireProtection": {
+              "type": "boolean",
+              "description": "Product is applied to metal as a fire protection coating"
+            },
+            "AbZExisting": {
+              "type": "boolean",
+              "description": "Allgemeine Bauaufsichtliche Zulassung (abZ) available"
+            },
+            "HalogenFree": {
+              "type": "boolean",
+              "description": "The product is free of halogen flame retardants"
+            },
+            "CorrosivityCategory": {
+              "type": "string",
+              "description": "Which corrosivity category according to DIN EN ISO 12944-2 does the application of the product fall under?",
+              "enum": ["n.v.", "C1", "C2", "C3", "C4", "C5-I", "C5-M", "all"]
+            },
+            "VocContentPerSquaremeter": {
+              "type": "number",
+              "description": "VOC content (g/m²)"
+            },
+            "AntiCorrosion": {
+              "type": "boolean",
+              "description": "The product has or is a corrosion protection coating for metal"
+            },
+            "EffectCoating": {
+              "type": "boolean",
+              "description": "The product is or has a effect coating on metal"
+            },
+            "PuCoating": {
+              "type": "boolean",
+              "description": "The product is a polyurethane-based coating (PU)"
+            },
+            "SubstantiationOfEmissions": {
+              "type": "boolean",
+              "description": "Substantiation of emissions according to MVVTB available"
+            },
+            "PlasticCoating": {
+              "type": "boolean",
+              "description": "The product is a PMMA (methyl methacrylate-containing) coating."
+            },
+            "IsOsSystems": {
+              "type": "boolean",
+              "description": " The product is an OS system or meets special durability requirements (excluding markings)."
+            },
+            "EpoxyCoating": {
+              "type": "boolean",
+              "description": "The product is an epoxy coating"
+            },
+            "Marker": {
+              "type": "boolean",
+              "description": "The product is used as marker"
+            },
+            "BitumenPrimer": {
+              "type": "boolean",
+              "description": "Product is used as bitumen primer for inverted roof"
+            },
+            "WaxOrOil": {
+              "type": "boolean",
+              "description": " The product is applied as an oil or wax to wood surfaces."
+            },
+            "ChemicalWoodPreservation": {
+              "type": "boolean",
+              "description": "The product has been treated with a chemical wood preservative."
+            },
+            "ApplicationClass": {
+              "type": "string",
+              "description": "Wood application class according to DIN 68800-3",
+              "enum": ["n.v.", "0", "1", "2", "3", "3.1", "3.2", "4", "5"]
+            },
+            "OnlyConstructiveWoodProtection": {
+              "type": "boolean",
+              "description": "Only constructive wood protection according to DIN 68800-2"
+            },
+            "NaturallyDurableWood": {
+              "type": "boolean",
+              "description": "Naturally durable wood according to DIN 68800-1"
+            },
+            "ViableBiocidalProduct": {
+              "type": "boolean",
+              "description": "All biocides contained in the product are classified as marketable according to 582/2012/EC."
+            },
+            "AppliedToLoadBearingStructures": {
+              "type": "boolean",
+              "description": "The product is installed as a load-bearing component or applied to load-bearing components."
+            },
+            "BiocideTreated": {
+              "type": "boolean",
+              "description": "The product contains biocides."
+            },
+            "InCanPreservation": {
+              "type": "boolean",
+              "description": "All biocides contained in the coating are used solely for pot preservation."
+            },
+            "PassivatingAgent": {
+              "type": "boolean",
+              "description": "The product has been anodized or treated with a passivating agent."
+            },
+            "AppliedToMetal": {
+              "type": "boolean",
+              "description": "Product is applied to metal"
+            },
+            "ChromCompoundsFree": {
+              "type": "boolean",
+              "description": "The product or coating is free of chromium VI compounds (<0.1%)."
+            },
+            "LeadOrCopper": {
+              "type": "boolean",
+              "description": "Product consists of lead or copper"
+            },
+            "HeavyMetalFilter": {
+              "type": "boolean",
+              "description": "Heavy metal filter"
+            },
+            "Zinc": {
+              "type": "boolean",
+              "description": "Product consists of zinc"
+            },
+            "NonHalogenatedRefrigerant": {
+              "type": "boolean",
+              "description": "The product uses a halogen-free refrigerant."
+            },
+            "TcepFree": {
+              "type": "boolean",
+              "description": "TCEP content < 0,1%"
+            },
+            "HalogenatedFlameRetardantsFree": {
+              "type": "boolean",
+              "description": " The product is free of halogenated flame retardants (< 0.01%)."
+            },
+            "AssemblyFoamFastening": {
+              "type": "boolean",
+              "description": "The product is used as an assembly foam for fastening or gluing insulation."
+            },
+            "AssemblyFoamInsulation": {
+              "type": "boolean",
+              "description": "The product is used exclusively in joints of ETICS insulation boards."
+            },
+            "FlameRetardant": {
+              "type": "boolean",
+              "description": "The product is flame-retardant"
+            },
+            "PbbFree": {
+              "type": "boolean",
+              "description": "The product is free of polybrominated biphenyls (PBB < 0.1%)."
+            },
+            "PbdeFree": {
+              "type": "boolean",
+              "description": " The product is free of polybrominated diphenyl ethers (PBDE < 0.1%)."
+            },
+            "BoronCompoundsFree": {
+              "type": "boolean",
+              "description": "The product is free from reproductive toxic boron compounds (< 0.1%)."
+            },
+            "FormaldehydContent": {
+              "type": "number",
+              "description": "Formaldehyd content in ppm"
+            },
+            "Plastic": {
+              "type": "boolean",
+              "description": "Product consists of plastic"
+            },
+            "Handcrafted": {
+              "type": "boolean",
+              "description": "Product is handcrafted"
+            },
+            "MineralWool": {
+              "type": "boolean",
+              "description": "Product consists of mineral wool"
+            },
+            "FoamGlass": {
+              "type": "boolean",
+              "description": "Product consists of foam glass"
+            },
+            "RigidFoam": {
+              "type": "boolean",
+              "description": "Product is a drainage or water storage element made of rigid foam"
+            },
+            "HalogenatedBlowingAgentsFree": {
+              "type": "boolean",
+              "description": "Free of halogenated propellants"
+            },
+            "Pvc": {
+              "type": "boolean",
+              "description": "The product consists of PVC"
+            },
+            "WallCovering": {
+              "type": "boolean",
+              "description": "The product is used as wall or ceiling covering."
+            },
+            "InsulationForBuildingServices": {
+              "type": "boolean",
+              "description": "Product is used as insulation for building services"
+            },
+            "BitumenEmulsion": {
+              "type": "boolean",
+              "description": "The product is a hot processed bitumen product"
+            },
+            "EmissionsAfterDays28d120": {
+              "type": "boolean",
+              "description": "Emissions after 28 days ≤ DE-UZ 120"
+            },
+            "PuttyUnderWallpapers": {
+              "type": "boolean",
+              "description": "Product used as putty under wallpapers"
+            },
+            "SealantForGlass": {
+              "type": "boolean",
+              "description": "The Product is used exclusively in safety-relevant areas such as glass construction, facades, or fire protection."
+            },
+            "AdhesiveTape": {
+              "type": "boolean",
+              "description": "Product is adhesive tape"
+            },
+            "EmissionEvaluated": {
+              "type": "boolean",
+              "description": "Emission evaluated Building product according to the DIBt Principles"
+            },
+            "MetallicEffectCoating": {
+              "type": "boolean",
+              "description": "Product is applied to metal as metallic-effect coating"
+            },
+            "ObjectRelatedProofZinc": {
+              "type": "boolean",
+              "description": "Object-related proof according to \"RegenwasserCheck- ZINK\" exists"
+            },
+            "CementitiousInsulationAdhesive": {
+              "type": "boolean",
+              "description": "Product is cementitious insulation adhesive"
+            },
+            "FloorCovering": {
+              "type": "boolean",
+              "description": "Product is floor covering"
+            },
+            "FilmprotectedWoodStain": {
+              "type": "boolean",
+              "description": "A film protection agent has been applied to the product."
+            },
+            "StructuralTimber": {
+              "type": "boolean",
+              "description": "The Product is used in structural timber engineering"
+            },
+            "PvcFree": {
+              "type": "boolean",
+              "description": "The product is free of PVC"
+            },
+            "HeavyMetalFree": {
+              "type": "boolean",
+              "description": "heavy metal content < 0,1%"
+            },
+            "Rubber": {
+              "type": "boolean",
+              "description": "product is made of rubber"
+            },
+            "ConsistsOfSmp": {
+              "type": "boolean",
+              "description": "The product consists of silane-modified polymers (MS-Polymer)"
+            },
+            "NoChildLabor": {
+              "type": "boolean",
+              "description": "Free from child and forced labor"
+            },
+            "NoIllegalMining": {
+              "type": "boolean",
+              "description": "Free of illegally extracted raw materials"
+            },
+            "ProcessingInEurope": {
+              "type": "boolean",
+              "description": "Material extraction and processing in Europe"
+            },
+            "CsrAvailable": {
+              "type": "boolean",
+              "description": "CSR report and certificates of origin available"
+            },
+            "FscCertificate": {
+              "type": "string",
+              "description": "Product has a FSC Certification ",
+              "enum": [
+                "n.v.",
+                "FSC Mix",
+                "FSC 100",
+                "FSC Recycled",
+                "Not certified"
+              ]
+            },
+            "HolzVonHier": {
+              "type": "boolean",
+              "description": "Certified with Holz von Hier"
+            },
+            "NaturePlus": {
+              "type": "boolean",
+              "description": "Certified with Natureplus"
+            },
+            "FairStone": {
+              "type": "boolean",
+              "description": "Certified with WiN=WiN Fair Stone"
+            },
+            "CertifiedCsc": {
+              "type": "string",
+              "description": "The concrete in the product is CSC certified.",
+              "enum": [
+                "n.v.",
+                "Platinum",
+                "Gold",
+                "Silver",
+                "Bronze",
+                "Not certified"
+              ]
+            },
+            "PefcCertificate": {
+              "type": "string",
+              "description": "Certified with PEFC",
+              "enum": [
+                "n.v.",
+                "PEFC 100",
+                "PEFC 70",
+                "PEFC Recycled",
+                "Not certified"
+              ]
+            },
+            "RecycledContentPreConsumer": {
+              "type": "number",
+              "description": "Pre-Consumer Recycled Content"
+            },
+            "RecycledContentPostConsumer": {
+              "type": "number",
+              "description": "Post-Consumer Recycled Content "
+            },
+            "CertifiedCscR": {
+              "type": "string",
+              "description": "The concrete in the product has been certified with the CSC R module.",
+              "enum": [
+                "n.v.",
+                "Level 1",
+                "Level 2",
+                "Level 3",
+                "Level 4",
+                "Not certified"
+              ]
+            },
+            "PakContentPerKg": {
+              "type": "boolean",
+              "description": "PAK content < 50 mg/kg"
+            },
+            "BaPEmissionsPerKg": {
+              "type": "boolean",
+              "description": "BaP emissions < 5,0 mg/kg"
+            },
+            "NitrosamineEmissionsPerKg": {
+              "type": "number",
+              "description": "Nitrosamine emissions [mg/kg]"
+            },
+            "NitrosamineEmissionsPerCubicMeter": {
+              "type": "number",
+              "description": "Nitrosamine Emissions [mg/m³]"
+            },
+            "AmmoniumEmissions28d": {
+              "type": "number",
+              "description": "Ammonia emissions after 28 days"
+            },
+            "LeadFree": {
+              "type": "boolean",
+              "description": "The product is free of lead compounds (< 0.1%)"
+            },
+            "CMRFree": {
+              "type": "boolean",
+              "description": "The product is free of CMR ingredients (< 0,1%)"
+            },
+            "AgBBCompliant": {
+              "type": "boolean",
+              "description": "Compliance with AgBB scheme as individual product or in a system"
+            },
+            "RelevantContributionToCost": {
+              "type": "boolean",
+              "description": "The product (usually) makes a relevant contribution to the total construction costs of a project (>0.5%)"
+            },
+            "FlowRate": {
+              "type": "number",
+              "description": "Flow rate of the water fitting"
+            },
+            "WaterConsumptionFullFlush": {
+              "type": "number",
+              "description": "Water consumption of one full flush"
+            },
+            "WaterConsumptionAverageFlush": {
+              "type": "number",
+              "description": "Water consumption of one average flush"
+            },
+            "WaterConsumptionUrinal": {
+              "type": "number",
+              "description": "Water consumption of the urinal"
+            },
+            "RalGz388Compliant": {
+              "type": "boolean",
+              "description": "RAL quality mark “Products made from mineral wool”"
+            },
+            "HbcdFree": {
+              "type": "boolean",
+              "description": "The product is free of HBCD (< 0.10%)."
+            },
+            "ConsistsOfGalvanizedSteel": {
+              "type": "boolean",
+              "description": "Product consists of galvanized Steel"
+            },
+            "TotalSolid": {
+              "type": "boolean",
+              "description": "Total Solid per assessment for mass losses"
+            },
+            "AppliedToExteriorWalls": {
+              "type": "boolean",
+              "description": "Product is applied to exterior walls"
+            },
+            "SyntheticResinScreed": {
+              "type": "boolean",
+              "description": "Product is a synthetic resin screed"
+            },
+            "DecorativeCoating": {
+              "type": "boolean",
+              "description": "The product is a decorative coating or a base coat for a decorative coating."
+            },
+            "BuildingsWithSpecialRequirements": {
+              "type": "boolean",
+              "description": "Product is used outdoors or indoors with permanently high humidity (above 65 -70% RH) such as unheated atriums, swimming pools, ice rinks, etc."
+            },
+            "RefrigerantAMEV2017": {
+              "type": "string",
+              "description": "Refrigerants according to AMEV Refrigeration 2017 Tables 3 and 4",
+              "enum": [
+                "R290",
+                "R600a",
+                "R1270",
+                "R717",
+                "R718",
+                "R744",
+                "R134a(alt)",
+                "R450A",
+                "R513A",
+                "R1233zd",
+                "R1234yf",
+                "R1234ze",
+                "R404A/R507(alt)",
+                "R448A",
+                "R449A",
+                "R454A",
+                "R454C",
+                "L-40^3",
+                "R410A(alt)",
+                "R32",
+                "R454B",
+                "HPR1D",
+                "R290"
+              ]
+            },
+            "ConsistsOfUF": {
+              "type": "boolean",
+              "description": "Product is made of UF foam"
+            },
+            "UsedTyreGranulateFree": {
+              "type": "boolean",
+              "description": "The product is free of old tire granulate (<0.1%)."
+            },
+            "PhthalateFree": {
+              "type": "boolean",
+              "description": "The product is free from phthalates classified as toxic to reproduction (< 0.1%)."
+            },
+            "TVOCEmissions28d": {
+              "type": "number",
+              "description": "TVOC Emissions after 28 days in  µg/m³"
+            },
+            "AmineOrOximecuringSiliconFree": {
+              "type": "boolean",
+              "description": "Product is free of amine- or oxime-curing silicones"
+            },
+            "IsMineralTileAdhesive": {
+              "type": "boolean",
+              "description": "The product is a purely mineral tile adhesive"
+            },
+            "IsAssemblyFoam": {
+              "type": "boolean",
+              "description": "Product is an assembly foam"
+            },
+            "CadmiumContent": {
+              "type": "number",
+              "description": "Cadmium compounds content"
+            },
+            "AppliedToFloorCoverings": {
+              "type": "boolean",
+              "description": "Product is applied to floor coverings"
+            },
+            "PMMACoating": {
+              "type": "boolean",
+              "description": "The product is a PMMA liquid coating"
+            },
+            "FormaldehydEmissions": {
+              "type": "number",
+              "description": "Formaldehyde emissions in mg/m³"
+            },
+            "SumOfCarcinogenicVOCEmissions": {
+              "type": "number",
+              "description": "Sum of all carcinogenic VOC emisions of category 1A and 1B in mg/m³"
+            },
+            "IsRenewableInsulationMaterial": {
+              "type": "boolean",
+              "description": "Insulation material made from renewable raw materials"
+            },
+            "SurfaceTreatmentAgainstMold": {
+              "type": "boolean",
+              "description": "Product has been surface-treated against moisture and mould"
+            },
+            "IsCeilingPanel": {
+              "type": "boolean",
+              "description": "The product is used as a ceiling panel."
+            },
+            "TypeOfWaterFitting": {
+              "type": "string",
+              "description": "Type of water fitting",
+              "enum": [
+                "Water-Tap",
+                "Toilet",
+                "Shower-Head",
+                "Urinal",
+                "Front-Loading-Washing-Machine",
+                "Top-Loading-Washing-Machine",
+                "Residential-Washing-Machine",
+                "Commercial-Washing-Machine",
+                "Compact-Residential-Dishwasher",
+                "Standard-Residential-Dishwasher",
+                "IMH-Batch-Ice-Makers",
+                "RCU-Batch-Ice-Makers",
+                "SCU-Batch-Ice-Makers",
+                "IMH-Continuous-Ice-Makers",
+                "RCU-Continuous-Ice-Makers",
+                "SCU-Continuous-Ice-Makers",
+                "Prerinse-Spray-Valves",
+                "Other"
+              ]
+            },
+            "IsUsedUnderCeramicTiles": {
+              "type": "boolean",
+              "description": "The product is used as a laying material for ceramic wall/floor tiles and slabs."
+            },
+            "UBACompliant": {
+              "type": "boolean",
+              "description": "The necessity of using film-protected products was justified on the basis of the UBA information sheets. (Can only be verified in the context of the project!)"
+            },
+            "IsBiodegradable": {
+              "type": "boolean",
+              "description": "The formwork oil is readily biodegradable according to OECD 301"
+            },
+            "IsInherentlyBiodegradable": {
+              "type": "boolean",
+              "description": "The formwork oil is inherently biodegradable as per OECD 302"
+            },
+            "AntimontrioxidFree": {
+              "type": "boolean",
+              "description": "The product is free of antimony trioxide (< 0.1%)."
+            },
+            "EmissionsAfter28d76": {
+              "type": "boolean",
+              "description": "The emissions measured after 28 days are below the Blue Angel (DE-UZ 76) limits."
+            },
+            "EmissionsAfter28d176": {
+              "type": "boolean",
+              "description": "Emissionen after 28 days ≤ DE-UZ 176"
+            },
+            "IsMMFFloor": {
+              "type": "boolean",
+              "description": "Product is a MMF floor"
+            },
+            "MCPPContent": {
+              "type": "number",
+              "description": "Content of MCPP (Mecoprop) compounds in the product"
+            },
+            "IsPartOfGreenRoof": {
+              "type": "boolean",
+              "description": "The product is installed in a green roof"
+            },
+            "CoveredSurfaceArea": {
+              "type": "boolean",
+              "description": "Sum of all weathered and galvanised components on the building > 100 m^2"
+            },
+            "EmissionsReductionMeasures": {
+              "type": "boolean",
+              "description": "Emission reduction measures for heavy metal input were implemented on the building"
+            },
+            "IsWeathered": {
+              "type": "boolean",
+              "description": "Product is weathered"
+            },
+            "EPDAvailable": {
+              "type": "string",
+              "description": "Type of EPD available for the product. ",
+              "enum": ["n.v.", "Industry-average EPD", "Product specific EPD"]
+            },
+            "Reduction5": {
+              "type": "boolean",
+              "description": "5% reduction in two impact categories other than the GWP of the product compared to the baseline situation"
+            },
+            "AnsiBifma2014Compliant": {
+              "type": "string",
+              "description": "The product is compliant with ANSI/BIFMA e3-2014 Furniture Sustainability Standard requirements ",
+              "enum": [
+                "n.v.",
+                "Section 7.5.1.3 (at least 3 points)",
+                "Section 7.6.1 (Furniture)",
+                "Section 7.6.2 (Furniture)"
+              ]
+            },
+            "C2CCertified": {
+              "type": "string",
+              "description": "The product is Cradle to Cradle (version 3 or later) certified",
+              "enum": ["n.v.", "bronze", "silver", "gold", "platinum"]
+            },
+            "DeclareCertified": {
+              "type": "string",
+              "description": "The product has a Declare Label",
+              "enum": [
+                "n.v.",
+                "Red List Free",
+                "LBC Red List Free",
+                "Declared",
+                "LBC Red List Approved",
+                "LBC Compliant that demonstrates content inventory to 0.1% (1000 ppm)"
+              ]
+            },
+            "FactsCertified": {
+              "type": "string",
+              "description": "Product is Facts – NSF/ANSI 336 certified",
+              "enum": ["n.v.", "compliant", "silver", "gold", "platinum"]
+            },
+            "GlobalGreenTagPHDCertified": {
+              "type": "boolean",
+              "description": "Product is certified with the Global Green TAG PHD label"
+            },
+            "HealthProductDeclarationOpenStandardCompliant": {
+              "type": "boolean",
+              "description": "The product is conform with the Health Product Declaration Open Standard"
+            },
+            "LensCertified": {
+              "type": "boolean",
+              "description": "The product has a Lens Certification"
+            },
+            "ThirdPartyVerified": {
+              "type": "boolean",
+              "description": "Product is third-party verified"
+            },
+            "ActionPlanAvailable": {
+              "type": "boolean",
+              "description": "An action plan to mitigate or reduce hazards using green chemistry is available for the product."
+            },
+            "GreenSealCertified": {
+              "type": "boolean",
+              "description": "The product is certified with the Green Seal certificate for the product category paints, coatings, stains and sealants"
+            },
+            "LivingProductChallengeCertified": {
+              "type": "boolean",
+              "description": "Product is certified with the Living Product Challenge "
+            },
+            "PurchaseArea": {
+              "type": "boolean",
+              "description": "The product is (usually) manufactured within 100 miles/160 km of the installation site"
+            },
+            "NonEmittingSource": {
+              "type": "boolean",
+              "description": "Product is an inherently nonemitting source of VOC "
+            },
+            "AmountOfContainedRecyclableMaterials": {
+              "type": "number",
+              "description": "Proportion of the product consisting of reusable materials (by mass)"
+            },
+            "AnsiBifma2019Compliant": {
+              "type": "string",
+              "description": "The product is compliant with ANSI/BIFMA e3-2019 Furniture Sustainability Standard requirements ",
+              "enum": [
+                "n.v.",
+                "Section 7.5.1.1 (Pathway 1) 4,5,7 or 8 points",
+                "Section 7.5.2.2 (Pathway 2) 3 points",
+                "Section 7.6.1 (0,5 credits, by cost)",
+                "Section 7.6.2 (1 credit, by cost)",
+                "Section 7.6.2 and 7.6.3 (1,25 credit, by cost)",
+                "Section 7.5.2.2 4 points or more",
+                "Section 7.5.1.1 4 points or more",
+                "achievement of Option 1 in credit 7.5.3",
+                "Section 7.5.1.1 (Pathway 1) 4,5,7 or 8 points and Section 7.5.2.2 (Pathway 2) 3 points"
+              ]
+            },
+            "SCMVOCLimits2007Compliant": {
+              "type": "boolean",
+              "description": "Product complies with the VOC limits from the CARB 2007 and SCM for architectural coatings"
+            },
+            "ManufacturerPartOfEPR": {
+              "type": "boolean",
+              "description": "Product was purchased from a manufacturer that participates in an Extended Producer Responsibility Programme or is directly responsible for it"
+            },
+            "IsCompositeWood": {
+              "type": "boolean",
+              "description": "The product is a composite wood product"
+            },
+            "IsBiobased": {
+              "type": "boolean",
+              "description": "Product is biobased"
+            },
+            "IsAnimalSkin": {
+              "type": "boolean",
+              "description": "Product consists of animal skin"
+            },
+            "InventoryAssessment": {
+              "type": "string",
+              "description": "Up to what level of detail were the quantities of all chemicals in the product recorded?",
+              "enum": [
+                "n.v.",
+                "0,1% equal to1000 ppm",
+                "0,01% equal to 100 ppm"
+              ]
+            },
+            "FullDeclarationAvailable": {
+              "type": "string",
+              "description": "A full declaration of product ingredients is publicly available. ",
+              "enum": [
+                "n.v.",
+                "available with all CAS numbers",
+                "available with GreenScreen List Translator Score",
+                "available with GreenScreen Benchmarks",
+                "available with Globally Harmonized System of Classification (GHS) labeling"
+              ]
+            },
+            "GreenscreenListTranslatorScoreAssesed": {
+              "type": "number",
+              "description": "Mass fraction of the product evaluated using the green screen method"
+            },
+            "GreenscreenBenchmark": {
+              "type": "string",
+              "description": "All substances in the product have been classified according to the Greenscreen Benchmark approach for safer chemicals",
+              "enum": [
+                "n.v.",
+                "Benchmark 1",
+                "Benchmark 2",
+                "Benchmark 3",
+                "Benchmark 4",
+                "Benchmark U"
+              ]
+            },
+            "GHSAvailable": {
+              "type": "boolean",
+              "description": "All substances in the product have been classified according to GHS"
+            },
+            "IsTestedForC14Content": {
+              "type": "boolean",
+              "description": "The product has been tested for its carbon 14 content per ISO 16620-2"
+            },
+            "IsPublishedIInHPDRepository": {
+              "type": "boolean",
+              "description": "Product´s health product declaration is published in HPD Repository"
+            },
+            "GreenScreenLT1Free": {
+              "type": "boolean",
+              "description": "Product is free of any hazardous substances declared according to Greenscreen List Translator (LT-)1 "
+            },
+            "GHSCategory1Free": {
+              "type": "boolean",
+              "description": "This product does not contain any substances classified as hazardous category 1 according to GHS "
+            },
+            "GreenScreenIsPublic": {
+              "type": "boolean",
+              "description": "The Greenscreen report of the product is publicly available"
+            },
+            "ContentOfGreenScreen": {
+              "type": "number",
+              "description": "Proportion of product weight assessed per the Greenscreen Method. "
+            },
+            "Imperative09Conform": {
+              "type": "boolean",
+              "description": "Product fulfils the requirements of Imperative 09 (Transparent Meterial Health) of the Living Product Challenge certification"
+            },
+            "AnnexXIVFree": {
+              "type": "boolean",
+              "description": "The product is free of substances listed in Annex XIV of the REACH Regulation "
+            },
+            "AnnexXVIIFree": {
+              "type": "boolean",
+              "description": "The product is free of substances listed in Annex XVII of the REACH Regulation "
+            },
+            "CDPHVOCCompliant": {
+              "type": "boolean",
+              "description": "The product complies with VOC limit values per the CDPH method"
+            },
+            "TVOCEmissions14d": {
+              "type": "number",
+              "description": "TVOC emissions after 14 days in  µg/m³"
+            },
+            "SCAQMDVOCLimitsCompliant": {
+              "type": "string",
+              "description": "Product is compliant with the VOC Limits of  SCAQMD Rule 1113",
+              "enum": ["n.v.", "Rule 1113", "Rule 1168"]
+            },
+            "TSCACompliant": {
+              "type": "boolean",
+              "description": "Product complies with EPA Toxic Substances Control Act (TSCA) formaldehyde emission standards for composite wood products"
+            },
+            "ACTMCompliant": {
+              "type": "boolean",
+              "description": "The product complies with the formaldehyde emission limits of the California Air Resources Board (CARB) Airborne Toxic Control Measure (ATCM)"
+            },
+            "ULEEFCertified": {
+              "type": "boolean",
+              "description": "The product is certified by the Environmental Protection Agency (EPA) as ULEF (Ultra-Low Emission Formaldehyde)."
+            },
+            "NoNAFAdded": {
+              "type": "boolean",
+              "description": "The product is certified as a product without added formaldehyde resins (NAF) by the Environmental Protection Agency (EPA)."
+            },
+            "EUEcolabelCertified": {
+              "type": "boolean",
+              "description": "Product is certified with the EU Ecolabel"
+            },
+            "AsbestosFree1000ppm": {
+              "type": "boolean",
+              "description": "Product is free of asbestos (1000ppm)"
+            },
+            "RoHSCompliant": {
+              "type": "boolean",
+              "description": "The product complies with the RoHS requirements "
+            },
+            "LeadFree100ppm": {
+              "type": "boolean",
+              "description": "Product contains less then 100 ppm lead"
+            },
+            "MercuryContentPpm": {
+              "type": "number",
+              "description": "Mercury content in ppm"
+            },
+            "LeadCarbonateSulfateFree": {
+              "type": "boolean",
+              "description": "The product is free of lead carbonates and sulfates"
+            },
+            "LPCPetalsCompliant": {
+              "type": "boolean",
+              "description": "The product is compliant with the Living Product Challenge Petals (Materials und Health + Happiness)"
+            },
+            "HealthRATECertified": {
+              "type": "string",
+              "description": "The product is HealthRATE™ mark certified",
+              "enum": ["n.v.", "SilverHEALTH", "GoldHEALTH", "PlatinumHEALTH"]
+            },
+            "PFASFree": {
+              "type": "boolean",
+              "description": "The product is Per- and polyfluoroalkyl substances (PFAS) free"
+            },
+            "ElectroProduct": {
+              "type": "boolean",
+              "description": "Is an electrical/electronic product"
+            },
+            "OrthophtalatesFree": {
+              "type": "boolean",
+              "description": "The product is free of Orthophthalates "
+            },
+            "UsedForDrinkingWaterDistribution": {
+              "type": "boolean",
+              "description": "Product is used for drinking water supply and distribution"
+            },
+            "ForDrinkingWaterGovernmentApproved": {
+              "type": "boolean",
+              "description": "The product is approved for use with drinking water"
+            },
+            "EULCICompliant": {
+              "type": "boolean",
+              "description": "The product is compliant with the EU LCI VOC thresholds "
+            },
+            "ByggvarubedömningenCompliant": {
+              "type": "string",
+              "description": "The product is classified according to the Byggvarubedömningen criterion",
+              "enum": ["n.v.", "recommended", "accepted", "to be avoided"]
+            },
+            "IngredientsThirdPartyVerified": {
+              "type": "boolean",
+              "description": "Ingredient disclosure is verified by a third party"
+            },
+            "MaterialHealthCertified": {
+              "type": "string",
+              "description": "Product has Material Health Certificate (version 3 or later)",
+              "enum": ["n.v.", "bronze", "silver", "gold", "platinum"]
+            },
+            "LCAActionPlanAvailable": {
+              "type": "boolean",
+              "description": "An Embodied carbon or LCA Action plan is available to minimize the CO2 emissions of the product"
+            },
+            "GWPReduction": {
+              "type": "number",
+              "description": "Reduction of the GWP of the product in % compared to a conventional reference product"
+            },
+            "WetLeadFree": {
+              "type": "boolean",
+              "description": "The product is or will get wet and has a maxinum lead content of 0,25%"
+            },
+            "AsbestFree": {
+              "type": "boolean",
+              "description": "The product is free of asbestos"
+            },
+            "PCBFree": {
+              "type": "boolean",
+              "description": "The product is free of Polychlorinated Biphenyl (PCB)"
+            },
+            "ANSIA1901Compliant": {
+              "type": "boolean",
+              "description": "The product is compliant with the ANSI A190.1 standard for glued laminated timber"
+            },
+            "ANSIPRG320Compliant": {
+              "type": "boolean",
+              "description": "The product conforms to the ANSI PRG 320 standard for cross laminated timber"
+            },
+            "ANSINSF372Complaint": {
+              "type": "boolean",
+              "description": "The product is compliant with the ANSI NSF 372 standard for low lead content in plumbing products"
+            },
+            "ASTDMD866TestMethodCompliant": {
+              "type": "boolean",
+              "description": "The product is compliant with the American Society for Testing and Materials (ASTM) D6866 test method"
+            },
+            "ASTMD5456Compliant": {
+              "type": "boolean",
+              "description": "The product is compliant with the American Society for Testing and Materials (ASTM) D5456 Standard for Structural Composite lumber"
+            },
+            "ASTMD5055Compliant": {
+              "type": "boolean",
+              "description": "The product is compliant with the American Society for Testing and Materials (ASTM) D 5055 standard for I-joists"
+            },
+            "PS2015Compliant": {
+              "type": "boolean",
+              "description": "The product is conform to the PS 20-15 standard for finger-jointed lumber"
+            },
+            "PS109Compliant": {
+              "type": "string",
+              "description": "The product is compliant with the PS 1-09 standard for structural plywood",
+              "enum": ["n.v.", "Exterior", "Exposure 1"]
+            },
+            "PS210Compliant": {
+              "type": "boolean",
+              "description": "The product is compliant with the PS 2-10 standard for wood based- structural use-panels and is Exposure 1 certified"
+            },
+            "IsUsedInWetRooms": {
+              "type": "boolean",
+              "description": "Product is used in wet rooms"
+            },
+            "ProtectsAgainstMoldGrowth": {
+              "type": "boolean",
+              "description": "Product protects against mold growth"
+            },
+            "EN16402Measured": {
+              "type": "boolean",
+              "description": "The emission limit values of the product were measured in accordance with EN 16402 "
+            },
+            "ISO16009Measured": {
+              "type": "boolean",
+              "description": "The emission limit values of the product were measured in accordance with ISO 16000-9 "
+            },
+            "DINEN16516Measured": {
+              "type": "boolean",
+              "description": "The emission limit values of the product were measured in accordance with DIN EN 16516 "
+            },
+            "CDPHMeasured": {
+              "type": "boolean",
+              "description": "The emission limits of the product were measured according to CDPH Standard Method v 1.1 "
+            },
+            "EN7171Measured": {
+              "type": "boolean",
+              "description": "The emission limit values of the product were measured in accordance with EN 717-1 (formaldehyde emissions only) "
+            },
+            "ISO105809Measured": {
+              "type": "boolean",
+              "description": "The emission limit values of the product were measured according to ISO 10580-9 "
+            },
+            "EN13999Part1To4Measured": {
+              "type": "boolean",
+              "description": "The emission limit values of the product were measured in accordance with EN 13999 (Part 1-4)"
+            },
+            "VOCAgBBConform": {
+              "type": "boolean",
+              "description": "The product complies with the VOC emissions and the test method according to AgBB "
+            },
+            "IsCustomMade": {
+              "type": "boolean",
+              "description": "The product is custom made"
+            },
+            "SCMVOCLimits2019Compliant": {
+              "type": "boolean",
+              "description": "Product complies with the VOC limits from the CARB 2019 and SCM for architectrual coatings"
+            },
+            "FormaldehydeE1Compliant": {
+              "type": "boolean",
+              "description": "The product complies with EU emission class E1"
+            },
+            "Japan4StarFormaldehydeCompliant": {
+              "type": "boolean",
+              "description": "The product complies with the formaldehyde emission limits for a 4 star rating from the JIS A 1460 (2006) - Japanese standard"
+            },
+            "FactoryCoated": {
+              "type": "boolean",
+              "description": "The product is coated at the factory"
+            },
+            "InstalledUnderFloorCoverings": {
+              "type": "boolean",
+              "description": "The product is installed under floor coverings "
+            },
+            "GB33372AdhesivesCompliant": {
+              "type": "boolean",
+              "description": "The product is compliant with the National standard: GB 33372-2020 (adhesives) of the peoples republic of china "
+            },
+            "HJ2537PaintsCompliant": {
+              "type": "boolean",
+              "description": "The product is compliant with the National standard: HJ 2537-2014 (paints) of the peoples republic of china "
+            },
+            "IsSiliconBasedAdhesive": {
+              "type": "boolean",
+              "description": "Product is a silicon-based adhesive"
+            },
+            "IsAcrylateBasedAdhesive": {
+              "type": "boolean",
+              "description": "Product is an acrylate-based adhesive"
+            },
+            "ContentRecycledAggregates": {
+              "type": "number",
+              "description": "Percentage of recycled aggregates in the product"
+            },
+            "MaterialIngredients": {
+              "type": "boolean",
+              "description": "Should this product be assessed per the category Material Ingredients?"
+            },
+            "LowEmittingMaterials": {
+              "type": "boolean",
+              "description": "Should this product be assessed per the category Low-Emitting Materials?"
+            },
+            "EPD": {
+              "type": "boolean",
+              "description": "An environmental product declaration (EPD) is available  for the product."
+            },
+            "SourcingRawMaterials": {
+              "type": "boolean",
+              "description": "Should this product be assessed per the category Sourcing of Raw Materials?"
+            },
+            "MaterialIngredientOptimization": {
+              "type": "boolean",
+              "description": "Should the product be assessed per the category Material Ingredient Optimization?"
+            },
+            "IsBagged": {
+              "type": "boolean",
+              "description": "The product is in powder form (bagged). "
+            },
+            "PreservativeFree": {
+              "type": "boolean",
+              "description": "The product is free of preservatives per VdL-RL01"
+            },
+            "EUTimberRegulationCompliance": {
+              "type": "boolean",
+              "description": "The product has been proven to have been legally felled and traded in accordance with the EU Timber Regulation (EUTR) No. 995/2010"
+            },
+            "CARES": {
+              "type": "boolean",
+              "description": "The steel in the product is CARES certified."
+            },
+            "ASICertified": {
+              "type": "boolean",
+              "description": "The aluminium in the product is ASI-certified."
+            },
+            "ContentSecondaryAggregates": {
+              "type": "number",
+              "description": "Percentage of secondary aggregates in the product"
+            },
+            "MaterialsOptimization": {
+              "type": "boolean",
+              "description": "Should this product be assessed per the feature Materials Optimization (WELL X08)?"
+            },
+            "EnhancedMaterialRestrictions": {
+              "type": "boolean",
+              "description": "Should this product be assessed per the feature Enhanced Material Restrictions (WELL X05)?"
+            },
+            "VocRestrictions": {
+              "type": "boolean",
+              "description": "Should this product be assessed per the feature VOC Restrictions (X06)?"
+            },
+            "MaterialsTransparency": {
+              "type": "boolean",
+              "description": "Should this product be assessed per the feature Materials Transparency (WELL X07)?"
+            },
+            "ReusedContent": {
+              "type": "number",
+              "description": "Proportion of directly reused materials in the product (includes salvaged, refurbished, and reused)"
+            },
+            "ETACompliant": {
+              "type": "boolean",
+              "description": "Product has a performance certificate based on a European Technical Assessment (ETA)"
+            },
+            "UsedOnGreenRoofStructures": {
+              "type": "boolean",
+              "description": "Product is used on green roof structures"
+            },
+            "AppliedToWood": {
+              "type": "boolean",
+              "description": "The product is applied to wood"
+            },
+            "AppliedToPlastic": {
+              "type": "boolean",
+              "description": "The product is applied to plastics"
+            },
+            "UsedInBuildingShell": {
+              "type": "boolean",
+              "description": "The product is used in the building shell"
+            },
+            "UsedForJoints": {
+              "type": "boolean",
+              "description": "The product is used for the installation of joints in ETICS according to abZ"
+            },
+            "IsCoated": {
+              "type": "boolean",
+              "description": "The product is coated"
+            },
+            "GuidelineUBA1705": {
+              "type": "boolean",
+              "description": "There is evidence of erosion according to guideline UBA 17/05 for the product"
+            },
+            "IsCementMortar": {
+              "type": "boolean",
+              "description": "The product is cement mortar"
+            },
+            "IsSanitaryPartition": {
+              "type": "boolean",
+              "description": "The product is a sanitary partition"
+            },
+            "IsWetCoating": {
+              "type": "boolean",
+              "description": "The product is a wet coating"
+            },
+            "TinFree": {
+              "type": "boolean",
+              "description": "The product is free of tin (content < 0,1%)"
+            },
+            "CadmiumFree": {
+              "type": "boolean",
+              "description": "The product is free of cadmium (< 0,1%)"
+            },
+            "UsedInFacadeOrRoof": {
+              "type": "boolean",
+              "description": "The product is used as a glue for insulation in the facade or roof of a building."
+            },
+            "connectionType": {
+              "type": "string",
+              "description": "Detachability - Type of connection",
+              "enum": [
+                "Unknown",
+                "HardChemicalConnection",
+                "SoftChemicalConnection",
+                "DirectConnection",
+                "AddedConnectionConnection",
+                "DryConnection"
+              ]
+            },
+            "epdProgramOperator": {
+              "type": "string",
+              "description": "EPD programme operator",
+              "enum": [
+                "IBU",
+                "PEPecopassport",
+                "Environdec",
+                "EpdNorge",
+                "BRE",
+                "EpdDanmark",
+                "EpdItaly",
+                "GlobalEpd",
+                "ITB",
+                "Kiwa",
+                "RTS",
+                "MRPI",
+                "BauEPD",
+                "DAPcons",
+                "DAPhabitat",
+                "EpdIreland",
+                "IftRosenheim",
+                "SUEGB",
+                "EpdChina",
+                "GlobalGreenTag",
+                "ZAG"
+              ]
+            },
+            "UBAZincProof": {
+              "type": "boolean",
+              "description": "Proof of water run-off according to UBA 17/05 exists"
+            },
+            "LayingMaterialSpecial": {
+              "type": "boolean",
+              "description": "Product is used as a laying material with special requirements"
+            },
+            "RainwaterFiltrationSystems": {
+              "type": "boolean",
+              "description": "Installation of Rainwater filtration systems at a copper and zinc surface > 50 m²"
+            },
+            "WaterBased": {
+              "type": "boolean",
+              "description": "The product is water-based"
+            },
+            "EmissionLimitsMeasured": {
+              "type": "string",
+              "description": "The emission limit values of the product were measured in accordance with a standardized method",
+              "enum": [
+                "n.v.",
+                "CDPH Standard Method v1.1",
+                "DIN EN 16516",
+                "EN 16402",
+                "EN 717-1",
+                "EN 13999 (Part 1-4)",
+                "ISO 16000-9",
+                "ISO 10580-9"
+              ]
+            },
+            "MaterialCoveringSurfaceNonTiles": {
+              "type": "boolean",
+              "description": " Product is used as a laying material for the manufacture of finished floor elements (e.g., hollow floors)."
+            },
+            "IsWoodBasedPanel": {
+              "type": "boolean",
+              "description": "The product is a wood-based panel according to EN 13986"
+            },
+            "UsedInEtics": {
+              "type": "boolean",
+              "description": "The product is used as an insulation material in ETICS"
+            },
+            "BlueAngelAvailable": {
+              "type": "boolean",
+              "description": "The product has a Blue Angel certification"
+            },
+            "DecorativeWoodCoating": {
+              "type": "boolean",
+              "description": "The product is used as a coating for wooden surfaces"
+            },
+            "CarcinogenicEmissionsFree": {
+              "type": "boolean",
+              "description": "The product emits < 0.01 mg/m³ of carcinogenic chemicals after 28 days."
+            },
+            "WoodApplicationClassInSitu": {
+              "type": "string",
+              "description": "To which wood use class according to DIN 68800-3 is the product applied?",
+              "enum": ["n.v.", "0", "1", "2", "3", "3.1", "3.2", "4", "5"]
+            },
+            "FilmprotectedWoodCoating": {
+              "type": "boolean",
+              "description": "The product contains film protectants (i.e., biocides that are not used for can preservation)"
+            },
+            "ZincBathLeadContent": {
+              "type": "boolean",
+              "description": "Lead content of the zinc coating < 0.1% or lead content of the zinc bath < 0.2%"
+            },
+            "UsedAsAGlue": {
+              "type": "boolean",
+              "description": "Product is used as glue under flooring"
+            },
+            "FreeOfPlasticisers": {
+              "type": "boolean",
+              "description": "The product is free of plasticizers (< 0.1%)"
+            },
+            "AssemblyFoamUsedInEtics": {
+              "type": "boolean",
+              "description": "The product is a mounting foam and is used for bonding ETICS."
+            },
+            "AppliedInThermalHull": {
+              "type": "boolean",
+              "description": "The product is used outdoors on the thermal envelope."
+            },
+            "ConsistsOfPolyethylene": {
+              "type": "boolean",
+              "description": "The product is made of polyethylene (PE)."
+            },
+            "ConsistsOfWoodBasedComponents": {
+              "type": "boolean",
+              "description": "The product consists (in part) of wood-based materials."
+            },
+            "BlueAngel12aOrEquivalent": {
+              "type": "boolean",
+              "description": "The product is certified with the Blue Angel (12a) or complies with the relevant certification guidelines."
+            },
+            "FormworkOilVocContentPercent": {
+              "type": "number",
+              "description": "VOC content (%) of the formwork oil"
+            },
+            "ProducedWithFormworkOil": {
+              "type": "boolean",
+              "description": "A formwork oil has been used to produce this product"
+            },
+            "FormworkOilGiscode": {
+              "type": "string",
+              "description": "GISCODE of the formwork oil",
+              "enum": [
+                "BTM01",
+                "BTM05",
+                "BTM10",
+                "BTM15",
+                "BTM20",
+                "BTM30",
+                "BTM40",
+                "BTM50",
+                "BTM60",
+                "BTM70"
+              ]
+            },
+            "BiocidesEncapsulated": {
+              "type": "boolean",
+              "description": "The film protection in the product is produced exclusively using encapsulated biocides."
+            },
+            "AppliedToWoodenFloorCoverings": {
+              "type": "boolean",
+              "description": "The product is applied as a surface coating on wooden floors and stairs."
+            },
+            "UsedAsInsulationAdhesive": {
+              "type": "boolean",
+              "description": " The product is used for gluing insulation materials to facades or roofs."
+            },
+            "UsedAsLinearAdhesive": {
+              "type": "boolean",
+              "description": "The product is used for making point and line-shaped bonds or seals."
+            },
+            "MecopropFree": {
+              "type": "boolean",
+              "description": "The product is free from root growth inhibitors such as mecoprop."
+            },
+            "ConsistsOfMs": {
+              "type": "boolean",
+              "description": "The product consists of MS polymers."
+            },
+            "DecorativeLaquer": {
+              "type": "boolean",
+              "description": "The product is a decorative glaze, lacquer coating, or primer."
+            },
+            "ConsistsOfPS": {
+              "type": "boolean",
+              "description": "The product is made of polystyrene (PS, EPS, XPS, etc.)."
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "assessmentResults": {
+          "type": "object",
+          "description": "This object includes the assessment results per green building system.",
+          "properties": {
+            "BNB": {
+              "type": "array",
+              "description": "Bewertungssystem Nachhaltiges Bauen.",
+              "items": {
+                "type": "object",
+                "description": "Each object includes a specific result type and its result value.",
+                "properties": {
+                  "resultTypeId": {
+                    "type": "string",
+                    "enum": ["BNB_1.1.6"]
+                  },
+                  "result": {
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["resultTypeId", "result"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "BREEAM_DE_NB": {
+              "type": "array",
+              "description": "BREEAM (Building Research Establishment Environmental Assessment Method) DE New Construction 2018.",
+              "items": {
+                "type": "object",
+                "description": "Each object includes a specific result type and its result value.",
+                "properties": {
+                  "resultTypeId": {
+                    "type": "string",
+                    "enum": [
+                      "BREEAM_DE_18_HEA02",
+                      "BREEAM_DE_18_HEA02_01",
+                      "BREEAM_DE_18_MAN03",
+                      "BREEAM_DE_18_MAT01",
+                      "BREEAM_DE_18_MAT03",
+                      "BREEAM_DE_18_WST02"
+                    ]
+                  },
+                  "result": {
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["resultTypeId", "result"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "DGNB18": {
+              "type": "array",
+              "description": "Deutsche Gesellschaft für Nachhaltiges Bauen 2018.",
+              "items": {
+                "type": "object",
+                "description": "Each object includes a specific result type and its result value.",
+                "properties": {
+                  "resultTypeId": {
+                    "type": "string",
+                    "enum": ["DGNB18_ENV12", "DGNB18_ENV131", "DGNB18_ENV132"]
+                  },
+                  "result": {
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["resultTypeId", "result"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "DGNB23": {
+              "type": "array",
+              "description": "Deutsche Gesellschaft für Nachhaltiges Bauen 2023.",
+              "items": {
+                "type": "object",
+                "description": "Each object includes a specific result type and its result value.",
+                "properties": {
+                  "resultTypeId": {
+                    "type": "string",
+                    "enum": ["DGNB23_ENV1.2", "DGNB23_ENV131", "DGNB23_ENV132"]
+                  },
+                  "result": {
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["resultTypeId", "result"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "EUTAX23": {
+              "type": "array",
+              "description": "EU taxonomy - key contribution: climate protection (2023).",
+              "items": {
+                "type": "object",
+                "description": "Each object includes a specific result type and its result value.",
+                "properties": {
+                  "resultTypeId": {
+                    "type": "string",
+                    "enum": [
+                      "EU_TAX23_DNSH_Pollution_23",
+                      "EU_TAX23_DNSH_Water_23"
+                    ]
+                  },
+                  "result": {
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["resultTypeId", "result"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "EUTAX24": {
+              "type": "array",
+              "description": "EU taxonomy - key contribution: climate protection (2024).",
+              "items": {
+                "type": "object",
+                "description": "Each object includes a specific result type and its result value.",
+                "properties": {
+                  "resultTypeId": {
+                    "type": "string",
+                    "enum": ["EU_TAX_DNSH_Pollution", "EU_TAX_DNSH_Water"]
+                  },
+                  "result": {
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["resultTypeId", "result"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "LEED ": {
+              "type": "array",
+              "description": "LEED (Leadership in Energy and Environmental Design) BD + C: Core and Shell.",
+              "items": {
+                "type": "object",
+                "description": "Each object includes a specific result type and its result value.",
+                "properties": {
+                  "resultTypeId": {
+                    "type": "string",
+                    "enum": [
+                      "EPD1_4.1",
+                      "EPD2_4.1",
+                      "IEQ_4.1",
+                      "MIO1_4.1",
+                      "MIO2_4.1",
+                      "SRM_4.1"
+                    ]
+                  },
+                  "result": {
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["resultTypeId", "result"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "QNG23": {
+              "type": "array",
+              "description": "QNG (Qualitätssiegel Nachhaltiges Gebäude) 2023",
+              "items": {
+                "type": "object",
+                "description": "Each object includes a specific result type and its result value.",
+                "properties": {
+                  "resultTypeId": {
+                    "type": "string",
+                    "enum": ["QNG313"]
+                  },
+                  "result": {
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["resultTypeId", "result"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "WELL": {
+              "type": "array",
+              "description": "WELL Building Standard.",
+              "items": {
+                "type": "object",
+                "description": "Each object includes a specific result type and its result value.",
+                "properties": {
+                  "resultTypeId": {
+                    "type": "string",
+                    "enum": [
+                      "WE_Pre_X02_v2",
+                      "WELL_Opti_v2",
+                      "WELL_Opti_X05_v2",
+                      "WELL_Opti_X06_v2",
+                      "WELL_Opti_X07_v2",
+                      "WELL_Pre_X01_v2"
+                    ]
+                  },
+                  "result": {
+                    "type": ["integer", "null"],
+                    "description": "Result of an assessment. If no requirements apply the result value is null."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["resultTypeId", "result"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    }
+  },
+  "$ref": "#/$defs/data"
+}

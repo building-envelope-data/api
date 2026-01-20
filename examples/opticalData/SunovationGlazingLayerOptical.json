@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "wavelength": 430
+            }
+          },
+          "emergence": {
+            "direction": {
+              "polar": 8
+            }
+          },
+          "results": {
+            "transmittance": 0.32,
+            "reflectance": 0.015
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "wavelength": 540
+            }
+          },
+          "emergence": {
+            "direction": {
+              "polar": 8
+            }
+          },
+          "results": {
+            "transmittance": 0.32,
+            "reflectance": 0.015
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "wavelength": 570
+            }
+          },
+          "emergence": {
+            "direction": {
+              "polar": 8
+            }
+          },
+          "results": {
+            "transmittance": 0.32,
+            "reflectance": 0.015
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "wavelength": 430
+            }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": 0.32,
+            "reflectance": 0.14
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "wavelength": 540
+            }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": 0.32,
+            "reflectance": 0.14
+          }
+        },
+        {
+          "incidence": {
+            "direction": {
+              "polar": 8
+            },
+            "wavelengths": {
+              "wavelength": 570
+            }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": 0.32,
+            "reflectance": 0.14
+          }
+        }
+      ]
+    }
+  ]
+}

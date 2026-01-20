@@ -1,0 +1,102 @@
+{
+  "fixedHeight": "text",
+  "fixedArea": "text",
+  "functionalUnit": true,
+  "defaultFunctionalUnitAmount": "text",
+  "lifespan": "text",
+  "density": "text",
+  "weight": "text",
+  "circularity": {
+    "noCircularityInformation": "text",
+    "feedstock": {
+      "renewables": true,
+      "renewablesSustainablyProduced": true,
+      "notRenewables": true,
+      "reused": true,
+      "recycled": true,
+      "recyclingEfficiency": true
+    },
+    "detachability": {
+      "connectionType": 1,
+      "connectionTypeDetail": 1,
+      "accessibility": 1,
+      "intersection": 1,
+      "productEdge": 1
+    },
+    "output": {
+      "availableForReuse": true,
+      "availableForRecycle": true,
+      "recyclingEfficiency": true,
+      "landfill": true,
+      "incineration": true
+    }
+  },
+  "lifeCycleAssessment": [
+    {
+      "isoCode": 1,
+      "owner": 1,
+      "referenceYear": "text",
+      "validUntilYear": "text",
+      "datasetType": 1,
+      "environmentalCostIndicator": "text",
+      "UUID": 123123,
+      "version": 12341234,
+      "compliance": "EN 15804+A2",
+      "phases": [
+        {
+          "phaseId": "A1_A3",
+          "EN15804_2012_A2_2019": {
+            "globalWarmingPotentialTotal": true,
+            "globalWarmingPotentialFossil": true,
+            "globalWarmingPotentialBiogenic": true,
+            "globalWarmingPotentialLuluc": true,
+            "ozoneDeplationPotential": true,
+            "acidificationPotentialAccumulatedExceedance": true,
+            "eutrophicationPotentialFreshWater": true,
+            "eutrophicationPotentialMarineWater": true,
+            "eutrophicationTerrestrial": true,
+            "photoOxidantCreationPotential": true,
+            "abioticDeplationNonFossile": true,
+            "abioticDeplationFossile": true,
+            "waterUseDeprivationPotential": true,
+            "potentialIncidenceOfDiseaseDueToPMEmissions": true,
+            "potentialHumanExposureEfficiencyRelativeToU235": true,
+            "ecoTox": true,
+            "humanToxCancer": true,
+            "humanToxNonCancer": true,
+            "potentialSoilQualityIndex": true,
+            "pere": true,
+            "perm": true,
+            "pert": true,
+            "penre": true,
+            "penrm": true,
+            "penrt": true,
+            "sm": true,
+            "rsf": true,
+            "nrsf": true,
+            "fw": true,
+            "hwd": true,
+            "nhwd": true,
+            "rwd": true,
+            "mfr": true,
+            "mer": true,
+            "eee": true,
+            "ete": true
+          }
+        },
+        {
+          "phaseId": "Text",
+          "EN15804_2012_A2_2019": {
+            "globalWarmingPotentialTotal": 1
+          }
+        },
+        {
+          "phaseId": "C4",
+          "Text": {
+            "globalWarmingPotentialTotal": 1
+          }
+        }
+      ]
+    }
+  ]
+}

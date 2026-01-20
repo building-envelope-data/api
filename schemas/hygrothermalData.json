@@ -1,37 +1,226 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/hygrothermalData.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/hygrothermalData.json",
   "title": "hygrothermal data",
   "description": "Hygrothermal data which can be used for hygrothermal simulations. Humidity needs to be handled properly to create sustainable buildings with high comfort.",
   "$defs": {
     "data": {
-      "title": "The hygrothermal data of a component.",
+      "title": "Hygrothermal data of a component",
+      "description": "A schema including all hygrothermal properties which are currently relevant for Architecture, Engineering and Construction.",
       "type": "object",
       "properties": {
-        "WUFI": {
-          "title": "Hgrothermal data from the database of WUFI.de.",
-          "type": "object",
-          "properties": {
-            "id": {
-              "$ref": "identifier.json#/$defs/decentral",
-              "description": "The id represents the hygrothermal data set."
+        "thermalConductivityDry": {
+          "$ref": "number.json#/$defs/wattPerMeterKelvin",
+          "description": "The heat conductivity of the material in dry condition and at 10°C. (ASTM C518, ASTM D5335, DIN EN 12664, DIN EN 12667)"
+        },
+        "bulkDensity": {
+          "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+          "description": "The ratio of the mass of the sample and the total volume (including pore volume) of the material (reference: ASTM D2395, ASTM D792)"
+        },
+        "porosity": {
+          "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+          "description": "The amount of pore volume which is accessible to water (either as liquid or as vapor)"
+        },
+        "specificHeatCapacity": {
+          "$ref": "number.json#/$defs/joulePerKilogramKelvin",
+          "description": "The specific heat capacity by mass of the dry material (ASTM D5334, ISO 24144)"
+        },
+        "waterVaporDiffusionResistanceFactor": {
+          "$ref": "number.json#/$defs/nonNegativeNumber",
+          "description": "The diffusion resistance factor (µ-value) of the material in dry condition. The µ-value states by how much the diffusion resistance of the material in question is higher than that of stagnant air."
+        },
+        "referenceWaterContent": {
+          "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+          "description": "The specific moisture level in a material used as a standard or baseline for various testing and comparison purposes."
+        },
+        "freeWaterSaturation": {
+          "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+          "description": "The amount of water of a capillary-active material it will take up in contact with water. Not the maximum water saturation, which regard water that additionally can be absorbed via vapor diffusion and condensation, regarding the porosity, until completely filled pores."
+        },
+        "waterAbsorptionCoefficient": {
+          "$ref": "number.json#/$defs/kilogramPerSquareMeterAndSquareRootSeconds",
+          "description": "The amount of water a material can absorb over time (ASTM C1794, DIN EN ISO 15148)"
+        },
+        "moistureDependentConductivitySupplement": {
+          "$ref": "number.json#/$defs/percentPerMassPercent",
+          "description": "The supplement gives the fractional increase [in %] of the heat conductivity per mass-% moisture if a simple linear dependence of the heat conductivity on moisture content is sufficient."
+        },
+        "temperatureDependentConductivitySupplement": {
+          "$ref": "number.json#/$defs/wattPerMeterSquareKelvin",
+          "description": "Describes the supplement of heat conductivity in dependence to the material temperature, if a simple linear dependence is sufficient."
+        },
+        "typicalBuildInMoisture": {
+          "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+          "description": "The inherent moisture content present in materials during construction, originating from sources like manufacturing processes, environmental exposure, or water used in installation."
+        },
+        "thermalEmissivity": {
+          "$ref": "number.json#/$defs/nonNegativeNumber",
+          "description": "Typically the hemispherical long-wave radiation emissivity of the dry material surface (ASTM E408)"
+        },
+        "thermalAbsorptivity": {
+          "$ref": "number.json#/$defs/nonNegativeNumber",
+          "description": "The fraction of the total (i.e., visible and non-visible) solar radiation incident on the component surface which is absorbed (ASTM E903)"
+        },
+        "sorptionIsotherm": {
+          "type": "array",
+          "description": "In a porous hygroscopic material, the specific equilibrium moisture content corresponding to the humidity of the ambient air. Also known as moisture storage function (ASTM C1498). Free water saturation is at 100% relative humidity. Higher water content at 100% relative humidity is possible up to maximum water saturation and completely filled pores",
+          "items": {
+            "type": "object",
+            "properties": {
+              "relativeHumidityAbsolute": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Is the percentage of moisture in the air compared to the maximum amount the air can hold at a given temperature expressed with an absolute value (1 = 100%)"
+              },
+              "waterContent": {
+                "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                "description": "The amount of water present within a material"
+              }
             },
-            "description": {
-              "type": "string",
-              "description": "An explanation with more details about the hygrothermal data in natural language."
-            },
-            "dataFormat": {
-              "$ref": "common.json#/$defs/webAddress",
-              "description": "The web address provides a definition of the format of the 'xmlData'."
-            },
-            "xmlData": {
-              "$ref": "string.json#/$defs/extensibleMarkupLanguageDocument",
-              "description": "Hygrothermal data in Extensible Markup Language (XML) format in the exact data format specified by the property 'formatting'."
-            }
+            "additionalProperties": false,
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": ["relativeHumidityAbsolute", "waterContent"]
           },
-          "additionalProperties": false,
-          "minProperties": 1,
-          "required": ["xmlData"]
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "liquidTransportCoefficientSuction": {
+          "type": "array",
+          "description": "Describes the capillary uptake of water when the imbibing surface is fully wetted. The suction transport is dominated by the larger capillaries, since their lower capillary tension is more than compensated by their markedly lower flow resistance.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "waterContent": {
+                "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                "description": "The amount of water present within a material"
+              },
+              "liquidTransportCoefficient": {
+                "$ref": "number.json#/$defs/squareMeterPerSecond",
+                "description": "The capillary uptake of water when the imbibing surface is fully wetted."
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": ["waterContent", "liquidTransportCoefficient"]
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "liquidTransportCoefficientRedistribution": {
+          "type": "array",
+          "description": "Describes the spreading of the imbibed water when the wetting is finished, no new water is taken up any more and the water present in the material is redistributing. The redistribution is dominated by the smaller capillaries since their higher capillary tension draws the water out of the larger capillaries.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "waterContent": {
+                "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                "description": "The amount of water present within a material"
+              },
+              "liquidTransportCoefficient": {
+                "$ref": "number.json#/$defs/squareMeterPerSecond",
+                "description": "The spreading of the imbibed water when the wetting is finished, no new water is taken up any more and the water present in the material is redistributing"
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": ["waterContent", "liquidTransportCoefficient"]
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "thermalConductivityMoistureDependent": {
+          "type": "array",
+          "description": "The dependence of the heat conductivity on the moisture content.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "waterContent": {
+                "$ref": "number.json#/$defs/kilogramPerCubicMeter",
+                "description": "The amount of water present within a material"
+              },
+              "thermalConductivity": {
+                "$ref": "number.json#/$defs/wattPerMeterKelvin",
+                "description": "Is the measure of a material's ability to conduct heat"
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": ["waterContent", "thermalConductivity"]
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "thermalConductivityTemperatureDependent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "temperature": {
+                "$ref": "number.json#/$defs/kelvin",
+                "description": "Is a measure of the thermal energy within a substance, reflecting how hot or cold it is."
+              },
+              "thermalConductivity": {
+                "$ref": "number.json#/$defs/wattPerMeterKelvin",
+                "description": "Is the measure of a material's ability to conduct heat"
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": ["temperature", "thermalConductivity"]
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "waterVaporDiffusionResistanceFactorMoistureDependent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "relativeHumidityAbsolute": {
+                "$ref": "number.json#/$defs/percentDecimalBetweenZeroAndOne",
+                "description": "Is the percentage of moisture in the air compared to the maximum amount the air can hold at a given temperature expressed with an absolute value (1 = 100%)"
+              },
+              "diffusionResistanceFactor": {
+                "$ref": "number.json#/$defs/nonNegativeNumber",
+                "description": "The value describes a material's resistance to the movement of water vapor through it"
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": [
+              "relativeHumidityAbsolute",
+              "diffusionResistanceFactor"
+            ]
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "enthalpyTemperatureDependent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "temperature": {
+                "$ref": "number.json#/$defs/kelvin",
+                "description": "Is a measure of the thermal energy within a substance, reflecting how hot or cold it is."
+              },
+              "enthalpy": {
+                "$ref": "number.json#/$defs/joulePerKilogram",
+                "description": "Is a thermodynamic property that represents the total heat content of a system, encompassing both internal energy and the product of pressure and volume."
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 2,
+            "maxProperties": 2,
+            "required": ["temperature", "enthalpy"]
+          },
+          "minItems": 0,
+          "uniqueItems": true
         }
       },
       "additionalProperties": false,

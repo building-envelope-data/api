@@ -1,0 +1,145 @@
+{
+  "compliance": {
+    "productType": "01010101",
+    "assessmentResults": {
+      "QNG23": [
+        {
+          "resultTypeId": "QNG313",
+          "result": null
+        }
+      ],
+      "BNB": [
+        {
+          "resultTypeId": "BNB_1.1.6",
+          "result": null
+        }
+      ],
+      "EUTAX24": [
+        {
+          "resultTypeId": "EU_TAX_DNSH_Water",
+          "result": null
+        },
+        {
+          "resultTypeId": "EU_TAX_DNSH_Pollution",
+          "result": null
+        }
+      ],
+      "EUTAX23": [
+        {
+          "resultTypeId": "EU_TAX23_DNSH_Water_23",
+          "result": null
+        },
+        {
+          "resultTypeId": "EU_TAX23_DNSH_Pollution_23",
+          "result": null
+        }
+      ],
+      "DGNB23": [
+        {
+          "resultTypeId": "DGNB23_ENV132",
+          "result": null
+        },
+        {
+          "resultTypeId": "DGNB23_ENV131",
+          "result": null
+        },
+        {
+          "resultTypeId": "DGNB23_ENV1.2",
+          "result": null
+        }
+      ],
+      "LEED ": [
+        {
+          "resultTypeId": "SRM_4.1",
+          "result": null
+        },
+        {
+          "resultTypeId": "MIO2_4.1",
+          "result": null
+        },
+        {
+          "resultTypeId": "MIO1_4.1",
+          "result": null
+        },
+        {
+          "resultTypeId": "IEQ_4.1",
+          "result": null
+        },
+        {
+          "resultTypeId": "EPD2_4.1",
+          "result": null
+        },
+        {
+          "resultTypeId": "EPD1_4.1",
+          "result": null
+        }
+      ],
+      "WELL": [
+        {
+          "resultTypeId": "WE_Pre_X02_v2",
+          "result": null
+        },
+        {
+          "resultTypeId": "WELL_Pre_X01_v2",
+          "result": null
+        },
+        {
+          "resultTypeId": "WELL_Opti_X07_v2",
+          "result": null
+        },
+        {
+          "resultTypeId": "WELL_Opti_X06_v2",
+          "result": null
+        },
+        {
+          "resultTypeId": "WELL_Opti_X05_v2",
+          "result": null
+        },
+        {
+          "resultTypeId": "WELL_Opti_v2",
+          "result": null
+        }
+      ],
+      "BREEAM_DE_NB": [
+        {
+          "resultTypeId": "BREEAM_DE_18_WST02",
+          "result": null
+        },
+        {
+          "resultTypeId": "BREEAM_DE_18_MAT03",
+          "result": null
+        },
+        {
+          "resultTypeId": "BREEAM_DE_18_MAT01",
+          "result": null
+        },
+        {
+          "resultTypeId": "BREEAM_DE_18_MAN03",
+          "result": null
+        },
+        {
+          "resultTypeId": "BREEAM_DE_18_HEA02_01",
+          "result": null
+        },
+        {
+          "resultTypeId": "BREEAM_DE_18_HEA02",
+          "result": null
+        }
+      ],
+      "DGNB18": [
+        {
+          "resultTypeId": "DGNB18_ENV132",
+          "result": null
+        },
+        {
+          "resultTypeId": "DGNB18_ENV131",
+          "result": null
+        },
+        {
+          "resultTypeId": "DGNB18_ENV12",
+          "result": null
+        }
+      ]
+    }
+  }
+}

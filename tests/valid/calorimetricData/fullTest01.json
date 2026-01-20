@@ -1,0 +1,61 @@
+{
+  "description": "test",
+  "characteristics": {
+    "conditions": "dynamic",
+    "surface": "prime",
+    "componentTilt": 45
+  },
+  "fluxes": {
+    "conductionConvectionLongwaveRadiation": [
+      {
+        "side": "interior",
+        "flux": -100,
+        "temperatures": {
+          "surrounding": 300,
+          "sample": 320
+        },
+        "coefficient": 8
+      }
+    ],
+    "fluid": [
+      {
+        "flux": 100,
+        "temperatures": {
+          "inlet": 290,
+          "outlet": 330
+        },
+        "massFlow": 0.02,
+        "specificHeatCapacity": 4000
+      }
+    ],
+    "electricity": [
+      {
+        "flux": 100.1,
+        "currentVoltage": [
+          {
+            "i": 1,
+            "v": 0
+          },
+          {
+            "i": 0,
+            "v": 1
+          }
+        ]
+      }
+    ]
+  },
+  "results": [
+    {
+      "area": {
+        "category": "center",
+        "description": "test"
+      },
+      "uValue": 1.0,
+      "gValue": 0.1,
+      "efficiencies": {
+        "photovoltaic": 0.2,
+        "solarThermal": 0.5
+      }
+    }
+  ]
+}

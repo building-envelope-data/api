@@ -1,92 +1,102 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/opticalData.json",
-  "title": "Optical data",
-  "description": "Optical data sets of building envelope components. It shall be possible to exchange the results of all important optical measurements and simulations. At the same time, this general format is intended to limit the number of possible representations of one data set to make it easy to develop software which interprets the data correctly.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/opticalData.json",
+  "title": "optical data",
+  "description": "Optical datasets of building envelope components. It shall be possible to exchange the results of all important optical measurements and simulations. At the same time, this general format is intended to limit the number of possible representations of one dataset to make it easy to develop software which interprets the data correctly.",
   "$defs": {
     "data": {
-      "oneOf": [
-        {
-          "title": "Internal data node with leaf children",
-          "description": "Internal node of the data tree whose children are leaf data point nodes. It specifies component characteristics that are identical for child data points.",
-          "type": "object",
-          "properties": {
-            "componentCharacteristics": {
-              "$ref": "#/$defs/componentCharacteristics",
-              "description": "Component characteristics that are identical for all child data points in `dataPoints`. Such characteristics must be specified here and not in child data points in `dataPoints[*]/componentCharacteristics`."
-            },
-            "dataPoints": {
-              "title": "Optical data points",
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/dataPoint"
+      "title": "Optical data",
+      "description": "Optical `data` as an array of optical `dataPoints` with their `componentCharacteristics`. An additional property can be added for `serverSpecific` data.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "title": "Optical data",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "componentCharacteristics": {
+                "$ref": "#/$defs/componentCharacteristics",
+                "description": "Component characteristics that are identical for all data points of this object."
               },
-              "minItems": 1
-            }
+              "dataPoints": {
+                "title": "Optical data points. They provide the `results` for a given `incidence` and emergence`.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dataPoint"
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              }
+            },
+            "additionalProperties": false,
+            "required": ["dataPoints"]
           },
-          "additionalProperties": false,
-          "required": ["dataPoints"]
+          "minItems": 1
         },
-        {
-          "title": "Internal data node with non-leaf children",
-          "description": "Internal node of the data tree whose children are data nodes. It specifies component characteristics that are identical for descendant data points.",
-          "type": "object",
-          "properties": {
-            "componentCharacteristics": {
-              "$ref": "#/$defs/componentCharacteristics",
-              "description": "Component characteristics that are identical for descendant data points in `data`. Such characteristics must be specified here and not in descendant nodes in `data` like `data[*]/componentCharacteristics` or `data[*]/dataPoints[*]/componentCharacteristics`."
-            },
-            "data": {
-              "title": "Optical data",
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/data"
-              },
-              "minItems": 1
-            }
-          },
-          "additionalProperties": false,
-          "required": ["data"]
+        "serverSpecific": {
+          "title": "server-specific data",
+          "$ref": "#/$defs/serverSpecific"
         }
-      ]
+      },
+      "additionalProperties": false,
+      "required": ["data"]
     },
     "dataPoint": {
-      "oneOf": [
-        {
-          "title": "General schema for measured and calculated optical data",
-          "description": "An optical data point consists of a definition of the incident radiation, the component characteristics, the emergent radiation, and the optical results.",
-          "type": "object",
-          "properties": {
-            "incidence": {
-              "$ref": "#/$defs/incidence",
-              "title": "Incident radiation",
-              "description": "Incident radiation on the component."
-            },
-            "componentCharacteristics": {
-              "$ref": "#/$defs/componentCharacteristics",
-              "title": "Component characteristics",
-              "description": "Data point specific component characteristics. Common characteristics of all sibling data points of the data tree, are specified in their parent node."
-            },
-            "emergence": {
-              "$ref": "#/$defs/emergence",
-              "title": "Emergent radiation",
-              "description": "Radiation that emerges from the component."
-            },
-            "results": {
-              "$ref": "#/$defs/results",
-              "title": "Results",
-              "description": "For example transmittance and reflectance."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["incidence", "emergence", "results"]
+      "title": "Measured or calculated optical `results` for an `incidence` and `emergence`",
+      "description": "An optical data point consists of a definition of the incident radiation, the component characteristics, the emergent radiation, and the optical results.",
+      "type": "object",
+      "properties": {
+        "incidence": {
+          "$ref": "#/$defs/incidence",
+          "title": "Incident radiation",
+          "description": "Incident radiation on the component."
         },
-        {
-          "title": "Color characterization",
-          "$ref": "#/$defs/color",
-          "description": "The color of the component can be characterized in different ways, for example with the CIELAB Color Space and the Color Rendering Index. For angle-dependent characterization of colors, the general schema for measured and calculated optical data is better suited because incident and emergent radiation can be characterized in detail."
+        "emergence": {
+          "$ref": "#/$defs/emergence",
+          "title": "Emergent radiation",
+          "description": "Radiation that emerges from the component."
         }
-      ]
+      },
+      "if": {
+        "properties": {
+          "incidence": {
+            "type": "object",
+            "properties": {
+              "wavelengths": {
+                "type": "object",
+                "properties": {
+                  "integral": {
+                    "const": "visible"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "results": {
+            "$ref": "#/$defs/resultsWithColor",
+            "title": "Results with color",
+            "description": "For example transmittance, reflectance and the color."
+          }
+        },
+        "required": ["results"]
+      },
+      "else": {
+        "properties": {
+          "results": {
+            "$ref": "#/$defs/results",
+            "title": "Results",
+            "description": "For example transmittance and reflectance."
+          }
+        },
+        "required": ["results"]
+      },
+      "unevaluatedProperties": false,
+      "required": ["incidence", "emergence", "results"]
     },
     "componentCharacteristics": {
       "title": "Component characteristics",
@@ -129,11 +139,6 @@
           "title": "Spot",
           "description": "Size and profile of the irradiance on the sample."
         },
-        "tilt": {
-          "$ref": "common.json#/$defs/angles/$defs/tilt",
-          "title": "Tilt angle",
-          "description": "Tilt angle, for example of venetian blinds."
-        },
         "symmetries": {
           "title": "Choose between the general symmetries `mirror`, `rotationalDependingOnAzimuth` and `mirrorAndRotational` and their important special cases `azimuthalAngleInvariance` and `profileAngle`.",
           "type": "string",
@@ -149,6 +154,10 @@
         "surface": {
           "$ref": "component.json#/$defs/surface",
           "description": "Defines which surface is irradiated"
+        },
+        "switchableLayers": {
+          "$ref": "common.json#/$defs/switchableLayers",
+          "description": "Defines the state of switchable layers."
         }
       },
       "additionalProperties": false,
@@ -178,7 +187,6 @@
         {
           "title": "Circular polarization",
           "description": "`leftHanded` means that the radiation is circularly polarized and rotates in a left-hand sense with respect to the direction of radiation. `rightHanded` means that the radiation is circularly polarized and rotates in a right-hand sense with respect to the direction of radiation.",
-
           "type": "string",
           "enum": ["leftHanded", "rightHanded"]
         }
@@ -186,13 +194,13 @@
     },
     "wavelengthUncertainty": {
       "title": "Bandwidth and/or amplification factor",
-      "description": "Bandwidth and/or amplification factor of measuring a single wavelength or of measuring an entire spectrum of wavenlengths at the same time.",
+      "description": "Bandwidth and/or amplification factor of measuring a single wavelength or of measuring an entire spectrum of wavelengths at the same time.",
       "type": "object",
       "properties": {
         "bandwidth": {
           "$ref": "number.json#/$defs/nanometer",
           "title": "Bandwidth",
-          "description": "Range of wavelengths around a center wavelength. This range can be interpreted as the uncertainty of the center wavelength. It is often easier to determine the aplification factor instead."
+          "description": "Range of wavelengths around a center wavelength. This range can be interpreted as the uncertainty of the center wavelength. It is often easier to determine the amplification factor instead."
         },
         "amplificationFactor": {
           "$ref": "number.json#/$defs/nonNegativeNumberWithUncertainty",
@@ -211,7 +219,7 @@
         "integral": {
           "type": "string",
           "enum": ["infrared", "solar", "ultraviolet", "visible", "other"],
-          "description": "Spectrum over which the integral result was measured or calculated. `ultraviolet`, `visible`, `solar` and `infrared` indicate the range of the wavelengths used for the integral values. Details about the spectrum are provided by the method which has been applied to generate the data set. If neither `ultraviolet`, `visible`, `solar` and `infrared` describe the spectrum correctly, `other` indicates that all information about the spectrum is provided by the applied method."
+          "description": "Spectrum over which the integral result was measured or calculated. `ultraviolet`, `visible`, `solar` and `infrared` indicate the range of the wavelengths used for the integral values. Details about the spectrum are provided by the method which has been applied to generate the dataset. If neither `ultraviolet`, `visible`, `solar` and `infrared` describe the spectrum correctly, `other` indicates that all information about the spectrum is provided by the applied method."
         }
       },
       "additionalProperties": false,
@@ -234,7 +242,7 @@
       "description": "Direction of incident radiation on sample. An incidence angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance) is called 'nearnormal' and said to be 'almost perpendicular'.",
       "oneOf": [
         {
-          "description": "Direction of incidence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
+          "description": "Direction of incidence in a spherical coordinate system according to [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
           "type": "object",
           "properties": {
             "polar": {
@@ -243,7 +251,7 @@
             },
             "azimuth": {
               "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
-              "description": "The direction of incidence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. It can have values between 0° and 360°. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals 30° because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
+              "description": "The direction of incidence is projected onto the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/prime/properties/direction`. It can have values between 0° and 360°. If we look at the irradiated surface as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals +30° because of the right-handed coordinate system of [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
             }
           },
           "additionalProperties": false,
@@ -262,7 +270,7 @@
       "description": "Direction of emergent radiation from a sample. An polar angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance) is called 'nearnormal' and said to be 'almost perpendicular'.",
       "oneOf": [
         {
-          "description": "Direction of emergence in a spherical coordinate system according to [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
+          "description": "Direction of emergence in a spherical coordinate system according to [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html).",
           "type": "object",
           "properties": {
             "polar": {
@@ -271,7 +279,7 @@
             },
             "azimuth": {
               "$ref": "number.json#/$defs/degreeWithUncertainty",
-              "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/definitionOfSurfacesAndPrimeDirection`. It can have values between 0° and 360°. If we look at the sample as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals 30° because of the right-handed coordinate system of [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
+              "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/prime/properties/direction`. It can have values between 0° and 360°. If we look at the irradiated surface as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals +30° because of the right-handed coordinate system of [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
             }
           },
           "additionalProperties": false,
@@ -293,7 +301,9 @@
           "$ref": "number.json#/$defs/nanometer",
           "description": "One wavelength in nanometers. If necessary, its uncertainty can be specified with `uncertainty`."
         },
-        "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
+        "uncertainty": {
+          "$ref": "#/$defs/wavelengthUncertainty"
+        }
       },
       "additionalProperties": false,
       "required": ["wavelength"]
@@ -360,8 +370,34 @@
       "required": [],
       "minProperties": 1
     },
-    "color": {
-      "title": "Color characterization",
+    "resultsWithColor": {
+      "title": "Measurement or simulation results including color",
+      "description": "For the visible spectrum, the color can be be defined in addition to transmittance, reflectance and absorptanceEmittance",
+      "type": "object",
+      "properties": {
+        "transmittance": {
+          "$ref": "#/$defs/transmittance"
+        },
+        "colorTransmittance": {
+          "$ref": "#/$defs/colorTransmittance"
+        },
+        "reflectance": {
+          "$ref": "#/$defs/reflectance"
+        },
+        "colorReflectance": {
+          "$ref": "#/$defs/colorReflectance"
+        },
+        "absorptanceEmittance": {
+          "$ref": "#/$defs/absorptanceEmittance"
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
+    },
+    "colorTransmittance": {
+      "title": "Color characterization of the irradiance transmitted through a component",
+      "description": "The color of the transmitted irradiance can be characterized in different ways, for example with the CIELAB Color Space and the Color Rendering Index.",
       "type": "object",
       "properties": {
         "name": {
@@ -389,12 +425,34 @@
       "required": [],
       "minProperties": 1
     },
+    "colorReflectance": {
+      "title": "Color characterization of the irradiance reflected by a component",
+      "description": "The color of the reflected irradiance can be characterized in different ways, for example with the CIELAB Color Space.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the color in common language"
+        },
+        "cielabColors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cielabColor"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "minProperties": 1
+    },
     "cielabColor": {
       "title": "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) define the color which is reflected by a component or transmitted through a component.",
       "type": "object",
       "properties": {
         "lStar": {
-          "$ref": "number.json#/$defs/numberWithUncertainty",
+          "$ref": "number.json#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
           "description": "L* (lStar) defines the lightness of the color."
         },
         "aStar": {
@@ -405,49 +463,681 @@
           "$ref": "number.json#/$defs/numberWithUncertainty",
           "description": "b* (bStar) defines the color between blue and yellow."
         },
-        "direction": {
-          "type": "string",
-          "enum": ["reflection", "transmission"],
-          "description": "`reflection` indicates that that the color is defined which is reflected by the component. `transmission` indicates that the color is defined which is transmitted through the component."
-        },
-        "surface": {
-          "$ref": "component.json#/$defs/surface",
-          "description": "Defines which surface is irradiated"
-        },
         "observer": {
-          "type": "string",
-          "enum": ["twoDegrees", "tenDegrees"],
+          "$ref": "#/$defs/observer",
           "description": "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
         },
         "illuminant": {
-          "type": "string",
-          "enum": ["A", "D65"],
+          "$ref": "#/$defs/illuminant",
           "description": "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
         }
       },
       "additionalProperties": false,
-      "required": ["lStar", "aStar", "bStar", "direction"]
+      "required": ["lStar", "aStar", "bStar"]
     },
     "colorRenderingIndex": {
-      "title": "The Color Rendering Index (CRI) indicates how well the transmitted or reflected radiation matches daylight regarding the rendering of colors.",
+      "title": "The Color Rendering Index (CRI) indicates how well the transmitted radiation matches daylight regarding the rendering of colors. `Ra` or `ra` considers one transmission of the building envelope. `Raout-in` or `raOutIn` considers two transmissions of the building envelope.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "ra": {
+              "$ref": "number.json#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
+              "description": "The Color Rendering Index as it is defined by EN 410 based on CIE 13. 3-1995, Method of Measuring and Specifying Colour Rendering Properties of Light Sources, 1995, ISBN: 9783900734572. It indicates how well colors are rendered after one transmission of the building envelope. For example, how the color of an object inside a building is perceived from within the building."
+            },
+            "observer": {
+              "$ref": "#/$defs/observer",
+              "description": "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
+            },
+            "illuminant": {
+              "$ref": "#/$defs/illuminant",
+              "description": "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+            }
+          },
+          "additionalProperties": false,
+          "required": ["ra"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "raOutIn": {
+              "$ref": "number.json#/$defs/numberBetweenZeroAndOneHundredWithUncertainty",
+              "description": "The Color Rendering Index `Raout-in` or `raOutIn` is defined by T.E. Kuhn, H.R. Wilson, J. Hanek, M. Santamouris, Ra out-in Color rendering of objects in a daylit room viewed from outdoors, Energy and Buildings 118 (2016) 93–98, https://doi.org/10.1016/j.enbuild.2016.02.019. It indicates how well colors are rendered after two transmissions of the building envelope. For example, how the color of an object inside the building is perceived from the outside."
+            },
+            "observer": {
+              "$ref": "#/$defs/observer",
+              "description": "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
+            },
+            "illuminant": {
+              "$ref": "#/$defs/illuminant",
+              "description": "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+            }
+          },
+          "additionalProperties": false,
+          "required": ["raOutIn"]
+        }
+      ]
+    },
+    "observer": {
+      "type": "string",
+      "enum": ["twoDegrees", "tenDegrees"],
+      "description": "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
+    },
+    "illuminant": {
+      "type": "string",
+      "enum": ["A", "D65"],
+      "description": "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+    },
+    "serverSpecific": {
+      "title": "Data which is specific for a product data server and exceeds the structure of `#/$defs/dataPoint`.",
       "type": "object",
       "properties": {
-        "value": {
-          "$ref": "number.json#/$defs/numberWithUncertainty",
-          "description": "The value of the Color Rendering Index indicates how well for example the transmitted or reflected radiation matches daylight."
-        },
-        "direction": {
-          "type": "string",
-          "enum": ["reflection", "transmission"],
-          "description": "`reflection` indicates that that the Color Rendering Index is defined for radiation which is reflected by the component. `transmission` indicates that the Color Rendering Index is defined for radiation which is transmitted through the component."
-        },
-        "surface": {
-          "$ref": "component.json#/$defs/surface",
-          "description": "Defines which surface is irradiated"
+        "igsdb": {
+          "title": "Data specific for the International Glazing and Shading Database (IGSDB) of Lawrence Berkeley National Laboratory (LBNL, Berkeley Lab)",
+          "$ref": "#/$defs/igsdb"
         }
       },
       "additionalProperties": false,
-      "required": ["value", "direction"]
+      "minProperties": 1,
+      "required": []
+    },
+    "igsdb": {
+      "description": "This data is in development and subject to change. When the scope of `#/$defs/dataPoint` extends, data will move from this `server-specific` key to the key `dataPoints`. The following keys have been specific for IGSDB and are now part of `database.graphql`: `type`, `subtype`, `name`, `manufacturer_name` and `component_id`. The following keys have been specific for IGSDB and are now part of `dataPoints`: `emissivity_front`, `emissivity_back`, `tir_front`, `tir_back`, `solar`, `photopic`, `thermal_ir`, `wavelength_data`.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "token": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "historicalTokens": {
+          "type": "array",
+          "items": {
+            "$ref": "number.json#/$defs/stringOrNull"
+          }
+        },
+        "marketingName": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "nfrcId": {
+          "$ref": "number.json#/$defs/integerOrNull"
+        },
+        "igdbId": {
+          "$ref": "number.json#/$defs/integerOrNull"
+        },
+        "cgdbId": {
+          "$ref": "number.json#/$defs/integerOrNull"
+        },
+        "mdbTimeCreated": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "igdbDatabaseVersion": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "cgdbDatabaseVersion": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "acceptance": {
+          "$ref": "number.json#/$defs/stringOrNull",
+          "enum": ["#", "@", ""]
+        },
+        "reference": {
+          "type": "boolean"
+        },
+        "appearance": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "ownerName": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "dataFileName": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "dataFileType": {
+          "type": "string",
+          "enum": [
+            "IGDB_LEGACY_SUBMISSION_FILE",
+            "CGDB_LEGACY_SUBMISSION_FILE",
+            "SPD",
+            "SPREADSHEET",
+            "OTHER",
+            "BSDF_XML",
+            "THERM"
+          ],
+          "description": "BSDF_XML and THERM are 'legacy' file types that were used in the old IGDB database to describe shading types like roller shade and roman/pleated/cellular shades."
+        },
+        "dataFileAvailable": {
+          "type": "boolean"
+        },
+        "shortDescription": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "deconstructable": {
+          "type": "boolean"
+        },
+        "coatingName": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "coatingId": {
+          "$ref": "number.json#/$defs/integerOrNull"
+        },
+        "coatedSide": {
+          "type": "string",
+          "enum": [
+            "MULTIPLE",
+            "FRONT",
+            "BACK",
+            "BOTH",
+            "EMBEDDED",
+            "NEITHER",
+            "UNKNOWN",
+            "NA"
+          ],
+          "description": "`MULTIPLE` means = embedded and either front or back or both front and back. `NA` means `not applicable`."
+        },
+        "igdbChecksum": {
+          "$ref": "number.json#/$defs/integerOrNull"
+        },
+        "cgdbChecksum": {
+          "$ref": "number.json#/$defs/integerOrNull"
+        },
+        "checksumDate": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "window8ApplicationType": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "productDetailFiles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["GEN_BSDF_XML", "BSDF_XML", "THMX", "TOLERANCE", "OTHER"],
+            "description": "`TOLERANCE` means `Tolerance Report`."
+          }
+        },
+        "composition": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "created": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "updated": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "index": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "parentProduct": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "childProduct": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "compositionDetails": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "flipped": {
+                      "type": "boolean"
+                    },
+                    "thickness": {
+                      "$ref": "number.json#/$defs/numberOrNull"
+                    },
+                    "layerFilename": {
+                      "$ref": "number.json#/$defs/stringOrNull"
+                    },
+                    "coatingId": {
+                      "$ref": "number.json#/$defs/stringOrNull"
+                    },
+                    "coatingName": {
+                      "$ref": "number.json#/$defs/stringOrNull"
+                    },
+                    "coatedSideFacesExterior": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "required": []
+                },
+                "minItems": 1
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": []
+          }
+        },
+        "integratedSpectralAveragesSummaries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "calculationStandard": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "source": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "sourceVersion": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "opticalcPywincalcVersion": {
+                "$ref": "number.json#/$defs/stringOrNull"
+              },
+              "spf": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "tdw": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "tkr": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "tuv": {
+                "$ref": "#/$defs/integratedSpectralAverageOpticalResultsIgsdb"
+              },
+              "color": {
+                "type": "object",
+                "properties": {
+                  "reflectanceBack": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  },
+                  "reflectanceFront": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  },
+                  "transmittanceBack": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  },
+                  "transmittanceFront": {
+                    "$ref": "#/$defs/colorTransmittanceReflectanceIgsdb"
+                  }
+                },
+                "additionalProperties": false,
+                "minProperties": 1,
+                "required": []
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "required": []
+          },
+          "minItems": 1
+        },
+        "material": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "materialBulkProperties": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "$ref": "number.json#/$defs/stringOrNull"
+            },
+            "version": {
+              "$ref": "number.json#/$defs/integerOrNull"
+            },
+            "conductivity": {
+              "$ref": "number.json#/$defs/stringOrNull"
+            },
+            "youngsModulus": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "poissonsRatio": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "elasticity": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "moistureProperties": {
+              "$ref": "number.json#/$defs/stringOrNull"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "extraData": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true,
+          "required": []
+        },
+        "physicalProperties": {
+          "type": "object",
+          "properties": {
+            "isSpecular": {
+              "type": "boolean"
+            },
+            "thickness": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "geometricProperties": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/perforatedScreenGeometry"
+                },
+                {
+                  "$ref": "#/$defs/wovenShadeGeometry"
+                },
+                {
+                  "$ref": "#/$defs/blindGeometry"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "predefinedEmissivityFront": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "predefinedEmissivityBack": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "predefinedTirFront": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "predefinedTirBack": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "permeabilityFactor": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "bulkPropertiesOverride": {
+              "type": "object",
+              "properties": {
+                "conductivity": {
+                  "$ref": "number.json#/$defs/stringOrNull"
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1,
+              "required": []
+            },
+            "opticalProperties": {
+              "type": "object",
+              "properties": {
+                "opticalDataType": {
+                  "type": "string",
+                  "enum": ["DISCRETE", "BAND"]
+                },
+                "incidenceAngularResolutionType": {
+                  "type": "string",
+                  "enum": ["DIRECT", "BSDF"]
+                },
+                "outgoingAngularResolutionType": {
+                  "type": "string",
+                  "enum": ["DIRECT", "DIFFUSE", "DIRECT_DIFFUSE", "BSDF"]
+                },
+                "opticalData": {
+                  "type": "object",
+                  "properties": {
+                    "angleBlocks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "incidenceAngle": {
+                            "$ref": "number.json#/$defs/numberOrNull"
+                          },
+                          "numberWavelengths": {
+                            "$ref": "number.json#/$defs/numberOrNull"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "required": []
+                      },
+                      "minItems": 1
+                    },
+                    "numberIncidenceAngles": {
+                      "$ref": "number.json#/$defs/integerOrNull"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "required": []
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1,
+              "required": []
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "integratedSpectralAverageOpticalResultsIgsdb": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "reflectanceBack": {
+          "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
+        },
+        "reflectanceFront": {
+          "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
+        },
+        "transmittanceBack": {
+          "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
+        },
+        "transmittanceFront": {
+          "$ref": "#/$defs/integratedSpectralAverageTransmittanceReflectanceIgsdb"
+        },
+        "absorptanceBackDirect": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "absorptanceFrontDirect": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "absorptanceBackHemispheric": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "absorptanceFrontHemispheric": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "integratedSpectralAverageTransmittanceReflectanceIgsdb": {
+      "type": "object",
+      "properties": {
+        "matrix": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "directDirect": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "directDiffuse": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "diffuseDiffuse": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "directHemispherical": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "colorTransmittanceReflectanceIgsdb": {
+      "type": "object",
+      "properties": {
+        "directDirect": {
+          "$ref": "#/$defs/colorsIgsdb"
+        },
+        "directDiffuse": {
+          "$ref": "#/$defs/colorsIgsdb"
+        },
+        "diffuseDiffuse": {
+          "$ref": "#/$defs/colorsIgsdb"
+        },
+        "directHemispherical": {
+          "$ref": "#/$defs/colorsIgsdb"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "colorsIgsdb": {
+      "type": "object",
+      "properties": {
+        "lab": {
+          "type": "object",
+          "properties": {
+            "a": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "b": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "l": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "rgb": {
+          "type": "object",
+          "properties": {
+            "b": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "g": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "r": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        },
+        "trichromatic": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "y": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            },
+            "z": {
+              "$ref": "number.json#/$defs/numberOrNull"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1,
+          "required": []
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "perforatedScreenGeometry": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["circular", "square", "rectangle"],
+          "description": "Defines the geometric properties of a perforated screen. Type indicates shape of perforations. 0: `circular`, 1: `square`,2: `rectangle`."
+        },
+        "dimX": {
+          "$ref": "number.json#/$defs/numberOrNull",
+          "description": "dimX is the radius if `type`: `circular`."
+        },
+        "dimY": {
+          "$ref": "number.json#/$defs/numberOrNull",
+          "description": "dimY is not used if `type` is `circular` or `square`."
+        },
+        "spacingX": {
+          "$ref": "number.json#/$defs/numberOrNull"
+        },
+        "spacingY": {
+          "$ref": "number.json#/$defs/numberOrNull"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "wovenShadeGeometry": {
+      "type": "object",
+      "properties": {
+        "threadDiameter": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "threadSpacing": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "shadeThickness": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "blindGeometry": {
+      "title": "Geometry definition for venetian blinds",
+      "type": "object",
+      "properties": {
+        "rise": {
+          "$ref": "number.json#/$defs/stringOrNull"
+        },
+        "slatWidth": {
+          "$ref": "number.json#/$defs/stringOrNull",
+          "description": "Units: mm"
+        },
+        "slatSpacing": {
+          "$ref": "number.json#/$defs/stringOrNull",
+          "description": "Units: mm"
+        },
+        "slatCurvature": {
+          "$ref": "number.json#/$defs/stringOrNull",
+          "description": "Units: mm"
+        },
+        "slatTilt": {
+          "$ref": "number.json#/$defs/stringOrNull",
+          "description": "Units: degrees"
+        },
+        "numberSegments": {
+          "$ref": "number.json#/$defs/integerOrNull",
+          "description": "Segments are used to represent curvature (Defaults to 5)."
+        },
+        "tiltChoice": {
+          "$ref": "number.json#/$defs/stringOrNull",
+          "description": "Value can be an integer or string like `CUSTOM`, so declaring this field as str."
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
     }
   },
   "$ref": "#/$defs/data"

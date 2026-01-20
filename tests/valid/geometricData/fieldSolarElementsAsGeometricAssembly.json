@@ -1,0 +1,30 @@
+{
+  "assembly": [
+    {
+      "id": "cd85554f-e909-405e-9b7b-2f08ca201f63",
+      "location": {
+        "east": 5,
+        "north": 0,
+        "elevation": 5
+      },
+      "orientation": {
+        "azimuth": 180,
+        "componentTilt": 90,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "cd95554f-e909-405e-9b7b-2f08ca201f63",
+      "location": {
+        "east": 0,
+        "north": 5,
+        "elevation": 5
+      },
+      "orientation": {
+        "azimuth": 270,
+        "componentTilt": 90,
+        "rotation": 0
+      }
+    }
+  ]
+}

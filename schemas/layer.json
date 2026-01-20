@@ -1,6 +1,6 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/layer.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/layer.json",
   "title": "layer data",
   "description": "The categories, characteristics, and properties of a layer.",
   "$defs": {
@@ -104,20 +104,20 @@
             },
             "pitch": {
               "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "Pitch is the distance between the rotation axis' of two neighbouring slats."
+              "description": "Pitch is the distance between the rotation axis' of two neighboring slats."
             },
             "crownHeight": {
               "$ref": "number.json#/$defs/numberWithUncertainty",
-              "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the heighest points of the slats."
+              "description": "When a slat lies on a horizontal surface, the Crown Height is the distance between this surface and the highest points of the slats."
             },
             "shape": {
               "oneOf": [
                 {
-                  "$ref": "geometry.json#/$defs/nurbsBoundedCurve",
+                  "$ref": "geometricData.json#/$defs/nurbsBoundedCurve",
                   "description": "Usually, the shape of a slat is best described by a 2D curve of its cross section."
                 },
                 {
-                  "$ref": "geometry.json#/$defs/nurbsBoundedSurface",
+                  "$ref": "geometricData.json#/$defs/nurbsBoundedSurface",
                   "description": "If the shape of the slats needs to be defined in 3D, a surface can be used."
                 }
               ]
@@ -125,12 +125,12 @@
             "angles": {
               "type": "object",
               "properties": {
-                "tilt": {
-                  "$ref": "common.json#/$defs/angles/$defs/tilt",
+                "slatTilt": {
+                  "$ref": "common.json#/$defs/angles/$defs/slatTilt",
                   "description": "For horizontal slats, the slat tilt angle is measured from the horizontal plane. 0° means fully open slats and 70° almost closed slats."
                 },
-                "maximumClosing": {
-                  "$ref": "common.json#/$defs/angles/$defs/maximumClosing",
+                "slatMaximumClosing": {
+                  "$ref": "common.json#/$defs/angles/$defs/slatMaximumClosing",
                   "description": "The maximum closing angle is the highest possible slat tilt angle, typically because the slats touch each other."
                 }
               },

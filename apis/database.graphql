@@ -15,7 +15,7 @@ It follows best practices for
   as exemplified in
   [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections).
 
-Global object identifiers as requird by the best practice are exposed by the
+Global object identifiers as required by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
 are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
 concatenation of `uuid` and the requested locale.
@@ -106,6 +106,12 @@ compliant
 [absolute Uniform Resource Locator (URL)](https://tools.ietf.org/html/rfc3986#section-4.3)
 string with optional
 [fragment identifier](https://tools.ietf.org/html/rfc3986#section-3.5).
+[Valid values are for example](https://datatracker.ietf.org/doc/html/rfc3986#section-1.1.2)
+`ftp://ftp.is.co.za/rfc/rfc1808.txt`, `http://www.ietf.org/rfc/rfc2396.txt`,
+`ldap://[2001:db8::7]/c=GB?objectClass?one`, `mailto:John.Doe@example.com`,
+`news:comp.infosystems.www.servers.unix`, `tel:+1-816-555-1212`,
+`telnet://192.0.2.16:80/`,
+`urn:oasis:names:specification:docbook:dtd:xml:4.1.2`
 
 See also
 [URL Living Standard](https://url.spec.whatwg.org/#absolute-url-with-fragment-string)
@@ -113,6 +119,27 @@ and
 [Identifying resources on the Web](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web).
 """
 scalar Url
+
+"""
+arXiv identifier, that is, a string of the format
+[Understanding the arXiv identifier](https://info.arxiv.org/help/arxiv_identifier.html).
+"""
+scalar ArXiv
+
+"""
+Digital Object Identifier (DOI) name, that is, a string compliant with [ISO
+26324:2025](https://www.iso.org/standard/88862.html).
+
+See also
+[What is a DOI?](https://www.doi.org/the-identifier/what-is-a-doi/). In short,
+a DOI name is a digital identifier of an object, any object — physical,
+digital, or abstract. DOIs solve a common problem: keeping track of things.
+Things can be matter, material, content, or activities. Designed to be used by
+humans as well as machines, DOIs identify objects persistently. They allow
+things to be uniquely identified and accessed reliably. You know what you have,
+where it is, and others can track it too.
+"""
+scalar Doi
 
 """
 [BCP 47](https://tools.ietf.org/html/bcp47)
@@ -144,16 +171,6 @@ and without unnecessary white-space for the present schema.
 scalar GraphQlQuery
 
 """
-[June 2018 GraphQL](http://spec.graphql.org/June2018/)
-compliant
-[JavaScript Object Notation (JSON)](https://tools.ietf.org/html/rfc8259)
-[serialized](http://spec.graphql.org/June2018/#sec-JSON-Serialization)
-[response](http://spec.graphql.org/June2018/#sec-Response)
-string without unnecessary white-space for the present schema.
-"""
-scalar JsonGraphQlResponse
-
-"""
 [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
 compliant
 [Cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
@@ -174,15 +191,11 @@ scalar Any
 """
 Fetch data, ask whether there is data, and search for data. Each field except
 `node` accepts
-- an optional timestamp to specify for which point in time the query is to be
-  made and
 - an optional locale to specify essentially the language of prose in the result.
-Each field's value is uniquely determined by the required arguments,
-timestamp, and locale throughout time.
+Each field's value is uniquely determined by the required arguments and locale.
 
-If timestamp is not given, the moment the query is received is used. And, if
-locale is not given, the default locale is used, which may differ from database
-to database.
+If locale is not given, the default locale is used, which may differ from
+database to database.
 """
 type Query {
   """
@@ -197,53 +210,38 @@ type Query {
   node("Global object identifier." id: ID!): Node!
 
   """
-  Fetch data by universally unique identifier, and optional timestamp and
-  locale, where all three arguments together uniquely determine the data
-  throughout time.
-  """
-  data(
-    "Data identifier."
-    id: Uuid!
-    "Timestamp. If not given, the moment the query is received is used."
-    timestamp: DateTime
-    "Locale. If not given, the default locale is used, which may differ from database to database."
-    locale: Locale
-  ): Data!
-
-  """
-  See `Query#data`.
+  Fetch calorimetric data by universally unique identifier, and optional
+  locale, where all three arguments together uniquely determine the data.
   """
   calorimetricData(
+    "Data identifier."
     id: Uuid!
-    timestamp: DateTime
+    "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
   ): CalorimetricData!
 
   """
-  See `Query#data`.
+  Confer `Query#calorimetricData`.
   """
-  hygrothermalData(
-    id: Uuid!
-    timestamp: DateTime
-    locale: Locale
-  ): HygrothermalData!
+  geometricData(id: Uuid!, locale: Locale): GeometricData!
 
   """
-  See `Query#data`.
+  Confer `Query#calorimetricData`.
   """
-  opticalData(id: Uuid!, timestamp: DateTime, locale: Locale): OpticalData!
+  hygrothermalData(id: Uuid!, locale: Locale): HygrothermalData!
 
   """
-  See `Query#data`.
+  Confer `Query#calorimetricData`.
   """
-  photovoltaicData(
-    id: Uuid!
-    timestamp: DateTime
-    locale: Locale
-  ): PhotovoltaicData!
+  opticalData(id: Uuid!, locale: Locale): OpticalData!
 
   """
-  Search for all data for which the proposition is true.
+  Confer `Query#calorimetricData`.
+  """
+  photovoltaicData(id: Uuid!, locale: Locale): PhotovoltaicData!
+
+  """
+  Search for all calorimetric data for which the proposition is true.
 
   The result is a
   [connection](https://relay.dev/graphql/connections.htm#sec-Connection-Types)
@@ -258,14 +256,14 @@ type Query {
   [pagination](https://graphql.org/learn/pagination/)
   together with the
   [forward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Forward-pagination-arguments)
-  `first` and `after` and the
+  `first` with the default and maximum 100 and `after` and the
   [backward pagination arguments](https://relay.dev/graphql/connections.htm#sec-Backward-pagination-arguments)
-  `last` and `before`.
+  `last` with the default and maximum 100 and `before`.
 
   Example:
   ```
   query {
-    allData(
+    allCalorimetricData(
       where: {
         or: [
           {
@@ -295,14 +293,12 @@ type Query {
   }
   ```
   """
-  allData(
+  allCalorimetricData(
     "Compound boolean expression that is true for all data being returned. If not given, a proposition that is always true is used."
-    where: DataPropositionInput
-    "Timestamp. If not given, the moment the query is received is used."
-    timestamp: DateTime
+    where: CalorimetricDataPropositionInput
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
-    "Maximum number of data edges after the cursor `after`."
+    "Maximum number of data edges after the cursor `after`. If not given, the default and maximum value 100 is used."
     first: NonNegativeInt
     "Data cursor after which to return at most `first` data edges."
     after: Cursor
@@ -310,27 +306,25 @@ type Query {
     last: NonNegativeInt
     "Data cursor before which to return at most `last` data edges."
     before: Cursor
-  ): DataConnection!
+  ): CalorimetricDataConnection!
 
   """
-  See `Query#allData`.
+  Confer `Query#allCalorimetricData`.
   """
-  allCalorimetricData(
-    where: CalorimetricDataPropositionInput
-    timestamp: DateTime
+  allGeometricData(
+    where: GeometricDataPropositionInput
     locale: Locale
     first: NonNegativeInt
     after: Cursor
     last: NonNegativeInt
     before: Cursor
-  ): CalorimetricDataConnection!
+  ): GeometricDataConnection!
 
   """
-  See `Query#allData`.
+  Confer `Query#allCalorimetricData`.
   """
   allHygrothermalData(
     where: HygrothermalDataPropositionInput
-    timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
@@ -339,11 +333,10 @@ type Query {
   ): HygrothermalDataConnection!
 
   """
-  See `Query#allData`.
+  Confer `Query#allCalorimetricData`.
   """
   allOpticalData(
     where: OpticalDataPropositionInput
-    timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
@@ -352,11 +345,10 @@ type Query {
   ): OpticalDataConnection!
 
   """
-  See `Query#allData`.
+  Confer `Query#allCalorimetricData`.
   """
   allPhotovoltaicData(
     where: PhotovoltaicDataPropositionInput
-    timestamp: DateTime
     locale: Locale
     first: NonNegativeInt
     after: Cursor
@@ -365,53 +357,59 @@ type Query {
   ): PhotovoltaicDataConnection!
 
   """
-  Whether there is data for which the proposition is true at the given
-  timestamp in the given locale.
+  Whether there is data for which the proposition is true in the given locale.
   """
-  hasData(
+  hasCalorimetricData(
     "Compound boolean expression that is true for data being searched for."
-    where: DataPropositionInput!
-    "Timestamp. If not given, the moment the query is received is used."
-    timestamp: DateTime
+    where: CalorimetricDataPropositionInput
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
   ): Boolean!
 
   """
-  See `Query#hasData`.
+  Confer `Query#hasCalorimetricData`.
   """
-  hasCalorimetricData(
-    where: CalorimetricDataPropositionInput
-    timestamp: DateTime
+  hasGeometricData(
+    where: GeometricDataPropositionInput
     locale: Locale
   ): Boolean!
 
   """
-  See `Query#hasData`.
+  Confer `Query#hasCalorimetricData`.
   """
   hasHygrothermalData(
     where: HygrothermalDataPropositionInput
-    timestamp: DateTime
     locale: Locale
   ): Boolean!
 
   """
-  See `Query#hasData`.
+  Confer `Query#hasCalorimetricData`.
   """
-  hasOpticalData(
-    where: OpticalDataPropositionInput
-    timestamp: DateTime
-    locale: Locale
-  ): Boolean!
+  hasOpticalData(where: OpticalDataPropositionInput, locale: Locale): Boolean!
 
   """
-  See `Query#hasData`.
+  Confer `Query#hasCalorimetricData`.
   """
   hasPhotovoltaicData(
     where: PhotovoltaicDataPropositionInput
-    timestamp: DateTime
     locale: Locale
   ): Boolean!
+
+  """
+  The verification code of the database that is generated by the metabase when
+  an institution registers a new database. It is used by the metabase to verify
+  the the institution is indeed under control of the database's GraphQL
+  endpoint.
+
+  To register and verify your database to the metabase do the following:
+
+  1. On the metabase, sign-in as a representative of your institution.
+  2. Register a new database and remember the generated verification code.
+  3. Make the database's GraphQL endpoint return that code when queried for its
+     verification code.
+  4. Ask the metabase to verify the database.
+  """
+  verificationCode: String
 }
 
 """
@@ -482,12 +480,6 @@ type PageInfo {
   [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
   """
   endCursor: Cursor!
-
-  """
-  Number of edges in the set defined by the client's arguments. This is equal
-  to the number of nodes.
-  """
-  count: NonNegativeInt!
 }
 
 """
@@ -697,6 +689,12 @@ input DataPropositionInput {
   uValues: FloatsPropositionInput
 
   """
+  True for data whose list of `thickness` values satisfies the proposition `thicknesses`,
+  otherwise false.
+  """
+  thicknesses: FloatsPropositionInput
+
+  """
   True for data whose list of nearnormal hemispherical visible transmittance
   values satisfies the proposition
   `nearnormalHemisphericalVisibleTransmittances`, otherwise false.
@@ -794,24 +792,6 @@ input CielabColorsPropositionInput {
 """
 See `DataPropositionInput`.
 """
-input OpticalDataPropositionInput {
-  componentId: UuidPropositionInput
-  and: [OpticalDataPropositionInput!]
-  not: OpticalDataPropositionInput
-  or: [OpticalDataPropositionInput!]
-  resources: GetHttpsResourcesPropositionInput
-  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
-  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
-  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
-  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
-  infraredEmittances: FloatsPropositionInput
-  colorRenderingIndices: FloatsPropositionInput
-  cielabColors: CielabColorsPropositionInput
-}
-
-"""
-See `DataPropositionInput`.
-"""
 input CalorimetricDataPropositionInput {
   componentId: UuidPropositionInput
   and: [CalorimetricDataPropositionInput!]
@@ -825,12 +805,81 @@ input CalorimetricDataPropositionInput {
 """
 See `DataPropositionInput`.
 """
+input GeometricDataPropositionInput {
+  componentId: UuidPropositionInput
+  and: [GeometricDataPropositionInput!]
+  not: GeometricDataPropositionInput
+  or: [GeometricDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
+  thicknesses: FloatsPropositionInput
+}
+
+"""
+See `DataPropositionInput`.
+"""
 input HygrothermalDataPropositionInput {
   componentId: UuidPropositionInput
   and: [HygrothermalDataPropositionInput!]
   not: HygrothermalDataPropositionInput
   or: [HygrothermalDataPropositionInput!]
   resources: GetHttpsResourcesPropositionInput
+}
+
+"""
+Proposition for values of enum type `OpticalComponentType`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+set of sub-propositions is true.
+"""
+input OpticalComponentTypePropositionInput {
+  equalTo: OpticalComponentType
+  notEqualTo: OpticalComponentType
+  in: [OpticalComponentType]
+  notIn: [OpticalComponentType]
+}
+
+"""
+Proposition for values of enum type `OpticalComponentSubtype`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+set of sub-propositions is true.
+"""
+input OpticalComponentSubtypePropositionInput {
+  equalTo: OpticalComponentSubtype
+  notEqualTo: OpticalComponentSubtype
+  in: [OpticalComponentSubtype]
+  notIn: [OpticalComponentSubtype]
+}
+
+"""
+Proposition for values of enum type `CoatedSide`. Multiple sub-propositions are
+combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input CoatedSidePropositionInput {
+  equalTo: CoatedSide
+  notEqualTo: CoatedSide
+  in: [CoatedSide]
+  notIn: [CoatedSide]
+}
+
+"""
+See `DataPropositionInput`.
+"""
+input OpticalDataPropositionInput {
+  componentId: UuidPropositionInput
+  and: [OpticalDataPropositionInput!]
+  not: OpticalDataPropositionInput
+  or: [OpticalDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
+  type: OpticalComponentTypePropositionInput
+  subtype: OpticalComponentSubtypePropositionInput
+  coatedSide: CoatedSidePropositionInput
+  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
+  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
+  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
+  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
+  infraredEmittances: FloatsPropositionInput
+  colorRenderingIndices: FloatsPropositionInput
+  cielabColors: CielabColorsPropositionInput
 }
 
 """
@@ -862,33 +911,14 @@ type DataConnection {
   edges: [DataEdge!]!
 
   """
-  Data nodes to avoid the layer of indirection through edges in case edge meta
-  data is not needed. It is equal to the list comprehension
-  ```
-  [edge.node for edge in edges]
-  ```
-  """
-  nodes: [Data!]!
-
-  """
-  Total number of data edges (and nodes) of which a slice is `edges` (and
-  `nodes`). Note that the number of edges (and nodes) of the present slice is
-  `pageInfo.count`.
-  """
-  totalCount: NonNegativeInt!
-
-  """
   Information about the present slice of all data edges (and nodes).
   """
   pageInfo: PageInfo!
 
   """
-  Timestamp at or for which the connection, its edges and nodes are returned.
-  In case no timestamp was given as argument, this is the moment in time the
-  query was made. Otherwise, it is the given timestamp. All data edges and
-  nodes are fetched as they were at this timestamp.
+  The total count of items in the connection.
   """
-  timestamp: DateTime!
+  totalCount: Int!
 }
 
 """
@@ -919,19 +949,35 @@ type DataEdge {
 """
 See `DataConnection`.
 """
-type OpticalDataConnection {
-  edges: [OpticalDataEdge!]!
-  nodes: [OpticalData!]!
+type CalorimetricDataConnection {
+  edges: [CalorimetricDataEdge!]!
   pageInfo: PageInfo!
-  timestamp: DateTime!
+  totalCount: Int!
 }
 
 """
 See `DataEdge`.
 """
-type OpticalDataEdge {
+type CalorimetricDataEdge {
   cursor: Cursor!
-  node: OpticalData!
+  node: CalorimetricData!
+}
+
+"""
+See `DataConnection`.
+"""
+type GeometricDataConnection {
+  edges: [GeometricDataEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"""
+See `DataEdge`.
+"""
+type GeometricDataEdge {
+  cursor: Cursor!
+  node: GeometricData!
 }
 
 """
@@ -939,9 +985,8 @@ See `DataConnection`.
 """
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
-  nodes: [HygrothermalData!]!
   pageInfo: PageInfo!
-  timestamp: DateTime!
+  totalCount: Int!
 }
 
 """
@@ -955,11 +1000,27 @@ type HygrothermalDataEdge {
 """
 See `DataConnection`.
 """
+type OpticalDataConnection {
+  edges: [OpticalDataEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"""
+See `DataEdge`.
+"""
+type OpticalDataEdge {
+  cursor: Cursor!
+  node: OpticalData!
+}
+
+"""
+See `DataConnection`.
+"""
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
-  nodes: [PhotovoltaicData!]!
   pageInfo: PageInfo!
-  timestamp: DateTime!
+  totalCount: Int!
 }
 
 """
@@ -971,30 +1032,58 @@ type PhotovoltaicDataEdge {
 }
 
 """
-See `DataConnection`.
+Type of data.
 """
-type CalorimetricDataConnection {
-  edges: [CalorimetricDataEdge!]!
-  nodes: [CalorimetricData!]!
-  pageInfo: PageInfo!
-  timestamp: DateTime!
+enum OpticalComponentType {
+  GLAZING
+  SHADING
 }
 
 """
-See `DataEdge`.
+Subtype of data.
 """
-type CalorimetricDataEdge {
-  cursor: Cursor!
-  node: CalorimetricData!
+enum OpticalComponentSubtype {
+  MONOLITHIC
+  LAMINATE
+  INTERLAYER
+  EMBEDDED_COATING
+  COATED
+  COATING
+  APPLIED_FILM
+  FILM
+  VENETIAN_BLIND
+  DIFFUSING_SHADE
+  ROLLER_SHADE
+  WOVEN_SHADE
+  VERTICAL_LOUVER
+  PERFORATED_SCREEN
+  CELLULAR_SHADE
+  PLEATED_SHADE
+  ROMAN_SHADE
+  SHADE_MATERIAL
+  FRITTED_GLASS
+  ACID_ETCHED_GLASS
+  SANDBLASTED_GLASS
+  CHROMOGENIC
+}
+
+"""
+Coated side
+"""
+enum CoatedSide {
+  PRIME
+  NON_PRIME
+  BOTH
+  NEITHER
+  UNKNOWN
+  NOT_APPLICABLE
 }
 
 """
 Measured, simulated, or calculated data.
 
-The data identifier identifies the data modulo patches and locale, together
-with timestamp only modulo locale, together with locale only modulo patches,
-and together with both all data. In the last case, in particular, the order of
-any list values of (sub-)fields is fix.
+The data identifier identifies the data modulo patches and locale and together
+with locale only modulo patches.
 
 For non-patch versions a new data identifier is needed.
 
@@ -1003,22 +1092,28 @@ Note that the term 'patch' is used in the sense of
 """
 interface Data {
   """
-  Identifier, which together with timestamp uniquely identifies data and patch
-  version (within the database).
+  Identifier, which uniquely identifies data modulo patches and locale.
   """
   uuid: Uuid!
 
   """
+  Identifier of this database that manages the data. The database's meta data
+  can be obtained by sending the GraphQL query
+  `query { database(id: ...) { ... }}` to the metabas e.
+  """
+  databaseId: Uuid!
+
+  """
   Timestamp that designates the patch version. For example, correction of some
   grammatical error in the description results in a new patch version
-  designated by a new timestamp, or adding an approval by some stakeholder.
+  designated by a new timestamp, or adding an approval by some institution.
   """
   timestamp: DateTime!
 
   """
   Component identifier issued by the metabase. The components's meta data can
   be obtained by sending the GraphQL query
-  `component(componentId: ..., timestamp: ...) { ... }`
+  `query { component(id: ...) { ... } }`
   to the metabase.
   """
   componentId: Uuid!
@@ -1041,7 +1136,7 @@ interface Data {
   """
   Creator identifier issued by the metabase. The creator's meta data can be
   obtained by sending the GraphQL query
-  `stakeholder(stakeholderId: ..., timestamp: ...) { ... }`
+  `query { institution(id: ...) { ... } }`
   to the metabase.
   """
   creatorId: Uuid!
@@ -1058,7 +1153,7 @@ interface Data {
   appliedMethod: AppliedMethod!
 
   """
-  Approvals by stakeholders in the form of GnuPG signatures. See the type
+  Approvals by institutions in the form of GnuPG signatures. See the type
   `Approval` for details on how to verify data and approvals.
   """
   approvals: [DataApproval!]!
@@ -1138,6 +1233,21 @@ type OpticalData implements Node & Data {
   approval: ResponseApproval!
 
   """
+  Type
+  """
+  type: OpticalComponentType
+
+  """
+  Subtype
+  """
+  subtype: OpticalComponentSubtype
+
+  """
+  Coated side
+  """
+  coatedSide: CoatedSide!
+
+  """
   Mirrored nearnormal hemispherical visible transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
   """
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
@@ -1201,6 +1311,30 @@ type CalorimetricData implements Node & Data {
   uValues: [Float!]!
 }
 
+type GeometricData implements Node & Data {
+  id: ID!
+  uuid: Uuid!
+  timestamp: DateTime!
+  locale: Locale!
+  databaseId: Uuid!
+  componentId: Uuid!
+  name: String
+  description: String
+  warnings: [String!]!
+  creatorId: Uuid!
+  createdAt: DateTime!
+  appliedMethod: AppliedMethod!
+  resources: [GetHttpsResource!]!
+  resourceTree: GetHttpsResourceTree!
+  approvals: [DataApproval!]!
+  approval: ResponseApproval!
+
+  """
+  Mirrored `thickness` values that occur in the data
+  """
+  thicknesses: [Float!]!
+}
+
 type HygrothermalData implements Node & Data {
   id: ID!
   uuid: Uuid!
@@ -1247,7 +1381,7 @@ type AppliedMethod {
   """
   Method identifier of method that was applied by the creator on the source
   data. The method's meta data can be obtained by sending the GraphQL query
-  `method(methodId: ..., timestamp: ...) { ... }`
+  `query { method(id: ...) { ... } }`
   to the metabase.
   """
   methodId: Uuid!
@@ -1282,7 +1416,7 @@ type ToTreeVertexAppliedConversionMethod {
   Method identifier of conversion method that was applied by the creator on the
   source data. The method's meta data can be obtained by sending the GraphQL
   query
-  `method(methodId: ..., timestamp: ...) { ... }`
+  `query { method(id: ...) { ... } }`
   to the metabase.
   """
   methodId: Uuid!
@@ -1365,6 +1499,7 @@ Data kind, either calorimetric, hygrothermal, optical, or photovoltaic.
 """
 enum DataKind {
   CALORIMETRIC_DATA
+  GEOMETRIC_DATA
   HYGROTHERMAL_DATA
   OPTICAL_DATA
   PHOTOVOLTAIC_DATA
@@ -1386,52 +1521,285 @@ type OpenEndedDateTimeRange {
 }
 
 """
+Numeration of a standard consisting of a main number and optional prefix and
+suffix.
+
+For example, a standard may be named "ISO 52022-1" or "ASTM E2387", which have
+"ISO" and "ASTM" as acronyms for the standardizers, "52022" and "2387" as main
+numbers, "E" as prefix, and "1" as suffix. The suffix may indicate for example
+a part number.
+"""
+type Numeration {
+  """
+  Main number
+  """
+  mainNumber: String!
+
+  """
+  Prefix
+  """
+  prefix: String
+
+  """
+  Suffix
+  """
+  suffix: String
+}
+
+"""
+Acronyms or abbreviations of standardization institutions.
+
+Additional information about each standardization institution is stored in the
+metabase.
+"""
+enum Standardizer {
+  AERC
+  AGI
+  ASHRAE
+  BREEAM
+  BS
+  BSI
+  CEN
+  CIE
+  DGNB
+  DIN
+  DVWG
+  IEC
+  IES
+  IFT
+  ISO
+  JIS
+  LEED
+  NFRC
+  RIBA
+  UL
+  UNECE
+  VDI
+  VFF
+  WELL
+}
+
+"""
+Standard or publication.
+"""
+union Reference = Standard | Publication
+
+"""
+`ISO 52022` is an example of the abbreviation of a standardizer and the main
+number of the identifier.
+"""
+type Standard {
+  """
+  Title
+  """
+  title: String
+
+  """
+  Abstract
+  """
+  abstract: String
+
+  """
+  Section referred to.
+  """
+  section: String
+
+  """
+  Web address
+  """
+  locator: Url
+
+  """
+  Numeration
+  """
+  numeration: Numeration!
+
+  """
+  Standardizers
+  """
+  standardizers: [Standardizer!]!
+
+  """
+  Year
+
+  Important because there can be relevant updates of one standard.
+  """
+  year: Int
+}
+
+type Publication {
+  """
+  Title
+  """
+  title: String
+
+  """
+  Abstract
+  """
+  abstract: String
+
+  """
+  Section referred to.
+  """
+  section: String
+
+  """
+  Names of authors of the publication.
+  """
+  authors: [String!]
+
+  """
+  arXiv identifier. [arXiv](https://arxiv.org) is a free distribution service
+  and an open-access archive for scholarly articles in the fields of physics,
+  mathematics, computer science, quantitative biology, quantitative finance,
+  statistics, electrical engineering and systems science, and economics.
+  """
+  arXiv: ArXiv
+
+  """
+  Digital Object Identifier (DOI). It must be defined here if it exists.
+  """
+  doi: Doi
+
+  """
+  Uniform Resource Name (URN).
+  """
+  urn: Url
+
+  """
+  Web address.
+
+  If a persistent identifiert like DOI is defined above, this address can
+  define a convenient web address to access the publication. However, if no
+  persistent identifier exist, this web address is the only identifier of this
+  publication. In this case, it is important to choose a web address with a high
+  probability to persist long.
+  """
+  webAddress: Url
+}
+
+"""
 Approval with
 [GnuPG](https://www.gnupg.org)
 signature.
 
 To verify an approval,
 1. install [GnuPG](https://www.gnupg.org),
-2. save the approved response in a file `response.json`,
-3. save the ASCII-armored signature in a file `response.json.asc`,
-4. * retrieve the public key for the given fingerprint from the metabase's
-     keyserver by running
-     `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --recv-keys <FINGERPRINT>`
-     (or
-     `gpg --fetch-keys https://buildingenvelopedata.org/gnuPgKey/<FINGERPRINT>.asc`)
-     and make sure that the key belongs to the approver, was allowed for
-     signing, and was valid at a given timestamp by sending a request of the
+2. save the approved message in the file `./message.json` (it is the value of
+   the field `message`),
+3. save the ASCII-armored signature in the file `./message.json.asc` (it is the
+   value of the field `signature`),
+4. * receive (and import) the public key for the given fingerprint from the
+     [OpenPGP Keyserver](https://keys.openpgp.org) by running
+     `gpg --keyserver hkps://keys.openpgp.org/ --receive-keys <KEY_FINGERPRINT>`
+     where `<KEY_FINGERPRINT>` is the value of the field `keyFingerprint`.
+   * make sure that the key was not expired and was not revoked when the
+     approval was created by checking that the output of
+     `gpg --list-keys <KEY_FINGERPRINT>`
+     does not say so: Look for the terms 'revoked' and 'expired'.
+   * make sure that the key belongs to the approver and was allowed for signing
+     and not revoked when the approval was created by sending a request of the
      form
      ```
-     database(databaseId: ..., timestamp: <TIMESTAMP>) {
-       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
+     query {
+       institution(id: <APPROVER_ID>) {
+         hasGnuPgKeyFingerprint(
+           where: {
+             and: [
+               { fingerprint: { equalTo: <KEY_FINGERPRINT> } }
+               { allowedAt: { lessThanOrEqualTo: <TIMESTAMP> } }
+               {
+                 or: [
+                   { forbiddenAt: { equalTo: null } }
+                   { forbiddenAt: { greaterThan: <TIMESTAMP> } }
+                 ]
+               }
+             ]
+           }
+         )
+       }
      }
      ```
-     or
+     to the metabase and checking that the response is
      ```
-     stakeholder(stakeholderId: ..., timestamp: <TIMESTAMP>) {
-       hasGnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
+     {
+       "data": {
+         "institution": {
+           "hasGnuPgKeyFingerprint": true
+         }
+       }
      }
      ```
-   * or retrieve the allowed-for-signing and valid-at-the-given-time key from
-     the metabase's GraphQL endpoint by sending a request of the form
+     where `<APPROVER_ID>`, `<KEY_FINGERPRINT>`, and `<TIMESTAMP>` are the values
+     of the fields `approverId`, `keyFingerprint`, and `timestamp`. Alternatively,
+     retrieve the allowed-for-signing and not-revoked-at-the-given-time key
+     fingerprint from the metabase's GraphQL endpoint by sending a request of
+     the form
      ```
-     database(databaseId: ..., timestamp: <TIMESTAMP>) {
-       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
+     query {
+       institution(id: <APPROVER_ID>) {
+         gnuPgKeyFingerprints(
+           where: {
+             and: [
+               { fingerprint: { equalTo: <KEY_FINGERPRINT> } }
+               { allowedAt: { lessThanOrEqualTo: <TIMESTAMP> } }
+               {
+                 or: [
+                   { forbiddenAt: { equalTo: null } }
+                   { forbiddenAt: { greaterThan: <TIMESTAMP> } }
+                 ]
+               }
+             ]
+           }
+         ) {
+           edges {
+             node {
+               fingerprint
+               allowedAt
+               forbiddenAt
+               user {
+                 node {
+                   uuid
+                   name
+                 }
+               }
+             }
+           }
+           totalCount
+         }
+       }
      }
      ```
-     or
+     to the metabase and check that the response
      ```
-     stakeholder(stakeholderId: ..., timestamp: <TIMESTAMP>) {
-       gnuPgKey(fingerprint: <FINGERPRINT>, status: ALLOWED, valid: true)
+     {
+       "data": {
+         "institution": {
+           "gnuPgKeyFingerprints": {
+             "edges": [
+               {
+                 "node": {
+                   "fingerprint": <KEY_FINGERPRINT>,
+                   "allowedAt": ...,
+                   "forbiddenAt": ...,
+                   "user": {
+                     "node": {
+                       "uuid": ...,
+                       "name": ...
+                     }
+                   }
+                 }
+               }
+             ],
+             "totalCount": 1
+           }
+         }
+       }
      }
      ```
-     save the ASCII-armored key in a file `my.gpg.asc`, and import it by running
-     `gpg --import ./my.gpg.asc`.
-   where `<TIMESTAMP>` is the timestamp at which the approval was created (for
-   response approvals this is the timestamp of the response).
+     contains exactly one edge (and node).
 5. verify the signature with the public key by running
-   `gpg --verify response.json.asc response.json`.
+   `gpg --assert-signer <KEY_FINGERPRINT> --verify ./message.json.asc ./message.json`.
 
 To create an approval,
 1. install [GnuPG](https://www.gnupg.org),
@@ -1451,61 +1819,131 @@ To create an approval,
    entering the command `save`.
 4. list your keys with fingerprints by running
    `gpg --list-keys --with-subkey-fingerprint <YOUR_EMAIL_ADDRESS>`.
-5. adds it your signing key to the metabase and its keyserver (both are
-   coupled and one cannot be done without the other) either with the GraphQL
+5. add your signing key to the
+   [OpenPGP Keyserver](https://keys.openpgp.org)
+   by running
+   `gpg --keyserver hkps://keys.openpgp.org --send-keys <SIGNING_KEY_FINGERPRINT>`
+   or by exporting the public key by running
+   `gpg --export --armor --output ./signing_key.pub.asc <SIGNING_KEY_FINGERPRINT>`
+   and uploading it via the form on
+   [OpenPGP Key Upload](https://keys.openpgp.org/upload).
+6. within a few minutes, verify the signing key's user ID, which is
+   `<YOUR_EMAIL_ADDRESS>`, by following the verification link sent to you.
+7. add the signing key fingerprint to the metabase with the GraphQL mutation
+   ```
+   mutation {
+     addGnuPgKeyFingerprint(input: {
+       institutionId: <APPROVER_ID>
+       fingerprint: <SIGNING_KEY_FINGERPRINT>
+     }) {
+       errors {
+         code
+         message
+         path
+       }
+     }
+   }
+   ```
+   and ask the institution owner to allow the key for signing with the GraphQL
    mutation
    ```
    mutation {
-     sendKeys(input: {
-       asciiArmoredKeys: <ASCII_ARMORED_KEYS>
-       keyFingerprint: <SIGNING_KEY_FINGERPRINT>
-     }) { }
+     allowGnuPgKeyFingerprint(input: {
+       fingerprint: <SIGNING_KEY_FINGERPRINT>
+     }) {
+       errors {
+         code
+         message
+         path
+       }
+     }
    }
    ```
-   where `<ASCII_ARMORED_KEYS>` is the standard output of running
-   `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
-   or by running
-   `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`.
-6. save the response to be approved in a file `response.json`,
-7. compute the signature and write it to `response.json.asc` by running
-   `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> response.json`, and
-8. add the signature as approval to the database through its interface.
+   Note that if you are the owner, the key is allowed automatically.
+
+For a response approval,
+8. save the response of the present query in a file `./message.json`.
+9. compute the signature and write it to `./message.json.asc` by running
+  `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> --output ./message.json.asc ./message.json`, and
+10. add the approval to the final response of the present query through the
+    field `approval`.
+
+For a data approval,
+8. query meta information of the data set to be signed with a GraphQL query
+   like
+   ```
+   query {
+     opticalData(id: <OPTICAL_DATA_ID>) {
+       uuid
+       name
+       description
+       resourceTree {
+         root {
+           value {
+             hashValue
+             locator
+             dataFormatId
+           }
+         }
+       }
+     }
+   }
+   ```
+   and load the data with an HTTPS GET request to the locator URL by running
+   `wget <LOCATOR>`.
+9. review whether some statement is true for the data, for example, whether the
+   data conforms to some standard. If that is so, query the meta information to
+   be signed which at least contains the hash value of the data
+   ```
+   query {
+     opticalData(id: <OPTICAL_DATA_ID>) {
+       resourceTree {
+         root {
+           value {
+             hashValue
+           }
+         }
+       }
+     }
+   }
+   ```
+   make sure that the hash value is the same as before, wrap the statement and
+   the meta information (named `<RESPONSE>` below) like so
+   ```
+   {
+     "statement": <STATEMENT>,
+     "response": <RESPONSE>
+   }
+   ```
+   and save this in a file `./message.json`. The query should ask for the
+   information necessary to identify the meta information and the data set
+   itself uniquely like its ID and the data set's fingerprint, aka, hash value.
+   It should not ask for information whose change would invalidate the approval
+   unnecessaritly like the the verbal description of the data set.
+10. compute the signature and write it to `./message.json.asc` by running
+    `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> --output ./message.json.asc ./message.json`, and
+11. add the signature as data approval to the database through its interface,
+    which could for example have a GraphQL mutation `AddDataApproval`.
 
 Best practices for managing GnuPG keys within an institution:
-* In the metabase, each institution has at least one representative and the
-  institution's GnuPG keys are but the keys of all its representatives.
-* Each representative of an institution within the metabase who is allowed to
-  approve data for its institution adds its signing key to the metabase and its
-  keyserver (both are coupled and one cannot be done without the other) either
-  with the GraphQL mutation
-  ```
-  mutation {
-    sendKeys(input: {
-      asciiArmoredKeys: <ASCII_ARMORED_KEYS>
-      keyFingerprint: <SIGNING_KEY_FINGERPRINT>
-    }) { }
-  }
-  ```
-  where `<ASCII_ARMORED_KEYS>` is the standard output of running
-  `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
-  or by running
-  `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-keys <SIGNING_KEY_FINGERPRINT>`.
+* In the metabase, each institution has at least one representative. The
+  institution's GnuPG keys are the ones whose fingerprints are associated with
+  the institution. Fingerprints can be added by representatives and allowed and
+  forbidden for signing by instiution owners. The corresponding GraphQL
+  mutations are `addGnuPgKeyFingerprint`, `allowGnuPgKeyFingerprint`, and
+  `forbidGnuPgKeyFingerprint`.
+* Each representative of an institution within the metabase who is supposed to
+  approve data for its institution adds its signing key to the
+  [OpenPGP Keyserver](https://keys.openpgp.org),
+  the key fingerprint to the metabase, and lets the fingerprint be allowed for
+  signing by the institution owner.
 * When a representative's signing subkey is compromised she revokes it as
   described in
-  [Revoking key components](https://www.gnupg.org/gph/en/manual.html#AEN305)
-  and publishes the revocation either with the corresponding GraphQL mutation
-  ```
-  mutation {
-    sendKeys(input: {
-      asciiArmoredKeys: <ASCII_ARMORED_KEYS>
-      keyFingerprint: <SIGNING_KEY_FINGERPRINT>
-    }) { }
-  }
-  ```
-  where `<ASCII_ARMORED_KEYS>` is the standard output of running
-  `gpg --export --armor --output - <SIGNING_KEY_FINGERPRINT>`,
-  or by running
-  `gpg --keyserver hkps://keyserver.buildingenvelopedata.org --send-key <SIGNING_KEY_FINGERPRINT>`.
+  [Revoking key components](https://www.gnupg.org/gph/en/manual.html#AEN305),
+  publishes the revocation to the keyserver by running
+  `gpg --keyserver hkps://keys.openpgp.org --send-key <SIGNING_KEY_FINGERPRINT>`,
+  and forbids the key for signing on the metabase with the mutation
+  `forbidGnuPgKeyFingerprint`
 * When a representative leaves a company or is no longer allowed to approve data,
   the metabase is informed about that with the GraphQL mutation
   ```
@@ -1513,27 +1951,26 @@ Best practices for managing GnuPG keys within an institution:
     removeInstitutionRepresentative(input: {
       userId: <USER_ID>
       institutionId: <INSTITUTION_ID>
-    }) { }
+    }) {
+      errors {
+        code
+        message
+        path
+      }
+    }
   }
   ```
-  or
-  ```
-  mutation {
-    forbidInstitutionRepresentativeToSignData(input: {
-      userId: <USER_ID>
-      institutionId: <INSTITUTION_ID>
-    }) { }
-  }
-  ```
+  which also forbids all GnuPG keys associated with this representative from
+  signing.
 
-Best practices for accepting approvals by databases:
-* Check that the fingerprint belongs to a non-revoked and valid GnuPG key of an
-  active representative of an institution who is allowed to make signatures for
-  that institution.
-* Check that the query contains all necessary fields and sub-fields and
-  specifies a timestamp.
-* Check that the response is the result of the given query.
-* Check that the signature is valid for the given response.
+Best practices for accepting data approvals by databases:
+* Check that at the time of approval creation, the fingerprint belonged to
+  a non-revoked and non-disabled GnuPG key.
+* Check that the key was allowed to make signatures for that institution.
+* Check that the query contains all necessary fields and sub-fields.
+* Check that the message is constructed properly according to the documentation
+  of the implementing type `DataApproval`.
+* Check that the signature is valid for the given message.
 
 Note that GnuPG is compliant with
 [OpenPGP Message Format](https://tools.ietf.org/html/rfc4880).
@@ -1552,14 +1989,15 @@ interface Approval {
   timestamp: DateTime!
 
   """
-  Detached ASCII-armored GnuPG signature of the GraphQL query response.
+  Detached ASCII-armored GnuPG signature of the message which includes the
+  GraphQL query response.
 
-  With the query response saved in the file `response.json`, the signature can
-  be computed and written to `response.json.asc` by running
-  `gpg --detach-sig --armor response.json`
-  (to write it to standard output instead, add the option `--output -`). And,
+  With the message saved in the file `./message.json`, the signature can
+  be computed and written to `./message.json.asc` by running
+  `gpg --detach-sig --armor --output ./message.json.asc ./message.json`
+  (to write it to standard output instead, use the option `--output -`). And,
   the signature can be verified by running
-  `gpg --verify response.json.asc response.json`.
+  `gpg --verify ./message.json.asc ./message.json`.
   Note that to compute a signature you need a GnuPG signing private key in your
   key ring and to verify a signature you need the GnuPG signing public key
   whose corresponding private key was used to compute the signature.
@@ -1570,7 +2008,7 @@ interface Approval {
   Fingerprint of the GnuPG signing key used to compute the signature.
 
   The key's fingerprint, long identifier, and short identifier are related as
-  in the follow example:
+  in the following example:
   * fingerprint: 0D69 E11F 12BD BA07 7B37  26AB 4E1F 799A A4FF 2279
   * long id:                                    4E1F 799A A4FF 2279
   * short id:                                             A4FF 2279
@@ -1581,34 +2019,46 @@ interface Approval {
   keyFingerprint: String!
 
   """
-  GraphQL query whose response is signed. The query includes the argument
-  `timestamp`, for example,
+  [GraphQL query](https://graphql.org/learn/queries/)
+  whose response is included in the message being signed, for example,
   ```
-  opticalData(opticalDataId: ..., timestamp: ...) { ... }
+  query OpticalData($id: Uuid!) {
+    opticalData(id: $id) { ... }
+  }
   ```
-  as otherwise it is not reproducible. It does neither include other data
-  approvals by third parties nor the response approval by the database.  All
-  other fields and sub-fields of this GraphQL schema at the time given by
-  `timestamp` are included. Despite these restrictions specifying the query
-  explicitely is necessary because approvals shall not become invalid when the
-  GraphQL schema changes.
+  Specifying the query explicitly is necessary because approvals shall not
+  become invalid when the GraphQL schema changes.
   """
   query: GraphQlQuery!
 
   """
-  JSON serialized GraphQL response that is signed.
+  [GraphQL variables](https://graphql.org/learn/queries/#variables)
+  defined by the GraphQL query, for example,
+  ```
+  { "id": "018731a4-4c0a-49af-a5d9-f377fbd0a939" }
+  ```
+  """
+  variables: Any!
 
-  With the response put in the file `response.json`, the GnuPG signature put in
-  the file `response.json.asc`, and the GnuPG public key of the approver added
+  """
+  Message that is signed.
+
+  For `ResponseApproval` it is the serialized GraphQL response of `query`. And
+  for `DataApproval` it is a serialized JSON combining the statement being made
+  and the response. See the documentation of `ResponseApproval#message` and
+  `DataApproval#message` for details.
+
+  With the message put in the file `./message.json`, the GnuPG signature put in
+  the file `./message.json.asc`, and the GnuPG public key of the approver added
   to the GnuPG key ring, the signature can be verified by running
-  `gpg --verify response.json.asc response.json`.
+  `gpg --verify ./message.json.asc ./message.json`.
 
-  To compare the response `response.json` and another response `another.json`,
+  To compare the message `./message.json` and another message `./another.json`,
   run the command
   ```
   diff --side-by-side --suppress-common-lines \
-    <(jq --sort-keys --monochrome-output . response.json) \
-    <(jq --sort-keys --monochrome-output . another.json)
+    <(jq --sort-keys --monochrome-output . ./message.json) \
+    <(jq --sort-keys --monochrome-output . ./another.json)
   ```
   in a
   [Bourne-again shell (Bash)](https://www.gnu.org/software/bash/),
@@ -1617,31 +2067,90 @@ interface Approval {
   and
   [Using jq or alternative command line tools to compare JSON files](https://stackoverflow.com/questions/31930041/using-jq-or-alternative-command-line-tools-to-compare-json-files/37175540#37175540).
 
-  Comparing responses is necessary to verify that the data `another.json` you
+  Comparing messages is necessary to verify that the data `./another.json` you
   received in a query that includes this approval matches the approved data.
   Which is of course the case if all involved organizations are trustworthy.
-  However, verified signatures and matching responses together prove data
+  However, verified signatures and matching messages together prove data
   integrity (at least if private keys used to make the signatures in the first
   place are not compromised).
   """
-  response: JsonGraphQlResponse!
+  message: String!
+
+  """
+  Approver identifier issued by the metabase. The approver's meta data can be
+  obtained by sending the GraphQL query
+  `query { institution(id: ...) { ... } }`
+  to the metabase. For data approvals, the approver makes the statement about
+  the data identified by the query. For response approvals, the approver states
+  that the message is the response to the query by the present database.
+  """
+  approverId: Uuid!
 }
 
 """
 Approval of data by third party with GnuPG signature that is created at some
 point in time. It becomes invalid when the approved data changes, even if the
 change is but a spelling-error correction in meta data like the description.
-In that case, the third party needs to re-create its approval.
+In that case, the third party needs to re-create its approval. Unnecessary
+invalidation can be avoided by choosing the meta data that is part of the
+message being approved carefully.
 
 Steps to approve data:
-1. An institution adds data to a database.
-2. Some institution (may be the same) queries the data with a GraphQL query.
-3. The latter institution reviews the data and, if correct, signs it with one
-   of its GnuPG signing keys.
-4. The institution adds its approval of the data to the database.
+1. An institution adds data with meta information to a database.
+2. Some institution (may be the same) queries some meta information with
+   a GraphQL query like
+   ```
+   query {
+     opticalData(id: <OPTICAL_DATA_ID>) {
+       uuid
+       name
+       description
+       resourceTree {
+         root {
+           value {
+             hashValue
+             locator
+             dataFormatId
+           }
+         }
+       }
+     }
+   }
+   ```
+   and loads the data with an HTTPS GET request to the locator URL by running
+   `wget <LOCATOR>`.
+3. The latter institution reviews whether some statement is true for the data,
+   for example, whether the data conforms to some standard. If that is so, the
+   institution queries the meta information to be signed which at least
+   contains the hash value of the data
+   ```
+   query {
+     opticalData(id: <OPTICAL_DATA_ID>) {
+       resourceTree {
+         root {
+           value {
+             hashValue
+           }
+         }
+       }
+     }
+   }
+   ```
+   makes sure that the hash value is the same as before, wraps the statement
+   and the meta information (named `<RESPONSE>` below) like so
+   ```
+   {
+     "statement": <STATEMENT>,
+     "response": <RESPONSE>
+   }
+   ```
+   and signs this JSON data.
+4. The institution adds its approval of the data to some database or asks it to
+   be added.
 
-Storing the GraphQL query with the signature is necessary because it needs to be
-known exactly which JSON data was signed.
+Storing the GraphQL query, variables, and message with the signature is
+necessary because it needs to be known exactly which JSON data was signed (with
+exact whitespaces).
 
 Note that the query to be signed only includes paths that are part of the data
 and not part of some associates, which are actually all paths in the present
@@ -1649,7 +2158,7 @@ GraphQL schema. However, the actual GraphQL schema of the database is in
 general an extension of the present GraphQL schema and may have paths to some
 associates like data format specifics of HTTP resources that it may fetch from
 the "metabase" and provides for convenience. These specifics should not be
-sigend as a change of, for example, the data format description would
+signed as a change of, for example, the data format description would
 invalidate the signature although the data itself did not change.
 """
 type DataApproval implements Approval {
@@ -1657,15 +2166,29 @@ type DataApproval implements Approval {
   signature: String!
   keyFingerprint: String!
   query: GraphQlQuery!
-  response: JsonGraphQlResponse!
+  variables: Any!
+  approverId: Uuid!
 
   """
-  Approver identifier issued by the metabase. The approver's meta data can be
-  obtained by sending the GraphQL query
-  `stakeholder(stakeholderId: ..., timestamp: ...) { ... }`
-  to the metabase.
+  Message that is signed. It is a string representation of the JSON
+  ```
+  {
+    "statement": <STATEMENT>,
+    "response": <RESPONSE>
+  }
+  ```
+  with whitespaces as when the signature was created, where `<STATEMENT>` is
+  the JSON of the field `statement` and `<RESPONSE>` is the JSON response of
+  sending the GraphQL request given by the field `query`.
   """
-  approverId: Uuid!
+  message: String!
+
+  """
+  Statement that is being made by the approver about the data identified by the
+  query. The reference could for example be an ISO standard, which would mean
+  that this approval states that the data conforms to this standard.
+  """
+  statement: Reference!
 }
 
 """
@@ -1678,7 +2201,14 @@ type ResponseApproval implements Approval {
   signature: String!
   keyFingerprint: String!
   query: GraphQlQuery!
-  response: JsonGraphQlResponse!
+  variables: Any!
+  approverId: Uuid!
+
+  """
+  Serialized response of the GraphQL query with whitespaces as when the
+  signature was created.
+  """
+  message: String!
 }
 
 """
@@ -1714,7 +2244,7 @@ type GetHttpsResource {
   description: String
 
   """
-  Hash value of sucessful HTTP response message body with
+  Hash value of successful HTTP response message body with
   [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6)
   [200](https://tools.ietf.org/html/rfc7231#section-6.3.1)
   computed with
@@ -1784,7 +2314,7 @@ type GetHttpsResource {
   [200](https://tools.ietf.org/html/rfc7231#section-6.3.1).
   The identifier is issued by the metabase. The format's meta data can be
   obtained by sending the GraphQL query
-  `dataFormat(dataFormatId: ..., timestamp: ...) { ... }`
+  `query { dataFormat(id: ...) { ... } }`
   to the metabase.
 
   The data format consists of a
@@ -1945,7 +2475,7 @@ type FileMetaInformation {
   """
   Identifier of the data format. The identifier is issued by the metabase. The
   format's meta data can be obtained by sending the GraphQL query
-  `dataFormat(dataFormatId: ..., timestamp: ...) { ... }`
+  `query { dataFormat(id: ...) { ... } }`
   to the metabase.
 
   The data format consists of a

@@ -1,0 +1,208 @@
+@startjson opticalDataPointSchema
+{
+  "dataPoint": {
+    "properties":
+    {
+      "incidence": {
+        "direction": {
+          "oneOf":
+          {
+            "polar": {
+              "number": "degreeBetweenZeroAndNinetyWithUncertainty"
+            }
+            ,
+            "azimuth": {
+              "number": "degreeBetweenZeroAndThreeHundredSixtyWithUncertainty"
+
+            }
+          }
+          ,
+          "":
+          {
+            "type": "string",
+            "const": "hemispherical"
+          }
+
+        }
+        ,
+        "wavelengths": {
+          "oneOf":
+          {
+            "wavelength": {
+              "number": "nanometer"
+            }
+            ,
+            "uncertainty": [ "bandwidth", "amplificationFactor" ]
+          }
+          ,
+          "":
+          {
+            "integral": ["infrared", "solar", "ultraviolet", "visible", "other"]
+          }
+
+        }
+        ,
+        "polarization": {
+          "oneOf":
+          {
+            "s": {
+              "number": "numberWithUncertainty"
+            }
+            ,
+            "p": {
+              "number": "numberWithUncertainty"
+            }
+          }
+          ,
+          "":
+          {
+            "circular polarization": ["leftHanded", "rightHanded"]
+          }
+
+        }
+      }
+      ,
+      "componentCharacteristics": {
+        "treatmentBefore": {
+          "common": "reference"
+        }
+        ,
+        "locationOnSample": {
+          "common": "reference"
+        }
+        ,
+        "polarizationSensitivity": {
+          "common": "reference"
+        }
+        ,
+        "instrumentSignature": {
+          "number": "nonNegativeNumber"
+        }
+        ,
+        "normalization":  ["absolute", "relative", "specular", "diffuseReflectance"]
+        ,
+        "referenceSample": {
+          "common": "reference"
+        }
+        ,
+        "spot": {
+          "common": "reference"
+        }
+        ,
+        "slatTilt": {
+          "common": "angles/slatTilt"
+        }
+        ,
+        "symmetries": [
+        "azimuthalAngleInvariance",
+        "profileAngle",
+        "mirror",
+        "rotationalDependingOnAzimuth",
+        "mirrorAndRotational"
+        ]
+        ,
+        "surface": {
+          "component": "surface"
+        }
+      }
+      ,
+      "emergence": {
+        "direction": {
+          "oneOf":
+          {
+            "polar": {
+              "number": "degreeWithUncertainty"
+            }
+            ,
+            "azimuth": {
+              "number": "degreeWithUncertainty"
+            }
+          }
+          ,
+          "":
+          {
+            "string": ["diffuse", "hemispherical"]
+          }
+
+        }
+      }
+    },
+    "if": {
+          "incidence": {
+              "wavelengths": {
+                  "integral": {
+                    "const": "visible"
+                  }
+                }
+              }
+        },
+    "then": {
+      "results": {
+        "transmittance": {
+          "number": "numberWithUncertainty"
+        }
+        ,
+        "reflectance": {
+          "number": "numberWithUncertainty"
+        }
+        ,
+        "absorptanceEmittance": {
+          "number": "numberWithUncertainty"
+        },
+        "colorTransmittance": {
+          "name": {          "type": "string"        },
+          "cielabColors": {
+              "lStar": {
+                "number": "numberWithUncertainty"
+              },
+              "aStar": {
+                "number": "numberWithUncertainty"
+              },
+              "bStar": {
+                "number": "numberWithUncertainty"
+              },
+              "observer":  ["twoDegrees", "tenDegrees"],
+              "illuminant":  ["A", "D65"]
+            },
+          "colorRenderingIndices": {
+              "ra": { "number": "numberBetweenZeroAndOneHundredWithUncertainty"},
+              "observer":  ["twoDegrees", "tenDegrees"],
+              "illuminant":  ["A", "D65"]
+            }
+        },
+        "colorReflectance": {
+            "name": {"type": "string"   },
+            "cielabColors": {
+                "lStar": {
+                  "number": "numberWithUncertainty"
+                },
+                "aStar": {
+                  "number": "numberWithUncertainty"
+                },
+                "bStar": {
+                  "number": "numberWithUncertainty"
+                },
+                "observer":  ["twoDegrees", "tenDegrees"],
+                "illuminant":  ["A", "D65"]
+            }
+        }
+      }
+    },
+    "else": {
+      "results": {
+        "transmittance": {
+          "number": "numberWithUncertainty"
+        }
+        ,
+        "reflectance": {
+          "number": "numberWithUncertainty"
+        }
+        ,
+        "absorptanceEmittance": {
+          "number": "numberWithUncertainty"
+        }
+      }
+    }
+  }
+}
+@endjson

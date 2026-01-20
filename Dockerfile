@@ -1,6 +1,11 @@
+# syntax=docker/dockerfile:1.6
+# The above line fixes the Dockerfile frontend used by BuildKit. For details
+# see https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/reference.md
+# Available versions are listed on https://hub.docker.com/r/docker/dockerfile
+
 # Use Node on Debian as base image, see
 # https://hub.docker.com/_/node
-FROM node:16.13.0-bullseye-slim
+FROM node:22.11-bookworm-slim
 
 ##################
 # As user `root` #
@@ -21,8 +26,20 @@ ARG GID=1000
 # see https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
 RUN \
   userdel --remove node && \
-  addgroup --system --gid ${GID} us && \
-  adduser --system --uid ${UID} --ingroup us me
+  existing_user_name="$(getent passwd ${UID} 2>/dev/null | cut --delimiter=: --fields=1)" && \
+  existing_group_name="$(getent group ${GID} 2>/dev/null | cut --delimiter=: --fields=1)" && \
+  if test -n "${existing_user_name}"; then deluser --system "${existing_user_name}"; fi && \
+  if test -n "${existing_group_name}"; then delgroup --system "${existing_group_name}"; fi && \
+  groupadd \
+    --gid ${GID} \
+    us && \
+  useradd \
+    --no-log-init \
+    --create-home \
+    --shell /bin/bash \
+    --uid ${UID} \
+    --gid us \
+    me
 
 #-------------------------------#
 # Make `bash` the default shell #
@@ -34,16 +51,16 @@ RUN \
     "s#bin/dash#bin/bash#" \
     /etc/passwd
 
-#---------------------#
-# Install `dumb-init` #
-#---------------------#
-# a minimal init system for Linux containers, see https://github.com/Yelp/dumb-init
+#----------------#
+# Install `tini` #
+#----------------#
+# a minimal init system for Linux containers, see https://github.com/krallin/tini
 RUN \
   # Retrieve new lists of packages
   apt-get update && \
-  # Install `dumb-init`
+  # Install `tini`
   apt-get install --assume-yes --no-install-recommends \
-    dumb-init && \
+    tini && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
@@ -52,10 +69,15 @@ RUN \
 #----------------------------------#
 # Install system development tools #
 #----------------------------------#
+# * `jq` to slice, filter, map, and transform JSON data, see
+#   https://stedolan.github.io/jq/
 # * GNU Make to run often needed commands, see
 #   https://www.gnu.org/software/make
+# * Neovim to edit text files and to show the difference between files, see
+#   https://neovim.io/
 # * Node package manager to install Node development tools, see
 #   https://www.npmjs.com
+ENV NPM_VERSION=10.9.1
 RUN \
   # Retrieve new lists of packages
   apt-get update && \
@@ -63,9 +85,11 @@ RUN \
   apt-get install --assume-yes --no-install-recommends \
     jq \
     make \
-    npm && \
-  # Upgrade Node package manager to version 7.18.1
-  npm install --global npm@8.1.3 && \
+    neovim \
+    npm \
+    plantuml && \
+  # Upgrade Node package manager
+  npm install --global npm@${NPM_VERSION} && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
@@ -114,16 +138,31 @@ RUN \
   npm ci --no-optional && \
   npm cache clean --force
 
+#---------------------------#
+# Prepare volumes and binds #
+#---------------------------#
+# Create empty directories /home/me/.vscode-server/*` for user `me` and group
+# `us` to make the respective mounted volumes be owned by the user `me` and the
+# group `us`. For an explanation for the Visual Studio Code Server directories
+# see https://code.visualstudio.com/docs/remote/containers-advanced#_avoiding-extension-reinstalls-on-container-rebuild
+RUN \
+  mkdir --parents \
+    /home/me/.vscode-server/extensions \
+    /home/me/.vscode-server-insiders/extensions
+
 #-------------------------------------------#
 # Set-up for containers based on this image #
 #-------------------------------------------#
 # Create mount points to mount the project and the installed Node development
 # tools.
 VOLUME /app/
-VOLUME /app/node_modules/
+VOLUME /app/node_modules
+VOLUME /home/me/.vscode-server/extensions
+VOLUME /home/me/.vscode-server-insiders/extensions
 
-# Run commands within the process supervisor and init system `dumb-init`
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-# Make `bash` the default command (and update Node development tools), see
-# https://github.com/Yelp/dumb-init#using-a-shell-for-pre-start-hooks
-CMD ["bash", "-c", "make install-tools && exec bash"]
+# Run commands within the process supervisor and init system `tini`
+# https://github.com/krallin/tini?tab=readme-ov-file#using-tini
+ENTRYPOINT ["/usr/bin/tini", "--"]
+# Make `bash` the default command, see
+# https://github.com/Yelp/dumb-init?tab=readme-ov-file#using-a-shell-for-pre-start-hooks
+CMD ["bash"]

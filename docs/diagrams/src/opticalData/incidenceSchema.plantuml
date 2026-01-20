@@ -1,0 +1,65 @@
+@startjson incidenceSchema
+{
+  "incidence": {
+    "direction": {
+      "oneOf": [
+      {
+        "polar": {
+          "$ref": "number.json#/$defs/degreeBetweenZeroAndNinetyWithUncertainty"
+        }
+        ,
+        "azimuth": {
+          "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty"
+
+        }
+      }
+      ,
+      {
+        "title": "Hemispherical",
+        "type": "string",
+        "const": "hemispherical"
+      }
+      ]
+    }
+    ,
+    "wavelengths": {
+      "oneOf": [
+      {
+        "wavelength": {
+          "$ref": "number.json#/$defs/nanometer"
+        }
+        ,
+        "uncertainty": { "$ref": "#/$defs/wavelengthUncertainty" }
+      }
+      ,
+      {
+        "integral": {
+          "type": "string",
+          "enum": ["infrared", "solar", "ultraviolet", "visible", "other"]
+        }
+      }
+      ]
+    }
+    ,
+    "polarization": {
+      "oneOf": [
+      {
+        "s": {
+          "$ref": "number.json#/$defs/numberWithUncertainty"
+        }
+        ,
+        "p": {
+          "$ref": "number.json#/$defs/numberWithUncertainty"
+        }
+      }
+      ,
+      {
+        "title": "Circular polarization",
+        "type": "string",
+        "enum": ["leftHanded", "rightHanded"]
+      }
+      ]
+    }
+  }
+}
+@endjson

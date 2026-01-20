@@ -1,0 +1,136 @@
+query {
+  byComponentId: allOpticalData(
+    where: { componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
+  byNegation: allOpticalData(
+    where: {
+      not: {
+        nearnormalHemisphericalVisibleTransmittances: {
+          all: { lessThanOrEqualTo: 0.4 }
+        }
+      }
+    }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
+
+  byConjunction: allOpticalData(
+    where: {
+      and: [
+        {
+          nearnormalHemisphericalVisibleTransmittances: {
+            some: { greaterThanOrEqualTo: 0.3 }
+          }
+        }
+        {
+          nearnormalHemisphericalVisibleReflectances: {
+            some: { lessThanOrEqualTo: 0.2 }
+          }
+        }
+      ]
+    }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
+
+  byDisjunction: allOpticalData(
+    where: {
+      or: [
+        {
+          nearnormalHemisphericalSolarReflectances: {
+            some: { greaterThanOrEqualTo: 0.8 }
+          }
+        }
+        {
+          nearnormalHemisphericalVisibleReflectances: {
+            none: { lessThanOrEqualTo: 0.5 }
+          }
+        }
+      ]
+    }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
+
+  byComplex: allOpticalData(
+    where: {
+      and: [
+        { componentId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" } }
+        {
+          or: [
+            {
+              nearnormalHemisphericalSolarReflectances: {
+                some: { greaterThanOrEqualTo: 0.8 }
+              }
+            }
+            {
+              nearnormalHemisphericalVisibleReflectances: {
+                none: { lessThanOrEqualTo: 0.5 }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
+
+  byDataFormatId: allOpticalData(
+    where: {
+      resources: {
+        some: {
+          dataFormatId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" }
+        }
+      }
+    }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
+
+  byDataFormatIdInsideArchive: allOpticalData(
+    where: {
+      resources: {
+        some: {
+          archivedFilesMetaInformation: {
+            some: {
+              dataFormatId: { equalTo: "810e84b4-9ebf-416c-88ea-aade848f1fdf" }
+            }
+          }
+        }
+      }
+    }
+  ) {
+    edges {
+      node {
+        uuid
+      }
+    }
+  }
+}

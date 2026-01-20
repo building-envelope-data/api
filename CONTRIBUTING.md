@@ -45,3 +45,7 @@ Verify that your commits pass the following tests:
 - [ ] Run `make compile` to verify that all schemas are valid against the specification of GraphQL and JSON Schema.
 - [ ] Run `make example` to verify that all examples are valid against the schemas.
 - [ ] Run `make test` to verify that all tests from the folder `/valid/` are valid and all tests from the folder `/invalid/` are invalid against the schemas.
+
+## Create a release
+
+Before you create a release, please [read this section](https://github.com/building-envelope-data/metabase?tab=readme-ov-file#creating-a-release) of the README of repository `metabase` and follow the description.

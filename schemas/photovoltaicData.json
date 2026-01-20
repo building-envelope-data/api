@@ -1,6 +1,6 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/photovoltaicData.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/photovoltaicData.json",
   "title": "photovoltaic data",
   "description": "Data about components of building envelopes which contribute to convert irradiance into electricity. A photovoltaic system is usually assembled of many components, for example photovoltaic modules.",
   "$defs": {
@@ -61,7 +61,7 @@
               },
               "efficiency": {
                 "$ref": "number.json#/$defs/numberBetweenZeroAndOne",
-                "description": "The effiency of the cell is measured at standard test conditions."
+                "description": "The efficiency of the cell is measured at standard test conditions."
               },
               "power": {
                 "type": "object",
@@ -262,9 +262,9 @@
                 "$ref": "number.json#/$defs/ohmPerMeterWithUncertainty",
                 "description": "The electric resistance of the connection per length of the connection in ohms per meter."
               },
-              "color": {
-                "$ref": "opticalData.json#/$defs/color",
-                "description": "Color of the connection"
+              "colorReflectance": {
+                "$ref": "opticalData.json#/$defs/colorReflectance",
+                "description": "Color reflected by the connection"
               }
             },
             "additionalProperties": false,
@@ -410,9 +410,9 @@
               "$ref": "material.json#/$defs/characteristics",
               "description": "All properties which depend on the material in general and not on the specific component."
             },
-            "color": {
-              "$ref": "opticalData.json#/$defs/color",
-              "description": "Color of the frame."
+            "colorReflectance": {
+              "$ref": "opticalData.json#/$defs/colorReflectance",
+              "description": "Color reflected by the frame."
             }
           },
           "additionalProperties": false,
@@ -466,9 +466,9 @@
                             "$ref": "number.json#/$defs/degree",
                             "description": "The incidence angle in degree"
                           },
-                          "IAM": {
+                          "incidenceAngleModifier": {
                             "$ref": "number.json#/$defs/nonNegativeNumber",
-                            "description": "The value of the incidence angle modifier at the angle defined by `incidence`."
+                            "description": "The value of the incidence angle modifier (IAM) at the angle defined by `incidence`."
                           }
                         },
                         "additionalProperties": false,
@@ -560,7 +560,7 @@
             },
             "efficiency": {
               "$ref": "number.json#/$defs/numberBetweenZeroAndOne",
-              "description": "The effiency of the module is measured at standard test conditions."
+              "description": "The efficiency of the module is measured at standard test conditions."
             },
             "safety": {
               "title": "Data about the safety of photovoltaic modules.",
@@ -570,7 +570,7 @@
                   "title": "The fire safety class of the photovoltaic module depending on the region for which the class is valid.",
                   "type": "object",
                   "properties": {
-                    "EN": {
+                    "european": {
                       "title": "The fire safety class according to the regulations of the European Union. EN 13501-1 defines the categories as well as the additional classification for smoke development and burning drops falling from the component.",
                       "type": "object",
                       "properties": {
@@ -661,7 +661,7 @@
                           },
                           "reference": {
                             "$ref": "common.json#/$defs/reference",
-                            "description": "Reference for examplt to the standard according to which the mechanical test was performed"
+                            "description": "Reference for example to the standard according to which the mechanical test was performed"
                           }
                         },
                         "additionalProperties": false,
@@ -925,7 +925,7 @@
               "title": "The electric safety of the inverter.",
               "type": "object",
               "properties": {
-                "IPcode": {
+                "ipCode": {
                   "title": "The electric safety according to the International Protection Marking, also called Ingress Protection Marking, with codes between IPXX and IP69K.",
                   "type": "array",
                   "items": {
@@ -1050,7 +1050,7 @@
               "$ref": "common.json#/$defs/efficiencies/$defs/inverter",
               "description": "The maximum efficiency of this inverter. The efficiency has no units."
             },
-            "European": {
+            "european": {
               "$ref": "common.json#/$defs/efficiencies/$defs/inverter",
               "description": "The efficiency of this inverter according to the european regulations. The efficiency has no units."
             }
@@ -1155,9 +1155,9 @@
                 "$ref": "number.json#/$defs/ohmPerMeterWithUncertainty",
                 "description": "The electric resistance of the connection per length of the connection in ohms per meter."
               },
-              "color": {
-                "$ref": "opticalData.json#/$defs/color",
-                "description": "Color of the connection."
+              "colorReflectance": {
+                "$ref": "opticalData.json#/$defs/colorReflectance",
+                "description": "Color reflected by the connection."
               }
             },
             "additionalProperties": false,

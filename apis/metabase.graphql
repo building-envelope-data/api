@@ -13,7 +13,7 @@ It follows best practices for
   as exemplified in
   [GraphQL Server Specification: Connections](https://relay.dev/docs/en/graphql-server-specification.html#connections).
 
-Global object identifiers as requird by the best practice are exposed by the
+Global object identifiers as required by the best practice are exposed by the
 property `id` and universally unique identifiers as issued by the "metabase"
 are exposed by the property `uuid`. In essence, `id` is the Base64-encoded
 concatenation of `uuid` and the requested locale.
@@ -71,12 +71,19 @@ schema {
 
 interface Data {
   appliedMethod: AppliedMethod!
+  approvals: [DataApproval!]!
   componentId: Uuid!
+  createdAt: DateTime!
+  creatorId: Uuid!
+  databaseId: Uuid!
   description: String
+  locale: Locale!
   name: String
+  resources: [GetHttpsResource!]!
   resourceTree: GetHttpsResourceTree!
   timestamp: DateTime!
   uuid: Uuid!
+  warnings: [String!]!
 }
 
 "The node interface is implemented by entities that have a global unique identifier."
@@ -84,14 +91,81 @@ interface Node {
   id: ID!
 }
 
-interface Reference {
-  abstract: String
-  section: String
-  title: String
+type AddComponentAssemblyError {
+  code: AddComponentAssemblyErrorCode!
+  message: String!
+  path: [String!]!
 }
 
-interface Stakeholder {
-  name: String!
+type AddComponentAssemblyPayload {
+  assembledOfEdge: ComponentAssembledOfEdge
+  errors: [AddComponentAssemblyError!]
+  partOfEdge: ComponentPartOfEdge
+  query: Query!
+}
+
+type AddComponentGeneralizationError {
+  code: AddComponentGeneralizationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type AddComponentGeneralizationPayload {
+  concretizationOfEdge: ComponentConcretizationOfEdge
+  errors: [AddComponentGeneralizationError!]
+  generalizationOfEdge: ComponentGeneralizationOfEdge
+  query: Query!
+}
+
+type AddComponentManufacturerError {
+  code: AddComponentManufacturerErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type AddComponentManufacturerPayload {
+  componentManufacturerEdge: ComponentManufacturerEdge
+  errors: [AddComponentManufacturerError!]
+  manufacturedComponentEdge: InstitutionManufacturedComponentEdge
+  query: Query!
+}
+
+type AddComponentVariantError {
+  code: AddComponentVariantErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type AddComponentVariantPayload {
+  errors: [AddComponentVariantError!]
+  query: Query!
+  reverseVariantOfEdge: ComponentVariantOfEdge
+  variantOfEdge: ComponentVariantOfEdge
+}
+
+type AddGnuPgKeyFingerprintError {
+  code: AddGnuPgKeyFingerprintErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type AddGnuPgKeyFingerprintPayload {
+  errors: [AddGnuPgKeyFingerprintError!]
+  gnuPgKeyFingerprint: GnuPgKeyFingerprint
+  query: Query!
+}
+
+type AddInstitutionMethodDeveloperError {
+  code: AddInstitutionMethodDeveloperErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type AddInstitutionMethodDeveloperPayload {
+  developedMethodEdge: InstitutionDevelopedMethodEdge
+  errors: [AddInstitutionMethodDeveloperError!]
+  methodDeveloperEdge: InstitutionMethodDeveloperEdge
+  query: Query!
 }
 
 type AddInstitutionRepresentativeError {
@@ -107,6 +181,19 @@ type AddInstitutionRepresentativePayload {
   representedInstitutionEdge: UserRepresentedInstitutionEdge
 }
 
+type AddUserMethodDeveloperError {
+  code: AddUserMethodDeveloperErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type AddUserMethodDeveloperPayload {
+  developedMethodEdge: UserDevelopedMethodEdge
+  errors: [AddUserMethodDeveloperError!]
+  methodDeveloperEdge: UserMethodDeveloperEdge
+  query: Query!
+}
+
 type AddUserRoleError {
   code: AddUserRoleErrorCode!
   message: String!
@@ -119,35 +206,52 @@ type AddUserRolePayload {
   user: User
 }
 
+type AllowGnuPgKeyFingerprintError {
+  code: AllowGnuPgKeyFingerprintErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type AllowGnuPgKeyFingerprintPayload {
+  errors: [AllowGnuPgKeyFingerprintError!]
+  gnuPgKeyFingerprint: GnuPgKeyFingerprint
+  query: Query!
+}
+
 type AppliedMethod {
-  method: Method
+  arguments: [NamedMethodArgument!]!
+  method: Method @cost(weight: "10")
   methodId: Uuid!
+  sources: [NamedMethodSource!]!
 }
 
 type CalorimetricData implements Data {
   appliedMethod: AppliedMethod!
-  component: Component
+  approvals: [DataApproval!]!
+  component: Component @cost(weight: "10")
   componentId: Uuid!
   createdAt: DateTime!
+  creator: Institution @cost(weight: "10")
   creatorId: Uuid!
+  database: Database @cost(weight: "10")
+  databaseId: Uuid!
   description: String
   gValues: [Float!]!
-  id: String!
-  locale: String!
+  id: ID!
+  locale: Locale!
   name: String
-  resourceTree: GetHttpsResourceTree!
   resources: [GetHttpsResource!]!
+  resourceTree: GetHttpsResourceTree!
   timestamp: DateTime!
-  uValues: [Float!]!
   uuid: Uuid!
+  uValues: [Float!]!
   warnings: [String!]!
 }
 
 type CalorimetricDataConnection {
   edges: [CalorimetricDataEdge!]!
-  nodes: [CalorimetricData!]!
-  timestamp: DateTime!
-  totalCount: NonNegativeInt
+  pageInfo: PageInfo!
+  totalCount: NonNegativeInt!
 }
 
 type CalorimetricDataEdge {
@@ -192,79 +296,126 @@ type ChangeUserPasswordPayload {
   user: User
 }
 
+type CielabColor {
+  aStar: Float!
+  bStar: Float!
+  lStar: Float!
+}
+
 type Component implements Node {
   abbreviation: String
-  assembledOf: ComponentAssembledOfConnection!
+  assembledOf(
+    where: ComponentAssembledOfFilterInput @cost(weight: "10")
+  ): ComponentAssembledOfConnection! @cost(weight: "10")
   availability: OpenEndedDateTimeRange
+  canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   categories: [ComponentCategory!]!
-  concretizationOf: ComponentConcretizationOfConnection!
+  concretizationOf(
+    where: ComponentConcretizationOfFilterInput @cost(weight: "10")
+  ): ComponentConcretizationOfConnection! @cost(weight: "10")
   description: String!
-  generalizationOf: ComponentGeneralizationOfConnection!
+  extras: Any
+  generalizationOf(
+    where: ComponentGeneralizationOfFilterInput @cost(weight: "10")
+  ): ComponentGeneralizationOfConnection! @cost(weight: "10")
   id: ID!
-  manufacturers(pending: Boolean! = false): ComponentManufacturerConnection!
+  manufacturers(
+    pending: Boolean! = false
+    where: ComponentManufacturerFilterInput @cost(weight: "10")
+  ): ComponentManufacturerConnection! @cost(weight: "10")
   name: String!
-  partOf: ComponentPartOfConnection!
-  uuid: Uuid!
-  variantOf: ComponentVariantOfConnection!
+  partOf(
+    where: ComponentPartOfFilterInput @cost(weight: "10")
+  ): ComponentPartOfConnection! @cost(weight: "10")
+  prime: PrimeSurfaceOrDirection @cost(weight: "10")
+  switchableLayers: DescriptionOrReference
+  uuid: Uuid! @cost(weight: "10")
+  variantOf(
+    where: ComponentVariantOfFilterInput @cost(weight: "10")
+  ): ComponentVariantOfConnection! @cost(weight: "10")
 }
 
 type ComponentAssembledOfConnection {
-  edges: [ComponentAssembledOfEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [ComponentAssembledOfEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type ComponentAssembledOfEdge {
-  node: Component!
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  canCurrentUserUpdateEdge: Boolean! @cost(weight: "10")
+  index: Byte
+  node: Component! @cost(weight: "10")
+  primeSurface: PrimeSurface
 }
 
 type ComponentConcretizationOfConnection {
-  edges: [ComponentConcretizationOfEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [ComponentConcretizationOfEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type ComponentConcretizationOfEdge {
-  node: Component!
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  node: Component! @cost(weight: "10")
 }
 
 type ComponentGeneralizationOfConnection {
-  edges: [ComponentGeneralizationOfEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [ComponentGeneralizationOfEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type ComponentGeneralizationOfEdge {
-  node: Component!
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  node: Component! @cost(weight: "10")
 }
 
 type ComponentManufacturerConnection {
-  edges: [ComponentManufacturerEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [ComponentManufacturerEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type ComponentManufacturerEdge {
-  node: Institution!
+  canCurrentUserConfirmEdge: Boolean! @cost(weight: "10")
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  node: Institution! @cost(weight: "10")
 }
 
 type ComponentPartOfConnection {
-  edges: [ComponentPartOfEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [ComponentPartOfEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type ComponentPartOfEdge {
-  node: Component!
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  canCurrentUserUpdateEdge: Boolean! @cost(weight: "10")
+  index: Byte
+  node: Component! @cost(weight: "10")
+  primeSurface: PrimeSurface
 }
 
 type ComponentVariantOfConnection {
-  edges: [ComponentVariantOfEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [ComponentVariantOfEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type ComponentVariantOfEdge {
-  node: Component!
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  node: Component! @cost(weight: "10")
 }
 
 "A connection to a list of items."
 type ComponentsConnection {
   "A list of edges."
   edges: [ComponentsEdge!]
-  "A flattened list of the nodes."
-  nodes: [Component!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
-  totalCount: Int!
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
 }
 
 "An edge in a connection."
@@ -411,53 +562,64 @@ type CreateMethodPayload {
   query: Query!
 }
 
+type CreateOpenIdConnectApplicationError {
+  code: CreateOpenIdConnectApplicationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type CreateOpenIdConnectApplicationPayload {
+  application: OpenIdConnectApplication
+  clientSecret: String
+  errors: [CreateOpenIdConnectApplicationError!]
+  query: Query!
+}
+
+type CrossDatabaseDataReference {
+  database: Institution @cost(weight: "10")
+  databaseId: Uuid!
+  dataId: Uuid!
+  dataKind: DataKind!
+  dataTimestamp: DateTime!
+}
+
 type DataApproval {
-  approver: Institution
+  approver: Institution @cost(weight: "10")
   approverId: Uuid!
   keyFingerprint: String!
+  message: String!
   query: String!
-  response: String!
   signature: String!
+  statement: Reference!
   timestamp: DateTime!
-}
-
-type DataConnection {
-  edges: [DataEdge!]!
-  nodes: [Data!]!
-  timestamp: DateTime!
-  totalCount: NonNegativeInt
-}
-
-type DataEdge {
-  cursor: String!
-  node: Data!
+  variables: Any!
 }
 
 type DataFormat implements Node {
+  canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   description: String!
   extension: String
   id: ID!
-  manager: DataFormatManagerEdge!
+  manager: DataFormatManagerEdge! @cost(weight: "10")
   mediaType: String!
   name: String!
   reference: Reference
   schemaLocator: Url
-  uuid: Uuid!
+  uuid: Uuid! @cost(weight: "10")
 }
 
 type DataFormatManagerEdge {
-  node: Institution!
+  node: Institution! @cost(weight: "10")
 }
 
 "A connection to a list of items."
 type DataFormatsConnection {
   "A list of edges."
   edges: [DataFormatsEdge!]
-  "A flattened list of the nodes."
-  nodes: [DataFormat!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
-  totalCount: Int!
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
 }
 
 "An edge in a connection."
@@ -474,109 +636,91 @@ type Database implements Node {
     before: String
     first: NonNegativeInt
     last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
+    locale: Locale
     where: CalorimetricDataPropositionInput
-  ): CalorimetricDataConnection
-  allData(
+  ): CalorimetricDataConnection @cost(weight: "10")
+  allGeometricData(
     after: String
     before: String
     first: NonNegativeInt
     last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
-    where: DataPropositionInput
-  ): DataConnection
+    locale: Locale
+    where: GeometricDataPropositionInput
+  ): GeometricDataConnection @cost(weight: "10")
   allHygrothermalData(
     after: String
     before: String
     first: NonNegativeInt
     last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
+    locale: Locale
     where: HygrothermalDataPropositionInput
-  ): HygrothermalDataConnection
+  ): HygrothermalDataConnection @cost(weight: "10")
   allOpticalData(
     after: String
     before: String
     first: NonNegativeInt
     last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
+    locale: Locale
     where: OpticalDataPropositionInput
-  ): OpticalDataConnection
+  ): OpticalDataConnection @cost(weight: "10")
   allPhotovoltaicData(
     after: String
     before: String
     first: NonNegativeInt
     last: NonNegativeInt
-    locale: String
-    timestamp: DateTime
+    locale: Locale
     where: PhotovoltaicDataPropositionInput
-  ): PhotovoltaicDataConnection
-  calorimetricData(
-    id: Uuid!
-    locale: String
-    timestamp: DateTime
-  ): CalorimetricData
-  data(id: Uuid!, locale: String, timestamp: DateTime): Data
+  ): PhotovoltaicDataConnection @cost(weight: "10")
+  calorimetricData(id: Uuid!, locale: Locale): CalorimetricData
+    @cost(weight: "10")
+  canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
+  canCurrentUserVerifyNode: Boolean! @cost(weight: "10")
   description: String!
+  geometricData(id: Uuid!, locale: Locale): GeometricData @cost(weight: "10")
   hasCalorimetricData(
-    locale: String
-    timestamp: DateTime
+    locale: Locale
     where: CalorimetricDataPropositionInput
-  ): Boolean
-  hasData(
-    locale: String
-    timestamp: DateTime
-    where: DataPropositionInput
-  ): Boolean
+  ): Boolean @cost(weight: "10")
+  hasGeometricData(
+    locale: Locale
+    where: GeometricDataPropositionInput
+  ): Boolean @cost(weight: "10")
   hasHygrothermalData(
-    locale: String
-    timestamp: DateTime
+    locale: Locale
     where: HygrothermalDataPropositionInput
-  ): Boolean
-  hasOpticalData(
-    locale: String
-    timestamp: DateTime
-    where: OpticalDataPropositionInput
-  ): Boolean
+  ): Boolean @cost(weight: "10")
+  hasOpticalData(locale: Locale, where: OpticalDataPropositionInput): Boolean
+    @cost(weight: "10")
   hasPhotovoltaicData(
-    locale: String
-    timestamp: DateTime
+    locale: Locale
     where: PhotovoltaicDataPropositionInput
-  ): Boolean
-  hygrothermalData(
-    id: Uuid!
-    locale: String
-    timestamp: DateTime
-  ): HygrothermalData
+  ): Boolean @cost(weight: "10")
+  hygrothermalData(id: Uuid!, locale: Locale): HygrothermalData
+    @cost(weight: "10")
   id: ID!
   locator: Url!
   name: String!
-  operator: DatabaseOperatorEdge!
-  opticalData(id: Uuid!, locale: String, timestamp: DateTime): OpticalData
-  photovoltaicData(
-    id: Uuid!
-    locale: String
-    timestamp: DateTime
-  ): PhotovoltaicData
-  uuid: Uuid!
+  operator: DatabaseOperatorEdge! @cost(weight: "10")
+  opticalData(id: Uuid!, locale: Locale): OpticalData @cost(weight: "10")
+  photovoltaicData(id: Uuid!, locale: Locale): PhotovoltaicData
+    @cost(weight: "10")
+  uuid: Uuid! @cost(weight: "10")
+  verificationCode: String!
+  verificationState: DatabaseVerificationState!
 }
 
 type DatabaseOperatorEdge {
-  node: Institution!
+  node: Institution! @cost(weight: "10")
 }
 
 "A connection to a list of items."
 type DatabasesConnection {
   "A list of edges."
   edges: [DatabasesEdge!]
-  "A flattened list of the nodes."
-  nodes: [Database!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
-  totalCount: Int!
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
 }
 
 "An edge in a connection."
@@ -595,6 +739,28 @@ type DeleteInstitutionError {
 
 type DeleteInstitutionPayload {
   errors: [DeleteInstitutionError!]
+  query: Query!
+}
+
+type DeleteOpenIdConnectApplicationError {
+  code: DeleteOpenIdConnectApplicationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type DeleteOpenIdConnectApplicationPayload {
+  errors: [DeleteOpenIdConnectApplicationError!]
+  query: Query!
+}
+
+type DeleteOpenIdConnectAuthorizationError {
+  code: DeleteOpenIdConnectAuthorizationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type DeleteOpenIdConnectAuthorizationPayload {
+  errors: [DeleteOpenIdConnectAuthorizationError!]
   query: Query!
 }
 
@@ -622,6 +788,11 @@ type DeleteUserPayload {
   user: User
 }
 
+type DescriptionOrReference {
+  description: String
+  reference: Reference @cost(weight: "10")
+}
+
 type DisableUserTwoFactorAuthenticationError {
   code: DisableUserTwoFactorAuthenticationErrorCode!
   message: String!
@@ -647,6 +818,24 @@ type EnableUserTwoFactorAuthenticatorPayload {
   sharedKey: String
   twoFactorRecoveryCodes: [String!]
   user: User
+}
+
+type FileMetaInformation {
+  dataFormat: DataFormat @cost(weight: "10")
+  dataFormatId: Uuid!
+  path: [String!]!
+}
+
+type ForbidGnuPgKeyFingerprintError {
+  code: ForbidGnuPgKeyFingerprintErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type ForbidGnuPgKeyFingerprintPayload {
+  errors: [ForbidGnuPgKeyFingerprintError!]
+  gnuPgKeyFingerprint: GnuPgKeyFingerprint
+  query: Query!
 }
 
 type ForgetUserTwoFactorAuthenticationClientError {
@@ -688,15 +877,50 @@ type GenerateUserTwoFactorRecoveryCodesPayload {
   user: User
 }
 
+type GeometricData implements Data {
+  appliedMethod: AppliedMethod!
+  approvals: [DataApproval!]!
+  component: Component @cost(weight: "10")
+  componentId: Uuid!
+  createdAt: DateTime!
+  creator: Institution @cost(weight: "10")
+  creatorId: Uuid!
+  database: Database @cost(weight: "10")
+  databaseId: Uuid!
+  description: String
+  id: ID!
+  locale: Locale!
+  name: String
+  resources: [GetHttpsResource!]!
+  resourceTree: GetHttpsResourceTree!
+  thicknesses: [Float!]!
+  timestamp: DateTime!
+  uuid: Uuid!
+  warnings: [String!]!
+}
+
+type GeometricDataConnection {
+  edges: [GeometricDataEdge!]!
+  pageInfo: PageInfo!
+  totalCount: NonNegativeInt!
+}
+
+type GeometricDataEdge {
+  cursor: String!
+  node: GeometricData!
+}
+
 type GetHttpsResource {
-  dataFormat: DataFormat
+  archivedFilesMetaInformation: [FileMetaInformation!]!
+  dataFormat: DataFormat @cost(weight: "10")
   dataFormatId: Uuid!
-  description: String!
+  description: String
   hashValue: String!
   locator: Url!
 }
 
 type GetHttpsResourceTree {
+  nonRootVertices: [GetHttpsResourceTreeNonRootVertex!]!
   root: GetHttpsResourceTreeRoot!
 }
 
@@ -709,20 +933,66 @@ type GetHttpsResourceTreeNonRootVertex {
 
 type GetHttpsResourceTreeRoot {
   value: GetHttpsResource!
+  vertexId: String!
+}
+
+type GnuPgKeyFingerprint implements Node {
+  allowedAt: DateTime
+  canCurrentUserAllowNode: Boolean! @cost(weight: "10")
+  canCurrentUserForbidNode: Boolean! @cost(weight: "10")
+  createdAt: DateTime!
+  fingerprint: String!
+  forbiddenAt: DateTime
+  id: ID!
+  institution: GnuPgKeyFingerprintInstitutionEdge! @cost(weight: "10")
+  isAllowed: Boolean!
+  isForbidden: Boolean!
+  user: GnuPgKeyFingerprintUserEdge! @cost(weight: "10")
+  uuid: Uuid! @cost(weight: "10")
+}
+
+type GnuPgKeyFingerprintInstitutionEdge {
+  node: Institution! @cost(weight: "10")
+}
+
+type GnuPgKeyFingerprintUserEdge {
+  node: User! @cost(weight: "10")
+}
+
+"A connection to a list of items."
+type GnuPgKeyFingerprintsConnection {
+  "A list of edges."
+  edges: [GnuPgKeyFingerprintsEdge!]
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
+}
+
+"An edge in a connection."
+type GnuPgKeyFingerprintsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: GnuPgKeyFingerprint!
 }
 
 type HygrothermalData implements Data {
   appliedMethod: AppliedMethod!
-  component: Component
+  approvals: [DataApproval!]!
+  component: Component @cost(weight: "10")
   componentId: Uuid!
   createdAt: DateTime!
+  creator: Institution @cost(weight: "10")
   creatorId: Uuid!
+  database: Database @cost(weight: "10")
+  databaseId: Uuid!
   description: String
-  id: String!
-  locale: String!
+  id: ID!
+  locale: Locale!
   name: String
-  resourceTree: GetHttpsResourceTree!
   resources: [GetHttpsResource!]!
+  resourceTree: GetHttpsResourceTree!
   timestamp: DateTime!
   uuid: Uuid!
   warnings: [String!]!
@@ -730,9 +1000,8 @@ type HygrothermalData implements Data {
 
 type HygrothermalDataConnection {
   edges: [HygrothermalDataEdge!]!
-  nodes: [HygrothermalData!]!
-  timestamp: DateTime!
-  totalCount: NonNegativeInt
+  pageInfo: PageInfo!
+  totalCount: NonNegativeInt!
 }
 
 type HygrothermalDataEdge {
@@ -740,43 +1009,81 @@ type HygrothermalDataEdge {
   node: HygrothermalData!
 }
 
-type Institution implements Node & Stakeholder {
+type Institution implements Node {
   abbreviation: String
+  canCurrentUserDeleteNode: Boolean! @cost(weight: "10")
+  canCurrentUserSwitchOperatingStateOfNode: Boolean! @cost(weight: "10")
+  canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   description: String!
   developedMethods(
     pending: Boolean! = false
-  ): InstitutionDevelopedMethodConnection!
+    where: InstitutionMethodDeveloperFilterInput @cost(weight: "10")
+  ): InstitutionDevelopedMethodConnection! @cost(weight: "10")
+  extras: Any
+  gnuPgKeyFingerprints(
+    where: InstitutionGnuPgKeyFingerprintFilterInput @cost(weight: "10")
+  ): InstitutionGnuPgKeyFingerprintConnection! @cost(weight: "10")
+  hasGnuPgKeyFingerprint(
+    where: InstitutionGnuPgKeyFingerprintFilterInput @cost(weight: "10")
+  ): Boolean! @cost(weight: "10")
   id: ID!
-  managedDataFormats: InstitutionManagedDataFormatConnection!
-  managedInstitutions: InstitutionManagedInstitutionConnection!
-  managedMethods: InstitutionManagedMethodConnection!
-  manager: InstitutionManagerEdge
+  managedDataFormats(
+    where: InstitutionManagedDataFormatFilterInput @cost(weight: "10")
+  ): InstitutionManagedDataFormatConnection! @cost(weight: "10")
+  managedInstitutions(
+    where: InstitutionManagedInstitutionFilterInput @cost(weight: "10")
+  ): InstitutionManagedInstitutionConnection! @cost(weight: "10")
+  managedMethods(
+    where: InstitutionManagedMethodFilterInput @cost(weight: "10")
+  ): InstitutionManagedMethodConnection! @cost(weight: "10")
+  manager: InstitutionManagerEdge @cost(weight: "10")
   manufacturedComponents(
     pending: Boolean! = false
-  ): InstitutionManufacturedComponentConnection!
+    where: InstitutionManufacturedComponentFilterInput @cost(weight: "10")
+  ): InstitutionManufacturedComponentConnection! @cost(weight: "10")
   name: String!
-  operatedDatabases: InstitutionOperatedDatabaseConnection!
+  openIdConnectApplications(
+    where: InstitutionOwnedOpenIdConnectApplicationFilterInput
+      @cost(weight: "10")
+  ): InstitutionOwnedOpenIdConnectApplicationConnection! @cost(weight: "10")
+  operatedDatabases(
+    where: InstitutionOperatedDatabaseFilterInput @cost(weight: "10")
+  ): InstitutionOperatedDatabaseConnection! @cost(weight: "10")
+  operatingState: InstitutionOperatingState!
   publicKey: String
   representatives(
     pending: Boolean! = false
-  ): InstitutionRepresentativeConnection!
+    where: InstitutionRepresentativeFilterInput @cost(weight: "10")
+  ): InstitutionRepresentativeConnection! @cost(weight: "10")
   state: InstitutionState!
-  uuid: Uuid!
+  uuid: Uuid! @cost(weight: "10")
   websiteLocator: Url
 }
 
 type InstitutionDevelopedMethodConnection {
-  canCurrentUserConfirmEdge: Boolean!
-  edges: [InstitutionDevelopedMethodEdge!]!
+  canCurrentUserConfirmEdge: Boolean! @cost(weight: "10")
+  edges: [InstitutionDevelopedMethodEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type InstitutionDevelopedMethodEdge {
-  node: Method!
+  node: Method! @cost(weight: "10")
+}
+
+type InstitutionGnuPgKeyFingerprintConnection {
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [InstitutionGnuPgKeyFingerprintEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
+}
+
+type InstitutionGnuPgKeyFingerprintEdge {
+  node: GnuPgKeyFingerprint!
 }
 
 type InstitutionManagedDataFormatConnection {
-  canCurrentUserAddEdge: Boolean!
-  edges: [InstitutionManagedDataFormatEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [InstitutionManagedDataFormatEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type InstitutionManagedDataFormatEdge {
@@ -784,8 +1091,9 @@ type InstitutionManagedDataFormatEdge {
 }
 
 type InstitutionManagedInstitutionConnection {
-  canCurrentUserAddEdge: Boolean!
-  edges: [InstitutionManagedInstitutionEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [InstitutionManagedInstitutionEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type InstitutionManagedInstitutionEdge {
@@ -793,8 +1101,9 @@ type InstitutionManagedInstitutionEdge {
 }
 
 type InstitutionManagedMethodConnection {
-  canCurrentUserAddEdge: Boolean!
-  edges: [InstitutionManagedMethodEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [InstitutionManagedMethodEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type InstitutionManagedMethodEdge {
@@ -802,39 +1111,56 @@ type InstitutionManagedMethodEdge {
 }
 
 type InstitutionManagerEdge {
-  node: Institution!
+  node: Institution! @cost(weight: "10")
 }
 
 type InstitutionManufacturedComponentConnection {
-  canCurrentUserAddEdge: Boolean!
-  canCurrentUserConfirmEdge: Boolean!
-  edges: [InstitutionManufacturedComponentEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  canCurrentUserConfirmEdge: Boolean! @cost(weight: "10")
+  edges: [InstitutionManufacturedComponentEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type InstitutionManufacturedComponentEdge {
-  node: Component!
+  node: Component! @cost(weight: "10")
 }
 
 type InstitutionMethodDeveloperEdge {
-  node: Institution!
+  canCurrentUserConfirmEdge: Boolean! @cost(weight: "10")
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  node: Institution! @cost(weight: "10")
 }
 
 type InstitutionOperatedDatabaseConnection {
-  canCurrentUserAddEdge: Boolean!
-  edges: [InstitutionOperatedDatabaseEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [InstitutionOperatedDatabaseEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type InstitutionOperatedDatabaseEdge {
   node: Database!
 }
 
+type InstitutionOwnedOpenIdConnectApplicationConnection {
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  edges: [InstitutionOwnedOpenIdConnectApplicationEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
+}
+
+type InstitutionOwnedOpenIdConnectApplicationEdge {
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  node: OpenIdConnectApplication!
+}
+
 type InstitutionRepresentativeConnection {
-  canCurrentUserAddEdge: Boolean!
-  edges: [InstitutionRepresentativeEdge!]!
+  canCurrentUserAddEdge: Boolean! @cost(weight: "10")
+  edges: [InstitutionRepresentativeEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type InstitutionRepresentativeEdge {
-  node: User!
+  node: User! @cost(weight: "10")
   role: InstitutionRepresentativeRole!
 }
 
@@ -842,11 +1168,10 @@ type InstitutionRepresentativeEdge {
 type InstitutionsConnection {
   "A list of edges."
   edges: [InstitutionsEdge!]
-  "A flattened list of the nodes."
-  nodes: [Institution]
   "Information to aid in pagination."
   pageInfo: PageInfo!
-  totalCount: Int!
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
 }
 
 "An edge in a connection."
@@ -854,7 +1179,7 @@ type InstitutionsEdge {
   "A cursor for use in pagination."
   cursor: String!
   "The item at the end of the edge."
-  node: Institution
+  node: Institution!
 }
 
 type LoginUserError {
@@ -909,38 +1234,46 @@ type LogoutUserPayload {
 type Method implements Node {
   availability: OpenEndedDateTimeRange
   calculationLocator: Url
+  canCurrentUserUpdateNode: Boolean! @cost(weight: "10")
   categories: [MethodCategory!]!
   description: String!
-  developers(pending: Boolean! = false): MethodDeveloperConnection!
+  developers(
+    pending: Boolean! = false
+    where: IMethodDeveloperFilterInput @cost(weight: "10")
+  ): MethodDeveloperConnection! @cost(weight: "10")
   id: ID!
-  manager: MethodManagerEdge!
+  manager: MethodManagerEdge! @cost(weight: "10")
   name: String!
   reference: Reference
-  uuid: Uuid!
+  uuid: Uuid! @cost(weight: "10")
   validity: OpenEndedDateTimeRange
 }
 
 type MethodDeveloperConnection {
-  edges: [MethodDeveloperEdge!]!
+  canCurrentUserAddInstitutionEdge: Boolean! @cost(weight: "10")
+  canCurrentUserAddUserEdge: Boolean! @cost(weight: "10")
+  edges: [MethodDeveloperEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type MethodDeveloperEdge {
-  node: Stakeholder!
+  canCurrentUserConfirmEdge: Boolean! @cost(weight: "10")
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  node: Stakeholder! @cost(weight: "10")
 }
 
 type MethodManagerEdge {
-  node: Institution!
+  node: Institution! @cost(weight: "10")
 }
 
 "A connection to a list of items."
 type MethodsConnection {
   "A list of edges."
   edges: [MethodsEdge!]
-  "A flattened list of the nodes."
-  nodes: [Method!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
-  totalCount: Int!
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
 }
 
 "An edge in a connection."
@@ -952,111 +1285,284 @@ type MethodsEdge {
 }
 
 type Mutation {
+  addComponentAssembly(
+    input: AddComponentAssemblyInput!
+  ): AddComponentAssemblyPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addComponentGeneralization(
+    input: AddComponentGeneralizationInput!
+  ): AddComponentGeneralizationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addComponentManufacturer(
+    input: AddComponentManufacturerInput!
+  ): AddComponentManufacturerPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addComponentVariant(
+    input: AddComponentVariantInput!
+  ): AddComponentVariantPayload! @authorize(policy: "Write") @cost(weight: "10")
+  addGnuPgKeyFingerprint(
+    input: GnuPgKeyFingerprintInput!
+  ): AddGnuPgKeyFingerprintPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addInstitutionMethodDeveloper(
+    input: AddInstitutionMethodDeveloperInput!
+  ): AddInstitutionMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   addInstitutionRepresentative(
     input: AddInstitutionRepresentativeInput!
   ): AddInstitutionRepresentativePayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  addUserMethodDeveloper(
+    input: AddUserMethodDeveloperInput!
+  ): AddUserMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   addUserRole(input: AddUserRoleInput!): AddUserRolePayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  allowGnuPgKeyFingerprint(
+    input: AllowGnuPgKeyFingerprintInput!
+  ): AllowGnuPgKeyFingerprintPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   changeInstitutionRepresentativeRole(
     input: ChangeInstitutionRepresentativeRoleInput!
   ): ChangeInstitutionRepresentativeRolePayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   changeUserEmail(input: ChangeUserEmailInput!): ChangeUserEmailPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   changeUserPassword(
     input: ChangeUserPasswordInput!
   ): ChangeUserPasswordPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   confirmComponentManufacturer(
     input: ConfirmComponentManufacturerInput!
   ): ConfirmComponentManufacturerPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   confirmInstitutionMethodDeveloper(
     input: ConfirmInstitutionMethodDeveloperInput!
   ): ConfirmInstitutionMethodDeveloperPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   confirmInstitutionRepresentative(
     input: ConfirmInstitutionRepresentativeInput!
   ): ConfirmInstitutionRepresentativePayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   confirmUserEmail(input: ConfirmUserEmailInput!): ConfirmUserEmailPayload!
+    @cost(weight: "10")
   confirmUserEmailChange(
     input: ConfirmUserEmailChangeInput!
-  ): ConfirmUserEmailChangePayload!
+  ): ConfirmUserEmailChangePayload! @cost(weight: "10")
   confirmUserMethodDeveloper(
     input: ConfirmUserMethodDeveloperInput!
   ): ConfirmUserMethodDeveloperPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   createComponent(input: CreateComponentInput!): CreateComponentPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
-  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   createDatabase(input: CreateDatabaseInput!): CreateDatabasePayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  createDataFormat(input: CreateDataFormatInput!): CreateDataFormatPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   createInstitution(input: CreateInstitutionInput!): CreateInstitutionPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   createMethod(input: CreateMethodInput!): CreateMethodPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  createOpenIdConnectApplication(
+    input: CreateOpenIdConnectApplicationInput!
+  ): CreateOpenIdConnectApplicationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   deleteInstitution(input: DeleteInstitutionInput!): DeleteInstitutionPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  deleteOpenIdConnectApplication(
+    input: DeleteOpenIdConnectApplicationInput!
+  ): DeleteOpenIdConnectApplicationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  deleteOpenIdConnectAuthorization(
+    input: DeleteOpenIdConnectAuthorizationInput!
+  ): DeleteOpenIdConnectAuthorizationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   deletePersonalUserData(
     input: DeletePersonalUserDataInput!
   ): DeletePersonalUserDataPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   deleteUser(input: DeleteUserInput!): DeleteUserPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   disableUserTwoFactorAuthentication: DisableUserTwoFactorAuthenticationPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   enableUserTwoFactorAuthenticator(
     input: EnableUserTwoFactorAuthenticatorInput!
   ): EnableUserTwoFactorAuthenticatorPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  forbidGnuPgKeyFingerprint(
+    input: ForbidGnuPgKeyFingerprintInput!
+  ): ForbidGnuPgKeyFingerprintPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   forgetUserTwoFactorAuthenticationClient: ForgetUserTwoFactorAuthenticationClientPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   generateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUri: GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   generateUserTwoFactorRecoveryCodes: GenerateUserTwoFactorRecoveryCodesPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
-  loginUser(input: LoginUserInput!): LoginUserPayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  loginUser(input: LoginUserInput!): LoginUserPayload! @cost(weight: "10")
   loginUserWithRecoveryCode(
     input: LoginUserWithRecoveryCodeInput!
-  ): LoginUserWithRecoveryCodePayload!
+  ): LoginUserWithRecoveryCodePayload! @cost(weight: "10")
   loginUserWithTwoFactorCode(
     input: LoginUserWithTwoFactorCodeInput!
-  ): LoginUserWithTwoFactorCodePayload!
+  ): LoginUserWithTwoFactorCodePayload! @cost(weight: "10")
   logoutUser: LogoutUserPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   registerUser(input: RegisterUserInput!): RegisterUserPayload!
+    @cost(weight: "10")
+  removeComponentAssembly(
+    input: RemoveComponentAssemblyInput!
+  ): RemoveComponentAssemblyPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeComponentGeneralization(
+    input: RemoveComponentGeneralizationInput!
+  ): RemoveComponentGeneralizationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeComponentManufacturer(
+    input: RemoveComponentManufacturerInput!
+  ): RemoveComponentManufacturerPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeComponentVariant(
+    input: RemoveComponentVariantInput!
+  ): RemoveComponentVariantPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeInstitutionMethodDeveloper(
+    input: RemoveInstitutionMethodDeveloperInput!
+  ): RemoveInstitutionMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   removeInstitutionRepresentative(
     input: RemoveInstitutionRepresentativeInput!
   ): RemoveInstitutionRepresentativePayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  removeUserMethodDeveloper(
+    input: RemoveUserMethodDeveloperInput!
+  ): RemoveUserMethodDeveloperPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   removeUserRole(input: RemoveUserRoleInput!): RemoveUserRolePayload!
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   requestUserPasswordReset(
     input: RequestUserPasswordResetInput!
-  ): RequestUserPasswordResetPayload!
+  ): RequestUserPasswordResetPayload! @cost(weight: "10")
   resendUserEmailConfirmation(
     input: ResendUserEmailConfirmationInput!
-  ): ResendUserEmailConfirmationPayload!
+  ): ResendUserEmailConfirmationPayload! @cost(weight: "10")
   resendUserEmailVerification: ResendUserEmailVerificationPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   resetUserPassword(input: ResetUserPasswordInput!): ResetUserPasswordPayload!
+    @cost(weight: "10")
   resetUserTwoFactorAuthenticator: ResetUserTwoFactorAuthenticatorPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  revokeOpenIdConnectToken(
+    input: RevokeOpenIdConnectTokenInput!
+  ): RevokeOpenIdConnectTokenPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  setComponentExtras(
+    input: SetComponentExtrasInput!
+  ): SetComponentExtrasPayload! @authorize(policy: "Write") @cost(weight: "10")
+  setInstitutionExtras(
+    input: SetInstitutionExtrasInput!
+  ): SetInstitutionExtrasPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   setUserPassword(input: SetUserPasswordInput!): SetUserPasswordPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
   setUserPhoneNumber(
     input: SetUserPhoneNumberInput!
   ): SetUserPhoneNumberPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "ManageUser")
+    @authorize(policy: "ManageUser")
+    @cost(weight: "10")
+  switchInstitutionOperatingState(
+    input: SwitchInstitutionOperatingStateInput!
+  ): SwitchInstitutionOperatingStatePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateComponent(input: UpdateComponentInput!): UpdateComponentPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateComponentAssembly(
+    input: UpdateComponentAssemblyInput!
+  ): UpdateComponentAssemblyPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateDatabase(input: UpdateDatabaseInput!): UpdateDatabasePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateDataFormat(input: UpdateDataFormatInput!): UpdateDataFormatPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   updateInstitution(input: UpdateInstitutionInput!): UpdateInstitutionPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateMethod(input: UpdateMethodInput!): UpdateMethodPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  updateOpenIdConnectApplication(
+    input: UpdateOpenIdConnectApplicationInput!
+  ): UpdateOpenIdConnectApplicationPayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
+  verifyDatabase(input: VerifyDatabaseInput!): VerifyDatabasePayload!
+    @authorize(policy: "Write")
+    @cost(weight: "10")
   verifyInstitution(input: VerifyInstitutionInput!): VerifyInstitutionPayload!
-    @authorize(apply: BEFORE_RESOLVER, policy: "Write")
+    @authorize(policy: "Write")
+    @cost(weight: "10")
 }
 
 type NamedMethodArgument {
   name: String!
+  value: Any!
+}
+
+type NamedMethodSource {
+  name: String!
+  value: CrossDatabaseDataReference!
 }
 
 type Numeration {
@@ -1066,96 +1572,139 @@ type Numeration {
 }
 
 type OpenEndedDateTimeRange {
-  from: DateTime
-  to: DateTime
+  from: DateTime @cost(weight: "10")
+  to: DateTime @cost(weight: "10")
 }
 
-type OpenIdConnectApplication {
-  authorizations: [OpenIdConnectAuthorization!]!
-  clientId: String
-  clientSecret: String
-  concurrencyToken: String
-  consentType: String
+type OpenIdConnectApplication implements Node {
+  applicationType: String
+  authorizations: OpenIdConnectApplicationAuthorizationConnection!
+    @cost(weight: "10")
+  canCurrentUserManageNode: Boolean! @cost(weight: "10")
+  clientId: String! @cost(weight: "10")
+  clientType: String
+  consentType: OpenIdConnectConsentType! @cost(weight: "10")
   displayName: String
-  displayNames: String
-  id: String
-  permissions: String
-  postLogoutRedirectUris: String
-  properties: String
-  redirectUris: String
-  requirements: String
-  tokens: [OpenIdConnectToken!]!
-  type: String
+  endpoints: [OpenIdConnectEndpoint!]! @cost(weight: "10")
+  grantTypes: [OpenIdConnectGrantType!]! @cost(weight: "10")
+  id: ID!
+  owner: OpenIdConnectApplicationOwnerEdge! @cost(weight: "10")
+  postLogoutRedirectUri: Url @cost(weight: "10")
+  redirectUri: Url @cost(weight: "10")
+  requirements: [OpenIdConnectRequirement!]! @cost(weight: "10")
+  responseTypes: [OpenIdConnectResponseType!]! @cost(weight: "10")
+  scopes: [OpenIdConnectScope!]! @cost(weight: "10")
+  tokens: OpenIdConnectApplicationTokenConnection! @cost(weight: "10")
+  uuid: Uuid! @cost(weight: "10")
+  version: NonNegativeInt!
 }
 
-type OpenIdConnectAuthorization {
-  application: OpenIdConnectApplication
-  concurrencyToken: String
+type OpenIdConnectApplicationAuthorizationConnection {
+  edges: [OpenIdConnectApplicationAuthorizationEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
+}
+
+type OpenIdConnectApplicationAuthorizationEdge {
+  node: OpenIdConnectAuthorization!
+}
+
+type OpenIdConnectApplicationOwnerEdge {
+  node: Institution! @cost(weight: "10")
+}
+
+type OpenIdConnectApplicationTokenConnection {
+  edges: [OpenIdConnectApplicationTokenEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
+}
+
+type OpenIdConnectApplicationTokenEdge {
+  node: OpenIdConnectToken!
+}
+
+type OpenIdConnectAuthorization implements Node {
+  application: OpenIdConnectAuthorizationApplicationEdge! @cost(weight: "10")
+  canCurrentUserDeleteNode: Boolean! @cost(weight: "10")
   creationDate: DateTime
-  id: String
-  properties: String
-  scopes: String
+  id: ID!
   status: String
   subject: String
-  tokens: [OpenIdConnectToken!]!
+  tokens: OpenIdConnectAuthorizationTokenConnection! @cost(weight: "10")
   type: String
+  uuid: Uuid! @cost(weight: "10")
+  version: NonNegativeInt!
 }
 
-type OpenIdConnectScope {
-  concurrencyToken: String
-  description: String
-  descriptions: String
-  displayName: String
-  displayNames: String
-  id: String
-  name: String
-  properties: String
-  resources: String
+type OpenIdConnectAuthorizationApplicationEdge {
+  node: OpenIdConnectApplication!
 }
 
-type OpenIdConnectToken {
-  application: OpenIdConnectApplication
-  authorization: OpenIdConnectAuthorization
-  concurrencyToken: String
+type OpenIdConnectAuthorizationTokenConnection {
+  edges: [OpenIdConnectAuthorizationTokenEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
+}
+
+type OpenIdConnectAuthorizationTokenEdge {
+  node: OpenIdConnectToken!
+}
+
+type OpenIdConnectToken implements Node {
+  application: OpenIdConnectTokenApplicationEdge! @cost(weight: "10")
+  authorization: OpenIdConnectTokenAuthorizationEdge! @cost(weight: "10")
+  canCurrentUserRevokeNode: Boolean! @cost(weight: "10")
   creationDate: DateTime
   expirationDate: DateTime
-  id: String
-  payload: String
-  properties: String
+  id: ID!
   redemptionDate: DateTime
-  referenceId: String
   status: String
   subject: String
   type: String
+  uuid: Uuid! @cost(weight: "10")
+  version: NonNegativeInt!
+}
+
+type OpenIdConnectTokenApplicationEdge {
+  node: OpenIdConnectApplication!
+}
+
+type OpenIdConnectTokenAuthorizationEdge {
+  node: OpenIdConnectAuthorization!
 }
 
 type OpticalData implements Data {
   appliedMethod: AppliedMethod!
-  component: Component
+  approvals: [DataApproval!]!
+  cielabColors: [CielabColor!]!
+  coatedSide: CoatedSide
+  colorRenderingIndices: [Float!]!
+  component: Component @cost(weight: "10")
   componentId: Uuid!
   createdAt: DateTime!
+  creator: Institution @cost(weight: "10")
   creatorId: Uuid!
+  database: Database @cost(weight: "10")
+  databaseId: Uuid!
   description: String
-  id: String!
+  id: ID!
   infraredEmittances: [Float!]!
-  locale: String!
+  locale: Locale!
   name: String
   nearnormalHemisphericalSolarReflectances: [Float!]!
   nearnormalHemisphericalSolarTransmittances: [Float!]!
   nearnormalHemisphericalVisibleReflectances: [Float!]!
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
-  resourceTree: GetHttpsResourceTree!
   resources: [GetHttpsResource!]!
+  resourceTree: GetHttpsResourceTree!
+  subtype: OpticalComponentSubtype
   timestamp: DateTime!
+  type: OpticalComponentType
   uuid: Uuid!
   warnings: [String!]!
 }
 
 type OpticalDataConnection {
   edges: [OpticalDataEdge!]!
-  nodes: [OpticalData!]!
-  timestamp: DateTime!
-  totalCount: NonNegativeInt
+  pageInfo: PageInfo!
+  totalCount: NonNegativeInt!
 }
 
 type OpticalDataEdge {
@@ -1175,18 +1724,58 @@ type PageInfo {
   startCursor: String
 }
 
+"A connection to a list of items."
+type PendingDatabasesConnection {
+  "A list of edges."
+  edges: [PendingDatabasesEdge!]
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
+}
+
+"An edge in a connection."
+type PendingDatabasesEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Database!
+}
+
+"A connection to a list of items."
+type PendingInstitutionsConnection {
+  "A list of edges."
+  edges: [PendingInstitutionsEdge!]
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
+}
+
+"An edge in a connection."
+type PendingInstitutionsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Institution!
+}
+
 type PhotovoltaicData implements Data {
   appliedMethod: AppliedMethod!
-  component: Component
+  approvals: [DataApproval!]!
+  component: Component @cost(weight: "10")
   componentId: Uuid!
   createdAt: DateTime!
+  creator: Institution @cost(weight: "10")
   creatorId: Uuid!
+  database: Database @cost(weight: "10")
+  databaseId: Uuid!
   description: String
-  id: String!
-  locale: String!
+  id: ID!
+  locale: Locale!
   name: String
-  resourceTree: GetHttpsResourceTree!
   resources: [GetHttpsResource!]!
+  resourceTree: GetHttpsResourceTree!
   timestamp: DateTime!
   uuid: Uuid!
   warnings: [String!]!
@@ -1194,9 +1783,8 @@ type PhotovoltaicData implements Data {
 
 type PhotovoltaicDataConnection {
   edges: [PhotovoltaicDataEdge!]!
-  nodes: [PhotovoltaicData!]!
-  timestamp: DateTime!
-  totalCount: NonNegativeInt
+  pageInfo: PageInfo!
+  totalCount: NonNegativeInt!
 }
 
 type PhotovoltaicDataEdge {
@@ -1204,7 +1792,12 @@ type PhotovoltaicDataEdge {
   node: PhotovoltaicData!
 }
 
-type Publication implements Reference {
+type PrimeSurfaceOrDirection {
+  direction: DescriptionOrReference
+  surface: DescriptionOrReference
+}
+
+type Publication {
   abstract: String
   "The website arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
   arXiv: String
@@ -1216,12 +1809,12 @@ type Publication implements Reference {
   title: String
   "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
   urn: String
-  "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
+  "If a persistent identified like DOI is defined above, this webAddress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
   webAddress: Url
 }
 
 type Query {
-  component(uuid: Uuid!): Component
+  component(id: Uuid!): Component @cost(weight: "10")
   components(
     "Returns the elements in the list that come after the specified cursor."
     after: String
@@ -1231,24 +1824,19 @@ type Query {
     first: Int
     "Returns the last _n_ elements from the list."
     last: Int
-    order: [ComponentSortInput!]
-    where: ComponentFilterInput
+    order: [ComponentSortInput!] @cost(weight: "10")
+    where: ComponentFilterInput @cost(weight: "10")
   ): ComponentsConnection
-  currentUser: User
-  dataFormat(uuid: Uuid!): DataFormat
-  dataFormats(
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the last _n_ elements from the list."
-    last: Int
-    order: [DataFormatSortInput!]
-    where: DataFormatFilterInput
-  ): DataFormatsConnection
-  database(uuid: Uuid!): Database
+    @listSize(
+      assumedSize: 2147483646
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  currentUser: User @cost(weight: "10")
+  database(id: Uuid!): Database @cost(weight: "10")
   databases(
     "Returns the elements in the list that come after the specified cursor."
     after: String
@@ -1258,10 +1846,61 @@ type Query {
     first: Int
     "Returns the last _n_ elements from the list."
     last: Int
-    order: [DatabaseSortInput!]
-    where: DatabaseFilterInput
+    order: [DatabaseSortInput!] @cost(weight: "10")
+    where: DatabaseFilterInput @cost(weight: "10")
   ): DatabasesConnection
-  institution(uuid: Uuid!): Institution
+    @listSize(
+      assumedSize: 2147483646
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  dataFormat(id: Uuid!): DataFormat @cost(weight: "10")
+  dataFormats(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [DataFormatSortInput!] @cost(weight: "10")
+    where: DataFormatFilterInput @cost(weight: "10")
+  ): DataFormatsConnection
+    @listSize(
+      assumedSize: 2147483646
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  gnuPgKeyFingerprint(fingerprint: String!): GnuPgKeyFingerprint
+    @cost(weight: "10")
+  gnuPgKeyFingerprints(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [GnuPgKeyFingerprintSortInput!] @cost(weight: "10")
+    where: GnuPgKeyFingerprintFilterInput @cost(weight: "10")
+  ): GnuPgKeyFingerprintsConnection
+    @listSize(
+      assumedSize: 2147483646
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  institution(id: Uuid!): Institution @cost(weight: "10")
   institutions(
     "Returns the elements in the list that come after the specified cursor."
     after: String
@@ -1271,10 +1910,18 @@ type Query {
     first: Int
     "Returns the last _n_ elements from the list."
     last: Int
-    order: [InstitutionSortInput!]
-    where: InstitutionFilterInput
+    order: [InstitutionSortInput!] @cost(weight: "10")
+    where: InstitutionFilterInput @cost(weight: "10")
   ): InstitutionsConnection
-  method(uuid: Uuid!): Method
+    @listSize(
+      assumedSize: 2147483646
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  method(id: Uuid!): Method @cost(weight: "10")
   methods(
     "Returns the elements in the list that come after the specified cursor."
     after: String
@@ -1284,18 +1931,80 @@ type Query {
     first: Int
     "Returns the last _n_ elements from the list."
     last: Int
-    order: [MethodSortInput!]
-    where: MethodFilterInput
+    order: [MethodSortInput!] @cost(weight: "10")
+    where: MethodFilterInput @cost(weight: "10")
   ): MethodsConnection
+    @listSize(
+      assumedSize: 2147483646
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
   "Fetches an object given its ID."
-  node("ID of the object." id: ID!): Node
+  node("ID of the object." id: ID!): Node @cost(weight: "10")
   "Lookup nodes by a list of IDs."
-  nodes("The list of node IDs." ids: [ID!]!): [Node]!
+  nodes("The list of node IDs." ids: [ID!]!): [Node]! @cost(weight: "10")
+  openIdConnectApplication(id: Uuid!): OpenIdConnectApplication
+    @authorize(policy: "Read")
+    @cost(weight: "10")
   openIdConnectApplications: [OpenIdConnectApplication!]!
+    @authorize(policy: "Read")
+    @cost(weight: "10")
+  openIdConnectAuthorization(id: Uuid!): OpenIdConnectAuthorization
+    @authorize(policy: "Read")
+    @cost(weight: "10")
   openIdConnectAuthorizations: [OpenIdConnectAuthorization!]!
-  openIdConnectScopes: [OpenIdConnectScope!]!
+    @authorize(policy: "Read")
+    @cost(weight: "10")
+  openIdConnectToken(id: Uuid!): OpenIdConnectToken
+    @authorize(policy: "Read")
+    @cost(weight: "10")
   openIdConnectTokens: [OpenIdConnectToken!]!
-  user(uuid: Uuid!): User
+    @authorize(policy: "Read")
+    @cost(weight: "10")
+  pendingDatabases(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [DatabaseSortInput!] @cost(weight: "10")
+    where: DatabaseFilterInput @cost(weight: "10")
+  ): PendingDatabasesConnection
+    @listSize(
+      assumedSize: 2147483646
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  pendingInstitutions(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    order: [InstitutionSortInput!] @cost(weight: "10")
+    where: InstitutionFilterInput @cost(weight: "10")
+  ): PendingInstitutionsConnection
+    @listSize(
+      assumedSize: 2147483646
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  user(id: Uuid!): User @cost(weight: "10")
   users(
     "Returns the elements in the list that come after the specified cursor."
     after: String
@@ -1305,8 +2014,17 @@ type Query {
     first: Int
     "Returns the last _n_ elements from the list."
     last: Int
-    order: [UserSortInput!]
+    order: [UserSortInput!] @cost(weight: "10")
+    where: UserFilterInput @cost(weight: "10")
   ): UsersConnection
+    @listSize(
+      assumedSize: 2147483646
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 100
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
 }
 
 type RegisterUserError {
@@ -1321,6 +2039,71 @@ type RegisterUserPayload {
   user: User
 }
 
+type RemoveComponentAssemblyError {
+  code: RemoveComponentAssemblyErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type RemoveComponentAssemblyPayload {
+  assembledComponent: Component @cost(weight: "10")
+  errors: [RemoveComponentAssemblyError!]
+  partComponent: Component @cost(weight: "10")
+  query: Query!
+}
+
+type RemoveComponentGeneralizationError {
+  code: RemoveComponentGeneralizationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type RemoveComponentGeneralizationPayload {
+  concreteComponent: Component @cost(weight: "10")
+  errors: [RemoveComponentGeneralizationError!]
+  generalComponent: Component @cost(weight: "10")
+  query: Query!
+}
+
+type RemoveComponentManufacturerError {
+  code: RemoveComponentManufacturerErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type RemoveComponentManufacturerPayload {
+  component: Component @cost(weight: "10")
+  errors: [RemoveComponentManufacturerError!]
+  institution: Institution @cost(weight: "10")
+  query: Query!
+}
+
+type RemoveComponentVariantError {
+  code: RemoveComponentVariantErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type RemoveComponentVariantPayload {
+  errors: [RemoveComponentVariantError!]
+  oneComponent: Component @cost(weight: "10")
+  otherComponent: Component @cost(weight: "10")
+  query: Query!
+}
+
+type RemoveInstitutionMethodDeveloperError {
+  code: RemoveInstitutionMethodDeveloperErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type RemoveInstitutionMethodDeveloperPayload {
+  developedMethodEdge: InstitutionDevelopedMethodEdge
+  errors: [RemoveInstitutionMethodDeveloperError!]
+  methodDeveloperEdge: InstitutionMethodDeveloperEdge
+  query: Query!
+}
+
 type RemoveInstitutionRepresentativeError {
   code: RemoveInstitutionRepresentativeErrorCode!
   message: String!
@@ -1329,9 +2112,22 @@ type RemoveInstitutionRepresentativeError {
 
 type RemoveInstitutionRepresentativePayload {
   errors: [RemoveInstitutionRepresentativeError!]
-  institution: Institution!
+  institution: Institution @cost(weight: "10")
   query: Query!
-  user: User!
+  user: User @cost(weight: "10")
+}
+
+type RemoveUserMethodDeveloperError {
+  code: RemoveUserMethodDeveloperErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type RemoveUserMethodDeveloperPayload {
+  developedMethodEdge: UserDevelopedMethodEdge
+  errors: [RemoveUserMethodDeveloperError!]
+  methodDeveloperEdge: UserMethodDeveloperEdge
+  query: Query!
 }
 
 type RemoveUserRoleError {
@@ -1405,10 +2201,46 @@ type ResetUserTwoFactorAuthenticatorPayload {
 
 type ResponseApproval {
   keyFingerprint: String!
+  message: String!
   query: String!
-  response: String!
   signature: String!
   timestamp: DateTime!
+  variables: Any!
+}
+
+type RevokeOpenIdConnectTokenError {
+  code: RevokeOpenIdConnectTokenErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type RevokeOpenIdConnectTokenPayload {
+  errors: [RevokeOpenIdConnectTokenError!]
+  query: Query!
+}
+
+type SetComponentExtrasError {
+  code: SetComponentExtrasErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type SetComponentExtrasPayload {
+  component: Component
+  errors: [SetComponentExtrasError!]
+  query: Query!
+}
+
+type SetInstitutionExtrasError {
+  code: SetInstitutionExtrasErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type SetInstitutionExtrasPayload {
+  errors: [SetInstitutionExtrasError!]
+  institution: Institution
+  query: Query!
 }
 
 type SetUserPasswordError {
@@ -1436,7 +2268,7 @@ type SetUserPhoneNumberPayload {
 }
 
 "`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
-type Standard implements Reference {
+type Standard {
   abstract: String
   locator: Url
   numeration: Numeration!
@@ -1448,9 +2280,21 @@ type Standard implements Reference {
   year: Int
 }
 
+type SwitchInstitutionOperatingStateError {
+  code: SwitchInstitutionOperatingStateErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type SwitchInstitutionOperatingStatePayload {
+  errors: [SwitchInstitutionOperatingStateError!]
+  institution: Institution
+  query: Query!
+}
+
 type ToTreeVertexAppliedConversionMethod {
   arguments: [NamedMethodArgument!]!
-  method: Method
+  method: Method @cost(weight: "10")
   methodId: Uuid!
   sourceName: String!
 }
@@ -1460,6 +2304,55 @@ type TwoFactorAuthentication {
   isEnabled: Boolean!
   isMachineRemembered: Boolean!
   recoveryCodesLeftCount: Int!
+}
+
+type UpdateComponentAssemblyError {
+  code: UpdateComponentAssemblyErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type UpdateComponentAssemblyPayload {
+  assembledOfEdge: ComponentAssembledOfEdge
+  errors: [UpdateComponentAssemblyError!]
+  partOfEdge: ComponentPartOfEdge
+  query: Query!
+}
+
+type UpdateComponentError {
+  code: UpdateComponentErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type UpdateComponentPayload {
+  component: Component
+  errors: [UpdateComponentError!]
+  query: Query!
+}
+
+type UpdateDataFormatError {
+  code: UpdateDataFormatErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type UpdateDataFormatPayload {
+  dataFormat: DataFormat
+  errors: [UpdateDataFormatError!]
+  query: Query!
+}
+
+type UpdateDatabaseError {
+  code: UpdateDatabaseErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type UpdateDatabasePayload {
+  database: Database
+  errors: [UpdateDatabaseError!]
+  query: Query!
 }
 
 type UpdateInstitutionError {
@@ -1474,48 +2367,98 @@ type UpdateInstitutionPayload {
   query: Query!
 }
 
-type User implements Node & Stakeholder {
-  canCurrentUserDeleteUser: Boolean!
-  developedMethods(pending: Boolean! = false): UserDevelopedMethodConnection!
-  email: String
-  hasPassword: Boolean
+type UpdateMethodError {
+  code: UpdateMethodErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type UpdateMethodPayload {
+  errors: [UpdateMethodError!]
+  method: Method
+  query: Query!
+}
+
+type UpdateOpenIdConnectApplicationError {
+  code: UpdateOpenIdConnectApplicationErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type UpdateOpenIdConnectApplicationPayload {
+  application: OpenIdConnectApplication
+  errors: [UpdateOpenIdConnectApplicationError!]
+  query: Query!
+}
+
+type User implements Node {
+  canCurrentUserAddApprovals: Boolean! @cost(weight: "10")
+  canCurrentUserDeleteUser: Boolean! @cost(weight: "10")
+  canCurrentUserManageOpenIdConnect: Boolean! @cost(weight: "10")
+  developedMethods(
+    pending: Boolean! = false
+    where: UserDevelopedMethodFilterInput @cost(weight: "10")
+  ): UserDevelopedMethodConnection! @cost(weight: "10")
+  email: String @cost(weight: "10")
+  gnuPgKeyFingerprints(
+    where: UserGnuPgKeyFingerprintFilterInput @cost(weight: "10")
+  ): UserGnuPgKeyFingerprintConnection! @cost(weight: "10")
+  hasGnuPgKeyFingerprint(
+    where: UserGnuPgKeyFingerprintFilterInput @cost(weight: "10")
+  ): Boolean! @cost(weight: "10")
+  hasPassword: Boolean @cost(weight: "10")
   id: ID!
-  isEmailConfirmed: Boolean
-  isPhoneNumberConfirmed: Boolean
+  isEmailConfirmed: Boolean @cost(weight: "10")
+  isPhoneNumberConfirmed: Boolean @cost(weight: "10")
   "Full name"
-  name: String!
-  phoneNumber: String
+  name: String! @cost(weight: "10")
+  phoneNumber: String @cost(weight: "10")
+  postalAddress: String @cost(weight: "10")
   representedInstitutions(
     pending: Boolean! = false
-  ): UserRepresentedInstitutionConnection!
-  roles: [UserRole!]!
-  rolesCurrentUserCanAdd: [UserRole!]!
-  rolesCurrentUserCanRemove: [UserRole!]!
-  twoFactorAuthentication: TwoFactorAuthentication
-  uuid: Uuid!
-  websiteLocator: Url
+    where: UserRepresentedInstitutionFilterInput @cost(weight: "10")
+  ): UserRepresentedInstitutionConnection! @cost(weight: "10")
+  roles: [UserRole!] @cost(weight: "10")
+  rolesCurrentUserCanAdd: [UserRole!]! @cost(weight: "10")
+  rolesCurrentUserCanRemove: [UserRole!]! @cost(weight: "10")
+  twoFactorAuthentication: TwoFactorAuthentication @cost(weight: "10")
+  uuid: Uuid! @cost(weight: "10")
+  websiteLocator: Url @cost(weight: "10")
 }
 
 type UserDevelopedMethodConnection {
-  canCurrentUserConfirmEdge: Boolean!
-  edges: [UserDevelopedMethodEdge!]!
+  canCurrentUserConfirmEdge: Boolean! @cost(weight: "10")
+  edges: [UserDevelopedMethodEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type UserDevelopedMethodEdge {
-  node: Method!
+  node: Method! @cost(weight: "10")
+}
+
+type UserGnuPgKeyFingerprintConnection {
+  edges: [UserGnuPgKeyFingerprintEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
+}
+
+type UserGnuPgKeyFingerprintEdge {
+  node: GnuPgKeyFingerprint!
 }
 
 type UserMethodDeveloperEdge {
-  node: User!
+  canCurrentUserConfirmEdge: Boolean! @cost(weight: "10")
+  canCurrentUserRemoveEdge: Boolean! @cost(weight: "10")
+  node: User! @cost(weight: "10")
 }
 
 type UserRepresentedInstitutionConnection {
-  canCurrentUserConfirmEdge: Boolean!
-  edges: [UserRepresentedInstitutionEdge!]!
+  canCurrentUserConfirmEdge: Boolean! @cost(weight: "10")
+  edges: [UserRepresentedInstitutionEdge!]! @cost(weight: "10")
+  totalCount: NonNegativeInt! @cost(weight: "10")
 }
 
 type UserRepresentedInstitutionEdge {
-  node: Institution!
+  node: Institution! @cost(weight: "10")
   role: InstitutionRepresentativeRole!
 }
 
@@ -1523,11 +2466,10 @@ type UserRepresentedInstitutionEdge {
 type UsersConnection {
   "A list of edges."
   edges: [UsersEdge!]
-  "A flattened list of the nodes."
-  nodes: [User!]
   "Information to aid in pagination."
   pageInfo: PageInfo!
-  totalCount: Int!
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
 }
 
 "An edge in a connection."
@@ -1536,6 +2478,18 @@ type UsersEdge {
   cursor: String!
   "The item at the end of the edge."
   node: User!
+}
+
+type VerifyDatabaseError {
+  code: VerifyDatabaseErrorCode!
+  message: String!
+  path: [String!]!
+}
+
+type VerifyDatabasePayload {
+  database: Database
+  errors: [VerifyDatabaseError!]
+  query: Query!
 }
 
 type VerifyInstitutionError {
@@ -1550,9 +2504,45 @@ type VerifyInstitutionPayload {
   query: Query!
 }
 
+union Reference = Publication | Standard
+
+union Stakeholder = Institution | User
+
+input AddComponentAssemblyInput {
+  assembledComponentId: Uuid!
+  index: Byte
+  partComponentId: Uuid!
+  primeSurface: PrimeSurface
+}
+
+input AddComponentGeneralizationInput {
+  concreteComponentId: Uuid!
+  generalComponentId: Uuid!
+}
+
+input AddComponentManufacturerInput {
+  componentId: Uuid!
+  institutionId: Uuid!
+}
+
+input AddComponentVariantInput {
+  oneComponentId: Uuid!
+  otherComponentId: Uuid!
+}
+
+input AddInstitutionMethodDeveloperInput {
+  institutionId: Uuid!
+  methodId: Uuid!
+}
+
 input AddInstitutionRepresentativeInput {
   institutionId: Uuid!
   role: InstitutionRepresentativeRole!
+  userId: Uuid!
+}
+
+input AddUserMethodDeveloperInput {
+  methodId: Uuid!
   userId: Uuid!
 }
 
@@ -1561,9 +2551,13 @@ input AddUserRoleInput {
   userId: Uuid!
 }
 
+input AllowGnuPgKeyFingerprintInput {
+  fingerprint: String!
+}
+
 input BooleanOperationFilterInput {
-  eq: Boolean
-  neq: Boolean
+  equalTo: Boolean @cost(weight: "10")
+  notEqualTo: Boolean @cost(weight: "10")
 }
 
 input CalorimetricDataPropositionInput {
@@ -1578,7 +2572,7 @@ input CalorimetricDataPropositionInput {
 
 input ChangeInstitutionRepresentativeRoleInput {
   institutionId: Uuid!
-  newRole: InstitutionRepresentativeRole!
+  role: InstitutionRepresentativeRole!
   userId: Uuid!
 }
 
@@ -1609,41 +2603,122 @@ input ClosedIntervalInput {
   upperBound: Float!
 }
 
+input CoatedSidePropositionInput {
+  equalTo: CoatedSide
+  in: [CoatedSide!]
+  notEqualTo: CoatedSide
+  notIn: [CoatedSide!]
+}
+
+input ComparableDateTimeOperationFilterInput {
+  equalTo: DateTime @cost(weight: "10")
+  notEqualTo: DateTime @cost(weight: "10")
+  in: [DateTime!] @cost(weight: "10")
+  notIn: [DateTime!] @cost(weight: "10")
+  greaterThan: DateTime @cost(weight: "10")
+  notGreaterThan: DateTime @cost(weight: "10")
+  greaterThanOrEqualTo: DateTime @cost(weight: "10")
+  notGreaterThanOrEqualTo: DateTime @cost(weight: "10")
+  lessThan: DateTime @cost(weight: "10")
+  notLessThan: DateTime @cost(weight: "10")
+  lessThanOrEqualTo: DateTime @cost(weight: "10")
+  notLessThanOrEqualTo: DateTime @cost(weight: "10")
+}
+
 input ComparableGuidOperationFilterInput {
-  eq: Uuid
-  neq: Uuid
-  in: [Uuid!]
-  nin: [Uuid!]
-  gt: Uuid
-  ngt: Uuid
-  gte: Uuid
-  ngte: Uuid
-  lt: Uuid
-  nlt: Uuid
-  lte: Uuid
-  nlte: Uuid
+  equalTo: Uuid @cost(weight: "10")
+  notEqualTo: Uuid @cost(weight: "10")
+  in: [Uuid!] @cost(weight: "10")
+  notIn: [Uuid!] @cost(weight: "10")
+  greaterThan: Uuid @cost(weight: "10")
+  notGreaterThan: Uuid @cost(weight: "10")
+  greaterThanOrEqualTo: Uuid @cost(weight: "10")
+  notGreaterThanOrEqualTo: Uuid @cost(weight: "10")
+  lessThan: Uuid @cost(weight: "10")
+  notLessThan: Uuid @cost(weight: "10")
+  lessThanOrEqualTo: Uuid @cost(weight: "10")
+  notLessThanOrEqualTo: Uuid @cost(weight: "10")
 }
 
 input ComparableInt32OperationFilterInput {
-  eq: Int
-  neq: Int
-  in: [Int!]
-  nin: [Int!]
-  gt: Int
-  ngt: Int
-  gte: Int
-  ngte: Int
-  lt: Int
-  nlt: Int
-  lte: Int
-  nlte: Int
+  equalTo: Int @cost(weight: "10")
+  notEqualTo: Int @cost(weight: "10")
+  in: [Int!] @cost(weight: "10")
+  notIn: [Int!] @cost(weight: "10")
+  greaterThan: Int @cost(weight: "10")
+  notGreaterThan: Int @cost(weight: "10")
+  greaterThanOrEqualTo: Int @cost(weight: "10")
+  notGreaterThanOrEqualTo: Int @cost(weight: "10")
+  lessThan: Int @cost(weight: "10")
+  notLessThan: Int @cost(weight: "10")
+  lessThanOrEqualTo: Int @cost(weight: "10")
+  notLessThanOrEqualTo: Int @cost(weight: "10")
+}
+
+input ComparableNullableOfByteOperationFilterInput {
+  equalTo: Byte @cost(weight: "10")
+  notEqualTo: Byte @cost(weight: "10")
+  in: [Byte] @cost(weight: "10")
+  notIn: [Byte] @cost(weight: "10")
+  greaterThan: Byte @cost(weight: "10")
+  notGreaterThan: Byte @cost(weight: "10")
+  greaterThanOrEqualTo: Byte @cost(weight: "10")
+  notGreaterThanOrEqualTo: Byte @cost(weight: "10")
+  lessThan: Byte @cost(weight: "10")
+  notLessThan: Byte @cost(weight: "10")
+  lessThanOrEqualTo: Byte @cost(weight: "10")
+  notLessThanOrEqualTo: Byte @cost(weight: "10")
+}
+
+input ComparableNullableOfDateTimeOperationFilterInput {
+  equalTo: DateTime @cost(weight: "10")
+  notEqualTo: DateTime @cost(weight: "10")
+  in: [DateTime] @cost(weight: "10")
+  notIn: [DateTime] @cost(weight: "10")
+  greaterThan: DateTime @cost(weight: "10")
+  notGreaterThan: DateTime @cost(weight: "10")
+  greaterThanOrEqualTo: DateTime @cost(weight: "10")
+  notGreaterThanOrEqualTo: DateTime @cost(weight: "10")
+  lessThan: DateTime @cost(weight: "10")
+  notLessThan: DateTime @cost(weight: "10")
+  lessThanOrEqualTo: DateTime @cost(weight: "10")
+  notLessThanOrEqualTo: DateTime @cost(weight: "10")
+}
+
+input ComparableUInt32OperationFilterInput {
+  equalTo: NonNegativeInt @cost(weight: "10")
+  notEqualTo: NonNegativeInt @cost(weight: "10")
+  in: [NonNegativeInt!] @cost(weight: "10")
+  notIn: [NonNegativeInt!] @cost(weight: "10")
+  greaterThan: NonNegativeInt @cost(weight: "10")
+  notGreaterThan: NonNegativeInt @cost(weight: "10")
+  greaterThanOrEqualTo: NonNegativeInt @cost(weight: "10")
+  notGreaterThanOrEqualTo: NonNegativeInt @cost(weight: "10")
+  lessThan: NonNegativeInt @cost(weight: "10")
+  notLessThan: NonNegativeInt @cost(weight: "10")
+  lessThanOrEqualTo: NonNegativeInt @cost(weight: "10")
+  notLessThanOrEqualTo: NonNegativeInt @cost(weight: "10")
+}
+
+input ComponentAssembledOfFilterInput {
+  and: [ComponentAssembledOfFilterInput!]
+  or: [ComponentAssembledOfFilterInput!]
+  partComponent: ComponentFilterInput
+  index: ComparableNullableOfByteOperationFilterInput
+  primeSurface: NullableOfPrimeSurfaceOperationFilterInput
 }
 
 input ComponentCategoryOperationFilterInput {
-  eq: ComponentCategory
-  neq: ComponentCategory
-  in: [ComponentCategory!]
-  nin: [ComponentCategory!]
+  equalTo: ComponentCategory @cost(weight: "10")
+  notEqualTo: ComponentCategory @cost(weight: "10")
+  in: [ComponentCategory!] @cost(weight: "10")
+  notIn: [ComponentCategory!] @cost(weight: "10")
+}
+
+input ComponentConcretizationOfFilterInput {
+  and: [ComponentConcretizationOfFilterInput!]
+  or: [ComponentConcretizationOfFilterInput!]
+  generalComponent: ComponentFilterInput
 }
 
 input ComponentFilterInput {
@@ -1654,15 +2729,49 @@ input ComponentFilterInput {
   abbreviation: StringOperationFilterInput
   description: StringOperationFilterInput
   categories: ListComponentCategoryOperationFilterInput
+  extras: JsonElementFilterInput
+  partOf: ListComponentFilterTypeFilterInput
+  parts: ListComponentFilterTypeFilterInput
+  partOfEdges: ListFilterInputTypeOfComponentAssemblyFilterInput
+  partEdges: ListFilterInputTypeOfComponentAssemblyFilterInput
+  concretizations: ListComponentFilterTypeFilterInput
+  generalizations: ListComponentFilterTypeFilterInput
+  variants: ListComponentFilterTypeFilterInput
+  manufacturers: ListInstitutionFilterTypeFilterInput
+  manufacturerEdges: ListFilterInputTypeOfComponentManufacturerFilterInput
+}
+
+input ComponentGeneralizationOfFilterInput {
+  and: [ComponentGeneralizationOfFilterInput!]
+  or: [ComponentGeneralizationOfFilterInput!]
+  concreteComponent: ComponentFilterInput
+}
+
+input ComponentManufacturerFilterInput {
+  and: [ComponentManufacturerFilterInput!]
+  or: [ComponentManufacturerFilterInput!]
+  institution: InstitutionFilterInput
+}
+
+input ComponentPartOfFilterInput {
+  and: [ComponentPartOfFilterInput!]
+  or: [ComponentPartOfFilterInput!]
+  assembledComponent: ComponentFilterInput
+  index: ComparableNullableOfByteOperationFilterInput
+  primeSurface: NullableOfPrimeSurfaceOperationFilterInput
 }
 
 input ComponentSortInput {
-  name: SortEnumType
-  abbreviation: SortEnumType
-  description: SortEnumType
-  availability: SortEnumType
-  id: SortEnumType
-  xmin: SortEnumType
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  abbreviation: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+}
+
+input ComponentVariantOfFilterInput {
+  and: [ComponentVariantOfFilterInput!]
+  or: [ComponentVariantOfFilterInput!]
+  ofComponent: ComponentFilterInput
 }
 
 input ConfirmComponentManufacturerInput {
@@ -1698,17 +2807,16 @@ input ConfirmUserMethodDeveloperInput {
 
 input CreateComponentInput {
   abbreviation: String
-  assembledOfIds: [Uuid!]!
   availability: OpenEndedDateTimeRangeInput
   categories: [ComponentCategory!]!
-  concretizationOfIds: [Uuid!]!
+  componentId: Uuid
   description: String!
-  furtherManufacturerIds: [Uuid!]!
-  generalizationOfIds: [Uuid!]!
+  extras: Any
   manufacturerId: Uuid!
   name: String!
-  partOfIds: [Uuid!]!
-  variantOfIds: [Uuid!]!
+  primeDirection: DescriptionOrReferenceInput
+  primeSurface: DescriptionOrReferenceInput
+  switchableLayers: DescriptionOrReferenceInput
 }
 
 input CreateDataFormatInput {
@@ -1717,9 +2825,8 @@ input CreateDataFormatInput {
   managerId: Uuid!
   mediaType: String!
   name: String!
-  publication: CreatePublicationInput
+  reference: ReferenceInput
   schemaLocator: Url
-  standard: CreateStandardInput
 }
 
 input CreateDatabaseInput {
@@ -1732,6 +2839,8 @@ input CreateDatabaseInput {
 input CreateInstitutionInput {
   abbreviation: String
   description: String!
+  extras: Any
+  institutionId: Uuid
   managerId: Uuid
   name: String!
   ownerIds: [Uuid!]!
@@ -1747,37 +2856,22 @@ input CreateMethodInput {
   institutionDeveloperIds: [Uuid!]!
   managerId: Uuid!
   name: String!
-  publication: CreatePublicationInput
-  standard: CreateStandardInput
+  reference: ReferenceInput
   userDeveloperIds: [Uuid!]!
   validity: OpenEndedDateTimeRangeInput
 }
 
-input CreateNumerationInput {
-  mainNumber: String!
-  prefix: String
-  suffix: String
-}
-
-input CreatePublicationInput {
-  abstract: String
-  arXiv: String
-  authors: [String!]
-  doi: String
-  section: String
-  title: String
-  urn: String
-  webAddress: Url
-}
-
-input CreateStandardInput {
-  abstract: String
-  locator: Url
-  numeration: CreateNumerationInput!
-  section: String
-  standardizers: [Standardizer!]!
-  title: String
-  year: Int
+input CreateOpenIdConnectApplicationInput {
+  clientId: String!
+  consentType: OpenIdConnectConsentType!
+  displayName: String!
+  endpoints: [OpenIdConnectEndpoint!]!
+  grantTypes: [OpenIdConnectGrantType!]!
+  institutionId: Uuid!
+  postLogoutRedirectUri: Url
+  redirectUri: Url
+  responseTypes: [OpenIdConnectResponseType!]!
+  scopes: [OpenIdConnectScope!]!
 }
 
 input DataFormatFilterInput {
@@ -1785,40 +2879,21 @@ input DataFormatFilterInput {
   or: [DataFormatFilterInput!]
   id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
+  extension: StringOperationFilterInput
   description: StringOperationFilterInput
   mediaType: StringOperationFilterInput
+  schemaLocator: UriFilterInput
+  manager: InstitutionFilterInput
 }
 
 input DataFormatSortInput {
-  name: SortEnumType
-  extension: SortEnumType
-  description: SortEnumType
-  mediaType: SortEnumType
-  schemaLocator: UriSortInput
-  standard: StandardSortInput
-  publication: PublicationSortInput
-  reference: IReferenceSortInput
-  managerId: SortEnumType
-  manager: InstitutionSortInput
-  id: SortEnumType
-  xmin: SortEnumType
-}
-
-input DataPropositionInput {
-  and: [DataPropositionInput!]
-  cielabColors: CielabColorsPropositionInput
-  colorRenderingIndices: FloatsPropositionInput
-  componentId: UuidPropositionInput
-  gValues: FloatsPropositionInput
-  infraredEmittances: FloatsPropositionInput
-  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
-  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
-  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
-  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
-  not: DataPropositionInput
-  or: [DataPropositionInput!]
-  resources: GetHttpsResourcesPropositionInput
-  uValues: FloatsPropositionInput
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  extension: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  mediaType: SortEnumType @cost(weight: "10")
+  schemaLocator: UriSortInput @cost(weight: "10")
+  manager: InstitutionSortInput @cost(weight: "10")
 }
 
 input DatabaseFilterInput {
@@ -1828,20 +2903,27 @@ input DatabaseFilterInput {
   name: StringOperationFilterInput
   description: StringOperationFilterInput
   locator: UriFilterInput
+  operator: InstitutionFilterInput
 }
 
 input DatabaseSortInput {
-  name: SortEnumType
-  description: SortEnumType
-  locator: UriSortInput
-  operatorId: SortEnumType
-  operator: InstitutionSortInput
-  id: SortEnumType
-  xmin: SortEnumType
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  locator: UriSortInput @cost(weight: "10")
+  operator: InstitutionSortInput @cost(weight: "10")
 }
 
 input DeleteInstitutionInput {
   institutionId: Uuid!
+}
+
+input DeleteOpenIdConnectApplicationInput {
+  applicationId: Uuid!
+}
+
+input DeleteOpenIdConnectAuthorizationInput {
+  authorizationId: Uuid!
 }
 
 input DeletePersonalUserDataInput {
@@ -1850,6 +2932,11 @@ input DeletePersonalUserDataInput {
 
 input DeleteUserInput {
   userId: Uuid!
+}
+
+input DescriptionOrReferenceInput {
+  description: String
+  reference: ReferenceInput
 }
 
 input EnableUserTwoFactorAuthenticatorInput {
@@ -1879,6 +2966,19 @@ input FloatsPropositionInput {
   some: FloatPropositionInput
 }
 
+input ForbidGnuPgKeyFingerprintInput {
+  fingerprint: String!
+}
+
+input GeometricDataPropositionInput {
+  and: [GeometricDataPropositionInput!]
+  componentId: UuidPropositionInput
+  not: GeometricDataPropositionInput
+  or: [GeometricDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
+  thicknesses: FloatsPropositionInput
+}
+
 input GetHttpsResourcePropositionInput {
   archivedFilesMetaInformation: FilesMetaInformationPropositionInput
   dataFormatId: UuidPropositionInput
@@ -1890,6 +2990,37 @@ input GetHttpsResourcesPropositionInput {
   some: GetHttpsResourcePropositionInput
 }
 
+input GnuPgKeyFingerprintFilterInput {
+  and: [GnuPgKeyFingerprintFilterInput!]
+  or: [GnuPgKeyFingerprintFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  fingerprint: StringOperationFilterInput
+  createdAt: ComparableDateTimeOperationFilterInput
+  allowedAt: ComparableNullableOfDateTimeOperationFilterInput
+  forbiddenAt: ComparableNullableOfDateTimeOperationFilterInput
+  user: UserFilterInput
+  institution: InstitutionFilterInput
+  isForbidden: BooleanOperationFilterInput
+  isAllowed: BooleanOperationFilterInput
+}
+
+input GnuPgKeyFingerprintInput {
+  fingerprint: String!
+  institutionId: Uuid!
+}
+
+input GnuPgKeyFingerprintSortInput {
+  id: SortEnumType @cost(weight: "10")
+  fingerprint: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  allowedAt: SortEnumType @cost(weight: "10")
+  forbiddenAt: SortEnumType @cost(weight: "10")
+  user: UserSortInput @cost(weight: "10")
+  institution: InstitutionSortInput @cost(weight: "10")
+  isForbidden: SortEnumType @cost(weight: "10")
+  isAllowed: SortEnumType @cost(weight: "10")
+}
+
 input HygrothermalDataPropositionInput {
   and: [HygrothermalDataPropositionInput!]
   componentId: UuidPropositionInput
@@ -1898,10 +3029,9 @@ input HygrothermalDataPropositionInput {
   resources: GetHttpsResourcesPropositionInput
 }
 
-input IReferenceSortInput {
-  title: SortEnumType
-  abstract: SortEnumType
-  section: SortEnumType
+input IMethodDeveloperFilterInput {
+  and: [IMethodDeveloperFilterInput!]
+  or: [IMethodDeveloperFilterInput!]
 }
 
 input InstitutionFilterInput {
@@ -1913,53 +3043,284 @@ input InstitutionFilterInput {
   description: StringOperationFilterInput
   websiteLocator: UriFilterInput
   state: InstitutionStateOperationFilterInput
+  extras: JsonElementFilterInput
+  developedMethods: ListMethodFilterTypeFilterInput
+  developedMethodEdges: ListFilterInputTypeOfInstitutionMethodDeveloperFilterInput
+  managedMethods: ListMethodFilterTypeFilterInput
+  managedDataFormats: ListDataFormatFilterTypeFilterInput
+  manufacturedComponents: ListComponentFilterTypeFilterInput
+  manufacturedComponentEdges: ListFilterInputTypeOfComponentManufacturerFilterInput
+  operatedDatabases: ListDatabaseFilterTypeFilterInput
+  manager: InstitutionFilterInput
+  managedInstitutions: ListInstitutionFilterTypeFilterInput
+  representatives: ListUserFilterTypeFilterInput
+  representativeEdges: ListFilterInputTypeOfInstitutionRepresentativeFilterInput
+}
+
+input InstitutionGnuPgKeyFingerprintFilterInput {
+  and: [InstitutionGnuPgKeyFingerprintFilterInput!]
+  or: [InstitutionGnuPgKeyFingerprintFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  fingerprint: StringOperationFilterInput
+  createdAt: ComparableDateTimeOperationFilterInput
+  allowedAt: ComparableNullableOfDateTimeOperationFilterInput
+  forbiddenAt: ComparableNullableOfDateTimeOperationFilterInput
+  user: UserFilterInput
+  isForbidden: BooleanOperationFilterInput
+  isAllowed: BooleanOperationFilterInput
+}
+
+input InstitutionManagedDataFormatFilterInput {
+  and: [InstitutionManagedDataFormatFilterInput!]
+  or: [InstitutionManagedDataFormatFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  name: StringOperationFilterInput
+  extension: StringOperationFilterInput
+  description: StringOperationFilterInput
+  mediaType: StringOperationFilterInput
+  schemaLocator: UriFilterInput
+}
+
+input InstitutionManagedInstitutionFilterInput {
+  and: [InstitutionManagedInstitutionFilterInput!]
+  or: [InstitutionManagedInstitutionFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  name: StringOperationFilterInput
+  abbreviation: StringOperationFilterInput
+  description: StringOperationFilterInput
+  websiteLocator: UriFilterInput
+  state: InstitutionStateOperationFilterInput
+  extras: JsonElementFilterInput
+  developedMethods: ListMethodFilterTypeFilterInput
+  developedMethodEdges: ListFilterInputTypeOfInstitutionMethodDeveloperFilterInput
+  managedMethods: ListMethodFilterTypeFilterInput
+  managedDataFormats: ListDataFormatFilterTypeFilterInput
+  manufacturedComponents: ListComponentFilterTypeFilterInput
+  manufacturedComponentEdges: ListFilterInputTypeOfComponentManufacturerFilterInput
+  operatedDatabases: ListDatabaseFilterTypeFilterInput
+  managedInstitutions: ListInstitutionFilterTypeFilterInput
+  representatives: ListUserFilterTypeFilterInput
+  representativeEdges: ListFilterInputTypeOfInstitutionRepresentativeFilterInput
+}
+
+input InstitutionManagedMethodFilterInput {
+  and: [InstitutionManagedMethodFilterInput!]
+  or: [InstitutionManagedMethodFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  name: StringOperationFilterInput
+  description: StringOperationFilterInput
+  calculationLocator: UriFilterInput
+  categories: ListMethodCategoryOperationFilterInput
+  institutionDevelopers: ListInstitutionFilterTypeFilterInput
+  institutionDeveloperEdges: ListFilterInputTypeOfInstitutionMethodDeveloperFilterInput
+  userDevelopers: ListUserFilterTypeFilterInput
+  userDeveloperEdges: ListFilterInputTypeOfUserMethodDeveloperFilterInput
+}
+
+input InstitutionManufacturedComponentFilterInput {
+  and: [InstitutionManufacturedComponentFilterInput!]
+  or: [InstitutionManufacturedComponentFilterInput!]
+  component: ComponentFilterInput
+}
+
+input InstitutionMethodDeveloperFilterInput {
+  and: [InstitutionMethodDeveloperFilterInput!]
+  or: [InstitutionMethodDeveloperFilterInput!]
+}
+
+input InstitutionOperatedDatabaseFilterInput {
+  and: [InstitutionOperatedDatabaseFilterInput!]
+  or: [InstitutionOperatedDatabaseFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  name: StringOperationFilterInput
+  description: StringOperationFilterInput
+  locator: UriFilterInput
+}
+
+input InstitutionOwnedOpenIdConnectApplicationFilterInput {
+  and: [InstitutionOwnedOpenIdConnectApplicationFilterInput!]
+  or: [InstitutionOwnedOpenIdConnectApplicationFilterInput!]
+  uuid: ComparableGuidOperationFilterInput
+  applicationType: StringOperationFilterInput
+  clientId: StringOperationFilterInput
+  consentType: StringOperationFilterInput
+  displayName: StringOperationFilterInput
+  ownerId: ComparableGuidOperationFilterInput
+  version: ComparableUInt32OperationFilterInput
+  authorizations: ListOpenIdConnectAuthorizationFilterTypeFilterInput
+  clientSecret: StringOperationFilterInput
+  clientType: StringOperationFilterInput
+  concurrencyToken: StringOperationFilterInput
+  displayNames: StringOperationFilterInput
+  jsonWebKeySet: StringOperationFilterInput
+  permissions: StringOperationFilterInput
+  postLogoutRedirectUris: StringOperationFilterInput
+  properties: StringOperationFilterInput
+  redirectUris: StringOperationFilterInput
+  requirements: StringOperationFilterInput
+  settings: StringOperationFilterInput
+  tokens: ListOpenIdConnectTokenFilterTypeFilterInput
+}
+
+input InstitutionRepresentativeFilterInput {
+  and: [InstitutionRepresentativeFilterInput!]
+  or: [InstitutionRepresentativeFilterInput!]
+  user: UserFilterInput
+  role: InstitutionRepresentativeRoleOperationFilterInput
+}
+
+input InstitutionRepresentativeRoleOperationFilterInput {
+  equalTo: InstitutionRepresentativeRole @cost(weight: "10")
+  notEqualTo: InstitutionRepresentativeRole @cost(weight: "10")
+  in: [InstitutionRepresentativeRole!] @cost(weight: "10")
+  notIn: [InstitutionRepresentativeRole!] @cost(weight: "10")
 }
 
 input InstitutionSortInput {
-  name: SortEnumType
-  abbreviation: SortEnumType
-  description: SortEnumType
-  websiteLocator: UriSortInput
-  publicKey: SortEnumType
-  state: SortEnumType
-  managerId: SortEnumType
-  manager: InstitutionSortInput
-  id: SortEnumType
-  xmin: SortEnumType
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  abbreviation: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  websiteLocator: UriSortInput @cost(weight: "10")
+  state: SortEnumType @cost(weight: "10")
+  manager: InstitutionSortInput @cost(weight: "10")
 }
 
 input InstitutionStateOperationFilterInput {
-  eq: InstitutionState
-  neq: InstitutionState
-  in: [InstitutionState!]
-  nin: [InstitutionState!]
+  equalTo: InstitutionState @cost(weight: "10")
+  notEqualTo: InstitutionState @cost(weight: "10")
+  in: [InstitutionState!] @cost(weight: "10")
+  notIn: [InstitutionState!] @cost(weight: "10")
+}
+
+input JsonElementFilterInput {
+  and: [JsonElementFilterInput!]
+  or: [JsonElementFilterInput!]
+  valueKind: JsonValueKindOperationFilterInput
+}
+
+input JsonValueKindOperationFilterInput {
+  equalTo: JsonValueKind @cost(weight: "10")
+  notEqualTo: JsonValueKind @cost(weight: "10")
+  in: [JsonValueKind!] @cost(weight: "10")
+  notIn: [JsonValueKind!] @cost(weight: "10")
 }
 
 input ListComponentCategoryOperationFilterInput {
-  all: ComponentCategoryOperationFilterInput
-  none: ComponentCategoryOperationFilterInput
-  some: ComponentCategoryOperationFilterInput
-  any: Boolean
+  all: ComponentCategoryOperationFilterInput @cost(weight: "10")
+  none: ComponentCategoryOperationFilterInput @cost(weight: "10")
+  some: ComponentCategoryOperationFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListComponentFilterTypeFilterInput {
+  all: ComponentFilterInput @cost(weight: "10")
+  none: ComponentFilterInput @cost(weight: "10")
+  some: ComponentFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListDataFormatFilterTypeFilterInput {
+  all: DataFormatFilterInput @cost(weight: "10")
+  none: DataFormatFilterInput @cost(weight: "10")
+  some: DataFormatFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListDatabaseFilterTypeFilterInput {
+  all: DatabaseFilterInput @cost(weight: "10")
+  none: DatabaseFilterInput @cost(weight: "10")
+  some: DatabaseFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfComponentAssemblyFilterInput {
+  all: ComponentAssembledOfFilterInput @cost(weight: "10")
+  none: ComponentAssembledOfFilterInput @cost(weight: "10")
+  some: ComponentAssembledOfFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfComponentManufacturerFilterInput {
+  all: ComponentManufacturerFilterInput @cost(weight: "10")
+  none: ComponentManufacturerFilterInput @cost(weight: "10")
+  some: ComponentManufacturerFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfInstitutionMethodDeveloperFilterInput {
+  all: InstitutionMethodDeveloperFilterInput @cost(weight: "10")
+  none: InstitutionMethodDeveloperFilterInput @cost(weight: "10")
+  some: InstitutionMethodDeveloperFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfInstitutionRepresentativeFilterInput {
+  all: InstitutionRepresentativeFilterInput @cost(weight: "10")
+  none: InstitutionRepresentativeFilterInput @cost(weight: "10")
+  some: InstitutionRepresentativeFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfUserMethodDeveloperFilterInput {
+  all: UserDevelopedMethodFilterInput @cost(weight: "10")
+  none: UserDevelopedMethodFilterInput @cost(weight: "10")
+  some: UserDevelopedMethodFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListInstitutionFilterTypeFilterInput {
+  all: InstitutionFilterInput @cost(weight: "10")
+  none: InstitutionFilterInput @cost(weight: "10")
+  some: InstitutionFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
 }
 
 input ListMethodCategoryOperationFilterInput {
-  all: MethodCategoryOperationFilterInput
-  none: MethodCategoryOperationFilterInput
-  some: MethodCategoryOperationFilterInput
-  any: Boolean
+  all: MethodCategoryOperationFilterInput @cost(weight: "10")
+  none: MethodCategoryOperationFilterInput @cost(weight: "10")
+  some: MethodCategoryOperationFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListMethodFilterTypeFilterInput {
+  all: MethodFilterInput @cost(weight: "10")
+  none: MethodFilterInput @cost(weight: "10")
+  some: MethodFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListOpenIdConnectAuthorizationFilterTypeFilterInput {
+  all: OpenIdConnectAuthorizationFilterInput @cost(weight: "10")
+  none: OpenIdConnectAuthorizationFilterInput @cost(weight: "10")
+  some: OpenIdConnectAuthorizationFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListOpenIdConnectTokenFilterTypeFilterInput {
+  all: OpenIdConnectTokenFilterInput @cost(weight: "10")
+  none: OpenIdConnectTokenFilterInput @cost(weight: "10")
+  some: OpenIdConnectTokenFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
 }
 
 input ListStringOperationFilterInput {
-  all: StringOperationFilterInput
-  none: StringOperationFilterInput
-  some: StringOperationFilterInput
-  any: Boolean
+  all: StringOperationFilterInput @cost(weight: "10")
+  none: StringOperationFilterInput @cost(weight: "10")
+  some: StringOperationFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListUserFilterTypeFilterInput {
+  all: UserFilterInput @cost(weight: "10")
+  none: UserFilterInput @cost(weight: "10")
+  some: UserFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
 }
 
 input LoginUserInput {
   email: String!
   password: String!
-  rememberMe: Boolean!
 }
 
 input LoginUserWithRecoveryCodeInput {
@@ -1969,14 +3330,13 @@ input LoginUserWithRecoveryCodeInput {
 input LoginUserWithTwoFactorCodeInput {
   authenticatorCode: String!
   rememberMachine: Boolean!
-  rememberMe: Boolean!
 }
 
 input MethodCategoryOperationFilterInput {
-  eq: MethodCategory
-  neq: MethodCategory
-  in: [MethodCategory!]
-  nin: [MethodCategory!]
+  equalTo: MethodCategory @cost(weight: "10")
+  notEqualTo: MethodCategory @cost(weight: "10")
+  in: [MethodCategory!] @cost(weight: "10")
+  notIn: [MethodCategory!] @cost(weight: "10")
 }
 
 input MethodFilterInput {
@@ -1985,28 +3345,34 @@ input MethodFilterInput {
   id: ComparableGuidOperationFilterInput
   name: StringOperationFilterInput
   description: StringOperationFilterInput
+  calculationLocator: UriFilterInput
   categories: ListMethodCategoryOperationFilterInput
+  institutionDevelopers: ListInstitutionFilterTypeFilterInput
+  institutionDeveloperEdges: ListFilterInputTypeOfInstitutionMethodDeveloperFilterInput
+  userDevelopers: ListUserFilterTypeFilterInput
+  userDeveloperEdges: ListFilterInputTypeOfUserMethodDeveloperFilterInput
+  manager: InstitutionFilterInput
 }
 
 input MethodSortInput {
-  name: SortEnumType
-  description: SortEnumType
-  standard: StandardSortInput
-  publication: PublicationSortInput
-  reference: IReferenceSortInput
-  validity: SortEnumType
-  availability: SortEnumType
-  calculationLocator: UriSortInput
-  managerId: SortEnumType
-  manager: InstitutionSortInput
-  id: SortEnumType
-  xmin: SortEnumType
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  calculationLocator: UriSortInput @cost(weight: "10")
+  manager: InstitutionSortInput @cost(weight: "10")
 }
 
-input NumerationSortInput {
-  prefix: SortEnumType
-  mainNumber: SortEnumType
-  suffix: SortEnumType
+input NullableOfPrimeSurfaceOperationFilterInput {
+  equalTo: PrimeSurface @cost(weight: "10")
+  notEqualTo: PrimeSurface @cost(weight: "10")
+  in: [PrimeSurface] @cost(weight: "10")
+  notIn: [PrimeSurface] @cost(weight: "10")
+}
+
+input NumerationInput {
+  mainNumber: String!
+  prefix: String
+  suffix: String
 }
 
 input OpenEndedDateTimeRangeInput {
@@ -2014,9 +3380,85 @@ input OpenEndedDateTimeRangeInput {
   to: DateTime
 }
 
+input OpenIdConnectApplicationFilterInput {
+  and: [OpenIdConnectApplicationFilterInput!]
+  or: [OpenIdConnectApplicationFilterInput!]
+  uuid: ComparableGuidOperationFilterInput
+  applicationType: StringOperationFilterInput
+  clientId: StringOperationFilterInput
+  consentType: StringOperationFilterInput
+  displayName: StringOperationFilterInput
+  ownerId: ComparableGuidOperationFilterInput
+  owner: InstitutionFilterInput
+  version: ComparableUInt32OperationFilterInput
+  authorizations: ListOpenIdConnectAuthorizationFilterTypeFilterInput
+  clientSecret: StringOperationFilterInput
+  clientType: StringOperationFilterInput
+  concurrencyToken: StringOperationFilterInput
+  displayNames: StringOperationFilterInput
+  jsonWebKeySet: StringOperationFilterInput
+  permissions: StringOperationFilterInput
+  postLogoutRedirectUris: StringOperationFilterInput
+  properties: StringOperationFilterInput
+  redirectUris: StringOperationFilterInput
+  requirements: StringOperationFilterInput
+  settings: StringOperationFilterInput
+  tokens: ListOpenIdConnectTokenFilterTypeFilterInput
+}
+
+input OpenIdConnectAuthorizationFilterInput {
+  and: [OpenIdConnectAuthorizationFilterInput!]
+  or: [OpenIdConnectAuthorizationFilterInput!]
+  uuid: ComparableGuidOperationFilterInput
+  creationDate: ComparableNullableOfDateTimeOperationFilterInput
+  status: StringOperationFilterInput
+  subject: StringOperationFilterInput
+  tokens: ListOpenIdConnectTokenFilterTypeFilterInput
+  type: StringOperationFilterInput
+  version: ComparableUInt32OperationFilterInput
+  application: OpenIdConnectApplicationFilterInput
+  concurrencyToken: StringOperationFilterInput
+  properties: StringOperationFilterInput
+  scopes: StringOperationFilterInput
+}
+
+input OpenIdConnectTokenFilterInput {
+  and: [OpenIdConnectTokenFilterInput!]
+  or: [OpenIdConnectTokenFilterInput!]
+  uuid: ComparableGuidOperationFilterInput
+  creationDate: ComparableNullableOfDateTimeOperationFilterInput
+  expirationDate: ComparableNullableOfDateTimeOperationFilterInput
+  redemptionDate: ComparableNullableOfDateTimeOperationFilterInput
+  status: StringOperationFilterInput
+  subject: StringOperationFilterInput
+  type: StringOperationFilterInput
+  version: ComparableUInt32OperationFilterInput
+  application: OpenIdConnectApplicationFilterInput
+  authorization: OpenIdConnectAuthorizationFilterInput
+  concurrencyToken: StringOperationFilterInput
+  payload: StringOperationFilterInput
+  properties: StringOperationFilterInput
+  referenceId: StringOperationFilterInput
+}
+
+input OpticalComponentSubtypePropositionInput {
+  equalTo: OpticalComponentSubtype
+  in: [OpticalComponentSubtype!]
+  notEqualTo: OpticalComponentSubtype
+  notIn: [OpticalComponentSubtype!]
+}
+
+input OpticalComponentTypePropositionInput {
+  equalTo: OpticalComponentType
+  in: [OpticalComponentType!]
+  notEqualTo: OpticalComponentType
+  notIn: [OpticalComponentType!]
+}
+
 input OpticalDataPropositionInput {
   and: [OpticalDataPropositionInput!]
   cielabColors: CielabColorsPropositionInput
+  coatedSide: CoatedSidePropositionInput
   colorRenderingIndices: FloatsPropositionInput
   componentId: UuidPropositionInput
   infraredEmittances: FloatsPropositionInput
@@ -2027,6 +3469,8 @@ input OpticalDataPropositionInput {
   not: OpticalDataPropositionInput
   or: [OpticalDataPropositionInput!]
   resources: GetHttpsResourcesPropositionInput
+  subtype: OpticalComponentSubtypePropositionInput
+  type: OpticalComponentTypePropositionInput
 }
 
 input PhotovoltaicDataPropositionInput {
@@ -2037,19 +3481,20 @@ input PhotovoltaicDataPropositionInput {
   resources: GetHttpsResourcesPropositionInput
 }
 
-input PublicationSortInput {
-  title: SortEnumType
-  abstract: SortEnumType
-  "Referenced section"
-  section: SortEnumType
-  "The Digital Object Identifier (DOI) is a very important persistent identifier for publications. It MUST be defined here if it is available for a publication."
-  doi: SortEnumType
-  "The website arXiv.org is a free and open-access archive for publications. The arXiv identifier can be used to define a publication."
-  arXiv: SortEnumType
-  "A Uniform Resource Name (URN) can be used to define a publication. TODO: Improve the regex pattern to further restrict the string."
-  urn: SortEnumType
-  "If a persistent identifiert like DOI is defined above, this webAdress can define a convenient web address to access the publication. However, if no persistent identifier exist, this web address is the only identifier of this publication. In this case, it is important to choose a web address with a high probability to persist long."
-  webAddress: UriSortInput
+input PublicationInput {
+  abstract: String
+  arXiv: String
+  authors: [String!]
+  doi: String
+  section: String
+  title: String
+  urn: String
+  webAddress: Url
+}
+
+input ReferenceInput {
+  publication: PublicationInput
+  standard: StandardInput
 }
 
 input RegisterUserInput {
@@ -2057,10 +3502,41 @@ input RegisterUserInput {
   name: String!
   password: String!
   passwordConfirmation: String!
+  returnTo: Url
+}
+
+input RemoveComponentAssemblyInput {
+  assembledComponentId: Uuid!
+  partComponentId: Uuid!
+}
+
+input RemoveComponentGeneralizationInput {
+  concreteComponentId: Uuid!
+  generalComponentId: Uuid!
+}
+
+input RemoveComponentManufacturerInput {
+  componentId: Uuid!
+  institutionId: Uuid!
+}
+
+input RemoveComponentVariantInput {
+  oneComponentId: Uuid!
+  otherComponentId: Uuid!
+}
+
+input RemoveInstitutionMethodDeveloperInput {
+  institutionId: Uuid!
+  methodId: Uuid!
 }
 
 input RemoveInstitutionRepresentativeInput {
   institutionId: Uuid!
+  userId: Uuid!
+}
+
+input RemoveUserMethodDeveloperInput {
+  methodId: Uuid!
   userId: Uuid!
 }
 
@@ -2071,6 +3547,7 @@ input RemoveUserRoleInput {
 
 input RequestUserPasswordResetInput {
   email: String!
+  returnTo: Url
 }
 
 input ResendUserEmailConfirmationInput {
@@ -2084,6 +3561,20 @@ input ResetUserPasswordInput {
   resetCode: String!
 }
 
+input RevokeOpenIdConnectTokenInput {
+  tokenId: Uuid!
+}
+
+input SetComponentExtrasInput {
+  componentId: Uuid!
+  extras: Any
+}
+
+input SetInstitutionExtrasInput {
+  extras: Any
+  institutionId: Uuid!
+}
+
 input SetUserPasswordInput {
   password: String!
   passwordConfirmation: String!
@@ -2093,40 +3584,105 @@ input SetUserPhoneNumberInput {
   phoneNumber: String!
 }
 
-"`ISO 52022` is an example of the abbreviation of a standardizer and the main number of the identifier."
-input StandardSortInput {
-  title: SortEnumType
-  abstract: SortEnumType
-  "The section of the standard to which the reference refers to."
-  section: SortEnumType
-  "It is important to define the year in which the standard was issued because there can be relevant updates of one standard."
-  year: SortEnumType
-  numeration: NumerationSortInput
-  locator: UriSortInput
+input StandardInput {
+  abstract: String
+  locator: Url
+  numeration: NumerationInput!
+  section: String
+  standardizers: [Standardizer!]!
+  title: String
+  year: Int
 }
 
 input StringOperationFilterInput {
   and: [StringOperationFilterInput!]
   or: [StringOperationFilterInput!]
-  eq: String
-  neq: String
-  contains: String
-  ncontains: String
-  in: [String]
-  nin: [String]
-  startsWith: String
-  nstartsWith: String
-  endsWith: String
-  nendsWith: String
+  equalTo: String @cost(weight: "10")
+  notEqualTo: String @cost(weight: "10")
+  contains: String @cost(weight: "20")
+  doesNotContain: String @cost(weight: "20")
+  in: [String] @cost(weight: "10")
+  notIn: [String] @cost(weight: "10")
+  startsWith: String @cost(weight: "20")
+  doesNotStartWith: String @cost(weight: "20")
+  endsWith: String @cost(weight: "20")
+  doesNotEndWith: String @cost(weight: "20")
+}
+
+input SwitchInstitutionOperatingStateInput {
+  institutionId: Uuid!
+}
+
+input UpdateComponentAssemblyInput {
+  assembledComponentId: Uuid!
+  index: Byte
+  partComponentId: Uuid!
+  primeSurface: PrimeSurface
+}
+
+input UpdateComponentInput {
+  abbreviation: String
+  availability: OpenEndedDateTimeRangeInput
+  categories: [ComponentCategory!]!
+  componentId: Uuid!
+  description: String!
+  extras: Any
+  manufacturerId: Uuid
+  name: String!
+  primeDirection: DescriptionOrReferenceInput
+  primeSurface: DescriptionOrReferenceInput
+  switchableLayers: DescriptionOrReferenceInput
+}
+
+input UpdateDataFormatInput {
+  dataFormatId: Uuid!
+  description: String!
+  extension: String
+  mediaType: String!
+  name: String!
+  reference: ReferenceInput
+  schemaLocator: Url
+}
+
+input UpdateDatabaseInput {
+  databaseId: Uuid!
+  description: String!
+  locator: Url!
+  name: String!
 }
 
 input UpdateInstitutionInput {
   abbreviation: String
   description: String!
+  extras: Any
   institutionId: Uuid!
   name: String!
   publicKey: String
   websiteLocator: Url
+}
+
+input UpdateMethodInput {
+  availability: OpenEndedDateTimeRangeInput
+  calculationLocator: Url
+  categories: [MethodCategory!]!
+  description: String!
+  methodId: Uuid!
+  name: String!
+  reference: ReferenceInput
+  validity: OpenEndedDateTimeRangeInput
+}
+
+input UpdateOpenIdConnectApplicationInput {
+  applicationId: Uuid!
+  clientId: String!
+  consentType: OpenIdConnectConsentType!
+  displayName: String!
+  endpoints: [OpenIdConnectEndpoint!]!
+  grantTypes: [OpenIdConnectGrantType!]!
+  postLogoutRedirectUri: Url
+  redirectUri: Url
+  responseTypes: [OpenIdConnectResponseType!]!
+  scopes: [OpenIdConnectScope!]!
 }
 
 input UriFilterInput {
@@ -2157,65 +3713,134 @@ input UriFilterInput {
 }
 
 input UriHostNameTypeOperationFilterInput {
-  eq: UriHostNameType
-  neq: UriHostNameType
-  in: [UriHostNameType!]
-  nin: [UriHostNameType!]
+  equalTo: UriHostNameType @cost(weight: "10")
+  notEqualTo: UriHostNameType @cost(weight: "10")
+  in: [UriHostNameType!] @cost(weight: "10")
+  notIn: [UriHostNameType!] @cost(weight: "10")
 }
 
 input UriSortInput {
-  absolutePath: SortEnumType
-  absoluteUri: SortEnumType
-  localPath: SortEnumType
-  authority: SortEnumType
-  hostNameType: SortEnumType
-  isDefaultPort: SortEnumType
-  isFile: SortEnumType
-  isLoopback: SortEnumType
-  pathAndQuery: SortEnumType
-  isUnc: SortEnumType
-  host: SortEnumType
-  port: SortEnumType
-  query: SortEnumType
-  fragment: SortEnumType
-  scheme: SortEnumType
-  originalString: SortEnumType
-  dnsSafeHost: SortEnumType
-  idnHost: SortEnumType
-  isAbsoluteUri: SortEnumType
-  userEscaped: SortEnumType
-  userInfo: SortEnumType
+  absolutePath: SortEnumType @cost(weight: "10")
+  absoluteUri: SortEnumType @cost(weight: "10")
+  localPath: SortEnumType @cost(weight: "10")
+  authority: SortEnumType @cost(weight: "10")
+  hostNameType: SortEnumType @cost(weight: "10")
+  isDefaultPort: SortEnumType @cost(weight: "10")
+  isFile: SortEnumType @cost(weight: "10")
+  isLoopback: SortEnumType @cost(weight: "10")
+  pathAndQuery: SortEnumType @cost(weight: "10")
+  isUnc: SortEnumType @cost(weight: "10")
+  host: SortEnumType @cost(weight: "10")
+  port: SortEnumType @cost(weight: "10")
+  query: SortEnumType @cost(weight: "10")
+  fragment: SortEnumType @cost(weight: "10")
+  scheme: SortEnumType @cost(weight: "10")
+  originalString: SortEnumType @cost(weight: "10")
+  dnsSafeHost: SortEnumType @cost(weight: "10")
+  idnHost: SortEnumType @cost(weight: "10")
+  isAbsoluteUri: SortEnumType @cost(weight: "10")
+  userEscaped: SortEnumType @cost(weight: "10")
+  userInfo: SortEnumType @cost(weight: "10")
+}
+
+input UserDevelopedMethodFilterInput {
+  and: [UserDevelopedMethodFilterInput!]
+  or: [UserDevelopedMethodFilterInput!]
+  method: MethodFilterInput
+}
+
+input UserFilterInput {
+  and: [UserFilterInput!]
+  or: [UserFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  developedMethods: ListMethodFilterTypeFilterInput
+  developedMethodEdges: ListFilterInputTypeOfUserMethodDeveloperFilterInput
+  representedInstitutions: ListInstitutionFilterTypeFilterInput
+  representedInstitutionEdges: ListFilterInputTypeOfInstitutionRepresentativeFilterInput
+}
+
+input UserGnuPgKeyFingerprintFilterInput {
+  and: [UserGnuPgKeyFingerprintFilterInput!]
+  or: [UserGnuPgKeyFingerprintFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  fingerprint: StringOperationFilterInput
+  createdAt: ComparableDateTimeOperationFilterInput
+  allowedAt: ComparableNullableOfDateTimeOperationFilterInput
+  forbiddenAt: ComparableNullableOfDateTimeOperationFilterInput
+  institution: InstitutionFilterInput
+  isForbidden: BooleanOperationFilterInput
+  isAllowed: BooleanOperationFilterInput
+}
+
+input UserRepresentedInstitutionFilterInput {
+  and: [UserRepresentedInstitutionFilterInput!]
+  or: [UserRepresentedInstitutionFilterInput!]
+  institution: InstitutionFilterInput
+  role: InstitutionRepresentativeRoleOperationFilterInput
 }
 
 input UserSortInput {
-  "Full name"
-  name: SortEnumType
-  postalAddress: SortEnumType
-  websiteLocator: UriSortInput
-  xmin: SortEnumType
-  id: SortEnumType
-  userName: SortEnumType
-  normalizedUserName: SortEnumType
-  email: SortEnumType
-  normalizedEmail: SortEnumType
-  emailConfirmed: SortEnumType
-  passwordHash: SortEnumType
-  securityStamp: SortEnumType
-  concurrencyStamp: SortEnumType
-  phoneNumber: SortEnumType
-  phoneNumberConfirmed: SortEnumType
-  twoFactorEnabled: SortEnumType
-  lockoutEnd: SortEnumType
-  lockoutEnabled: SortEnumType
-  accessFailedCount: SortEnumType
+  id: SortEnumType @cost(weight: "10")
 }
 
 input UuidPropositionInput {
   equalTo: Uuid
 }
 
+input VerifyDatabaseInput {
+  databaseId: Uuid!
+}
+
 input VerifyInstitutionInput {
   institutionId: Uuid!
+}
+
+enum AddComponentAssemblyErrorCode {
+  UNKNOWN
+  UNKNOWN_ASSEMBLED_COMPONENT
+  UNKNOWN_PART_COMPONENT
+  DUPLICATE
+  UNAUTHORIZED
+}
+
+enum AddComponentGeneralizationErrorCode {
+  UNKNOWN
+  UNKNOWN_GENERAL_COMPONENT
+  UNKNOWN_CONCRETE_COMPONENT
+  DUPLICATE
+  UNAUTHORIZED
+}
+
+enum AddComponentManufacturerErrorCode {
+  UNKNOWN
+  UNKNOWN_COMPONENT
+  UNKNOWN_INSTITUTION
+  UNAUTHORIZED
+  DUPLICATE
+}
+
+enum AddComponentVariantErrorCode {
+  UNKNOWN
+  UNKNOWN_ONE_COMPONENT
+  UNKNOWN_OTHER_COMPONENT
+  DUPLICATE
+  UNAUTHORIZED
+}
+
+enum AddGnuPgKeyFingerprintErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_INSTITUTION
+  DUPLICATE_FINGERPRINT
+  UNKNOWN_KEY
+}
+
+enum AddInstitutionMethodDeveloperErrorCode {
+  UNKNOWN
+  UNKNOWN_METHOD
+  UNKNOWN_INSTITUTION
+  UNAUTHORIZED
+  DUPLICATE
 }
 
 enum AddInstitutionRepresentativeErrorCode {
@@ -2226,15 +3851,34 @@ enum AddInstitutionRepresentativeErrorCode {
   UNAUTHORIZED
 }
 
+enum AddUserMethodDeveloperErrorCode {
+  UNKNOWN
+  UNKNOWN_METHOD
+  UNKNOWN_USER
+  UNAUTHORIZED
+  DUPLICATE
+}
+
 enum AddUserRoleErrorCode {
   UNKNOWN
   UNKNOWN_USER
   UNAUTHORIZED
 }
 
+enum AllowGnuPgKeyFingerprintErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_FINGERPRINT
+}
+
+"Defines when a policy shall be executed."
 enum ApplyPolicy {
+  "Before the resolver was executed."
   BEFORE_RESOLVER
+  "After the resolver was executed."
   AFTER_RESOLVER
+  "The policy is applied in the validation step before the execution."
+  VALIDATION
 }
 
 enum ChangeInstitutionRepresentativeRoleErrorCode {
@@ -2250,7 +3894,7 @@ enum ChangeUserEmailErrorCode {
   UNKNOWN
   UNKNOWN_USER
   UNCHANGED_EMAIL
-  INVALID_EMAIL
+  UNKNOWN_CURRENT_EMAIL
 }
 
 enum ChangeUserPasswordErrorCode {
@@ -2263,6 +3907,15 @@ enum ChangeUserPasswordErrorCode {
   PASSWORD_REQUIRES_NON_ALPHANUMERIC
   PASSWORD_REQUIRES_UPPER
   PASSWORD_TOO_SHORT
+}
+
+enum CoatedSide {
+  FRONT
+  BACK
+  BOTH
+  NEITHER
+  UNKNOWN
+  NOT_APPLICABLE
 }
 
 enum ComponentCategory {
@@ -2319,13 +3972,9 @@ enum ConfirmUserMethodDeveloperErrorCode {
 enum CreateComponentErrorCode {
   UNKNOWN
   UNKNOWN_MANUFACTURER
-  UNKNOWN_FURTHER_MANUFACTURERS
-  UNKNOWN_VARIANT_OF_COMPONENTS
-  UNKNOWN_GENERALIZATION_OF_COMPONENTS
-  UNKNOWN_CONCRETIZATION_OF_COMPONENTS
-  UNKNOWN_PART_OF_COMPONENTS
-  UNKNOWN_ASSEMBLED_OF_COMPONENTS
   UNAUTHORIZED
+  AMBIGUOUS_REFERENCE
+  DUPLICATE_COMPONENT_ID
 }
 
 enum CreateDataFormatErrorCode {
@@ -2347,6 +3996,7 @@ enum CreateInstitutionErrorCode {
   UNKNOWN_OWNERS
   UNKNOWN_MANAGER
   UNAUTHORIZED
+  DUPLICATE_INSTITUTION_ID
 }
 
 enum CreateMethodErrorCode {
@@ -2358,10 +4008,43 @@ enum CreateMethodErrorCode {
   UNAUTHORIZED
 }
 
+enum CreateOpenIdConnectApplicationErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_INSTITUTION
+  DUPLICATE_CLIENT_ID
+}
+
+enum DataKind {
+  CALORIMETRIC_DATA
+  HYGROTHERMAL_DATA
+  OPTICAL_DATA
+  PHOTOVOLTAIC_DATA
+  GEOMETRIC_DATA
+}
+
+enum DatabaseVerificationState {
+  PENDING
+  VERIFIED
+}
+
 enum DeleteInstitutionErrorCode {
   UNKNOWN
   UNKNOWN_INSTITUTION
   UNAUTHORIZED
+  MANAGING
+}
+
+enum DeleteOpenIdConnectApplicationErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_APPLICATION
+}
+
+enum DeleteOpenIdConnectAuthorizationErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_AUTHORIZATION
 }
 
 enum DeletePersonalUserDataErrorCode {
@@ -2389,6 +4072,12 @@ enum EnableUserTwoFactorAuthenticatorErrorCode {
   INVALID_VERIFICATION_CODE
 }
 
+enum ForbidGnuPgKeyFingerprintErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_FINGERPRINT
+}
+
 enum ForgetUserTwoFactorAuthenticationClientErrorCode {
   UNKNOWN
   UNKNOWN_USER
@@ -2397,12 +4086,21 @@ enum ForgetUserTwoFactorAuthenticationClientErrorCode {
 enum GenerateUserTwoFactorAuthenticatorSharedKeyAndQrCodeUriErrorCode {
   UNKNOWN
   UNKNOWN_USER
+  RESETTING_AUTHENTICATOR_KEY_FAILED
+  GETTING_AUTHENTICATOR_KEY_FAILED
+  GETTING_EMAIL_FAILED
 }
 
 enum GenerateUserTwoFactorRecoveryCodesErrorCode {
   UNKNOWN
   UNKNOWN_USER
   TWO_FACTOR_AUTHENTICATION_DISABLED
+  CODE_GENERATION_FAILED
+}
+
+enum InstitutionOperatingState {
+  OPERATING
+  NOT_OPERATING
 }
 
 enum InstitutionRepresentativeRole {
@@ -2413,6 +4111,17 @@ enum InstitutionRepresentativeRole {
 enum InstitutionState {
   PENDING
   VERIFIED
+}
+
+enum JsonValueKind {
+  UNDEFINED
+  OBJECT
+  ARRAY
+  STRING
+  NUMBER
+  TRUE
+  FALSE
+  NULL
 }
 
 enum LoginUserErrorCode {
@@ -2447,6 +4156,85 @@ enum MethodCategory {
   CALCULATION
 }
 
+enum OpenIdConnectConsentType {
+  EXPLICIT
+  EXTERNAL
+  IMPLICIT
+  SYSTEMATIC
+}
+
+enum OpenIdConnectEndpoint {
+  AUTHORIZATION
+  PUSHED_AUTHORIZATION
+  DEVICE_AUTHORIZATION
+  INTROSPECTION
+  END_SESSION
+  REVOCATION
+  TOKEN
+}
+
+enum OpenIdConnectGrantType {
+  AUTHORIZATION_CODE
+  CLIENT_CREDENTIALS
+  REFRESH_TOKEN
+}
+
+enum OpenIdConnectRequirement {
+  PROOF_KEY_FOR_CODE_EXCHANGE
+  PUSHED_AUTHORIZATION_REQUESTS
+}
+
+enum OpenIdConnectResponseType {
+  CODE
+  TOKEN
+}
+
+enum OpenIdConnectScope {
+  READ_API
+  WRITE_API
+  MANAGE_USER_API
+  ADDRESS
+  EMAIL
+  PHONE
+  PROFILE
+  ROLES
+}
+
+enum OpticalComponentSubtype {
+  MONOLITHIC
+  LAMINATE
+  INTERLAYER
+  EMBEDDED_COATING
+  COATED
+  COATING
+  APPLIED_FILM
+  FILM
+  VENETIAN_BLIND
+  DIFFUSING_SHADE
+  ROLLER_SHADE
+  WOVEN_SHADE
+  VERTICAL_LOUVER
+  PERFORATED_SCREEN
+  CELLULAR_SHADE
+  PLEATED_SHADE
+  ROMAN_SHADE
+  SHADE_MATERIAL
+  FRITTED_GLASS
+  ACID_ETCHED_GLASS
+  SANDBLASTED_GLASS
+  CHROMOGENIC
+}
+
+enum OpticalComponentType {
+  GLAZING
+  SHADING
+}
+
+enum PrimeSurface {
+  INSIDE
+  OUTSIDE
+}
+
 enum RegisterUserErrorCode {
   UNKNOWN
   PASSWORD_CONFIRMATION_MISMATCH
@@ -2460,6 +4248,47 @@ enum RegisterUserErrorCode {
   NULL_OR_EMPTY_EMAIL
 }
 
+enum RemoveComponentAssemblyErrorCode {
+  UNKNOWN
+  UNKNOWN_ASSEMBLED_COMPONENT
+  UNKNOWN_PART_COMPONENT
+  UNKNOWN_ASSEMBLY
+  UNAUTHORIZED
+}
+
+enum RemoveComponentGeneralizationErrorCode {
+  UNKNOWN
+  UNKNOWN_GENERAL_COMPONENT
+  UNKNOWN_CONCRETE_COMPONENT
+  UNKNOWN_GENERALIZATION
+  UNAUTHORIZED
+}
+
+enum RemoveComponentManufacturerErrorCode {
+  UNKNOWN
+  UNKNOWN_COMPONENT
+  UNKNOWN_INSTITUTION
+  UNAUTHORIZED
+  UNKNOWN_MANUFACTURER
+  LAST_MANUFACTURER
+}
+
+enum RemoveComponentVariantErrorCode {
+  UNKNOWN
+  UNKNOWN_ONE_COMPONENT
+  UNKNOWN_OTHER_COMPONENT
+  UNKNOWN_VARIANT
+  UNAUTHORIZED
+}
+
+enum RemoveInstitutionMethodDeveloperErrorCode {
+  UNKNOWN
+  UNKNOWN_METHOD
+  UNKNOWN_INSTITUTION
+  UNAUTHORIZED
+  UNKNOWN_DEVELOPER
+}
+
 enum RemoveInstitutionRepresentativeErrorCode {
   UNKNOWN
   LAST_OWNER
@@ -2467,6 +4296,14 @@ enum RemoveInstitutionRepresentativeErrorCode {
   UNKNOWN_INSTITUTION
   UNKNOWN_REPRESENTATIVE
   UNKNOWN_USER
+}
+
+enum RemoveUserMethodDeveloperErrorCode {
+  UNKNOWN
+  UNKNOWN_METHOD
+  UNKNOWN_USER
+  UNAUTHORIZED
+  UNKNOWN_DEVELOPER
 }
 
 enum RemoveUserRoleErrorCode {
@@ -2486,6 +4323,7 @@ enum ResendUserEmailConfirmationErrorCode {
 enum ResendUserEmailVerificationErrorCode {
   UNKNOWN
   UNKNOWN_USER
+  UNKNOWN_EMAIL
 }
 
 enum ResetUserPasswordErrorCode {
@@ -2504,6 +4342,25 @@ enum ResetUserTwoFactorAuthenticatorErrorCode {
   UNKNOWN_USER
   DISABLING_FAILED
   RESETTING_FAILED
+}
+
+enum RevokeOpenIdConnectTokenErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_TOKEN
+  FAILED
+}
+
+enum SetComponentExtrasErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_COMPONENT
+}
+
+enum SetInstitutionExtrasErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_INSTITUTION
 }
 
 enum SetUserPasswordErrorCode {
@@ -2556,10 +4413,58 @@ enum Standardizer {
   WELL
 }
 
+enum SwitchInstitutionOperatingStateErrorCode {
+  UNKNOWN
+  UNKNOWN_INSTITUTION
+  UNAUTHORIZED
+}
+
+enum UpdateComponentAssemblyErrorCode {
+  UNKNOWN
+  UNKNOWN_ASSEMBLED_COMPONENT
+  UNKNOWN_PART_COMPONENT
+  UNKNOWN_ASSEMBLY
+  UNAUTHORIZED
+}
+
+enum UpdateComponentErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_COMPONENT
+  UNKNOWN_MANUFACTURER
+  AMBIGUOUS_REFERENCE
+}
+
+enum UpdateDataFormatErrorCode {
+  UNKNOWN
+  TWO_REFERENCES
+  UNAUTHORIZED
+  UNKNOWN_DATA_FORMAT
+}
+
+enum UpdateDatabaseErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_DATABASE
+}
+
 enum UpdateInstitutionErrorCode {
   UNKNOWN
   UNAUTHORIZED
   UNKNOWN_INSTITUTION
+}
+
+enum UpdateMethodErrorCode {
+  UNKNOWN
+  TWO_REFERENCES
+  UNAUTHORIZED
+  UNKNOWN_METHOD
+}
+
+enum UpdateOpenIdConnectApplicationErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_APPLICATION
 }
 
 enum UriHostNameType {
@@ -2575,28 +4480,50 @@ enum UserRole {
   VERIFIER
 }
 
+enum VerifyDatabaseErrorCode {
+  UNKNOWN
+  UNAUTHORIZED
+  UNKNOWN_DATABASE
+  WRONG_VERIFICATION_CODE
+  REQUEST_FAILED
+  DESERIALIZATION_FAILED
+}
+
 enum VerifyInstitutionErrorCode {
   UNKNOWN
   UNKNOWN_INSTITUTION
   UNAUTHORIZED
 }
 
+"The authorize directive."
 directive @authorize(
-  "Defines when when the resolver shall be executed.By default the resolver is executed after the policy has determined that the current user is allowed to access the field."
+  "Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase."
   apply: ApplyPolicy! = BEFORE_RESOLVER
   "The name of the authorization policy that determines access to the annotated resource."
   policy: String
   "Roles that are allowed to access the annotated resource."
   roles: [String!]
-) repeatable on SCHEMA | OBJECT | FIELD_DEFINITION
+) repeatable on OBJECT | FIELD_DEFINITION
 
-"The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`."
-directive @defer(
-  "Deferred when true."
-  if: Boolean
-  "If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to."
-  label: String
-) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+"The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
+directive @cost(
+  "The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc."
+  weight: String!
+) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
+
+"The purpose of the `@listSize` directive is to either inform the static analysis about the size of returned lists (if that information is statically available), or to point the analysis to where to find that information."
+directive @listSize(
+  "The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field."
+  assumedSize: Int
+  "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error."
+  requireOneSlicingArgument: Boolean! = true
+  "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields."
+  sizedFields: [String!]
+  "The `slicingArgumentDefaultValue` argument can be used to define a default value for a slicing argument, which is used if the argument is not present in a query."
+  slicingArgumentDefaultValue: Int
+  "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments."
+  slicingArguments: [String!]
+) on FIELD_DEFINITION
 
 "The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
 directive @specifiedBy(
@@ -2604,18 +4531,16 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
-"The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`."
-directive @stream(
-  "Streamed when true."
-  if: Boolean
-  "The initial elements that shall be send down to the consumer."
-  initialCount: Int! = 0
-  "If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to."
-  label: String
-) on FIELD
+scalar Any
+
+"The `Byte` scalar type represents non-fractional whole numeric values. Byte can represent values between 0 and 255."
+scalar Byte
 
 "The `DateTime` scalar represents an ISO-8601 compliant date time type."
 scalar DateTime @specifiedBy(url: "https://www.graphql-scalars.com/date-time")
+
+"BCP 47 compliant Language Tag string"
+scalar Locale
 
 "The NonNegativeInt scalar type represents a unsigned 32-bit numeric non-fractional value equal to or greater than 0."
 scalar NonNegativeInt

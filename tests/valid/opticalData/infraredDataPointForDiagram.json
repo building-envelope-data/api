@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "dataPoints": [
+        {
+          "incidence": {
+            "direction": "hemispherical",
+            "wavelengths": {
+              "integral": "infrared"
+            }
+          },
+          "emergence": {
+            "direction": "hemispherical"
+          },
+          "results": {
+            "transmittance": 0,
+            "reflectance": 0.16,
+            "absorptanceEmittance": 0.84
+          }
+        }
+      ]
+    }
+  ]
+}

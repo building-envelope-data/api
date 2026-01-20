@@ -1,8 +1,0 @@
-{
-  "buildings": [
-    {
-      "id": "8ca1102b-264a-4023-8351-5897ec38e388",
-      "description": "This is the smallest JSON data which is allowed by the JSON schema."
-    }
-  ]
-}

@@ -1,8 +1,8 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.buildingenvelopedata.org/schemas/v1/component.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/building-envelope-data/api/refs/tags/v1.1.0/schemas/component.json",
   "title": "component data",
-  "description": "Data about components of building envelopes. It contains metadata about the components as well as keys for special data domains such as 'optical' for optical data and 'calorimetric' for calorimetric data about a certain component.",
+  "description": "A component can be small like a screw and large like a building. A component can be an assembly of other components. For example, the building envelope can be a component assembled of windows and walls. The data of a component contains metadata about the component as well as keys for special data domains such as 'optical' for optical data and 'geometric' for geometric data of the component. The aim is to restrict the possible representations of one dataset as much as possible to make it easy to develop software which interprets the data correctly. If you should miss any key, please propose it at the website to be included in the next update of this schema.",
   "$defs": {
     "component": {
       "title": "The basic definitions about a component.",
@@ -29,7 +29,7 @@
           "description": "The id represents the version of the component."
         },
         "relations": {
-          "title": "Relations of the current component to other components. These relations can range in the dimension between a very general component such as a general product and and a very concretized component such as a specific component in a specific buildling. A second dimension of relation ranges from being part of another assembled component to being an assembly of other components. A third dimension are variants of components. They share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly.",
+          "title": "Relations of the current component to other components. These relations can range in the dimension between a very general component such as a general product and and a very concretized component such as a specific component in a specific building. A second dimension of relation ranges from being part of another assembled component to being an assembly of other components. A third dimension are variants of components. They share a large part of their characteristics and are not necessarily more general, more concretized or part of an assembly.",
           "type": "object",
           "properties": {
             "concretizationOf": {
@@ -79,7 +79,7 @@
         },
         "characteristics": {
           "$ref": "#/$defs/characteristics",
-          "description": "Characteristics of a component which do not depend on a specific domain such as 'optical' or 'calorimetric'. Therefore, they are constant and valid for all data sets. Characteristics which may vary between data sets about this component are stored on lower levels of the structure. For example, 'optical/globalCharacteristics' defines characteristics which are specific for optical data, but do not change within one optical data set. 'optical/dataPoints/componentCharacteristics' defines characteristics which vary between dataPoints of one optical data set. This structure aims to reduce the size of the data."
+          "description": "Characteristics of a component which do not depend on a specific domain such as 'optical' or 'calorimetric'. Therefore, they are constant and valid for all datasets. Characteristics which may vary between datasets about this component are stored on lower levels of the structure. For example, 'optical/globalCharacteristics' defines characteristics which are specific for optical data, but do not change within one optical dataset. 'optical/dataPoints/componentCharacteristics' defines characteristics which vary between dataPoints of one optical dataset. This structure aims to reduce the size of the data."
         },
         "roles": {
           "type": "object",
@@ -108,7 +108,7 @@
             "$ref": "optical.json"
           },
           "minItems": 1,
-          "description": "Optical data sets of one component. For example the transmittance and reflectance with specific boundary conditions."
+          "description": "Optical datasets of one component. For example the transmittance and reflectance with specific boundary conditions."
         },
         "calorimetric": {
           "type": "array",
@@ -116,7 +116,15 @@
             "$ref": "calorimetric.json"
           },
           "minItems": 1,
-          "description": "Calorimetric data sets of one component. For example the U value, the g value (or Solar Heat Gain Coefficient)."
+          "description": "Calorimetric datasets of one component. For example the U value, the g value (or Solar Heat Gain Coefficient)."
+        },
+        "geometric": {
+          "type": "array",
+          "items": {
+            "$ref": "geometric.json"
+          },
+          "minItems": 1,
+          "description": "Geometric datasets of one component. For example the dimensions of the component or a CAD resource."
         },
         "photovoltaic": {
           "type": "array",
@@ -124,7 +132,7 @@
             "$ref": "photovoltaic.json"
           },
           "minItems": 1,
-          "description": "Photovoltaic data sets. This means building envelopes which can convert irradiance into electric power."
+          "description": "Photovoltaic datasets. This means building envelopes which can convert irradiance into electric power."
         },
         "hygrothermal": {
           "type": "array",
@@ -224,20 +232,9 @@
       "required": ["id"]
     },
     "characteristics": {
-      "title": "The characteristics a component can have which do not change between different data sets about this component.",
+      "title": "The characteristics a component can have which do not change between different datasets about this component.",
       "type": "object",
       "properties": {
-        "geometry": {
-          "title": "The geometry of the component which can either be an assembly or a single component.",
-          "oneOf": [
-            {
-              "$ref": "geometry.json"
-            },
-            {
-              "$ref": "geometry.json#/$defs/assembly"
-            }
-          ]
-        },
         "weight": {
           "$ref": "number.json#/$defs/kilogramWithUncertainty",
           "description": "The weight of the component in kilogram."
@@ -259,157 +256,77 @@
           "$ref": "number.json#/$defs/degreeWithUncertainty",
           "description": "The cutoff angle is an angle above which the incident radiation cannot cause glare."
         },
-        "chemicalElements": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "H",
-              "He",
-              "Li",
-              "Be",
-              "B",
-              "C",
-              "N",
-              "O",
-              "F",
-              "Ne",
-              "Na",
-              "Mg",
-              "Al",
-              "Si",
-              "P",
-              "S",
-              "Cl",
-              "Ar",
-              "K",
-              "Ca",
-              "Sc",
-              "Ti",
-              "V",
-              "Cr",
-              "Mn",
-              "Fe",
-              "Co",
-              "Ni",
-              "Cu",
-              "Zn",
-              "Ga",
-              "Ge",
-              "As",
-              "Se",
-              "Br",
-              "Kr",
-              "Rb",
-              "Sr",
-              "Y",
-              "Zr",
-              "Nb",
-              "Mo",
-              "Tc",
-              "Ru",
-              "Rh",
-              "Pd",
-              "Ag",
-              "Cd",
-              "In",
-              "Sn",
-              "Sb",
-              "Te",
-              "I",
-              "Xe",
-              "Cs",
-              "Ba",
-              "La",
-              "Ce",
-              "Pr",
-              "Nd",
-              "Pm",
-              "Sm",
-              "Eu",
-              "Gd",
-              "Tb",
-              "Dy",
-              "Ho",
-              "Er",
-              "Tm",
-              "Yb",
-              "Lu",
-              "Hf",
-              "Ta",
-              "W",
-              "Re",
-              "Os",
-              "Ir",
-              "Pt",
-              "Au",
-              "Hg",
-              "Tl",
-              "Pb",
-              "Bi",
-              "Po",
-              "At",
-              "Rn",
-              "Fr",
-              "Ra",
-              "Ac",
-              "Th",
-              "Pa",
-              "U",
-              "Np",
-              "Pu",
-              "Am",
-              "Cm",
-              "Bk",
-              "Cf",
-              "Es",
-              "Fm",
-              "Md",
-              "No",
-              "Lr",
-              "Rf",
-              "Db",
-              "Sg",
-              "Bh",
-              "Hs",
-              "Mt",
-              "Ds",
-              "Rg",
-              "Cn",
-              "Nh",
-              "Fl",
-              "Mc",
-              "Lv",
-              "Ts",
-              "Og"
-            ]
-          },
-          "minItems": 1,
-          "maxItems": 10,
-          "uniqueItems": true,
-          "description": "In this array, the most important chemical elements can be named by the two letters of the periodic table of elements."
+        "materialComposition": {
+          "$ref": "common.json#/$defs/materialComposition",
+          "description": "The chemical elements and basic materials which are part of the component."
         },
-        "definitionOfSurfacesAndPrimeDirection": {
-          "title": "Definition of surfaces and prime direction",
-          "description": "The prime surface and the prime direction are used to define the orientation of the component. If there is a `profileAngle` symmetry, the prime direction must be equal to the direction of the profile angle symmetry.",
+        "prime": {
+          "title": "Prime surface and/or direction",
+          "description": "The prime surface and the prime direction are used to define the orientation of the component. Both may be defined with a reference and/or description. The two references may point to the same resource if it contains both the definition of prime surface and prime direction.",
+          "type": "object",
+          "properties": {
+            "surface": {
+              "title": "Prime surface",
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "$ref": "common.json#/$defs/reference",
+                  "title": "Reference",
+                  "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior."
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description",
+                  "description": "Description of which sides of the components are defined as non-prime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior."
+                }
+              },
+              "minProperties": 1,
+              "required": []
+            },
+            "direction": {
+              "title": "Prime direction",
+              "description": "The prime direction is used to define the orientation of the component within the plane of the prime surface. For a facade component, the prime direction is often defined as the vertical direction from the bottom to the top of the component.",
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "$ref": "common.json#/$defs/reference",
+                  "title": "Reference",
+                  "description": "Reference that defines the prime direction that is used to calculate the azimuth of the direction of incidence."
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description",
+                  "description": "Description of which direction is defined as the prime direction."
+                }
+              },
+              "minProperties": 1,
+              "required": []
+            }
+          },
+          "minProperties": 1,
+          "required": []
+        },
+        "switchableLayers": {
+          "title": "Switchable Layers",
+          "description": "Definition of which layers are switchable e.g. electrochromic.",
           "type": "object",
           "properties": {
             "reference": {
               "$ref": "common.json#/$defs/reference",
               "title": "Reference",
-              "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior. The reference should also define a prime direction which is used to calculate the azimuth of the direction of incidence. Ideally, the manufacturer defines the surfaces and prime direction of a component in one document and refers to this document in optical data."
+              "description": "Reference that defines which layers are switchable."
             },
             "description": {
               "type": "string",
               "title": "Description",
-              "description": "Description of which sides of the components are defined as non-prime and which as prime and which direction is defined as the prime direction. Often, the non-prime side faces the exterior and the prime side the interior."
+              "description": "Description of which layers are switchable."
             }
           },
           "minProperties": 1,
           "required": []
         },
         "positionOfCoatings": {
-          "title": "The positions are counted from the nonPrime surface to the prime surface of the layer or unit. Each interface between solid and gas is counted as position. `0` represents a position withouth coating and `1` represents a position with coating. For example, a double glazing with one low emissivity coating can be represented by [ 0, 0, 1, 0].",
+          "title": "The positions are counted from the nonPrime surface to the prime surface of the layer or unit. Each interface between solid and gas is counted as position. `0` represents a position without coating and `1` represents a position with coating. For example, a double glazing with one low emissivity coating can be represented by [ 0, 0, 1, 0].",
           "type": "array",
           "items": {
             "oneOf": [
@@ -427,7 +344,7 @@
           }
         },
         "roughness": {
-          "title": "Definition of the roughness of the prime surfaces and the non-prime surface.Both are defined by `definitionOfSurfacesAndPrimeDirection`.",
+          "title": "Definition of the roughness of the prime surface and the non-prime surfaces. Both are defined by `prime/properties/surface`.",
           "type": "array",
           "items": {
             "type": "object",
@@ -468,7 +385,7 @@
       "type": "string",
       "enum": ["nonPrime", "prime", "symmetric"],
       "title": "Surface",
-      "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in `definitionOfSurfacesAndPrimeDirection`. If the results are identical for both sides, 'symmetric' is used."
+      "description": "Whether the incidence is on the non-prime or the prime surface of the sample. Both are defined in the property `prime/surface`. If the results are identical for both sides, 'symmetric' is used."
     }
   },
   "$ref": "#/$defs/component"

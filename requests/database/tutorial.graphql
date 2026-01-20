@@ -1,0 +1,148 @@
+query {
+  resourcesByComponent: allOpticalData(
+    where: { componentId: { equalTo: "3ffc64af-d1f3-4a2e-a646-b007b7137245" } }
+  ) {
+    edges {
+      node {
+        resourceTree {
+          root {
+            value {
+              locator
+            }
+          }
+        }
+      }
+    }
+  }
+
+  dataSetsByOpticalPropertiesAndDataFormat: allOpticalData(
+    where: {
+      and: [
+        {
+          nearnormalHemisphericalVisibleTransmittances: {
+            some: { greaterThanOrEqualTo: 0.3 }
+          }
+        }
+        {
+          nearnormalHemisphericalVisibleReflectances: {
+            some: { lessThanOrEqualTo: 0.2 }
+          }
+        }
+        {
+          resources: {
+            some: {
+              dataFormatId: { equalTo: "9ca9e8f5-94bf-4fdd-81e3-31a58d7ca708" }
+            }
+          }
+        }
+      ]
+    }
+  ) {
+    edges {
+      node {
+        componentId
+        resourceTree {
+          root {
+            value {
+              locator
+            }
+          }
+        }
+      }
+    }
+  }
+
+  dataSetsByColor: allOpticalData(
+    where: {
+      and: [
+        { colorRenderingIndices: { some: { greaterThanOrEqualTo: 90 } } }
+        { cielabColors: { some: { lStar: { greaterThanOrEqualTo: 80 } } } }
+        { cielabColors: { some: { aStar: { greaterThanOrEqualTo: -5 } } } }
+        { cielabColors: { some: { aStar: { lessThanOrEqualTo: 5 } } } }
+        { cielabColors: { some: { bStar: { greaterThanOrEqualTo: -5 } } } }
+        { cielabColors: { some: { bStar: { lessThanOrEqualTo: 5 } } } }
+      ]
+    }
+  ) {
+    edges {
+      node {
+        name
+        componentId
+        colorRenderingIndices
+        cielabColors {
+          lStar
+          aStar
+          bStar
+        }
+        resourceTree {
+          root {
+            value {
+              locator
+            }
+          }
+        }
+      }
+    }
+  }
+
+  allOpticalDataSets: allOpticalData {
+    edges {
+      node {
+        name
+      }
+    }
+  }
+
+  integralOpticalValuesOfComponent: allOpticalData(
+    where: { componentId: { equalTo: "3ffc64af-d1f3-4a2e-a646-b007b7137245" } }
+  ) {
+    edges {
+      node {
+        nearnormalHemisphericalVisibleReflectances
+        nearnormalHemisphericalVisibleTransmittances
+        resourceTree {
+          root {
+            value {
+              locator
+            }
+          }
+        }
+      }
+    }
+  }
+
+  byGValue: allCalorimetricData(
+    where: { gValues: { all: { lessThanOrEqualTo: 0.1 } } }
+  ) {
+    edges {
+      node {
+        uuid
+        gValues
+        uValues
+        resourceTree {
+          root {
+            value {
+              locator
+            }
+          }
+        }
+      }
+    }
+  }
+
+  byThickness: allGeometricData(
+    where: {
+      and: [
+        { thicknesses: { all: { greaterThanOrEqualTo: 0.0039 } } }
+        { thicknesses: { all: { lessThanOrEqualTo: 0.0041 } } }
+      ]
+    }
+  ) {
+    edges {
+      node {
+        componentId
+        thicknesses
+      }
+    }
+  }
+}

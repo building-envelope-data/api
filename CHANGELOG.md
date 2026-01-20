@@ -9,9 +9,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [v1.1.0] - 2026-01-14
+
 ### Added
 
--
+-   Add createMethod.graphql as example of a mutation on the metabase [#324](https://github.com/building-envelope-data/api/pull/324)
 -
 -
 -
@@ -34,14 +36,14 @@ and this project adheres to
 
 ### Changed
 
--
--
--
--
--
--
--
--
+-   Upgrade development packages to latest versions [#285](https://github.com/building-envelope-data/api/pull/285)
+-   Use JSON Schema Draft 2020-12 and upgrade tooling [#307](https://github.com/building-envelope-data/api/pull/307)
+-   Simplify the structure of optical datasets [#354](https://github.com/building-envelope-data/api/pull/354)
+-   Extend BED-JSON to include everything from LBNL-JSON [#352](https://github.com/building-envelope-data/api/pull/352)
+-   Improve descriptions of angles, surfaces and orientations [#360](https://github.com/building-envelope-data/api/pull/360)
+-   Rename `dbe` to `buildingEnvelopes` and `dsb` to `buildings` [#361](https://github.com/building-envelope-data/api/pull/361)
+-   Restructure the repository [#364](https://github.com/building-envelope-data/api/pull/364)
+-   Update "$id" of all JSON Schemas [#365](https://github.com/building-envelope-data/api/pull/365)
 -
 -
 -
@@ -162,6 +164,10 @@ and this project adheres to
 -   Add the position of coatings to components [#223](https://github.com/building-envelope-data/api/pull/223)
 -   Add `currentVoltage` characteristics for modules [#224](https://github.com/building-envelope-data/api/pull/224)
 -   Add release actions [#281](https://github.com/building-envelope-data/api/pull/281)
+-   Add JSON schema for hygrothermal data [#322](https://github.com/building-envelope-data/api/pull/322)
+-   Add example of double glazing including subcomponents [#334](https://github.com/building-envelope-data/api/pull/334)
+-   Allow definition of switchable layers [#339](https://github.com/building-envelope-data/api/pull/339)
+-   Create a JSON schema for life cycle data [#335](https://github.com/building-envelope-data/api/pull/335)
 
 ### Changed
 
@@ -192,6 +198,10 @@ and this project adheres to
 -   Add more mirrored values to `apis` [#238](https://github.com/building-envelope-data/api/pull/238)
 -   Add spectrum `ultraviolet` for integral values and improve the optical examples [#247](https://github.com/building-envelope-data/api/pull/247)
 -   Change propositions for lists and make parameter `where` optional [#260](https://github.com/building-envelope-data/api/pull/260)
+-   Move `color` to the `results` of an optical data set [#326](https://github.com/building-envelope-data/api/pull/326)
+-   Remove the shortcut `nodes` to reduce the implementation effort [#318](https://github.com/building-envelope-data/api/pull/318)
+-   Describe codespaces as an option for Windows users [#336](https://github.com/building-envelope-data/api/pull/336)
+-   Update the example requests [#357](https://github.com/building-envelope-data/api/pull/357)
 
 ### Removed
 
@@ -214,7 +224,9 @@ Note that according to
 > Major version zero (0.y.z) is for initial development. Anything MAY change at
 > any time. The public API SHOULD NOT be considered stable.
 
-[Unreleased]: https://github.com/building-envelope-data/api/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/building-envelope-data/api/compare/v1.1.0...HEAD
+
+[v1.1.0]: https://github.com/building-envelope-data/api/compare/v1.0.0...v1.1.0
 
 [v1.0.0]: https://github.com/building-envelope-data/api/compare/v0.1.0...v1.0.0
 

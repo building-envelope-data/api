@@ -1,0 +1,26 @@
+{
+  "id": "473a2f69-2e18-4745-809d-519882b25e8b",
+  "description": "Example of measurement data according a method which is defined by a publication with digital object identifier (DOI).",
+  "calorimetric": [
+    {
+      "id": {
+        "value": "473a2f69-2e18-4745-809d-519882b25e8b",
+        "issuedBy": "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
+      },
+      "appliedMethod": {
+        "method": {
+          "id": "473a2f69-2e18-4745-809d-519882b25e8b",
+          "reference": {
+            "publication": {
+              "identifiers": {
+                "doi": "10.1016/j.solener.2017.05.065"
+              }
+            }
+          }
+        },
+        "arguments": [],
+        "sources": []
+      }
+    }
+  ]
+}
