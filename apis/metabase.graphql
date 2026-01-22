@@ -655,6 +655,13 @@ type Database implements Node {
     locale: Locale
     where: HygrothermalDataPropositionInput
   ): HygrothermalDataConnection @cost(weight: "10")
+  allLifeCycleData(
+    after: String
+    before: String
+    first: NonNegativeInt
+    last: NonNegativeInt
+    locale: Locale
+  ): LifeCycleDataConnection @cost(weight: "10")
   allOpticalData(
     after: String
     before: String
@@ -689,6 +696,7 @@ type Database implements Node {
     locale: Locale
     where: HygrothermalDataPropositionInput
   ): Boolean @cost(weight: "10")
+  hasLifeCycleData(locale: Locale): Boolean @cost(weight: "10")
   hasOpticalData(locale: Locale, where: OpticalDataPropositionInput): Boolean
     @cost(weight: "10")
   hasPhotovoltaicData(
@@ -697,6 +705,7 @@ type Database implements Node {
   ): Boolean @cost(weight: "10")
   hygrothermalData(id: Uuid!, locale: Locale): HygrothermalData
     @cost(weight: "10")
+  lifeCycleData(id: Uuid!, locale: Locale): LifeCycleData @cost(weight: "10")
   id: ID!
   locator: Url!
   name: String!
@@ -1180,6 +1189,38 @@ type InstitutionsEdge {
   cursor: String!
   "The item at the end of the edge."
   node: Institution!
+}
+
+type LifeCycleData implements Data {
+  appliedMethod: AppliedMethod!
+  approvals: [DataApproval!]!
+  component: Component @cost(weight: "10")
+  componentId: Uuid!
+  createdAt: DateTime!
+  creator: Institution @cost(weight: "10")
+  creatorId: Uuid!
+  database: Database @cost(weight: "10")
+  databaseId: Uuid!
+  description: String
+  id: ID!
+  locale: Locale!
+  name: String
+  resources: [GetHttpsResource!]!
+  resourceTree: GetHttpsResourceTree!
+  timestamp: DateTime!
+  uuid: Uuid!
+  warnings: [String!]!
+}
+
+type LifeCycleDataConnection {
+  edges: [LifeCycleDataEdge!]!
+  pageInfo: PageInfo!
+  totalCount: NonNegativeInt!
+}
+
+type LifeCycleDataEdge {
+  cursor: String!
+  node: LifeCycleData!
 }
 
 type LoginUserError {
@@ -4018,6 +4059,7 @@ enum CreateOpenIdConnectApplicationErrorCode {
 enum DataKind {
   CALORIMETRIC_DATA
   HYGROTHERMAL_DATA
+  LIFECYCLE_DATA
   OPTICAL_DATA
   PHOTOVOLTAIC_DATA
   GEOMETRIC_DATA
