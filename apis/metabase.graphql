@@ -661,6 +661,7 @@ type Database implements Node {
     first: NonNegativeInt
     last: NonNegativeInt
     locale: Locale
+    where: LifeCycleDataPropositionInput
   ): LifeCycleDataConnection @cost(weight: "10")
   allOpticalData(
     after: String
@@ -696,7 +697,10 @@ type Database implements Node {
     locale: Locale
     where: HygrothermalDataPropositionInput
   ): Boolean @cost(weight: "10")
-  hasLifeCycleData(locale: Locale): Boolean @cost(weight: "10")
+  hasLifeCycleData(
+    locale: Locale
+    where: LifeCycleDataPropositionInput
+  ): Boolean @cost(weight: "10")
   hasOpticalData(locale: Locale, where: OpticalDataPropositionInput): Boolean
     @cost(weight: "10")
   hasPhotovoltaicData(
@@ -3245,6 +3249,14 @@ input JsonValueKindOperationFilterInput {
   notEqualTo: JsonValueKind @cost(weight: "10")
   in: [JsonValueKind!] @cost(weight: "10")
   notIn: [JsonValueKind!] @cost(weight: "10")
+}
+
+input LifeCycleDataPropositionInput {
+  and: [LifeCycleDataPropositionInput!]
+  componentId: UuidPropositionInput
+  not: LifeCycleDataPropositionInput
+  or: [LifeCycleDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
 }
 
 input ListComponentCategoryOperationFilterInput {
