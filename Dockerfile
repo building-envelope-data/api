@@ -27,8 +27,8 @@ ARG GID=1000
 RUN \
   userdel --remove node && \
   existing_user_name="$(getent passwd ${UID} 2>/dev/null | cut --delimiter=: --fields=1)" && \
-  existing_group_name="$(getent group ${GID} 2>/dev/null | cut --delimiter=: --fields=1)" && \
   if test -n "${existing_user_name}"; then deluser --system "${existing_user_name}"; fi && \
+  existing_group_name="$(getent group ${GID} 2>/dev/null | cut --delimiter=: --fields=1)" && \
   if test -n "${existing_group_name}"; then delgroup --system "${existing_group_name}"; fi && \
   groupadd \
     --gid ${GID} \
