@@ -1,7 +1,7 @@
 # Concise introduction to GNU Make:
 # https://swcarpentry.github.io/make-novice/reference.html
 
-include .env
+include ./.env
 
 # Taken from https://www.client9.com/self-documenting-makefiles/
 help : ## Print this help
@@ -65,6 +65,18 @@ remove-containers : ## Stop and remove containers for image with name `${NAME}`
 remove-volumes : ## Remove volumes created on the fly and used by running `make run` and `make shell` (note that all containers using the volume must be removed first, for example by running `make remove-containers`)
 	docker volume rm ${NAME}_node_modules
 .PHONY : remove-volumes
+
+lint : ## Lint Docker Compose files and Dockerfiles
+	docker run \
+		--rm \
+		--interactive \
+		--volume ./.hadolint.yml:/.config/.hadolint.yaml \
+		hadolint/hadolint \
+		hadolint \
+		--config /.config/.hadolint.yaml \
+		- \
+		< ./Dockerfile
+.PHONY : lint
 
 serve : COMMAND = \
 					npx --no-install graphql-inspector serve ./apis/database.graphql --port 4000 & \

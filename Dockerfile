@@ -6,6 +6,7 @@
 # Use Node on Debian as base image, see
 # https://hub.docker.com/_/node
 FROM node:22.11-bookworm-slim
+SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 
 ##################
 # As user `root` #
@@ -16,8 +17,12 @@ FROM node:22.11-bookworm-slim
 # makes it seamless to use and generate files from within the shell of
 # a running docker container based on this image and access those files later
 # on the host.
-ARG UID=1000
-ARG GID=1000
+ARG UID
+ARG GID
+
+RUN \
+  if [ -z "$GID" ]; then echo "required 'GID'"; exit 1; fi && \
+  if [ -z "$UID" ]; then echo "required 'UID'"; exit 1; fi
 
 #-------------------------------------------#
 # Create non-root user `me` and group `us` #
@@ -26,30 +31,24 @@ ARG GID=1000
 # see https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
 RUN \
   userdel --remove node && \
-  existing_user_name="$(getent passwd ${UID} 2>/dev/null | cut --delimiter=: --fields=1)" && \
-  if test -n "${existing_user_name}"; then deluser --system "${existing_user_name}"; fi && \
-  existing_group_name="$(getent group ${GID} 2>/dev/null | cut --delimiter=: --fields=1)" && \
-  if test -n "${existing_group_name}"; then delgroup --system "${existing_group_name}"; fi && \
+  existing_user_name="$( (getent passwd ${UID} 2>/dev/null || true) | cut --delimiter=: --fields=1)" && \
+  if test -n "${existing_user_name}"; then \
+    deluser "${existing_user_name}"; \
+  fi && \
+  existing_group_name="$( (getent group ${GID} 2>/dev/null || true) | cut --delimiter=: --fields=1)" && \
+  if test -n "${existing_group_name}"; then \
+    delgroup "${existing_group_name}"; \
+  fi && \
   groupadd \
-    --gid ${GID} \
+    --gid "${GID}" \
     us && \
   useradd \
     --no-log-init \
     --create-home \
     --shell /bin/bash \
-    --uid ${UID} \
+    --uid "${UID}" \
     --gid us \
     me
-
-#-------------------------------#
-# Make `bash` the default shell #
-#-------------------------------#
-RUN \
-  ln --symbolic --force \
-    bash /bin/sh && \
-  sed --in-place --expression \
-    "s#bin/dash#bin/bash#" \
-    /etc/passwd
 
 #----------------#
 # Install `tini` #
