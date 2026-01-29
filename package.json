@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/building-envelope-data/api#readme",
   "devDependencies": {
-    "@graphql-inspector/cli": "^5.0.5",
+    "@graphql-inspector/cli": "^6.0.7",
     "@graphql-inspector/config": "^4.0.2",
     "ajv-cli": "^5.0.0",
     "ajv-formats": "^3.0.1",
