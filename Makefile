@@ -3,6 +3,10 @@
 
 include ./.env
 
+SHELL := /bin/bash
+.SHELLFLAGS := -o errexit -o errtrace -o nounset -o pipefail -c
+MAKEFLAGS += --warn-undefined-variables
+
 # Taken from https://www.client9.com/self-documenting-makefiles/
 help : ## Print this help
 	@awk -F ':|##' '/^[^\t].+?:.*?##/ {\
@@ -32,7 +36,8 @@ remove : ## Remove image with name `${NAME}`
 	docker rmi ${NAME}
 .PHONY : remove
 
-run : build ## Run command `${COMMAND}` in fresh container for image with name `${NAME}`, for example, `make COMMAND="ls -al"` run
+run : OPTIONS=
+run : build ## Run command `${COMMAND}` in fresh container with options `${OPTIONS}` for image with name `${NAME}`, for example, `make COMMAND="ls -al"` run
 	docker run \
 		--rm \
 		--interactive \
