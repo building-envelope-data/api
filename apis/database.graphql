@@ -233,6 +233,11 @@ type Query {
   """
   Confer `Query#calorimetricData`.
   """
+  lifeCycleData(id: Uuid!, locale: Locale): LifeCycleData!
+
+  """
+  Confer `Query#calorimetricData`.
+  """
   opticalData(id: Uuid!, locale: Locale): OpticalData!
 
   """
@@ -335,6 +340,18 @@ type Query {
   """
   Confer `Query#allCalorimetricData`.
   """
+  allLifeCycleData(
+    where: LifeCycleDataPropositionInput
+    locale: Locale
+    first: NonNegativeInt
+    after: Cursor
+    last: NonNegativeInt
+    before: Cursor
+  ): LifeCycleDataConnection!
+
+  """
+  Confer `Query#allCalorimetricData`.
+  """
   allOpticalData(
     where: OpticalDataPropositionInput
     locale: Locale
@@ -379,6 +396,14 @@ type Query {
   """
   hasHygrothermalData(
     where: HygrothermalDataPropositionInput
+    locale: Locale
+  ): Boolean!
+
+  """
+  Confer `Query#hasCalorimetricData`.
+  """
+  hasLifeCycleData(
+    where: LifeCycleDataPropositionInput
     locale: Locale
   ): Boolean!
 
@@ -826,6 +851,17 @@ input HygrothermalDataPropositionInput {
 }
 
 """
+See `DataPropositionInput`.
+"""
+input LifeCycleDataPropositionInput {
+  componentId: UuidPropositionInput
+  and: [LifeCycleDataPropositionInput!]
+  not: LifeCycleDataPropositionInput
+  or: [LifeCycleDataPropositionInput!]
+  resources: GetHttpsResourcesPropositionInput
+}
+
+"""
 Proposition for values of enum type `OpticalComponentType`. Multiple
 sub-propositions are combined conjunctively, where the conjunction of an empty
 set of sub-propositions is true.
@@ -995,6 +1031,23 @@ See `DataEdge`.
 type HygrothermalDataEdge {
   cursor: Cursor!
   node: HygrothermalData!
+}
+
+"""
+See `DataConnection`.
+"""
+type LifeCycleDataConnection {
+  edges: [LifeCycleDataEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"""
+See `DataEdge`.
+"""
+type LifeCycleDataEdge {
+  cursor: Cursor!
+  node: LifeCycleData!
 }
 
 """
@@ -1354,6 +1407,25 @@ type HygrothermalData implements Node & Data {
   approval: ResponseApproval!
 }
 
+type LifeCycleData implements Node & Data {
+  id: ID!
+  uuid: Uuid!
+  timestamp: DateTime!
+  locale: Locale!
+  databaseId: Uuid!
+  componentId: Uuid!
+  name: String
+  description: String
+  warnings: [String!]!
+  creatorId: Uuid!
+  createdAt: DateTime!
+  appliedMethod: AppliedMethod!
+  resources: [GetHttpsResource!]!
+  resourceTree: GetHttpsResourceTree!
+  approvals: [DataApproval!]!
+  approval: ResponseApproval!
+}
+
 type PhotovoltaicData implements Node & Data {
   id: ID!
   uuid: Uuid!
@@ -1495,12 +1567,13 @@ type CrossDatabaseDataReference {
 }
 
 """
-Data kind, either calorimetric, hygrothermal, optical, or photovoltaic.
+Data kind, either calorimetric, hygrothermal, lifeCycle, optical, or photovoltaic.
 """
 enum DataKind {
   CALORIMETRIC_DATA
   GEOMETRIC_DATA
   HYGROTHERMAL_DATA
+  LIFE_CYCLE_DATA
   OPTICAL_DATA
   PHOTOVOLTAIC_DATA
 }
