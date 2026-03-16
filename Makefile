@@ -24,12 +24,11 @@ name : ## Print value of variable `NAME`
 .PHONY : name
 
 build : ## Build image with name `${NAME}`, for example, `make build`
-	DOCKER_BUILDKIT=1 \
-		docker build \
-			--tag ${NAME} \
-			--build-arg UID=$(shell id --user) \
-			--build-arg GID=$(shell id --group) \
-			.
+	docker build \
+		--tag ${NAME} \
+		--build-arg UID=$(shell id --user) \
+		--build-arg GID=$(shell id --group) \
+		.
 .PHONY : build
 
 remove : ## Remove image with name `${NAME}`
