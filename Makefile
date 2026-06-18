@@ -231,6 +231,14 @@ introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.s
 	done
 .PHONY : introspect
 
+diff : ## Diff two GraphQL schemas `${ONE}` `${TWO}` using paths and/or URLs, for example, `make diff ONE=./apis/database.graphql TWO=https://www.solarbuildingenvelopes.com/graphql/`
+	npx --no-install graphql-inspector diff \
+		"${ONE}" \
+		"${TWO}" \
+		--rule ignoreDescriptionChanges \
+		--rule suppressRemovalOfDeprecatedField
+.PHONY : diff
+
 dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
 	find \
 		. \
