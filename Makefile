@@ -1,9 +1,9 @@
-# Concise introduction to GNU Make:
-# https://swcarpentry.github.io/make-novice/reference.html
+#!/usr/bin/env -S make --file
+SELF := $(lastword $(MAKEFILE_LIST))
 
 include ./.env
 
-SHELL := /bin/bash
+SHELL := /usr/bin/env bash
 .SHELLFLAGS := -o errexit -o errtrace -o nounset -o pipefail -c
 MAKEFLAGS += --warn-undefined-variables
 
@@ -26,8 +26,8 @@ name : ## Print value of variable `NAME`
 build : ## Build image with name `${NAME}`, for example, `make build`
 	docker build \
 		--tag ${NAME} \
-		--build-arg UID=$(shell id --user) \
-		--build-arg GID=$(shell id --group) \
+		--build-arg USER_ID=$(shell id --user) \
+		--build-arg GROUP_ID=$(shell id --group) \
 		.
 .PHONY : build
 
