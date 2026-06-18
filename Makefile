@@ -231,7 +231,8 @@ introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.s
 	done
 .PHONY : introspect
 
-diff : ## Diff two GraphQL schemas `${ONE}` `${TWO}` using paths and/or URLs, for example, `make diff ONE=./apis/database.graphql TWO=https://www.solarbuildingenvelopes.com/graphql/`
+# https://www.solarbuildingenvelopes.com/graphql/
+diff : ## Diff two GraphQL schemas `${ONE}` `${TWO}` using paths and/or URLs, for example, `make diff ONE=./apis/database.graphql TWO=...//www.solarbuildingenvelopes.com/graphql/` (with `...` replaced by https-you-know-what)
 	npx --no-install graphql-inspector diff \
 		"${ONE}" \
 		"${TWO}" \
