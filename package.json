@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "engines": {
-    "node": "20.13.x"
+    "node": "24.16.x"
   },
   "directories": {
     "example": "examples",
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/building-envelope-data/api#readme",
   "devDependencies": {
-    "@graphql-inspector/cli": "^6.0.7",
+    "@graphql-inspector/cli": "^6.0.8",
     "@graphql-inspector/config": "^4.0.2",
     "ajv-cli": "^5.0.0",
     "ajv-formats": "^3.0.1",
@@ -31,7 +31,7 @@
     "graphql": "^16.8.1",
     "graphql-schema-linter": "^3.0.0",
     "license-checker": "^25.0.1",
-    "prettier": "^3.2.5",
-    "yargs": "^17.7.2"
+    "prettier": "^3.8.4",
+    "yargs": "^18.0.0"
   }
 }
