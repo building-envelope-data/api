@@ -1,11 +1,10 @@
-# syntax=docker/dockerfile:1.6
-# The above line fixes the Dockerfile frontend used by BuildKit. For details
-# see https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/reference.md
+# syntax=docker/dockerfile:1.23
+# check=error=true
 # Available versions are listed on https://hub.docker.com/r/docker/dockerfile
 
 # Use Node on Debian as base image, see
 # https://hub.docker.com/_/node
-FROM node:22.11-bookworm-slim
+FROM node:24.16-trixie-slim
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 
 ##################
@@ -13,16 +12,16 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 ##################
 
 # When you are on a Linux machine and when you run `docker build`, then set the
-# `--build-arg`s `GID` and `UID` to your user id and its primary group id. This
-# makes it seamless to use and generate files from within the shell of
+# `--build-arg`s `GROUP_ID` and `USER_ID` to your user id and its primary group
+# id. This makes it seamless to use and generate files from within the shell of
 # a running docker container based on this image and access those files later
 # on the host.
-ARG UID
-ARG GID
+ARG GROUP_ID
+ARG USER_ID
 
 RUN \
-  if [ -z "$GID" ]; then echo "required 'GID'"; exit 1; fi && \
-  if [ -z "$UID" ]; then echo "required 'UID'"; exit 1; fi
+  if [ -z "$GROUP_ID" ]; then echo "required 'GROUP_ID'"; exit 1; fi && \
+  if [ -z "$USER_ID" ]; then echo "required 'USER_ID'"; exit 1; fi
 
 #-------------------------------------------#
 # Create non-root user `me` and group `us` #
@@ -31,24 +30,24 @@ RUN \
 # see https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
 RUN \
   userdel --remove node && \
-  existing_user_name="$( (getent passwd ${UID} 2>/dev/null || true) | cut --delimiter=: --fields=1)" && \
+  existing_user_name="$( (getent passwd ${USER_ID} 2>/dev/null || true) | cut --delimiter=: --fields=1)" && \
   if test -n "${existing_user_name}"; then \
-    deluser "${existing_user_name}"; \
+  deluser "${existing_user_name}"; \
   fi && \
-  existing_group_name="$( (getent group ${GID} 2>/dev/null || true) | cut --delimiter=: --fields=1)" && \
+  existing_group_name="$( (getent group ${GROUP_ID} 2>/dev/null || true) | cut --delimiter=: --fields=1)" && \
   if test -n "${existing_group_name}"; then \
-    delgroup "${existing_group_name}"; \
+  delgroup "${existing_group_name}"; \
   fi && \
   groupadd \
-    --gid "${GID}" \
-    us && \
+  --gid "${GROUP_ID}" \
+  us && \
   useradd \
-    --no-log-init \
-    --create-home \
-    --shell /bin/bash \
-    --uid "${UID}" \
-    --gid us \
-    me
+  --no-log-init \
+  --create-home \
+  --shell /bin/bash \
+  --uid "${USER_ID}" \
+  --gid us \
+  me
 
 #----------------#
 # Install `tini` #
@@ -59,7 +58,7 @@ RUN \
   apt-get update && \
   # Install `tini`
   apt-get install --assume-yes --no-install-recommends \
-    tini && \
+  tini && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
   apt-get autoremove --assume-yes --purge && \
   apt-get clean && \
@@ -76,17 +75,18 @@ RUN \
 #   https://neovim.io/
 # * Node package manager to install Node development tools, see
 #   https://www.npmjs.com
-ENV NPM_VERSION=10.9.1
+# For the latest npm version see https://www.npmjs.com/package/npm
+ENV NPM_VERSION=11.17.0
 RUN \
   # Retrieve new lists of packages
   apt-get update && \
   # Install system development tools
   apt-get install --assume-yes --no-install-recommends \
-    jq \
-    make \
-    neovim \
-    npm \
-    plantuml && \
+  jq \
+  make \
+  neovim \
+  npm \
+  plantuml && \
   # Upgrade Node package manager
   npm install --global npm@${NPM_VERSION} && \
   # Remove unused packages and configuration files, erase archive files, and remove lists of packages
@@ -146,8 +146,8 @@ RUN \
 # see https://code.visualstudio.com/docs/remote/containers-advanced#_avoiding-extension-reinstalls-on-container-rebuild
 RUN \
   mkdir --parents \
-    /home/me/.vscode-server/extensions \
-    /home/me/.vscode-server-insiders/extensions
+  /home/me/.vscode-server/extensions \
+  /home/me/.vscode-server-insiders/extensions
 
 #-------------------------------------------#
 # Set-up for containers based on this image #
