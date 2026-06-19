@@ -161,27 +161,14 @@ maintains the
 scalar Locale
 
 """
-[June 2018 GraphQL](http://spec.graphql.org/June2018/)
+[September 2025 GraphQL](https://spec.graphql.org/September2025/)
 compliant
-[query](http://spec.graphql.org/June2018/#sec-Language.Operations)
+[query](https://spec.graphql.org/September2025/#sec-Language.Operations)
 string without
-[variables](http://spec.graphql.org/June2018/#sec-Language.Variables)
+[variables](http://spec.graphql.org/September2025/#sec-Language.Variables)
 and without unnecessary white-space for the present schema.
 """
 scalar GraphQlQuery
-
-"""
-[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
-compliant
-[Cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
-string.
-"""
-scalar Cursor
-
-"""
-Non-negative integer
-"""
-scalar NonNegativeInt
 
 """
 Anything
@@ -207,7 +194,7 @@ type Query {
   See also
   [Node root field](https://graphql.org/learn/global-object-identification/#node-root-field)
   """
-  node("Global object identifier." id: ID!): Node!
+  node("Global object identifier." id: ID!): Node
 
   """
   Fetch calorimetric data by universally unique identifier, and optional
@@ -218,32 +205,32 @@ type Query {
     id: Uuid!
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
-  ): CalorimetricData!
+  ): CalorimetricData
 
   """
   Confer `Query#calorimetricData`.
   """
-  geometricData(id: Uuid!, locale: Locale): GeometricData!
+  geometricData(id: Uuid!, locale: Locale): GeometricData
 
   """
   Confer `Query#calorimetricData`.
   """
-  hygrothermalData(id: Uuid!, locale: Locale): HygrothermalData!
+  hygrothermalData(id: Uuid!, locale: Locale): HygrothermalData
 
   """
   Confer `Query#calorimetricData`.
   """
-  lifeCycleData(id: Uuid!, locale: Locale): LifeCycleData!
+  lifeCycleData(id: Uuid!, locale: Locale): LifeCycleData
 
   """
   Confer `Query#calorimetricData`.
   """
-  opticalData(id: Uuid!, locale: Locale): OpticalData!
+  opticalData(id: Uuid!, locale: Locale): OpticalData
 
   """
   Confer `Query#calorimetricData`.
   """
-  photovoltaicData(id: Uuid!, locale: Locale): PhotovoltaicData!
+  photovoltaicData(id: Uuid!, locale: Locale): PhotovoltaicData
 
   """
   Search for all calorimetric data for which the proposition is true.
@@ -304,14 +291,14 @@ type Query {
     "Locale. If not given, the default locale is used, which may differ from database to database."
     locale: Locale
     "Maximum number of data edges after the cursor `after`. If not given, the default and maximum value 100 is used."
-    first: NonNegativeInt
+    first: Int
     "Data cursor after which to return at most `first` data edges."
-    after: Cursor
+    after: String
     "Maximum number of data edges before the cursor `before`."
-    last: NonNegativeInt
+    last: Int
     "Data cursor before which to return at most `last` data edges."
-    before: Cursor
-  ): CalorimetricDataConnection!
+    before: String
+  ): CalorimetricDataConnection
 
   """
   Confer `Query#allCalorimetricData`.
@@ -319,11 +306,11 @@ type Query {
   allGeometricData(
     where: GeometricDataPropositionInput
     locale: Locale
-    first: NonNegativeInt
-    after: Cursor
-    last: NonNegativeInt
-    before: Cursor
-  ): GeometricDataConnection!
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): GeometricDataConnection
 
   """
   Confer `Query#allCalorimetricData`.
@@ -331,11 +318,11 @@ type Query {
   allHygrothermalData(
     where: HygrothermalDataPropositionInput
     locale: Locale
-    first: NonNegativeInt
-    after: Cursor
-    last: NonNegativeInt
-    before: Cursor
-  ): HygrothermalDataConnection!
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): HygrothermalDataConnection
 
   """
   Confer `Query#allCalorimetricData`.
@@ -343,11 +330,11 @@ type Query {
   allLifeCycleData(
     where: LifeCycleDataPropositionInput
     locale: Locale
-    first: NonNegativeInt
-    after: Cursor
-    last: NonNegativeInt
-    before: Cursor
-  ): LifeCycleDataConnection!
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): LifeCycleDataConnection
 
   """
   Confer `Query#allCalorimetricData`.
@@ -355,11 +342,11 @@ type Query {
   allOpticalData(
     where: OpticalDataPropositionInput
     locale: Locale
-    first: NonNegativeInt
-    after: Cursor
-    last: NonNegativeInt
-    before: Cursor
-  ): OpticalDataConnection!
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): OpticalDataConnection
 
   """
   Confer `Query#allCalorimetricData`.
@@ -367,11 +354,11 @@ type Query {
   allPhotovoltaicData(
     where: PhotovoltaicDataPropositionInput
     locale: Locale
-    first: NonNegativeInt
-    after: Cursor
-    last: NonNegativeInt
-    before: Cursor
-  ): PhotovoltaicDataConnection!
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): PhotovoltaicDataConnection
 
   """
   Whether there is data for which the proposition is true in the given locale.
@@ -497,14 +484,14 @@ type PageInfo {
   arguments. For details see
   [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
   """
-  startCursor: Cursor!
+  startCursor: String
 
   """
   Cursor corresponding to the last edge in the set defined by the client's
   arguments. For details see
   [PageInfo: Fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields).
   """
-  endCursor: Cursor!
+  endCursor: String
 }
 
 """
@@ -668,10 +655,59 @@ input FilesMetaInformationPropositionInput {
 }
 
 """
-Proposition for values of type `Data`. Multiple sub-propositions are combined
-conjunctively, where the conjunction of an empty set of sub-propositions is true.
+Proposition for values of type `CielabColor`. Multiple sub-propositions are
+combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
 """
-input DataPropositionInput {
+input CielabColorPropositionInput {
+  """
+  True for CIELAB Colors with a coordinate L* that satisfies the proposition
+  `lStar`, otherwise false.
+  """
+  lStar: FloatPropositionInput
+
+  """
+  True CIELAB Colors with a coordinate a* that satisfies the proposition
+  `aStar`, otherwise false.
+  """
+  aStar: FloatPropositionInput
+
+  """
+  True CIELAB Colors with a coordinate b* that satisfies the proposition
+  `bStar`, otherwise false.
+  """
+  bStar: FloatPropositionInput
+}
+
+"""
+Proposition for lists of values of type `CielabColor`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+set of sub-propositions is true.
+"""
+input CielabColorsPropositionInput {
+  """
+  True if each list value satisfies the proposition `all`, otherwise false.
+  """
+  all: CielabColorPropositionInput
+
+  """
+  True if no list value satisfies the proposition `none`, otherwise false.
+  """
+  none: CielabColorPropositionInput
+
+  """
+  True if at least one list value satisfies the proposition `some`, otherwise
+  false.
+  """
+  some: CielabColorPropositionInput
+}
+
+"""
+Proposition for values of type `CalorimetricData`. Multiple sub-propositions
+are combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input CalorimetricDataPropositionInput {
   """
   True for data for the component with identifier `componentId`, otherwise
   false.
@@ -682,18 +718,18 @@ input DataPropositionInput {
   True for data for which each proposition in `and` is true, otherwise false.
   In particular, it is true if there is no proposition in `and`.
   """
-  and: [DataPropositionInput!]
+  and: [CalorimetricDataPropositionInput!]
 
   """
   True for data for which the proposition `not` is false, otherwise false.
   """
-  not: DataPropositionInput
+  not: CalorimetricDataPropositionInput
 
   """
   True for data for which at least one proposition in `or` is true, otherwise
   false. In particular, it is false if there is no proposition in `or`.
   """
-  or: [DataPropositionInput!]
+  or: [CalorimetricDataPropositionInput!]
 
   """
   True for data whose list of resources satisfies the proposition `resources`,
@@ -712,12 +748,209 @@ input DataPropositionInput {
   otherwise false.
   """
   uValues: FloatsPropositionInput
+}
+
+"""
+Proposition for values of type `GeometricData`. Multiple sub-propositions are
+combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input GeometricDataPropositionInput {
+  """
+  True for data for the component with identifier `componentId`, otherwise
+  false.
+  """
+  componentId: UuidPropositionInput
+
+  """
+  True for data for which each proposition in `and` is true, otherwise false.
+  In particular, it is true if there is no proposition in `and`.
+  """
+  and: [GeometricDataPropositionInput!]
+
+  """
+  True for data for which the proposition `not` is false, otherwise false.
+  """
+  not: GeometricDataPropositionInput
+
+  """
+  True for data for which at least one proposition in `or` is true, otherwise
+  false. In particular, it is false if there is no proposition in `or`.
+  """
+  or: [GeometricDataPropositionInput!]
+
+  """
+  True for data whose list of resources satisfies the proposition `resources`,
+  otherwise false.
+  """
+  resources: GetHttpsResourcesPropositionInput
 
   """
   True for data whose list of `thickness` values satisfies the proposition `thicknesses`,
   otherwise false.
   """
   thicknesses: FloatsPropositionInput
+}
+
+"""
+Proposition for values of type `HygrothermalData`. Multiple sub-propositions
+are combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input HygrothermalDataPropositionInput {
+  """
+  True for data for the component with identifier `componentId`, otherwise
+  false.
+  """
+  componentId: UuidPropositionInput
+
+  """
+  True for data for which each proposition in `and` is true, otherwise false.
+  In particular, it is true if there is no proposition in `and`.
+  """
+  and: [HygrothermalDataPropositionInput!]
+
+  """
+  True for data for which the proposition `not` is false, otherwise false.
+  """
+  not: HygrothermalDataPropositionInput
+
+  """
+  True for data for which at least one proposition in `or` is true, otherwise
+  false. In particular, it is false if there is no proposition in `or`.
+  """
+  or: [HygrothermalDataPropositionInput!]
+
+  """
+  True for data whose list of resources satisfies the proposition `resources`,
+  otherwise false.
+  """
+  resources: GetHttpsResourcesPropositionInput
+}
+
+"""
+Proposition for values of type `LifeCycleData`. Multiple sub-propositions are
+combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input LifeCycleDataPropositionInput {
+  """
+  True for data for the component with identifier `componentId`, otherwise
+  false.
+  """
+  componentId: UuidPropositionInput
+
+  """
+  True for data for which each proposition in `and` is true, otherwise false.
+  In particular, it is true if there is no proposition in `and`.
+  """
+  and: [LifeCycleDataPropositionInput!]
+
+  """
+  True for data for which the proposition `not` is false, otherwise false.
+  """
+  not: LifeCycleDataPropositionInput
+
+  """
+  True for data for which at least one proposition in `or` is true, otherwise
+  false. In particular, it is false if there is no proposition in `or`.
+  """
+  or: [LifeCycleDataPropositionInput!]
+
+  """
+  True for data whose list of resources satisfies the proposition `resources`,
+  otherwise false.
+  """
+  resources: GetHttpsResourcesPropositionInput
+}
+
+"""
+Proposition for values of enum type `OpticalComponentType`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+sub-propositions is true.
+"""
+input OpticalComponentTypePropositionInput {
+  equalTo: OpticalComponentType
+  notEqualTo: OpticalComponentType
+  in: [OpticalComponentType]
+  notIn: [OpticalComponentType]
+}
+
+"""
+Proposition for values of enum type `OpticalComponentSubtype`. Multiple
+sub-propositions are combined conjunctively, where the conjunction of an empty
+set of sub-propositions is true.
+"""
+input OpticalComponentSubtypePropositionInput {
+  equalTo: OpticalComponentSubtype
+  notEqualTo: OpticalComponentSubtype
+  in: [OpticalComponentSubtype]
+  notIn: [OpticalComponentSubtype]
+}
+
+"""
+Proposition for values of enum type `CoatedSide`. Multiple sub-propositions are
+combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input CoatedSidePropositionInput {
+  equalTo: CoatedSide
+  notEqualTo: CoatedSide
+  in: [CoatedSide]
+  notIn: [CoatedSide]
+}
+
+"""
+Proposition for values of type `OpticalData`. Multiple sub-propositions are
+combined conjunctively, where the conjunction of an empty set of
+sub-propositions is true.
+"""
+input OpticalDataPropositionInput {
+  """
+  True for data for the component with identifier `componentId`, otherwise
+  false.
+  """
+  componentId: UuidPropositionInput
+
+  """
+  True for data for which each proposition in `and` is true, otherwise false.
+  In particular, it is true if there is no proposition in `and`.
+  """
+  and: [OpticalDataPropositionInput!]
+
+  """
+  True for data for which the proposition `not` is false, otherwise false.
+  """
+  not: OpticalDataPropositionInput
+
+  """
+  True for data for which at least one proposition in `or` is true, otherwise
+  false. In particular, it is false if there is no proposition in `or`.
+  """
+  or: [OpticalDataPropositionInput!]
+
+  """
+  True for data whose list of resources satisfies the proposition `resources`,
+  otherwise false.
+  """
+  resources: GetHttpsResourcesPropositionInput
+
+  """
+  True for data whose type satisfies the proposition `type`, otherwise false.
+  """
+  type: OpticalComponentTypePropositionInput
+
+  """
+  True for data whose subtype satisfies the proposition `subtype`, otherwise
+  false.
+  """
+  subtype: OpticalComponentSubtypePropositionInput
+
+  """
+  True for data whose coated side satisfies the proposition `coatedSide`,
+  otherwise false.
+  """
+  coatedSide: CoatedSidePropositionInput
 
   """
   True for data whose list of nearnormal hemispherical visible transmittance
@@ -767,171 +1000,44 @@ input DataPropositionInput {
 }
 
 """
-Proposition for values of type `CielabColor`. Multiple sub-propositions are
-combined conjunctively, where the conjunction of an empty set of
+Proposition for values of type `PhotovoltaicData`. Multiple sub-propositions
+are combined conjunctively, where the conjunction of an empty set of
 sub-propositions is true.
-"""
-input CielabColorPropositionInput {
-  """
-  True for CIELAB Colors with a coordinate L* that satisfies the proposition
-  `lStar`, otherwise false.
-  """
-  lStar: FloatPropositionInput
-
-  """
-  True CIELAB Colors with a coordinate a* that satisfies the proposition
-  `aStar`, otherwise false.
-  """
-  aStar: FloatPropositionInput
-
-  """
-  True CIELAB Colors with a coordinate b* that satisfies the proposition
-  `bStar`, otherwise false.
-  """
-  bStar: FloatPropositionInput
-}
-
-"""
-Proposition for lists of values of type `CielabColor`. Multiple
-sub-propositions are combined conjunctively, where the conjunction of an empty
-set of sub-propositions is true.
-"""
-input CielabColorsPropositionInput {
-  """
-  True if each list value satisfies the proposition `all`, otherwise false.
-  """
-  all: CielabColorPropositionInput
-
-  """
-  True if no list value satisfies the proposition `none`, otherwise false.
-  """
-  none: CielabColorPropositionInput
-
-  """
-  True if at least one list value satisfies the proposition `some`, otherwise
-  false.
-  """
-  some: CielabColorPropositionInput
-}
-
-"""
-See `DataPropositionInput`.
-"""
-input CalorimetricDataPropositionInput {
-  componentId: UuidPropositionInput
-  and: [CalorimetricDataPropositionInput!]
-  not: CalorimetricDataPropositionInput
-  or: [CalorimetricDataPropositionInput!]
-  resources: GetHttpsResourcesPropositionInput
-  gValues: FloatsPropositionInput
-  uValues: FloatsPropositionInput
-}
-
-"""
-See `DataPropositionInput`.
-"""
-input GeometricDataPropositionInput {
-  componentId: UuidPropositionInput
-  and: [GeometricDataPropositionInput!]
-  not: GeometricDataPropositionInput
-  or: [GeometricDataPropositionInput!]
-  resources: GetHttpsResourcesPropositionInput
-  thicknesses: FloatsPropositionInput
-}
-
-"""
-See `DataPropositionInput`.
-"""
-input HygrothermalDataPropositionInput {
-  componentId: UuidPropositionInput
-  and: [HygrothermalDataPropositionInput!]
-  not: HygrothermalDataPropositionInput
-  or: [HygrothermalDataPropositionInput!]
-  resources: GetHttpsResourcesPropositionInput
-}
-
-"""
-See `DataPropositionInput`.
-"""
-input LifeCycleDataPropositionInput {
-  componentId: UuidPropositionInput
-  and: [LifeCycleDataPropositionInput!]
-  not: LifeCycleDataPropositionInput
-  or: [LifeCycleDataPropositionInput!]
-  resources: GetHttpsResourcesPropositionInput
-}
-
-"""
-Proposition for values of enum type `OpticalComponentType`. Multiple
-sub-propositions are combined conjunctively, where the conjunction of an empty
-set of sub-propositions is true.
-"""
-input OpticalComponentTypePropositionInput {
-  equalTo: OpticalComponentType
-  notEqualTo: OpticalComponentType
-  in: [OpticalComponentType]
-  notIn: [OpticalComponentType]
-}
-
-"""
-Proposition for values of enum type `OpticalComponentSubtype`. Multiple
-sub-propositions are combined conjunctively, where the conjunction of an empty
-set of sub-propositions is true.
-"""
-input OpticalComponentSubtypePropositionInput {
-  equalTo: OpticalComponentSubtype
-  notEqualTo: OpticalComponentSubtype
-  in: [OpticalComponentSubtype]
-  notIn: [OpticalComponentSubtype]
-}
-
-"""
-Proposition for values of enum type `CoatedSide`. Multiple sub-propositions are
-combined conjunctively, where the conjunction of an empty set of
-sub-propositions is true.
-"""
-input CoatedSidePropositionInput {
-  equalTo: CoatedSide
-  notEqualTo: CoatedSide
-  in: [CoatedSide]
-  notIn: [CoatedSide]
-}
-
-"""
-See `DataPropositionInput`.
-"""
-input OpticalDataPropositionInput {
-  componentId: UuidPropositionInput
-  and: [OpticalDataPropositionInput!]
-  not: OpticalDataPropositionInput
-  or: [OpticalDataPropositionInput!]
-  resources: GetHttpsResourcesPropositionInput
-  type: OpticalComponentTypePropositionInput
-  subtype: OpticalComponentSubtypePropositionInput
-  coatedSide: CoatedSidePropositionInput
-  nearnormalHemisphericalVisibleTransmittances: FloatsPropositionInput
-  nearnormalHemisphericalVisibleReflectances: FloatsPropositionInput
-  nearnormalHemisphericalSolarTransmittances: FloatsPropositionInput
-  nearnormalHemisphericalSolarReflectances: FloatsPropositionInput
-  infraredEmittances: FloatsPropositionInput
-  colorRenderingIndices: FloatsPropositionInput
-  cielabColors: CielabColorsPropositionInput
-}
-
-"""
-See `DataPropositionInput`.
 """
 input PhotovoltaicDataPropositionInput {
+  """
+  True for data for the component with identifier `componentId`, otherwise
+  false.
+  """
   componentId: UuidPropositionInput
+
+  """
+  True for data for which each proposition in `and` is true, otherwise false.
+  In particular, it is true if there is no proposition in `and`.
+  """
   and: [PhotovoltaicDataPropositionInput!]
+
+  """
+  True for data for which the proposition `not` is false, otherwise false.
+  """
   not: PhotovoltaicDataPropositionInput
+
+  """
+  True for data for which at least one proposition in `or` is true, otherwise
+  false. In particular, it is false if there is no proposition in `or`.
+  """
   or: [PhotovoltaicDataPropositionInput!]
+
+  """
+  True for data whose list of resources satisfies the proposition `resources`,
+  otherwise false.
+  """
   resources: GetHttpsResourcesPropositionInput
 }
 
 """
-Materialized connection from somewhere to data to paginate data using opaque
-cursors as elaborated in the best practice
+Materialized connection from somewhere to calorimetric data to paginate data
+using opaque cursors as elaborated in the best practice
 [Pagination](https://graphql.org/learn/pagination/)
 and the specification
 [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
@@ -940,11 +1046,11 @@ see in particular
 and
 [Connection Types](https://relay.dev/graphql/connections.htm#sec-Connection-Types).
 """
-type DataConnection {
+type CalorimetricDataConnection {
   """
   Edges to data nodes that expose opaque cursors for pagination.
   """
-  edges: [DataEdge!]!
+  edges: [CalorimetricDataEdge!]
 
   """
   Information about the present slice of all data edges (and nodes).
@@ -958,7 +1064,166 @@ type DataConnection {
 }
 
 """
-Materialized edge from somewhere to data to paginate data using opaque
+Materialized edge from somewhere to calorimetric data to paginate data using
+opaque cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Edge Types](https://relay.dev/graphql/connections.htm#sec-Edge-Types).
+"""
+type CalorimetricDataEdge {
+  """
+  Opaque
+  [cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
+  that designates the present edge for pagination.
+  """
+  cursor: String!
+
+  """
+  Data node the edge points to.
+  """
+  node: CalorimetricData!
+}
+
+"""
+Materialized connection from somewhere to geometric data to paginate data using
+opaque cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Connection Types](https://relay.dev/graphql/connections.htm#sec-Connection-Types).
+"""
+type GeometricDataConnection {
+  """
+  Edges to data nodes that expose opaque cursors for pagination.
+  """
+  edges: [GeometricDataEdge!]
+
+  """
+  Information about the present slice of all data edges (and nodes).
+  """
+  pageInfo: PageInfo!
+
+  """
+  The total count of items in the connection.
+  """
+  totalCount: Int!
+}
+
+"""
+Materialized edge from somewhere to geometric data to paginate data using
+opaque cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Edge Types](https://relay.dev/graphql/connections.htm#sec-Edge-Types).
+"""
+type GeometricDataEdge {
+  """
+  Opaque
+  [cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
+  that designates the present edge for pagination.
+  """
+  cursor: String!
+
+  """
+  Data node the edge points to.
+  """
+  node: GeometricData!
+}
+
+"""
+Materialized connection from somewhere to hygrothermal data to paginate data
+using opaque cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Connection Types](https://relay.dev/graphql/connections.htm#sec-Connection-Types).
+"""
+type HygrothermalDataConnection {
+  """
+  Edges to data nodes that expose opaque cursors for pagination.
+  """
+  edges: [HygrothermalDataEdge!]
+
+  """
+  Information about the present slice of all data edges (and nodes).
+  """
+  pageInfo: PageInfo!
+
+  """
+  The total count of items in the connection.
+  """
+  totalCount: Int!
+}
+
+"""
+Materialized edge from somewhere to hygrothermal data to paginate data using
+opaque cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Edge Types](https://relay.dev/graphql/connections.htm#sec-Edge-Types).
+"""
+type HygrothermalDataEdge {
+  """
+  Opaque
+  [cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
+  that designates the present edge for pagination.
+  """
+  cursor: String!
+
+  """
+  Data node the edge points to.
+  """
+  node: HygrothermalData!
+}
+
+"""
+Materialized connection from somewhere to life-cycle data to paginate data
+using opaque cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Connection Types](https://relay.dev/graphql/connections.htm#sec-Connection-Types).
+"""
+type LifeCycleDataConnection {
+  """
+  Edges to data nodes that expose opaque cursors for pagination.
+  """
+  edges: [LifeCycleDataEdge!]
+
+  """
+  Information about the present slice of all data edges (and nodes).
+  """
+  pageInfo: PageInfo!
+
+  """
+  The total count of items in the connection.
+  """
+  totalCount: Int!
+}
+
+"""
+Materialized edge from somewhere to life-cycle data to paginate data using opaque
 cursors as elaborated in the best practice
 [Pagination](https://graphql.org/learn/pagination/)
 and the specification
@@ -968,119 +1233,123 @@ see in particular
 and
 [Edge Types](https://relay.dev/graphql/connections.htm#sec-Edge-Types).
 """
-type DataEdge {
+type LifeCycleDataEdge {
   """
   Opaque
   [cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
   that designates the present edge for pagination.
   """
-  cursor: Cursor!
+  cursor: String!
 
   """
   Data node the edge points to.
   """
-  node: Data!
-}
-
-"""
-See `DataConnection`.
-"""
-type CalorimetricDataConnection {
-  edges: [CalorimetricDataEdge!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-"""
-See `DataEdge`.
-"""
-type CalorimetricDataEdge {
-  cursor: Cursor!
-  node: CalorimetricData!
-}
-
-"""
-See `DataConnection`.
-"""
-type GeometricDataConnection {
-  edges: [GeometricDataEdge!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-"""
-See `DataEdge`.
-"""
-type GeometricDataEdge {
-  cursor: Cursor!
-  node: GeometricData!
-}
-
-"""
-See `DataConnection`.
-"""
-type HygrothermalDataConnection {
-  edges: [HygrothermalDataEdge!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-"""
-See `DataEdge`.
-"""
-type HygrothermalDataEdge {
-  cursor: Cursor!
-  node: HygrothermalData!
-}
-
-"""
-See `DataConnection`.
-"""
-type LifeCycleDataConnection {
-  edges: [LifeCycleDataEdge!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-"""
-See `DataEdge`.
-"""
-type LifeCycleDataEdge {
-  cursor: Cursor!
   node: LifeCycleData!
 }
 
 """
-See `DataConnection`.
+Materialized connection from somewhere to optical data to paginate data using
+opaque cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Connection Types](https://relay.dev/graphql/connections.htm#sec-Connection-Types).
 """
 type OpticalDataConnection {
-  edges: [OpticalDataEdge!]!
+  """
+  Edges to data nodes that expose opaque cursors for pagination.
+  """
+  edges: [OpticalDataEdge!]
+
+  """
+  Information about the present slice of all data edges (and nodes).
+  """
   pageInfo: PageInfo!
+
+  """
+  The total count of items in the connection.
+  """
   totalCount: Int!
 }
 
 """
-See `DataEdge`.
+Materialized edge from somewhere to optical data to paginate data using opaque
+cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Edge Types](https://relay.dev/graphql/connections.htm#sec-Edge-Types).
 """
 type OpticalDataEdge {
-  cursor: Cursor!
+  """
+  Opaque
+  [cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
+  that designates the present edge for pagination.
+  """
+  cursor: String!
+
+  """
+  Data node the edge points to.
+  """
   node: OpticalData!
 }
 
 """
-See `DataConnection`.
+Materialized connection from somewhere to photovoltaic data to paginate data
+using opaque cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Connection Types](https://relay.dev/graphql/connections.htm#sec-Connection-Types).
 """
 type PhotovoltaicDataConnection {
-  edges: [PhotovoltaicDataEdge!]!
+  """
+  Edges to data nodes that expose opaque cursors for pagination.
+  """
+  edges: [PhotovoltaicDataEdge!]
+
+  """
+  Information about the present slice of all data edges (and nodes).
+  """
   pageInfo: PageInfo!
+
+  """
+  The total count of items in the connection.
+  """
   totalCount: Int!
 }
 
 """
-See `DataEdge`.
+Materialized edge from somewhere to photovoltaic data to paginate data using
+opaque cursors as elaborated in the best practice
+[Pagination](https://graphql.org/learn/pagination/)
+and the specification
+[GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm),
+see in particular
+[Complete Connection Model](https://graphql.org/learn/pagination/#complete-connection-model)
+and
+[Edge Types](https://relay.dev/graphql/connections.htm#sec-Edge-Types).
 """
 type PhotovoltaicDataEdge {
-  cursor: Cursor!
+  """
+  Opaque
+  [cursor](https://relay.dev/graphql/connections.htm#sec-Cursor)
+  that designates the present edge for pagination.
+  """
+  cursor: String!
+
+  """
+  Data node the edge points to.
+  """
   node: PhotovoltaicData!
 }
 
