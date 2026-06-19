@@ -33,7 +33,7 @@ and this project adheres to
 
 ### Changed
 
--
+- **Breaking:** Make pagination parameters and fields Relay compliant (meaning use `Int` for `first` and `last` and `String` for `after` and `before` parameters and use `Int` for `totalCount` and `String` for `*Cursor` fields), allow query `node` to return `null` if non-existent, remove unused input `DataPropositionInput` and unused types `DataConnection` and `DataEdge`, and allow `data*` and `all*Data` queries to return `null` and `edges` of `*Connection` to be `null` for more graceful error propagation (aka null bubbling) [3a88a8d19dfcc6e79caf75a4a8586be3006ee267](https://github.com/building-envelope-data/api/commit/3a88a8d19dfcc6e79caf75a4a8586be3006ee267)
 -
 -
 -
