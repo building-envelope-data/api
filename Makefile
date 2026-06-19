@@ -46,6 +46,9 @@ run : build ## Run command `${COMMAND}` in fresh container with options `${OPTIO
 		--mount type=volume,destination=/app/node_modules \
 		--mount type=volume,source=api_vscode_server_extensions,destination=/home/me/.vscode-server/extensions \
 		--mount type=volume,source=api_vscode_server_insiders_extensions,destination=/home/me/.vscode-server-insiders/extensions \
+		--add-host www.local.buildingenvelopedata.org:host-gateway \
+		--add-host www.local.solarbuildingenvelopes.com:host-gateway \
+		--add-host local.igsdb.com:host-gateway \
 		${OPTIONS} \
 		${NAME} \
 		bash -c "exec ${COMMAND}"
@@ -233,11 +236,12 @@ introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.s
 
 # https://www.solarbuildingenvelopes.com/graphql/
 diff : ## Diff two GraphQL schemas `${ONE}` `${TWO}` using paths and/or URLs, for example, `make diff ONE=./apis/database.graphql TWO=...//www.solarbuildingenvelopes.com/graphql/` (with `...` replaced by https-you-know-what)
-	npx --no-install graphql-inspector diff \
-		"${ONE}" \
-		"${TWO}" \
-		--rule ignoreDescriptionChanges \
-		--rule suppressRemovalOfDeprecatedField
+	NODE_TLS_REJECT_UNAUTHORIZED=0 \
+		npx --no-install graphql-inspector diff \
+			"${ONE}" \
+			"${TWO}" \
+			--rule ignoreDescriptionChanges \
+			--rule suppressRemovalOfDeprecatedField
 .PHONY : diff
 
 dos2unix : ## Strip the byte-order mark, also known as, BOM, and remove carriage returns
