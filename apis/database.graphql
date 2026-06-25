@@ -894,8 +894,8 @@ sub-propositions is true.
 input CoatedSidePropositionInput {
   equalTo: CoatedSide
   notEqualTo: CoatedSide
-  in: [CoatedSide]
-  notIn: [CoatedSide]
+  in: [CoatedSide!]
+  notIn: [CoatedSide!]
 }
 
 """
