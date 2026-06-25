@@ -235,11 +235,13 @@ introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.s
 .PHONY : introspect
 
 # https://www.solarbuildingenvelopes.com/graphql/
-diff : ## Diff two GraphQL schemas `${ONE}` `${TWO}` using paths and/or URLs, for example, `make diff ONE=./apis/database.graphql TWO=...//www.solarbuildingenvelopes.com/graphql/` (with `...` replaced by https-you-know-what)
+diff : ## Diff two GraphQL schemas `${ONE}` and `${TWO}` using paths and/or URLs and, if required, providing headers `${ONE_HEADER}` and `${TWO_HEADER}`, for example, `make diff ONE=./apis/database.graphql TWO=...//www.solarbuildingenvelopes.com/graphql/` (with `...` replaced by https-you-know-what) or `make diff ONE=./apis/database.graphql TWO=...//igsdb-v2.herokuapp.com/graphql TWO_HEADER="Authorization: Token my-secret"`
 	NODE_TLS_REJECT_UNAUTHORIZED=0 \
 		npx --no-install graphql-inspector diff \
 			"${ONE}" \
 			"${TWO}" \
+			--left-header "${ONE_HEADER}" \
+			--right-header "${TWO_HEADER}" \
 			--rule ignoreDescriptionChanges \
 			--rule suppressRemovalOfDeprecatedField
 .PHONY : diff
