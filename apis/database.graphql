@@ -1846,21 +1846,6 @@ enum DataKind {
 }
 
 """
-Open-ended data and time range.
-"""
-type OpenEndedDateTimeRange {
-  """
-  From beginning of time represented by `null`, or some date and time.
-  """
-  from: DateTime
-
-  """
-  Until some date and time, or end of time represented by `null`.
-  """
-  until: DateTime
-}
-
-"""
 Numeration of a standard consisting of a main number and optional prefix and
 suffix.
 
