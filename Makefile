@@ -9,7 +9,7 @@ MAKEFLAGS += --warn-undefined-variables
 
 # Taken from https://www.client9.com/self-documenting-makefiles/
 help : ## Print this help
-	@awk -F ':|##' '/^[^\t].+?:.*?##/ {\
+	@awk -F ':.*?## ' '/^[^\t].+?:.*?##/ {\
 		printf "\033[36m%-30s\033[0m %s\n", $$1, $$NF \
 	}' $(MAKEFILE_LIST)
 .PHONY : help
@@ -234,8 +234,7 @@ introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.s
 	done
 .PHONY : introspect
 
-# https://www.solarbuildingenvelopes.com/graphql/
-diff : ## Diff two GraphQL schemas `${ONE}` and `${TWO}` using paths and/or URLs and, if required, providing headers `${ONE_HEADER}` and `${TWO_HEADER}`, for example, `make diff ONE=./apis/database.graphql TWO=...//www.solarbuildingenvelopes.com/graphql/` (with `...` replaced by https-you-know-what) or `make diff ONE=./apis/database.graphql TWO=...//igsdb-v2.herokuapp.com/graphql TWO_HEADER="Authorization: Token my-secret"`
+diff : ## Diff two GraphQL schemas `${ONE}` and `${TWO}` using paths and/or URLs and, if required, providing headers `${ONE_HEADER}` and `${TWO_HEADER}`, for example, `make diff ONE=./apis/database.graphql TWO=https://www.solarbuildingenvelopes.com/graphql/` or `make diff ONE=./apis/database.graphql TWO=https://igsdb-v2.herokuapp.com/graphql TWO_HEADER="Authorization: Token my-secret"`
 	NODE_TLS_REJECT_UNAUTHORIZED=0 \
 		npx --no-install graphql-inspector diff \
 			"${ONE}" \
