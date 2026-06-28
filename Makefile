@@ -236,7 +236,7 @@ introspect : ## Introspect GraphQL schemas writing results to ./apis/*.graphql.s
 
 diff : ONE_HEADER = X-Dummy: placeholder
 diff : TWO_HEADER = X-Dummy: placeholder
-diff : ## Diff two GraphQL schemas `${ONE}` and `${TWO}` using paths and/or URLs and, if required, providing headers `${ONE_HEADER}` and `${TWO_HEADER}`, for example, `make diff ONE=./apis/database.graphql TWO=https://www.solarbuildingenvelopes.com/graphql/` or `make diff ONE=./apis/database.graphql TWO=https://igsdb-v2.herokuapp.com/graphql/ TWO_HEADER="Authorization: Token my-secret"`
+diff : ## Diff two GraphQL schemas `${ONE}` and `${TWO}` using paths and/or URLs and, if required, providing headers `${ONE_HEADER}` and `${TWO_HEADER}`, for example, `make diff ONE=./apis/database.graphql TWO=https://www.solarbuildingenvelopes.com/graphql/` or `make diff ONE=./apis/database.graphql TWO=https://www.local.buildingenvelopedata.org:7001/graphql/` or `make diff ONE=./apis/database.graphql TWO=https://igsdb-v2.herokuapp.com/graphql/ TWO_HEADER="Authorization: Token my-secret"`
 	NODE_TLS_REJECT_UNAUTHORIZED=0 \
 		npx --no-install graphql-inspector diff \
 			"${ONE}" \
