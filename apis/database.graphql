@@ -1569,36 +1569,54 @@ type OpticalData implements Node & Data {
   coatedSide: CoatedSide!
 
   """
-  Mirrored nearnormal hemispherical visible transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  Integral nearnormal hemispherical visible transmittance values that occur in
+  the data If some or all of those values do not occur verbatim in the data,
+  they need not occur in the list, even if they can be calculated based on the
+  data.
   """
   nearnormalHemisphericalVisibleTransmittances: [Float!]!
   """
-  Mirrored nearnormal hemispherical visible reflectance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  Integral nearnormal hemispherical visible reflectance values that occur in
+  the data. If some or all of those values do not occur verbatim in the data,
+  they need not occur in the list, even if they can be calculated based on the
+  data.
   """
   nearnormalHemisphericalVisibleReflectances: [Float!]!
 
   """
-  Mirrored nearnormal hemispherical solar transmittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  Integral nearnormal hemispherical solar transmittance values that occur in
+  the data. If some or all of those values do not occur verbatim in the data,
+  they need not occur in the list, even if they can be calculated based on the
+  data.
   """
   nearnormalHemisphericalSolarTransmittances: [Float!]!
 
   """
-  Mirrored nearnormal hemispherical solar reflectance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  Integral nearnormal hemispherical solar reflectance values that occur in the
+  data. If some or all of those values do not occur verbatim in the data, they
+  need not occur in the list, even if they can be calculated based on the data.
   """
   nearnormalHemisphericalSolarReflectances: [Float!]!
 
   """
-  Mirrored infrared emittance values that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  Integral infrared emittance values that occur in the data. If some or all of
+  those values do not occur verbatim in the data, they need not occur in the
+  list, even if they can be calculated based on the data.
   """
   infraredEmittances: [Float!]!
 
   """
-  Mirrored values for the Color Rendering Index that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  Integral values for the Color Rendering Index that occur in the data. If some
+  or all of those values do not occur verbatim in the data, they need not occur
+  in the list, even if they can be calculated based on the data.
   """
   colorRenderingIndices: [Float!]!
 
   """
-  Mirrored values for the coordinates in the CIELAB Color Space that occur in the data. If some or all of those values do not occur verbatim in the data, they need not occur in the list, even if they can be calculated based on the data.
+  Integral values for the coordinates in the CIELAB Color Space that occur in
+  the data. If some or all of those values do not occur verbatim in the data,
+  they need not occur in the list, even if they can be calculated based on the
+  data.
   """
   cielabColors: [CielabColor!]!
 }
@@ -1622,12 +1640,16 @@ type CalorimetricData implements Node & Data {
   approval: ResponseApproval!
 
   """
-  Mirrored `g` values that occur in the data
+  Integral `g` values that occur in the data. If some or all of those values do
+  not occur verbatim in the data, they need not occur in the list, even if they
+  can be calculated based on the data.
   """
   gValues: [Float!]!
 
   """
-  Mirrored `u` values that occur in the data
+  Integral `u` values in Watts per square meter Kelvin (W·m⁻²·K⁻¹) that occur
+  in the data. If some or all of those values do not occur verbatim in the in
+  the list, even if they can be calculated based on the data.
   """
   uValues: [Float!]!
 }
@@ -1651,7 +1673,9 @@ type GeometricData implements Node & Data {
   approval: ResponseApproval!
 
   """
-  Mirrored `thickness` values that occur in the data
+  Mirrored `thickness` values in meter (m) that occur in the data. If some or
+  all of those values do not occur verbatim in the data, they need not occur
+  in the list, even if they can be calculated based on the data.
   """
   thicknesses: [Float!]!
 }
