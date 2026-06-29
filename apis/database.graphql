@@ -2274,6 +2274,16 @@ For a data approval,
     `gpg --detach-sig --armor --local-user <SIGNING_KEY_FINGERPRINT> --output ./message.json.asc ./message.json`, and
 11. add the signature as data approval to the database through its interface,
     which could for example have a GraphQL mutation `AddDataApproval`.
+    One superficial reasons why the database may not be able to verify the
+    signature is that the whitespace in the message differs from that in the
+    original message file. For example, is there a newline at the end of the
+    message and/or are the control characters for newlines identical? Note that
+    in some WYSIWYG GraphQL interfaces, using triple double quotes for multiline
+    strings changes the newline character at the very end of the string, which
+    may not be how it was originally. Instead of using a multiline string, you
+    may use a oneline string with escaped characters. To turn your message into
+    such a JSON-escaped string, you may use the command-line tool `jq` as
+    follows: `jq --raw-input --slurp '.' < ./message.json`
 
 Best practices for managing GnuPG keys within an institution:
 * In the metabase, each institution has at least one representative. The
