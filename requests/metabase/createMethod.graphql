@@ -7,6 +7,8 @@ mutation {
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "Measurement"
       userDeveloperIds: ["d1f19101-e1e7-4e16-a09a-78b7b127b89f"]
+      sources: []
+      parameters: []
     }
   ) {
     method {
@@ -30,17 +32,9 @@ mutation {
       institutionDeveloperIds: ["5320d6fb-b96d-4aeb-a24c-eb7036d3437a"]
       managerId: "5320d6fb-b96d-4aeb-a24c-eb7036d3437a"
       name: "Complex measurement with calculations"
+      sources: []
+      parameters: []
       reference: {
-        publication: {
-          abstract: "Very short abstract"
-          arXiv: "2406.01666"
-          authors: ["Max Mustermann", "Martina Muster"]
-          doi: "10.1016/j.solener.2023.05.065"
-          section: "1"
-          title: "Optical measurements"
-          urn: "isbn:0451450523"
-          webAddress: "https://www.sciencedirect.com/science/article/pii/S0038092X17304613"
-        }
         standard: {
           abstract: "Very short abstract"
           locator: "https://www.dinmedia.de/en/standard/din-en-410/138424213"
