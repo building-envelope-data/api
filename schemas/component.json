@@ -266,41 +266,12 @@
           "type": "object",
           "properties": {
             "surface": {
-              "title": "Prime surface",
-              "type": "object",
-              "properties": {
-                "reference": {
-                  "$ref": "common.json#/$defs/reference",
-                  "title": "Reference",
-                  "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior."
-                },
-                "description": {
-                  "type": "string",
-                  "title": "Description",
-                  "description": "Description of which sides of the components are defined as non-prime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior."
-                }
-              },
-              "minProperties": 1,
-              "required": []
+              "$ref": "#/$defs/primeSurface",
+              "description": "prime surface"
             },
             "direction": {
-              "title": "Prime direction",
-              "description": "The prime direction is used to define the orientation of the component within the plane of the prime surface. For a facade component, the prime direction is often defined as the vertical direction from the bottom to the top of the component.",
-              "type": "object",
-              "properties": {
-                "reference": {
-                  "$ref": "common.json#/$defs/reference",
-                  "title": "Reference",
-                  "description": "Reference that defines the prime direction that is used to calculate the azimuth of the direction of incidence."
-                },
-                "description": {
-                  "type": "string",
-                  "title": "Description",
-                  "description": "Description of which direction is defined as the prime direction."
-                }
-              },
-              "minProperties": 1,
-              "required": []
+              "$ref": "#/$defs/primeDirection",
+              "description": "prime direction"
             }
           },
           "minProperties": 1,
@@ -378,6 +349,43 @@
         }
       },
       "additionalProperties": false,
+      "minProperties": 1,
+      "required": []
+    },
+    "primeSurface": {
+      "title": "Prime surface",
+      "type": "object",
+      "properties": {
+        "reference": {
+          "$ref": "common.json#/$defs/reference",
+          "title": "Reference",
+          "description": "Reference that defines which surface of the component is defined as non-prime and which as prime. Often, the non-prime surface faces the exterior and the prime surface faces the interior."
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "description": "Description of which sides of the components are defined as non-prime and which as prime. Often, the non-prime side faces the exterior and the prime side the interior."
+        }
+      },
+      "minProperties": 1,
+      "required": []
+    },
+    "primeDirection": {
+      "title": "Prime direction",
+      "description": "The prime direction is used to define the orientation of the component within the plane of the prime surface. For a facade component, the prime direction is often defined as the vertical direction from the bottom to the top of the component.",
+      "type": "object",
+      "properties": {
+        "reference": {
+          "$ref": "common.json#/$defs/reference",
+          "title": "Reference",
+          "description": "Reference that defines the prime direction that is used to calculate the azimuth of the direction of incidence."
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "description": "Description of which direction is defined as the prime direction."
+        }
+      },
       "minProperties": 1,
       "required": []
     },
