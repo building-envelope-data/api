@@ -247,11 +247,11 @@
           "properties": {
             "polar": {
               "$ref": "#/$defs/incidenceDirectionPolar",
-              "description": "polar angle"
+              "description": "polar angle of incident radiation"
             },
             "azimuth": {
               "$ref": "#/$defs/incidenceDirectionAzimuth",
-              "description": "azimuth angle"
+              "description": "azimuth angle of incident radiation"
             }
           },
           "additionalProperties": false,
@@ -273,6 +273,14 @@
       "$ref": "number.json#/$defs/degreeBetweenZeroAndThreeHundredSixtyWithUncertainty",
       "description": "The direction of incidence is projected onto the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/prime/properties/direction`. It can have values between 0° and 360°. If we look at the irradiated surface as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals +30° because of the right-handed coordinate system of [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
     },
+    "emergenceDirectionPolar": {
+      "$ref": "number.json#/$defs/degreeWithUncertainty",
+      "description": "The polar angle is the angle between the direction of emergence and an axis which is perpendicular to the surface of the sample. It can have values between 0° and 90°. A polar angle of 0° means that the direction of emergence is perpendicular to the sample. A polar angle of 90° means that the direction of emergence is parallel to the sample. If the sample has `azimuthalAngleInvariance`, then the optical results depend only on the polar angle and not on the azimuth angle. If the sample has a `profileAngle` symmetry whose direction is equal to the prime direction, then the profile angle can be calculated from the polar and azimuth angles."
+    },
+    "emergenceDirectionAzimuth": {
+      "$ref": "number.json#/$defs/degreeWithUncertainty",
+      "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/prime/properties/direction`. It can have values between 0° and 360°. If we look at the irradiated surface as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals +30° because of the right-handed coordinate system of [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
+    },
     "emergenceDirection": {
       "title": "Emergence direction",
       "description": "Direction of emergent radiation from a sample. An polar angle of 10° or less as defined in the technical report [CIE 130-1998, Practical methods for the measurement of reflectance and transmittance](http://cie.co.at/publications/practical-methods-measurement-reflectance-and-transmittance) is called 'nearnormal' and said to be 'almost perpendicular'.",
@@ -282,12 +290,12 @@
           "type": "object",
           "properties": {
             "polar": {
-              "$ref": "number.json#/$defs/degreeWithUncertainty",
-              "description": "The polar angle is the angle between the direction of emergence and an axis which is perpendicular to the surface of the sample. It can have values between 0° and 90°. A polar angle of 0° means that the direction of emergence is perpendicular to the sample. A polar angle of 90° means that the direction of emergence is parallel to the sample. If the sample has `azimuthalAngleInvariance`, then the optical results depend only on the polar angle and not on the azimuth angle. If the sample has a `profileAngle` symmetry whose direction is equal to the prime direction, then the profile angle can be calculated from the polar and azimuth angles."
+              "$ref": "#/$defs/emergenceDirectionPolar",
+              "description": "polar angle of emergent radiation"
             },
             "azimuth": {
-              "$ref": "number.json#/$defs/degreeWithUncertainty",
-              "description": "The direction of emergence is projected to the plane of the surface of the sample. The azimuth is the angle between this projection and the prime direction defined at `#/$defs/componentCharacteristics/properties/prime/properties/direction`. It can have values between 0° and 360°. If we look at the irradiated surface as if it was a clock, the prime direction being 12 o'clock and the projection 11 o'clock, then the azimuth equals +30° because of the right-handed coordinate system of [ASTM E2387-05 (Reapproved in 2011)](https://store.astm.org/e2387-05r11.html) and [ISO 80000-2:2019, Quantities and units - Part 2: Mathematics](https://www.iso.org/standard/64973.html)."
+              "$ref": "#/$defs/emergenceDirectionAzimuth",
+              "description": "azimuth angle of emergent radiation"
             }
           },
           "additionalProperties": false,
