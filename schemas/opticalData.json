@@ -247,11 +247,11 @@
           "properties": {
             "polar": {
               "$ref": "#/$defs/incidenceDirectionPolar",
-              "description": "polar angle relative to the prime direction"
+              "description": "polar angle"
             },
             "azimuth": {
               "$ref": "#/$defs/incidenceDirectionAzimuth",
-              "description": "azimuth angle relative to the prime direction"
+              "description": "azimuth angle"
             }
           },
           "additionalProperties": false,
