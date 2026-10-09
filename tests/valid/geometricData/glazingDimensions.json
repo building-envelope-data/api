@@ -1,0 +1,16 @@
+{
+  "dimensions": {
+    "installed": [
+      {
+        "height": 1.2,
+        "width": 0.9,
+        "thickness": 0.04038
+      }
+    ],
+    "independent": {
+      "smallest": 0.04038,
+      "intermediate": 0.9,
+      "largest": 1.2
+    }
+  }
+}
