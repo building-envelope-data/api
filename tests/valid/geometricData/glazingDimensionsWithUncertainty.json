@@ -1,0 +1,40 @@
+{
+  "dimensions": {
+    "installed": [
+      {
+        "height": {
+          "uncertainValue": 1.2,
+          "uncertainty": 0.015,
+          "confidenceInterval": 68.3
+        },
+        "width": {
+          "uncertainValue": 0.9,
+          "uncertainty": 0.015,
+          "confidenceInterval": 68.3
+        },
+        "thickness": {
+          "uncertainValue": 0.04038,
+          "uncertainty": 0.001,
+          "confidenceInterval": 68.3
+        }
+      }
+    ],
+    "independent": {
+      "smallest": {
+        "uncertainValue": 0.04038,
+        "uncertainty": 0.001,
+        "confidenceInterval": 68.3
+      },
+      "intermediate": {
+        "uncertainValue": 0.9,
+        "uncertainty": 0.015,
+        "confidenceInterval": 68.3
+      },
+      "largest": {
+        "uncertainValue": 1.2,
+        "uncertainty": 0.015,
+        "confidenceInterval": 68.3
+      }
+    }
+  }
+}
